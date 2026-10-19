@@ -21,7 +21,7 @@
     {% endif %}
   {% else %}
     <p class="problem-text">{{ st.text }}</p>
-    {% if st.svg %}<div class="circuit-wrap">{{ st.svg | safe }}</div>{% endif %}
+    {% if st.svg %}<div class="circuit-wrap">{{ st.svg | safe }}</div>{% if st.diagram %}<p class="visually-hidden">{{ st.diagram }}</p>{% endif %}{% endif %}
   {% endif %}
 </section>
 
@@ -64,6 +64,25 @@
 {% else %}
 <section class="card"><p class="tag warn">No answer key exists for this problem.</p></section>
 {% endif %}
+
+<section class="card" id="submit">
+  <h2>Submit your handwritten work</h2>
+  <p class="small muted">Photos (one per page, upright, in good light) or a PDF scan. Claude checks your reasoning against
+    {% if problem.key_type == 'none' %}<strong>no key</strong>, because none exists for this problem, so it can comment on your reasoning but not certify the answer{% else %}the key above{% endif %}.</p>
+  <form method="post" action="/problem/{{ problem.slug }}/submit" enctype="multipart/form-data" class="submit-form">
+    <input type="file" name="files" accept="image/*,application/pdf" multiple required aria-label="Photos or PDF of your work">
+    <input type="text" name="note" placeholder="anything Claude should know (optional)" aria-label="Note for the reviewer">
+    <button type="submit" class="primary">Submit for feedback</button>
+  </form>
+  {% if subs %}
+  <ul class="plain small">
+    {% for s in subs %}
+    <li><a href="/submission/{{ s.id }}">Submission #{{ s.id }}</a> · {{ s.created_at | md }} ·
+      {% if s.status == 'reviewed' %}<span class="result result-{{ s.user_verdict or s.verdict }}">{{ s.user_verdict or s.verdict }}</span>{% else %}<span class="tag">{{ s.status }}</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
 
 <section class="card" id="history">
   <h2>How did it go?</h2>

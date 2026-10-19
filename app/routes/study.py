@@ -1,12 +1,12 @@
-"""Pages for studying: videos with notes, problem sets, single problems, library files."""
-from fastapi import APIRouter, Depends, Form, HTTPException, Request
+"""Pages for studying: videos with notes, problem sets, single problems, submissions."""
+from fastapi import APIRouter, BackgroundTasks, Depends, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse, RedirectResponse, Response
 from pydantic import BaseModel
-from sqlmodel import Session
+from sqlmodel import Session, select
 
-from .. import config, pdfpages, services
+from .. import backup, config, feedback, pdfpages, services, uploads
 from ..db import get_session
-from ..models import Course, ProblemSet
+from ..models import Course, Problem, ProblemSet, Submission
 from .pages import render
 
 router = APIRouter()
@@ -143,6 +143,7 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
     st, key = problem.statement, problem.key
     return render(
         request, "problem.html", session, problem=problem, pset=pset,
+        subs=services.submissions(session, problem=problem, limit=5),
         course=session.get(Course, pset.course_id), KEY_LABELS=KEY_LABELS,
         prev=siblings[i - 1] if i > 0 else None,
         next=siblings[i + 1] if i + 1 < len(siblings) else None,
@@ -199,3 +200,101 @@ def problem_note(slug: str, body: str = Form(...), session: Session = Depends(ge
     except ValueError as e:
         raise HTTPException(422, str(e))
     return RedirectResponse(f"/problem/{slug}#notes", status_code=303)
+
+
+# ---- submissions and feedback ---------------------------------------------------------
+
+def feedback_mode(session: Session) -> str:
+    """"session" (default): wait for a Claude session. "api": review right away."""
+    mode = backup.get_setting(session, "feedback_mode", "session")
+    return "api" if mode == "api" and feedback.api_available() else "session"
+
+
+def _sub_or_404(session, sub_id: int) -> Submission:
+    sub = session.get(Submission, sub_id)
+    if sub is None:
+        raise HTTPException(404, f"No submission {sub_id}")
+    return sub
+
+
+@router.post("/problem/{slug}/submit")
+async def submit_work(slug: str, request: Request, background: BackgroundTasks,
+                      files: list[UploadFile] = File(...), note: str = Form(""),
+                      session: Session = Depends(get_session)):
+    problem = _problem_or_404(session, slug)
+    pset = session.get(ProblemSet, problem.set_id)
+    data = [(f.filename or "upload", await f.read()) for f in files if f.filename]
+    try:
+        sub = services.create_submission(session, problem, session.get(Course, pset.course_id),
+                                         data, note)
+    except uploads.UploadError as e:
+        return render(request, "upload_error.html", session, problem=problem, message=str(e))
+    if feedback_mode(session) == "api":
+        sub.status = "reviewing"
+        session.commit()
+        background.add_task(feedback.run_api_review_by_id, sub.id)
+    return RedirectResponse(f"/submission/{sub.id}", status_code=303)
+
+
+@router.get("/submission/{sub_id}")
+def submission_page(sub_id: int, request: Request, session: Session = Depends(get_session)):
+    sub = _sub_or_404(session, sub_id)
+    problem = session.get(Problem, sub.problem_id) if sub.problem_id else None
+    pset = session.get(ProblemSet, problem.set_id) if problem else None
+    return render(request, "submission.html", session, sub=sub, problem=problem, pset=pset,
+                  course=session.get(Course, sub.course_id), api_ok=feedback.api_available(),
+                  KEY_LABELS=KEY_LABELS)
+
+
+@router.post("/submission/{sub_id}/api-review")
+def submission_api_review(sub_id: int, background: BackgroundTasks,
+                          session: Session = Depends(get_session)):
+    sub = _sub_or_404(session, sub_id)
+    if not feedback.api_available():
+        raise HTTPException(422, "No ANTHROPIC_API_KEY in .env, so instant feedback is off.")
+    sub.status = "reviewing"
+    session.commit()
+    background.add_task(feedback.run_api_review_by_id, sub.id)
+    return RedirectResponse(f"/submission/{sub_id}", status_code=303)
+
+
+@router.post("/submission/{sub_id}/confirm")
+def submission_confirm(sub_id: int, verdict: str = Form(...), session: Session = Depends(get_session)):
+    try:
+        feedback.confirm(session, _sub_or_404(session, sub_id), verdict)
+    except ValueError as e:
+        raise HTTPException(422, str(e))
+    return RedirectResponse(f"/submission/{sub_id}#confirm", status_code=303)
+
+
+@router.post("/submission/{sub_id}/delete")
+def submission_delete(sub_id: int, session: Session = Depends(get_session)):
+    sub = _sub_or_404(session, sub_id)
+    problem = session.get(Problem, sub.problem_id) if sub.problem_id else None
+    services.delete_submission(session, sub)
+    return RedirectResponse(f"/problem/{problem.slug}" if problem else "/submissions", status_code=303)
+
+
+@router.get("/submissions")
+def submissions_page(request: Request, session: Session = Depends(get_session)):
+    rows = services.submissions(session, limit=100)
+    ids = [s.problem_id for s in rows if s.problem_id]
+    probs = {p.id: p for p in session.exec(select(Problem).where(Problem.id.in_(ids)))}
+    return render(request, "submissions.html", session, rows=rows, probs=probs,
+                  mode=feedback_mode(session), api_ok=feedback.api_available())
+
+
+@router.post("/settings/feedback-mode")
+def set_feedback_mode(mode: str = Form(...), session: Session = Depends(get_session)):
+    if mode not in ("session", "api"):
+        raise HTTPException(422, "mode must be session or api")
+    backup.set_setting(session, "feedback_mode", mode)
+    return RedirectResponse("/submissions", status_code=303)
+
+
+@router.get("/uploads/{path:path}")
+def upload_file(path: str):
+    target = (config.UPLOAD_DIR / path).resolve()
+    if not target.is_relative_to(config.UPLOAD_DIR.resolve()) or not target.is_file():
+        raise HTTPException(404, "Not found")
+    return FileResponse(target)

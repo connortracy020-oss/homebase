@@ -61,8 +61,13 @@ def element_power(seed: int) -> dict:
         f"= {_fmt(answer)}\\,\\text{{{unit}}}\\).",
         f"Positive means absorbing, so the element {word} {_fmt(abs(answer))} {unit}.",
     ]
+    diagram = (f"Diagram: a two-terminal element drawn vertically. The + mark is at the "
+               f"{'top' if plus_top else 'bottom'} terminal and − at the {'bottom' if plus_top else 'top'}; "
+               f"labelled v = {_fmt(v)} V. A current arrow on the top lead points "
+               f"{'down, into' if arrow_into_top else 'up, out of'} the element, labelled i = {_fmt(i)} {i_unit}.")
     return {
-        "statement": {"text": text, "svg": _element_svg(v, i, i_unit, plus_top, arrow_into_top)},
+        "statement": {"text": text, "diagram": diagram,
+                      "svg": _element_svg(v, i, i_unit, plus_top, arrow_into_top)},
         "key": {"answers": [{"label": "Power absorbed", "value": answer, "unit": unit, "tol": 0.01}],
                 "steps": steps,
                 "checks": ["Same answer after flipping both reference directions.",
@@ -121,12 +126,22 @@ def loop_power(seed: int) -> dict:
             "Find the power absorbed by each element (W). Then check that the four powers add to zero.")
     steps = []
     for n, side, pe, v, p in zip(names, SIDES, plus_at_entry, shown, powers):
-        rule = "enters + → \\(p = vI\\)" if pe else "enters − → \\(p = -vI\\)"
-        steps.append(f"{n} ({side}): clockwise current {rule} \\(= {_fmt(p)}\\) W "
+        rule = (f"enters + → \\(p = vI = ({_fmt(v)})({_fmt(current)})" if pe
+                else f"enters − → \\(p = -vI = -({_fmt(v)})({_fmt(current)})")
+        steps.append(f"{n} ({side}): clockwise current {rule} = {_fmt(p)}\\) W "
                      f"({'absorbing' if p > 0 else 'delivering'}).")
     steps.append(f"Sum: \\({' + '.join(_fmt(p) for p in powers)} = 0\\). Power balances.")
+    ends = {"left": ("bottom", "top"), "top": ("left", "right"),
+            "right": ("top", "bottom"), "bottom": ("right", "left")}  # (entry end, exit end)
+    diagram = "Diagram: a rectangular loop; the current arrow is clockwise, labelled I = " + \
+        f"{_fmt(current)} A. " + " ".join(
+            f"Element {n} is on the {side} side, labelled {_fmt(v)} V, with + at its "
+            f"{ends[side][0] if pe else ends[side][1]} end and − at its "
+            f"{ends[side][1] if pe else ends[side][0]} end."
+            for n, side, v, pe in zip(names, SIDES, shown, plus_at_entry))
     return {
-        "statement": {"text": text, "svg": _loop_svg(names, shown, plus_at_entry, current)},
+        "statement": {"text": text, "diagram": diagram,
+                      "svg": _loop_svg(names, shown, plus_at_entry, current)},
         "key": {"answers": [{"label": f"Power absorbed by {n}", "value": p, "unit": "W", "tol": 0.01}
                             for n, p in zip(names, powers)],
                 "steps": steps,

@@ -3,8 +3,11 @@
 Every form here also works without JavaScript; app.js only makes ticking
 boxes and the timer smoother.
 """
+import re
 from datetime import date
 from pathlib import Path
+
+from markupsafe import Markup, escape
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
 from fastapi.responses import FileResponse, RedirectResponse
@@ -29,6 +32,20 @@ def fmt_minutes(minutes: int | float | None) -> str:
     return f"{h} h" if h else f"{m} m"
 
 
+def mdlite(text: str) -> Markup:
+    """Tiny, safe markdown: paragraphs, "- " bullets and **bold**. Math is left for KaTeX."""
+    out = []
+    for block in re.split(r"\n\s*\n", escape(text or "").strip()):
+        lines = block.splitlines()
+        if lines and all(l.lstrip().startswith(("- ", "* ")) for l in lines):
+            out.append("<ul>" + "".join(f"<li>{l.lstrip()[2:]}</li>" for l in lines) + "</ul>")
+        else:
+            out.append("<p>" + "<br>".join(lines) + "</p>")
+    html = "".join(out)
+    return Markup(re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", html))
+
+
+TEMPLATES.env.filters["mdlite"] = mdlite
 TEMPLATES.env.filters["hm"] = fmt_minutes
 TEMPLATES.env.filters["md"] = lambda d: f"{d:%b} {d.day}"  # "Oct 19"
 TEMPLATES.env.filters["ts"] = lambda s: (f"{int(s) // 3600}:{int(s) % 3600 // 60:02d}:{int(s) % 60:02d}"
@@ -40,6 +57,7 @@ TEMPLATES.env.globals["KIND_LABELS"] = KIND_LABELS
 def render(request: Request, name: str, session: Session, **ctx):
     ctx.setdefault("courses", services.courses(session))
     ctx.setdefault("today", config.today())
+    ctx.setdefault("pending_reviews", services.pending_count(session))
     return TEMPLATES.TemplateResponse(request, name, ctx)
 
 

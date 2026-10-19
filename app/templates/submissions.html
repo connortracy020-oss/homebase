@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Feedback · Homebase{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Handwritten work</p>
+  <h1>Feedback</h1>
+  <p class="muted">Submit work from any problem page. {% if mode == 'session' %}Reviews happen when you open Claude and say
+    <em>"Review my pending Homebase submissions."</em>{% else %}Each submission goes to Claude through the API right away.{% endif %}</p>
+</section>
+
+<section class="card">
+  <h2>How reviews run</h2>
+  <form method="post" action="/settings/feedback-mode" class="inline-form">
+    <label><input type="radio" name="mode" value="session" {% if mode == 'session' %}checked{% endif %}> In a Claude session (no extra cost)</label>
+    <label><input type="radio" name="mode" value="api" {% if mode == 'api' %}checked{% endif %} {% if not api_ok %}disabled{% endif %}> Instantly via the API (about 5–10¢ each)</label>
+    <button type="submit">Save</button>
+  </form>
+  {% if not api_ok %}<p class="small muted">API mode needs an Anthropic API key in <code>.env</code>; see the README.</p>{% endif %}
+</section>
+
+<section class="card">
+  {% if rows %}
+  <ul class="items">
+    {% for s in rows %}
+    {% set p = probs.get(s.problem_id) %}
+    <li class="item"><div>
+      <a class="item-title" href="/submission/{{ s.id }}">#{{ s.id }} · {{ p.label if p else 'Work' }}</a>
+      <div class="item-meta">
+        <span>{{ (courses | selectattr('id', 'equalto', s.course_id) | first).name }}</span>
+        <span>{{ s.created_at | md }} {{ s.created_at.strftime('%H:%M') }}</span>
+        {% if s.status == 'reviewed' %}<span class="result result-{{ s.user_verdict or s.verdict }}">{{ s.user_verdict or s.verdict }}</span>
+          {% if not s.user_verdict %}<span>not confirmed yet</span>{% endif %}
+        {% else %}<span class="tag {% if s.status == 'error' %}warn{% endif %}">{{ s.status }}</span>{% endif %}
+      </div>
+    </div></li>
+    {% endfor %}
+  </ul>
+  {% else %}<p class="muted">No submissions yet. Open a problem and use "Submit your handwritten work".</p>{% endif %}
+</section>
+{% endblock %}

@@ -184,6 +184,39 @@ class Attempt(SQLModel, table=True):
     note: str = ""
 
 
+class Submission(SQLModel, table=True):
+    """Photos or a PDF of your handwritten work, and the feedback on it.
+
+    status: pending (waiting for review) -> reviewing -> reviewed, or error.
+    Claude reviews either through the API ("api") or when you open a Claude
+    session and ask it to review your queue ("claude_session").
+    """
+    id: Optional[int] = Field(default=None, primary_key=True)
+    problem_id: Optional[int] = Field(default=None, foreign_key="problem.id", index=True)
+    course_id: int = Field(foreign_key="course.id", index=True)
+    created_at: datetime
+    # [{"name": original file name, "original": path, "pages": [processed page paths]}]
+    files: list[dict] = Field(default_factory=list, sa_column=Column(JSON))
+    note: str = ""  # anything you want the reviewer to know
+    status: str = "pending"
+    reviewer: str = ""  # api | claude_session
+    model: str = ""
+    transcription: str = ""
+    verdict: str = ""  # correct | partial | incorrect | unclear
+    first_error: str = ""
+    cause: str = ""  # concept | setup | algebra-sign | units | careless | none | unclear
+    feedback: str = ""
+    confidence: str = ""  # high | medium | low
+    legible: bool = True
+    answers: list[dict] = Field(default_factory=list, sa_column=Column(JSON))
+    error: str = ""
+    reviewed_at: Optional[datetime] = None
+    tokens_in: int = 0
+    tokens_out: int = 0
+    user_verdict: str = ""  # what you decided after reading the feedback
+    confirmed_at: Optional[datetime] = None
+
+
 class StudySession(SQLModel, table=True):
     """Time you spent studying. Hours on the Progress page come from here."""
     id: Optional[int] = Field(default=None, primary_key=True)

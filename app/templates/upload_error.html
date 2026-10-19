@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Upload problem · Homebase{% endblock %}
+{% block content %}
+<section class="hero"><h1>That upload didn't work</h1></section>
+<section class="card">
+  <p class="tag warn">{{ message }}</p>
+  <p>Nothing was saved. <a href="/problem/{{ problem.slug }}#submit">Back to {{ problem.label }}</a></p>
+</section>
+{% endblock %}

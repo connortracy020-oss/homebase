@@ -13,6 +13,10 @@
   {% endif %}
 </section>
 
+{% if pending_reviews %}
+<a class="card today-alert" href="/submissions"><strong>{{ pending_reviews }}</strong> submission{{ 's' if pending_reviews != 1 }} waiting for feedback →</a>
+{% endif %}
+
 <section class="card timer" id="timer">
   <div class="timer-row">
     <label for="timer-course" class="visually-hidden">Course</label>

@@ -11,7 +11,7 @@ from sqlmodel import Session, func, select
 from . import config
 from .generators import check_answer
 from .models import (ActivityLog, Attempt, Chapter, Course, CourseWeek, Note, PrepWeek, Problem,
-                     ProblemSet, Reading, Resource, StudySession, Task, Video)
+                     ProblemSet, Reading, Resource, StudySession, Submission, Task, Video)
 
 TERM_START = date(2027, 1, 4)  # Winter 2027, week 1 Monday
 TERM_WEEKS = 10
@@ -357,6 +357,59 @@ def check_problem(session: Session, problem: Problem, given: list[str],
     session.commit()
     session.refresh(attempt)
     return attempt, marks
+
+
+# ---- submissions --------------------------------------------------------------------------
+
+def create_submission(session: Session, problem: Problem | None, course: Course,
+                      files: list[tuple[str, bytes]], note: str = "",
+                      actor: str = "app") -> Submission:
+    """Save uploaded work. Raises uploads.UploadError (and saves nothing) if a file is unusable."""
+    import shutil
+
+    from . import uploads
+
+    sub = Submission(problem_id=problem.id if problem else None, course_id=course.id,
+                     created_at=config.now(), note=note.strip())
+    session.add(sub)
+    session.flush()  # get an id for the folder name
+    try:
+        saved = uploads.save_files(sub.id, files)
+    except uploads.UploadError:
+        session.rollback()
+        shutil.rmtree(config.UPLOAD_DIR / f"{sub.id:05d}", ignore_errors=True)
+        raise
+    sub.files = [{"name": s.name, "original": s.original, "pages": s.pages} for s in saved]
+    what = problem.label if problem else course.name
+    log(session, actor, "submission.add", f"Submitted work for {what} ({len(saved)} file(s))",
+        submission=sub.id)
+    session.commit()
+    session.refresh(sub)
+    return sub
+
+
+def submissions(session: Session, status: str | None = None, problem: Problem | None = None,
+                limit: int = 50) -> list[Submission]:
+    q = select(Submission)
+    if status:
+        q = q.where(Submission.status == status)
+    if problem is not None:
+        q = q.where(Submission.problem_id == problem.id)
+    return list(session.exec(q.order_by(Submission.created_at.desc()).limit(limit)))
+
+
+def pending_count(session: Session) -> int:
+    return int(session.exec(select(func.count()).select_from(Submission)
+                            .where(Submission.status.in_(["pending", "error"]))).one())
+
+
+def delete_submission(session: Session, sub: Submission, actor: str = "app") -> None:
+    import shutil
+
+    shutil.rmtree(config.UPLOAD_DIR / f"{sub.id:05d}", ignore_errors=True)
+    log(session, actor, "submission.delete", f"Deleted submission #{sub.id}", submission=sub.id)
+    session.delete(sub)
+    session.commit()
 
 
 def recent_activity(session: Session, limit: int = 20) -> list[ActivityLog]:

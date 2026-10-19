@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Submission #{{ sub.id }} · Homebase{% endblock %}
+{% block content %}
+{% if sub.status == 'reviewing' %}<meta http-equiv="refresh" content="5">{% endif %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a>
+    {% if pset %} · <a href="/pset/{{ pset.slug }}">{{ pset.title }}</a>{% endif %} · submission #{{ sub.id }}</p>
+  <h1>{% if problem %}<a href="/problem/{{ problem.slug }}">{{ problem.label }}</a>{% else %}Your work{% endif %}</h1>
+  <p class="muted small">Submitted {{ sub.created_at | md }} {{ sub.created_at.strftime('%H:%M') }}
+    {% if problem %}· key: <span class="key-badge key-{{ problem.key_type }}">{{ KEY_LABELS[problem.key_type] }}</span>{% endif %}</p>
+</section>
+
+{% if sub.status in ('pending', 'error') %}
+<section class="card">
+  {% if sub.status == 'error' %}<p class="tag warn">The API review failed: {{ sub.error }}</p>{% endif %}
+  <h2>Waiting for review</h2>
+  <p>Open <strong>Claude Code</strong> or <strong>Claude Desktop</strong> with the Homebase tools connected and say:
+     <em>"Review my pending Homebase submissions."</em> Claude reads this packet (problem, official key, your pages)
+     and posts its feedback here.</p>
+  {% if api_ok %}
+  <form method="post" action="/submission/{{ sub.id }}/api-review"><button class="primary" type="submit">Get instant feedback (API)</button>
+    <span class="small muted">About 5–10¢ per problem, billed to your Anthropic API key.</span></form>
+  {% else %}
+  <p class="small muted">Instant feedback is off: there is no Anthropic API key in <code>.env</code> (see the README).</p>
+  {% endif %}
+</section>
+{% elif sub.status == 'reviewing' %}
+<section class="card"><h2>Reviewing…</h2><p class="muted">Claude is reading your work. This page refreshes on its own; it usually takes under a minute.</p></section>
+{% else %}
+<section class="card feedback-card verdict-{{ sub.verdict }}">
+  <h2>Feedback <span class="result result-{{ sub.verdict }}">{{ sub.verdict }}</span>
+    {% if sub.confidence == 'low' %}<span class="tag warn">low confidence</span>{% endif %}
+    {% if not sub.legible %}<span class="tag warn">parts were illegible</span>{% endif %}</h2>
+  {% if sub.first_error %}<p><strong>First error:</strong> {{ sub.first_error }} <span class="tag">{{ sub.cause }}</span></p>{% endif %}
+  <div class="feedback-text">{{ sub.feedback | mdlite }}</div>
+  {% if sub.answers %}
+  <table class="answers-table">
+    <thead><tr><th>Quantity</th><th>You</th><th>Key</th><th></th></tr></thead>
+    <tbody>{% for a in sub.answers %}<tr><td>{{ a.label }}</td><td>{{ a.student }}</td><td>{{ a.key }}</td>
+      <td>{% if a.match == 'yes' %}<span class="mark ok">✓</span>{% elif a.match == 'no' %}<span class="mark bad">✗</span>{% else %}?{% endif %}</td></tr>{% endfor %}</tbody>
+  </table>
+  {% endif %}
+  {% if problem and problem.key_type == 'none' %}<p class="tag warn">No official key exists for this problem, so this is feedback on reasoning only.</p>{% endif %}
+  <details class="solution"><summary>What Claude read in your work</summary><div class="transcription">{{ sub.transcription | mdlite }}</div>
+    <p class="small muted">If this misreads your handwriting, the feedback may be off. Resubmit with a clearer photo.</p></details>
+  <p class="small muted">Reviewed by {{ 'Claude via the API' if sub.reviewer == 'api' else 'Claude in a chat session' }}{% if sub.model %} ({{ sub.model }}){% endif %}
+    · {{ sub.reviewed_at | md }}{% if sub.tokens_in %} · {{ sub.tokens_in + sub.tokens_out }} tokens{% endif %}</p>
+</section>
+
+<section class="card" id="confirm">
+  <h2>Do you agree?</h2>
+  {% if sub.user_verdict %}
+  <p>You settled on <span class="result result-{{ sub.user_verdict }}">{{ sub.user_verdict }}</span>{% if sub.user_verdict != sub.verdict %} (Claude said {{ sub.verdict }}){% endif %}. It's saved as an attempt on this problem.</p>
+  {% else %}
+  <p class="small muted">The key decides. If Claude misread something, pick what's actually true.</p>
+  {% endif %}
+  <form method="post" action="/submission/{{ sub.id }}/confirm" class="rate-form">
+    {% for v in ['correct', 'partial', 'incorrect'] %}
+    <button name="verdict" value="{{ v }}" type="submit" {% if v == sub.verdict and not sub.user_verdict %}class="primary"{% endif %}>{{ 'Agree: ' if v == sub.verdict else '' }}{{ v }}</button>
+    {% endfor %}
+  </form>
+</section>
+{% endif %}
+
+<section class="card">
+  <h2>Your pages</h2>
+  <div class="page-grid">
+    {% for f in sub.files %}{% for p in f.pages %}
+    <a href="/{{ p }}" target="_blank"><img src="/{{ p }}" alt="Page {{ loop.index }} of {{ f.name }}" loading="lazy"></a>
+    {% endfor %}{% endfor %}
+  </div>
+  {% if sub.note %}<p class="small">Your note: {{ sub.note }}</p>{% endif %}
+  <form method="post" action="/submission/{{ sub.id }}/delete" onsubmit="return confirm('Delete this submission and its photos?')">
+    <button class="link small" type="submit">Delete this submission</button></form>
+</section>
+{% endblock %}

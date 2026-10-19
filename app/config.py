@@ -9,6 +9,26 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def _load_dotenv(path: Path) -> None:
+    """Read KEY=value lines from Homebase/.env (git-ignored) into the environment.
+
+    This is where ANTHROPIC_API_KEY goes if you turn on instant API feedback.
+    Values already set in the environment win.
+    """
+    if not path.exists():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        os.environ.setdefault(key.strip(), value.strip().strip('"').strip("'"))
+
+
+_load_dotenv(ROOT / ".env")
+
 CONTENT_DIR = ROOT / "content"
 LIBRARY_DIR = ROOT / "library"
 DATA_DIR = Path(os.environ.get("HOMEBASE_DATA", ROOT / "data"))

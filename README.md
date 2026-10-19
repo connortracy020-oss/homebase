@@ -39,6 +39,61 @@ The other weeks and courses get the same structure in stage (f): add `content/<c
 
 Problem images are cut out of the PDFs on demand and cached in `data/cache/`. No problem text is copied into git.
 
+## Feedback on handwritten work (stage c)
+
+On any problem page, use **Submit your handwritten work**. Upload photos (one per page, upright, good light) or a PDF scan. Homebase rotates photos upright, resizes them, and bundles a review packet: the problem, the **official key** for it (cut from the published solution, or the code-computed answers), and your pages.
+
+Claude then reviews the packet one of two ways:
+
+| Mode | How | Cost |
+|---|---|---|
+| **Claude session** (default) | Open Claude Code or Claude Desktop with the Homebase tools connected and say *"Review my pending Homebase submissions."* Claude reads each packet and posts feedback back. | Covered by your Claude plan |
+| **Instant (API)** | Put `ANTHROPIC_API_KEY=...` in a file named `.env` in the Homebase folder (it's git-ignored), restart, and pick "Instantly via the API" on the Feedback page. | About 5–10¢ per problem (Claude Opus 5.5) |
+
+Each review gives you:
+- a transcription of what Claude read in your work
+- the first error, with a cause tag (concept / setup / algebra-sign / units / careless)
+- short feedback
+- a table of your answers next to the key's
+- a verdict: correct, partial, incorrect or unclear
+
+The rules Claude follows are in `app/feedback.py`:
+- the key wins any disagreement
+- unreadable writing is flagged, never guessed
+- no answer is ever called "correct" when no key exists
+
+Then you settle the verdict (**Agree** or pick another), and that counts as an attempt on the problem.
+
+`scripts/feedback_eval.py` makes fake handwritten submissions with known mistakes to check review quality. In the first run, a separate Claude reviewer got 7/7 verdicts and causes right.
+
+## Claude access (MCP server)
+
+`mcp_server.py` gives Claude these tools on your Homebase:
+
+| Tools | What Claude can do |
+|---|---|
+| `get_overview`, `get_week`, `get_progress`, `list_problems`, `get_problem` | See your plan, progress and problems |
+| `list_pending_submissions`, `get_submission`, `post_feedback` | Review your queued work |
+| `mark_task_done`, `log_study_session`, `add_note`, `record_problem_result`, `mark_video_watched` | Log work you do with Claude in chat |
+| `recent_activity` | See what changed recently |
+
+Everything Claude changes shows up as **Claude** in the activity log on the Progress page.
+
+- **Claude Code in the Homebase folder:** picks it up from `.mcp.json` (approve it once when asked).
+- **Claude Code anywhere** (run once in a terminal):
+  ```
+  claude mcp add --scope user homebase -- C:\Users\conno\Documents\Homebase\.venv\Scripts\python.exe C:\Users\conno\Documents\Homebase\mcp_server.py
+  ```
+- **Claude Desktop:** add this to `%APPDATA%\Claude\claude_desktop_config.json` under `"mcpServers"`, then restart Claude Desktop:
+  ```json
+  "homebase": {
+    "command": "C:\\Users\\conno\\Documents\\Homebase\\.venv\\Scripts\\python.exe",
+    "args": ["C:\\Users\\conno\\Documents\\Homebase\\mcp_server.py"]
+  }
+  ```
+
+The MCP server reads the same database as the web app, so the web app doesn't need to be running.
+
 ## Your data
 
 - Everything you do is in `data/homebase.db`, a single SQLite file. `data/` is never committed to git.

@@ -17,7 +17,7 @@
       "problems": {
         "label": "Exercise 1-{n}", "count": 10, "key_type": "official_worked",
         "statement": {"pdf": "library/ece201/ulaby/exercise_sol.pdf", "page": "15+n", "start": "Exercise 1-{n}", "end": "Solution:"},
-        "key": {"pdf": "library/ece201/ulaby/exercise_sol.pdf", "page": "15+n", "start": "Solution:"}
+        "key": {"pdf": "library/ece201/ulaby/exercise_sol.pdf", "page": "15+n", "start": "Solution:", "end": "Fawwaz T"}
       }
     },
     {
