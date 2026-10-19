@@ -1,0 +1,2027 @@
+[
+  {
+    "id": "lanterman-L03",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L3: Sinusoids: Plots from Formulas (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=uTYJR1cIeTU&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "uTYJR1cIeTU",
+    "duration_min": 11.0,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "sinusoid plots",
+      "amplitude/frequency/phase"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L04",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L4: Sinusoids: Formulas from Plots (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=tLYXVvrwno8&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "tLYXVvrwno8",
+    "duration_min": 9.6,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "reading sinusoid parameters from plots"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L05",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L5: Complex Numbers in ECE and the Roots of Unity (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=Xqb3S0qi3Bg&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "Xqb3S0qi3Bg",
+    "duration_min": 17.2,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "complex numbers",
+      "roots of unity"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L06",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L6: Phasor Representations of Sinusoids (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=_iZjq2aDMPM&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "_iZjq2aDMPM",
+    "duration_min": 14.9,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "phasors",
+      "complex exponentials"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L07",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L7: Phasor Addition (Sinusoids with Same Frequencies) (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=NguxRMsawJU&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "NguxRMsawJU",
+    "duration_min": 15.1,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "phasor addition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-01",
+    "series": "hasler-ece2026",
+    "title": "Personal Overview on History of Signal Processing First Course",
+    "url": "https://youtu.be/ZbfC5H7uV7Q",
+    "youtube_id": "ZbfC5H7uV7Q",
+    "duration_min": 5.0,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "SP First Intro"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-02",
+    "series": "hasler-ece2026",
+    "title": "Overview of Complex Numbers for Engineering Applications",
+    "url": "https://youtu.be/HtNo2sfVd4E",
+    "youtube_id": "HtNo2sfVd4E",
+    "duration_min": 3.5,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "a + jb"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-03",
+    "series": "hasler-ece2026",
+    "title": "Complex Euler Representation and Sinusoidal Identities",
+    "url": "https://youtu.be/-q7nZ4lGR_0",
+    "youtube_id": "-q7nZ4lGR_0",
+    "duration_min": 3.5,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Basic Euler"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-04",
+    "series": "hasler-ece2026",
+    "title": "Introduction of Sinusoidal Signals",
+    "url": "https://youtu.be/sfDFsBCadgY",
+    "youtube_id": "sfDFsBCadgY",
+    "duration_min": 5.8,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Sinusiod Signal"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-05",
+    "series": "hasler-ece2026",
+    "title": "Three examples of Adding Sinusoids of the same Frequency",
+    "url": "https://youtu.be/dzumfzEABsM",
+    "youtube_id": "dzumfzEABsM",
+    "duration_min": 3.8,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Sinusoid Addition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-06",
+    "series": "hasler-ece2026",
+    "title": "Basic Overview of Function Linearity",
+    "url": "https://youtu.be/TgCkawuBRhU",
+    "youtube_id": "TgCkawuBRhU",
+    "duration_min": 3.7,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Linearity"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L01",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 Introduction to Signal Processing: Welcome! (Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=ywpOXj0XkHI&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "ywpOXj0XkHI",
+    "duration_min": 14.4,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "course overview"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L02",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L2: Fourier Everywhere! (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=hQr37jIlhD0&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "hQr37jIlhD0",
+    "duration_min": 6.9,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "why Fourier"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L02",
+    "series": "mit-res6007",
+    "title": "Lecture 2: Signals and Systems: Part I",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-2-signals-and-systems-part-i/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "signal classes",
+      "DT sinusoids",
+      "complex exponentials"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "radke-dsp-L01",
+    "series": "radke-ecse4530",
+    "title": "Lecture 1: Discrete-time Signals",
+    "url": "https://www.youtube.com/watch?v=hVOA8VtKLgk",
+    "youtube_id": "hVOA8VtKLgk",
+    "duration_min": null,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Discrete-time Signals"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-04",
+    "series": "vanveen-allsp-intro",
+    "title": "Notation and Basic Signal Properties",
+    "url": "https://www.youtube.com/watch?v=2_Pl25nFhr4&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "2_Pl25nFhr4",
+    "duration_min": 21.7,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Notation and Basic Signal Properties"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-05",
+    "series": "vanveen-allsp-intro",
+    "title": "Sinusoidal Signals",
+    "url": "https://www.youtube.com/watch?v=fCAZ7jcO-vc&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "fCAZ7jcO-vc",
+    "duration_min": 20.4,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Sinusoidal Signals"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L08",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L8: Two-Sided Frequency Spectrum (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=mVQfgXKzpFg&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "mVQfgXKzpFg",
+    "duration_min": 17.8,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "two-sided spectrum"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L09",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L9: Periodic Signals and Harmonics (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=NcVLo_tCa-M&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "NcVLo_tCa-M",
+    "duration_min": 14.2,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "periodic signals",
+      "harmonics"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L11",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L11: Beat Frequencies and Amplitude Modulation (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=CKfykhkQKVw&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "CKfykhkQKVw",
+    "duration_min": 9.6,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "beat notes",
+      "amplitude modulation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L14",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L14: Continuous-Time Fourier Series (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=nAvc3bBb8k4&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "nAvc3bBb8k4",
+    "duration_min": 8.3,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "Fourier series (CT)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L15",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L15: Fourier Series Analysis Integral & Square Wave Example (Intro to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=KnkwDlqWJoY&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "KnkwDlqWJoY",
+    "duration_min": 17.4,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "Fourier series analysis integral",
+      "square wave"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "3b1b-r6sGWTCMz2k",
+    "series": "3blue1brown",
+    "title": "But what is a Fourier series? From heat flow to drawing with circles | DE4",
+    "url": "https://www.youtube.com/watch?v=r6sGWTCMz2k",
+    "youtube_id": "r6sGWTCMz2k",
+    "duration_min": 24.8,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Fourier series intuition",
+      "complex exponentials"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-05",
+    "series": "brunton-fourier",
+    "title": "Complex Fourier Series",
+    "url": "https://www.youtube.com/watch?v=4cfctnaHyFM&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "4cfctnaHyFM",
+    "duration_min": 12.4,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Complex Fourier Series"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-07",
+    "series": "brunton-fourier",
+    "title": "Fourier Series [Python]",
+    "url": "https://www.youtube.com/watch?v=dZrShAGqT44&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "dZrShAGqT44",
+    "duration_min": 8.4,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Fourier Series [Python]"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-07",
+    "series": "hasler-ece2026",
+    "title": "Introduction to Fourier Series",
+    "url": "https://youtu.be/H7kgEWYh95c",
+    "youtube_id": "H7kgEWYh95c",
+    "duration_min": 5.5,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Fourier Series"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-08",
+    "series": "hasler-ece2026",
+    "title": "The Fourier Series of a Square Wave",
+    "url": "https://youtu.be/Fw-fjDNJrjI",
+    "youtube_id": "Fw-fjDNJrjI",
+    "duration_min": 5.5,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Square Wave Series"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-09",
+    "series": "hasler-ece2026",
+    "title": "Fourier Series of a Triangle Signal",
+    "url": "https://youtu.be/9Ke2g-tgKtU",
+    "youtube_id": "9Ke2g-tgKtU",
+    "duration_min": 4.3,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Triangle Wave Series"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-10",
+    "series": "hasler-ece2026",
+    "title": "Comparison of Two Fourier Series",
+    "url": "https://youtu.be/okk57nFkCbk",
+    "youtube_id": "okk57nFkCbk",
+    "duration_min": 5.5,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "2 Series Comparison"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-11",
+    "series": "hasler-ece2026",
+    "title": "Basics of Time & Frequency generalizing Fourier Series",
+    "url": "https://youtu.be/TeddBtVjokA",
+    "youtube_id": "TeddBtVjokA",
+    "duration_min": 3.2,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Spectrogram"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L10",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L10: Spectrograms and Stepped Frequency Sinusoids (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=maBASaN3eFw&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "maBASaN3eFw",
+    "duration_min": 5.8,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "spectrogram",
+      "stepped frequency"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L12",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L12: Instantaneous Frequencies of Time-Varying Sinusoids (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=qy02sujJwL8&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "qy02sujJwL8",
+    "duration_min": 8.4,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "instantaneous frequency",
+      "chirps"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L13",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L13: FM Synthesis (Frequency Modulation for Music) (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=QZsOiQaFyk0&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "QZsOiQaFyk0",
+    "duration_min": 6.4,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "FM synthesis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L16",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L16: Triangle Wave Fourier Series (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=-LqoDN55cNI&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "-LqoDN55cNI",
+    "duration_min": 6.0,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "triangle wave Fourier series"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L45",
+    "series": "lanterman-ece2026",
+    "title": "ECE2025 L45: Voice Synthesis via Adding Sinusoids (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=qosYRO6WjkQ&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "qosYRO6WjkQ",
+    "duration_min": 3.2,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "voice synthesis by adding sinusoids"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L19",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L19: Sampling: Analog-to-Digital Conversion",
+    "url": "https://www.youtube.com/watch?v=Es2cUTqRJYw&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "Es2cUTqRJYw",
+    "duration_min": 11.7,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "sampling",
+      "A/D"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L20",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L20: Digital Frequencies and Aliasing (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=-1wNXtyzl7s&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "-1wNXtyzl7s",
+    "duration_min": 16.2,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "digital frequency",
+      "aliasing"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L21",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L21: Spectral Folding: A Kind of Aliasing (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=6nbZUXio6WU&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "6nbZUXio6WU",
+    "duration_min": 14.5,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "folding"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L22",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L22: Digital-to-Analog Reconstruction (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=ZUusjFj_uBI&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "ZUusjFj_uBI",
+    "duration_min": 9.7,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "D/A reconstruction"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L23",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L23: Periodicity of Discrete-Time Signals (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=iwMABWYuyh0&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "iwMABWYuyh0",
+    "duration_min": 12.6,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "periodicity of DT signals"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-12",
+    "series": "hasler-ece2026",
+    "title": "Periodicity and Digital Sampling",
+    "url": "https://youtu.be/UFqSw2EwSSY",
+    "youtube_id": "UFqSw2EwSSY",
+    "duration_min": 3.6,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Periodicity"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-13",
+    "series": "hasler-ece2026",
+    "title": "Overview Converting from Continuous to Discrete Signals",
+    "url": "https://youtu.be/jDgZHZoFKAU",
+    "youtube_id": "jDgZHZoFKAU",
+    "duration_min": 4.3,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "C2D Mechanisms"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-14",
+    "series": "hasler-ece2026",
+    "title": "Introduction to Linearity for Data Converters",
+    "url": "https://youtu.be/E9qqv6Deyv8",
+    "youtube_id": "E9qqv6Deyv8",
+    "duration_min": 7.5,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Data Converter Linearity"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-15",
+    "series": "hasler-ece2026",
+    "title": "Sampling a Single Sinusoid",
+    "url": "https://youtu.be/m5-FoNhwAGI",
+    "youtube_id": "m5-FoNhwAGI",
+    "duration_min": 7.6,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Single cos( )"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-16",
+    "series": "hasler-ece2026",
+    "title": "Two examples of Sampling Sinusoidal Signals",
+    "url": "https://youtu.be/Q1xLiDgW0EY",
+    "youtube_id": "Q1xLiDgW0EY",
+    "duration_min": 3.8,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Sinuoid Sampling"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L16",
+    "series": "mit-res6007",
+    "title": "Lecture 16: Sampling",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-16-sampling/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "sampling theorem"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L24",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L24: FIR Filters (Finite Impulse Response) (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=xatSTOlJI3M&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "xatSTOlJI3M",
+    "duration_min": 10.8,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "FIR filters",
+      "difference equation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L25",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L25: Impulse Responses of FIR Filters (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=-Fff1Ly3fM0&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "-Fff1Ly3fM0",
+    "duration_min": 6.8,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "impulse response"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6003-L02",
+    "series": "mit-6003-f11",
+    "title": "Lecture 2: Discrete-Time (DT) Systems",
+    "url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/lecture-2-discrete-time-dt-systems/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Discrete-Time (DT) Systems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L03",
+    "series": "mit-res6007",
+    "title": "Lecture 3: Signals and Systems: Part II",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-3-signals-and-systems-part-ii/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "system properties",
+      "linearity",
+      "time invariance"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "radke-dsp-L02",
+    "series": "radke-ecse4530",
+    "title": "Lecture 2: Linear, Time-Invariant Systems",
+    "url": "https://www.youtube.com/watch?v=yIYcT7U2OaA",
+    "youtube_id": "yIYcT7U2OaA",
+    "duration_min": null,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Linear, Time-Invariant Systems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-06",
+    "series": "vanveen-allsp-intro",
+    "title": "Exponential, Step, and Impulse Signals",
+    "url": "https://www.youtube.com/watch?v=josvb9JUGzk&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "josvb9JUGzk",
+    "duration_min": 13.5,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Exponential, Step, and Impulse Signals"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-09",
+    "series": "vanveen-allsp-intro",
+    "title": "Introduction to Linear Time Invariant System Descriptions",
+    "url": "https://www.youtube.com/watch?v=m0EQT_ivOek&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "m0EQT_ivOek",
+    "duration_min": 12.1,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Introduction to Linear Time Invariant System Descriptions"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-10",
+    "series": "vanveen-allsp-intro",
+    "title": "Difference Equation Descriptions for Systems",
+    "url": "https://www.youtube.com/watch?v=MtHpbGUIGaA&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "MtHpbGUIGaA",
+    "duration_min": 11.9,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Difference Equation Descriptions for Systems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L26",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L26: Linearity and Time-Invariance (System Properties) (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=h0nWv0hDw0o&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "h0nWv0hDw0o",
+    "duration_min": 7.0,
+    "osu_week": 5,
+    "priority": "core",
+    "topics": [
+      "linearity",
+      "time invariance"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L27",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L27: Discrete-Time Convolution (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=SKA7ji9BnHk&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "SKA7ji9BnHk",
+    "duration_min": 11.9,
+    "osu_week": 5,
+    "priority": "core",
+    "topics": [
+      "DT convolution"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L28",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L28: Cascading LTI Systems (Linear Time-Invariant) (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=YFv2NKRwYEo&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "YFv2NKRwYEo",
+    "duration_min": 6.7,
+    "osu_week": 5,
+    "priority": "core",
+    "topics": [
+      "cascaded LTI systems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "3b1b-KuXjwB4LzSA",
+    "series": "3blue1brown",
+    "title": "But what is a convolution?",
+    "url": "https://www.youtube.com/watch?v=KuXjwB4LzSA",
+    "youtube_id": "KuXjwB4LzSA",
+    "duration_min": 23.0,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "convolution intuition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-17",
+    "series": "hasler-ece2026",
+    "title": "Basic FIR Discrete Linear System Implementation",
+    "url": "https://youtu.be/rB_LObYB_mI",
+    "youtube_id": "rB_LObYB_mI",
+    "duration_min": 6.0,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "FIR Implement"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-18",
+    "series": "hasler-ece2026",
+    "title": "Introduction to the Unit Step and Impulse Functions",
+    "url": "https://youtu.be/Z45kvk8i0zU",
+    "youtube_id": "Z45kvk8i0zU",
+    "duration_min": 6.6,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Step & Impulse"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-19",
+    "series": "hasler-ece2026",
+    "title": "Convolution Overview",
+    "url": "https://youtu.be/3YGKwuN6Eck",
+    "youtube_id": "3YGKwuN6Eck",
+    "duration_min": 7.1,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Convolution Intro"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-20",
+    "series": "hasler-ece2026",
+    "title": "An Example of Discrete Convolution",
+    "url": "https://youtu.be/Wc4wp3H-0lk",
+    "youtube_id": "Wc4wp3H-0lk",
+    "duration_min": 6.7,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Convolution 01"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-21",
+    "series": "hasler-ece2026",
+    "title": "Three Discrete Convolution Examples",
+    "url": "https://youtu.be/EtXIpVs9PM8",
+    "youtube_id": "EtXIpVs9PM8",
+    "duration_min": 3.4,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Convolution 02"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-22",
+    "series": "hasler-ece2026",
+    "title": "Frequency Response for Discrete FIR Systems",
+    "url": "https://youtu.be/eJvVMbag91I",
+    "youtube_id": "eJvVMbag91I",
+    "duration_min": 7.5,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Freq. Resp. I"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-23",
+    "series": "hasler-ece2026",
+    "title": "Discrete Processing Operation on a Continuous Triangle Signal",
+    "url": "https://youtu.be/nERffQfxzqI",
+    "youtube_id": "nERffQfxzqI",
+    "duration_min": 4.4,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Triangle Wave Items"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6003-L08",
+    "series": "mit-6003-f11",
+    "title": "Lecture 8: Convolution",
+    "url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/lecture-8-convolution/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Convolution"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L04",
+    "series": "mit-res6007",
+    "title": "Lecture 4: Convolution",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-4-convolution/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "DT convolution sum",
+      "CT convolution"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L05",
+    "series": "mit-res6007",
+    "title": "Lecture 5: Properties of Linear, Time-Invariant Systems",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-5-properties-of-linear-time-invariant-systems/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "LTI properties",
+      "causality",
+      "stability"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "radke-dsp-L03",
+    "series": "radke-ecse4530",
+    "title": "Lecture 3: Convolution and its Properties",
+    "url": "https://www.youtube.com/watch?v=kVSUnbgul7g",
+    "youtube_id": "kVSUnbgul7g",
+    "duration_min": null,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Convolution and its Properties"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-07",
+    "series": "vanveen-allsp-intro",
+    "title": "Review of Linear Time Invariant Systems",
+    "url": "https://www.youtube.com/watch?v=PD6jLrOGZbY&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "PD6jLrOGZbY",
+    "duration_min": 19.1,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Review of Linear Time Invariant Systems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-11",
+    "series": "vanveen-allsp-intro",
+    "title": "Impulse Response Descriptions for Systems",
+    "url": "https://www.youtube.com/watch?v=TsLvC_pQBa4&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "TsLvC_pQBa4",
+    "duration_min": 15.2,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Impulse Response Descriptions for Systems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L29",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L29: Frequency Responses of Discrete-Time Systems (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=7RNu3qvgsd4&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "7RNu3qvgsd4",
+    "duration_min": 8.6,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "frequency response"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L30",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L30: Frequency Responses of FIR Filters (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=HhHevBOyyDc&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "HhHevBOyyDc",
+    "duration_min": 15.8,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "FIR frequency response"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-24",
+    "series": "hasler-ece2026",
+    "title": "Review of initial Discrete Signal Processing Concepts",
+    "url": "https://youtu.be/Arw2nmRMQSA",
+    "youtube_id": "Arw2nmRMQSA",
+    "duration_min": 4.3,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Discrete SP Items"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-25",
+    "series": "hasler-ece2026",
+    "title": "Boxcar Averaging FIR Filters",
+    "url": "https://youtu.be/m19bRpcVgDY",
+    "youtube_id": "m19bRpcVgDY",
+    "duration_min": 7.0,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Averaging FIR"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-26",
+    "series": "hasler-ece2026",
+    "title": "FIR Filters on Differencing",
+    "url": "https://youtu.be/mLL_BxuXoaQ",
+    "youtube_id": "mLL_BxuXoaQ",
+    "duration_min": 6.3,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Difference FIR"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-27",
+    "series": "hasler-ece2026",
+    "title": "Some FIR Filter Responses",
+    "url": "https://youtu.be/csg6cZgzAzw",
+    "youtube_id": "csg6cZgzAzw",
+    "duration_min": 3.2,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "FIR Freq Resp 1"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-28",
+    "series": "hasler-ece2026",
+    "title": "Basic Frequency FIR Response",
+    "url": "https://youtu.be/XTe_2lIdEP8",
+    "youtube_id": "XTe_2lIdEP8",
+    "duration_min": 2.4,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "FIR Freq Resp 2"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "vanveen-intro-12",
+    "series": "vanveen-allsp-intro",
+    "title": "Frequency Response Descriptions for LTI Systems",
+    "url": "https://www.youtube.com/watch?v=E3QfYXscsCc&list=PLGI7M8vwfrFPtrWL_o6CluZYkshj-hqUr",
+    "youtube_id": "E3QfYXscsCc",
+    "duration_min": 15.3,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Frequency Response Descriptions for LTI Systems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L31",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L31: Digital Filtering of Analog Signals (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=GSmyUB3pGOc&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "GSmyUB3pGOc",
+    "duration_min": 8.7,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "digital filtering of analog signals"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L32",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L32: Image Filtering Examples (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=uWJh5KKi_xE&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "uWJh5KKi_xE",
+    "duration_min": 3.5,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "image filtering"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L33",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L33: Discrete-Time Fourier Transforms: Definitions (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=YPLCqJGfIIw&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "YPLCqJGfIIw",
+    "duration_min": 13.6,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "DTFT definition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L34",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L34: Boxcar and Sinc Functions: DTFT Pairs (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=GvxIt5InUIw&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "GvxIt5InUIw",
+    "duration_min": 11.2,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "boxcar",
+      "Dirichlet/sinc DTFT pair"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L35",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L35: DTFT Properties: Shifts in Time and Frequency (Introduction for Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=cV5wbV2nzWo&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "cV5wbV2nzWo",
+    "duration_min": 13.9,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "DTFT time/frequency shift properties"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L11",
+    "series": "mit-res6007",
+    "title": "Lecture 11: Discrete-Time Fourier Transform",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-11-discrete-time-fourier-transform/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "DTFT"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "3b1b-spUNpyF58BY",
+    "series": "3blue1brown",
+    "title": "But what is the Fourier Transform? A visual introduction.",
+    "url": "https://www.youtube.com/watch?v=spUNpyF58BY",
+    "youtube_id": "spUNpyF58BY",
+    "duration_min": 19.7,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "Fourier transform intuition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6003-L18",
+    "series": "mit-6003-f11",
+    "title": "Lecture 18: Discrete-Time (DT) Fourier Representations",
+    "url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/lecture-18-discrete-time-dt-fourier-representations/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "Discrete-Time (DT) Fourier Representations"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "radke-dsp-L07",
+    "series": "radke-ecse4530",
+    "title": "Lecture 7: The Discrete-Time Fourier Transform",
+    "url": "https://www.youtube.com/watch?v=3rWROGFknj4",
+    "youtube_id": "3rWROGFknj4",
+    "duration_min": null,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "The Discrete-Time Fourier Transform"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L36",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L36: Can Brickwall Filters Exist in Real Life? (DTFT Analysis) (Intro to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=r79_qMrsJoQ&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "r79_qMrsJoQ",
+    "duration_min": 10.1,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "ideal filters",
+      "DTFT analysis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L41",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L41: Discrete Fourier Series and Relationship to the DFT (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=Du17g33Vwn0&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "Du17g33Vwn0",
+    "duration_min": 5.7,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "discrete Fourier series",
+      "DFS-DFT relation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L10",
+    "series": "mit-res6007",
+    "title": "Lecture 10: Discrete-Time Fourier Series",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-10-discrete-time-fourier-series/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "DTFS"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L37",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L37: FIR Filter Design via Windowing (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=N3nmDHLPKYM&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "N3nmDHLPKYM",
+    "duration_min": 11.7,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "FIR design by windowing"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6003-L17",
+    "series": "mit-6003-f11",
+    "title": "Lecture 17: Discrete-Time (DT) Frequency Representations",
+    "url": "https://ocw.mit.edu/courses/6-003-signals-and-systems-fall-2011/resources/lecture-17-discrete-time-dt-frequency-representations/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "Discrete-Time (DT) Frequency Representations"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mitres6007-L12",
+    "series": "mit-res6007",
+    "title": "Lecture 12: Filtering",
+    "url": "https://ocw.mit.edu/courses/res-6-007-signals-and-systems-spring-2011/resources/lecture-12-filtering/",
+    "youtube_id": null,
+    "duration_min": null,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "ideal filters",
+      "frequency-selective filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L38",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L38: Discrete Fourier Transforms (DFT & DTFT Relations) (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=9HOrrb6gIOs&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "9HOrrb6gIOs",
+    "duration_min": 8.6,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "DFT",
+      "DFT-DTFT relation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L39",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L39: DFT: Numerical Example (Discrete Fourier Transforms) (Intro to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=mGT-8tyLmlo&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "mGT-8tyLmlo",
+    "duration_min": 5.9,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "DFT numerical example"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L40",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L40: Zero Padding DFTs (Discrete Fourier Transforms) (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=DK9jTrYpi0Y&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "DK9jTrYpi0Y",
+    "duration_min": 3.4,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "zero padding"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-15",
+    "series": "brunton-fourier",
+    "title": "The Discrete Fourier Transform (DFT)",
+    "url": "https://www.youtube.com/watch?v=nl9TZanwbBk&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "nl9TZanwbBk",
+    "duration_min": 17.6,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "The Discrete Fourier Transform (DFT)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-16",
+    "series": "brunton-fourier",
+    "title": "Computing the DFT Matrix",
+    "url": "https://www.youtube.com/watch?v=Xw4voABxU5c&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "Xw4voABxU5c",
+    "duration_min": 7.1,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Computing the DFT Matrix"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-17",
+    "series": "brunton-fourier",
+    "title": "The Fast Fourier Transform (FFT)",
+    "url": "https://www.youtube.com/watch?v=E8HeD-MUrjY&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "E8HeD-MUrjY",
+    "duration_min": 8.8,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "The Fast Fourier Transform (FFT)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-18",
+    "series": "brunton-fourier",
+    "title": "The Fast Fourier Transform Algorithm",
+    "url": "https://www.youtube.com/watch?v=toj_IoCQE-4&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "toj_IoCQE-4",
+    "duration_min": 10.3,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "The Fast Fourier Transform Algorithm"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-20",
+    "series": "brunton-fourier",
+    "title": "Denoising Data with FFT [Python]",
+    "url": "https://www.youtube.com/watch?v=s2K1JfNR7Sc&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "s2K1JfNR7Sc",
+    "duration_min": 10.1,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Denoising Data with FFT [Python]"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "brunton-fourier-29",
+    "series": "brunton-fourier",
+    "title": "Spectrogram Examples [Python]",
+    "url": "https://www.youtube.com/watch?v=TJGlxdW7Fb4&list=PLMrJAkhIeNNT_Xh3Oy0Y4LTj0Oxo8GqsC",
+    "youtube_id": "TJGlxdW7Fb4",
+    "duration_min": 10.0,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Spectrogram Examples [Python]"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-52",
+    "series": "hasler-ece2026",
+    "title": "Overview of Filter Specifications",
+    "url": "https://youtu.be/iH7JlAPnuRQ",
+    "youtube_id": "iH7JlAPnuRQ",
+    "duration_min": 5.4,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Filter Specs"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-53",
+    "series": "hasler-ece2026",
+    "title": "Basics of Classical Analog Signal Processing",
+    "url": "https://youtu.be/mo1-dL9lD0Y",
+    "youtube_id": "mo1-dL9lD0Y",
+    "duration_min": 5.0,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Classical ASP"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-54",
+    "series": "hasler-ece2026",
+    "title": "Fourier Transforms and the DFT",
+    "url": "https://youtu.be/gfKUKhOOGYE",
+    "youtube_id": "gfKUKhOOGYE",
+    "duration_min": 6.2,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Fourier Trans"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-55",
+    "series": "hasler-ece2026",
+    "title": "Matrix Formulation of a DFT transform",
+    "url": "https://youtu.be/1hpqTmfty2E",
+    "youtube_id": "1hpqTmfty2E",
+    "duration_min": 5.8,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Matrix DFT"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-56",
+    "series": "hasler-ece2026",
+    "title": "Introducing the DFT as a Filter",
+    "url": "https://youtu.be/s6-2fjuUkII",
+    "youtube_id": "s6-2fjuUkII",
+    "duration_min": 5.1,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "DFT Filter"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hasler-57",
+    "series": "hasler-ece2026",
+    "title": "Using a Four-Point DFT as a Filter",
+    "url": "https://youtu.be/aaKL9d9jIEA",
+    "youtube_id": "aaKL9d9jIEA",
+    "duration_min": 3.1,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "4pt DFT Filter"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "radke-dsp-L10",
+    "series": "radke-ecse4530",
+    "title": "Lecture 10: The Discrete Fourier Transform",
+    "url": "https://www.youtube.com/watch?v=jnxTpxB7HR8",
+    "youtube_id": "jnxTpxB7HR8",
+    "duration_min": null,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "The Discrete Fourier Transform"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L46",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L46: Z-Transforms: The Key to DSP System Analysis & Design (Intro to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=p-30S9sI4b0&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "p-30S9sI4b0",
+    "duration_min": 8.0,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "z-transform"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L47",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L47: Convolution Property of Z-Transforms (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=ke3dsR6v9fg&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "ke3dsR6v9fg",
+    "duration_min": 6.4,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "z-transform"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L48",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L48: Z-Transforms & Frequency Responses of FIR Filters (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=x3S_WTatIVU&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "x3S_WTatIVU",
+    "duration_min": 8.1,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "z-transform"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L49",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L49: Designing Nulling FIR Filters (Notch) (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=uQNsBE9rkGo&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "uQNsBE9rkGo",
+    "duration_min": 9.2,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "z-transform"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L50",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L50: FIR Filterpalooza: Getting Zen with the Z-Plane (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=36GffjQi_Qk&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "36GffjQi_Qk",
+    "duration_min": 8.3,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "z-transform"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L51",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L51: Infinite Impulse Response Filters (IIR) (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=BP2NtddrRrc&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "BP2NtddrRrc",
+    "duration_min": 9.8,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L52",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L52: Step Responses of IIR Filters (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=jv3A63Wq9gA&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "jv3A63Wq9gA",
+    "duration_min": 2.9,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L53",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L53: Z-Transforms for IIR Filters (Introduction to Signal Processing, Georgia Tech course)",
+    "url": "https://www.youtube.com/watch?v=5nKnpTPmNh0&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "5nKnpTPmNh0",
+    "duration_min": 12.8,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L54",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L54: Deconvolution Filter Design with Z-Transforms (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=K4X_rjEvn8c&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "K4X_rjEvn8c",
+    "duration_min": 4.5,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L55",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L55: Poles and Zeros of IIR Filters and Stability (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=7SB2wxaEfsQ&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "7SB2wxaEfsQ",
+    "duration_min": 7.7,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L56",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L56: Frequency Responses of IIR Filters (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=S7VQgPjztcI&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "S7VQgPjztcI",
+    "duration_min": 10.6,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L57",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L57: Resonant Second-Order IIR Filters (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=v4zJUR_gKnc&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "v4zJUR_gKnc",
+    "duration_min": 17.8,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L58",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L58: Designing Nulling IIR Filters (Notch) (Introduction to Signal Processing, Georgia Tech)",
+    "url": "https://www.youtube.com/watch?v=w0I22ekX2ho&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "w0I22ekX2ho",
+    "duration_min": 3.0,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L59",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L59: IIR Filters with Switched-On Sinusoidal Inputs (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=auTw30el430&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "auTw30el430",
+    "duration_min": 10.7,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "lanterman-L60",
+    "series": "lanterman-ece2026",
+    "title": "ECE2026 L60: IIR Filterpalooza: Getting Zen with the Z-Plane (Introduction to Signal Processing)",
+    "url": "https://www.youtube.com/watch?v=Vz8Zh6z_Q6Q&list=PLOunECWxELQTS8q48sEeJhKZHsEp5uZOK",
+    "youtube_id": "Vz8Zh6z_Q6Q",
+    "duration_min": 10.3,
+    "osu_week": null,
+    "priority": "optional",
+    "topics": [
+      "IIR filters"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  }
+]

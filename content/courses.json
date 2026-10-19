@@ -1,0 +1,38 @@
+[
+  {
+    "code": "ECE201",
+    "name": "ECE 201",
+    "title": "DC and Transient Circuits",
+    "color": "#9a5b3f",
+    "priority": 1,
+    "instructor": "Tingwei Zhang",
+    "meets": "Tue/Thu 8:30-9:50, KEC 1001; 2-hour lab W, R or F",
+    "term_note": "Top priority: the lecture is reportedly fast and slide-driven. Template schedule is OSU ENGR 201 Winter 2022; ECE 201 adds a weekly lab and a short semiconductor/fabrication unit whose timing is unknown.",
+    "exam_style_known": false,
+    "exam_style_note": "W27 exam rules are not public (syllabus is Canvas-only). Practice as closed book, one formula sheet, no calculator - the style of the only OSU circuits-sequence syllabus found (ENGR 203)."
+  },
+  {
+    "code": "MTH254",
+    "name": "MTH 254",
+    "title": "Vector Calculus I",
+    "color": "#6b7348",
+    "priority": 2,
+    "instructor": "F. Bouya (sec 020) or W. Shin (030/040)",
+    "meets": "MWF lecture; Thu recitation; group midterms Tue 7:00-8:20 pm",
+    "term_note": "Template calendar is OSU Fall 2018 (Briggs & Cochran ch 11-13). Readings use the free OpenStax Calculus Vol 3 and CLP-3.",
+    "exam_style_known": true,
+    "exam_style_note": "From past OSU offerings: closed book, no calculators, one 3x5 note card per midterm. Evening group exams around weeks 4 and 7; group final Tue Mar 16 2027, 4:00 pm. Exams were 64% of the grade in F18."
+  },
+  {
+    "code": "ECE200",
+    "name": "ECE 200",
+    "title": "Discrete-Time Signal Processing",
+    "color": "#4f6a83",
+    "priority": 3,
+    "instructor": "Jinsub Kim",
+    "meets": "Mon/Wed 4:00-5:20, Weniger 151; 2-hour PC lab (Kidder 028)",
+    "term_note": "Generalized from DSP First / Georgia Tech ECE 2026, not from an OSU syllabus. Winter 2027 appears to be the first Corvallis run of this course. Labs here use Python (NumPy/Matplotlib).",
+    "exam_style_known": false,
+    "exam_style_note": "Grading and exam style at OSU are UNKNOWN. Practice uses Georgia Tech ECE 2026 quizzes (closed book, 1-3 handwritten note sheets in recent years)."
+  }
+]

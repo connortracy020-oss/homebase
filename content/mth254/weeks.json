@@ -1,0 +1,106 @@
+[
+  {
+    "number": 1,
+    "title": "Vectors, dot and cross products",
+    "topics": [
+      "polar/cyl/sph coordinate review",
+      "vectors in plane and 3D",
+      "dot product, projections",
+      "cross product"
+    ],
+    "notes": "F18 template: Fri wk0 + Mon 11.1/11.2, Wed 11.3, Fri 11.4/11.5. W27 starts Mon Jan 4 2027 (Ecampus FAQ via search; not opened)."
+  },
+  {
+    "number": 2,
+    "title": "Lines, curves, motion in space",
+    "topics": [
+      "lines (and planes) in space",
+      "curves / vector-valued functions",
+      "calculus of vector functions",
+      "motion in space"
+    ],
+    "notes": "F18: Mon 11.5, Wed 11.6, Thu recitation Quiz 1, Fri 11.7."
+  },
+  {
+    "number": 3,
+    "title": "Arc length, surfaces, level curves",
+    "topics": [
+      "length of curves (curvature 11.9 optional)",
+      "planes and surfaces, quadrics",
+      "graphs and level curves",
+      "Exam 1 review"
+    ],
+    "notes": "F18: Mon 11.8, Wed 12.1/12.2, Fri Exam 1 review. Exam-1 practice: osu-s13-sample-mt, osu-garity-sample-mt-f11, mit1802sc-prac1a, mit1802sc-exam1, mit1802f07-prac1a/1b (skip matrices)."
+  },
+  {
+    "number": 4,
+    "title": "Group Exam 1; limits and continuity",
+    "topics": [
+      "GROUP EXAM 1 (ch 11)",
+      "graphs/level curves continued",
+      "limits and continuity"
+    ],
+    "notes": "F18 Exam 1: Mon Oct 15 2018 20:30-21:50. W27 (coordinator-reported, not verified): group midterm slot Tuesday 7:00-8:20 pm, i.e. Tue Jan 26 2027 if exam is in week 4 (date computed). No calculators; one 3x5 card (F18 rule)."
+  },
+  {
+    "number": 5,
+    "title": "Partials, chain rule, gradient",
+    "topics": [
+      "partial derivatives",
+      "chain rule",
+      "directional derivatives and gradient"
+    ],
+    "notes": "F18: Mon 12.4, Wed 12.5, Thu Quiz 2, Fri 12.6."
+  },
+  {
+    "number": 6,
+    "title": "Tangent planes, max/min",
+    "topics": [
+      "tangent planes and linear approximation",
+      "max/min, second derivative test, absolute extrema",
+      "(Lagrange multipliers if covered)",
+      "Exam 2 review"
+    ],
+    "notes": "F18: Mon 12.7, Wed 12.8, Fri 12.8 + Exam 2 review (12.9 not on F18 calendar). Exam-2 practice: mit1802sc-prac2a, mit1802sc-exam2, mit1802f07-prac2a/2b, osu-garity-mt-f03, osu-garity-mt-2005, osu-garity-mt-s01."
+  },
+  {
+    "number": 7,
+    "title": "Group Exam 2; double integrals",
+    "topics": [
+      "GROUP EXAM 2 (12.2-12.8)",
+      "double integrals over rectangles",
+      "double integrals over general regions, order of integration"
+    ],
+    "notes": "F18 Exam 2: Mon Nov 5 2018 20:30-21:50. W27 (coordinator-reported): Tuesday 7:00-8:20 pm slot, i.e. Tue Feb 16 2027 if in week 7 (date computed)."
+  },
+  {
+    "number": 8,
+    "title": "Double integrals in polar",
+    "topics": [
+      "double integrals (general regions) continued",
+      "double integrals in polar coordinates",
+      "(applications: mass, center of mass)"
+    ],
+    "notes": "F18: Mon holiday, Wed 13.2/13.3, Thu Quiz 3, Fri 13.3."
+  },
+  {
+    "number": 9,
+    "title": "Triple integrals, cylindrical, spherical",
+    "topics": [
+      "triple integrals",
+      "cylindrical and spherical coordinates",
+      "triple integrals in cylindrical and spherical"
+    ],
+    "notes": "F18: Mon 13.4, Wed 13.5 (Thanksgiving week). W27 has no holiday in this week (not checked)."
+  },
+  {
+    "number": 10,
+    "title": "Triple integrals continued; final review",
+    "topics": [
+      "triple integrals in cyl/sph continued",
+      "(change of variables if covered)",
+      "final review"
+    ],
+    "notes": "F18: Mon 13.5, Wed catch-up/review, Fri final review; F18 final Wed Dec 5 2018 20:00-21:50, cumulative, up to 3 note cards. W27 group final Tue Mar 16 2027 4:00 pm (coordinator-reported, not verified). Final practice: osu-garity-final-s01, osu-garity-final-f03, mit1802sc-pracfinal/finalexam (first half), mit1802f07-prac3a/3b and prac4a/4b (integral problems only), mit1802sc-prac3a/exam3/prac4a/exam4 (integral problems only)."
+  }
+]

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% from "_macros.html" import task_row, bar %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">{{ day | longdate }}</p>
+  <h1>{{ phase.label }}</h1>
+  {% if phase.prep_week %}
+  <p class="muted">{{ phase.prep_week.start | md }} – {{ phase.prep_week.end | md }} · {{ phase.prep_week.focus }}</p>
+  {% elif phase.name == 'before' %}
+  <p class="muted">The prep plan starts Monday, October 19.</p>
+  {% elif phase.name == 'term' %}
+  <p class="muted">Term mode: each course page follows its 10-week plan. <a href="/course/ECE201/week/{{ phase.term_week }}">ECE 201 week {{ phase.term_week }}</a></p>
+  {% endif %}
+</section>
+
+<section class="card timer" id="timer">
+  <div class="timer-row">
+    <label for="timer-course" class="visually-hidden">Course</label>
+    <select id="timer-course">
+      {% for c in courses %}<option value="{{ c.code }}">{{ c.name }}</option>{% endfor %}
+    </select>
+    <output id="timer-clock" aria-live="off">0:00</output>
+    <button type="button" id="timer-toggle" class="primary">Start</button>
+  </div>
+  <p class="muted small" id="timer-status">Study timer. It keeps running if you close the page.</p>
+</section>
+
+{% if phase.prep_week %}
+<section class="week-status">
+  {% for c in courses %}
+  {% set planned = phase.prep_week.planned_minutes.get(c.code, 0) %}
+  {% if planned %}
+  <div class="status-line" style="--accent: {{ c.color }}">
+    <span class="dot"></span><span class="code">{{ c.name }}</span>
+    {{ bar(week_logged.get(c.code, 0), planned, c.color) }}
+    <span class="muted small">{{ week_logged.get(c.code, 0) | hm }} of {{ planned | hm }}</span>
+  </div>
+  {% endif %}
+  {% endfor %}
+</section>
+
+{% for course, tasks in groups %}
+<section class="card">
+  <h2 style="--accent: {{ course.color }}" class="course-head"><span class="dot"></span>{{ course.name }} <span class="muted">{{ course.title }}</span></h2>
+  <ul class="tasks">
+    {% for t in tasks %}{{ task_row(t, course, 'term wk ' ~ t.course_week) }}{% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% endif %}
+
+<section class="card">
+  <h2>Log time by hand</h2>
+  <form method="post" action="/study" class="inline-form">
+    <select name="course" aria-label="Course">
+      {% for c in courses %}<option value="{{ c.code }}">{{ c.name }}</option>{% endfor %}
+    </select>
+    <input type="number" name="minutes" min="1" max="720" placeholder="minutes" required aria-label="Minutes">
+    <input type="text" name="note" placeholder="note (optional)" aria-label="Note">
+    <button type="submit">Add</button>
+  </form>
+  {% if recent %}
+  <ul class="plain small muted">
+    {% for s in recent %}
+    <li>{{ s.started_at | md }} · {{ s.minutes | hm }} · {{ (courses | selectattr('id', 'equalto', s.course_id) | first).name }}{% if s.note %} · {{ s.note }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Settings · Homebase{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Your data</p>
+  <h1>Settings</h1>
+  <p class="muted">Everything lives in <code>{{ data_dir }}</code>.</p>
+</section>
+
+<section class="card">
+  <h2>Export</h2>
+  <p>One zip with every table as JSON plus your uploaded work. Readable by any program.</p>
+  <p><a class="button primary" href="/export">Download export</a></p>
+</section>
+
+<section class="card">
+  <h2>Daily backup</h2>
+  <p>A copy of the database goes to a synced folder once a day while Homebase runs (14 days kept).</p>
+  <p class="small">Folder: {% if backup_dir %}<code>{{ backup_dir }}</code>{% else %}<span class="tag warn">none set</span>{% endif %}<br>
+     Last backup: {{ last_backup or 'never' }}</p>
+  {% if last_error %}<p class="tag warn">Last problem: {{ last_error }}</p>{% endif %}
+  <form method="post" action="/settings/backup"><button type="submit">Back up now</button></form>
+  <form method="post" action="/settings/backup-dir" class="inline-form">
+    <input type="text" name="folder" placeholder="Different folder (full path), blank = OneDrive default" aria-label="Backup folder">
+    <button type="submit">Save folder</button>
+  </form>
+</section>
+{% endblock %}

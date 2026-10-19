@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% from "_macros.html" import bar %}
+{% block title %}Progress · Homebase{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">All three courses</p>
+  <h1>Progress</h1>
+</section>
+
+<section class="grid3">
+  {% for p in progress %}
+  <div class="card stat" style="--accent: {{ p.course.color }}">
+    <p class="eyebrow"><span class="dot"></span>{{ p.course.name }}</p>
+    <p class="big">{{ p.minutes | hm }}</p>
+    <p class="muted small">of {{ p.planned_minutes | hm }} planned</p>
+    {{ bar(p.minutes, p.planned_minutes, p.course.color) }}
+    <p class="small">{{ p.tasks_done }}/{{ p.tasks_total }} tasks · {{ p.pct }}%</p>
+  </div>
+  {% endfor %}
+</section>
+
+<section class="card">
+  <h2>Hours by prep week</h2>
+  <p class="muted small">Logged vs planned, per course.</p>
+  <table class="weeks-table">
+    <thead><tr><th>Week</th>{% for p in progress %}<th style="--accent: {{ p.course.color }}"><span class="dot"></span>{{ p.course.name }}</th>{% endfor %}</tr></thead>
+    <tbody>
+      {% for w in prep_weeks %}
+      <tr>
+        <th scope="row">{{ w.number }} <span class="muted small">{{ w.start | md }}</span></th>
+        {% for p in progress %}
+        {% set planned = w.planned_minutes.get(p.course.code, 0) %}
+        {% set logged = p.week_minutes.get(w.number, 0) %}
+        <td>{% if planned or logged %}{{ bar(logged, planned or logged, p.course.color) }}<span class="small muted">{{ logged | hm }} / {{ planned | hm }}</span>{% else %}<span class="muted small">—</span>{% endif %}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>Recent study time</h2>
+  {% if recent %}
+  <ul class="plain">
+    {% for s in recent %}
+    <li class="row">
+      <span>{{ s.started_at | md }} · {{ s.minutes | hm }} · {{ course_by_id[s.course_id].name }} <span class="muted small">{{ s.source }}{% if s.note %} · {{ s.note }}{% endif %}</span></span>
+      <form method="post" action="/study/{{ s.id }}/delete"><button class="small link" type="submit" aria-label="Delete this entry">delete</button></form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}<p class="muted">No time logged yet. Use the timer on Today.</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>Activity</h2>
+  <p class="muted small">Every change, including anything Claude does through the API.</p>
+  {% if activity %}
+  <ul class="plain small">
+    {% for a in activity %}
+    <li><span class="muted">{{ a.at | md }} {{ a.at.strftime('%H:%M') }}</span> {% if a.actor == 'claude' %}<span class="by-claude">Claude</span>{% endif %} {{ a.summary }}</li>
+    {% endfor %}
+  </ul>
+  {% else %}<p class="muted">Nothing yet.</p>{% endif %}
+</section>
+{% endblock %}

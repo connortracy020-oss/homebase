@@ -1,0 +1,3158 @@
+[
+  {
+    "id": "mit1802f07-L01",
+    "series": "mit-1802-f07",
+    "title": "Lecture 1: Dot Product",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-1-dot-product/",
+    "youtube_id": "PxCxlsl_YwY",
+    "duration_min": 38.7,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "dot product",
+      "vectors",
+      "angles",
+      "projection"
+    ],
+    "verified": true,
+    "summary": "Introduces vectors in the plane and in space: components, length, addition and scaling, then defines the dot product, proves its cosine formula, and uses it to compute angles and recognize perpendicularity.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Opening remarks on vector background",
+        "kind": "admin"
+      },
+      {
+        "t": 63,
+        "title": "Vectors: direction, magnitude, unit vectors i j k",
+        "kind": "concept"
+      },
+      {
+        "t": 319,
+        "title": "Example: length of vector <3,2,1>",
+        "kind": "example"
+      },
+      {
+        "t": 542,
+        "title": "General length formula, more dimensions",
+        "kind": "concept"
+      },
+      {
+        "t": 604,
+        "title": "Vector addition: parallelogram and components",
+        "kind": "concept"
+      },
+      {
+        "t": 760,
+        "title": "Scalar multiples and subtraction",
+        "kind": "concept"
+      },
+      {
+        "t": 923,
+        "title": "Dot product defined by components",
+        "kind": "concept"
+      },
+      {
+        "t": 1047,
+        "title": "Geometric form: lengths times cosine",
+        "kind": "concept"
+      },
+      {
+        "t": 1146,
+        "title": "Proof using A.A and law of cosines",
+        "kind": "concept"
+      },
+      {
+        "t": 1571,
+        "title": "Example: angle in triangle PQR",
+        "kind": "example"
+      },
+      {
+        "t": 1894,
+        "title": "Sign of dot product versus angle",
+        "kind": "concept"
+      },
+      {
+        "t": 1996,
+        "title": "Example: x+2y+3z=0 is a plane",
+        "kind": "example"
+      },
+      {
+        "t": 2255,
+        "title": "Preview: components along any direction",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802f07-L02",
+    "series": "mit-1802-f07",
+    "title": "Lecture 2: Determinants",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-2-determinants/",
+    "youtube_id": "9FLItlbBUPY",
+    "duration_min": 52.9,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "determinants",
+      "cross product",
+      "area",
+      "volume"
+    ],
+    "verified": true,
+    "summary": "Finishes dot-product applications with components along a direction, then builds 2x2 and 3x3 determinants as signed area and volume, defines the cross product with its length and right-hand-rule direction, and links volume to the triple product.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: dot product, angles, perpendicularity",
+        "kind": "review"
+      },
+      {
+        "t": 141,
+        "title": "Component of a vector along unit u",
+        "kind": "concept"
+      },
+      {
+        "t": 304,
+        "title": "Example: pendulum tangent and normal components",
+        "kind": "example"
+      },
+      {
+        "t": 596,
+        "title": "Area of a plane triangle with vectors",
+        "kind": "concept"
+      },
+      {
+        "t": 760,
+        "title": "Trick: rotate A by 90 degrees",
+        "kind": "concept"
+      },
+      {
+        "t": 1027,
+        "title": "2x2 determinant as signed parallelogram area",
+        "kind": "concept"
+      },
+      {
+        "t": 1466,
+        "title": "3x3 determinant by first-row expansion",
+        "kind": "concept"
+      },
+      {
+        "t": 1754,
+        "title": "Determinant gives parallelepiped volume",
+        "kind": "concept"
+      },
+      {
+        "t": 1967,
+        "title": "Cross product definition via symbolic determinant",
+        "kind": "concept"
+      },
+      {
+        "t": 2187,
+        "title": "Length of A x B equals area",
+        "kind": "concept"
+      },
+      {
+        "t": 2284,
+        "title": "Direction of A x B: right-hand rule",
+        "kind": "concept"
+      },
+      {
+        "t": 2489,
+        "title": "Example: i cross j equals k",
+        "kind": "example"
+      },
+      {
+        "t": 2828,
+        "title": "Volume as base area times height",
+        "kind": "concept"
+      },
+      {
+        "t": 3069,
+        "title": "Triple product matches the determinant",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s03-dot-angles",
+    "series": "mit-1802sc-recitations",
+    "title": "Dot products and angles",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/dot-products-and-angles/",
+    "youtube_id": "hfyluFvlZ-o",
+    "duration_min": 8.7,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "Dot products and angles"
+    ],
+    "verified": true,
+    "summary": "Uses the dot product to find the angle between two space vectors, then finds the parameter values making angle PQR a right angle.",
+    "chapters": [
+      {
+        "t": 7,
+        "title": "Example: two dot-product angle problems",
+        "kind": "example"
+      },
+      {
+        "t": 84,
+        "title": "Part a: cosine formula gives pi/3",
+        "kind": "example"
+      },
+      {
+        "t": 282,
+        "title": "Part b: building vectors QP and QR",
+        "kind": "example"
+      },
+      {
+        "t": 414,
+        "title": "Right angle when dot product is zero",
+        "kind": "example"
+      },
+      {
+        "t": 488,
+        "title": "Wrap-up of both methods",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s07-cross",
+    "series": "mit-1802sc-recitations",
+    "title": "Finding area using cross products",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/area-using-cross-product/",
+    "youtube_id": "QHaAoQQy07I",
+    "duration_min": 5.1,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "Finding area using cross products"
+    ],
+    "verified": true,
+    "summary": "Finds the area of a triangle in space by forming two edge vectors, taking their cross product, and halving the parallelogram area.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Example: triangle area via cross product",
+        "kind": "example"
+      },
+      {
+        "t": 39,
+        "title": "Sketch and form edge vectors",
+        "kind": "example"
+      },
+      {
+        "t": 134,
+        "title": "Computing the cross product determinant",
+        "kind": "example"
+      },
+      {
+        "t": 238,
+        "title": "Magnitude, then halve for the triangle",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "3b1b-cross",
+    "series": "3b1b-ela",
+    "title": "Cross products",
+    "url": "https://www.3blue1brown.com/lessons/cross-products",
+    "youtube_id": "eu6i7WJeinw",
+    "duration_min": 8.9,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Cross products"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "3b1b-cross2",
+    "series": "3b1b-ela",
+    "title": "Cross products in the light of linear transformations",
+    "url": "https://www.3blue1brown.com/lessons/cross-products-extended",
+    "youtube_id": "BaM7OCEm3G0",
+    "duration_min": 13.2,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Cross products in the light of linear transformations"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "3b1b-det",
+    "series": "3b1b-ela",
+    "title": "The determinant",
+    "url": "https://www.3blue1brown.com/lessons/determinant",
+    "youtube_id": "Ip3X9LOh2dk",
+    "duration_min": 10.1,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "The determinant"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "3b1b-dot",
+    "series": "3b1b-ela",
+    "title": "Dot products and duality",
+    "url": "https://www.3blue1brown.com/lessons/dot-products",
+    "youtube_id": "LyGKycYT2v0",
+    "duration_min": 14.2,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Dot products and duality"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-01",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 11.1:  An Introduction to Vectors",
+    "url": "https://www.youtube.com/watch?v=tGVnBAHLApA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "tGVnBAHLApA",
+    "duration_min": 157.8,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "An Introduction to Vectors"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-02",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 11.2:  Vectors in 3-D Coordinate System",
+    "url": "https://www.youtube.com/watch?v=ZAv3bF2GznI&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "ZAv3bF2GznI",
+    "duration_min": 70.8,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Vectors in 3-D Coordinate System"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-03",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 11.3:  Using the Dot Product",
+    "url": "https://www.youtube.com/watch?v=TKlGMRghcDs&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "TKlGMRghcDs",
+    "duration_min": 149.1,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Using the Dot Product"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-04",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 11.4:  The Cross Product",
+    "url": "https://www.youtube.com/watch?v=qqfhgStQ-cA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "qqfhgStQ-cA",
+    "duration_min": 131.2,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "The Cross Product"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s01-vectors",
+    "series": "mit-1802sc-recitations",
+    "title": "Coordinate free proofs: centroid of a triangle",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/coordinate-free-proofs-centroid-of-a-triangle/",
+    "youtube_id": "AYixF5nY3Vc",
+    "duration_min": 11.2,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Coordinate free proofs: centroid of a triangle"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s04-components",
+    "series": "mit-1802sc-recitations",
+    "title": "Components of a vector",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/components-of-a-vector/",
+    "youtube_id": "4kPz8aqm5yE",
+    "duration_min": 5.1,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Components of a vector"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s05-area-2d",
+    "series": "mit-1802sc-recitations",
+    "title": "Area of a parallelogram",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/area-of-a-parallelogram/",
+    "youtube_id": "oET16XXfcCI",
+    "duration_min": 3.4,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Area of a parallelogram"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s06-det-a",
+    "series": "mit-1802sc-recitations",
+    "title": "Determinants",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/determinants/",
+    "youtube_id": "PxkEoEbCJT8",
+    "duration_min": 4.7,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Determinants"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s06-det-b",
+    "series": "mit-1802sc-recitations",
+    "title": "Volume of a parallelepiped",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/volume-of-a-parallelepiped/",
+    "youtube_id": "QCGJVKaCDuI",
+    "duration_min": 2.9,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Volume of a parallelepiped"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L05",
+    "series": "mit-1802-f07",
+    "title": "Lecture 5: Parametric Equations",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-5-parametric-equations/",
+    "youtube_id": "57jzPlxf4fk",
+    "duration_min": 50.8,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "parametric lines",
+      "parametric curves",
+      "cycloid"
+    ],
+    "verified": true,
+    "summary": "Describes lines with parametric equations and uses them to locate where a line meets a plane, then parametrizes the cycloid by adding simple vectors and uses Taylor approximations to show its cusp has a vertical tangent.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: planes and linear systems",
+        "kind": "review"
+      },
+      {
+        "t": 68,
+        "title": "Lines as paths of a moving point",
+        "kind": "concept"
+      },
+      {
+        "t": 198,
+        "title": "Example: line through two given points",
+        "kind": "example"
+      },
+      {
+        "t": 593,
+        "title": "General shape of parametric line equations",
+        "kind": "concept"
+      },
+      {
+        "t": 659,
+        "title": "Example: which side of plane x+2y+4z=7?",
+        "kind": "example"
+      },
+      {
+        "t": 1057,
+        "title": "Example: where the line hits the plane",
+        "kind": "example"
+      },
+      {
+        "t": 1283,
+        "title": "Lines parallel to or inside a plane",
+        "kind": "concept"
+      },
+      {
+        "t": 1491,
+        "title": "Parametric equations for general motions",
+        "kind": "concept"
+      },
+      {
+        "t": 1560,
+        "title": "Cycloid: point on a rolling wheel",
+        "kind": "concept"
+      },
+      {
+        "t": 1761,
+        "title": "Demo: computer animation of the cycloid",
+        "kind": "demo"
+      },
+      {
+        "t": 1900,
+        "title": "Using the rotation angle as parameter",
+        "kind": "concept"
+      },
+      {
+        "t": 2037,
+        "title": "Example: cycloid via OA + AB + BP",
+        "kind": "example"
+      },
+      {
+        "t": 2489,
+        "title": "Poll: shape near the bottom point",
+        "kind": "concept"
+      },
+      {
+        "t": 2726,
+        "title": "Taylor approximations of sine and cosine",
+        "kind": "concept"
+      },
+      {
+        "t": 2916,
+        "title": "Cusp has a vertical tangent",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802f07-L06",
+    "series": "mit-1802-f07",
+    "title": "Lecture 6: Kepler's Second Law",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-6-keplers-second-law/",
+    "youtube_id": "0D4BbCa4gHo",
+    "duration_min": 48.1,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "velocity",
+      "acceleration",
+      "arc length",
+      "Kepler's 2nd law"
+    ],
+    "verified": true,
+    "summary": "Studies motion along curves using the position vector: velocity, speed, acceleration, arc length and the unit tangent, worked out for the cycloid, and then derives Kepler's second law as the statement that acceleration is parallel to position.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: parametric curves and the cycloid",
+        "kind": "review"
+      },
+      {
+        "t": 104,
+        "title": "Position vector r(t)",
+        "kind": "concept"
+      },
+      {
+        "t": 271,
+        "title": "Velocity vector as derivative of position",
+        "kind": "concept"
+      },
+      {
+        "t": 366,
+        "title": "Example: cycloid velocity and speed",
+        "kind": "example"
+      },
+      {
+        "t": 648,
+        "title": "Acceleration vector versus everyday acceleration",
+        "kind": "concept"
+      },
+      {
+        "t": 743,
+        "title": "Example: cycloid acceleration at the cusp",
+        "kind": "example"
+      },
+      {
+        "t": 876,
+        "title": "Warning: derivative of length is not speed",
+        "kind": "concept"
+      },
+      {
+        "t": 974,
+        "title": "Arc length and ds/dt as speed",
+        "kind": "concept"
+      },
+      {
+        "t": 1255,
+        "title": "Unit tangent vector T",
+        "kind": "concept"
+      },
+      {
+        "t": 1353,
+        "title": "Why velocity equals T times ds/dt",
+        "kind": "concept"
+      },
+      {
+        "t": 1758,
+        "title": "Kepler's second law: equal areas",
+        "kind": "concept"
+      },
+      {
+        "t": 2130,
+        "title": "Swept area rate via r cross v",
+        "kind": "concept"
+      },
+      {
+        "t": 2458,
+        "title": "Planar motion: constant direction of r x v",
+        "kind": "concept"
+      },
+      {
+        "t": 2622,
+        "title": "Product rule for cross products",
+        "kind": "concept"
+      },
+      {
+        "t": 2778,
+        "title": "Conclusion: central force, a parallel to r",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s12-planes-b",
+    "series": "mit-1802sc-recitations",
+    "title": "Equations of planes",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/equations-of-planes/",
+    "youtube_id": "XmQM5pHxX-o",
+    "duration_min": 13.8,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "Equations of planes"
+    ],
+    "verified": true,
+    "summary": "Writes plane equations from four kinds of data: a normal and point, a point and two direction vectors, three points, and a point plus a parallel plane.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Example: four planes to find",
+        "kind": "example"
+      },
+      {
+        "t": 93,
+        "title": "Part a: normal vector and a point",
+        "kind": "example"
+      },
+      {
+        "t": 202,
+        "title": "Part b: normal from a cross product",
+        "kind": "example"
+      },
+      {
+        "t": 377,
+        "title": "Part c: plane through three points",
+        "kind": "example"
+      },
+      {
+        "t": 515,
+        "title": "Part d: parallel plane, then recap",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s15-lines",
+    "series": "mit-1802sc-recitations",
+    "title": "Parametrized lines and intersections",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/parametrized-lines-and-intersections/",
+    "youtube_id": "dUk_I1E5QxY",
+    "duration_min": 8.5,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "Parametrized lines and intersections"
+    ],
+    "verified": true,
+    "summary": "Decides whether two parametrized lines in the plane meet and finds the intersection point, stressing that each line needs its own parameter.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Example: do two parametric lines meet?",
+        "kind": "example"
+      },
+      {
+        "t": 49,
+        "title": "Sketching the lines and their directions",
+        "kind": "example"
+      },
+      {
+        "t": 206,
+        "title": "Caution: parameter t is a dummy variable",
+        "kind": "example"
+      },
+      {
+        "t": 270,
+        "title": "Rename parameter and solve the system",
+        "kind": "example"
+      },
+      {
+        "t": 424,
+        "title": "Plug back in and double-check point",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s19-vel-acc",
+    "series": "mit-1802sc-recitations",
+    "title": "Differentiating a vector valued function",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/differentiating-a-vector-valued-function/",
+    "youtube_id": "evxReCLA-fU",
+    "duration_min": 14.1,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "Differentiating a vector valued function"
+    ],
+    "verified": true,
+    "summary": "Given a planar position vector of fixed length whose acceleration is a nonzero multiple of position, vector differentiation proves the position is perpendicular to velocity and that r x v never changes. Uniform circular motion serves as the concrete example.",
+    "chapters": [
+      {
+        "t": 7,
+        "title": "Problem: constant-length r with a = c r",
+        "kind": "example"
+      },
+      {
+        "t": 155,
+        "title": "Part 1: differentiate r dot r",
+        "kind": "example"
+      },
+      {
+        "t": 359,
+        "title": "Geometric meaning: r perpendicular to v",
+        "kind": "concept"
+      },
+      {
+        "t": 419,
+        "title": "Part 2: derivative of r cross v vanishes",
+        "kind": "example"
+      },
+      {
+        "t": 645,
+        "title": "Example: motion around a circle",
+        "kind": "example"
+      },
+      {
+        "t": 802,
+        "title": "Takeaway: learning facts without explicit formulas",
+        "kind": "review"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-05",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 11.5:  Lines and Planes in 3-D",
+    "url": "https://www.youtube.com/watch?v=IB1-lrPQjCw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "IB1-lrPQjCw",
+    "duration_min": 201.0,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Lines and Planes in 3-D"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-08",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 12.1:  An Introduction To Vector Functions",
+    "url": "https://www.youtube.com/watch?v=YThPIdcwr78&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "YThPIdcwr78",
+    "duration_min": 124.9,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "An Introduction To Vector Functions"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-09",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 12.2:  Derivatives and Integrals of Vector Functions",
+    "url": "https://www.youtube.com/watch?v=v_o-allq8LQ&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "v_o-allq8LQ",
+    "duration_min": 162.3,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Derivatives and Integrals of Vector Functions"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-12",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 12.4:  Velocity and Acceleration of Vector Functions",
+    "url": "https://www.youtube.com/watch?v=yq4Cj1_bmnE&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "yq4Cj1_bmnE",
+    "duration_min": 62.0,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Velocity and Acceleration of Vector Functions"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L04",
+    "series": "mit-1802-f07",
+    "title": "Lecture 4: Square Systems",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-4-square-systems/",
+    "youtube_id": "YBajUR3EFSM",
+    "duration_min": 49.0,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "square systems",
+      "equations of planes"
+    ],
+    "verified": true,
+    "summary": "Writes plane equations from a normal vector and a point, tests vectors against planes, then interprets 3x3 linear systems as intersecting planes and explains how a zero determinant leads to no solutions or infinitely many.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: plane equation ax+by+cz=d",
+        "kind": "review"
+      },
+      {
+        "t": 76,
+        "title": "Example: plane through origin, normal <1,5,10>",
+        "kind": "example"
+      },
+      {
+        "t": 244,
+        "title": "Example: shifted plane through (2,1,-1)",
+        "kind": "example"
+      },
+      {
+        "t": 461,
+        "title": "Shortcut for d; coefficients are the normal",
+        "kind": "concept"
+      },
+      {
+        "t": 648,
+        "title": "Example: is v parallel or perpendicular?",
+        "kind": "example"
+      },
+      {
+        "t": 1016,
+        "title": "3x3 systems as three intersecting planes",
+        "kind": "concept"
+      },
+      {
+        "t": 1307,
+        "title": "Poll: when the solution is not unique",
+        "kind": "concept"
+      },
+      {
+        "t": 1436,
+        "title": "Cases: no solution versus a whole line",
+        "kind": "concept"
+      },
+      {
+        "t": 1870,
+        "title": "Meaning of the constant term d",
+        "kind": "concept"
+      },
+      {
+        "t": 1933,
+        "title": "Invertible exactly when determinant is nonzero",
+        "kind": "concept"
+      },
+      {
+        "t": 2166,
+        "title": "Homogeneous systems and the trivial solution",
+        "kind": "concept"
+      },
+      {
+        "t": 2413,
+        "title": "Zero determinant: coplanar normals, solution line",
+        "kind": "concept"
+      },
+      {
+        "t": 2823,
+        "title": "Summary for general AX=B",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s12-planes-a",
+    "series": "mit-1802sc-recitations",
+    "title": "Distance of a point to a plane",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/distance-of-a-point-to-a-plane/",
+    "youtube_id": "SgJo7_4mp6w",
+    "duration_min": 8.2,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Distance of a point to a plane"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s16-line-plane",
+    "series": "mit-1802sc-recitations",
+    "title": "Parametric line intersecting a plane",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/parametric-line-intersecting-a-plane/",
+    "youtube_id": "rtEaK_Jp7zU",
+    "duration_min": 8.1,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Parametric line intersecting a plane"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s20-arc-length",
+    "series": "mit-1802sc-recitations",
+    "title": "Parametric curves: velocity, acceleration, length",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/parametric-curves-velocity-acceleration-length/",
+    "youtube_id": "u9YrIxLZJ6s",
+    "duration_min": 8.3,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "Parametric curves: velocity, acceleration, length"
+    ],
+    "verified": true,
+    "summary": "A straight computation for one quadratic position vector: velocity, speed, acceleration and the unit tangent, followed by the arc length from t = 0 to 2 found by integrating the speed.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: one position vector, several quantities",
+        "kind": "example"
+      },
+      {
+        "t": 87,
+        "title": "Part a: velocity and speed 6t",
+        "kind": "example"
+      },
+      {
+        "t": 230,
+        "title": "Constant acceleration vector",
+        "kind": "example"
+      },
+      {
+        "t": 304,
+        "title": "Unit tangent: velocity over its length",
+        "kind": "example"
+      },
+      {
+        "t": 391,
+        "title": "Part b: arc length equals 12",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s24-graphs",
+    "series": "mit-1802sc-recitations",
+    "title": "Graphing surfaces",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/graphing-surfaces/",
+    "youtube_id": "f2KsJBClJ1g",
+    "duration_min": 7.9,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "Graphing surfaces"
+    ],
+    "verified": true,
+    "summary": "Sketches two surfaces using slices: z = sqrt(x^2 + y^2) turns out to be a cone, and z = x^2 is a parabolic sheet extended along y. Ends by linking each shape to a symmetry of its formula.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: graph two surfaces via slices",
+        "kind": "example"
+      },
+      {
+        "t": 52,
+        "title": "Part a: vertical slices give |y| and |x|",
+        "kind": "example"
+      },
+      {
+        "t": 171,
+        "title": "Horizontal slices are circles: a cone",
+        "kind": "example"
+      },
+      {
+        "t": 245,
+        "title": "Part b: z = x^2 as parabolic prism",
+        "kind": "example"
+      },
+      {
+        "t": 379,
+        "title": "Symmetry: translation versus revolution",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s25-level-b",
+    "series": "mit-1802sc-recitations",
+    "title": "Level curves",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/level-curves/",
+    "youtube_id": "uaHiAxFESc4",
+    "duration_min": 10.4,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "Level curves"
+    ],
+    "verified": true,
+    "summary": "Draws contour plots for a plane, a paraboloid and a saddle (straight lines, concentric circles, hyperbolas) and ties each contour picture to the 3D graph, including why tightly packed contours signal steepness.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: level curves of three functions",
+        "kind": "example"
+      },
+      {
+        "t": 58,
+        "title": "Part a: parallel lines from a plane",
+        "kind": "example"
+      },
+      {
+        "t": 223,
+        "title": "Part b: circles from a paraboloid",
+        "kind": "example"
+      },
+      {
+        "t": 354,
+        "title": "Close contours mean a steep surface",
+        "kind": "concept"
+      },
+      {
+        "t": 373,
+        "title": "Part c: hyperbolas for x^2 - y^2",
+        "kind": "example"
+      },
+      {
+        "t": 479,
+        "title": "Building the saddle from its contours",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-06",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 11.6:  Cylinders and Surfaces in 3-D",
+    "url": "https://www.youtube.com/watch?v=aBlKxFsoMZw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "aBlKxFsoMZw",
+    "duration_min": 152.4,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Cylinders and Surfaces in 3-D"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-10",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 12.3:  Arc Length/Parameterization, TNB (Frenet-Serret) Intro",
+    "url": "https://www.youtube.com/watch?v=Hu72QVWsMlg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "Hu72QVWsMlg",
+    "duration_min": 132.8,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Arc Length/Parameterization, TNB (Frenet-Serret) Intro"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-11",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 12.3/12.5:  TNB (Frenet-Serret) Frames, Curvature, Torsion, Encapsulation",
+    "url": "https://www.youtube.com/watch?v=l7eDxflL-e0&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "l7eDxflL-e0",
+    "duration_min": 157.5,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "TNB (Frenet-Serret) Frames, Curvature, Torsion, Encapsulation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-13",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.1:  Intro to Multivariable Functions (Domain, Sketching, Level Curves)",
+    "url": "https://www.youtube.com/watch?v=nIJQPX5kxp4&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "nIJQPX5kxp4",
+    "duration_min": 109.1,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Intro to Multivariable Functions (Domain, Sketching, Level Curves)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L07",
+    "series": "mit-1802-f07",
+    "title": "Lecture 7: Exam Review",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-7-exam-review/",
+    "youtube_id": "U1EcnfTKXJ0",
+    "duration_min": 49.8,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "exam 1 review"
+    ],
+    "verified": true,
+    "summary": "Exam 1 review session: a rundown of every topic so far (dot and cross products, planes and lines, matrices and systems, parametric motion), student questions on scope, and worked problems from practice exam 1A.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Exam 1 covers everything so far",
+        "kind": "admin"
+      },
+      {
+        "t": 35,
+        "title": "Review: dot product and angles",
+        "kind": "review"
+      },
+      {
+        "t": 182,
+        "title": "Review: cross product, areas, plane normals",
+        "kind": "review"
+      },
+      {
+        "t": 394,
+        "title": "Review: parametric lines meeting planes",
+        "kind": "review"
+      },
+      {
+        "t": 538,
+        "title": "Review: matrices, inverses, linear systems",
+        "kind": "review"
+      },
+      {
+        "t": 760,
+        "title": "Review: parametric motion, velocity, acceleration",
+        "kind": "review"
+      },
+      {
+        "t": 948,
+        "title": "Student questions about exam scope",
+        "kind": "admin"
+      },
+      {
+        "t": 1315,
+        "title": "Starting practice exam 1A",
+        "kind": "admin"
+      },
+      {
+        "t": 1444,
+        "title": "Example: missing entries of an inverse",
+        "kind": "example"
+      },
+      {
+        "t": 1718,
+        "title": "Example: solving Ax=b with the inverse",
+        "kind": "example"
+      },
+      {
+        "t": 1804,
+        "title": "Example: value of c making M singular",
+        "kind": "example"
+      },
+      {
+        "t": 1913,
+        "title": "Example: nonzero solutions via cross product",
+        "kind": "example"
+      },
+      {
+        "t": 2619,
+        "title": "Example: triangle area, plane, intersection",
+        "kind": "example"
+      },
+      {
+        "t": 2830,
+        "title": "Example: derivative of R dot R",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s25-level-a",
+    "series": "mit-1802sc-recitations",
+    "title": "Level curves and critical points",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/level-curves-and-critical-points/",
+    "youtube_id": "gzbWF-IdscE",
+    "duration_min": 8.4,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Level curves and critical points"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L08",
+    "series": "mit-1802-f07",
+    "title": "Lecture 8: Partial Derivatives",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-8-partial-derivatives/",
+    "youtube_id": "dK3NEf13nPc",
+    "duration_min": 46.2,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "functions of 2 variables",
+      "level curves",
+      "partial derivatives",
+      "tangent plane approximation"
+    ],
+    "verified": true,
+    "summary": "Opens the unit on functions of several variables, showing how to picture them with graphs and contour plots (including real maps and computer plots), then defines partial derivatives as slopes of slices and computes a simple pair.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "New unit: functions of several variables",
+        "kind": "concept"
+      },
+      {
+        "t": 341,
+        "title": "Graph of f(x,y) as a surface",
+        "kind": "concept"
+      },
+      {
+        "t": 444,
+        "title": "Example: graph of f = -y",
+        "kind": "example"
+      },
+      {
+        "t": 574,
+        "title": "Example: graph of 1 - x^2 - y^2",
+        "kind": "example"
+      },
+      {
+        "t": 797,
+        "title": "Demo: computer graphs including a saddle",
+        "kind": "demo"
+      },
+      {
+        "t": 925,
+        "title": "Contour plots and level curves",
+        "kind": "concept"
+      },
+      {
+        "t": 1215,
+        "title": "Demo: topographic and temperature maps",
+        "kind": "demo"
+      },
+      {
+        "t": 1382,
+        "title": "Example: contour plot of f = -y",
+        "kind": "example"
+      },
+      {
+        "t": 1514,
+        "title": "Example: contours of 1 - x^2 - y^2",
+        "kind": "example"
+      },
+      {
+        "t": 1689,
+        "title": "Demo: contour plots of saddle and peaks",
+        "kind": "demo"
+      },
+      {
+        "t": 1881,
+        "title": "Reading increase or decrease from contours",
+        "kind": "concept"
+      },
+      {
+        "t": 2067,
+        "title": "Review: one-variable derivative and approximation",
+        "kind": "review"
+      },
+      {
+        "t": 2289,
+        "title": "Partial derivatives: definition and notation",
+        "kind": "concept"
+      },
+      {
+        "t": 2506,
+        "title": "Partials as slopes of graph slices",
+        "kind": "concept"
+      },
+      {
+        "t": 2701,
+        "title": "Example: partials of x^3 y + y^2",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s26-partials",
+    "series": "mit-1802sc-recitations",
+    "title": "Partial derivatives",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/partial-derivatives/",
+    "youtube_id": "KnVNFj53Eq4",
+    "duration_min": 5.3,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "Partial derivatives"
+    ],
+    "verified": true,
+    "summary": "Finds first partial derivatives of x y^2 + x^2 y, evaluates one at (1, 2), then computes second partials and observes that the two mixed partials match.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: first and second partials",
+        "kind": "example"
+      },
+      {
+        "t": 60,
+        "title": "Computing f_x, f_y and f_x(1, 2)",
+        "kind": "example"
+      },
+      {
+        "t": 160,
+        "title": "Second partials, including mixed ones",
+        "kind": "example"
+      },
+      {
+        "t": 278,
+        "title": "Why mixed partials come out equal",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-14",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.2:  Limits and Continuity of Multivariable Functions (with Squeeze Th.)",
+    "url": "https://www.youtube.com/watch?v=MFF4mvyhAyA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "MFF4mvyhAyA",
+    "duration_min": 134.6,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Limits and Continuity of Multivariable Functions (with Squeeze Th.)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L11",
+    "series": "mit-1802-f07",
+    "title": "Lecture 11: Chain Rule",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-11-chain-rule/",
+    "youtube_id": "7eZVshlT33Q",
+    "duration_min": 50.1,
+    "osu_week": 5,
+    "priority": "core",
+    "topics": [
+      "differentials",
+      "chain rule"
+    ],
+    "verified": true,
+    "summary": "Introduces the total differential of a multivariable function, explains how it differs from a numerical change, and uses it to derive the chain rule, first with one parameter and then with two new variables. Includes checks by direct substitution, derivations of the product and quotient rules, and a polar coordinates illustration, with a preview of the gradient.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Motivation: implicit differentiation from single-variable",
+        "kind": "review"
+      },
+      {
+        "t": 163,
+        "title": "Example: derivative of inverse sine",
+        "kind": "example"
+      },
+      {
+        "t": 257,
+        "title": "Total differential df defined",
+        "kind": "concept"
+      },
+      {
+        "t": 355,
+        "title": "Differentials versus actual changes delta f",
+        "kind": "concept"
+      },
+      {
+        "t": 559,
+        "title": "Chain rule by dividing by dt",
+        "kind": "concept"
+      },
+      {
+        "t": 804,
+        "title": "First justification using differentials",
+        "kind": "concept"
+      },
+      {
+        "t": 992,
+        "title": "Rigorous argument via approximation and limits",
+        "kind": "concept"
+      },
+      {
+        "t": 1246,
+        "title": "Example: chain rule versus direct substitution",
+        "kind": "example"
+      },
+      {
+        "t": 1605,
+        "title": "Product and quotient rules from chain rule",
+        "kind": "example"
+      },
+      {
+        "t": 1892,
+        "title": "Chain rule with two new variables u,v",
+        "kind": "concept"
+      },
+      {
+        "t": 2368,
+        "title": "How to remember and interpret the formula",
+        "kind": "concept"
+      },
+      {
+        "t": 2522,
+        "title": "Warning: partials do not cancel",
+        "kind": "concept"
+      },
+      {
+        "t": 2845,
+        "title": "Example: switching to polar coordinates",
+        "kind": "example"
+      },
+      {
+        "t": 2953,
+        "title": "Preview: the gradient vector",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802f07-L12",
+    "series": "mit-1802-f07",
+    "title": "Lecture 12: Gradient",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-12-gradient/",
+    "youtube_id": "2XraaWefBd8",
+    "duration_min": 50.2,
+    "osu_week": 5,
+    "priority": "core",
+    "topics": [
+      "gradient",
+      "directional derivative",
+      "tangent plane to level surface"
+    ],
+    "verified": true,
+    "summary": "Rewrites the chain rule using the gradient vector and proves that the gradient is normal to level curves and surfaces, which gives a quick way to find tangent planes. Then defines directional derivatives, computes them as a dot product with the gradient, and interprets the gradient as the direction of steepest increase.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: chain rule with three variables",
+        "kind": "review"
+      },
+      {
+        "t": 97,
+        "title": "Gradient vector: packaging the partials",
+        "kind": "concept"
+      },
+      {
+        "t": 232,
+        "title": "Theorem: gradient is normal to level sets",
+        "kind": "concept"
+      },
+      {
+        "t": 324,
+        "title": "Example: linear function with planar levels",
+        "kind": "example"
+      },
+      {
+        "t": 429,
+        "title": "Example: x^2+y^2 and circular levels",
+        "kind": "example"
+      },
+      {
+        "t": 544,
+        "title": "Applet: gradient on a contour plot",
+        "kind": "demo"
+      },
+      {
+        "t": 684,
+        "title": "Proof using a curve on the level",
+        "kind": "concept"
+      },
+      {
+        "t": 1279,
+        "title": "Example: tangent plane to a hyperboloid",
+        "kind": "example"
+      },
+      {
+        "t": 1569,
+        "title": "Same tangent plane via the differential",
+        "kind": "concept"
+      },
+      {
+        "t": 1817,
+        "title": "Directional derivatives along a unit vector",
+        "kind": "concept"
+      },
+      {
+        "t": 2237,
+        "title": "Geometric meaning: slope of a vertical slice",
+        "kind": "concept"
+      },
+      {
+        "t": 2331,
+        "title": "Applet: rotating slices of the graph",
+        "kind": "demo"
+      },
+      {
+        "t": 2463,
+        "title": "Formula: gradient dotted with u",
+        "kind": "concept"
+      },
+      {
+        "t": 2631,
+        "title": "Steepest ascent, descent, and no-change directions",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s34-chain",
+    "series": "mit-1802sc-recitations",
+    "title": "Total differentials and the chain rule",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/total-differentials-and-the-chain-rule/",
+    "youtube_id": "2bF6H_xu0ao",
+    "duration_min": 11.6,
+    "osu_week": 5,
+    "priority": "core",
+    "topics": [
+      "Total differentials and the chain rule"
+    ],
+    "verified": true,
+    "summary": "For z = x^2 + y^2 with x and y depending on u and v, finds dz and then dz/du twice: once with the chain rule and a dependency diagram, once by substituting total differentials, and compares the methods.",
+    "chapters": [
+      {
+        "t": 7,
+        "title": "Problem: z through x, y to u, v",
+        "kind": "example"
+      },
+      {
+        "t": 75,
+        "title": "Part a: total differential dz",
+        "kind": "example"
+      },
+      {
+        "t": 129,
+        "title": "Part b: chain rule via dependency graph",
+        "kind": "example"
+      },
+      {
+        "t": 314,
+        "title": "Same partial using total differentials",
+        "kind": "example"
+      },
+      {
+        "t": 527,
+        "title": "Reading off dz/du from coefficients",
+        "kind": "example"
+      },
+      {
+        "t": 613,
+        "title": "Comparing the two methods",
+        "kind": "review"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s38-grad-dir",
+    "series": "mit-1802sc-recitations",
+    "title": "Gradient and directional derivative",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/gradient-and-directional-derivative/",
+    "youtube_id": "XZ1QwS1IKgw",
+    "duration_min": 13.6,
+    "osu_week": 5,
+    "priority": "core",
+    "topics": [
+      "Gradient and directional derivative"
+    ],
+    "verified": true,
+    "summary": "Three drills in two, three and four variables: compute the gradient, evaluate it at a given point, normalize the direction vector, and dot to get the directional derivative.",
+    "chapters": [
+      {
+        "t": 7,
+        "title": "Problem: gradients and directional derivatives",
+        "kind": "example"
+      },
+      {
+        "t": 102,
+        "title": "Part a: gradient of f at (-1, 2)",
+        "kind": "example"
+      },
+      {
+        "t": 200,
+        "title": "Unit vector and directional derivative -12/5",
+        "kind": "example"
+      },
+      {
+        "t": 300,
+        "title": "Part b: gradient of distance function",
+        "kind": "example"
+      },
+      {
+        "t": 506,
+        "title": "Directional derivative along (1, 1, 1)",
+        "kind": "example"
+      },
+      {
+        "t": 603,
+        "title": "Part c: four-variable function h",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-15",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.3:  Partial Derivatives (Derivatives of Multivariable Functions)",
+    "url": "https://www.youtube.com/watch?v=EkZGBdY0vlg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "EkZGBdY0vlg",
+    "duration_min": 148.9,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Partial Derivatives (Derivatives of Multivariable Functions)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-16",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.4:  Finding Differentials of Multivariable Functions",
+    "url": "https://www.youtube.com/watch?v=J72AKZtUpgY&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "J72AKZtUpgY",
+    "duration_min": 111.0,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Finding Differentials of Multivariable Functions"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-17",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.5:  The Chain Rule for Multivariable Functions",
+    "url": "https://www.youtube.com/watch?v=tXryaM-mTpY&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "tXryaM-mTpY",
+    "duration_min": 131.9,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "The Chain Rule for Multivariable Functions"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-18",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.6:  Finding Directional Derivatives and Gradients",
+    "url": "https://www.youtube.com/watch?v=tDPp5uWSIiU&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "tDPp5uWSIiU",
+    "duration_min": 157.3,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Finding Directional Derivatives and Gradients"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s43-chain-constraints",
+    "series": "mit-1802sc-recitations",
+    "title": "The chain rule with constraints",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/the-chain-rule-with-constraints/",
+    "youtube_id": "U91touR6_UY",
+    "duration_min": 15.2,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "The chain rule with constraints"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s44-grad-composition",
+    "series": "mit-1802sc-recitations",
+    "title": "Gradients - composition",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/gradients-composition/",
+    "youtube_id": "j9GZjr05Heg",
+    "duration_min": 10.3,
+    "osu_week": 5,
+    "priority": "optional",
+    "topics": [
+      "Gradients - composition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L09",
+    "series": "mit-1802-f07",
+    "title": "Lecture 9: Max-Min and Least Squares",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-9-max-min-and-least-squares/",
+    "youtube_id": "UYe98CcxPbs",
+    "duration_min": 49.7,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "critical points",
+      "max-min",
+      "least squares"
+    ],
+    "verified": true,
+    "summary": "Builds the tangent-plane approximation from partial derivatives, then uses it to locate critical points of two-variable functions and classify a simple one by completing squares. Closes with least-squares fitting of lines, exponentials and parabolas as a minimization problem in the unknown coefficients.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: partials and the change formula",
+        "kind": "review"
+      },
+      {
+        "t": 235,
+        "title": "Tangent plane from two slice lines",
+        "kind": "concept"
+      },
+      {
+        "t": 608,
+        "title": "Optimization in several variables: motivation",
+        "kind": "concept"
+      },
+      {
+        "t": 720,
+        "title": "Critical points: both partials equal zero",
+        "kind": "concept"
+      },
+      {
+        "t": 956,
+        "title": "Example: finding a quadratic's critical point",
+        "kind": "example"
+      },
+      {
+        "t": 1178,
+        "title": "Local min, local max, and saddle points",
+        "kind": "concept"
+      },
+      {
+        "t": 1328,
+        "title": "Example: completing squares proves a minimum",
+        "kind": "example"
+      },
+      {
+        "t": 1637,
+        "title": "Least squares: fitting a line to data",
+        "kind": "concept"
+      },
+      {
+        "t": 2129,
+        "title": "Total squared deviation as function of a,b",
+        "kind": "concept"
+      },
+      {
+        "t": 2240,
+        "title": "Critical point gives a 2x2 linear system",
+        "kind": "concept"
+      },
+      {
+        "t": 2710,
+        "title": "Example: Moore's law via log-linear fit",
+        "kind": "example"
+      },
+      {
+        "t": 2896,
+        "title": "Fitting a parabola: 3x3 system",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802f07-L10",
+    "series": "mit-1802-f07",
+    "title": "Lecture 10: Second Derivative Test",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-10-second-derivative-test/",
+    "youtube_id": "3_goGnJm5sA",
+    "duration_min": 52.3,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "second derivative test",
+      "boundaries and infinity"
+    ],
+    "verified": true,
+    "summary": "Develops the second derivative test for two-variable functions by first classifying quadratic functions through completing the square and the discriminant, then extending to general functions via quadratic Taylor approximation. Ends with an example where the minimum is found from the test and the maximum lies at the boundary or infinity.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: critical points on graphs, contours",
+        "kind": "review"
+      },
+      {
+        "t": 224,
+        "title": "Global extrema: also check boundary, infinity",
+        "kind": "concept"
+      },
+      {
+        "t": 360,
+        "title": "Second derivative test: the one-variable idea",
+        "kind": "concept"
+      },
+      {
+        "t": 520,
+        "title": "Completing the square for ax^2+bxy+cy^2",
+        "kind": "concept"
+      },
+      {
+        "t": 877,
+        "title": "Negative 4ac-b^2 means a saddle",
+        "kind": "concept"
+      },
+      {
+        "t": 972,
+        "title": "Zero discriminant: degenerate flat-valley case",
+        "kind": "concept"
+      },
+      {
+        "t": 1174,
+        "title": "Positive 4ac-b^2: sign of a decides",
+        "kind": "concept"
+      },
+      {
+        "t": 1452,
+        "title": "Link to the quadratic formula discriminant",
+        "kind": "concept"
+      },
+      {
+        "t": 1805,
+        "title": "Second partials and equal mixed partials",
+        "kind": "concept"
+      },
+      {
+        "t": 1911,
+        "title": "Statement of the AC-B^2 test",
+        "kind": "concept"
+      },
+      {
+        "t": 2150,
+        "title": "Check: test agrees with quadratic case",
+        "kind": "concept"
+      },
+      {
+        "t": 2336,
+        "title": "Why it works: quadratic Taylor approximation",
+        "kind": "concept"
+      },
+      {
+        "t": 2586,
+        "title": "Degenerate case needs higher derivatives",
+        "kind": "concept"
+      },
+      {
+        "t": 2723,
+        "title": "Example: classifying x+y+1/(xy) for x,y>0",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s27-tangent-approx",
+    "series": "mit-1802sc-recitations",
+    "title": "Tangent plane approximation",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/tangent-plane-approximation/",
+    "youtube_id": "idNIKTaBEaI",
+    "duration_min": 6.9,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "Tangent plane approximation"
+    ],
+    "verified": true,
+    "summary": "Uses the linear (tangent plane) approximation of A = xy at (2, 3) to estimate a rectangle's area at (2.1, 2.8), compares with the exact value, and decides which side length matters more near that point.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: estimate area with tangent plane",
+        "kind": "example"
+      },
+      {
+        "t": 93,
+        "title": "Building the linear approximation at (2, 3)",
+        "kind": "example"
+      },
+      {
+        "t": 230,
+        "title": "Plugging in: estimate 5.9 vs 5.88",
+        "kind": "example"
+      },
+      {
+        "t": 309,
+        "title": "Which change matters more, x or y",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s30-2nd-deriv",
+    "series": "mit-1802sc-recitations",
+    "title": "Second derivative test",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/second-derivative-test/",
+    "youtube_id": "oQgHo7acids",
+    "duration_min": 8.6,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "Second derivative test"
+    ],
+    "verified": true,
+    "summary": "Locates the critical points of w = x^3 - 3xy + y^3 and applies the second derivative test (sign of AC - B^2, then A) to show one is a local minimum and the other a saddle.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: critical points of a cubic",
+        "kind": "example"
+      },
+      {
+        "t": 61,
+        "title": "Solving w_x = w_y = 0",
+        "kind": "example"
+      },
+      {
+        "t": 187,
+        "title": "Second partials A, B, C",
+        "kind": "example"
+      },
+      {
+        "t": 298,
+        "title": "At (1, 1): a local minimum",
+        "kind": "example"
+      },
+      {
+        "t": 378,
+        "title": "At (0, 0): a saddle point",
+        "kind": "example"
+      },
+      {
+        "t": 437,
+        "title": "Recap of the second derivative test",
+        "kind": "review"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s31-max-min",
+    "series": "mit-1802sc-recitations",
+    "title": "Max/Min",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/max-min/",
+    "youtube_id": "ImzS_gSbjK4",
+    "duration_min": 14.0,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "Max/Min"
+    ],
+    "verified": true,
+    "summary": "An open box of volume 3 with walls and floor of different thicknesses: eliminate the height, find the single critical point, and argue from boundary and infinity behavior that it is the global minimum of cardboard used.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Problem: cheapest open box, volume 3",
+        "kind": "example"
+      },
+      {
+        "t": 101,
+        "title": "Volume constraint and cardboard function",
+        "kind": "example"
+      },
+      {
+        "t": 265,
+        "title": "Eliminating z to get f(x, y)",
+        "kind": "example"
+      },
+      {
+        "t": 433,
+        "title": "Finding the critical point (2, 1)",
+        "kind": "example"
+      },
+      {
+        "t": 623,
+        "title": "Boundary check proves a global minimum",
+        "kind": "example"
+      },
+      {
+        "t": 766,
+        "title": "Why the second derivative test falls short",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s37-tangent-planes",
+    "series": "mit-1802sc-recitations",
+    "title": "Tangent planes",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/tangent-planes/",
+    "youtube_id": "6paZkmBMZwQ",
+    "duration_min": 9.0,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "Tangent planes"
+    ],
+    "verified": true,
+    "summary": "Treats a graph as a level surface so its gradient gives a normal, yielding the tangent plane to z = x^3 + 3xy^2 at (1, 2, 13); the same idea gives the tangent line to an implicit curve at (1, 2).",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: tangent plane and tangent line",
+        "kind": "example"
+      },
+      {
+        "t": 64,
+        "title": "Part a: rewrite surface as level set",
+        "kind": "example"
+      },
+      {
+        "t": 171,
+        "title": "Gradient at the point and plane equation",
+        "kind": "example"
+      },
+      {
+        "t": 326,
+        "title": "Part b: tangent line to implicit curve",
+        "kind": "example"
+      },
+      {
+        "t": 510,
+        "title": "Gradient is normal to level sets",
+        "kind": "review"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-19",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.7:  Finding Tangent Planes and Normal Lines to Surfaces",
+    "url": "https://www.youtube.com/watch?v=yLbqHfuWsr8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "yLbqHfuWsr8",
+    "duration_min": 101.8,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Finding Tangent Planes and Normal Lines to Surfaces"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-20",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.8:  Finding Extrema of Functions of 2 Variables (Max and Min)",
+    "url": "https://www.youtube.com/watch?v=kPL28zgEFk8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "kPL28zgEFk8",
+    "duration_min": 218.3,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Finding Extrema of Functions of 2 Variables (Max and Min)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-21",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 13.9:  Constrained Optimization with LaGrange Multipliers",
+    "url": "https://www.youtube.com/watch?v=nUfYR5FBGZc&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "nUfYR5FBGZc",
+    "duration_min": 58.5,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Constrained Optimization with LaGrange Multipliers"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L13",
+    "series": "mit-1802-f07",
+    "title": "Lecture 13: Lagrange Multipliers",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-13-lagrange-multipliers/",
+    "youtube_id": "15HVevXRsBA",
+    "duration_min": 50.2,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Lagrange multipliers"
+    ],
+    "verified": true,
+    "summary": "Presents Lagrange multipliers for optimizing a function under a constraint, motivated by the closest point on the hyperbola xy = 3 where level curves become tangent and gradients line up. Justifies the method, explains that candidates must be compared by value, and finishes with a pyramid of least lateral area whose apex sits over the incenter.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Constrained optimization: dependent variables",
+        "kind": "concept"
+      },
+      {
+        "t": 233,
+        "title": "Example: closest point on hyperbola xy=3",
+        "kind": "example"
+      },
+      {
+        "t": 350,
+        "title": "Applet: shrinking circles meet the hyperbola",
+        "kind": "demo"
+      },
+      {
+        "t": 500,
+        "title": "Tangent level curves imply parallel gradients",
+        "kind": "concept"
+      },
+      {
+        "t": 654,
+        "title": "Applet: comparing the two gradient vectors",
+        "kind": "demo"
+      },
+      {
+        "t": 703,
+        "title": "Lagrange equations: grad f = lambda grad g",
+        "kind": "concept"
+      },
+      {
+        "t": 866,
+        "title": "Example: equations for the hyperbola problem",
+        "kind": "example"
+      },
+      {
+        "t": 1202,
+        "title": "Example: solving via determinant, lambda = 2",
+        "kind": "example"
+      },
+      {
+        "t": 1624,
+        "title": "Why the multiplier method is valid",
+        "kind": "concept"
+      },
+      {
+        "t": 2015,
+        "title": "Min or max? Compare candidate values",
+        "kind": "concept"
+      },
+      {
+        "t": 2243,
+        "title": "Example: pyramid with least surface area",
+        "kind": "example"
+      },
+      {
+        "t": 2586,
+        "title": "Better variables: distances to the sides",
+        "kind": "example"
+      },
+      {
+        "t": 2903,
+        "title": "Solving it: apex above the incenter",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s29-least-squares",
+    "series": "mit-1802sc-recitations",
+    "title": "Least squares",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/least-squares/",
+    "youtube_id": "YwZYSTQs-Hk",
+    "duration_min": 9.1,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Least squares"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s39-lagrange",
+    "series": "mit-1802sc-recitations",
+    "title": "Lagrange multipliers",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/lagrange-multipliers/",
+    "youtube_id": "HyqBcD_e_Uw",
+    "duration_min": 10.3,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Lagrange multipliers"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s41-lagrange-3var",
+    "series": "mit-1802sc-recitations",
+    "title": "Lagrange multipliers (3 variables)",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/lagrange-multipliers-3-variables/",
+    "youtube_id": "nDuS5uQ7-lo",
+    "duration_min": 13.3,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Lagrange multipliers (3 variables)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L16",
+    "series": "mit-1802-f07",
+    "title": "Lecture 16: Double Integrals",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-16-double-integrals/",
+    "youtube_id": "YP_B0AapU0c",
+    "duration_min": 48.0,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "double integrals",
+      "iterated integrals",
+      "order of integration"
+    ],
+    "verified": true,
+    "summary": "Defines the double integral as the volume under a surface over a plane region via Riemann sums, and shows how to evaluate it as an iterated integral by slicing, with inner bounds depending on the outer variable. Works examples over a square and a quarter disk, then demonstrates reversing the order of integration to make an otherwise impossible integral computable.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "From single integrals to volume under graphs",
+        "kind": "concept"
+      },
+      {
+        "t": 289,
+        "title": "Definition via sums of small boxes",
+        "kind": "concept"
+      },
+      {
+        "t": 577,
+        "title": "Computing by slicing: area of cross-sections",
+        "kind": "concept"
+      },
+      {
+        "t": 846,
+        "title": "Inner bounds depend on the outer variable",
+        "kind": "concept"
+      },
+      {
+        "t": 1014,
+        "title": "Iterated integral: outer bounds are numbers",
+        "kind": "concept"
+      },
+      {
+        "t": 1173,
+        "title": "Example: paraboloid over the unit square",
+        "kind": "example"
+      },
+      {
+        "t": 1511,
+        "title": "dA becomes dy dx; choosing an order",
+        "kind": "concept"
+      },
+      {
+        "t": 1645,
+        "title": "Example: paraboloid over a quarter disk",
+        "kind": "example"
+      },
+      {
+        "t": 2172,
+        "title": "Trig substitution finish; polar would be easier",
+        "kind": "example"
+      },
+      {
+        "t": 2455,
+        "title": "Swapping the order of integration",
+        "kind": "concept"
+      },
+      {
+        "t": 2497,
+        "title": "Example: reversing order on a rectangle",
+        "kind": "example"
+      },
+      {
+        "t": 2552,
+        "title": "Example: e^y/y made integrable by swapping",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s48-regions",
+    "series": "mit-1802sc-recitations",
+    "title": "Regions of integration",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/regions-of-integration/",
+    "youtube_id": "BefxsWy1HqY",
+    "duration_min": 17.8,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "Regions of integration"
+    ],
+    "verified": true,
+    "summary": "Sets up double integrals over a triangle and over a circular wedge in both dx dy and dy dx order; the wedge needs two pieces in one order. Closes with a consistency check comparing both orders.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Problem: two regions, both orders",
+        "kind": "example"
+      },
+      {
+        "t": 101,
+        "title": "Part a: triangle bounds, dx dy order",
+        "kind": "example"
+      },
+      {
+        "t": 294,
+        "title": "Triangle in dy dx order",
+        "kind": "example"
+      },
+      {
+        "t": 396,
+        "title": "Part b: circular wedge, dx dy order",
+        "kind": "example"
+      },
+      {
+        "t": 639,
+        "title": "Wedge in dy dx: split in two",
+        "kind": "example"
+      },
+      {
+        "t": 958,
+        "title": "Sanity check: both orders must agree",
+        "kind": "review"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s49-order",
+    "series": "mit-1802sc-recitations",
+    "title": "Changing the order of integration",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/changing-the-order-of-integration/",
+    "youtube_id": "p06QDsAPY4g",
+    "duration_min": 6.0,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "Changing the order of integration"
+    ],
+    "verified": true,
+    "summary": "An iterated integral of e^u/u that cannot be done as written becomes easy after sketching the region and reversing the order, leaving an integration by parts.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Problem: an impossible inner integral",
+        "kind": "example"
+      },
+      {
+        "t": 54,
+        "title": "Sketching the region in the t-u plane",
+        "kind": "example"
+      },
+      {
+        "t": 142,
+        "title": "Reversing to dt du order",
+        "kind": "example"
+      },
+      {
+        "t": 261,
+        "title": "Integration by parts for the answer",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-22",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 14.1:  INTRODUCTION to Double Integrals (Background Info)",
+    "url": "https://www.youtube.com/watch?v=lv_awaaT6gY&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "lv_awaaT6gY",
+    "duration_min": 52.0,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "INTRODUCTION to Double Integrals (Background Info)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-23",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 14.2:  How to Solve Double/Repeated/Iterated Integrals",
+    "url": "https://www.youtube.com/watch?v=HxRG_phgGUw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "HxRG_phgGUw",
+    "duration_min": 203.8,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "How to Solve Double/Repeated/Iterated Integrals"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L17",
+    "series": "mit-1802-f07",
+    "title": "Lecture 17: Polar Coordinates",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-17-polar-coordinates/",
+    "youtube_id": "60e4hdCi1D4",
+    "duration_min": 51.5,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "double integrals in polar",
+      "mass",
+      "center of mass",
+      "moment of inertia"
+    ],
+    "verified": true,
+    "summary": "Auroux shows how to evaluate double integrals in polar coordinates using the area element r dr dtheta, then applies double integrals to area, mass, average value, center of mass, and moment of inertia, ending with spinning a disk about its center and about a rim point.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap: double integrals and quarter-disk problem",
+        "kind": "review"
+      },
+      {
+        "t": 196,
+        "title": "Polar coordinates and slicing along rays",
+        "kind": "concept"
+      },
+      {
+        "t": 355,
+        "title": "Why dA equals r dr dtheta",
+        "kind": "concept"
+      },
+      {
+        "t": 546,
+        "title": "Example: quarter-disk integral in polar gives pi/8",
+        "kind": "example"
+      },
+      {
+        "t": 671,
+        "title": "When polar coordinates pay off",
+        "kind": "concept"
+      },
+      {
+        "t": 929,
+        "title": "Area and mass as double integrals",
+        "kind": "concept"
+      },
+      {
+        "t": 1195,
+        "title": "Average value and weighted averages",
+        "kind": "concept"
+      },
+      {
+        "t": 1429,
+        "title": "Center of mass of a flat plate",
+        "kind": "concept"
+      },
+      {
+        "t": 1864,
+        "title": "Moment of inertia from kinetic energy",
+        "kind": "concept"
+      },
+      {
+        "t": 2386,
+        "title": "Spinning about the x-axis: use y squared",
+        "kind": "concept"
+      },
+      {
+        "t": 2572,
+        "title": "Example: uniform disk spun about its center",
+        "kind": "example"
+      },
+      {
+        "t": 2733,
+        "title": "Example: disk spun about a rim point",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s50-polar",
+    "series": "mit-1802sc-recitations",
+    "title": "Integration in polar coordinates",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/integration-in-polar-coordinates/",
+    "youtube_id": "I2Z6K_g5kpc",
+    "duration_min": 17.6,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "Integration in polar coordinates"
+    ],
+    "verified": true,
+    "summary": "Converts three rectangular double integrals to polar form, evaluating the first fully and only setting up the other two; the main work is rewriting boundary lines, a parabola and an off-center circle in r and theta.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Problem: three integrals to polar",
+        "kind": "example"
+      },
+      {
+        "t": 60,
+        "title": "Part a: sketch region, theta bounds",
+        "kind": "example"
+      },
+      {
+        "t": 196,
+        "title": "Radial bounds sec theta to 2 sec theta",
+        "kind": "example"
+      },
+      {
+        "t": 359,
+        "title": "Integrand in polar and evaluating part a",
+        "kind": "example"
+      },
+      {
+        "t": 512,
+        "title": "Part b: between parabola and line",
+        "kind": "example"
+      },
+      {
+        "t": 702,
+        "title": "Part c: off-center circle, r = 2 sin(theta)",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-24",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 14.3:  Double Integrals over POLAR REGIONS",
+    "url": "https://www.youtube.com/watch?v=HA41kYxVYnw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "HA41kYxVYnw",
+    "duration_min": 205.2,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "Double Integrals over POLAR REGIONS"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-25",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 14.4:  Center of Mass (and Moments of Mass and Inertia) for Lamina in 2-D",
+    "url": "https://www.youtube.com/watch?v=WNZ8vMgaPgg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "WNZ8vMgaPgg",
+    "duration_min": 76.7,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "Center of Mass (and Moments of Mass and Inertia) for Lamina in 2-D"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s52-density",
+    "series": "mit-1802sc-recitations",
+    "title": "Integrals with density",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/integrals-with-density/",
+    "youtube_id": "-pr1TLyPyDw",
+    "duration_min": 15.6,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "Integrals with density"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s54-exp-x2",
+    "series": "mit-1802sc-recitations",
+    "title": "Integral of exp(-x^2)",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/integral-of-exp-x-sup-2-sup/",
+    "youtube_id": "fWOGfzC3IeY",
+    "duration_min": 9.6,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "Integral of exp(-x^2)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L25",
+    "series": "mit-1802-f07",
+    "title": "Lecture 25: Triple Integrals",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-25-triple-integrals/",
+    "youtube_id": "44R5HgbrUmc",
+    "duration_min": 48.7,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "triple integrals",
+      "rectangular",
+      "cylindrical coordinates"
+    ],
+    "verified": true,
+    "summary": "Begins the move to three dimensions with triple integrals: setting up iterated bounds via a solid's shadow, introducing cylindrical coordinates and their volume element, and applying triple integrals to mass, averages, center of mass, and moments of inertia with cone and ball-cap examples.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Roadmap: redoing plane topics in space",
+        "kind": "concept"
+      },
+      {
+        "t": 96,
+        "title": "Defining triple integrals and dV",
+        "kind": "concept"
+      },
+      {
+        "t": 195,
+        "title": "Example: volume between two paraboloids",
+        "kind": "example"
+      },
+      {
+        "t": 384,
+        "title": "Choosing z as the inner variable",
+        "kind": "example"
+      },
+      {
+        "t": 734,
+        "title": "Finding the shadow disk in xy-plane",
+        "kind": "example"
+      },
+      {
+        "t": 993,
+        "title": "Redoing the paraboloid example in polar",
+        "kind": "example"
+      },
+      {
+        "t": 1271,
+        "title": "Cylindrical coordinates: cylinders and half-planes",
+        "kind": "concept"
+      },
+      {
+        "t": 1598,
+        "title": "Cylindrical volume element r dr dtheta dz",
+        "kind": "concept"
+      },
+      {
+        "t": 1719,
+        "title": "Mass, average value, center of mass in 3D",
+        "kind": "concept"
+      },
+      {
+        "t": 2011,
+        "title": "Moments of inertia about coordinate axes",
+        "kind": "concept"
+      },
+      {
+        "t": 2228,
+        "title": "Example: moment of inertia of a solid cone",
+        "kind": "example"
+      },
+      {
+        "t": 2627,
+        "title": "Example: unit ball above slanted plane",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802f07-L26",
+    "series": "mit-1802-f07",
+    "title": "Lecture 26: Spherical Coordinates",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-26-spherical-coordinates/",
+    "youtube_id": "RMBGQtwkoyU",
+    "duration_min": 51.1,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "spherical coordinates",
+      "surface area"
+    ],
+    "verified": true,
+    "summary": "Introduces spherical coordinates (rho, phi, theta), derives the volume element rho^2 sin(phi) drho dphi dtheta, finds the volume of a spherical cap, and uses spherical coordinates to compute gravitational attraction, leading to Newton's shell theorem.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Recap and idea of spherical coordinates",
+        "kind": "review"
+      },
+      {
+        "t": 251,
+        "title": "Latitude and longitude view of phi, theta",
+        "kind": "concept"
+      },
+      {
+        "t": 346,
+        "title": "Polar in rz-plane; conversion formulas",
+        "kind": "concept"
+      },
+      {
+        "t": 628,
+        "title": "Equations: spheres, cones, the xy-plane",
+        "kind": "concept"
+      },
+      {
+        "t": 825,
+        "title": "Slicing order for spherical triple integrals",
+        "kind": "concept"
+      },
+      {
+        "t": 984,
+        "title": "Surface area element on a sphere",
+        "kind": "concept"
+      },
+      {
+        "t": 1323,
+        "title": "Volume element rho^2 sin phi",
+        "kind": "concept"
+      },
+      {
+        "t": 1498,
+        "title": "Example: volume of a spherical cap",
+        "kind": "example"
+      },
+      {
+        "t": 1775,
+        "title": "Bounds for phi and theta; answer",
+        "kind": "example"
+      },
+      {
+        "t": 2164,
+        "title": "Applications: averages and inertia",
+        "kind": "concept"
+      },
+      {
+        "t": 2225,
+        "title": "Gravitational force as a triple integral",
+        "kind": "concept"
+      },
+      {
+        "t": 2687,
+        "title": "Using symmetry about the z-axis",
+        "kind": "concept"
+      },
+      {
+        "t": 2790,
+        "title": "Spherical coordinates simplify the force integral",
+        "kind": "concept"
+      },
+      {
+        "t": 2935,
+        "title": "Newton's theorem for spherical planets",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s74-cylindrical",
+    "series": "mit-1802sc-recitations",
+    "title": "Volume in cylindrical coordinates",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/volume-in-cylindrical-coordinates/",
+    "youtube_id": "qA83eznsKp8",
+    "duration_min": 18.1,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "Volume in cylindrical coordinates"
+    ],
+    "verified": true,
+    "summary": "Finds the volume between the paraboloid z = x^2 + y^2 and the plane z = 2y by projecting to a circular shadow, describing it in cylindrical coordinates, and evaluating the triple integral to pi/2.",
+    "chapters": [
+      {
+        "t": 7,
+        "title": "Problem: volume under plane, above paraboloid",
+        "kind": "example"
+      },
+      {
+        "t": 103,
+        "title": "Cross-section view gives z bounds",
+        "kind": "example"
+      },
+      {
+        "t": 229,
+        "title": "Shadow region: circle centered at (0, 1)",
+        "kind": "example"
+      },
+      {
+        "t": 406,
+        "title": "Cylindrical bounds with r = 2 sin theta",
+        "kind": "example"
+      },
+      {
+        "t": 637,
+        "title": "Setting up and evaluating the integral",
+        "kind": "example"
+      },
+      {
+        "t": 977,
+        "title": "Recap of the setup strategy",
+        "kind": "review"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s77-spherical",
+    "series": "mit-1802sc-recitations",
+    "title": "Average distance on a sphere",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/average-distance-on-a-sphere/",
+    "youtube_id": "RoTz_ylFHfY",
+    "duration_min": 13.0,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "Average distance on a sphere"
+    ],
+    "verified": true,
+    "summary": "Describes the top half of a unit ball centered at (0, 0, 1) in spherical coordinates, with rho running from sec phi to 2 cos phi, then sets up the average distance from the origin as a triple integral of rho.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Problem: half-ball in spherical coordinates",
+        "kind": "example"
+      },
+      {
+        "t": 100,
+        "title": "Sketch of D; theta and phi bounds",
+        "kind": "example"
+      },
+      {
+        "t": 261,
+        "title": "Outer rho bound: rho = 2 cos phi",
+        "kind": "example"
+      },
+      {
+        "t": 396,
+        "title": "Inner rho bound from the plane: sec phi",
+        "kind": "example"
+      },
+      {
+        "t": 525,
+        "title": "Part b: average distance integral",
+        "kind": "example"
+      },
+      {
+        "t": 706,
+        "title": "Techniques recap and 2D analogy",
+        "kind": "review"
+      }
+    ]
+  },
+  {
+    "id": "leonard-c3-07",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 11.7:  Using Cylindrical and Spherical Coordinates",
+    "url": "https://www.youtube.com/watch?v=rDeo721ogtk&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "rDeo721ogtk",
+    "duration_min": 100.2,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "Using Cylindrical and Spherical Coordinates"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-26",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 14.6:  How to Solve TRIPLE INTEGRALS (Along with Center of Mass and Volume)",
+    "url": "https://www.youtube.com/watch?v=uTLM_iEcVdA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "uTLM_iEcVdA",
+    "duration_min": 213.5,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "How to Solve TRIPLE INTEGRALS (Along with Center of Mass and Volume)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-27",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 14.7:  TRIPLE Integrals Over Regions with CYLINDRICAL or SPHERICAL Coord.",
+    "url": "https://www.youtube.com/watch?v=R4vnw-yPnZ8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "R4vnw-yPnZ8",
+    "duration_min": 200.2,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "TRIPLE Integrals Over Regions with CYLINDRICAL or SPHERICAL Coord."
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s75-avg-height",
+    "series": "mit-1802sc-recitations",
+    "title": "Average height",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/average-height/",
+    "youtube_id": "cbSkFpO2jgQ",
+    "duration_min": 14.7,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "Average height"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s75-moment-cyl",
+    "series": "mit-1802sc-recitations",
+    "title": "Moment of inertia of a cylinder",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/moment-of-inertia-of-a-cylinder/",
+    "youtube_id": "iYFogDTPlRo",
+    "duration_min": 10.0,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "Moment of inertia of a cylinder"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s78-gravity",
+    "series": "mit-1802sc-recitations",
+    "title": "Gravity and a half-sphere",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/gravity-and-a-half-sphere/",
+    "youtube_id": "jAwWnppdcBE",
+    "duration_min": 11.2,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "Gravity and a half-sphere"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "leonard-c3-28",
+    "series": "leonard-calc3",
+    "title": "Calculus 3 Lecture 14.8:  How to Change Variables in Multiple Integrals (Using the Jacobian)",
+    "url": "https://www.youtube.com/watch?v=VVPu5fWssPg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+    "youtube_id": "VVPu5fWssPg",
+    "duration_min": 100.1,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "How to Change Variables in Multiple Integrals (Using the Jacobian)"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802f07-L18",
+    "series": "mit-1802-f07",
+    "title": "Lecture 18: Change of Variables",
+    "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-18-change-of-variables/",
+    "youtube_id": "UZb9hZIAvL4",
+    "duration_min": 49.9,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "change of variables",
+      "Jacobian"
+    ],
+    "verified": true,
+    "summary": "Covers substitution in double integrals: rescaling an ellipse, a linear map whose area factor is a determinant, and the general Jacobian rule with absolute value, checked on polar coordinates and used in a full worked example with new bounds.",
+    "chapters": [
+      {
+        "t": 1,
+        "title": "Why change variables in double integrals",
+        "kind": "concept"
+      },
+      {
+        "t": 70,
+        "title": "Example: ellipse area by rescaling x and y",
+        "kind": "example"
+      },
+      {
+        "t": 427,
+        "title": "Example: linear substitution u=3x-2y, v=x+y",
+        "kind": "example"
+      },
+      {
+        "t": 785,
+        "title": "Unit square maps to area-5 parallelogram",
+        "kind": "example"
+      },
+      {
+        "t": 1130,
+        "title": "General maps via linear approximation",
+        "kind": "concept"
+      },
+      {
+        "t": 1567,
+        "title": "Jacobian determinant and its absolute value",
+        "kind": "concept"
+      },
+      {
+        "t": 1726,
+        "title": "Example: Jacobian confirms polar r dr dtheta",
+        "kind": "example"
+      },
+      {
+        "t": 1924,
+        "title": "Inverse Jacobians are reciprocals",
+        "kind": "concept"
+      },
+      {
+        "t": 2207,
+        "title": "Example: x^2 y over square with u=x, v=xy",
+        "kind": "example"
+      },
+      {
+        "t": 2440,
+        "title": "New bounds by tracing hyperbola slices",
+        "kind": "example"
+      },
+      {
+        "t": 2867,
+        "title": "Alternative: sketch the region in uv-plane",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit1802sc-rec-s53-change-vars",
+    "series": "mit-1802sc-recitations",
+    "title": "Change of variables",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/change-of-variables/",
+    "youtube_id": "lCKxeRiBdjQ",
+    "duration_min": 9.3,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Change of variables"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit1802sc-rec-s55-change-vars-b",
+    "series": "mit-1802sc-recitations",
+    "title": "Change of variables",
+    "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/change-of-variables-1/",
+    "youtube_id": "G534bz09B4A",
+    "duration_min": 19.9,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "Change of variables"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  }
+]

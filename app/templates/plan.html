@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_macros.html" import task_row, bar %}
+{% block title %}Plan · Homebase{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">October 19 – January 3</p>
+  <h1>Prep plan</h1>
+  <p class="muted">About {{ weeks | map(attribute=0) | map(attribute='planned_hours') | sum | round(0) | int }} planned hours. Lighter until Thanksgiving, heavier in December, a light pass before term.</p>
+</section>
+
+{% for w, tasks, done in weeks %}
+{% set current = phase.prep_week and phase.prep_week.id == w.id %}
+<details class="card week {% if current %}current{% endif %}" {% if current %}open{% endif %}>
+  <summary>
+    <span class="wk">Week {{ w.number }}</span>
+    <span class="dates">{{ w.start | md }} – {{ w.end | md }}</span>
+    {% if w.label %}<span class="tag">{{ w.label }}</span>{% endif %}
+    <span class="right muted small">{{ done }}/{{ tasks | length }} · {{ w.planned_hours }} h</span>
+  </summary>
+  <p class="muted">{{ w.focus }}</p>
+  <ul class="tasks">
+    {% for t in tasks %}
+    {% set c = course_by_id[t.course_id] %}
+    {{ task_row(t, c, c.name ~ ' wk ' ~ t.course_week) }}
+    {% endfor %}
+  </ul>
+</details>
+{% endfor %}
+{% endblock %}

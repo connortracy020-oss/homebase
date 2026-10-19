@@ -1,0 +1,2456 @@
+[
+  {
+    "id": "mit6002-L01",
+    "series": "mit-6002-s07",
+    "title": "Lecture 1: Introduction and Lumped Abstraction",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-1/",
+    "youtube_id": "AfQxyVuLeCs",
+    "duration_min": 41.2,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "lumped matter discipline",
+      "current",
+      "voltage",
+      "power",
+      "KCL",
+      "KVL",
+      "Ohm's law"
+    ],
+    "verified": true,
+    "summary": "Agarwal frames engineering as a stack of abstractions, then shows how the lumped matter discipline reduces Maxwell's equations to lumped elements, demonstrates V-I curves of several devices and where the model breaks down, and derives KVL.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "What engineering is and course framing",
+        "kind": "concept"
+      },
+      {
+        "t": 67,
+        "title": "From measurement tables to physical laws",
+        "kind": "concept"
+      },
+      {
+        "t": 254,
+        "title": "Abstraction stack: lumped circuits to software",
+        "kind": "concept"
+      },
+      {
+        "t": 855,
+        "title": "Example: current through a battery-driven bulb",
+        "kind": "example"
+      },
+      {
+        "t": 951,
+        "title": "Point-mass analogy for lumping",
+        "kind": "concept"
+      },
+      {
+        "t": 1111,
+        "title": "Replacing the bulb filament with a resistor",
+        "kind": "concept"
+      },
+      {
+        "t": 1299,
+        "title": "Lumped matter discipline: charge and flux constraints",
+        "kind": "concept"
+      },
+      {
+        "t": 1744,
+        "title": "Demo: V-I curves of resistors and diodes",
+        "kind": "demo"
+      },
+      {
+        "t": 1900,
+        "title": "Demo: thermistor, photoresistor, batteries, bulb",
+        "kind": "demo"
+      },
+      {
+        "t": 2123,
+        "title": "Demo: limits of abstraction, burning resistor, pickle",
+        "kind": "demo"
+      },
+      {
+        "t": 2247,
+        "title": "Deriving KVL from Maxwell under LMD",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "yt-C_EDm61hwLw",
+    "series": "engineer4free-circuits",
+    "title": "Passive Sign Convention for Circuits",
+    "url": "https://www.youtube.com/watch?v=C_EDm61hwLw",
+    "youtube_id": "C_EDm61hwLw",
+    "duration_min": 5.8,
+    "osu_week": 1,
+    "priority": "core",
+    "topics": [
+      "passive sign convention",
+      "power"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-001",
+    "series": "hajimiri-caltech-circuits",
+    "title": "001. Circuits Fundamentals: Definitions, graph properties, current & voltage,  power & energy",
+    "url": "https://www.youtube.com/watch?v=i9WixHfiZPU",
+    "youtube_id": "i9WixHfiZPU",
+    "duration_min": 67.6,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Definitions",
+      "graph properties",
+      "current & voltage",
+      "power & energy"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-002",
+    "series": "hajimiri-caltech-circuits",
+    "title": "002. Circuits Fundamental: Passivity and Activity, KCL and KVL, Ideal Sources",
+    "url": "https://www.youtube.com/watch?v=H00Z2qa_a0c",
+    "youtube_id": "H00Z2qa_a0c",
+    "duration_min": 59.9,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "Passivity and Activity",
+      "KCL and KVL",
+      "Ideal Sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-rE_0ejMU6yM",
+    "series": "misc-youtube",
+    "title": "Basic Concepts of Circuits",
+    "url": "https://www.youtube.com/watch?v=rE_0ejMU6yM",
+    "youtube_id": "rE_0ejMU6yM",
+    "duration_min": 16.4,
+    "osu_week": 1,
+    "priority": "optional",
+    "topics": [
+      "charge",
+      "current",
+      "voltage",
+      "power"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6002-L02",
+    "series": "mit-6002-s07",
+    "title": "Lecture 2: Basic Circuit Analysis Method",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-2/",
+    "youtube_id": "2vHGYdepKLw",
+    "duration_min": 49.2,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "KCL",
+      "KVL",
+      "series/parallel",
+      "voltage divider",
+      "current divider",
+      "node method"
+    ],
+    "verified": true,
+    "summary": "Reviews the lumped matter discipline and checks KVL and KCL with live measurements, then presents three analysis methods (brute-force KVL/KCL, series-parallel element combination, and the node method) with a worked example for each.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Handout and how to use notes",
+        "kind": "admin"
+      },
+      {
+        "t": 34,
+        "title": "Review: lumped matter discipline, KVL, KCL",
+        "kind": "review"
+      },
+      {
+        "t": 169,
+        "title": "Associated variables sign convention",
+        "kind": "concept"
+      },
+      {
+        "t": 386,
+        "title": "Demo: measuring voltages around a loop",
+        "kind": "demo"
+      },
+      {
+        "t": 644,
+        "title": "Demo: current probe confirms KCL at node",
+        "kind": "demo"
+      },
+      {
+        "t": 769,
+        "title": "Hidden assumption: signals far slower than light",
+        "kind": "concept"
+      },
+      {
+        "t": 862,
+        "title": "Method 1: basic KVL/KCL procedure",
+        "kind": "concept"
+      },
+      {
+        "t": 1054,
+        "title": "Example: KVL/KCL on six-element circuit",
+        "kind": "example"
+      },
+      {
+        "t": 1600,
+        "title": "Method 2: series and parallel combination rules",
+        "kind": "concept"
+      },
+      {
+        "t": 1819,
+        "title": "Example: single current via element combination",
+        "kind": "example"
+      },
+      {
+        "t": 1977,
+        "title": "Method 3: node method steps",
+        "kind": "concept"
+      },
+      {
+        "t": 2137,
+        "title": "Example: node method with added current source",
+        "kind": "example"
+      },
+      {
+        "t": 2795,
+        "title": "Node equations in matrix form",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "yt-AGP3x069cFA",
+    "series": "engineer4free-circuits",
+    "title": "How Voltage Division Works (Series Resistors)",
+    "url": "https://www.youtube.com/watch?v=AGP3x069cFA",
+    "youtube_id": "AGP3x069cFA",
+    "duration_min": 8.2,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "voltage divider"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-P3QX1PQnoo0",
+    "series": "engineer4free-circuits",
+    "title": "Kirchhoff’s Current Law (KCL)",
+    "url": "https://www.youtube.com/watch?v=P3QX1PQnoo0",
+    "youtube_id": "P3QX1PQnoo0",
+    "duration_min": 6.2,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "KCL"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-d-NK63PEkM8",
+    "series": "engineer4free-circuits",
+    "title": "Independent and Dependent Power Sources",
+    "url": "https://www.youtube.com/watch?v=d-NK63PEkM8",
+    "youtube_id": "d-NK63PEkM8",
+    "duration_min": 7.2,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "independent sources",
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-nbzWLzDPFBU",
+    "series": "engineer4free-circuits",
+    "title": "Kirchhoff’s Voltage Law (KVL)",
+    "url": "https://www.youtube.com/watch?v=nbzWLzDPFBU",
+    "youtube_id": "nbzWLzDPFBU",
+    "duration_min": 5.2,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "KVL"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-tCJ2s4aoHvM",
+    "series": "engineer4free-circuits",
+    "title": "How Current Division Works (Parallel Resistors)",
+    "url": "https://www.youtube.com/watch?v=tCJ2s4aoHvM",
+    "youtube_id": "tCJ2s4aoHvM",
+    "duration_min": 7.3,
+    "osu_week": 2,
+    "priority": "core",
+    "topics": [
+      "current divider"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-003",
+    "series": "hajimiri-caltech-circuits",
+    "title": "003. Circuits Fundamentals: Resistance, Ohm's law, linearity, time-variance, diode circuits.",
+    "url": "https://www.youtube.com/watch?v=hoO9Kb223rM",
+    "youtube_id": "hoO9Kb223rM",
+    "duration_min": 46.4,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Resistance",
+      "Ohm's law",
+      "linearity",
+      "time-variance",
+      "diode circuits."
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-6U6z79oRDB0",
+    "series": "pytel-dc",
+    "title": "Dependent Sources (Full Lecture)",
+    "url": "https://www.youtube.com/watch?v=6U6z79oRDB0",
+    "youtube_id": "6U6z79oRDB0",
+    "duration_min": 7.8,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-8pJcXfl8oq0",
+    "series": "misc-youtube",
+    "title": "Ohm's Law and Kirchhoff's Laws",
+    "url": "https://www.youtube.com/watch?v=8pJcXfl8oq0",
+    "youtube_id": "8pJcXfl8oq0",
+    "duration_min": 12.4,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "Ohm's law",
+      "KCL",
+      "KVL"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-Gn26z60tTog",
+    "series": "misc-youtube",
+    "title": "Combining Series and Parallel Resistors",
+    "url": "https://www.youtube.com/watch?v=Gn26z60tTog",
+    "youtube_id": "Gn26z60tTog",
+    "duration_min": 21.3,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "series/parallel resistors",
+      "equivalent resistance"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-SfKw8bHk7-o",
+    "series": "all-about-electronics-network",
+    "title": "Independent and Dependent (Controlled) Sources",
+    "url": "https://www.youtube.com/watch?v=SfKw8bHk7-o",
+    "youtube_id": "SfKw8bHk7-o",
+    "duration_min": 7.7,
+    "osu_week": 2,
+    "priority": "optional",
+    "topics": [
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-JptsfzvKbuo",
+    "series": "misc-youtube",
+    "title": "The Complete Guide to Nodal Analysis",
+    "url": "https://www.youtube.com/watch?v=JptsfzvKbuo",
+    "youtube_id": "JptsfzvKbuo",
+    "duration_min": 27.2,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "nodal analysis",
+      "supernode",
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-VN3QXcvSmVI",
+    "series": "pytel-dc",
+    "title": "Circuit Analysis with Dependent Sources (Full Lecture)",
+    "url": "https://www.youtube.com/watch?v=VN3QXcvSmVI",
+    "youtube_id": "VN3QXcvSmVI",
+    "duration_min": 16.7,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "dependent sources",
+      "circuit analysis with dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-XtciQU4KMSg",
+    "series": "misc-youtube",
+    "title": "Delta to Wye and Wye to Delta Transformations",
+    "url": "https://www.youtube.com/watch?v=XtciQU4KMSg",
+    "youtube_id": "XtciQU4KMSg",
+    "duration_min": 12.7,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "delta-wye transformation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-f-sbANgw4fo",
+    "series": "engineer4free-circuits",
+    "title": "Nodal Analysis for Circuits Explained",
+    "url": "https://www.youtube.com/watch?v=f-sbANgw4fo",
+    "youtube_id": "f-sbANgw4fo",
+    "duration_min": 8.4,
+    "osu_week": 3,
+    "priority": "core",
+    "topics": [
+      "nodal analysis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-004",
+    "series": "hajimiri-caltech-circuits",
+    "title": "004. Nodal Analysis: Ground, Y-Matrix, Node Voltage & Stimulus vectors, Linear Algebra, Determinant",
+    "url": "https://www.youtube.com/watch?v=E6SWCh33L7U",
+    "youtube_id": "E6SWCh33L7U",
+    "duration_min": 55.9,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Ground",
+      "Y-Matrix",
+      "Node Voltage & Stimulus vectors",
+      "Linear Algebra",
+      "Determinant"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-005",
+    "series": "hajimiri-caltech-circuits",
+    "title": "005. Nodal Analysis: Examples, Dependent Sources, Existence of a Solution",
+    "url": "https://www.youtube.com/watch?v=QQCYJnmbXYw",
+    "youtube_id": "QQCYJnmbXYw",
+    "duration_min": 31.6,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "Examples",
+      "Dependent Sources",
+      "Existence of a Solution"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6002-L08",
+    "series": "mit-6002-s07",
+    "title": "Lecture 8: Dependent Sources and Amplifiers",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-8/",
+    "youtube_id": "bEJ0-8pANA4",
+    "duration_min": 52.4,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "dependent sources",
+      "amplifiers",
+      "MOSFET amplifier"
+    ],
+    "verified": true,
+    "summary": "Motivates amplification both for sending analog signals through noise and for meeting the static discipline, introduces dependent sources with node-method examples, and shows that a square-law controlled source with a load resistor acts as a nonlinear amplifier. Captions stop at 45:00.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Overview and review of analysis methods",
+        "kind": "review"
+      },
+      {
+        "t": 326,
+        "title": "Why amplify: beating noise on analog links",
+        "kind": "concept"
+      },
+      {
+        "t": 554,
+        "title": "Low-noise amplifiers in phones and Wi-Fi",
+        "kind": "concept"
+      },
+      {
+        "t": 740,
+        "title": "Digital logic requires gain: noise-margin argument",
+        "kind": "concept"
+      },
+      {
+        "t": 1127,
+        "title": "Dependent sources: VCCS, CCCS and others",
+        "kind": "concept"
+      },
+      {
+        "t": 1433,
+        "title": "Example: resistor fed by independent current source",
+        "kind": "example"
+      },
+      {
+        "t": 1497,
+        "title": "Example: VCCS with inverse voltage dependence",
+        "kind": "example"
+      },
+      {
+        "t": 1838,
+        "title": "Example: square-law VCCS with load resistor",
+        "kind": "example"
+      },
+      {
+        "t": 2309,
+        "title": "Plotting output versus input voltage",
+        "kind": "concept"
+      },
+      {
+        "t": 2467,
+        "title": "Slope greater than one means amplification",
+        "kind": "concept"
+      },
+      {
+        "t": 2632,
+        "title": "Example: numeric amplifier values and table",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "yt-2kPdJHVEkiA",
+    "series": "pytel-dc",
+    "title": "Resistive Delta-Y Conversion (Full Lecture)",
+    "url": "https://www.youtube.com/watch?v=2kPdJHVEkiA",
+    "youtube_id": "2kPdJHVEkiA",
+    "duration_min": 18.8,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "delta-wye transformation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-BMnFC63m1fQ",
+    "series": "organic-chem-tutor-circuits",
+    "title": "Node Voltage Method Circuit Analysis With Current Sources",
+    "url": "https://www.youtube.com/watch?v=BMnFC63m1fQ",
+    "youtube_id": "BMnFC63m1fQ",
+    "duration_min": 32.3,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "nodal analysis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-OV0qi7yzKAM",
+    "series": "all-about-electronics-network",
+    "title": "Delta to Star Conversion (with proof and example)",
+    "url": "https://www.youtube.com/watch?v=OV0qi7yzKAM",
+    "youtube_id": "OV0qi7yzKAM",
+    "duration_min": 13.5,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "delta-to-star",
+      "derivation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-qQYRc9UibKk",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Basic Laws (21 of 31) The Delta to Y Conversion Example",
+    "url": "https://www.youtube.com/watch?v=qQYRc9UibKk",
+    "youtube_id": "qQYRc9UibKk",
+    "duration_min": 6.7,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "delta-wye transformation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-t-Xy2_3tIUE",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Basic Laws (20 of 31) What is The Delta to Y Conversion?",
+    "url": "https://www.youtube.com/watch?v=t-Xy2_3tIUE",
+    "youtube_id": "t-Xy2_3tIUE",
+    "duration_min": 5.0,
+    "osu_week": 3,
+    "priority": "optional",
+    "topics": [
+      "delta-wye transformation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-2JfKcLuESTw",
+    "series": "engineer4free-circuits",
+    "title": "Nodal Analysis Supernode Example Problem",
+    "url": "https://www.youtube.com/watch?v=2JfKcLuESTw",
+    "youtube_id": "2JfKcLuESTw",
+    "duration_min": 7.9,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "supernode"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-D92DjS43-Qw",
+    "series": "misc-youtube",
+    "title": "The Complete Guide to Mesh Analysis",
+    "url": "https://www.youtube.com/watch?v=D92DjS43-Qw",
+    "youtube_id": "D92DjS43-Qw",
+    "duration_min": 26.8,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "mesh analysis",
+      "supermesh"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-eQpc2QRFv7Y",
+    "series": "engineer4free-circuits",
+    "title": "Mesh Analysis for Circuits Explained",
+    "url": "https://www.youtube.com/watch?v=eQpc2QRFv7Y",
+    "youtube_id": "eQpc2QRFv7Y",
+    "duration_min": 9.8,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "mesh analysis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-khtZubT9K8E",
+    "series": "engineer4free-circuits",
+    "title": "Supernode Analysis Explained for Circuits",
+    "url": "https://www.youtube.com/watch?v=khtZubT9K8E",
+    "youtube_id": "khtZubT9K8E",
+    "duration_min": 6.5,
+    "osu_week": 4,
+    "priority": "core",
+    "topics": [
+      "supernode"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-006",
+    "series": "hajimiri-caltech-circuits",
+    "title": "006. Nodal Analysis Continued: Nodal Analysis, Dependent Sources, w/ Voltage Sources, Super Nodes",
+    "url": "https://www.youtube.com/watch?v=DJcvNUkzWmQ",
+    "youtube_id": "DJcvNUkzWmQ",
+    "duration_min": 53.7,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Nodal Analysis",
+      "Dependent Sources",
+      "w/ Voltage Sources",
+      "Super Nodes"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-007",
+    "series": "hajimiri-caltech-circuits",
+    "title": "007. Mesh Analysis & Diode Circuits: Mesh Analysis, 3D Networks, Super Mesh, Diode Circuit Design",
+    "url": "https://www.youtube.com/watch?v=XJ0MKFfwEUo",
+    "youtube_id": "XJ0MKFfwEUo",
+    "duration_min": 52.6,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "Mesh Analysis",
+      "3D Networks",
+      "Super Mesh",
+      "Diode Circuit Design"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-iIswDPKSQT4",
+    "series": "all-about-electronics-network",
+    "title": "Supernode Analysis Explained (with Examples)",
+    "url": "https://www.youtube.com/watch?v=iIswDPKSQT4",
+    "youtube_id": "iIswDPKSQT4",
+    "duration_min": 8.9,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "supernode"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-jewkmjVjbmw",
+    "series": "engineer4free-circuits",
+    "title": "Mesh Analysis Example Problem #1",
+    "url": "https://www.youtube.com/watch?v=jewkmjVjbmw",
+    "youtube_id": "jewkmjVjbmw",
+    "duration_min": 8.9,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "mesh analysis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-k5Tlg27JDtc",
+    "series": "organic-chem-tutor-circuits",
+    "title": "Mesh Current Problems - Electronics & Circuit Analysis",
+    "url": "https://www.youtube.com/watch?v=k5Tlg27JDtc",
+    "youtube_id": "k5Tlg27JDtc",
+    "duration_min": 27.6,
+    "osu_week": 4,
+    "priority": "optional",
+    "topics": [
+      "mesh analysis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6002-L03",
+    "series": "mit-6002-s07",
+    "title": "Lecture 3: Superposition, Thevenin and Norton",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-3/",
+    "youtube_id": "RsJ1eg7XNVs",
+    "duration_min": 51.2,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "linearity",
+      "superposition",
+      "Thevenin",
+      "Norton"
+    ],
+    "verified": true,
+    "summary": "After recapping earlier analysis methods, the lecture develops linearity, homogeneity and superposition for linear circuits, demonstrates superposition with a tank of tap water, and derives the Thevenin equivalent before applying it to a branch current.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Announcements: note-taker and prerequisites",
+        "kind": "admin"
+      },
+      {
+        "t": 66,
+        "title": "Review: LMD, KVL/KCL, first three methods",
+        "kind": "review"
+      },
+      {
+        "t": 411,
+        "title": "Example: node analysis of reference circuit",
+        "kind": "example"
+      },
+      {
+        "t": 840,
+        "title": "Linearity and homogeneity",
+        "kind": "concept"
+      },
+      {
+        "t": 933,
+        "title": "Superposition principle with two inputs",
+        "kind": "concept"
+      },
+      {
+        "t": 1253,
+        "title": "Zeroing sources: short or open them",
+        "kind": "concept"
+      },
+      {
+        "t": 1353,
+        "title": "Method 4: superposition for independent sources",
+        "kind": "concept"
+      },
+      {
+        "t": 1452,
+        "title": "Example: superposition on the reference circuit",
+        "kind": "example"
+      },
+      {
+        "t": 1740,
+        "title": "Demo: superposition in a vat of water",
+        "kind": "demo"
+      },
+      {
+        "t": 2069,
+        "title": "Deriving Thevenin form from superposition",
+        "kind": "concept"
+      },
+      {
+        "t": 2680,
+        "title": "Method 5: Thevenin equivalent network",
+        "kind": "concept"
+      },
+      {
+        "t": 2781,
+        "title": "Example: branch current by Thevenin equivalent",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "yt-2Yc5zvDIvJ0",
+    "series": "engineer4free-circuits",
+    "title": "Supermesh Analysis Example Problem",
+    "url": "https://www.youtube.com/watch?v=2Yc5zvDIvJ0",
+    "youtube_id": "2Yc5zvDIvJ0",
+    "duration_min": 7.0,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "supermesh"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-72W_ZQl4qmE",
+    "series": "engineer4free-circuits",
+    "title": "Supermesh Analysis Explained",
+    "url": "https://www.youtube.com/watch?v=72W_ZQl4qmE",
+    "youtube_id": "72W_ZQl4qmE",
+    "duration_min": 7.0,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "supermesh"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-uoZ0E6zxoi0",
+    "series": "misc-youtube",
+    "title": "How to Use Superposition to Solve Circuits",
+    "url": "https://www.youtube.com/watch?v=uoZ0E6zxoi0",
+    "youtube_id": "uoZ0E6zxoi0",
+    "duration_min": 12.5,
+    "osu_week": 6,
+    "priority": "core",
+    "topics": [
+      "superposition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-008",
+    "series": "hajimiri-caltech-circuits",
+    "title": "008. Circuit Theorems: Superposition, Thévenin, Norton, Source Transformation, Network Equivalence",
+    "url": "https://www.youtube.com/watch?v=Xzbx9zTL1PA",
+    "youtube_id": "Xzbx9zTL1PA",
+    "duration_min": 56.0,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "Superposition",
+      "Thévenin",
+      "Norton",
+      "Source Transformation",
+      "Network Equivalence"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-8RGckMZLTBo",
+    "series": "all-about-electronics-network",
+    "title": "Supermesh Explained (with examples)",
+    "url": "https://www.youtube.com/watch?v=8RGckMZLTBo",
+    "youtube_id": "8RGckMZLTBo",
+    "duration_min": 13.0,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "supermesh"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-C5kr0uDR_so",
+    "series": "misc-youtube",
+    "title": "The Complete Guide to Source Transformation",
+    "url": "https://www.youtube.com/watch?v=C5kr0uDR_so",
+    "youtube_id": "C5kr0uDR_so",
+    "duration_min": 18.0,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "source transformation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-EX52BuZxpQM",
+    "series": "organic-chem-tutor-circuits",
+    "title": "Superposition Theorem",
+    "url": "https://www.youtube.com/watch?v=EX52BuZxpQM",
+    "youtube_id": "EX52BuZxpQM",
+    "duration_min": 44.3,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "superposition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-S0GsrzjVkd4",
+    "series": "all-about-electronics-network",
+    "title": "Superposition Theorem Explained (with Examples)",
+    "url": "https://www.youtube.com/watch?v=S0GsrzjVkd4",
+    "youtube_id": "S0GsrzjVkd4",
+    "duration_min": 18.9,
+    "osu_week": 6,
+    "priority": "optional",
+    "topics": [
+      "superposition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt--X7otqsma4Q",
+    "series": "misc-youtube",
+    "title": "The Complete Guide to Thevenin's Theorem",
+    "url": "https://www.youtube.com/watch?v=-X7otqsma4Q",
+    "youtube_id": "-X7otqsma4Q",
+    "duration_min": 23.3,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "Thevenin",
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-8udwPc5pCoA",
+    "series": "all-about-electronics-network",
+    "title": "Thevenin's Theorem Explained (With examples of Independent and Dependent Sources)",
+    "url": "https://www.youtube.com/watch?v=8udwPc5pCoA",
+    "youtube_id": "8udwPc5pCoA",
+    "duration_min": 16.6,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "Thevenin",
+      "dependent sources",
+      "test source"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-bPG7o-97dJ0",
+    "series": "misc-youtube",
+    "title": "How to Find Maximum Power Transfer",
+    "url": "https://www.youtube.com/watch?v=bPG7o-97dJ0",
+    "youtube_id": "bPG7o-97dJ0",
+    "duration_min": 16.1,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "maximum power transfer"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-rSP32xF5MUc",
+    "series": "misc-youtube",
+    "title": "The Complete Guide to Norton's Theorem",
+    "url": "https://www.youtube.com/watch?v=rSP32xF5MUc",
+    "youtube_id": "rSP32xF5MUc",
+    "duration_min": 24.0,
+    "osu_week": 7,
+    "priority": "core",
+    "topics": [
+      "Norton"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-009",
+    "series": "hajimiri-caltech-circuits",
+    "title": "009. Circuit Theorems: Source Transportation, Substitution Theorem, Maximum Power Transfer, Y-Delta",
+    "url": "https://www.youtube.com/watch?v=Ho0thejpuoY",
+    "youtube_id": "Ho0thejpuoY",
+    "duration_min": 45.3,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "Source Transportation",
+      "Substitution Theorem",
+      "Maximum Power Transfer",
+      "Y-Delta"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-8CA6ZNXgI-Y",
+    "series": "organic-chem-tutor-circuits",
+    "title": "Maximum Power Transfer Theorem Using Nodal Analysis & Thevenin Equivalent Circuits",
+    "url": "https://www.youtube.com/watch?v=8CA6ZNXgI-Y",
+    "youtube_id": "8CA6ZNXgI-Y",
+    "duration_min": 15.2,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "maximum power transfer",
+      "Thevenin",
+      "nodal analysis"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-DdLA8rntWEY",
+    "series": "all-about-electronics-network",
+    "title": "Norton's Theorem Explained (With examples of Independent and Dependent Sources)",
+    "url": "https://www.youtube.com/watch?v=DdLA8rntWEY",
+    "youtube_id": "DdLA8rntWEY",
+    "duration_min": 15.3,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "Norton",
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-RbII8o49Hvs",
+    "series": "all-about-electronics-network",
+    "title": "Maximum Power Transfer Theorem for DC Circuits (with Examples)",
+    "url": "https://www.youtube.com/watch?v=RbII8o49Hvs",
+    "youtube_id": "RbII8o49Hvs",
+    "duration_min": 10.5,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "maximum power transfer"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-T5owy52XEuc",
+    "series": "pytel-dc",
+    "title": "DC Thevenin's and Maximum Power Transfer Theorem Examples (Full Lecture)",
+    "url": "https://www.youtube.com/watch?v=T5owy52XEuc",
+    "youtube_id": "T5owy52XEuc",
+    "duration_min": 19.6,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "Thevenin",
+      "maximum power transfer"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-roh1pkffYb0",
+    "series": "misc-youtube",
+    "title": "Thevenin's Theorem with Dependent Sources",
+    "url": "https://www.youtube.com/watch?v=roh1pkffYb0",
+    "youtube_id": "roh1pkffYb0",
+    "duration_min": 7.8,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "Thevenin",
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-tk5OgmjDXW8",
+    "series": "misc-youtube",
+    "title": "Circuits 1 - Thevenin Equivalent Dependent Source - Example",
+    "url": "https://www.youtube.com/watch?v=tk5OgmjDXW8",
+    "youtube_id": "tk5OgmjDXW8",
+    "duration_min": 17.6,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "Thevenin",
+      "dependent sources"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-zTDgziJC-q8",
+    "series": "organic-chem-tutor-circuits",
+    "title": "Thevenin's Theorem - Circuit Analysis",
+    "url": "https://www.youtube.com/watch?v=zTDgziJC-q8",
+    "youtube_id": "zTDgziJC-q8",
+    "duration_min": 9.4,
+    "osu_week": 7,
+    "priority": "optional",
+    "topics": [
+      "Thevenin"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6002-L19",
+    "series": "mit-6002-s07",
+    "title": "Lecture 19: The Operational Amplifier Abstraction",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-19/",
+    "youtube_id": "V0z_f7qxLcY",
+    "duration_min": 52.5,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "ideal op-amp",
+      "negative feedback",
+      "non-inverting amplifier",
+      "inverting amplifier"
+    ],
+    "verified": true,
+    "summary": "Introduces the operational amplifier as an abstraction with an ideal circuit model (huge gain, infinite input resistance, zero output resistance) and shows its unreliable open-loop gain on a scope. A non-inverting amplifier is then analyzed to show that negative feedback makes the gain depend only on resistor ratios, with anti-lock brakes as an analogy.",
+    "chapters": [
+      {
+        "t": 4,
+        "title": "Op amps: abstraction and feedback themes",
+        "kind": "concept"
+      },
+      {
+        "t": 144,
+        "title": "MOSFET amplifier as a three-port block",
+        "kind": "concept"
+      },
+      {
+        "t": 404,
+        "title": "Op amp ports and dual power supply",
+        "kind": "concept"
+      },
+      {
+        "t": 628,
+        "title": "Ideal op amp circuit model",
+        "kind": "concept"
+      },
+      {
+        "t": 1013,
+        "title": "Op amp as analog workhorse (printf analogy)",
+        "kind": "concept"
+      },
+      {
+        "t": 1295,
+        "title": "Transfer curve: active and saturation regions",
+        "kind": "concept"
+      },
+      {
+        "t": 1651,
+        "title": "Demo: open-loop gain drifts when heated",
+        "kind": "demo"
+      },
+      {
+        "t": 1777,
+        "title": "Building a non-inverting amplifier",
+        "kind": "concept"
+      },
+      {
+        "t": 1931,
+        "title": "Example: node analysis with dependent source",
+        "kind": "example"
+      },
+      {
+        "t": 2292,
+        "title": "Large-gain limit: resistors set the gain",
+        "kind": "concept"
+      },
+      {
+        "t": 2420,
+        "title": "Example: gain of ten using 9R and R",
+        "kind": "example"
+      },
+      {
+        "t": 2494,
+        "title": "Demo: closed-loop gain stable under heat",
+        "kind": "demo"
+      },
+      {
+        "t": 2594,
+        "title": "Intuition: negative feedback pulls output back",
+        "kind": "concept"
+      },
+      {
+        "t": 2986,
+        "title": "Anti-lock brakes as a feedback analogy",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit6002-L20",
+    "series": "mit-6002-s07",
+    "title": "Lecture 20: Operational Amplifier Circuits",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-20/",
+    "youtube_id": "2SwT6JnfCq8",
+    "duration_min": 49.9,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "summing amplifier",
+      "superposition with op-amps",
+      "integrator",
+      "differentiator"
+    ],
+    "verified": true,
+    "summary": "Introduces the v+ approximately equal to v- shortcut for op amps under negative feedback and uses it, alongside superposition, to analyze a subtractor and pick out the inverting and non-inverting patterns. Then designs an integrator and a differentiator step by step using virtual ground, ending with a square-wave demo of both.",
+    "chapters": [
+      {
+        "t": 17,
+        "title": "Review: ideal op amp properties",
+        "kind": "review"
+      },
+      {
+        "t": 166,
+        "title": "Preview of op amp building blocks",
+        "kind": "concept"
+      },
+      {
+        "t": 358,
+        "title": "Two-source op amp circuit setup",
+        "kind": "concept"
+      },
+      {
+        "t": 452,
+        "title": "The v+ equals v- analysis method",
+        "kind": "concept"
+      },
+      {
+        "t": 677,
+        "title": "Example: subtractor using v+ equals v-",
+        "kind": "example"
+      },
+      {
+        "t": 1072,
+        "title": "Example: same subtractor via superposition",
+        "kind": "example"
+      },
+      {
+        "t": 1297,
+        "title": "Inverting and non-inverting gain patterns",
+        "kind": "concept"
+      },
+      {
+        "t": 1588,
+        "title": "Example: designing an op amp integrator",
+        "kind": "example"
+      },
+      {
+        "t": 1778,
+        "title": "Plain RC integrator only approximately works",
+        "kind": "concept"
+      },
+      {
+        "t": 2014,
+        "title": "Virtual ground turns voltage into current",
+        "kind": "concept"
+      },
+      {
+        "t": 2178,
+        "title": "Completing the integrator with a capacitor",
+        "kind": "concept"
+      },
+      {
+        "t": 2374,
+        "title": "Example: designing an op amp differentiator",
+        "kind": "example"
+      },
+      {
+        "t": 2571,
+        "title": "Feedback resistor converts current to voltage",
+        "kind": "concept"
+      },
+      {
+        "t": 2793,
+        "title": "Capacitor into virtual ground finishes differentiator",
+        "kind": "concept"
+      },
+      {
+        "t": 2944,
+        "title": "Demo: square wave through integrator, differentiator",
+        "kind": "demo"
+      }
+    ]
+  },
+  {
+    "id": "yt-idJEMYhrIfs",
+    "series": "organic-chem-tutor-circuits",
+    "title": "Operational Amplifiers - Inverting & Non Inverting Op-Amps",
+    "url": "https://www.youtube.com/watch?v=idJEMYhrIfs",
+    "youtube_id": "idJEMYhrIfs",
+    "duration_min": 12.0,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "ideal op-amp",
+      "inverting amplifier",
+      "non-inverting amplifier"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-uxcCJVl96hU",
+    "series": "circuitbread",
+    "title": "Op-Amp (Operational Amplifier) Practice Problems",
+    "url": "https://www.youtube.com/watch?v=uxcCJVl96hU",
+    "youtube_id": "uxcCJVl96hU",
+    "duration_min": 12.3,
+    "osu_week": 8,
+    "priority": "core",
+    "topics": [
+      "op-amp practice problems"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-010",
+    "series": "hajimiri-caltech-circuits",
+    "title": "010. Active circuits: Op-Amp, Feedback, Asymptotic Equality, Inverting and Non-Inverting Amplifiers",
+    "url": "https://www.youtube.com/watch?v=eX81YvhwEEw",
+    "youtube_id": "eX81YvhwEEw",
+    "duration_min": 70.8,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "Op-Amp",
+      "Feedback",
+      "Asymptotic Equality",
+      "Inverting and Non-Inverting Amplifiers"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-BYtEP0kY64E",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 5: Operational Amp (5 of 28) Summing Amplifier (Inverting)",
+    "url": "https://www.youtube.com/watch?v=BYtEP0kY64E",
+    "youtube_id": "BYtEP0kY64E",
+    "duration_min": 4.8,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "summing amplifier"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-Ea5AsPZgB64",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 5: Operational Amp (15 of 28) The Difference Amplifier",
+    "url": "https://www.youtube.com/watch?v=Ea5AsPZgB64",
+    "youtube_id": "Ea5AsPZgB64",
+    "duration_min": 10.8,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "difference amplifier"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-_Ut-nQ535iE",
+    "series": "khan-ee",
+    "title": "Non-inverting op-amp circuit",
+    "url": "https://www.youtube.com/watch?v=_Ut-nQ535iE",
+    "youtube_id": "_Ut-nQ535iE",
+    "duration_min": 12.5,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "non-inverting amplifier"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-c3u9RRIVkok",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 5: Operational Amp (4 of 28) Non-Inverting Amplifier-Basics",
+    "url": "https://www.youtube.com/watch?v=c3u9RRIVkok",
+    "youtube_id": "c3u9RRIVkok",
+    "duration_min": 4.8,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "non-inverting amplifier"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-x2xxOKOTwM4",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 5: Operational Amp (2 of 28) Inverting Amplifier-Basic Operation",
+    "url": "https://www.youtube.com/watch?v=x2xxOKOTwM4",
+    "youtube_id": "x2xxOKOTwM4",
+    "duration_min": 4.0,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "inverting amplifier"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-yTkC6vdtHaY",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 5: Operational Amp (20 of 28) Cascaded Op-Amp Circuit: Example 1",
+    "url": "https://www.youtube.com/watch?v=yTkC6vdtHaY",
+    "youtube_id": "yTkC6vdtHaY",
+    "duration_min": 3.1,
+    "osu_week": 8,
+    "priority": "optional",
+    "topics": [
+      "cascaded op-amps"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6002-L12",
+    "series": "mit-6002-s07",
+    "title": "Lecture 12: Capacitors and First-Order Systems",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-12/",
+    "youtube_id": "COdQmA9g9S8",
+    "duration_min": 49.2,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "capacitors",
+      "RC circuits",
+      "first-order differential equations",
+      "time constant"
+    ],
+    "verified": true,
+    "summary": "A cascaded-inverter demo exposes gate delay, which is traced to the MOSFET's gate capacitance; the lecture then covers ideal capacitor relations and how they fit the lumped matter discipline, and solves the RC circuit's first-order equation via homogeneous and particular solutions.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Memoryless elements versus storage",
+        "kind": "concept"
+      },
+      {
+        "t": 138,
+        "title": "Setup: two cascaded inverters, square wave input",
+        "kind": "concept"
+      },
+      {
+        "t": 273,
+        "title": "Demo: scope reveals slow edge and delay",
+        "kind": "demo"
+      },
+      {
+        "t": 463,
+        "title": "Inverter delay: cause and why it matters",
+        "kind": "concept"
+      },
+      {
+        "t": 690,
+        "title": "Gate capacitance inside the MOSFET",
+        "kind": "concept"
+      },
+      {
+        "t": 1047,
+        "title": "Ideal linear capacitor and C = epsilon A/d",
+        "kind": "concept"
+      },
+      {
+        "t": 1145,
+        "title": "Capacitors still obey the lumped matter discipline",
+        "kind": "concept"
+      },
+      {
+        "t": 1361,
+        "title": "Capacitor relations: q=Cv, i=C dv/dt, energy",
+        "kind": "concept"
+      },
+      {
+        "t": 1496,
+        "title": "Demo: shorting a charged 250 V capacitor",
+        "kind": "demo"
+      },
+      {
+        "t": 1653,
+        "title": "RC circuit: first-order node equation",
+        "kind": "concept"
+      },
+      {
+        "t": 1847,
+        "title": "Example: RC with initial voltage and DC input",
+        "kind": "example"
+      },
+      {
+        "t": 1980,
+        "title": "Homogeneous plus particular method; particular solution",
+        "kind": "concept"
+      },
+      {
+        "t": 2232,
+        "title": "Homogeneous solution and characteristic equation",
+        "kind": "concept"
+      },
+      {
+        "t": 2588,
+        "title": "Total solution from initial condition",
+        "kind": "concept"
+      },
+      {
+        "t": 2749,
+        "title": "Exponential rise and decay waveforms",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "yt-KylJ2v1_c-o",
+    "series": "all-about-electronics-network",
+    "title": "Transient Analysis: First order R C and R L Circuits",
+    "url": "https://www.youtube.com/watch?v=KylJ2v1_c-o",
+    "youtube_id": "KylJ2v1_c-o",
+    "duration_min": 27.2,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "capacitor and inductor behavior",
+      "RC step response",
+      "RL step response",
+      "time constant"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-N0vcIGaXsn4",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 8: RC & RL Circuits (31 of 65) General Strategy of Solving RC Circuits",
+    "url": "https://www.youtube.com/watch?v=N0vcIGaXsn4",
+    "youtube_id": "N0vcIGaXsn4",
+    "duration_min": 7.0,
+    "osu_week": 9,
+    "priority": "core",
+    "topics": [
+      "RC step response strategy",
+      "initial/final value method"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-011",
+    "series": "hajimiri-caltech-circuits",
+    "title": "011. Singularity Functions: Introduction, Unit Step, Pulse, and Dirac Delta (Impulse) Functions",
+    "url": "https://www.youtube.com/watch?v=bjrS-qMw3OY",
+    "youtube_id": "bjrS-qMw3OY",
+    "duration_min": 34.0,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "Introduction",
+      "Unit Step",
+      "Pulse",
+      "and Dirac Delta (Impulse) Functions"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-014",
+    "series": "hajimiri-caltech-circuits",
+    "title": "014. Time-Domain Response: Capacitors and Inductors, RC Response, General 1st-Order System",
+    "url": "https://www.youtube.com/watch?v=n_ukMGEdFFQ",
+    "youtube_id": "n_ukMGEdFFQ",
+    "duration_min": 69.6,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "Capacitors and Inductors",
+      "RC Response",
+      "General 1st-Order System"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "hajimiri-015",
+    "series": "hajimiri-caltech-circuits",
+    "title": "015. Time Domain Response: RC Step and Impulse Response",
+    "url": "https://www.youtube.com/watch?v=j5tEFxf5UuA",
+    "youtube_id": "j5tEFxf5UuA",
+    "duration_min": 22.2,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "RC Step and Impulse Response"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6002-L13",
+    "series": "mit-6002-s07",
+    "title": "Lecture 13: Digital Circuit Speed",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-13/",
+    "youtube_id": "TXJIhDHtHSI",
+    "duration_min": 52.9,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "RC delay",
+      "gate delay",
+      "first-order step response"
+    ],
+    "verified": true,
+    "summary": "Builds an inspection-based method for sketching first-order RC step responses from initial value, final value and time constant, then uses it to compute the rising and falling delays of an inverter loaded by a gate capacitance. Ends with a crosstalk story and demo showing why faster edges can cause glitches on neighboring pins.",
+    "chapters": [
+      {
+        "t": 6,
+        "title": "Review: RC step response and tau",
+        "kind": "review"
+      },
+      {
+        "t": 422,
+        "title": "Intuitive RC method without differential equations",
+        "kind": "concept"
+      },
+      {
+        "t": 579,
+        "title": "Sketching a rising RC response by inspection",
+        "kind": "concept"
+      },
+      {
+        "t": 861,
+        "title": "Decaying response when input is lower",
+        "kind": "concept"
+      },
+      {
+        "t": 992,
+        "title": "Setting up the inverter delay problem",
+        "kind": "concept"
+      },
+      {
+        "t": 1117,
+        "title": "Inverter model with gate capacitance CGS",
+        "kind": "concept"
+      },
+      {
+        "t": 1275,
+        "title": "Defining rise delay using VOH",
+        "kind": "concept"
+      },
+      {
+        "t": 1457,
+        "title": "Example: deriving the rising delay tR",
+        "kind": "example"
+      },
+      {
+        "t": 1830,
+        "title": "Example: numeric rise delay of 0.16 ns",
+        "kind": "example"
+      },
+      {
+        "t": 1957,
+        "title": "Example: falling delay with Thevenin equivalent",
+        "kind": "example"
+      },
+      {
+        "t": 2610,
+        "title": "Example: numeric fall delay with RON 10 ohms",
+        "kind": "example"
+      },
+      {
+        "t": 2768,
+        "title": "Time constant as quick delay estimate",
+        "kind": "concept"
+      },
+      {
+        "t": 2831,
+        "title": "Chip story: sharper edges cause spikes",
+        "kind": "concept"
+      },
+      {
+        "t": 2988,
+        "title": "Demo: crosstalk between adjacent wires",
+        "kind": "demo"
+      },
+      {
+        "t": 3116,
+        "title": "Demo: slower input edges remove spikes",
+        "kind": "demo"
+      }
+    ]
+  },
+  {
+    "id": "mit6002-L22",
+    "series": "mit-6002-s07",
+    "title": "Lecture 22: Energy and Power",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-22/",
+    "youtube_id": "wNuBD4PYWvs",
+    "duration_min": 51.7,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "energy stored in capacitors",
+      "power dissipation",
+      "RC energy"
+    ],
+    "verified": true,
+    "summary": "After wrapping up the op amp oscillator by using it as a clock that discretizes time, the lecture turns to energy and power: it derives static power for a resistive path and shows that charging and discharging a capacitor costs CV^2 per cycle. These combine into static plus CV^2f dynamic power for an inverter, demonstrated with a power meter and a chip-scale estimate.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Why energy and power matter now",
+        "kind": "concept"
+      },
+      {
+        "t": 64,
+        "title": "Review: op amp square-wave oscillator",
+        "kind": "review"
+      },
+      {
+        "t": 164,
+        "title": "Clocks: shared timing and discretized time",
+        "kind": "concept"
+      },
+      {
+        "t": 506,
+        "title": "Battery size drives handheld design",
+        "kind": "concept"
+      },
+      {
+        "t": 569,
+        "title": "IBM CU08 spec: supply and power per gate",
+        "kind": "concept"
+      },
+      {
+        "t": 830,
+        "title": "Inverter with load cap: standby vs active",
+        "kind": "concept"
+      },
+      {
+        "t": 1046,
+        "title": "Example 1: resistor and inverter static power",
+        "kind": "example"
+      },
+      {
+        "t": 1209,
+        "title": "Example 2: switched RC charge/discharge circuit",
+        "kind": "example"
+      },
+      {
+        "t": 1466,
+        "title": "Example: source energy during charging phase",
+        "kind": "example"
+      },
+      {
+        "t": 1950,
+        "title": "Half stored, half burned in resistor",
+        "kind": "concept"
+      },
+      {
+        "t": 2043,
+        "title": "Example: energy lost during discharge phase",
+        "kind": "example"
+      },
+      {
+        "t": 2300,
+        "title": "Energy per cycle and CV^2f average power",
+        "kind": "concept"
+      },
+      {
+        "t": 2559,
+        "title": "Inverter total power: static plus dynamic",
+        "kind": "concept"
+      },
+      {
+        "t": 2881,
+        "title": "Demo: power meter rises with frequency",
+        "kind": "demo"
+      },
+      {
+        "t": 3004,
+        "title": "Example: power of a 10^8-gate chip",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "yt-PLQrPqYlPmI",
+    "series": "organic-chem-tutor-circuits",
+    "title": "RC Circuits Physics Problems, Time Constant Explained, Capacitor Charging and Discharging",
+    "url": "https://www.youtube.com/watch?v=PLQrPqYlPmI",
+    "youtube_id": "PLQrPqYlPmI",
+    "duration_min": 17.5,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "RC charging/discharging",
+      "time constant"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-zfqJRZyeGRE",
+    "series": "khan-ee",
+    "title": "RC step response - intuition",
+    "url": "https://www.youtube.com/watch?v=zfqJRZyeGRE",
+    "youtube_id": "zfqJRZyeGRE",
+    "duration_min": 10.1,
+    "osu_week": 9,
+    "priority": "optional",
+    "topics": [
+      "RC step response",
+      "intuition"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-Bfvyj88Hs_o",
+    "series": "misc-youtube",
+    "title": "How a MOSFET Works - with animation!",
+    "url": "https://www.youtube.com/watch?v=Bfvyj88Hs_o",
+    "youtube_id": "Bfvyj88Hs_o",
+    "duration_min": 4.7,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "MOSFET operation"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-IkRXpFIRUl4",
+    "series": "misc-youtube",
+    "title": "How are microchips made? - George Zaidan and Sajan Saini",
+    "url": "https://www.youtube.com/watch?v=IkRXpFIRUl4",
+    "youtube_id": "IkRXpFIRUl4",
+    "duration_min": 5.5,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "chip fabrication overview"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-ZYrO0I35mho",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 8: RC & RL Circuits (36 of 65) General Strategy of Solving RL Circuits",
+    "url": "https://www.youtube.com/watch?v=ZYrO0I35mho",
+    "youtube_id": "ZYrO0I35mho",
+    "duration_min": 2.4,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "RL step response strategy"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-btOIDQeMrMg",
+    "series": "misc-youtube",
+    "title": "How does a diode work - the PN Junction (with animation)",
+    "url": "https://www.youtube.com/watch?v=btOIDQeMrMg",
+    "youtube_id": "btOIDQeMrMg",
+    "duration_min": 5.0,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "pn junction",
+      "diode"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-zDcXt9Vx34o",
+    "series": "all-about-electronics-network",
+    "title": "Transient Analysis: Solved Examples on First order RC and RL Circuits",
+    "url": "https://www.youtube.com/watch?v=zDcXt9Vx34o",
+    "youtube_id": "zDcXt9Vx34o",
+    "duration_min": 16.9,
+    "osu_week": 10,
+    "priority": "core",
+    "topics": [
+      "RC transients",
+      "RL transients"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "mit6002-L05",
+    "series": "mit-6002-s07",
+    "title": "Lecture 5: Inside the Digital Gate",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-5/",
+    "youtube_id": "v6vqWasIHaw",
+    "duration_min": 51.1,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "MOSFET switch model",
+      "S and SR models",
+      "logic gates"
+    ],
+    "verified": true,
+    "summary": "Explains how digital gates are physically built: starting from the static discipline and NAND logic, it uses faucet and switch analogies to form resistor-switch inverters, NAND and NOR gates, then introduces the MOSFET switch model and checks an inverter's transfer curve against noise thresholds.",
+    "chapters": [
+      {
+        "t": 25,
+        "title": "Review: digital abstraction and static discipline",
+        "kind": "review"
+      },
+      {
+        "t": 291,
+        "title": "Gates as primitives: NAND truth table",
+        "kind": "concept"
+      },
+      {
+        "t": 388,
+        "title": "Properties of combinational gates",
+        "kind": "concept"
+      },
+      {
+        "t": 450,
+        "title": "Example: Boolean output of three-gate circuit",
+        "kind": "example"
+      },
+      {
+        "t": 576,
+        "title": "Gate counts in real chips",
+        "kind": "concept"
+      },
+      {
+        "t": 797,
+        "title": "Building a gate: water-faucet analogy",
+        "kind": "concept"
+      },
+      {
+        "t": 1063,
+        "title": "Switches in series and switch model",
+        "kind": "concept"
+      },
+      {
+        "t": 1248,
+        "title": "Example: resistor-plus-switch inverter",
+        "kind": "example"
+      },
+      {
+        "t": 1583,
+        "title": "Demo: analog and digital parts in a mouse",
+        "kind": "demo"
+      },
+      {
+        "t": 1737,
+        "title": "Demo: NAND and inverter mock-up board",
+        "kind": "demo"
+      },
+      {
+        "t": 1925,
+        "title": "Switch networks for NAND, NOR, compound gates",
+        "kind": "concept"
+      },
+      {
+        "t": 2245,
+        "title": "MOSFET device and its switch model",
+        "kind": "concept"
+      },
+      {
+        "t": 2653,
+        "title": "Demo: MOSFET switch curves on screen",
+        "kind": "demo"
+      },
+      {
+        "t": 2748,
+        "title": "MOSFET replaces abstract switch in inverter",
+        "kind": "concept"
+      },
+      {
+        "t": 2847,
+        "title": "Example: inverter transfer curve vs static discipline",
+        "kind": "example"
+      }
+    ]
+  },
+  {
+    "id": "mit6002-L14",
+    "series": "mit-6002-s07",
+    "title": "Lecture 14: State and Memory",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-14/",
+    "youtube_id": "bX8i2yECWaU",
+    "duration_min": 48.0,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "state",
+      "initial conditions",
+      "RC memory",
+      "impulse response"
+    ],
+    "verified": true,
+    "summary": "A guest lecturer recasts the RC response in terms of state, splitting it into zero-state and zero-input parts, then uses capacitor charge storage to build a memory cell. The cell is refined from a DRAM-style switch and capacitor into buffered and feedback-based static memory, closing with a small decoded four-bit memory.",
+    "chapters": [
+      {
+        "t": 5,
+        "title": "Guest lecturer and topic overview",
+        "kind": "admin"
+      },
+      {
+        "t": 41,
+        "title": "Review: RC response to a step",
+        "kind": "review"
+      },
+      {
+        "t": 209,
+        "title": "Storing logic state on capacitors (DRAM)",
+        "kind": "concept"
+      },
+      {
+        "t": 443,
+        "title": "Capacitor state and charge as state variable",
+        "kind": "concept"
+      },
+      {
+        "t": 647,
+        "title": "Zero-state and zero-input responses",
+        "kind": "concept"
+      },
+      {
+        "t": 882,
+        "title": "Full response as superposition of both",
+        "kind": "concept"
+      },
+      {
+        "t": 993,
+        "title": "Why computing needs memory; cell abstraction",
+        "kind": "concept"
+      },
+      {
+        "t": 1394,
+        "title": "Switch plus capacitor memory cell",
+        "kind": "concept"
+      },
+      {
+        "t": 1533,
+        "title": "DRAM cell: MOSFET as the switch",
+        "kind": "concept"
+      },
+      {
+        "t": 1597,
+        "title": "Example: how long a stored one survives",
+        "kind": "example"
+      },
+      {
+        "t": 1962,
+        "title": "Buffering the storage node; DRAM refresh numbers",
+        "kind": "concept"
+      },
+      {
+        "t": 2183,
+        "title": "Demo: stored charge leaking through resistor",
+        "kind": "demo"
+      },
+      {
+        "t": 2408,
+        "title": "Demo: feedback loop makes static memory",
+        "kind": "demo"
+      },
+      {
+        "t": 2538,
+        "title": "Demo: output disturbance fixed by buffer",
+        "kind": "demo"
+      },
+      {
+        "t": 2743,
+        "title": "Four-bit memory with address decoder",
+        "kind": "concept"
+      }
+    ]
+  },
+  {
+    "id": "mit6002-L23",
+    "series": "mit-6002-s07",
+    "title": "Lecture 23: Energy, CMOS",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-23/",
+    "youtube_id": "JB2HgohNHYQ",
+    "duration_min": 40.2,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "CMOS",
+      "power in digital circuits"
+    ],
+    "verified": true,
+    "summary": "Shows that the resistive-load NMOS inverter would make a 100-million-gate chip dissipate an absurd static power, then motivates and introduces the PFET and the CMOS inverter, which removes the supply-to-ground path and speeds up rising edges. Closes with CV^2f scaling, supply reduction, clock gating, leakage, and a demo that overheats a CMOS inverter.",
+    "chapters": [
+      {
+        "t": 0,
+        "title": "Lab 4 check-in and overview",
+        "kind": "admin"
+      },
+      {
+        "t": 94,
+        "title": "Review: inverter static and dynamic power",
+        "kind": "review"
+      },
+      {
+        "t": 199,
+        "title": "Example: 10^8-gate NMOS chip power",
+        "kind": "example"
+      },
+      {
+        "t": 434,
+        "title": "Why larger RL or lower VS fall short",
+        "kind": "concept"
+      },
+      {
+        "t": 531,
+        "title": "Reading the per-MHz per-gate power spec",
+        "kind": "concept"
+      },
+      {
+        "t": 594,
+        "title": "Intuition: cut the supply-to-ground path",
+        "kind": "concept"
+      },
+      {
+        "t": 912,
+        "title": "NFET review and the complementary PFET",
+        "kind": "concept"
+      },
+      {
+        "t": 1191,
+        "title": "CMOS inverter: pull-up and pull-down",
+        "kind": "concept"
+      },
+      {
+        "t": 1254,
+        "title": "Example: CMOS inverter with input high, low",
+        "kind": "example"
+      },
+      {
+        "t": 1547,
+        "title": "CMOS dynamic power equivalent circuit",
+        "kind": "concept"
+      },
+      {
+        "t": 1643,
+        "title": "CMOS speed advantage over NMOS",
+        "kind": "concept"
+      },
+      {
+        "t": 1895,
+        "title": "Example: CMOS chip power and frequency growth",
+        "kind": "example"
+      },
+      {
+        "t": 2159,
+        "title": "Lower supply voltage and clock gating",
+        "kind": "concept"
+      },
+      {
+        "t": 2314,
+        "title": "Leakage gives real CMOS standby power",
+        "kind": "concept"
+      },
+      {
+        "t": 2346,
+        "title": "Demo: overheating a CMOS inverter",
+        "kind": "demo"
+      }
+    ]
+  },
+  {
+    "id": "yt-403CnTftB4M",
+    "series": "hajimiri-caltech-circuits",
+    "title": "101N. Basic Solid-State Physics: Energy bands, Electrons and Holes",
+    "url": "https://www.youtube.com/watch?v=403CnTftB4M",
+    "youtube_id": "403CnTftB4M",
+    "duration_min": 59.4,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "energy bands",
+      "electrons and holes"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-Bu52CE55BN0",
+    "series": "misc-youtube",
+    "title": "‘Semiconductor Manufacturing Process’ Explained",
+    "url": "https://www.youtube.com/watch?v=Bu52CE55BN0",
+    "youtube_id": "Bu52CE55BN0",
+    "duration_min": 7.7,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "semiconductor manufacturing process"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-IcrBqCFLHIY",
+    "series": "misc-youtube",
+    "title": "How Does a Transistor Work?",
+    "url": "https://www.youtube.com/watch?v=IcrBqCFLHIY",
+    "youtube_id": "IcrBqCFLHIY",
+    "duration_min": 6.0,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "transistor",
+      "doping"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-RR0sQeDAxgk",
+    "series": "organic-chem-tutor-circuits",
+    "title": "RL Circuits - Inductors & Resistors",
+    "url": "https://www.youtube.com/watch?v=RR0sQeDAxgk",
+    "youtube_id": "RR0sQeDAxgk",
+    "duration_min": 22.4,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "RL circuits"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-USrY0JspDEg",
+    "series": "misc-youtube",
+    "title": "PN junction Diode Explained",
+    "url": "https://www.youtube.com/watch?v=USrY0JspDEg",
+    "youtube_id": "USrY0JspDEg",
+    "duration_min": 14.8,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "pn junction",
+      "forward/reverse bias"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-dX9CGRZwD-w",
+    "series": "misc-youtube",
+    "title": "How are Microchips Made? 🖥️🛠️ CPU Manufacturing Process Steps",
+    "url": "https://www.youtube.com/watch?v=dX9CGRZwD-w",
+    "youtube_id": "dX9CGRZwD-w",
+    "duration_min": 27.8,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "wafer fabrication",
+      "lithography",
+      "process steps"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  },
+  {
+    "id": "yt-tEmksld8sC0",
+    "series": "van-biezen-ee",
+    "title": "Electrical Engineering: Ch 8: RC & RL Circuits (35 of 65) Step Response of an RL Circuit",
+    "url": "https://www.youtube.com/watch?v=tEmksld8sC0",
+    "youtube_id": "tEmksld8sC0",
+    "duration_min": 4.6,
+    "osu_week": 10,
+    "priority": "optional",
+    "topics": [
+      "RL step response"
+    ],
+    "verified": true,
+    "summary": "",
+    "chapters": []
+  }
+]

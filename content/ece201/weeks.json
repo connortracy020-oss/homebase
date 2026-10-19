@@ -1,0 +1,98 @@
+[
+  {
+    "number": 1,
+    "title": "Circuit basics: charge, V, I, power",
+    "topics": [
+      "Introduction",
+      "current, voltage, power and energy",
+      "passive sign convention"
+    ],
+    "notes": "W22 Lec1 (1/4) and Lec2 (1/6). W27 week 1 starts Mon Jan 4, 2027."
+  },
+  {
+    "number": 2,
+    "title": "Ohm's law, dependent sources, KCL",
+    "topics": [
+      "Ohm's law, power and energy",
+      "dependent sources",
+      "KCL"
+    ],
+    "notes": "W22 Lec3 (1/11), Lec4 (1/13). HW1 due 1/18."
+  },
+  {
+    "number": 3,
+    "title": "KVL, series/parallel, dividers",
+    "topics": [
+      "KVL",
+      "series and parallel",
+      "voltage and current division"
+    ],
+    "notes": "W22 Lec5 (1/18), Lec6 (1/20). Quiz 1 on Thu 1/20."
+  },
+  {
+    "number": 4,
+    "title": "Y-Delta and nodal analysis",
+    "topics": [
+      "Y-delta transformation",
+      "nodal analysis"
+    ],
+    "notes": "W22 Lec7 (1/25), Lec8 (1/27). HW2 due 1/25."
+  },
+  {
+    "number": 5,
+    "title": "Mesh analysis + Midterm 1",
+    "topics": [
+      "mesh analysis",
+      "MIDTERM 1"
+    ],
+    "notes": "W22 Lec9 (2/1); Midterm-1 Thu 2/3. HW3 due 2/1. Midterm 1 covered everything through mesh."
+  },
+  {
+    "number": 6,
+    "title": "Supermesh, superposition, Thevenin",
+    "topics": [
+      "supermesh",
+      "superposition",
+      "Thevenin equivalent"
+    ],
+    "notes": "W22 Lec10 (2/8), Lec11 (2/10). HW4 due 2/8."
+  },
+  {
+    "number": 7,
+    "title": "Thevenin/Norton, max power, op-amps",
+    "topics": [
+      "Thevenin and Norton equivalents",
+      "maximum power transfer",
+      "intro to op-amps"
+    ],
+    "notes": "W22 Lec12 (2/15), Lec13 (2/17). Quiz 2 on Thu 2/17. HW5 due 2/15."
+  },
+  {
+    "number": 8,
+    "title": "Op-amp circuits",
+    "topics": [
+      "op-amps 1",
+      "op-amps 2 (inverting, summing, difference, follower, instrumentation)"
+    ],
+    "notes": "W22 Lec14 (2/22), Lec15 (2/24). HW6 due 2/22. NEW in ECE 201 (likely somewhere mid-term): semiconductor devices and fabrication. Candidate readings: Ulaby 2-6 (diodes), 3-9 (BJT), 4-11 (MOSFET), Tech Brief 7 (IC fabrication, ulaby-tb07). Placement in the W27 schedule unknown."
+  },
+  {
+    "number": 9,
+    "title": "Capacitors + Midterm 2",
+    "topics": [
+      "capacitors",
+      "nonperiodic waveforms (step, ramp, pulse)",
+      "MIDTERM 2"
+    ],
+    "notes": "W22 Lec16 (3/1); Midterm-2 Thu 3/3. HW7 due 3/1. Midterm 2 likely covered superposition through op-amps (and maybe capacitors)."
+  },
+  {
+    "number": 10,
+    "title": "Inductors, RC/RL transients, devices",
+    "topics": [
+      "inductors",
+      "RC and RL first-order circuits (natural and step response)"
+    ],
+    "notes": "W22 Lec17 (3/8), Lec18 (3/10). HW8 due 3/8, HW9 due 3/15. Final Thu 3/17. ECE 201's catalog stresses 'first-order circuit behaviors', so expect more transient time than W22's last two lectures. W27 classes end Fri Mar 12, 2027, and finals week follows."
+  }
+]

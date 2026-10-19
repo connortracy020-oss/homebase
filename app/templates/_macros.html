@@ -1,0 +1,28 @@
+{% macro task_row(t, course=None, show_week=None) %}
+<li class="task {% if t.done_at %}done{% endif %}" {% if course %}style="--accent: {{ course.color }}"{% endif %}>
+  <form method="post" action="/tasks/{{ t.id }}/toggle" class="toggle">
+    <input type="checkbox" name="done" id="t{{ t.id }}" {% if t.done_at %}checked{% endif %}
+           aria-label="Mark done: {{ t.title }}">
+    <noscript><button type="submit" class="small">Save</button></noscript>
+  </form>
+  <div class="task-body">
+    <label for="t{{ t.id }}" class="task-title">
+      <span class="kind kind-{{ t.kind }}">{{ KIND_LABELS.get(t.kind, t.kind) }}</span>
+      {{ t.title }}
+    </label>
+    <div class="task-meta">
+      {% if t.est_min %}<span>{{ t.est_min | hm }}</span>{% endif %}
+      {% if t.detail %}<span>{{ t.detail }}</span>{% endif %}
+      {% if show_week %}<span>{{ show_week }}</span>{% endif %}
+      {% if t.url %}<a href="{{ t.url }}" target="_blank" rel="noopener">open ↗</a>{% endif %}
+      {% if t.done_by == 'claude' %}<span class="by-claude">ticked by Claude</span>{% endif %}
+    </div>
+  </div>
+</li>
+{% endmacro %}
+
+{% macro bar(value, total, color=None) %}
+<span class="bar" role="img" aria-label="{{ value }} of {{ total }}">
+  <span style="width: {{ [100, (100 * value / total) if total else 0] | min }}%;{% if color %} background: {{ color }}{% endif %}"></span>
+</span>
+{% endmacro %}

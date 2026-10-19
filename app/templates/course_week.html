@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% from "_macros.html" import task_row %}
+{% block title %}{{ course.name }} week {{ week.number }} · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> · Term week {{ week.number }}</p>
+  <h1>{{ week.title }}</h1>
+</section>
+
+<section class="card">
+  <h2>Topics</h2>
+  <ul class="topics">
+    {% for t in week.topics %}<li>{{ t }}</li>{% endfor %}
+  </ul>
+  {% if week.notes %}<p class="muted small">{{ week.notes }}</p>{% endif %}
+</section>
+
+<section class="card">
+  <h2>Checklist</h2>
+  {% if tasks %}
+  <ul class="tasks">
+    {% for t in tasks %}
+    {% set pw = prep_by_id.get(t.prep_week_id) %}
+    {{ task_row(t, course, ('prep wk ' ~ pw.number) if pw else '') }}
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">Nothing for this week in the prep plan yet. The full week (videos, readings, problem sets) arrives with the course content.</p>
+  {% endif %}
+</section>
+
+<nav class="pager">
+  {% if prev_n %}<a href="/course/{{ course.code }}/week/{{ prev_n }}">← Week {{ prev_n }}</a>{% else %}<span></span>{% endif %}
+  {% if next_n %}<a href="/course/{{ course.code }}/week/{{ next_n }}">Week {{ next_n }} →</a>{% endif %}
+</nav>
+{% endblock %}

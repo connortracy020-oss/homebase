@@ -1,0 +1,117 @@
+[
+  {
+    "number": 1,
+    "title": "Complex numbers, sinusoids, phasors",
+    "topics": [
+      "complex numbers",
+      "sinusoids (amplitude, frequency, phase, time shift)",
+      "complex exponentials and phasors",
+      "phasor addition"
+    ],
+    "notes": "GENERALIZED from DSP First 2e order and GT ECE 2026 schedules (Hasler Su25 week 1); not an OSU schedule."
+  },
+  {
+    "number": 2,
+    "title": "Spectrum and Fourier series",
+    "topics": [
+      "two-sided spectrum",
+      "sums of sinusoids",
+      "beats/AM",
+      "periodic signals and harmonics",
+      "Fourier series (as preparation for DTFS)",
+      "spectrogram (light)"
+    ],
+    "notes": "Generalized. GT Quiz 1 normally covers weeks 1-2 material."
+  },
+  {
+    "number": 3,
+    "title": "Sampling and aliasing",
+    "topics": [
+      "sampling",
+      "discrete-time sinusoids",
+      "normalized (digital) frequency",
+      "aliasing and folding",
+      "D/A reconstruction",
+      "periodicity of DT signals"
+    ],
+    "notes": "Generalized."
+  },
+  {
+    "number": 4,
+    "title": "DT systems and FIR filters",
+    "topics": [
+      "DT signals: impulse, step",
+      "DT systems",
+      "FIR filters / difference equations",
+      "running average",
+      "impulse response"
+    ],
+    "notes": "Generalized."
+  },
+  {
+    "number": 5,
+    "title": "LTI systems and convolution",
+    "topics": [
+      "linearity and time invariance",
+      "DT convolution (by hand, tables, flip-and-slide)",
+      "cascaded LTI systems",
+      "convolution properties"
+    ],
+    "notes": "Generalized. Plausible OSU midterm window (weeks 5-6), unverified."
+  },
+  {
+    "number": 6,
+    "title": "FIR frequency response",
+    "topics": [
+      "sinusoidal response of LTI systems",
+      "frequency response H(e^jw) of FIR filters",
+      "magnitude/phase plots",
+      "superposition with frequency response"
+    ],
+    "notes": "Generalized."
+  },
+  {
+    "number": 7,
+    "title": "Averaging filters, filtering sampled signals",
+    "topics": [
+      "running-sum / averaging filters (Dirichlet form)",
+      "cascades in frequency domain",
+      "filtering sampled continuous-time signals",
+      "review"
+    ],
+    "notes": "Generalized; lighter week to absorb a possible midterm."
+  },
+  {
+    "number": 8,
+    "title": "The DTFT",
+    "topics": [
+      "DTFT definition and inverse",
+      "DTFT pairs (impulse, boxcar/Dirichlet, exponential)",
+      "DTFT properties (shift, modulation, convolution)"
+    ],
+    "notes": "Generalized. No SP First (2003) slide deck covers the DTFT directly; use Barry's draft chapter and tables."
+  },
+  {
+    "number": 9,
+    "title": "Ideal filters, DT Fourier series",
+    "topics": [
+      "ideal filters via DTFT",
+      "DT Fourier series (DTFS/DFS) of periodic sequences",
+      "DFS-DFT relationship"
+    ],
+    "notes": "Generalized. Catalog names 'DT Fourier series and transform', so MIT RES.6-007 L10 is promoted to core here."
+  },
+  {
+    "number": 10,
+    "title": "The DFT and review",
+    "topics": [
+      "DFT as sampled DTFT",
+      "DFT by hand and with np.fft",
+      "zero padding",
+      "spectrum analysis of sampled signals",
+      "FFT (light)",
+      "course review"
+    ],
+    "notes": "Generalized. The DFT is not named in the ECE 200 catalog text but is the standard computer-lab tool; z-transform/IIR (Lanterman L46-L60, SP First L14-L18) kept as optional stretch."
+  }
+]

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from "_macros.html" import bar %}
+{% block title %}{{ course.name }} · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><span class="dot"></span>{{ course.name }} · Winter 2027</p>
+  <h1>{{ course.title }}</h1>
+  <p class="muted">{{ course.instructor }} · {{ course.meets }}</p>
+</section>
+
+<section class="card note-card">
+  <p>{{ course.term_note }}</p>
+  <p><span class="tag {% if not course.exam_style_known %}warn{% endif %}">
+    {% if course.exam_style_known %}Exam style: known from past OSU offerings{% else %}Exam style: unknown{% endif %}
+  </span> {{ course.exam_style_note }}</p>
+</section>
+
+<section class="card">
+  <h2>Term weeks</h2>
+  <ol class="weeks">
+    {% for w, total, done in weeks %}
+    <li style="--accent: {{ course.color }}">
+      <a href="/course/{{ course.code }}/week/{{ w.number }}">
+        <span class="wk">Week {{ w.number }}</span>
+        <span class="wk-title">{{ w.title }}</span>
+      </a>
+      <span class="right small muted">{% if total %}{{ done }}/{{ total }} {{ bar(done, total, course.color) }}{% else %}not in prep plan{% endif %}</span>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}
