@@ -31,6 +31,8 @@ def fmt_minutes(minutes: int | float | None) -> str:
 
 TEMPLATES.env.filters["hm"] = fmt_minutes
 TEMPLATES.env.filters["md"] = lambda d: f"{d:%b} {d.day}"  # "Oct 19"
+TEMPLATES.env.filters["ts"] = lambda s: (f"{int(s) // 3600}:{int(s) % 3600 // 60:02d}:{int(s) % 60:02d}"
+                                         if s and s >= 3600 else f"{int(s or 0) // 60}:{int(s or 0) % 60:02d}")
 TEMPLATES.env.filters["longdate"] = lambda d: f"{d:%A, %B} {d.day}"  # "Monday, October 19"
 TEMPLATES.env.globals["KIND_LABELS"] = KIND_LABELS
 
@@ -101,8 +103,20 @@ def course_week_page(code: str, number: int, request: Request,
         raise HTTPException(404, f"{course.name} has no week {number}")
     tasks = services.tasks_for_course_week(session, course, number)
     prep_by_id = {w.id: w for w in services.prep_weeks(session)}
+    videos = services.videos_for_week(session, course, number)
+    psets = services.psets_for_week(session, course, number)
+    pset_stats = {}
+    for ps in psets:
+        probs = services.problems(session, ps)
+        results = services.last_results(session, [p.id for p in probs])
+        pset_stats[ps.id] = (len(probs), len(results),
+                             sum(1 for r in results.values() if r in ("solid", "correct")))
+    readings = [(r, res, services.local_file_exists(res))
+                for r, res in services.readings_for_week(session, course, number)]
     return render(request, "course_week.html", session, course=course, week=weeks[number],
-                  tasks=tasks, prep_by_id=prep_by_id,
+                  tasks=tasks, prep_by_id=prep_by_id, videos=videos,
+                  chapter_counts=services.chapter_counts(session, videos),
+                  readings=readings, psets=psets, pset_stats=pset_stats,
                   prev_n=number - 1 if number > 1 else None,
                   next_n=number + 1 if number < len(weeks) else None)
 

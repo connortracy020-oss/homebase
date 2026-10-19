@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ pset.title }} · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
+    <a href="/course/{{ course.code }}/week/{{ pset.week }}">week {{ pset.week }}</a> · problem set</p>
+  <h1>{{ pset.title }}</h1>
+  <p class="muted">{{ pset.source }}</p>
+  {% if pset.license %}<p class="muted small">License: {{ pset.license }}</p>{% endif %}
+  {% if pset.notes %}<p class="small">{{ pset.notes }}</p>{% endif %}
+</section>
+
+<section class="card" style="--accent: {{ course.color }}">
+  <ol class="problem-list">
+    {% for p in problems %}
+    {% set r = results.get(p.id) %}
+    <li>
+      <a href="/problem/{{ p.slug }}">{{ p.label }}</a>
+      <span class="key-badge key-{{ p.key_type }}" title="{{ KEY_LABELS[p.key_type] }}">{{ KEY_LABELS[p.key_type] }}</span>
+      {% if r %}<span class="result result-{{ r }}">{{ r }}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

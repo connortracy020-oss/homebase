@@ -1,0 +1,59 @@
+[
+  {
+    "id": "ulaby-cad3e",
+    "kind": "textbook",
+    "title": "Ulaby, Maharbiz & Furse, Circuit Analysis and Design, 3rd ed. (2025)",
+    "url": "https://www.fulcrum.org/concern/monographs/5t34sp19h",
+    "local_path": "library/ece201/ulaby/ulaby_cad3e.pdf",
+    "license": "Open access (free PDF via a short Google Form); no Creative Commons license stated",
+    "notes": "Not downloaded yet: fill in the free form on the book page, then save the PDF as library/ece201/ulaby/ulaby_cad3e.pdf. Section numbers in this app come from a 2nd-edition schedule; check them against the 3rd edition."
+  },
+  {
+    "id": "ulaby-exercise-sol",
+    "kind": "solutions",
+    "title": "Ulaby: worked solutions to every in-chapter exercise (203 pp)",
+    "url": "http://cad3e.eecs.umich.edu/ulaby_exercise_solutions.php",
+    "local_path": "library/ece201/ulaby/exercise_sol.pdf",
+    "license": "Posted publicly by the authors on the book's companion site; terms not stated"
+  },
+  {
+    "id": "ulaby-cq-ch1",
+    "kind": "solutions",
+    "title": "Ulaby: chapter 1 concept questions with answers",
+    "url": "http://cad3e.eecs.umich.edu/concept_questions/chapter1.html",
+    "local_path": "library/ece201/ulaby/cq_ch1.pdf",
+    "license": "Posted publicly by the authors on the book's companion site; terms not stated"
+  },
+  {
+    "id": "ulaby-equations",
+    "kind": "reference",
+    "title": "Ulaby: equation summary (from the 2013 'Circuits' edition; ch 1-5 match)",
+    "url": "http://cad3e.eecs.umich.edu/pdf/ulaby_equations.pdf",
+    "local_path": "library/ece201/ulaby/equations.pdf",
+    "license": "Posted publicly by the authors; terms not stated"
+  },
+  {
+    "id": "mit6002-notes-L1",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 1 notes (Agarwal): lumped abstraction",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L1.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "openstax-up2-ch9",
+    "kind": "textbook",
+    "title": "OpenStax University Physics Vol. 2, ch 9: Current and Resistance",
+    "url": "https://openstax.org/books/university-physics-volume-2/pages/9-1-electrical-current",
+    "license": "CC BY-NC-SA 4.0 (OpenStax; checked in the OpenStax catalog 2026-10-19)",
+    "notes": "Physics background for current and charge, since PH 211/212 come later. Each chapter has an answer key."
+  },
+  {
+    "id": "kuphaldt-ewp",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Energy, work and power",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/ewp.pdf",
+    "local_path": "library/ece201/kuphaldt/ewp.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  }
+]

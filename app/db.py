@@ -43,7 +43,29 @@ def reset_engine():
 def init_db():
     from . import models  # noqa: F401  (registers the tables)
 
-    SQLModel.metadata.create_all(get_engine())
+    engine = get_engine()
+    SQLModel.metadata.create_all(engine)
+    _add_missing_columns(engine)
+
+
+def _add_missing_columns(engine):
+    """Tiny migration: when a later stage adds a column to an existing table,
+    add it to your existing database file instead of starting over."""
+    with engine.begin() as conn:
+        for table in SQLModel.metadata.sorted_tables:
+            have = {row[1] for row in conn.exec_driver_sql(f'PRAGMA table_info("{table.name}")')}
+            for col in table.columns:
+                if col.name in have:
+                    continue
+                coltype = col.type.compile(dialect=engine.dialect)
+                default = ""
+                if col.default is not None and getattr(col.default, "is_scalar", False):
+                    value = col.default.arg
+                    default = f" DEFAULT {int(value) if isinstance(value, bool) else repr(value)}"
+                elif not col.nullable:
+                    default = " DEFAULT ''" if "CHAR" in coltype or "TEXT" in coltype else " DEFAULT 0"
+                conn.exec_driver_sql(
+                    f'ALTER TABLE "{table.name}" ADD COLUMN "{col.name}" {coltype}{default}')
 
 
 def get_session() -> Iterator[Session]:

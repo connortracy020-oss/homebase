@@ -9,7 +9,9 @@ from datetime import date, datetime, timedelta
 from sqlmodel import Session, func, select
 
 from . import config
-from .models import ActivityLog, Course, CourseWeek, PrepWeek, StudySession, Task
+from .generators import check_answer
+from .models import (ActivityLog, Attempt, Chapter, Course, CourseWeek, Note, PrepWeek, Problem,
+                     ProblemSet, Reading, Resource, StudySession, Task, Video)
 
 TERM_START = date(2027, 1, 4)  # Winter 2027, week 1 Monday
 TERM_WEEKS = 10
@@ -97,6 +99,10 @@ def set_task_done(session: Session, task_id: int, done: bool, actor: str = "app"
     if done and task.done_at is None:
         task.done_at, task.done_by = config.now(), actor
         log(session, actor, "task.done", f"Done: {task.title}", task_id=task.id)
+        if task.ref_kind == "video":  # ticking a watch task marks the video watched
+            video = video_by_slug(session, task.ref)
+            if video and video.watched_at is None:
+                video.watched_at = config.now()
     elif not done and task.done_at is not None:
         task.done_at, task.done_by = None, ""
         log(session, actor, "task.undone", f"Unchecked: {task.title}", task_id=task.id)
@@ -178,6 +184,179 @@ def progress(session: Session) -> list[CourseProgress]:
             cp.week_minutes[pw.number] = minutes_between(session, course.id, pw.start, pw.end)
         out.append(cp)
     return out
+
+
+# ---- videos and notes ---------------------------------------------------------------
+
+def video_by_slug(session: Session, slug: str) -> Video | None:
+    return session.exec(select(Video).where(Video.slug == slug)).first()
+
+
+def videos_for_week(session: Session, course: Course, week: int) -> list[Video]:
+    rows = session.exec(select(Video).where(Video.course_id == course.id, Video.osu_week == week)).all()
+    # full lectures (mit..., lanterman...) sort before short YouTube videos (yt-...)
+    return sorted(rows, key=lambda v: (v.priority != "core", v.slug.startswith("yt-"), v.slug))
+
+
+def chapters(session: Session, video: Video) -> list[Chapter]:
+    return list(session.exec(select(Chapter).where(Chapter.video_id == video.id).order_by(Chapter.t)))
+
+
+def chapter_counts(session: Session, videos: list[Video]) -> dict[int, int]:
+    ids = [v.id for v in videos]
+    if not ids:
+        return {}
+    rows = session.exec(select(Chapter.video_id, func.count()).where(Chapter.video_id.in_(ids))
+                        .group_by(Chapter.video_id)).all()
+    return dict(rows)
+
+
+def save_position(session: Session, video: Video, seconds: int) -> None:
+    video.last_pos_sec = max(0, int(seconds))
+    session.commit()
+
+
+def set_watched(session: Session, video: Video, watched: bool, actor: str = "app") -> Video:
+    if watched and video.watched_at is None:
+        video.watched_at = config.now()
+        log(session, actor, "video.watched", f"Watched: {video.title}", video=video.slug)
+        for task in session.exec(select(Task).where(Task.ref_kind == "video", Task.ref == video.slug,
+                                                    Task.done_at.is_(None))):
+            task.done_at, task.done_by = config.now(), actor
+    elif not watched and video.watched_at is not None:
+        video.watched_at = None
+        log(session, actor, "video.unwatched", f"Marked unwatched: {video.title}", video=video.slug)
+    session.commit()
+    session.refresh(video)
+    return video
+
+
+def notes_for(session: Session, video: Video | None = None, problem: Problem | None = None) -> list[Note]:
+    q = select(Note)
+    if video is not None:
+        q = q.where(Note.video_id == video.id).order_by(Note.t_sec, Note.created_at)
+    if problem is not None:
+        q = q.where(Note.problem_id == problem.id).order_by(Note.created_at)
+    return list(session.exec(q))
+
+
+def add_note(session: Session, course: Course, body: str, video: Video | None = None,
+             t_sec: int | None = None, problem: Problem | None = None, actor: str = "app") -> Note:
+    body = body.strip()
+    if not body:
+        raise ValueError("a note can't be empty")
+    now = config.now()
+    note = Note(course_id=course.id, video_id=video.id if video else None, t_sec=t_sec,
+                problem_id=problem.id if problem else None, body=body,
+                created_at=now, updated_at=now, actor=actor)
+    session.add(note)
+    where = video.title if video else problem.label if problem else course.name
+    log(session, actor, "note.add", f"Note on {where}", video=video.slug if video else None)
+    session.commit()
+    session.refresh(note)
+    return note
+
+
+def update_note(session: Session, note_id: int, body: str, actor: str = "app") -> Note:
+    note = session.get(Note, note_id)
+    if note is None:
+        raise LookupError(f"no note {note_id}")
+    if not body.strip():
+        raise ValueError("a note can't be empty")
+    note.body, note.updated_at = body.strip(), config.now()
+    log(session, actor, "note.edit", "Edited a note", note_id=note_id)
+    session.commit()
+    session.refresh(note)
+    return note
+
+
+def delete_note(session: Session, note_id: int, actor: str = "app") -> None:
+    note = session.get(Note, note_id)
+    if note is None:
+        raise LookupError(f"no note {note_id}")
+    session.delete(note)
+    log(session, actor, "note.delete", "Deleted a note", note_id=note_id)
+    session.commit()
+
+
+# ---- readings and problems ------------------------------------------------------------
+
+def readings_for_week(session: Session, course: Course, week: int) -> list[tuple[Reading, Resource]]:
+    rows = session.exec(select(Reading, Resource).join(Resource, Reading.resource_id == Resource.id)
+                        .where(Reading.course_id == course.id, Reading.week == week)
+                        .order_by(Reading.order)).all()
+    return list(rows)
+
+
+def local_file_exists(resource: Resource) -> bool:
+    return bool(resource.local_path) and (config.ROOT / resource.local_path).exists()
+
+
+def psets_for_week(session: Session, course: Course, week: int) -> list[ProblemSet]:
+    return list(session.exec(select(ProblemSet).where(ProblemSet.course_id == course.id,
+                                                      ProblemSet.week == week)
+                             .order_by(ProblemSet.order)))
+
+
+def pset_by_slug(session: Session, slug: str) -> ProblemSet | None:
+    return session.exec(select(ProblemSet).where(ProblemSet.slug == slug)).first()
+
+
+def problems(session: Session, pset: ProblemSet) -> list[Problem]:
+    return list(session.exec(select(Problem).where(Problem.set_id == pset.id).order_by(Problem.order)))
+
+
+def problem_by_slug(session: Session, slug: str) -> Problem | None:
+    return session.exec(select(Problem).where(Problem.slug == slug)).first()
+
+
+def attempts(session: Session, problem: Problem) -> list[Attempt]:
+    return list(session.exec(select(Attempt).where(Attempt.problem_id == problem.id)
+                             .order_by(Attempt.at.desc())))
+
+
+def last_results(session: Session, problem_ids: list[int]) -> dict[int, str]:
+    """Most recent result per problem."""
+    out = {}
+    if not problem_ids:
+        return out
+    for a in session.exec(select(Attempt).where(Attempt.problem_id.in_(problem_ids))
+                          .order_by(Attempt.at)):
+        out[a.problem_id] = a.result
+    return out
+
+
+SELF_RATINGS = ("solid", "shaky", "miss")
+
+
+def rate_problem(session: Session, problem: Problem, result: str, note: str = "",
+                 actor: str = "app") -> Attempt:
+    if result not in SELF_RATINGS:
+        raise ValueError(f"rating must be one of {SELF_RATINGS}")
+    attempt = Attempt(problem_id=problem.id, at=config.now(), result=result,
+                      source="claude" if actor == "claude" else "self", note=note)
+    session.add(attempt)
+    log(session, actor, "problem.rate", f"{problem.label}: {result}", problem=problem.slug)
+    session.commit()
+    session.refresh(attempt)
+    return attempt
+
+
+def check_problem(session: Session, problem: Problem, given: list[str],
+                  actor: str = "app") -> tuple[Attempt, list[bool]]:
+    """Check typed answers to a generated problem against its computed key."""
+    expected = problem.key.get("answers", [])
+    if not expected:
+        raise ValueError("this problem has no computed answers to check against")
+    marks = [check_answer(exp, g) for exp, g in zip(expected, given + [""] * len(expected))]
+    result = "correct" if all(marks) else "incorrect"
+    attempt = Attempt(problem_id=problem.id, at=config.now(), result=result, source="auto",
+                      answer={"given": given, "marks": marks})
+    session.add(attempt)
+    log(session, actor, "problem.check", f"{problem.label}: {result}", problem=problem.slug)
+    session.commit()
+    session.refresh(attempt)
+    return attempt, marks
 
 
 def recent_activity(session: Session, limit: int = 20) -> list[ActivityLog]:

@@ -12,7 +12,7 @@ Then open **http://localhost:8254**. The first run sets up the Python packages (
 
 **On your phone:** install Tailscale on the laptop and the phone and sign in to both with the same account. While the laptop is on, open `http://<laptop-name>:8254` on the phone. In the phone browser's menu, choose "Add to Home Screen" to get an app icon.
 
-## What's here (stage a)
+## Pages
 
 | Page | What it does |
 |---|---|
@@ -23,6 +23,21 @@ Then open **http://localhost:8254**. The first run sets up the Python packages (
 | **Settings** | Export everything as a zip; daily backup to OneDrive |
 
 The timer keeps running if you close the tab or your phone sleeps; press **Stop & log** when you finish.
+
+## Studying a week (stage b, built out for ECE 201 week 1)
+
+Open **ECE 201 → Week 1**. The week page is the hub for that week:
+
+- **Watch:** the week's lectures. A video page has the player, clickable chapters (built from MIT's own caption files), and notes. A note is pinned to the moment you *started typing* it, and clicking its time jumps the video there. Notes can include math such as `\(v = iR\)`. Homebase remembers where you stopped. Ticking *Watched* also ticks the matching task in the plan.
+- **Read:** links to each reading. Local copies open from `library/`. The free Ulaby textbook shows *not downloaded yet* until you save it as `library/ece201/ulaby/ulaby_cad3e.pdf`.
+- **Solve:** problem sets. Each problem says what its key is:
+  - *Official worked solution* / *Official answer only*: the problem is cut out of the real PDF page, and the solution stays hidden until you click **Show**.
+  - *Answer computed and checked by code*: generated problems (week 1: power and the passive sign convention, power balance around a loop, charge vs. current). Type your answers and get ✓/✗ per answer, plus worked steps. Each generator checks its own answer a second way before it shows you the problem.
+  - After each problem, rate it **Solid / Shaky / Missed it**. Those ratings feed the mistake log in stage (d).
+
+The other weeks and courses get the same structure in stage (f): add `content/<course>/weekNN.json` (see `content/ece201/week01.json`, which is the template).
+
+Problem images are cut out of the PDFs on demand and cached in `data/cache/`. No problem text is copied into git.
 
 ## Your data
 
@@ -39,6 +54,8 @@ The timer keeps running if you close the tab or your phone sleeps; press **Stop 
 
 ```
 app/        the app (models, services, pages, API, backup)
+app/generators/   problem generators with code-checked answers
+app/pdfpages.py   cuts one problem or solution out of a PDF page
 content/    course content as JSON: weeks, videos, prep schedule (committed)
 research/   research reports + data the content came from (committed)
 library/    downloaded course PDFs (git-ignored)

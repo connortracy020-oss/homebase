@@ -19,7 +19,7 @@ router = APIRouter()
 def _task(t):
     return {"id": t.id, "slug": t.slug, "course_id": t.course_id, "course_week": t.course_week,
             "prep_week_id": t.prep_week_id, "kind": t.kind, "title": t.title, "url": t.url,
-            "detail": t.detail, "est_min": t.est_min,
+            "detail": t.detail, "est_min": t.est_min, "ref_kind": t.ref_kind, "ref": t.ref,
             "done_at": t.done_at.isoformat() if t.done_at else None, "done_by": t.done_by}
 
 

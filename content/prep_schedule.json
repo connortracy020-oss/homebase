@@ -8,8 +8,9 @@
         {"course": "ECE201", "week": 1, "kind": "read", "title": "Get the free Ulaby 3rd edition PDF (Google Form) and save it to library/ece201/ulaby/", "url": "https://www.fulcrum.org/concern/monographs/5t34sp19h", "est_min": 10},
         {"course": "ECE201", "week": 1, "kind": "watch", "video": "mit6002-L01"},
         {"course": "ECE201", "week": 1, "kind": "watch", "video": "yt-C_EDm61hwLw"},
-        {"course": "ECE201", "week": 1, "kind": "read", "title": "Ulaby ch 1, sections 1-1 to 1-6 (terminology, charge, current, voltage, power)", "est_min": 50},
-        {"course": "ECE201", "week": 1, "kind": "solve", "title": "Ulaby ch 1 in-chapter exercises (worked solutions: library/ece201/ulaby/exercise_sol.pdf)", "est_min": 50},
+        {"course": "ECE201", "week": 1, "kind": "read", "reading": "ece201-w1-ulaby-ch1"},
+        {"course": "ECE201", "week": 1, "kind": "solve", "pset": "ulaby-ex-ch1", "est_min": 40},
+        {"course": "ECE201", "week": 1, "kind": "solve", "pset": "gen-ece201-w1-power", "est_min": 25},
         {"course": "ECE201", "week": 1, "kind": "review", "title": "Write a one-page summary: sign convention, power absorbed vs delivered", "est_min": 15}
       ]
     },

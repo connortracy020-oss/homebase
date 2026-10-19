@@ -7,6 +7,13 @@ sqlmodel==0.0.24
 # Windows has no built-in time zone database; zoneinfo needs this
 tzdata==2025.2
 
+# PDFs: cut problems and solutions out of pages (pypdfium2 4.30.1 was yanked)
+pypdfium2==4.30.0
+pillow==11.2.1
+# Generated problems: compute answers and check them a second way
+numpy==2.2.6
+sympy==1.14.0
+
 # Tests
 pytest==8.3.5
 httpx==0.28.1

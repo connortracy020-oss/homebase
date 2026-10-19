@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}{{ problem.label }} · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
+    <a href="/pset/{{ pset.slug }}">{{ pset.title }}</a> · {{ position[0] }} of {{ position[1] }}</p>
+  <h1>{{ problem.label }}</h1>
+  <p><span class="key-badge key-{{ problem.key_type }}">{{ KEY_LABELS[problem.key_type] }}</span>
+     {% for t in problem.topics %}<span class="tag">{{ t }}</span> {% endfor %}</p>
+</section>
+
+{% set st = problem.statement %}
+<section class="card statement">
+  {% if st.pdf %}
+    {% if statement_missing %}
+    <p class="tag warn">The source PDF isn't in your library yet ({{ st.pdf }}).</p>
+    {% else %}
+    <a href="/problem/{{ problem.slug }}/statement.png" target="_blank" title="Open full size"><img src="/problem/{{ problem.slug }}/statement.png" alt="{{ problem.label }}, as printed in the source" class="pdf-crop"></a>
+    <p class="small muted">Cut from page {{ statement_page or '?' }} of the source.
+      <a href="/{{ st.pdf }}#page={{ statement_page or 1 }}" target="_blank">Open the whole page</a> (may show the solution).</p>
+    {% endif %}
+  {% else %}
+    <p class="problem-text">{{ st.text }}</p>
+    {% if st.svg %}<div class="circuit-wrap">{{ st.svg | safe }}</div>{% endif %}
+  {% endif %}
+</section>
+
+{% set key = problem.key %}
+{% if key.answers %}
+<section class="card" id="result">
+  <h2>Your answer</h2>
+  <form method="post" action="/problem/{{ problem.slug }}/check" class="answer-form">
+    {% for a in key.answers %}
+    {% set given = last_check.answer.given[loop.index0] if last_check else '' %}
+    {% set mark = last_check.answer.marks[loop.index0] if last_check else None %}
+    <label class="answer-row">
+      <span>{{ a.label }}</span>
+      <input type="text" inputmode="decimal" name="a{{ loop.index0 }}" value="{{ given }}" autocomplete="off" aria-label="{{ a.label }}">
+      <span class="unit">{{ a.unit }}</span>
+      {% if mark is not none %}<span class="mark {{ 'ok' if mark else 'bad' }}">{{ '✓' if mark else '✗' }}</span>{% endif %}
+    </label>
+    {% endfor %}
+    <button type="submit" class="primary">Check</button>
+  </form>
+  {% if last_check %}
+  <p class="result-line result-{{ last_check.result }}">{{ 'All correct.' if last_check.result == 'correct' else 'Not quite. Look at the marked answers, or open the worked steps.' }}</p>
+  {% endif %}
+  <details class="solution" {% if last_check and last_check.result == 'correct' %}open{% endif %}>
+    <summary>Show the worked steps</summary>
+    <ol class="steps">{% for s in key.steps %}<li>{{ s }}</li>{% endfor %}</ol>
+    <p class="small muted">Checks the code ran before showing you this problem: {{ key.checks | join(' ') }}</p>
+  </details>
+</section>
+{% elif key.pdf %}
+<section class="card">
+  <h2>Solution</h2>
+  <p class="small muted">Work it on paper first. Then open the official {{ 'worked solution' if problem.key_type == 'official_worked' else 'answer' }}.</p>
+  <details class="solution">
+    <summary>Show the official {{ 'solution' if problem.key_type == 'official_worked' else 'answer' }}</summary>
+    <a href="/problem/{{ problem.slug }}/key.png" target="_blank" title="Open full size"><img loading="lazy" src="/problem/{{ problem.slug }}/key.png" alt="Official solution for {{ problem.label }}" class="pdf-crop"></a>
+    <p class="small muted">From page {{ key_page or '?' }}. <a href="/{{ key.pdf }}#page={{ key_page or 1 }}" target="_blank">Open the whole page</a></p>
+  </details>
+</section>
+{% else %}
+<section class="card"><p class="tag warn">No answer key exists for this problem.</p></section>
+{% endif %}
+
+<section class="card" id="history">
+  <h2>How did it go?</h2>
+  <form method="post" action="/problem/{{ problem.slug }}/rate" class="rate-form">
+    <button name="result" value="solid" type="submit">Solid</button>
+    <button name="result" value="shaky" type="submit">Shaky</button>
+    <button name="result" value="miss" type="submit">Missed it</button>
+    <input type="text" name="note" placeholder="what went wrong? (optional)" aria-label="What went wrong">
+  </form>
+  <p class="small muted">Solid: right without help. Shaky: right, but you needed a hint or took a long time. Missed: wrong.</p>
+  {% if history %}
+  <ul class="plain small">
+    {% for a in history[:6] %}
+    <li><span class="result result-{{ a.result }}">{{ a.result }}</span> <span class="muted">{{ a.at | md }} {{ a.at.strftime('%H:%M') }} · {{ 'checked' if a.source == 'auto' else 'self-rated' }}</span>{% if a.note %} · {{ a.note }}{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+<section class="card" id="notes">
+  <h2>Notes</h2>
+  {% for n in notes %}<p class="note-body">{{ n.body }} <span class="muted small">{{ n.created_at | md }}</span></p>{% endfor %}
+  <form method="post" action="/problem/{{ problem.slug }}/notes" class="inline-form">
+    <input type="text" name="body" placeholder="Add a note about this problem" required aria-label="New note">
+    <button type="submit">Add</button>
+  </form>
+</section>
+
+<nav class="pager">
+  {% if prev %}<a href="/problem/{{ prev.slug }}">← {{ prev.label }}</a>{% else %}<span></span>{% endif %}
+  {% if next %}<a href="/problem/{{ next.slug }}">{{ next.label }} →</a>{% else %}<a href="/pset/{{ pset.slug }}">Back to the set</a>{% endif %}
+</nav>
+{% endblock %}

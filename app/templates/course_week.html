@@ -1,22 +1,79 @@
 {% extends "base.html" %}
-{% from "_macros.html" import task_row %}
+{% from "_macros.html" import task_row, bar, video_item %}
 {% block title %}{{ course.name }} week {{ week.number }} · Homebase{% endblock %}
 {% block content %}
 <section class="hero" style="--accent: {{ course.color }}">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> · Term week {{ week.number }}</p>
   <h1>{{ week.title }}</h1>
-</section>
-
-<section class="card">
-  <h2>Topics</h2>
-  <ul class="topics">
+  <ul class="topics muted">
     {% for t in week.topics %}<li>{{ t }}</li>{% endfor %}
   </ul>
   {% if week.notes %}<p class="muted small">{{ week.notes }}</p>{% endif %}
 </section>
 
+{% set core = videos | selectattr('priority', 'equalto', 'core') | list %}
+{% set extra = videos | rejectattr('priority', 'equalto', 'core') | list %}
+<section class="card" style="--accent: {{ course.color }}">
+  <h2>Watch</h2>
+  {% if videos %}
+  <ul class="items">
+    {% for v in core %}{{ video_item(v, chapter_counts) }}{% endfor %}
+  </ul>
+  {% if extra %}
+  <details class="more">
+    <summary class="small muted">{{ extra | length }} optional video{{ 's' if extra | length != 1 }}</summary>
+    <ul class="items">{% for v in extra %}{{ video_item(v, chapter_counts) }}{% endfor %}</ul>
+  </details>
+  {% endif %}
+  {% else %}<p class="muted">No videos mapped to this week yet.</p>{% endif %}
+</section>
+
+<section class="card" style="--accent: {{ course.color }}">
+  <h2>Read</h2>
+  {% if readings %}
+  <ul class="items">
+    {% for r, res, have in readings %}
+    <li class="item">
+      <div>
+        <span class="item-title">{{ res.title }}</span>{% if r.optional %} <span class="tag">optional</span>{% endif %}
+        <div class="item-meta">
+          <span>{{ r.sections }}</span>
+          {% if r.est_min %}<span>{{ r.est_min | hm }}</span>{% endif %}
+          {% if have %}<a href="/{{ res.local_path }}{% if r.page %}#page={{ r.page }}{% endif %}" target="_blank">open PDF</a>
+          {% elif res.local_path %}<span class="tag warn">not downloaded yet</span>{% endif %}
+          {% if res.url %}<a href="{{ res.url }}" target="_blank" rel="noopener">source ↗</a>{% endif %}
+        </div>
+        {% if res.local_path and not have and res.notes %}<p class="small muted">{{ res.notes }}</p>{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}<p class="muted">Readings for this week arrive with the course content.</p>{% endif %}
+</section>
+
+<section class="card" style="--accent: {{ course.color }}">
+  <h2>Solve</h2>
+  {% if psets %}
+  <ul class="items">
+    {% for ps in psets %}
+    {% set total, tried, solid = pset_stats[ps.id] %}
+    <li class="item">
+      <div>
+        <a class="item-title" href="/pset/{{ ps.slug }}">{{ ps.title }}</a>{% if ps.optional %} <span class="tag">optional</span>{% endif %}
+        <div class="item-meta">
+          <span>{{ total }} problem{{ 's' if total != 1 }}</span>
+          <span>{{ tried }} tried · {{ solid }} solid</span>
+          {{ bar(tried, total, course.color) }}
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}<p class="muted">Problem sets for this week arrive with the course content.</p>{% endif %}
+</section>
+
 <section class="card">
-  <h2>Checklist</h2>
+  <h2>Prep-plan checklist</h2>
   {% if tasks %}
   <ul class="tasks">
     {% for t in tasks %}
@@ -25,7 +82,7 @@
     {% endfor %}
   </ul>
   {% else %}
-  <p class="muted">Nothing for this week in the prep plan yet. The full week (videos, readings, problem sets) arrives with the course content.</p>
+  <p class="muted">Nothing from this week is in the Oct–Jan prep plan.</p>
   {% endif %}
 </section>
 

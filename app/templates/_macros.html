@@ -6,15 +6,17 @@
     <noscript><button type="submit" class="small">Save</button></noscript>
   </form>
   <div class="task-body">
-    <label for="t{{ t.id }}" class="task-title">
-      <span class="kind kind-{{ t.kind }}">{{ KIND_LABELS.get(t.kind, t.kind) }}</span>
-      {{ t.title }}
-    </label>
+    <span class="task-title">
+      <label for="t{{ t.id }}" class="kind kind-{{ t.kind }}">{{ KIND_LABELS.get(t.kind, t.kind) }}</label>
+      {% if t.ref_kind == 'video' %}<a href="/video/{{ t.ref }}">{{ t.title }}</a>
+      {% elif t.ref_kind == 'pset' %}<a href="/pset/{{ t.ref }}">{{ t.title }}</a>
+      {% else %}<label for="t{{ t.id }}">{{ t.title }}</label>{% endif %}
+    </span>
     <div class="task-meta">
       {% if t.est_min %}<span>{{ t.est_min | hm }}</span>{% endif %}
       {% if t.detail %}<span>{{ t.detail }}</span>{% endif %}
       {% if show_week %}<span>{{ show_week }}</span>{% endif %}
-      {% if t.url %}<a href="{{ t.url }}" target="_blank" rel="noopener">open ↗</a>{% endif %}
+      {% if t.url and t.ref_kind not in ('video', 'pset') %}<a href="{{ t.url }}" target="_blank" rel="noopener">open ↗</a>{% endif %}
       {% if t.done_by == 'claude' %}<span class="by-claude">ticked by Claude</span>{% endif %}
     </div>
   </div>
@@ -25,4 +27,20 @@
 <span class="bar" role="img" aria-label="{{ value }} of {{ total }}">
   <span style="width: {{ [100, (100 * value / total) if total else 0] | min }}%;{% if color %} background: {{ color }}{% endif %}"></span>
 </span>
+{% endmacro %}
+
+{% macro video_item(v, chapter_counts) %}
+<li class="item {% if v.watched_at %}done{% endif %}">
+  <span class="check" aria-label="{{ 'watched' if v.watched_at else 'not watched' }}">{{ '✓' if v.watched_at else '' }}</span>
+  <div>
+    <a class="item-title" href="/video/{{ v.slug }}">{{ v.title }}</a>
+    <div class="item-meta">
+      <span>{{ v.series }}</span>
+      {% if v.duration_min %}<span>{{ v.duration_min | hm }}</span>{% endif %}
+      {% if chapter_counts.get(v.id) %}<span>{{ chapter_counts[v.id] }} chapters</span>{% endif %}
+      {% if v.last_pos_sec and not v.watched_at %}<span>stopped at {{ v.last_pos_sec | ts }}</span>{% endif %}
+      {% if not v.verified %}<span class="tag warn">link not verified</span>{% endif %}
+    </div>
+  </div>
+</li>
 {% endmacro %}
