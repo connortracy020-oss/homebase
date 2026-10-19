@@ -1,0 +1,10 @@
+# Personal-study copies of course PDFs. Never commit or share these.
+library/
+
+# Local data and secrets
+data/
+*.db
+.env
+.venv/
+node_modules/
+__pycache__/

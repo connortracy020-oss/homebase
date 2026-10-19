@@ -1,0 +1,945 @@
+{
+  "generated": "2026-10-19",
+  "videos": [
+    {
+      "video_id": "mit6002-L01",
+      "caption_file": "library/ece201/transcripts/mit6002-L01.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/516dc2f563e55ec3a35f9a3642853573_AfQxyVuLeCs.vtt",
+      "duration_sec": 2469,
+      "summary": "Agarwal frames engineering as a stack of abstractions, then shows how the lumped matter discipline reduces Maxwell's equations to lumped elements, demonstrates V-I curves of several devices and where the model breaks down, and derives KVL.",
+      "chapters": [
+        {
+          "t": 0,
+          "title": "What engineering is and course framing",
+          "kind": "concept"
+        },
+        {
+          "t": 67,
+          "title": "From measurement tables to physical laws",
+          "kind": "concept"
+        },
+        {
+          "t": 254,
+          "title": "Abstraction stack: lumped circuits to software",
+          "kind": "concept"
+        },
+        {
+          "t": 855,
+          "title": "Example: current through a battery-driven bulb",
+          "kind": "example"
+        },
+        {
+          "t": 951,
+          "title": "Point-mass analogy for lumping",
+          "kind": "concept"
+        },
+        {
+          "t": 1111,
+          "title": "Replacing the bulb filament with a resistor",
+          "kind": "concept"
+        },
+        {
+          "t": 1299,
+          "title": "Lumped matter discipline: charge and flux constraints",
+          "kind": "concept"
+        },
+        {
+          "t": 1744,
+          "title": "Demo: V-I curves of resistors and diodes",
+          "kind": "demo"
+        },
+        {
+          "t": 1900,
+          "title": "Demo: thermistor, photoresistor, batteries, bulb",
+          "kind": "demo"
+        },
+        {
+          "t": 2123,
+          "title": "Demo: limits of abstraction, burning resistor, pickle",
+          "kind": "demo"
+        },
+        {
+          "t": 2247,
+          "title": "Deriving KVL from Maxwell under LMD",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L02",
+      "caption_file": "library/ece201/transcripts/mit6002-L02.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/9a6283bea83a55bbb315c2f9df30c88a_2vHGYdepKLw.vtt",
+      "duration_sec": 2932,
+      "summary": "Reviews the lumped matter discipline and checks KVL and KCL with live measurements, then presents three analysis methods (brute-force KVL/KCL, series-parallel element combination, and the node method) with a worked example for each.",
+      "chapters": [
+        {
+          "t": 0,
+          "title": "Handout and how to use notes",
+          "kind": "admin"
+        },
+        {
+          "t": 34,
+          "title": "Review: lumped matter discipline, KVL, KCL",
+          "kind": "review"
+        },
+        {
+          "t": 169,
+          "title": "Associated variables sign convention",
+          "kind": "concept"
+        },
+        {
+          "t": 386,
+          "title": "Demo: measuring voltages around a loop",
+          "kind": "demo"
+        },
+        {
+          "t": 644,
+          "title": "Demo: current probe confirms KCL at node",
+          "kind": "demo"
+        },
+        {
+          "t": 769,
+          "title": "Hidden assumption: signals far slower than light",
+          "kind": "concept"
+        },
+        {
+          "t": 862,
+          "title": "Method 1: basic KVL/KCL procedure",
+          "kind": "concept"
+        },
+        {
+          "t": 1054,
+          "title": "Example: KVL/KCL on six-element circuit",
+          "kind": "example"
+        },
+        {
+          "t": 1600,
+          "title": "Method 2: series and parallel combination rules",
+          "kind": "concept"
+        },
+        {
+          "t": 1819,
+          "title": "Example: single current via element combination",
+          "kind": "example"
+        },
+        {
+          "t": 1977,
+          "title": "Method 3: node method steps",
+          "kind": "concept"
+        },
+        {
+          "t": 2137,
+          "title": "Example: node method with added current source",
+          "kind": "example"
+        },
+        {
+          "t": 2795,
+          "title": "Node equations in matrix form",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L03",
+      "caption_file": "library/ece201/transcripts/mit6002-L03.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/b8623b6bf138526c984990ae11e58e24_RsJ1eg7XNVs.vtt",
+      "duration_sec": 3054,
+      "summary": "After recapping earlier analysis methods, the lecture develops linearity, homogeneity and superposition for linear circuits, demonstrates superposition with a tank of tap water, and derives the Thevenin equivalent before applying it to a branch current.",
+      "chapters": [
+        {
+          "t": 0,
+          "title": "Announcements: note-taker and prerequisites",
+          "kind": "admin"
+        },
+        {
+          "t": 66,
+          "title": "Review: LMD, KVL/KCL, first three methods",
+          "kind": "review"
+        },
+        {
+          "t": 411,
+          "title": "Example: node analysis of reference circuit",
+          "kind": "example"
+        },
+        {
+          "t": 840,
+          "title": "Linearity and homogeneity",
+          "kind": "concept"
+        },
+        {
+          "t": 933,
+          "title": "Superposition principle with two inputs",
+          "kind": "concept"
+        },
+        {
+          "t": 1253,
+          "title": "Zeroing sources: short or open them",
+          "kind": "concept"
+        },
+        {
+          "t": 1353,
+          "title": "Method 4: superposition for independent sources",
+          "kind": "concept"
+        },
+        {
+          "t": 1452,
+          "title": "Example: superposition on the reference circuit",
+          "kind": "example"
+        },
+        {
+          "t": 1740,
+          "title": "Demo: superposition in a vat of water",
+          "kind": "demo"
+        },
+        {
+          "t": 2069,
+          "title": "Deriving Thevenin form from superposition",
+          "kind": "concept"
+        },
+        {
+          "t": 2680,
+          "title": "Method 5: Thevenin equivalent network",
+          "kind": "concept"
+        },
+        {
+          "t": 2781,
+          "title": "Example: branch current by Thevenin equivalent",
+          "kind": "example"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L05",
+      "caption_file": "library/ece201/transcripts/mit6002-L05.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/e7fecb8001745694bbeaeff402b8634c_v6vqWasIHaw.vtt",
+      "duration_sec": 3056,
+      "summary": "Explains how digital gates are physically built: starting from the static discipline and NAND logic, it uses faucet and switch analogies to form resistor-switch inverters, NAND and NOR gates, then introduces the MOSFET switch model and checks an inverter's transfer curve against noise thresholds.",
+      "chapters": [
+        {
+          "t": 25,
+          "title": "Review: digital abstraction and static discipline",
+          "kind": "review"
+        },
+        {
+          "t": 291,
+          "title": "Gates as primitives: NAND truth table",
+          "kind": "concept"
+        },
+        {
+          "t": 388,
+          "title": "Properties of combinational gates",
+          "kind": "concept"
+        },
+        {
+          "t": 450,
+          "title": "Example: Boolean output of three-gate circuit",
+          "kind": "example"
+        },
+        {
+          "t": 576,
+          "title": "Gate counts in real chips",
+          "kind": "concept"
+        },
+        {
+          "t": 797,
+          "title": "Building a gate: water-faucet analogy",
+          "kind": "concept"
+        },
+        {
+          "t": 1063,
+          "title": "Switches in series and switch model",
+          "kind": "concept"
+        },
+        {
+          "t": 1248,
+          "title": "Example: resistor-plus-switch inverter",
+          "kind": "example"
+        },
+        {
+          "t": 1583,
+          "title": "Demo: analog and digital parts in a mouse",
+          "kind": "demo"
+        },
+        {
+          "t": 1737,
+          "title": "Demo: NAND and inverter mock-up board",
+          "kind": "demo"
+        },
+        {
+          "t": 1925,
+          "title": "Switch networks for NAND, NOR, compound gates",
+          "kind": "concept"
+        },
+        {
+          "t": 2245,
+          "title": "MOSFET device and its switch model",
+          "kind": "concept"
+        },
+        {
+          "t": 2653,
+          "title": "Demo: MOSFET switch curves on screen",
+          "kind": "demo"
+        },
+        {
+          "t": 2748,
+          "title": "MOSFET replaces abstract switch in inverter",
+          "kind": "concept"
+        },
+        {
+          "t": 2847,
+          "title": "Example: inverter transfer curve vs static discipline",
+          "kind": "example"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L08",
+      "caption_file": "library/ece201/transcripts/mit6002-L08.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/fbd3eac57c7e54f19156f8721b803522_bEJ0-8pANA4.vtt",
+      "duration_sec": 2700,
+      "summary": "Motivates amplification both for sending analog signals through noise and for meeting the static discipline, introduces dependent sources with node-method examples, and shows that a square-law controlled source with a load resistor acts as a nonlinear amplifier. Captions stop at 45:00.",
+      "chapters": [
+        {
+          "t": 6,
+          "title": "Overview and review of analysis methods",
+          "kind": "review"
+        },
+        {
+          "t": 326,
+          "title": "Why amplify: beating noise on analog links",
+          "kind": "concept"
+        },
+        {
+          "t": 554,
+          "title": "Low-noise amplifiers in phones and Wi-Fi",
+          "kind": "concept"
+        },
+        {
+          "t": 740,
+          "title": "Digital logic requires gain: noise-margin argument",
+          "kind": "concept"
+        },
+        {
+          "t": 1127,
+          "title": "Dependent sources: VCCS, CCCS and others",
+          "kind": "concept"
+        },
+        {
+          "t": 1433,
+          "title": "Example: resistor fed by independent current source",
+          "kind": "example"
+        },
+        {
+          "t": 1497,
+          "title": "Example: VCCS with inverse voltage dependence",
+          "kind": "example"
+        },
+        {
+          "t": 1838,
+          "title": "Example: square-law VCCS with load resistor",
+          "kind": "example"
+        },
+        {
+          "t": 2309,
+          "title": "Plotting output versus input voltage",
+          "kind": "concept"
+        },
+        {
+          "t": 2467,
+          "title": "Slope greater than one means amplification",
+          "kind": "concept"
+        },
+        {
+          "t": 2632,
+          "title": "Example: numeric amplifier values and table",
+          "kind": "example"
+        }
+      ],
+      "note": "OCW caption file ends at 45:00 although the video runs about 52 minutes; the last ~7 minutes have no captions and no chapters."
+    },
+    {
+      "video_id": "mit6002-L12",
+      "caption_file": "library/ece201/transcripts/mit6002-L12.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ff0e6bea21755b159ff04576ddff676c_COdQmA9g9S8.vtt",
+      "duration_sec": 2944,
+      "summary": "A cascaded-inverter demo exposes gate delay, which is traced to the MOSFET's gate capacitance; the lecture then covers ideal capacitor relations and how they fit the lumped matter discipline, and solves the RC circuit's first-order equation via homogeneous and particular solutions.",
+      "chapters": [
+        {
+          "t": 0,
+          "title": "Memoryless elements versus storage",
+          "kind": "concept"
+        },
+        {
+          "t": 138,
+          "title": "Setup: two cascaded inverters, square wave input",
+          "kind": "concept"
+        },
+        {
+          "t": 273,
+          "title": "Demo: scope reveals slow edge and delay",
+          "kind": "demo"
+        },
+        {
+          "t": 463,
+          "title": "Inverter delay: cause and why it matters",
+          "kind": "concept"
+        },
+        {
+          "t": 690,
+          "title": "Gate capacitance inside the MOSFET",
+          "kind": "concept"
+        },
+        {
+          "t": 1047,
+          "title": "Ideal linear capacitor and C = epsilon A/d",
+          "kind": "concept"
+        },
+        {
+          "t": 1145,
+          "title": "Capacitors still obey the lumped matter discipline",
+          "kind": "concept"
+        },
+        {
+          "t": 1361,
+          "title": "Capacitor relations: q=Cv, i=C dv/dt, energy",
+          "kind": "concept"
+        },
+        {
+          "t": 1496,
+          "title": "Demo: shorting a charged 250 V capacitor",
+          "kind": "demo"
+        },
+        {
+          "t": 1653,
+          "title": "RC circuit: first-order node equation",
+          "kind": "concept"
+        },
+        {
+          "t": 1847,
+          "title": "Example: RC with initial voltage and DC input",
+          "kind": "example"
+        },
+        {
+          "t": 1980,
+          "title": "Homogeneous plus particular method; particular solution",
+          "kind": "concept"
+        },
+        {
+          "t": 2232,
+          "title": "Homogeneous solution and characteristic equation",
+          "kind": "concept"
+        },
+        {
+          "t": 2588,
+          "title": "Total solution from initial condition",
+          "kind": "concept"
+        },
+        {
+          "t": 2749,
+          "title": "Exponential rise and decay waveforms",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L13",
+      "caption_file": "library/ece201/transcripts/mit6002-L13.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/a6ffa0d14f6454cab6f388f257476419_TXJIhDHtHSI.vtt",
+      "duration_sec": 3156,
+      "summary": "Builds an inspection-based method for sketching first-order RC step responses from initial value, final value and time constant, then uses it to compute the rising and falling delays of an inverter loaded by a gate capacitance. Ends with a crosstalk story and demo showing why faster edges can cause glitches on neighboring pins.",
+      "chapters": [
+        {
+          "t": 6,
+          "title": "Review: RC step response and tau",
+          "kind": "review"
+        },
+        {
+          "t": 422,
+          "title": "Intuitive RC method without differential equations",
+          "kind": "concept"
+        },
+        {
+          "t": 579,
+          "title": "Sketching a rising RC response by inspection",
+          "kind": "concept"
+        },
+        {
+          "t": 861,
+          "title": "Decaying response when input is lower",
+          "kind": "concept"
+        },
+        {
+          "t": 992,
+          "title": "Setting up the inverter delay problem",
+          "kind": "concept"
+        },
+        {
+          "t": 1117,
+          "title": "Inverter model with gate capacitance CGS",
+          "kind": "concept"
+        },
+        {
+          "t": 1275,
+          "title": "Defining rise delay using VOH",
+          "kind": "concept"
+        },
+        {
+          "t": 1457,
+          "title": "Example: deriving the rising delay tR",
+          "kind": "example"
+        },
+        {
+          "t": 1830,
+          "title": "Example: numeric rise delay of 0.16 ns",
+          "kind": "example"
+        },
+        {
+          "t": 1957,
+          "title": "Example: falling delay with Thevenin equivalent",
+          "kind": "example"
+        },
+        {
+          "t": 2610,
+          "title": "Example: numeric fall delay with RON 10 ohms",
+          "kind": "example"
+        },
+        {
+          "t": 2768,
+          "title": "Time constant as quick delay estimate",
+          "kind": "concept"
+        },
+        {
+          "t": 2831,
+          "title": "Chip story: sharper edges cause spikes",
+          "kind": "concept"
+        },
+        {
+          "t": 2988,
+          "title": "Demo: crosstalk between adjacent wires",
+          "kind": "demo"
+        },
+        {
+          "t": 3116,
+          "title": "Demo: slower input edges remove spikes",
+          "kind": "demo"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L14",
+      "caption_file": "library/ece201/transcripts/mit6002-L14.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/0768b78e26d75c628ebaa31e1205a4ab_bX8i2yECWaU.vtt",
+      "duration_sec": 2919,
+      "summary": "A guest lecturer recasts the RC response in terms of state, splitting it into zero-state and zero-input parts, then uses capacitor charge storage to build a memory cell. The cell is refined from a DRAM-style switch and capacitor into buffered and feedback-based static memory, closing with a small decoded four-bit memory.",
+      "chapters": [
+        {
+          "t": 5,
+          "title": "Guest lecturer and topic overview",
+          "kind": "admin"
+        },
+        {
+          "t": 41,
+          "title": "Review: RC response to a step",
+          "kind": "review"
+        },
+        {
+          "t": 209,
+          "title": "Storing logic state on capacitors (DRAM)",
+          "kind": "concept"
+        },
+        {
+          "t": 443,
+          "title": "Capacitor state and charge as state variable",
+          "kind": "concept"
+        },
+        {
+          "t": 647,
+          "title": "Zero-state and zero-input responses",
+          "kind": "concept"
+        },
+        {
+          "t": 882,
+          "title": "Full response as superposition of both",
+          "kind": "concept"
+        },
+        {
+          "t": 993,
+          "title": "Why computing needs memory; cell abstraction",
+          "kind": "concept"
+        },
+        {
+          "t": 1394,
+          "title": "Switch plus capacitor memory cell",
+          "kind": "concept"
+        },
+        {
+          "t": 1533,
+          "title": "DRAM cell: MOSFET as the switch",
+          "kind": "concept"
+        },
+        {
+          "t": 1597,
+          "title": "Example: how long a stored one survives",
+          "kind": "example"
+        },
+        {
+          "t": 1962,
+          "title": "Buffering the storage node; DRAM refresh numbers",
+          "kind": "concept"
+        },
+        {
+          "t": 2183,
+          "title": "Demo: stored charge leaking through resistor",
+          "kind": "demo"
+        },
+        {
+          "t": 2408,
+          "title": "Demo: feedback loop makes static memory",
+          "kind": "demo"
+        },
+        {
+          "t": 2538,
+          "title": "Demo: output disturbance fixed by buffer",
+          "kind": "demo"
+        },
+        {
+          "t": 2743,
+          "title": "Four-bit memory with address decoder",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L19",
+      "caption_file": "library/ece201/transcripts/mit6002-L19.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/563075f216b3512e87f162a0e3c68360_V0z_f7qxLcY.vtt",
+      "duration_sec": 3141,
+      "summary": "Introduces the operational amplifier as an abstraction with an ideal circuit model (huge gain, infinite input resistance, zero output resistance) and shows its unreliable open-loop gain on a scope. A non-inverting amplifier is then analyzed to show that negative feedback makes the gain depend only on resistor ratios, with anti-lock brakes as an analogy.",
+      "chapters": [
+        {
+          "t": 4,
+          "title": "Op amps: abstraction and feedback themes",
+          "kind": "concept"
+        },
+        {
+          "t": 144,
+          "title": "MOSFET amplifier as a three-port block",
+          "kind": "concept"
+        },
+        {
+          "t": 404,
+          "title": "Op amp ports and dual power supply",
+          "kind": "concept"
+        },
+        {
+          "t": 628,
+          "title": "Ideal op amp circuit model",
+          "kind": "concept"
+        },
+        {
+          "t": 1013,
+          "title": "Op amp as analog workhorse (printf analogy)",
+          "kind": "concept"
+        },
+        {
+          "t": 1295,
+          "title": "Transfer curve: active and saturation regions",
+          "kind": "concept"
+        },
+        {
+          "t": 1651,
+          "title": "Demo: open-loop gain drifts when heated",
+          "kind": "demo"
+        },
+        {
+          "t": 1777,
+          "title": "Building a non-inverting amplifier",
+          "kind": "concept"
+        },
+        {
+          "t": 1931,
+          "title": "Example: node analysis with dependent source",
+          "kind": "example"
+        },
+        {
+          "t": 2292,
+          "title": "Large-gain limit: resistors set the gain",
+          "kind": "concept"
+        },
+        {
+          "t": 2420,
+          "title": "Example: gain of ten using 9R and R",
+          "kind": "example"
+        },
+        {
+          "t": 2494,
+          "title": "Demo: closed-loop gain stable under heat",
+          "kind": "demo"
+        },
+        {
+          "t": 2594,
+          "title": "Intuition: negative feedback pulls output back",
+          "kind": "concept"
+        },
+        {
+          "t": 2986,
+          "title": "Anti-lock brakes as a feedback analogy",
+          "kind": "concept"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L20",
+      "caption_file": "library/ece201/transcripts/mit6002-L20.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/fc05b4e68048547faf57b9480e6eb79b_2SwT6JnfCq8.vtt",
+      "duration_sec": 2987,
+      "summary": "Introduces the v+ approximately equal to v- shortcut for op amps under negative feedback and uses it, alongside superposition, to analyze a subtractor and pick out the inverting and non-inverting patterns. Then designs an integrator and a differentiator step by step using virtual ground, ending with a square-wave demo of both.",
+      "chapters": [
+        {
+          "t": 17,
+          "title": "Review: ideal op amp properties",
+          "kind": "review"
+        },
+        {
+          "t": 166,
+          "title": "Preview of op amp building blocks",
+          "kind": "concept"
+        },
+        {
+          "t": 358,
+          "title": "Two-source op amp circuit setup",
+          "kind": "concept"
+        },
+        {
+          "t": 452,
+          "title": "The v+ equals v- analysis method",
+          "kind": "concept"
+        },
+        {
+          "t": 677,
+          "title": "Example: subtractor using v+ equals v-",
+          "kind": "example"
+        },
+        {
+          "t": 1072,
+          "title": "Example: same subtractor via superposition",
+          "kind": "example"
+        },
+        {
+          "t": 1297,
+          "title": "Inverting and non-inverting gain patterns",
+          "kind": "concept"
+        },
+        {
+          "t": 1588,
+          "title": "Example: designing an op amp integrator",
+          "kind": "example"
+        },
+        {
+          "t": 1778,
+          "title": "Plain RC integrator only approximately works",
+          "kind": "concept"
+        },
+        {
+          "t": 2014,
+          "title": "Virtual ground turns voltage into current",
+          "kind": "concept"
+        },
+        {
+          "t": 2178,
+          "title": "Completing the integrator with a capacitor",
+          "kind": "concept"
+        },
+        {
+          "t": 2374,
+          "title": "Example: designing an op amp differentiator",
+          "kind": "example"
+        },
+        {
+          "t": 2571,
+          "title": "Feedback resistor converts current to voltage",
+          "kind": "concept"
+        },
+        {
+          "t": 2793,
+          "title": "Capacitor into virtual ground finishes differentiator",
+          "kind": "concept"
+        },
+        {
+          "t": 2944,
+          "title": "Demo: square wave through integrator, differentiator",
+          "kind": "demo"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L22",
+      "caption_file": "library/ece201/transcripts/mit6002-L22.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ca37324c5f0d59fea0d77f7d9059333f_wNuBD4PYWvs.vtt",
+      "duration_sec": 3134,
+      "summary": "After wrapping up the op amp oscillator by using it as a clock that discretizes time, the lecture turns to energy and power: it derives static power for a resistive path and shows that charging and discharging a capacitor costs CV^2 per cycle. These combine into static plus CV^2f dynamic power for an inverter, demonstrated with a power meter and a chip-scale estimate.",
+      "chapters": [
+        {
+          "t": 0,
+          "title": "Why energy and power matter now",
+          "kind": "concept"
+        },
+        {
+          "t": 64,
+          "title": "Review: op amp square-wave oscillator",
+          "kind": "review"
+        },
+        {
+          "t": 164,
+          "title": "Clocks: shared timing and discretized time",
+          "kind": "concept"
+        },
+        {
+          "t": 506,
+          "title": "Battery size drives handheld design",
+          "kind": "concept"
+        },
+        {
+          "t": 569,
+          "title": "IBM CU08 spec: supply and power per gate",
+          "kind": "concept"
+        },
+        {
+          "t": 830,
+          "title": "Inverter with load cap: standby vs active",
+          "kind": "concept"
+        },
+        {
+          "t": 1046,
+          "title": "Example 1: resistor and inverter static power",
+          "kind": "example"
+        },
+        {
+          "t": 1209,
+          "title": "Example 2: switched RC charge/discharge circuit",
+          "kind": "example"
+        },
+        {
+          "t": 1466,
+          "title": "Example: source energy during charging phase",
+          "kind": "example"
+        },
+        {
+          "t": 1950,
+          "title": "Half stored, half burned in resistor",
+          "kind": "concept"
+        },
+        {
+          "t": 2043,
+          "title": "Example: energy lost during discharge phase",
+          "kind": "example"
+        },
+        {
+          "t": 2300,
+          "title": "Energy per cycle and CV^2f average power",
+          "kind": "concept"
+        },
+        {
+          "t": 2559,
+          "title": "Inverter total power: static plus dynamic",
+          "kind": "concept"
+        },
+        {
+          "t": 2881,
+          "title": "Demo: power meter rises with frequency",
+          "kind": "demo"
+        },
+        {
+          "t": 3004,
+          "title": "Example: power of a 10^8-gate chip",
+          "kind": "example"
+        }
+      ]
+    },
+    {
+      "video_id": "mit6002-L23",
+      "caption_file": "library/ece201/transcripts/mit6002-L23.vtt",
+      "caption_source_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/a61694beb4f051348d5591857b2a1f72_JB2HgohNHYQ.vtt",
+      "duration_sec": 2401,
+      "summary": "Shows that the resistive-load NMOS inverter would make a 100-million-gate chip dissipate an absurd static power, then motivates and introduces the PFET and the CMOS inverter, which removes the supply-to-ground path and speeds up rising edges. Closes with CV^2f scaling, supply reduction, clock gating, leakage, and a demo that overheats a CMOS inverter.",
+      "chapters": [
+        {
+          "t": 0,
+          "title": "Lab 4 check-in and overview",
+          "kind": "admin"
+        },
+        {
+          "t": 94,
+          "title": "Review: inverter static and dynamic power",
+          "kind": "review"
+        },
+        {
+          "t": 199,
+          "title": "Example: 10^8-gate NMOS chip power",
+          "kind": "example"
+        },
+        {
+          "t": 434,
+          "title": "Why larger RL or lower VS fall short",
+          "kind": "concept"
+        },
+        {
+          "t": 531,
+          "title": "Reading the per-MHz per-gate power spec",
+          "kind": "concept"
+        },
+        {
+          "t": 594,
+          "title": "Intuition: cut the supply-to-ground path",
+          "kind": "concept"
+        },
+        {
+          "t": 912,
+          "title": "NFET review and the complementary PFET",
+          "kind": "concept"
+        },
+        {
+          "t": 1191,
+          "title": "CMOS inverter: pull-up and pull-down",
+          "kind": "concept"
+        },
+        {
+          "t": 1254,
+          "title": "Example: CMOS inverter with input high, low",
+          "kind": "example"
+        },
+        {
+          "t": 1547,
+          "title": "CMOS dynamic power equivalent circuit",
+          "kind": "concept"
+        },
+        {
+          "t": 1643,
+          "title": "CMOS speed advantage over NMOS",
+          "kind": "concept"
+        },
+        {
+          "t": 1895,
+          "title": "Example: CMOS chip power and frequency growth",
+          "kind": "example"
+        },
+        {
+          "t": 2159,
+          "title": "Lower supply voltage and clock gating",
+          "kind": "concept"
+        },
+        {
+          "t": 2314,
+          "title": "Leakage gives real CMOS standby power",
+          "kind": "concept"
+        },
+        {
+          "t": 2346,
+          "title": "Demo: overheating a CMOS inverter",
+          "kind": "demo"
+        }
+      ]
+    }
+  ],
+  "missing": []
+}

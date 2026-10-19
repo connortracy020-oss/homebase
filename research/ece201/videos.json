@@ -1,0 +1,3250 @@
+{
+  "course": "ECE201",
+  "generated": "2026-10-19",
+  "scope": "videos + MIT OCW 6.002 materials",
+  "summary": {
+    "mit_core_minutes": 293.2,
+    "supplemental_core_minutes": 355.4,
+    "mit_lecture_videos": 26,
+    "downloaded_pdfs": 78
+  },
+  "resources": [
+    {
+      "id": "mit-6002-s07",
+      "title": "MIT OCW 6.002 Circuits and Electronics, Spring 2007 (Agarwal)",
+      "kind": "video_series",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "fetched course home, video gallery and all 26 lecture pages 2026-10-19; license link in page footer",
+      "local_path": "library/ece201/mit6002",
+      "topics": [
+        "KCL",
+        "KVL",
+        "node method",
+        "Thevenin/Norton",
+        "superposition",
+        "RC first-order",
+        "op-amps",
+        "MOSFET",
+        "digital",
+        "second-order",
+        "AC"
+      ],
+      "notes": "25 lectures in 26 videos (L9 and L15 are two parts; no Lecture 24 video). Instructor Anant Agarwal; materials by Agarwal and Jeffrey Lang. Full course zip offered (approx. 79-113 MB sizes listed on the download page) - not downloaded (>60 MB)."
+    },
+    {
+      "id": "mit-6002-s07-videos",
+      "title": "6.002 Spring 2007 video lectures gallery",
+      "kind": "video_series",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/video_galleries/video-lectures/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "fetched 2026-10-19",
+      "local_path": null,
+      "topics": [],
+      "notes": "Every lecture page embeds YouTube and links a transcript PDF and a VTT caption file."
+    },
+    {
+      "id": "mit-6002-s07-notes",
+      "title": "6.002 lecture notes (Fall 2000 slides, posted with Spring 2007)",
+      "kind": "notes",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "fetched page; 26 PDFs downloaded and checked for %PDF header",
+      "local_path": "library/ece201/mit6002/notes_L1.pdf",
+      "topics": [],
+      "notes": "Files notes_L1..notes_L25 plus notes_L15b. The page says notes for L24 are not available, but the Lecture 25 video page links 6002_l24 (Power conversion circuits and diodes); downloaded as notes_L24.pdf."
+    },
+    {
+      "id": "mit-6002-s07-demos",
+      "title": "6.002 demonstration handouts",
+      "kind": "notes",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/video_galleries/video-lectures/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "linked from lecture pages' related resources; 32 PDFs downloaded",
+      "local_path": "library/ece201/mit6002/demo_02.pdf",
+      "topics": [],
+      "notes": "demo_01..demo_28 (with a/b/rp variants). Most useful for ECE 201: demo_02 (KVL/KCL), demo_05 (superposition), demo_11 (gate delay/RC), demo_17a (RC integrator/differentiator), demo_18 (energy in RC), demo_24 (op-amp)."
+    },
+    {
+      "id": "agarwal-lang",
+      "title": "Foundations of Analog and Digital Electronic Circuits (Agarwal & Lang, Morgan Kaufmann 2005, ISBN 9781558607354)",
+      "kind": "textbook",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/readings/",
+      "license": "All rights reserved (commercial textbook)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "readings page fetched 2026-10-19",
+      "local_path": null,
+      "topics": [],
+      "notes": "Required 6.002 text; not free. Many 6.002 homework exercises are 'do Exercise x.y from A&L' and cannot be done without it. The OCW readings page also links a PDF hosted on a third-party university server; its authorization is unclear, so it was not used or downloaded."
+    },
+    {
+      "id": "hajimiri-caltech-circuits",
+      "title": "Circuits and Systems (Prof. Ali Hajimiri, Caltech) - YouTube playlist",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLc7Gz02Znph_HU1I9STgC4Nv0aG_jdb8Z",
+      "license": "Standard YouTube License (all rights reserved, publicly posted)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "playlist fetched 2026-10-19 (41 videos); lectures 1-11, 14, 15 verified individually",
+      "local_path": null,
+      "topics": [
+        "nodal",
+        "dependent sources",
+        "supernode",
+        "mesh",
+        "supermesh",
+        "theorems",
+        "max power",
+        "Y-Delta",
+        "op-amps",
+        "RC"
+      ],
+      "notes": "Full university lecture series. Lectures 1-10, 14-15 track ECE 201 almost topic for topic; later lectures (Heaviside operator, Laplace, Fourier) go beyond ECE 201."
+    },
+    {
+      "id": "engineer4free-circuits",
+      "title": "Engineer4Free - Circuits playlist",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLOAuB8dR35ocf9Typ1iX9NRmX0V04UYfQ",
+      "license": "Standard YouTube License (all rights reserved, publicly posted)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "playlist fetched 2026-10-19 (56 videos); picks verified individually",
+      "local_path": null,
+      "topics": [
+        "basics",
+        "KCL",
+        "KVL",
+        "dividers",
+        "dependent sources",
+        "nodal",
+        "supernode",
+        "mesh",
+        "supermesh"
+      ],
+      "notes": "Short (5-10 min) concept + example pairs. Stops at mesh/supermesh; no Thevenin, op-amp or transient videos in this playlist."
+    },
+    {
+      "id": "question-solutions-cad",
+      "title": "Question Solutions - Circuit Analysis A-Z (Full Chapter Explanations)",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLXePpKFSUW2abKgvj_hClQS1NK86SCHfy",
+      "license": "Standard YouTube License (all rights reserved, publicly posted)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "playlist fetched 2026-10-19 (11 videos); all verified individually",
+      "local_path": null,
+      "topics": [
+        "basics",
+        "series/parallel",
+        "Y-Delta",
+        "nodal",
+        "mesh",
+        "superposition",
+        "Thevenin",
+        "Norton",
+        "max power",
+        "source transformation"
+      ],
+      "notes": "Recent (2024-2026) long-form solved-example videos, one per chapter topic. No op-amp or transient videos in this playlist as of 2026-10-19."
+    },
+    {
+      "id": "all-about-electronics-network",
+      "title": "ALL ABOUT ELECTRONICS - Network Analysis / Network Theory playlist",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLwjK_iyK4LLBN9RIDQfl9YB4caBYyD_uo",
+      "license": "Standard YouTube License (all rights reserved, publicly posted)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "playlist fetched 2026-10-19 (136 videos; first 100 listed)",
+      "local_path": null,
+      "topics": [
+        "Y-Delta",
+        "supernode",
+        "supermesh",
+        "superposition",
+        "Thevenin",
+        "Norton",
+        "max power",
+        "RC/RL transients"
+      ],
+      "notes": "Many short 'Quiz #' problem videos interleaved with explanations; good extra drills. Uses 'star' for wye."
+    },
+    {
+      "id": "van-biezen-ee",
+      "title": "Michel van Biezen - Electrical Engineering playlists (Ch 2 Basic Laws, Ch 3 Circuit Analysis, Ch 4 Circuit Theorems, Ch 5 Op Amps, Ch 8 RC & RL)",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLX2gX-ftPVXUK_lbDhCMY1Bgoz0O4gZPi",
+      "license": "Standard YouTube License (all rights reserved, publicly posted)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "fetched playlists PLX2gX-ftPVXW6bFHC_a2wsp7kJgWyeaT0 (29), PLX2gX-ftPVXWv1eWntPcZtztrmwYBiBQY (38), PLX2gX-ftPVXUK_lbDhCMY1Bgoz0O4gZPi (37), PLX2gX-ftPVXXuwvL-aLs3Q2Af3BwnrCyK (32), PLX2gX-ftPVXXnp1Q4us-Vi7HqHE33AtzA (50) on 2026-10-19",
+      "local_path": null,
+      "topics": [
+        "Y-Delta",
+        "nodal",
+        "mesh",
+        "theorems",
+        "max power",
+        "op-amps",
+        "RC/RL"
+      ],
+      "notes": "Many very short (3-10 min) single-example videos; good for spaced drill. Video numbering in titles is inconsistent (e.g. 31 of 65 within a 50-video playlist). One Basic Laws video is titled 'NOTE ERROR!' - skip it."
+    },
+    {
+      "id": "pytel-dc",
+      "title": "Jim Pytel - DC Circuit Analysis playlist (Columbia Gorge CC)",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLdnqjKaksr8qQ9w3XY5zFXQ2H-zXQFMlI",
+      "license": "Standard YouTube License (all rights reserved, publicly posted)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "playlist fetched 2026-10-19 (81 videos)",
+      "local_path": null,
+      "topics": [
+        "Ohm's law",
+        "series/parallel",
+        "dividers",
+        "Y-Delta",
+        "superposition",
+        "mesh",
+        "nodal",
+        "dependent sources",
+        "Thevenin",
+        "max power",
+        "Norton",
+        "capacitors",
+        "inductors"
+      ],
+      "notes": "Technician-level (algebra, little calculus) full lectures; slower and more concrete than 6.002. Includes meter/safety videos that ECE 201 does not need. Oregon community college."
+    },
+    {
+      "id": "organic-chem-tutor-circuits",
+      "title": "The Organic Chemistry Tutor - circuits videos (individual)",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/watch?v=k5Tlg27JDtc",
+      "license": "Standard YouTube License (all rights reserved, publicly posted)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "individual videos verified 2026-10-19; no single circuits playlist confirmed",
+      "local_path": null,
+      "topics": [
+        "nodal",
+        "mesh",
+        "superposition",
+        "Thevenin",
+        "max power",
+        "op-amps",
+        "RC",
+        "RL"
+      ],
+      "notes": "Long worked-problem videos; physics-flavored. Good for extra repetitions."
+    },
+    {
+      "id": "khan-ee",
+      "title": "Khan Academy - Circuit analysis | Electrical Engineering playlist",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLSQl0a2vh4HDoMKF1cHmklv2iC8TN85U3",
+      "license": "Khan Academy content: CC BY-NC-SA per Khan Academy terms (not verified on page)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "playlist fetched 2026-10-19 (17 videos, last updated 2018)",
+      "local_path": null,
+      "topics": [
+        "basics",
+        "KCL",
+        "KVL",
+        "series/parallel",
+        "voltage divider",
+        "node voltage method"
+      ],
+      "notes": "Small and dated playlist; the YouTube playlist is ordered alphabetically, not pedagogically. Khan also has separate op-amp and RC videos (two picked)."
+    },
+    {
+      "id": "mitx-6002x",
+      "title": "MITx 6.002x / 6.002.1x Circuits and Electronics (edX)",
+      "kind": "other",
+      "url": "https://www.edx.org/learn/circuits/massachusetts-institute-of-technology-circuits-and-electronics-1-basic-circuit-analysis",
+      "license": "unknown",
+      "license_url": null,
+      "verified": false,
+      "verified_how": "URL fetched 2026-10-19 but returned a generic edX circuits subject page, not the course; existence known only from search results (Class Central, DSpace course report)",
+      "local_path": null,
+      "topics": [],
+      "notes": "Same Agarwal content as OCW 6.002 in MOOC form. Not needed: OCW 6.002 S07 already gives the lectures; current availability unverified."
+    },
+    {
+      "id": "mit-6002-f00",
+      "title": "MIT 6.002 Fall 2000 (Lang & Agarwal)",
+      "kind": "other",
+      "url": "https://dspace.mit.edu/handle/1721.1/45532",
+      "license": "unknown",
+      "license_url": null,
+      "verified": false,
+      "verified_how": "seen in search results only; ocw.mit.edu/courses/6-002-circuits-and-electronics-fall-2000/ returned 404",
+      "local_path": null,
+      "topics": [],
+      "notes": "Its lecture notes and Fall 2000 final are already republished inside the Spring 2007 course (downloaded). No separate value."
+    },
+    {
+      "id": "mit-res6010",
+      "title": "MIT OCW RES.6-010 Electronic Feedback Systems",
+      "kind": "other",
+      "url": null,
+      "license": "unknown",
+      "license_url": null,
+      "verified": false,
+      "verified_how": "title seen in a search-result feed listing only",
+      "local_path": null,
+      "topics": [],
+      "notes": "Feedback-systems course; not relevant to ECE 201. 6.01 not investigated further (its circuits unit is a small part of a broad EECS intro)."
+    }
+  ],
+  "videos": [
+    {
+      "id": "mit6002-L01",
+      "series": "mit-6002-s07",
+      "number": 1,
+      "title": "Lecture 1: Introduction and Lumped Abstraction",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-1/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=AfQxyVuLeCs"
+      ],
+      "youtube_id": "AfQxyVuLeCs",
+      "duration_min": 41.2,
+      "topics": [
+        "lumped matter discipline",
+        "current",
+        "voltage",
+        "power",
+        "KCL",
+        "KVL",
+        "Ohm's law"
+      ],
+      "osu_week": 1,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/e6224ea101646c756e6fe376ec52fa56_AfQxyVuLeCs.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/516dc2f563e55ec3a35f9a3642853573_AfQxyVuLeCs.vtt",
+      "verified": true,
+      "notes": "Best conceptual intro to current/voltage/element laws; physics-light framing suits a student with no physics. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L02",
+      "series": "mit-6002-s07",
+      "number": 2,
+      "title": "Lecture 2: Basic Circuit Analysis Method",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-2/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=2vHGYdepKLw"
+      ],
+      "youtube_id": "2vHGYdepKLw",
+      "duration_min": 49.2,
+      "topics": [
+        "KCL",
+        "KVL",
+        "series/parallel",
+        "voltage divider",
+        "current divider",
+        "node method"
+      ],
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/3edee45e0545a4044ec11d2e6bdf3800_2vHGYdepKLw.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/9a6283bea83a55bbb315c2f9df30c88a_2vHGYdepKLw.vtt",
+      "verified": true,
+      "notes": "Covers KVL/KCL method, series/parallel, dividers and introduces the node method; rewatch the node-method half in week 3. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L03",
+      "series": "mit-6002-s07",
+      "number": 3,
+      "title": "Lecture 3: Superposition, Thevenin and Norton",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-3/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=RsJ1eg7XNVs"
+      ],
+      "youtube_id": "RsJ1eg7XNVs",
+      "duration_min": 51.2,
+      "topics": [
+        "linearity",
+        "superposition",
+        "Thevenin",
+        "Norton"
+      ],
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/c558f62c35d4e1e22fb4579fb45ea663_RsJ1eg7XNVs.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/b8623b6bf138526c984990ae11e58e24_RsJ1eg7XNVs.vtt",
+      "verified": true,
+      "notes": "Direct match for OSU weeks 6-7 theorems. Does not do max power transfer or dependent-source Thevenin drills. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L04",
+      "series": "mit-6002-s07",
+      "number": 4,
+      "title": "Lecture 4: The Digital Abstraction",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-4/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=4TCnYYpZxEc"
+      ],
+      "youtube_id": "4TCnYYpZxEc",
+      "duration_min": 49.1,
+      "topics": [
+        "digital abstraction",
+        "noise margins",
+        "logic levels"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ef5ca58a46a732de88670504a73470de_4TCnYYpZxEc.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/0cd7700e899151ab93b2aa797ca4d28e_4TCnYYpZxEc.vtt",
+      "verified": true,
+      "notes": "Digital logic levels; not in ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L05",
+      "series": "mit-6002-s07",
+      "number": 5,
+      "title": "Lecture 5: Inside the Digital Gate",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-5/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=v6vqWasIHaw"
+      ],
+      "youtube_id": "v6vqWasIHaw",
+      "duration_min": 51.1,
+      "topics": [
+        "MOSFET switch model",
+        "S and SR models",
+        "logic gates"
+      ],
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/725c8b44fefc368c1ccd67991150d2f1_v6vqWasIHaw.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/e7fecb8001745694bbeaeff402b8634c_v6vqWasIHaw.vtt",
+      "verified": true,
+      "notes": "Only relevant as a circuit-level view of the MOSFET for the semiconductor-devices intro; no fabrication content. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L06",
+      "series": "mit-6002-s07",
+      "number": 6,
+      "title": "Lecture 6: Nonlinear Analysis",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-6/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=OGtElTMJidE"
+      ],
+      "youtube_id": "OGtElTMJidE",
+      "duration_min": 44.8,
+      "topics": [
+        "nonlinear resistors",
+        "graphical analysis",
+        "diodes"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/6dc096a3fab89219046cb6226f023a15_OGtElTMJidE.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/efcf54598db25698800a18f9866a3edd_OGtElTMJidE.vtt",
+      "verified": true,
+      "notes": "Nonlinear analysis is beyond ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L07",
+      "series": "mit-6002-s07",
+      "number": 7,
+      "title": "Lecture 7: Incremental Analysis",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-7/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=JqvKtMNz3RQ"
+      ],
+      "youtube_id": "JqvKtMNz3RQ",
+      "duration_min": 50.2,
+      "topics": [
+        "small-signal analysis",
+        "linearization"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ecb2cd8c1ded230e02409c0ee23126f9_JqvKtMNz3RQ.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/fe470e30691f5cd98b40ef1efa3da348_JqvKtMNz3RQ.vtt",
+      "verified": true,
+      "notes": "Small-signal/incremental analysis is beyond ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L08",
+      "series": "mit-6002-s07",
+      "number": 8,
+      "title": "Lecture 8: Dependent Sources and Amplifiers",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-8/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=bEJ0-8pANA4"
+      ],
+      "youtube_id": "bEJ0-8pANA4",
+      "duration_min": 52.4,
+      "topics": [
+        "dependent sources",
+        "amplifiers",
+        "MOSFET amplifier"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/b5a0a33274a7363b0d232c313010f60d_bEJ0-8pANA4.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/fbd3eac57c7e54f19156f8721b803522_bEJ0-8pANA4.vtt",
+      "verified": true,
+      "notes": "Introduces dependent sources, then moves to MOSFET amplifiers that assume Lectures 5-7. Use for the concept; get dependent-source analysis practice from the supplemental picks. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L09a",
+      "series": "mit-6002-s07",
+      "number": 9,
+      "title": "Lecture 9: MOSFET Amplifier Large Signal Analysis (part 1)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-9-part-1/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=Nijya-QJ45Y"
+      ],
+      "youtube_id": "Nijya-QJ45Y",
+      "duration_min": 50.6,
+      "topics": [
+        "MOSFET SCS model",
+        "amplifier"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/8d6365ab435a2441f6a391631102c376_Nijya-QJ45Y.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/1de5408f98945e04a78bed087f39cabe_Nijya-QJ45Y.vtt",
+      "verified": true,
+      "notes": "MOSFET amplifiers; not in ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L09b",
+      "series": "mit-6002-s07",
+      "number": 9,
+      "title": "Lecture 9: MOSFET Amplifier Large Signal Analysis (part 2)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-9-part-2/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=jURSAKBlIZA"
+      ],
+      "youtube_id": "jURSAKBlIZA",
+      "duration_min": 50.6,
+      "topics": [
+        "MOSFET amplifier",
+        "large-signal analysis"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/85621a938b41beb0feba40552bd5d49a_jURSAKBlIZA.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/a848dd2127815a8ebeb831ef6e1b9ffd_jURSAKBlIZA.vtt",
+      "verified": true,
+      "notes": "MOSFET amplifiers; not in ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L10",
+      "series": "mit-6002-s07",
+      "number": 10,
+      "title": "Lecture 10: Amplifiers - Small Signal Model",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-10/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=9RqFFlZgf60"
+      ],
+      "youtube_id": "9RqFFlZgf60",
+      "duration_min": 50.5,
+      "topics": [
+        "small-signal model"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/9c81ffbe8075ee01caf4709269fe5f3a_9RqFFlZgf60.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/f63b04c4232e58669c928a7aad2ce579_9RqFFlZgf60.vtt",
+      "verified": true,
+      "notes": "Small-signal amplifiers; not in ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L11",
+      "series": "mit-6002-s07",
+      "number": 11,
+      "title": "Lecture 11: Small Signal Circuits",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-11/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=R4KxlqsuZ0A"
+      ],
+      "youtube_id": "R4KxlqsuZ0A",
+      "duration_min": 50.1,
+      "topics": [
+        "small-signal circuits"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/0c685c55c65225543fe56ee2b831975e_R4KxlqsuZ0A.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/853631ee24e257caa1210c24c3541894_R4KxlqsuZ0A.vtt",
+      "verified": true,
+      "notes": "Small-signal amplifiers; not in ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L12",
+      "series": "mit-6002-s07",
+      "number": 12,
+      "title": "Lecture 12: Capacitors and First-Order Systems",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-12/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=COdQmA9g9S8"
+      ],
+      "youtube_id": "COdQmA9g9S8",
+      "duration_min": 49.2,
+      "topics": [
+        "capacitors",
+        "RC circuits",
+        "first-order differential equations",
+        "time constant"
+      ],
+      "osu_week": 9,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/de8dfbe54c912edf373b016434558d04_COdQmA9g9S8.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ff0e6bea21755b159ff04576ddff676c_COdQmA9g9S8.vtt",
+      "verified": true,
+      "notes": "Core RC transient lecture. Inductors get far less airtime in 6.002 videos, so pair with the RL picks. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L13",
+      "series": "mit-6002-s07",
+      "number": 13,
+      "title": "Lecture 13: Digital Circuit Speed",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-13/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=TXJIhDHtHSI"
+      ],
+      "youtube_id": "TXJIhDHtHSI",
+      "duration_min": 52.9,
+      "topics": [
+        "RC delay",
+        "gate delay",
+        "first-order step response"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/436f601051b15e6a2eff7b7d2774631e_TXJIhDHtHSI.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/a6ffa0d14f6454cab6f388f257476419_TXJIhDHtHSI.vtt",
+      "verified": true,
+      "notes": "Applies first-order RC step response to gate delay; extra RC practice wrapped in digital context. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L14",
+      "series": "mit-6002-s07",
+      "number": 14,
+      "title": "Lecture 14: State and Memory",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-14/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=bX8i2yECWaU"
+      ],
+      "youtube_id": "bX8i2yECWaU",
+      "duration_min": 48.0,
+      "topics": [
+        "state",
+        "initial conditions",
+        "RC memory",
+        "impulse response"
+      ],
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ee61c25a3d1e86cd3d52ba3ee5d85570_bX8i2yECWaU.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/0768b78e26d75c628ebaa31e1205a4ab_bX8i2yECWaU.vtt",
+      "verified": true,
+      "notes": "Uses the idea of capacitor voltage as state (initial conditions), useful for transient problems; the digital-memory part can be skipped. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L15a",
+      "series": "mit-6002-s07",
+      "number": 15,
+      "title": "Lecture 15: Second-Order Systems (part 1)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-15-part-1/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=ypX20WnHNQw"
+      ],
+      "youtube_id": "ypX20WnHNQw",
+      "duration_min": 50.2,
+      "topics": [
+        "LC circuits",
+        "second-order systems"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/e9f88675e88b1ec5e6f5798fef6138b4_ypX20WnHNQw.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ffa3f5b1a4835fbfaed2b1fcf6174fe7_ypX20WnHNQw.vtt",
+      "verified": true,
+      "notes": "Second-order circuits are ECE 202 material. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L15b",
+      "series": "mit-6002-s07",
+      "number": 15,
+      "title": "Lecture 15: Second-Order Systems (part 2)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-15-part-2/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=-gRXU-O1FY4"
+      ],
+      "youtube_id": "-gRXU-O1FY4",
+      "duration_min": 50.2,
+      "topics": [
+        "RLC",
+        "damping"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/c4ef7c238963a0796fab72deca72720b_-gRXU-O1FY4.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/6ed5c14baf165862b190ba3fc25ea9c8_-gRXU-O1FY4.vtt",
+      "verified": true,
+      "notes": "Second-order circuits are ECE 202 material. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L16",
+      "series": "mit-6002-s07",
+      "number": 16,
+      "title": "Lecture 16: Sinusoidal Steady State",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-16/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=3GdMaDzIUeQ"
+      ],
+      "youtube_id": "3GdMaDzIUeQ",
+      "duration_min": 52.1,
+      "topics": [
+        "sinusoidal steady state",
+        "frequency response"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/8fe5cd1153e4c0df17034b7e1d9a12e7_3GdMaDzIUeQ.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/68483786508058c2b382225ba96a7ce9_3GdMaDzIUeQ.vtt",
+      "verified": true,
+      "notes": "AC analysis is ECE 202. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L17",
+      "series": "mit-6002-s07",
+      "number": 17,
+      "title": "Lecture 17: The Impedance Model",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-17/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=Km9YIdkc2Oo"
+      ],
+      "youtube_id": "Km9YIdkc2Oo",
+      "duration_min": 49.5,
+      "topics": [
+        "impedance"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/254c07711d0d0afbe138b49944c36adb_Km9YIdkc2Oo.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/1a944e5a42415fb6b00562687223bbaa_Km9YIdkc2Oo.vtt",
+      "verified": true,
+      "notes": "AC analysis is ECE 202. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L18",
+      "series": "mit-6002-s07",
+      "number": 18,
+      "title": "Lecture 18: Filters",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-18/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=WT-qzgaKeGI"
+      ],
+      "youtube_id": "WT-qzgaKeGI",
+      "duration_min": 48.0,
+      "topics": [
+        "filters",
+        "Q factor"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/553999402ad00dc024799e71046f6d04_WT-qzgaKeGI.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/eb3b0684dec559b48d6ec2afb92fe1b8_WT-qzgaKeGI.vtt",
+      "verified": true,
+      "notes": "AC/frequency response is ECE 202. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L19",
+      "series": "mit-6002-s07",
+      "number": 19,
+      "title": "Lecture 19: The Operational Amplifier Abstraction",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-19/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=V0z_f7qxLcY"
+      ],
+      "youtube_id": "V0z_f7qxLcY",
+      "duration_min": 52.5,
+      "topics": [
+        "ideal op-amp",
+        "negative feedback",
+        "non-inverting amplifier",
+        "inverting amplifier"
+      ],
+      "osu_week": 8,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/d6b68edd2625696897005ba6717bb7e9_V0z_f7qxLcY.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/563075f216b3512e87f162a0e3c68360_V0z_f7qxLcY.vtt",
+      "verified": true,
+      "notes": "Ideal op-amp model and the basic feedback amplifiers; direct match for OSU week 8. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L20",
+      "series": "mit-6002-s07",
+      "number": 20,
+      "title": "Lecture 20: Operational Amplifier Circuits",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-20/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=2SwT6JnfCq8"
+      ],
+      "youtube_id": "2SwT6JnfCq8",
+      "duration_min": 49.9,
+      "topics": [
+        "summing amplifier",
+        "superposition with op-amps",
+        "integrator",
+        "differentiator"
+      ],
+      "osu_week": 8,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/65d1a318e9a97ce5e0d016d2b48a7efd_2SwT6JnfCq8.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/fc05b4e68048547faf57b9480e6eb79b_2SwT6JnfCq8.vtt",
+      "verified": true,
+      "notes": "Multiple-input op-amp circuits plus integrators/differentiators (ties op-amps to capacitors). Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L21",
+      "series": "mit-6002-s07",
+      "number": 21,
+      "title": "Lecture 21: Op Amps Positive Feedback",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-21/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=ke3SL_R92ys"
+      ],
+      "youtube_id": "ke3SL_R92ys",
+      "duration_min": 51.2,
+      "topics": [
+        "positive feedback",
+        "comparators",
+        "Schmitt trigger",
+        "oscillators"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/611cea8b3c59b5f5eba5be0bd8ddb0ef_ke3SL_R92ys.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/d0f992e0a99d535db27eb4408c004fbd_ke3SL_R92ys.vtt",
+      "verified": true,
+      "notes": "Positive feedback/oscillators are beyond ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L22",
+      "series": "mit-6002-s07",
+      "number": 22,
+      "title": "Lecture 22: Energy and Power",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-22/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=wNuBD4PYWvs"
+      ],
+      "youtube_id": "wNuBD4PYWvs",
+      "duration_min": 51.7,
+      "topics": [
+        "energy stored in capacitors",
+        "power dissipation",
+        "RC energy"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/7eb2506dea41998db333c7fbea2c9e26_wNuBD4PYWvs.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ca37324c5f0d59fea0d77f7d9059333f_wNuBD4PYWvs.vtt",
+      "verified": true,
+      "notes": "Energy stored in C (and dissipated in RC charging); supports the capacitor/inductor energy formulas. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L23",
+      "series": "mit-6002-s07",
+      "number": 23,
+      "title": "Lecture 23: Energy, CMOS",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-23/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=JB2HgohNHYQ"
+      ],
+      "youtube_id": "JB2HgohNHYQ",
+      "duration_min": 40.2,
+      "topics": [
+        "CMOS",
+        "power in digital circuits"
+      ],
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/e11f02e75143bd0b0c893086533e6643_JB2HgohNHYQ.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/a61694beb4f051348d5591857b2a1f72_JB2HgohNHYQ.vtt",
+      "verified": true,
+      "notes": "CMOS at circuit level; optional context for the semiconductor-devices intro. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "mit6002-L25",
+      "series": "mit-6002-s07",
+      "number": 25,
+      "title": "Lecture 25: Violating the Abstraction Barrier",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/lecture-25/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=dyxcCoUgETU"
+      ],
+      "youtube_id": "dyxcCoUgETU",
+      "duration_min": 46.6,
+      "topics": [
+        "parasitics",
+        "crosstalk",
+        "where abstractions break"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/3d03e2ab93e4c46dd5f15ef41c98b873_dyxcCoUgETU.pdf",
+      "transcript_vtt_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/aae1fdb408e357d4bfe3e63dff69171a_dyxcCoUgETU.vtt",
+      "verified": true,
+      "notes": "Course capstone; not needed for ECE 201. Duration from YouTube watch-page lengthSeconds; transcript (PDF and VTT captions) linked from the OCW lecture page."
+    },
+    {
+      "id": "hajimiri-001",
+      "series": "hajimiri-caltech-circuits",
+      "number": 1,
+      "title": "001. Circuits Fundamentals: Definitions, graph properties, current & voltage,  power & energy",
+      "url": "https://www.youtube.com/watch?v=i9WixHfiZPU",
+      "alt_urls": [],
+      "youtube_id": "i9WixHfiZPU",
+      "duration_min": 67.6,
+      "topics": [
+        "Definitions",
+        "graph properties",
+        "current & voltage",
+        "power & energy"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-002",
+      "series": "hajimiri-caltech-circuits",
+      "number": 2,
+      "title": "002. Circuits Fundamental: Passivity and Activity, KCL and KVL, Ideal Sources",
+      "url": "https://www.youtube.com/watch?v=H00Z2qa_a0c",
+      "alt_urls": [],
+      "youtube_id": "H00Z2qa_a0c",
+      "duration_min": 59.9,
+      "topics": [
+        "Passivity and Activity",
+        "KCL and KVL",
+        "Ideal Sources"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-003",
+      "series": "hajimiri-caltech-circuits",
+      "number": 3,
+      "title": "003. Circuits Fundamentals: Resistance, Ohm's law, linearity, time-variance, diode circuits.",
+      "url": "https://www.youtube.com/watch?v=hoO9Kb223rM",
+      "alt_urls": [],
+      "youtube_id": "hoO9Kb223rM",
+      "duration_min": 46.4,
+      "topics": [
+        "Resistance",
+        "Ohm's law",
+        "linearity",
+        "time-variance",
+        "diode circuits."
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-004",
+      "series": "hajimiri-caltech-circuits",
+      "number": 4,
+      "title": "004. Nodal Analysis: Ground, Y-Matrix, Node Voltage & Stimulus vectors, Linear Algebra, Determinant",
+      "url": "https://www.youtube.com/watch?v=E6SWCh33L7U",
+      "alt_urls": [],
+      "youtube_id": "E6SWCh33L7U",
+      "duration_min": 55.9,
+      "topics": [
+        "Ground",
+        "Y-Matrix",
+        "Node Voltage & Stimulus vectors",
+        "Linear Algebra",
+        "Determinant"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-005",
+      "series": "hajimiri-caltech-circuits",
+      "number": 5,
+      "title": "005. Nodal Analysis: Examples, Dependent Sources, Existence of a Solution",
+      "url": "https://www.youtube.com/watch?v=QQCYJnmbXYw",
+      "alt_urls": [],
+      "youtube_id": "QQCYJnmbXYw",
+      "duration_min": 31.6,
+      "topics": [
+        "Examples",
+        "Dependent Sources",
+        "Existence of a Solution"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; covers an OSU topic 6.002 skips (dependent sources/supernode/mesh/supermesh/max power/Y-Delta). Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-006",
+      "series": "hajimiri-caltech-circuits",
+      "number": 6,
+      "title": "006. Nodal Analysis Continued: Nodal Analysis, Dependent Sources, w/ Voltage Sources, Super Nodes",
+      "url": "https://www.youtube.com/watch?v=DJcvNUkzWmQ",
+      "alt_urls": [],
+      "youtube_id": "DJcvNUkzWmQ",
+      "duration_min": 53.7,
+      "topics": [
+        "Nodal Analysis",
+        "Dependent Sources",
+        "w/ Voltage Sources",
+        "Super Nodes"
+      ],
+      "osu_week": 4,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; covers an OSU topic 6.002 skips (dependent sources/supernode/mesh/supermesh/max power/Y-Delta). Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-007",
+      "series": "hajimiri-caltech-circuits",
+      "number": 7,
+      "title": "007. Mesh Analysis & Diode Circuits: Mesh Analysis, 3D Networks, Super Mesh, Diode Circuit Design",
+      "url": "https://www.youtube.com/watch?v=XJ0MKFfwEUo",
+      "alt_urls": [],
+      "youtube_id": "XJ0MKFfwEUo",
+      "duration_min": 52.6,
+      "topics": [
+        "Mesh Analysis",
+        "3D Networks",
+        "Super Mesh",
+        "Diode Circuit Design"
+      ],
+      "osu_week": 4,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; covers an OSU topic 6.002 skips (dependent sources/supernode/mesh/supermesh/max power/Y-Delta). Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-008",
+      "series": "hajimiri-caltech-circuits",
+      "number": 8,
+      "title": "008. Circuit Theorems: Superposition, Thévenin, Norton, Source Transformation, Network Equivalence",
+      "url": "https://www.youtube.com/watch?v=Xzbx9zTL1PA",
+      "alt_urls": [],
+      "youtube_id": "Xzbx9zTL1PA",
+      "duration_min": 56.0,
+      "topics": [
+        "Superposition",
+        "Thévenin",
+        "Norton",
+        "Source Transformation",
+        "Network Equivalence"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-009",
+      "series": "hajimiri-caltech-circuits",
+      "number": 9,
+      "title": "009. Circuit Theorems: Source Transportation, Substitution Theorem, Maximum Power Transfer, Y-Delta",
+      "url": "https://www.youtube.com/watch?v=Ho0thejpuoY",
+      "alt_urls": [],
+      "youtube_id": "Ho0thejpuoY",
+      "duration_min": 45.3,
+      "topics": [
+        "Source Transportation",
+        "Substitution Theorem",
+        "Maximum Power Transfer",
+        "Y-Delta"
+      ],
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; covers an OSU topic 6.002 skips (dependent sources/supernode/mesh/supermesh/max power/Y-Delta). Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-010",
+      "series": "hajimiri-caltech-circuits",
+      "number": 10,
+      "title": "010. Active circuits: Op-Amp, Feedback, Asymptotic Equality, Inverting and Non-Inverting Amplifiers",
+      "url": "https://www.youtube.com/watch?v=eX81YvhwEEw",
+      "alt_urls": [],
+      "youtube_id": "eX81YvhwEEw",
+      "duration_min": 70.8,
+      "topics": [
+        "Op-Amp",
+        "Feedback",
+        "Asymptotic Equality",
+        "Inverting and Non-Inverting Amplifiers"
+      ],
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-011",
+      "series": "hajimiri-caltech-circuits",
+      "number": 11,
+      "title": "011. Singularity Functions: Introduction, Unit Step, Pulse, and Dirac Delta (Impulse) Functions",
+      "url": "https://www.youtube.com/watch?v=bjrS-qMw3OY",
+      "alt_urls": [],
+      "youtube_id": "bjrS-qMw3OY",
+      "duration_min": 34.0,
+      "topics": [
+        "Introduction",
+        "Unit Step",
+        "Pulse",
+        "and Dirac Delta (Impulse) Functions"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-014",
+      "series": "hajimiri-caltech-circuits",
+      "number": 14,
+      "title": "014. Time-Domain Response: Capacitors and Inductors, RC Response, General 1st-Order System",
+      "url": "https://www.youtube.com/watch?v=n_ukMGEdFFQ",
+      "alt_urls": [],
+      "youtube_id": "n_ukMGEdFFQ",
+      "duration_min": 69.6,
+      "topics": [
+        "Capacitors and Inductors",
+        "RC Response",
+        "General 1st-Order System"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "hajimiri-015",
+      "series": "hajimiri-caltech-circuits",
+      "number": 15,
+      "title": "015. Time Domain Response: RC Step and Impulse Response",
+      "url": "https://www.youtube.com/watch?v=j5tEFxf5UuA",
+      "alt_urls": [],
+      "youtube_id": "j5tEFxf5UuA",
+      "duration_min": 22.2,
+      "topics": [
+        "RC Step and Impulse Response"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Caltech full lecture; Use as a deeper lecture-format alternative when a short video is not enough. YouTube auto/uploaded captions present (no standalone transcript URL)."
+    },
+    {
+      "id": "yt-C_EDm61hwLw",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Passive Sign Convention for Circuits",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=C_EDm61hwLw",
+      "alt_urls": [],
+      "youtube_id": "C_EDm61hwLw",
+      "duration_min": 5.8,
+      "topics": [
+        "passive sign convention",
+        "power"
+      ],
+      "gap_topic": "basics",
+      "osu_week": 1,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Short; fixes the sign convention that trips up power calculations. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-rE_0ejMU6yM",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "Basic Concepts of Circuits",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=rE_0ejMU6yM",
+      "alt_urls": [],
+      "youtube_id": "rE_0ejMU6yM",
+      "duration_min": 16.4,
+      "topics": [
+        "charge",
+        "current",
+        "voltage",
+        "power"
+      ],
+      "gap_topic": "basics",
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Solved-example walk-through of chapter-1 style problems. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-P3QX1PQnoo0",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Kirchhoff’s Current Law (KCL)",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=P3QX1PQnoo0",
+      "alt_urls": [],
+      "youtube_id": "P3QX1PQnoo0",
+      "duration_min": 6.2,
+      "topics": [
+        "KCL"
+      ],
+      "gap_topic": "KCL/KVL",
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-nbzWLzDPFBU",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Kirchhoff’s Voltage Law (KVL)",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=nbzWLzDPFBU",
+      "alt_urls": [],
+      "youtube_id": "nbzWLzDPFBU",
+      "duration_min": 5.2,
+      "topics": [
+        "KVL"
+      ],
+      "gap_topic": "KCL/KVL",
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-8pJcXfl8oq0",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "Ohm's Law and Kirchhoff's Laws",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=8pJcXfl8oq0",
+      "alt_urls": [],
+      "youtube_id": "8pJcXfl8oq0",
+      "duration_min": 12.4,
+      "topics": [
+        "Ohm's law",
+        "KCL",
+        "KVL"
+      ],
+      "gap_topic": "KCL/KVL",
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Worked examples. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-AGP3x069cFA",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "How Voltage Division Works (Series Resistors)",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=AGP3x069cFA",
+      "alt_urls": [],
+      "youtube_id": "AGP3x069cFA",
+      "duration_min": 8.2,
+      "topics": [
+        "voltage divider"
+      ],
+      "gap_topic": "dividers",
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-tCJ2s4aoHvM",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "How Current Division Works (Parallel Resistors)",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=tCJ2s4aoHvM",
+      "alt_urls": [],
+      "youtube_id": "tCJ2s4aoHvM",
+      "duration_min": 7.3,
+      "topics": [
+        "current divider"
+      ],
+      "gap_topic": "dividers",
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-Gn26z60tTog",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "Combining Series and Parallel Resistors",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=Gn26z60tTog",
+      "alt_urls": [],
+      "youtube_id": "Gn26z60tTog",
+      "duration_min": 21.3,
+      "topics": [
+        "series/parallel resistors",
+        "equivalent resistance"
+      ],
+      "gap_topic": "series/parallel",
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Worked examples. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-d-NK63PEkM8",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Independent and Dependent Power Sources",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=d-NK63PEkM8",
+      "alt_urls": [],
+      "youtube_id": "d-NK63PEkM8",
+      "duration_min": 7.2,
+      "topics": [
+        "independent sources",
+        "dependent sources"
+      ],
+      "gap_topic": "dependent sources",
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Same Engineer4Free playlist also has one short video per source type (VCCS, CCCS, VCVS, CCVS). Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-VN3QXcvSmVI",
+      "series": "pytel-dc",
+      "number": null,
+      "title": "Circuit Analysis with Dependent Sources (Full Lecture)",
+      "channel": "Jim Pytel",
+      "url": "https://www.youtube.com/watch?v=VN3QXcvSmVI",
+      "alt_urls": [],
+      "youtube_id": "VN3QXcvSmVI",
+      "duration_min": 16.7,
+      "topics": [
+        "dependent sources",
+        "circuit analysis with dependent sources"
+      ],
+      "gap_topic": "dependent sources",
+      "osu_week": 3,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Community-college lecture; worked analysis with dependent sources. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-6U6z79oRDB0",
+      "series": "pytel-dc",
+      "number": null,
+      "title": "Dependent Sources (Full Lecture)",
+      "channel": "Jim Pytel",
+      "url": "https://www.youtube.com/watch?v=6U6z79oRDB0",
+      "alt_urls": [],
+      "youtube_id": "6U6z79oRDB0",
+      "duration_min": 7.8,
+      "topics": [
+        "dependent sources"
+      ],
+      "gap_topic": "dependent sources",
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-SfKw8bHk7-o",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Independent and Dependent (Controlled) Sources",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=SfKw8bHk7-o",
+      "alt_urls": [],
+      "youtube_id": "SfKw8bHk7-o",
+      "duration_min": 7.7,
+      "topics": [
+        "dependent sources"
+      ],
+      "gap_topic": "dependent sources",
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-XtciQU4KMSg",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "Delta to Wye and Wye to Delta Transformations",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=XtciQU4KMSg",
+      "alt_urls": [],
+      "youtube_id": "XtciQU4KMSg",
+      "duration_min": 12.7,
+      "topics": [
+        "delta-wye transformation"
+      ],
+      "gap_topic": "Y-Delta",
+      "osu_week": 3,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Solved examples in textbook-problem style. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-t-Xy2_3tIUE",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Basic Laws (20 of 31) What is The Delta to Y Conversion?",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=t-Xy2_3tIUE",
+      "alt_urls": [],
+      "youtube_id": "t-Xy2_3tIUE",
+      "duration_min": 5.0,
+      "topics": [
+        "delta-wye transformation"
+      ],
+      "gap_topic": "Y-Delta",
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Very short concept video; follow with the next one (21 of 31) for an example. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-qQYRc9UibKk",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Basic Laws (21 of 31) The Delta to Y Conversion Example",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=qQYRc9UibKk",
+      "alt_urls": [],
+      "youtube_id": "qQYRc9UibKk",
+      "duration_min": 6.7,
+      "topics": [
+        "delta-wye transformation"
+      ],
+      "gap_topic": "Y-Delta",
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-OV0qi7yzKAM",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Delta to Star Conversion (with proof and example)",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=OV0qi7yzKAM",
+      "alt_urls": [],
+      "youtube_id": "OV0qi7yzKAM",
+      "duration_min": 13.5,
+      "topics": [
+        "delta-to-star",
+        "derivation"
+      ],
+      "gap_topic": "Y-Delta",
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Includes derivation of the formulas. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-2kPdJHVEkiA",
+      "series": "pytel-dc",
+      "number": null,
+      "title": "Resistive Delta-Y Conversion (Full Lecture)",
+      "channel": "Jim Pytel",
+      "url": "https://www.youtube.com/watch?v=2kPdJHVEkiA",
+      "alt_urls": [],
+      "youtube_id": "2kPdJHVEkiA",
+      "duration_min": 18.8,
+      "topics": [
+        "delta-wye transformation"
+      ],
+      "gap_topic": "Y-Delta",
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-f-sbANgw4fo",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Nodal Analysis for Circuits Explained",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=f-sbANgw4fo",
+      "alt_urls": [],
+      "youtube_id": "f-sbANgw4fo",
+      "duration_min": 8.4,
+      "topics": [
+        "nodal analysis"
+      ],
+      "gap_topic": "nodal",
+      "osu_week": 3,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-JptsfzvKbuo",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "The Complete Guide to Nodal Analysis",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=JptsfzvKbuo",
+      "alt_urls": [],
+      "youtube_id": "JptsfzvKbuo",
+      "duration_min": 27.2,
+      "topics": [
+        "nodal analysis",
+        "supernode",
+        "dependent sources"
+      ],
+      "gap_topic": "nodal",
+      "osu_week": 3,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Long, many solved examples; use as a drill session. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-BMnFC63m1fQ",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "Node Voltage Method Circuit Analysis With Current Sources",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=BMnFC63m1fQ",
+      "alt_urls": [],
+      "youtube_id": "BMnFC63m1fQ",
+      "duration_min": 32.3,
+      "topics": [
+        "nodal analysis"
+      ],
+      "gap_topic": "nodal",
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-khtZubT9K8E",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Supernode Analysis Explained for Circuits",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=khtZubT9K8E",
+      "alt_urls": [],
+      "youtube_id": "khtZubT9K8E",
+      "duration_min": 6.5,
+      "topics": [
+        "supernode"
+      ],
+      "gap_topic": "supernode",
+      "osu_week": 4,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-2JfKcLuESTw",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Nodal Analysis Supernode Example Problem",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=2JfKcLuESTw",
+      "alt_urls": [],
+      "youtube_id": "2JfKcLuESTw",
+      "duration_min": 7.9,
+      "topics": [
+        "supernode"
+      ],
+      "gap_topic": "supernode",
+      "osu_week": 4,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Worked example. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-iIswDPKSQT4",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Supernode Analysis Explained (with Examples)",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=iIswDPKSQT4",
+      "alt_urls": [],
+      "youtube_id": "iIswDPKSQT4",
+      "duration_min": 8.9,
+      "topics": [
+        "supernode"
+      ],
+      "gap_topic": "supernode",
+      "osu_week": 4,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-eQpc2QRFv7Y",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Mesh Analysis for Circuits Explained",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=eQpc2QRFv7Y",
+      "alt_urls": [],
+      "youtube_id": "eQpc2QRFv7Y",
+      "duration_min": 9.8,
+      "topics": [
+        "mesh analysis"
+      ],
+      "gap_topic": "mesh",
+      "osu_week": 4,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-D92DjS43-Qw",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "The Complete Guide to Mesh Analysis",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=D92DjS43-Qw",
+      "alt_urls": [],
+      "youtube_id": "D92DjS43-Qw",
+      "duration_min": 26.8,
+      "topics": [
+        "mesh analysis",
+        "supermesh"
+      ],
+      "gap_topic": "mesh",
+      "osu_week": 4,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Long, many solved examples; use as a drill session. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-jewkmjVjbmw",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Mesh Analysis Example Problem #1",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=jewkmjVjbmw",
+      "alt_urls": [],
+      "youtube_id": "jewkmjVjbmw",
+      "duration_min": 8.9,
+      "topics": [
+        "mesh analysis"
+      ],
+      "gap_topic": "mesh",
+      "osu_week": 4,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-k5Tlg27JDtc",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "Mesh Current Problems - Electronics & Circuit Analysis",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=k5Tlg27JDtc",
+      "alt_urls": [],
+      "youtube_id": "k5Tlg27JDtc",
+      "duration_min": 27.6,
+      "topics": [
+        "mesh analysis"
+      ],
+      "gap_topic": "mesh",
+      "osu_week": 4,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-72W_ZQl4qmE",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Supermesh Analysis Explained",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=72W_ZQl4qmE",
+      "alt_urls": [],
+      "youtube_id": "72W_ZQl4qmE",
+      "duration_min": 7.0,
+      "topics": [
+        "supermesh"
+      ],
+      "gap_topic": "supermesh",
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-2Yc5zvDIvJ0",
+      "series": "engineer4free-circuits",
+      "number": null,
+      "title": "Supermesh Analysis Example Problem",
+      "channel": "Engineer4Free",
+      "url": "https://www.youtube.com/watch?v=2Yc5zvDIvJ0",
+      "alt_urls": [],
+      "youtube_id": "2Yc5zvDIvJ0",
+      "duration_min": 7.0,
+      "topics": [
+        "supermesh"
+      ],
+      "gap_topic": "supermesh",
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Worked example. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-8RGckMZLTBo",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Supermesh Explained (with examples)",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=8RGckMZLTBo",
+      "alt_urls": [],
+      "youtube_id": "8RGckMZLTBo",
+      "duration_min": 13.0,
+      "topics": [
+        "supermesh"
+      ],
+      "gap_topic": "supermesh",
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-uoZ0E6zxoi0",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "How to Use Superposition to Solve Circuits",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=uoZ0E6zxoi0",
+      "alt_urls": [],
+      "youtube_id": "uoZ0E6zxoi0",
+      "duration_min": 12.5,
+      "topics": [
+        "superposition"
+      ],
+      "gap_topic": "superposition",
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-S0GsrzjVkd4",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Superposition Theorem Explained (with Examples)",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=S0GsrzjVkd4",
+      "alt_urls": [],
+      "youtube_id": "S0GsrzjVkd4",
+      "duration_min": 18.9,
+      "topics": [
+        "superposition"
+      ],
+      "gap_topic": "superposition",
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-EX52BuZxpQM",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "Superposition Theorem",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=EX52BuZxpQM",
+      "alt_urls": [],
+      "youtube_id": "EX52BuZxpQM",
+      "duration_min": 44.3,
+      "topics": [
+        "superposition"
+      ],
+      "gap_topic": "superposition",
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Long problem set walk-through. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-C5kr0uDR_so",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "The Complete Guide to Source Transformation",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=C5kr0uDR_so",
+      "alt_urls": [],
+      "youtube_id": "C5kr0uDR_so",
+      "duration_min": 18.0,
+      "topics": [
+        "source transformation"
+      ],
+      "gap_topic": "source transformation",
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt--X7otqsma4Q",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "The Complete Guide to Thevenin's Theorem",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=-X7otqsma4Q",
+      "alt_urls": [],
+      "youtube_id": "-X7otqsma4Q",
+      "duration_min": 23.3,
+      "topics": [
+        "Thevenin",
+        "dependent sources"
+      ],
+      "gap_topic": "Thevenin/Norton",
+      "osu_week": 7,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-rSP32xF5MUc",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "The Complete Guide to Norton's Theorem",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=rSP32xF5MUc",
+      "alt_urls": [],
+      "youtube_id": "rSP32xF5MUc",
+      "duration_min": 24.0,
+      "topics": [
+        "Norton"
+      ],
+      "gap_topic": "Thevenin/Norton",
+      "osu_week": 7,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-8udwPc5pCoA",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Thevenin's Theorem Explained (With examples of Independent and Dependent Sources)",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=8udwPc5pCoA",
+      "alt_urls": [],
+      "youtube_id": "8udwPc5pCoA",
+      "duration_min": 16.6,
+      "topics": [
+        "Thevenin",
+        "dependent sources",
+        "test source"
+      ],
+      "gap_topic": "Thevenin/Norton",
+      "osu_week": 7,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Covers the dependent-source case that 6.002 L3 skips. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-DdLA8rntWEY",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Norton's Theorem Explained (With examples of Independent and Dependent Sources)",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=DdLA8rntWEY",
+      "alt_urls": [],
+      "youtube_id": "DdLA8rntWEY",
+      "duration_min": 15.3,
+      "topics": [
+        "Norton",
+        "dependent sources"
+      ],
+      "gap_topic": "Thevenin/Norton",
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-tk5OgmjDXW8",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "Circuits 1 - Thevenin Equivalent Dependent Source - Example",
+      "channel": "UConn HKN",
+      "url": "https://www.youtube.com/watch?v=tk5OgmjDXW8",
+      "alt_urls": [],
+      "youtube_id": "tk5OgmjDXW8",
+      "duration_min": 17.6,
+      "topics": [
+        "Thevenin",
+        "dependent sources"
+      ],
+      "gap_topic": "Thevenin/Norton",
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "University HKN chapter tutoring video. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-roh1pkffYb0",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "Thevenin's Theorem with Dependent Sources",
+      "channel": "Neso Academy",
+      "url": "https://www.youtube.com/watch?v=roh1pkffYb0",
+      "alt_urls": [],
+      "youtube_id": "roh1pkffYb0",
+      "duration_min": 7.8,
+      "topics": [
+        "Thevenin",
+        "dependent sources"
+      ],
+      "gap_topic": "Thevenin/Norton",
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-zTDgziJC-q8",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "Thevenin's Theorem - Circuit Analysis",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=zTDgziJC-q8",
+      "alt_urls": [],
+      "youtube_id": "zTDgziJC-q8",
+      "duration_min": 9.4,
+      "topics": [
+        "Thevenin"
+      ],
+      "gap_topic": "Thevenin/Norton",
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-bPG7o-97dJ0",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "How to Find Maximum Power Transfer",
+      "channel": "Engineering Circuit Analysis",
+      "url": "https://www.youtube.com/watch?v=bPG7o-97dJ0",
+      "alt_urls": [],
+      "youtube_id": "bPG7o-97dJ0",
+      "duration_min": 16.1,
+      "topics": [
+        "maximum power transfer"
+      ],
+      "gap_topic": "max power",
+      "osu_week": 7,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-RbII8o49Hvs",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Maximum Power Transfer Theorem for DC Circuits (with Examples)",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=RbII8o49Hvs",
+      "alt_urls": [],
+      "youtube_id": "RbII8o49Hvs",
+      "duration_min": 10.5,
+      "topics": [
+        "maximum power transfer"
+      ],
+      "gap_topic": "max power",
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-8CA6ZNXgI-Y",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "Maximum Power Transfer Theorem Using Nodal Analysis & Thevenin Equivalent Circuits",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=8CA6ZNXgI-Y",
+      "alt_urls": [],
+      "youtube_id": "8CA6ZNXgI-Y",
+      "duration_min": 15.2,
+      "topics": [
+        "maximum power transfer",
+        "Thevenin",
+        "nodal analysis"
+      ],
+      "gap_topic": "max power",
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-T5owy52XEuc",
+      "series": "pytel-dc",
+      "number": null,
+      "title": "DC Thevenin's and Maximum Power Transfer Theorem Examples (Full Lecture)",
+      "channel": "Jim Pytel",
+      "url": "https://www.youtube.com/watch?v=T5owy52XEuc",
+      "alt_urls": [],
+      "youtube_id": "T5owy52XEuc",
+      "duration_min": 19.6,
+      "topics": [
+        "Thevenin",
+        "maximum power transfer"
+      ],
+      "gap_topic": "max power",
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-idJEMYhrIfs",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "Operational Amplifiers - Inverting & Non Inverting Op-Amps",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=idJEMYhrIfs",
+      "alt_urls": [],
+      "youtube_id": "idJEMYhrIfs",
+      "duration_min": 12.0,
+      "topics": [
+        "ideal op-amp",
+        "inverting amplifier",
+        "non-inverting amplifier"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-uxcCJVl96hU",
+      "series": "circuitbread",
+      "number": null,
+      "title": "Op-Amp (Operational Amplifier) Practice Problems",
+      "channel": "CircuitBread",
+      "url": "https://www.youtube.com/watch?v=uxcCJVl96hU",
+      "alt_urls": [],
+      "youtube_id": "uxcCJVl96hU",
+      "duration_min": 12.3,
+      "topics": [
+        "op-amp practice problems"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Problem drill. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-x2xxOKOTwM4",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 5: Operational Amp (2 of 28) Inverting Amplifier-Basic Operation",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=x2xxOKOTwM4",
+      "alt_urls": [],
+      "youtube_id": "x2xxOKOTwM4",
+      "duration_min": 4.0,
+      "topics": [
+        "inverting amplifier"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Short drill series; playlist continues with examples. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-c3u9RRIVkok",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 5: Operational Amp (4 of 28) Non-Inverting Amplifier-Basics",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=c3u9RRIVkok",
+      "alt_urls": [],
+      "youtube_id": "c3u9RRIVkok",
+      "duration_min": 4.8,
+      "topics": [
+        "non-inverting amplifier"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-BYtEP0kY64E",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 5: Operational Amp (5 of 28) Summing Amplifier (Inverting)",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=BYtEP0kY64E",
+      "alt_urls": [],
+      "youtube_id": "BYtEP0kY64E",
+      "duration_min": 4.8,
+      "topics": [
+        "summing amplifier"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-Ea5AsPZgB64",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 5: Operational Amp (15 of 28) The Difference Amplifier",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=Ea5AsPZgB64",
+      "alt_urls": [],
+      "youtube_id": "Ea5AsPZgB64",
+      "duration_min": 10.8,
+      "topics": [
+        "difference amplifier"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-yTkC6vdtHaY",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 5: Operational Amp (20 of 28) Cascaded Op-Amp Circuit: Example 1",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=yTkC6vdtHaY",
+      "alt_urls": [],
+      "youtube_id": "yTkC6vdtHaY",
+      "duration_min": 3.1,
+      "topics": [
+        "cascaded op-amps"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-_Ut-nQ535iE",
+      "series": "khan-ee",
+      "number": null,
+      "title": "Non-inverting op-amp circuit",
+      "channel": "Khan Academy",
+      "url": "https://www.youtube.com/watch?v=_Ut-nQ535iE",
+      "alt_urls": [],
+      "youtube_id": "_Ut-nQ535iE",
+      "duration_min": 12.5,
+      "topics": [
+        "non-inverting amplifier"
+      ],
+      "gap_topic": "op-amps",
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-KylJ2v1_c-o",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Transient Analysis: First order R C and R L Circuits",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=KylJ2v1_c-o",
+      "alt_urls": [],
+      "youtube_id": "KylJ2v1_c-o",
+      "duration_min": 27.2,
+      "topics": [
+        "capacitor and inductor behavior",
+        "RC step response",
+        "RL step response",
+        "time constant"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 9,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-zDcXt9Vx34o",
+      "series": "all-about-electronics-network",
+      "number": null,
+      "title": "Transient Analysis: Solved Examples on First order RC and RL Circuits",
+      "channel": "ALL ABOUT ELECTRONICS",
+      "url": "https://www.youtube.com/watch?v=zDcXt9Vx34o",
+      "alt_urls": [],
+      "youtube_id": "zDcXt9Vx34o",
+      "duration_min": 16.9,
+      "topics": [
+        "RC transients",
+        "RL transients"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 10,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Solved examples. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-N0vcIGaXsn4",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 8: RC & RL Circuits (31 of 65) General Strategy of Solving RC Circuits",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=N0vcIGaXsn4",
+      "alt_urls": [],
+      "youtube_id": "N0vcIGaXsn4",
+      "duration_min": 7.0,
+      "topics": [
+        "RC step response strategy",
+        "initial/final value method"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 9,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Short; the general recipe for first-order problems. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-ZYrO0I35mho",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 8: RC & RL Circuits (36 of 65) General Strategy of Solving RL Circuits",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=ZYrO0I35mho",
+      "alt_urls": [],
+      "youtube_id": "ZYrO0I35mho",
+      "duration_min": 2.4,
+      "topics": [
+        "RL step response strategy"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 10,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Very short; the RL version of the recipe; the playlist continues with examples (37-46 of 65). Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-tEmksld8sC0",
+      "series": "van-biezen-ee",
+      "number": null,
+      "title": "Electrical Engineering: Ch 8: RC & RL Circuits (35 of 65) Step Response of an RL Circuit",
+      "channel": "Michel van Biezen",
+      "url": "https://www.youtube.com/watch?v=tEmksld8sC0",
+      "alt_urls": [],
+      "youtube_id": "tEmksld8sC0",
+      "duration_min": 4.6,
+      "topics": [
+        "RL step response"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-zfqJRZyeGRE",
+      "series": "khan-ee",
+      "number": null,
+      "title": "RC step response - intuition",
+      "channel": "Khan Academy",
+      "url": "https://www.youtube.com/watch?v=zfqJRZyeGRE",
+      "alt_urls": [],
+      "youtube_id": "zfqJRZyeGRE",
+      "duration_min": 10.1,
+      "topics": [
+        "RC step response",
+        "intuition"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-PLQrPqYlPmI",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "RC Circuits Physics Problems, Time Constant Explained, Capacitor Charging and Discharging",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=PLQrPqYlPmI",
+      "alt_urls": [],
+      "youtube_id": "PLQrPqYlPmI",
+      "duration_min": 17.5,
+      "topics": [
+        "RC charging/discharging",
+        "time constant"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Physics-style, but gentle. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-RR0sQeDAxgk",
+      "series": "organic-chem-tutor-circuits",
+      "number": null,
+      "title": "RL Circuits - Inductors & Resistors",
+      "channel": "The Organic Chemistry Tutor",
+      "url": "https://www.youtube.com/watch?v=RR0sQeDAxgk",
+      "alt_urls": [],
+      "youtube_id": "RR0sQeDAxgk",
+      "duration_min": 22.4,
+      "topics": [
+        "RL circuits"
+      ],
+      "gap_topic": "RC/RL",
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-btOIDQeMrMg",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "How does a diode work - the PN Junction (with animation)",
+      "channel": "Intermediate Electronics - YouTube",
+      "url": "https://www.youtube.com/watch?v=btOIDQeMrMg",
+      "alt_urls": [],
+      "youtube_id": "btOIDQeMrMg",
+      "duration_min": 5.0,
+      "topics": [
+        "pn junction",
+        "diode"
+      ],
+      "gap_topic": "semiconductors",
+      "osu_week": 10,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Short animation. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-Bfvyj88Hs_o",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "How a MOSFET Works - with animation!",
+      "channel": "Intermediate Electronics - YouTube",
+      "url": "https://www.youtube.com/watch?v=Bfvyj88Hs_o",
+      "alt_urls": [],
+      "youtube_id": "Bfvyj88Hs_o",
+      "duration_min": 4.7,
+      "topics": [
+        "MOSFET operation"
+      ],
+      "gap_topic": "semiconductors",
+      "osu_week": 10,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Short animation. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-IkRXpFIRUl4",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "How are microchips made? - George Zaidan and Sajan Saini",
+      "channel": "TED-Ed",
+      "url": "https://www.youtube.com/watch?v=IkRXpFIRUl4",
+      "alt_urls": [],
+      "youtube_id": "IkRXpFIRUl4",
+      "duration_min": 5.5,
+      "topics": [
+        "chip fabrication overview"
+      ],
+      "gap_topic": "fabrication",
+      "osu_week": 10,
+      "priority": "core",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Short overview of how chips are made. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-dX9CGRZwD-w",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "How are Microchips Made? 🖥️🛠️ CPU Manufacturing Process Steps",
+      "channel": "Branch Education",
+      "url": "https://www.youtube.com/watch?v=dX9CGRZwD-w",
+      "alt_urls": [],
+      "youtube_id": "dX9CGRZwD-w",
+      "duration_min": 27.8,
+      "topics": [
+        "wafer fabrication",
+        "lithography",
+        "process steps"
+      ],
+      "gap_topic": "fabrication",
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Detailed process animation. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-Bu52CE55BN0",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "‘Semiconductor Manufacturing Process’ Explained",
+      "channel": "&#39;All About Semiconductor&#39; by Samsung Semiconductor - YouTube",
+      "url": "https://www.youtube.com/watch?v=Bu52CE55BN0",
+      "alt_urls": [],
+      "youtube_id": "Bu52CE55BN0",
+      "duration_min": 7.7,
+      "topics": [
+        "semiconductor manufacturing process"
+      ],
+      "gap_topic": "fabrication",
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Manufacturer explainer (promotional context). Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-IcrBqCFLHIY",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "How Does a Transistor Work?",
+      "channel": "Veritasium",
+      "url": "https://www.youtube.com/watch?v=IcrBqCFLHIY",
+      "alt_urls": [],
+      "youtube_id": "IcrBqCFLHIY",
+      "duration_min": 6.0,
+      "topics": [
+        "transistor",
+        "doping"
+      ],
+      "gap_topic": "semiconductors",
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-USrY0JspDEg",
+      "series": "misc-youtube",
+      "number": null,
+      "title": "PN junction Diode Explained",
+      "channel": "Forward Bias and Reverse Bias - YouTube",
+      "url": "https://www.youtube.com/watch?v=USrY0JspDEg",
+      "alt_urls": [],
+      "youtube_id": "USrY0JspDEg",
+      "duration_min": 14.8,
+      "topics": [
+        "pn junction",
+        "forward/reverse bias"
+      ],
+      "gap_topic": "semiconductors",
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    },
+    {
+      "id": "yt-403CnTftB4M",
+      "series": "hajimiri-caltech-circuits",
+      "number": null,
+      "title": "101N. Basic Solid-State Physics: Energy bands, Electrons and Holes",
+      "channel": "Ali Hajimiri (Academy)",
+      "url": "https://www.youtube.com/watch?v=403CnTftB4M",
+      "alt_urls": [],
+      "youtube_id": "403CnTftB4M",
+      "duration_min": 59.4,
+      "topics": [
+        "energy bands",
+        "electrons and holes"
+      ],
+      "gap_topic": "semiconductors",
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "verified": true,
+      "notes": "University-level solid-state physics lecture; deeper than ECE 201 likely needs. Verified via YouTube watch page 2026-10-19 (title, channel, lengthSeconds). Captions available on YouTube."
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "mit6002s07-hw1",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 1",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw1/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/ab181ec7aec9431046763e8dd8f55286_hw1.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw1.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "KVL",
+        "KCL",
+        "power conservation",
+        "resistor synthesis"
+      ],
+      "osu_week": 2,
+      "solution_quality": "none",
+      "problem_count": 5,
+      "notes": "Ch 1, 2.1-2.5. Directly useful. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw2",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 2",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw2/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/15878f74dcca61c4298c957999778bc0_hw2.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw2.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "equivalent resistance",
+        "voltage division",
+        "node method",
+        "Thevenin/Norton",
+        "superposition"
+      ],
+      "osu_week": 3,
+      "solution_quality": "none",
+      "problem_count": 8,
+      "notes": "Ch 3. Directly useful; Problem 2.2 references A&L. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw3",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 3",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw3/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/78ffb2358df6708444c4b05fc44f920c_hw3.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw3.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "Boolean logic",
+        "MOSFET switch model"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 9,
+      "notes": "Digital; skip for ECE 201. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw4",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 4",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw4/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/457f2ef8b94f22ec16e3ff52705c89e6_hw4.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw4.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "nonlinear resistors",
+        "small-signal",
+        "MOS gates"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 7,
+      "notes": "Skip for ECE 201. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw5",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 5",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw5/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/e26921fde419a3632a4241786551171e_hw5.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw5.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "Thevenin with dependent source",
+        "MOSFET amplifiers"
+      ],
+      "osu_week": 7,
+      "solution_quality": "none",
+      "problem_count": 6,
+      "notes": "Problem 5.1 (Thevenin equivalent with a dependent voltage source) is useful; rest is MOSFET amplifiers. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw6",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 6",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw6/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/95e622ad8c877e6c14daafecc0b09516_hw6.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw6.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "MOSFET small-signal"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 8,
+      "notes": "Skip for ECE 201. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw7",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 7",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw7/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/83a70cc0d4a8f73b2dfc8ed329949367_hw7.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw7.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "MOSFET amplifiers",
+        "small-signal"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 8,
+      "notes": "Skip for ECE 201. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw8",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 8",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw8/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/65346a991b4299dfc3e7ce4a8dd6165b_hw8.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw8.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "first-order RC/RL",
+        "Chapter 10"
+      ],
+      "osu_week": 9,
+      "solution_quality": "none",
+      "problem_count": 9,
+      "notes": "First-order transients; several exercises reference A&L. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw9",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 9",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw9/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/3bcfb33ff7a4e60cee8cf8acbffbd110_hw9.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw9.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "series/parallel L and C",
+        "first-order natural response",
+        "impulse response"
+      ],
+      "osu_week": 10,
+      "solution_quality": "none",
+      "problem_count": 6,
+      "notes": "Exercises 9.1-9.2 and Problem 9.1 are first-order and useful; later parts touch impulses. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw10",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 10",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw10/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/c9c4deafe4bb5a665d8322778aa5d194_hw10.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw10.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "second-order RLC step response",
+        "impedance"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 8,
+      "notes": "Second-order/AC; skip for ECE 201. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    },
+    {
+      "id": "mit6002s07-hw11",
+      "source": "MIT OCW 6.002 Spring 2007",
+      "title": "Homework 11",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/hw11/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/4cc083a23637573e307b98d0919a8c51_hw11.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/hw11.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "audio playback system design (pre-lab)"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": null,
+      "notes": "Lab-design project; skip. OCW posts no homework solutions for this course. problem_count = exercises + problems counted from extracted PDF text (approximate)."
+    }
+  ],
+  "exams": [
+    {
+      "id": "mit6002-quiz1_s07",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Quiz 1 (Spring 2007)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/quiz1_s07/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/88927b3163eee7d5f232367a897a081d_quiz1_s07.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/quiz1_s07.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "resistive networks",
+        "equivalent resistance",
+        "node equations",
+        "Thevenin",
+        "digital/MOS"
+      ],
+      "osu_week": 5,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Exam is a 26-page booklet of short problems with answer choices; early problems (resistive networks, node equations, Thevenin) are good Midterm 1 practice. No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-quiz2_s07",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Quiz 2 (Spring 2007)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/quiz2_s07/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/c402cfea3b68444521e9f012d88b7006_quiz2_s07.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/quiz2_s07.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "small-signal",
+        "first-order RC/RL transients",
+        "MOSFET"
+      ],
+      "osu_week": 10,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Problems 1E-1G are first-order transients (Midterm 2 practice); rest is MOSFET. No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-final_s07",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Final Exam (Spring 2007)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/final_s07/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/b5b3536f01475af4d877751c82f785d1_final_s07.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/final_s07.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "MOSFET",
+        "digital",
+        "RC",
+        "second-order",
+        "op-amps"
+      ],
+      "osu_week": null,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Mixed; select individual problems only. No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-quiz1_f06",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Quiz 1 (Fall 2006)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/quiz1_f06/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/30af3faaaae25b7115141a1f7fcf9434_quiz1_f06.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/quiz1_f06.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "Thevenin",
+        "power distribution network",
+        "MOSFET switch-resistor model"
+      ],
+      "osu_week": 5,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Problems 1-2 relevant (resistive/Thevenin). No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-quiz2_f04",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Quiz 2 (Fall 2004)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/quiz2_f04/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/33673c004dd0259cb16a2a50bbb83636_quiz2_f04.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/quiz2_f04.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "Thevenin",
+        "MOSFET amplifier",
+        "first-order transients"
+      ],
+      "osu_week": 10,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Problem 1 (Thevenin) and Problem 3 (transients) relevant. No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-quiz1_s04",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Quiz 1 (Spring 2004)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/quiz1_s04/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/28043bafdafaa71572ec5ccd4fe73c89_quiz1_s04.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/quiz1_s04.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "resistive networks",
+        "node method",
+        "nonlinear resistor"
+      ],
+      "osu_week": 5,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Problems 1-3 relevant. No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-quiz2_s04",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Quiz 2 (Spring 2004)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/quiz2_s04/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/3f3668c71e80478edb84cc2130fda230_quiz2_s04.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/quiz2_s04.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "MOSFET",
+        "two-port/Thevenin"
+      ],
+      "osu_week": null,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Mostly MOSFET; low relevance. No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-quiz1_f03",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Quiz 1 (Fall 2003)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/quiz1_f03/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/3e44f02d4dbcd4063cf27d23558ccbeb_quiz1_f03.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/quiz1_f03.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "resistive networks",
+        "digital",
+        "semiconductor device model"
+      ],
+      "osu_week": 5,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Problem 1 relevant. No solutions on OCW (text extraction found no solution content)."
+    },
+    {
+      "id": "mit6002-final_f00",
+      "source": "MIT OCW 6.002 (posted with Spring 2007)",
+      "title": "Final Exam (Fall 2000)",
+      "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/resources/final_f00/",
+      "pdf_url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/0cb29e28115d9dfa9c44c2545111ce84_final_f00.pdf",
+      "solutions_url": null,
+      "local_path": "library/ece201/mit6002/final_f00.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "op-amps",
+        "nonlinear",
+        "amplifiers",
+        "transients"
+      ],
+      "osu_week": null,
+      "time_limit_min": null,
+      "rules": "unknown (not checked beyond cover page)",
+      "notes": "Problem 1 (op-amp) and Problem 5 relevant. No solutions on OCW (text extraction found no solution content)."
+    }
+  ],
+  "week_map": [
+    {
+      "week": 1,
+      "topics": [
+        "charge, current, voltage, power",
+        "passive sign convention",
+        "Ohm's law",
+        "lumped abstraction"
+      ],
+      "readings": [],
+      "videos": [
+        "mit6002-L01",
+        "yt-C_EDm61hwLw"
+      ],
+      "optional_videos": [
+        "hajimiri-001",
+        "hajimiri-002",
+        "yt-rE_0ejMU6yM"
+      ],
+      "problem_sets": [],
+      "notes": ""
+    },
+    {
+      "week": 2,
+      "topics": [
+        "KCL",
+        "KVL",
+        "series/parallel",
+        "voltage/current dividers",
+        "dependent sources"
+      ],
+      "readings": [],
+      "videos": [
+        "mit6002-L02",
+        "yt-P3QX1PQnoo0",
+        "yt-nbzWLzDPFBU",
+        "yt-AGP3x069cFA",
+        "yt-tCJ2s4aoHvM",
+        "yt-d-NK63PEkM8"
+      ],
+      "optional_videos": [
+        "hajimiri-003",
+        "yt-8pJcXfl8oq0",
+        "yt-Gn26z60tTog",
+        "yt-6U6z79oRDB0",
+        "yt-SfKw8bHk7-o"
+      ],
+      "problem_sets": [
+        "mit6002s07-hw1"
+      ],
+      "notes": ""
+    },
+    {
+      "week": 3,
+      "topics": [
+        "dependent sources (analysis)",
+        "Y-Delta",
+        "nodal analysis"
+      ],
+      "readings": [],
+      "videos": [
+        "yt-VN3QXcvSmVI",
+        "yt-XtciQU4KMSg",
+        "yt-f-sbANgw4fo",
+        "yt-JptsfzvKbuo"
+      ],
+      "optional_videos": [
+        "mit6002-L08",
+        "hajimiri-004",
+        "hajimiri-005",
+        "yt-t-Xy2_3tIUE",
+        "yt-qQYRc9UibKk",
+        "yt-OV0qi7yzKAM",
+        "yt-2kPdJHVEkiA",
+        "yt-BMnFC63m1fQ"
+      ],
+      "problem_sets": [
+        "mit6002s07-hw2"
+      ],
+      "notes": ""
+    },
+    {
+      "week": 4,
+      "topics": [
+        "supernode",
+        "mesh analysis"
+      ],
+      "readings": [],
+      "videos": [
+        "yt-khtZubT9K8E",
+        "yt-2JfKcLuESTw",
+        "yt-eQpc2QRFv7Y",
+        "yt-D92DjS43-Qw"
+      ],
+      "optional_videos": [
+        "hajimiri-006",
+        "hajimiri-007",
+        "yt-iIswDPKSQT4",
+        "yt-jewkmjVjbmw",
+        "yt-k5Tlg27JDtc"
+      ],
+      "problem_sets": [],
+      "notes": "6.002 has no mesh lecture; supplemental only."
+    },
+    {
+      "week": 5,
+      "topics": [
+        "review",
+        "Midterm 1"
+      ],
+      "readings": [],
+      "videos": [],
+      "optional_videos": [],
+      "problem_sets": [
+        "mit6002-quiz1_s07",
+        "mit6002-quiz1_f06",
+        "mit6002-quiz1_s04",
+        "mit6002-quiz1_f03"
+      ],
+      "notes": "No new videos. Practice: 6.002 HW1-2, Quiz 1 S07/S04/F03/F06 resistive problems."
+    },
+    {
+      "week": 6,
+      "topics": [
+        "supermesh",
+        "superposition",
+        "source transformation"
+      ],
+      "readings": [],
+      "videos": [
+        "mit6002-L03",
+        "yt-72W_ZQl4qmE",
+        "yt-2Yc5zvDIvJ0",
+        "yt-uoZ0E6zxoi0"
+      ],
+      "optional_videos": [
+        "hajimiri-008",
+        "yt-8RGckMZLTBo",
+        "yt-S0GsrzjVkd4",
+        "yt-EX52BuZxpQM",
+        "yt-C5kr0uDR_so"
+      ],
+      "problem_sets": [],
+      "notes": ""
+    },
+    {
+      "week": 7,
+      "topics": [
+        "Thevenin/Norton (incl. dependent sources)",
+        "maximum power transfer"
+      ],
+      "readings": [],
+      "videos": [
+        "yt--X7otqsma4Q",
+        "yt-rSP32xF5MUc",
+        "yt-8udwPc5pCoA",
+        "yt-bPG7o-97dJ0"
+      ],
+      "optional_videos": [
+        "hajimiri-009",
+        "yt-DdLA8rntWEY",
+        "yt-tk5OgmjDXW8",
+        "yt-roh1pkffYb0",
+        "yt-zTDgziJC-q8",
+        "yt-RbII8o49Hvs",
+        "yt-8CA6ZNXgI-Y",
+        "yt-T5owy52XEuc"
+      ],
+      "problem_sets": [
+        "mit6002s07-hw5"
+      ],
+      "notes": ""
+    },
+    {
+      "week": 8,
+      "topics": [
+        "op-amps"
+      ],
+      "readings": [],
+      "videos": [
+        "mit6002-L19",
+        "mit6002-L20",
+        "yt-idJEMYhrIfs",
+        "yt-uxcCJVl96hU"
+      ],
+      "optional_videos": [
+        "hajimiri-010",
+        "yt-x2xxOKOTwM4",
+        "yt-c3u9RRIVkok",
+        "yt-BYtEP0kY64E",
+        "yt-Ea5AsPZgB64",
+        "yt-yTkC6vdtHaY",
+        "yt-_Ut-nQ535iE"
+      ],
+      "problem_sets": [],
+      "notes": ""
+    },
+    {
+      "week": 9,
+      "topics": [
+        "capacitors",
+        "inductors",
+        "RC first-order transients",
+        "energy storage"
+      ],
+      "readings": [],
+      "videos": [
+        "mit6002-L12",
+        "yt-KylJ2v1_c-o",
+        "yt-N0vcIGaXsn4"
+      ],
+      "optional_videos": [
+        "mit6002-L13",
+        "mit6002-L22",
+        "hajimiri-011",
+        "hajimiri-014",
+        "hajimiri-015",
+        "yt-zfqJRZyeGRE",
+        "yt-PLQrPqYlPmI"
+      ],
+      "problem_sets": [
+        "mit6002s07-hw8"
+      ],
+      "notes": ""
+    },
+    {
+      "week": 10,
+      "topics": [
+        "RL transients",
+        "first-order review",
+        "semiconductor devices and fabrication intro",
+        "Midterm 2"
+      ],
+      "readings": [],
+      "videos": [
+        "yt-zDcXt9Vx34o",
+        "yt-ZYrO0I35mho",
+        "yt-btOIDQeMrMg",
+        "yt-Bfvyj88Hs_o",
+        "yt-IkRXpFIRUl4"
+      ],
+      "optional_videos": [
+        "mit6002-L05",
+        "mit6002-L14",
+        "mit6002-L23",
+        "yt-tEmksld8sC0",
+        "yt-RR0sQeDAxgk",
+        "yt-dX9CGRZwD-w",
+        "yt-Bu52CE55BN0",
+        "yt-IcrBqCFLHIY",
+        "yt-USrY0JspDEg",
+        "yt-403CnTftB4M"
+      ],
+      "problem_sets": [
+        "mit6002s07-hw9",
+        "mit6002-quiz2_s07",
+        "mit6002-quiz2_f04"
+      ],
+      "notes": "Week of the semiconductor intro in current ECE 201 is not confirmed; placed here."
+    }
+  ],
+  "unverified": [
+    "MITx 6.002x / 6.002.1x on edX: current availability not confirmed (edX URL resolved to a generic subject page).",
+    "MIT 6.002 Fall 2000 standalone OCW course: OCW URL 404; seen only on DSpace via search results.",
+    "RES.6-010 seen only in a search-result feed; not fetched.",
+    "Which week current OSU ECE 201 teaches the semiconductor/fabrication intro (placed in week 10).",
+    "Khan Academy license not read from a page (Khan's general terms state CC BY-NC-SA for most content).",
+    "Exam time limits and rules not recorded (cover-page instructions not reviewed in detail).",
+    "Homework problem counts are approximate (regex over extracted PDF text)."
+  ]
+}

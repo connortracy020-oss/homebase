@@ -1,0 +1,4427 @@
+{
+  "course": "MTH254",
+  "generated": "2026-10-19",
+  "resources": [
+    {
+      "id": "osu-catalog-mth254",
+      "title": "OSU Catalog: MTH 254 Vector Calculus I (4 cr)",
+      "kind": "syllabus",
+      "url": "https://catalog.oregonstate.edu/courses/mth/",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "fetched 2026-10-19; description, prereq MTH 252/252Z C- or better, equiv MTH 254H, Ecampus available",
+      "local_path": null,
+      "topics": [
+        "vectors",
+        "vector functions",
+        "curves",
+        "surfaces",
+        "partial derivatives",
+        "gradients",
+        "directional derivatives",
+        "multiple integrals rect/polar/cyl/spherical"
+      ],
+      "notes": "Catalog does not list learning outcomes or textbook."
+    },
+    {
+      "id": "osu-ecampus-mth254",
+      "title": "OSU Ecampus course detail: MTH 254 (F26 Bouya, W27 Gilliam)",
+      "kind": "other",
+      "url": "https://ecampus.oregonstate.edu/soc/ecatalog/ecoursedetail.htm?subject=MTH&coursenumber=254&termcode=ALL",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "fetched 2026-10-19: W27 CRN 33192 sec 400 Gilliam, M.; F26 sec 400 Bouya, F.; syllabus in Canvas only; online proctored testing",
+      "local_path": null,
+      "topics": [],
+      "notes": "No textbook listed; syllabus only in Canvas."
+    },
+    {
+      "id": "osu-f18-gibson",
+      "title": "MTH 254-040 Fall 2018 course page (N. Gibson)",
+      "kind": "syllabus",
+      "url": "https://sites.science.oregonstate.edu/~gibsonn/Teaching/MTH254-040F18/",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "fetched 2026-10-19; textbook Briggs & Cochran Multivariable Calculus 2e (Pearson 2015), MyMathLab, exam rules, grade weights",
+      "local_path": null,
+      "topics": [],
+      "notes": "Exams 64% (20+20+24). No calculators/electronics, closed book, one 3x5 card for each midterm, up to three cards for final; final can replace lower midterm. Sister section 060F18 has identical rules."
+    },
+    {
+      "id": "osu-f18-cal",
+      "title": "MTH 254 Fall 2018 day-by-day calendar (Briggs sections, exam dates)",
+      "kind": "schedule",
+      "url": "https://sites.science.oregonstate.edu/~gibsonn/Teaching/MTH254-040F18/MTH254-F18-cal.pdf",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "downloaded 2026-10-19, %PDF ok, text extracted",
+      "local_path": "library/mth254/osu/f18_cal.pdf",
+      "topics": [
+        "Briggs 11.1-11.8",
+        "12.1-12.8",
+        "13.1-13.5"
+      ],
+      "notes": "Template for week_map. Skips 11.9, 12.9, 13.6, 13.7."
+    },
+    {
+      "id": "osu-sg-parks",
+      "title": "MTH 254 Study Guide (H. Parks et al., OSU Math Dept; 2010/2011 copy with worksheets)",
+      "kind": "notes",
+      "url": "https://sites.science.oregonstate.edu/~mpesz/teaching/254_W12/mth254sg.pdf",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "downloaded 2026-10-19, 89 pp, text extracted",
+      "local_path": "library/mth254/osu/sg_w12.pdf",
+      "topics": [
+        "24 lessons keyed to Briggs 10.2, 11.1-11.9, 12.1-12.9, 13.1-13.7"
+      ],
+      "notes": "Lessons pp.3-67 (summary + key skills + list of suggested Briggs 1e exercises, page refs to 1e/custom edition); p.68 correction to a Briggs answer (12.9 #25); pp.69-85 recitation worksheets/labs (coordinates, vectors equilibrium, parallelepiped, dot/cross, parameterized curves, partial derivatives, chain rule, directional derivative/gradient 'fly in the lab', partial derivative practice, Lagrange practice, project) with NO answers; pp.86-89 differentiation/integration rule summary. The Spring 2015 edition linked from the F18 page (math.oregonstate.edu/files/math/Mth254sgSp15.pdf) returns 404."
+    },
+    {
+      "id": "osu-sg-base",
+      "title": "MTH 254 Study Guide (Parks, Sept 2010 version, lessons only)",
+      "kind": "notes",
+      "url": "https://sites.science.oregonstate.edu/~gibsonn/Teaching/MTH254-base/StudyGuide/00_study_guide_254.pdf",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "downloaded 2026-10-19, 68 pp",
+      "local_path": "library/mth254/osu/sg_base.pdf",
+      "topics": [],
+      "notes": "Same 24 lessons as osu-sg-parks without the worksheets. Duplicate; keep only as backup."
+    },
+    {
+      "id": "osu-s13-midrev",
+      "title": "Midterm review slides (Pearson Briggs lecture slides, ch 10.2, 13.5, 11.x) from Gibson S13",
+      "kind": "slides",
+      "url": "http://sites.science.oregonstate.edu/~gibsonn/Teaching/MTH254H-001S13/MTH254MidReview1.pdf",
+      "license": "Copyright Pearson Education, publicly posted by instructor",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "downloaded 2026-10-19, 114 pp mostly images",
+      "local_path": "library/mth254/osu/s13_midrev1.pdf",
+      "topics": [
+        "polar",
+        "cyl/sph coords",
+        "vectors",
+        "dot",
+        "cross",
+        "lines/curves",
+        "vector functions",
+        "motion",
+        "arc length",
+        "curvature"
+      ],
+      "notes": "Image-heavy; little extractable text. Useful only as a visual Briggs ch 11 recap."
+    },
+    {
+      "id": "briggs-mvc-2e",
+      "title": "Briggs & Cochran, Multivariable Calculus 2e (Pearson 2015) — F18 OSU text",
+      "kind": "textbook",
+      "url": "http://www.pearsonhighered.com/educator/product/Multivariable-Calculus-2E/9780321954343.page",
+      "license": "All rights reserved (commercial)",
+      "license_url": null,
+      "verified": false,
+      "verified_how": "Named on fetched OSU F18 page; Pearson link itself not fetched",
+      "local_path": null,
+      "topics": [],
+      "notes": "Section titles in this report come from the OSU study guide (1e/custom numbering 11.1-13.7), which match the F18 calendar numbering; 2e titles assumed identical (not verified)."
+    },
+    {
+      "id": "briggs-cet-3e",
+      "title": "Briggs, Cochran, Gillett, Schulz, Calculus: Early Transcendentals 3e — TOC ch 13-16",
+      "kind": "textbook",
+      "url": "https://www.pearson.com/en-us/subject-catalog/p/pgmtitle/P200000006134/9780134857473",
+      "license": "All rights reserved (commercial)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "fetched TOC 2026-10-19: ch13 Vectors & Geometry of Space, ch14 Vector-Valued Functions, ch15 Functions of Several Variables (15.8 Lagrange), ch16 Multiple Integration (16.7 change of variables)",
+      "local_path": null,
+      "topics": [],
+      "notes": "Recorded in case W27 uses the 3e combined book; current W27 text is unknown. Mapping table in report gives 3e numbers."
+    },
+    {
+      "id": "dray-gvc",
+      "title": "Dray & Manogue, The Geometry of Vector Calculus (online, OSU honors/Dray sections)",
+      "kind": "textbook",
+      "url": "https://books.physics.oregonstate.edu/GVC",
+      "license": "unknown",
+      "license_url": null,
+      "verified": false,
+      "verified_how": "URL taken from fetched Spring 2022 MTH 254 syllabus (courses.physics.oregonstate.edu); book page not fetched",
+      "local_path": null,
+      "topics": [],
+      "notes": "Used by T. Dray sections (S22). Not the standard-section text."
+    },
+    {
+      "id": "openstax-calc3",
+      "title": "OpenStax Calculus Volume 3 (Strang, Herman et al., 2016)",
+      "kind": "textbook",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/1-introduction",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "OpenStax CMS API + section pages fetched 2026-10-19; license_name CC BY-NC-SA v4.0; PDF HEAD = 79.2 MB (not downloaded, >60 MB)",
+      "local_path": null,
+      "topics": [
+        "ch2 Vectors in Space",
+        "ch3 Vector-Valued Functions",
+        "ch4 Differentiation of Functions of Several Variables",
+        "ch5 Multiple Integration"
+      ],
+      "notes": "PDF: https://assets.openstax.org/oscms-prodcms/media/documents/calculus-volume-3_-_WEB.pdf (79 MB). Polar review is 1.3. Each chapter has an Answer Key page with odd-numbered answers (checked chapter-4: 101,103,105...)."
+    },
+    {
+      "id": "openstax-calc3-answerkey",
+      "title": "OpenStax Calc 3 Answer Keys ch 2-5 (odd exercises)",
+      "kind": "solutions",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "fetched chapter-2/3/4/5 answer key pages 2026-10-19; ch4 listing shows odd numbers only",
+      "local_path": null,
+      "topics": [],
+      "notes": "Also chapter-3, chapter-4, chapter-5 at the same base URL. Answers only, no worked steps."
+    },
+    {
+      "id": "openstax-calc3-ssg",
+      "title": "OpenStax Calc 3 Student Answer and Solution Guide (ch 2-5 .docx)",
+      "kind": "solutions",
+      "url": "https://assets.openstax.org/oscms-prodcms/media/documents/Calculus_Volume_3_-_Student_Answer_and_Solution_Guide.zip",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "listed as 'Student Solution Manual' in OpenStax CMS API; zip (27.5 MB) downloaded 2026-10-19; ch 2-5 docx extracted, zip removed",
+      "local_path": "library/mth254/openstax/ssg",
+      "topics": [],
+      "notes": "Files are .docx (not PDF), one per section, e.g. ch04_06.docx. Each section restates exercises with 'Answer:' lines (40-88 per section); no worked 'Solution' text found by search. Not confirmed whether it covers all or only odd exercises. Equations are Word math objects."
+    },
+    {
+      "id": "clp3-text",
+      "title": "CLP-3 Multivariable Calculus text (Feldman, Rechnitzer, Yeager, UBC)",
+      "kind": "textbook",
+      "url": "https://personal.math.ubc.ca/~CLP/CLP3/clp_3_mc_text.pdf",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "downloaded 2026-10-19 (3.3 MB); CLP3 page states CC BY-NC-SA 4.0",
+      "local_path": "library/mth254/clp3/text.pdf",
+      "topics": [
+        "vectors & geometry 2D/3D",
+        "partial derivatives",
+        "multiple integrals"
+      ],
+      "notes": "No vector-valued-function/curvature chapter beyond curves & tangent vectors (problem book 1.6)."
+    },
+    {
+      "id": "clp3-problems",
+      "title": "CLP-3 Problem Book (questions + hints + answers + full solutions)",
+      "kind": "problem_set",
+      "url": "https://personal.math.ubc.ca/~CLP/CLP3/clp_3_mc_problems.pdf",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "downloaded 2026-10-19, 521 pp; TOC parts I questions, II hints p.88, III answers p.101, IV solutions p.154; legal page CC BY-NC-SA 4.0",
+      "local_path": "library/mth254/clp3/problems.pdf",
+      "topics": [],
+      "notes": "Many problems taken from past UBC exams; best open source of exam-style problems with full solutions."
+    },
+    {
+      "id": "clp4",
+      "title": "CLP-4 Vector Calculus (UBC) — MTH 255 material",
+      "kind": "textbook",
+      "url": "https://personal.math.ubc.ca/~CLP/CLP4/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "CLP4 page fetched 2026-10-19; links clp_4_vc_text.pdf and clp_4_vc_problems.pdf (2.2 MB)",
+      "local_path": null,
+      "topics": [
+        "vector fields",
+        "line/surface integrals"
+      ],
+      "notes": "Skip for MTH 254 (covers MTH 255). Not downloaded. License assumed same as CLP3 (not checked on CLP4 page)."
+    },
+    {
+      "id": "apex-calc",
+      "title": "APEX Calculus (Hartman et al.), ch 11-14 multivariable",
+      "kind": "textbook",
+      "url": "https://opentext.uleth.ca/apex-calculus/apex-calculus.html",
+      "license": "CC BY-NC 4.0 (per GitHub README v4)",
+      "license_url": "https://github.com/APEXCalculus/APEXCalculusV4",
+      "verified": true,
+      "verified_how": "online book fetched 2026-10-19: ch11 Vectors, ch12 Vector Valued Functions, ch13 Functions of Several Variables, ch14 Multiple Integration; back matter 'Answers to Selected Exercises'",
+      "local_path": null,
+      "topics": [],
+      "notes": "Answers to selected exercises only, no full solutions. Not downloaded (PDFs served via openintro.org redirect)."
+    },
+    {
+      "id": "pauls-calc3",
+      "title": "Paul's Online Math Notes: Calculus III (Dawkins, Lamar)",
+      "kind": "notes",
+      "url": "https://tutorial.math.lamar.edu/Classes/CalcIII/CalcIII.aspx",
+      "license": "All rights reserved (not open licensed; link only)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "page fetched 2026-10-19 (partial read); site says practice problems include full solutions",
+      "local_path": null,
+      "topics": [
+        "3D space",
+        "partial derivatives",
+        "double/triple integrals",
+        "line/surface integrals"
+      ],
+      "notes": "Link only. Calc III chapter list not captured (page truncated)."
+    },
+    {
+      "id": "mit1802-f07",
+      "title": "MIT OCW 18.02 Multivariable Calculus, Fall 2007 (D. Auroux) — video lectures, practice exams, notes",
+      "kind": "video_series",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "video-lectures, assignments, exams, readings, lecture-notes pages fetched 2026-10-19; footer license link CC BY-NC-SA 4.0",
+      "local_path": "library/mth254/mit1802f07",
+      "topics": [],
+      "notes": "35 lectures; text Edwards & Penney 6e + Mattuck 18.02 Supplementary Notes. Problem sets have NO posted solutions; practice exams 1A-4B have solutions; Mattuck notes exercise sets 1,2,3,5 have solution PDFs."
+    },
+    {
+      "id": "mit1802-f07-notes",
+      "title": "18.02 Supplementary Notes (Mattuck): D, M, TA, SD, N, I, CV + exercises 1,2,3,5 with solutions",
+      "kind": "notes",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/pages/readings/supp_notes/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "supp_notes page listed; PDFs downloaded 2026-10-19",
+      "local_path": "library/mth254/mit1802f07",
+      "topics": [
+        "determinants",
+        "tangent approximation",
+        "second derivative test",
+        "non-independent variables",
+        "limits of iterated integrals",
+        "change of variables"
+      ],
+      "notes": "Files: determinants.pdf, matrices_algebra.pdf, tangent_approx.pdf, 2nd_derivative.pdf, non_ind_variable.pdf, lim_itratd_intgr.pdf, multipl_integrls.pdf, vectors_matrices.pdf(+vectr_mtrics_sol), partial_diff.pdf(+part_diff_sol), double_integrals.pdf(+dbl_intgrls_sol), triple_integrals.pdf(+tripl_intgrl_sol). Skipped V-notes (vector fields; MTH 255), Kepler, PDE, gravitation, least squares."
+    },
+    {
+      "id": "mit1802-f07-weekly",
+      "title": "18.02 F07 weekly lecture summaries (weeks 1-10)",
+      "kind": "notes",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/pages/lecture-notes/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "downloaded lec_week1..10 2026-10-19",
+      "local_path": "library/mth254/mit1802f07",
+      "topics": [],
+      "notes": "Weeks 11-14 (vector calculus) not downloaded."
+    },
+    {
+      "id": "mit1802sc",
+      "title": "MIT OCW 18.02SC Multivariable Calculus (Scholar, Fall 2010) — sessions, recitation videos, psets+solutions, exams+solutions",
+      "kind": "video_series",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+      "license": "CC BY-NC-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      "verified": true,
+      "verified_how": "home page + all unit/session pages crawled 2026-10-19; footer CC BY-NC-SA 4.0",
+      "local_path": "library/mth254/mit1802sc",
+      "topics": [],
+      "notes": "4 units x parts A-C, ~95 sessions. Each session has lecture clips (from F07 Auroux), often a recitation video, notes, and 'Problems'+'Solutions' PDFs (not bulk-downloaded; ~70 short sets). Psets 1-12 all have solutions; exams 1-4, practice exams 1-4, practice final, final all have solutions."
+    },
+    {
+      "id": "leonard-calc3",
+      "title": "Professor Leonard — Calculus 3 (Full Length Videos) playlist",
+      "kind": "video_series",
+      "url": "https://www.youtube.com/playlist?list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "license": "unknown (YouTube standard license assumed; not checked)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "playlist page fetched 2026-10-19: owner Professor Leonard, 34 videos; per-video durations from watch pages",
+      "local_path": null,
+      "topics": [],
+      "notes": "Long (1-3.6 h) whiteboard lectures, Stewart-style numbering (11.x vectors, 12.x vector functions, 13.x partials, 14.x multiple integrals, 15.x vector calc)."
+    },
+    {
+      "id": "3b1b-ela",
+      "title": "3Blue1Brown Essence of Linear Algebra: determinant, dot product, cross product lessons",
+      "kind": "video_series",
+      "url": "https://www.3blue1brown.com/lessons/cross-products",
+      "license": "unknown (all rights reserved assumed)",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "lesson pages fetched 2026-10-19 (determinant, dot-products, cross-products, cross-products-extended); YouTube durations fetched",
+      "local_path": null,
+      "topics": [
+        "geometric meaning of determinant, dot, cross"
+      ],
+      "notes": "Optional intuition for week 1. 3B1B has no dedicated multivariable series (his Khan Academy multivariable videos are on Khan)."
+    },
+    {
+      "id": "khan-multivar",
+      "title": "Khan Academy Multivariable Calculus (videos largely by Grant Sanderson)",
+      "kind": "video_series",
+      "url": "https://www.khanacademy.org/math/multivariable-calculus",
+      "license": "unknown",
+      "license_url": null,
+      "verified": false,
+      "verified_how": "fetch blocked by bot 'Client Challenge'; Sanderson authorship from search results only (ki-campus.org, SIGGRAPH bio)",
+      "local_path": null,
+      "topics": [],
+      "notes": "Not verified; open manually."
+    },
+    {
+      "id": "osu-garity-w12",
+      "title": "MTH 254 Winter 2012 exam info page (D. Garity) with old OSU exams 2001-2011",
+      "kind": "other",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/254Exam_Info.htm",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "fetched 2026-10-19; 8 linked PDFs downloaded",
+      "local_path": "library/mth254/osu_garity",
+      "topics": [],
+      "notes": "States W12 midterm Tue Feb 7, 7:00-8:20 pm (same evening slot reported for W27), one 3x5 handwritten card for midterm. Linked 2011 sample final + solution key (oregonstate.edu/~escherc) and an old-exam archive (~peterseb) are dead (404/unreachable)."
+    },
+    {
+      "id": "osu-dray-s22",
+      "title": "MTH 254 Spring 2022 syllabus (T. Dray)",
+      "kind": "syllabus",
+      "url": "https://courses.physics.oregonstate.edu/mth254/spring-2022/syllabus",
+      "license": "All rights reserved, publicly posted",
+      "license_url": null,
+      "verified": true,
+      "verified_how": "fetched 2026-10-19",
+      "local_path": null,
+      "topics": [],
+      "notes": "Uses Geometry of Vector Calculus; no exam rules or grade weights on page. Most recent public OSU MTH 254 syllabus found."
+    }
+  ],
+  "videos": [
+    {
+      "id": "mit1802f07-L01",
+      "series": "mit-1802-f07",
+      "number": 1,
+      "title": "Lecture 1: Dot Product",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-1-dot-product/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=PxCxlsl_YwY",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec01_300k.mp4"
+      ],
+      "duration_min": 38.7,
+      "topics": [
+        "dot product",
+        "vectors",
+        "angles",
+        "projection"
+      ],
+      "osu_week": 1,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/a6ef6f99ba62d94a0cbcb4bfd5eefce4_PxCxlsl_YwY.pdf",
+      "notes": "Briggs 11.1-11.3. YouTube title: Lec 1: Dot product | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L02",
+      "series": "mit-1802-f07",
+      "number": 2,
+      "title": "Lecture 2: Determinants",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-2-determinants/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=9FLItlbBUPY",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec02_300k.mp4"
+      ],
+      "duration_min": 52.9,
+      "topics": [
+        "determinants",
+        "cross product",
+        "area",
+        "volume"
+      ],
+      "osu_week": 1,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/c542939492274449e99caa5df72fab3f_9FLItlbBUPY.pdf",
+      "notes": "Briggs 11.4. YouTube title: Lec 2: Determinants; cross product | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L03",
+      "series": "mit-1802-f07",
+      "number": 3,
+      "title": "Lecture 3: Matrices",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-3-matrices/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=bHdzkFrgRcA",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec03_300k.mp4"
+      ],
+      "duration_min": 51.1,
+      "topics": [
+        "matrices",
+        "inverse matrices"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/8cee7d239b4595b8afbd6d674ace575d_bHdzkFrgRcA.pdf",
+      "notes": "Linear algebra, not in MTH 254. YouTube title: Lec 3: Matrices; inverse matrices | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L04",
+      "series": "mit-1802-f07",
+      "number": 4,
+      "title": "Lecture 4: Square Systems",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-4-square-systems/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=YBajUR3EFSM",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec04_300k.mp4"
+      ],
+      "duration_min": 49.0,
+      "topics": [
+        "square systems",
+        "equations of planes"
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/1dd4794f4f464b2dec638f6185ecc2ca_YBajUR3EFSM.pdf",
+      "notes": "Planes part useful for Briggs 11.5/12.1; first half is linear systems. YouTube title: Lec 4: Square systems; equations of planes | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L05",
+      "series": "mit-1802-f07",
+      "number": 5,
+      "title": "Lecture 5: Parametric Equations",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-5-parametric-equations/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=57jzPlxf4fk",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec05_300k.mp4"
+      ],
+      "duration_min": 50.8,
+      "topics": [
+        "parametric lines",
+        "parametric curves",
+        "cycloid"
+      ],
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/8d85eab24f38bbe94f87a70935c2afcc_57jzPlxf4fk.pdf",
+      "notes": "Briggs 11.5. YouTube title: Lec 5: Parametric equations for lines and curves | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L06",
+      "series": "mit-1802-f07",
+      "number": 6,
+      "title": "Lecture 6: Kepler's Second Law",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-6-keplers-second-law/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=0D4BbCa4gHo",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec06_300k.mp4"
+      ],
+      "duration_min": 48.1,
+      "topics": [
+        "velocity",
+        "acceleration",
+        "arc length",
+        "Kepler's 2nd law"
+      ],
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/dfd7a35b2f7fbd9a008b3431bc95188b_0D4BbCa4gHo.pdf",
+      "notes": "Briggs 11.6-11.8. YouTube title: Lec 6: Velocity, acceleration; Kepler's second law | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L07",
+      "series": "mit-1802-f07",
+      "number": 7,
+      "title": "Lecture 7: Exam Review",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-7-exam-review/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=U1EcnfTKXJ0",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec07_300k.mp4"
+      ],
+      "duration_min": 49.8,
+      "topics": [
+        "exam 1 review"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/08ea62f9e581f26b78511f34a3fac3a3_U1EcnfTKXJ0.pdf",
+      "notes": "Review of MIT exam 1 (includes matrices). YouTube title: Lec 7: Review | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L08",
+      "series": "mit-1802-f07",
+      "number": 8,
+      "title": "Lecture 8: Partial Derivatives",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-8-partial-derivatives/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=dK3NEf13nPc",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec08_300k.mp4"
+      ],
+      "duration_min": 46.2,
+      "topics": [
+        "functions of 2 variables",
+        "level curves",
+        "partial derivatives",
+        "tangent plane approximation"
+      ],
+      "osu_week": 4,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/febf0e479f6d67e395a07153980ae7fa_dK3NEf13nPc.pdf",
+      "notes": "Briggs 12.2, 12.4, 12.7. YouTube title: Lec 8: Level curves; partial derivatives; tangent plane | MIT 18.02 Multivariable Calculus, Fall 07. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L09",
+      "series": "mit-1802-f07",
+      "number": 9,
+      "title": "Lecture 9: Max-Min and Least Squares",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-9-max-min-and-least-squares/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=UYe98CcxPbs",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec09_300k.mp4"
+      ],
+      "duration_min": 49.7,
+      "topics": [
+        "critical points",
+        "max-min",
+        "least squares"
+      ],
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/6dd35e167398fc08a07e16575f3963f6_UYe98CcxPbs.pdf",
+      "notes": "Briggs 12.8 (least-squares part optional). YouTube title: Lec 9: Max-min problems; least squares | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L10",
+      "series": "mit-1802-f07",
+      "number": 10,
+      "title": "Lecture 10: Second Derivative Test",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-10-second-derivative-test/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=3_goGnJm5sA",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec10_300k.mp4"
+      ],
+      "duration_min": 52.3,
+      "topics": [
+        "second derivative test",
+        "boundaries and infinity"
+      ],
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/9c2738f5bbc2c2914fd90471f7792116_3_goGnJm5sA.pdf",
+      "notes": "Briggs 12.8. YouTube title: Lec 10: Second derivative test; boundaries & infinity | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L11",
+      "series": "mit-1802-f07",
+      "number": 11,
+      "title": "Lecture 11: Chain Rule",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-11-chain-rule/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=7eZVshlT33Q",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec11_300k.mp4"
+      ],
+      "duration_min": 50.1,
+      "topics": [
+        "differentials",
+        "chain rule"
+      ],
+      "osu_week": 5,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/54de670bb48e3729141c9f712652badc_7eZVshlT33Q.pdf",
+      "notes": "Briggs 12.5. YouTube title: Lec 11: Differentials; chain rule | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L12",
+      "series": "mit-1802-f07",
+      "number": 12,
+      "title": "Lecture 12: Gradient",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-12-gradient/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=2XraaWefBd8",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec12_300k.mp4"
+      ],
+      "duration_min": 50.2,
+      "topics": [
+        "gradient",
+        "directional derivative",
+        "tangent plane to level surface"
+      ],
+      "osu_week": 5,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/9fb8a8b323474dbd864b0eae7e1b9618_2XraaWefBd8.pdf",
+      "notes": "Briggs 12.6-12.7. YouTube title: Lec 12: Gradient; directional derivative; tangent plane | MIT 18.02 Multivariable Calculus, Fall 07. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L13",
+      "series": "mit-1802-f07",
+      "number": 13,
+      "title": "Lecture 13: Lagrange Multipliers",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-13-lagrange-multipliers/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=15HVevXRsBA",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec13_300k.mp4"
+      ],
+      "duration_min": 50.2,
+      "topics": [
+        "Lagrange multipliers"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/a45ade1ebf51f5fbdda72a1de1915058_15HVevXRsBA.pdf",
+      "notes": "Briggs 12.9; not on F18 calendar but in OSU study guide (Lesson 17) — make core if W27 syllabus lists it. YouTube title: Lec 13: Lagrange multipliers | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L14",
+      "series": "mit-1802-f07",
+      "number": 14,
+      "title": "Lecture 14: Non-Independent Variables",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-14-non-independent-variables/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=23xbkrpQuAo",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec14_300k.mp4"
+      ],
+      "duration_min": 49.2,
+      "topics": [
+        "non-independent variables",
+        "constrained partials"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/a5f079f1fe7b61cfcedae08bfb338057_23xbkrpQuAo.pdf",
+      "notes": "MIT-specific topic. YouTube title: Lec 14: Non-independent variables | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L15",
+      "series": "mit-1802-f07",
+      "number": 15,
+      "title": "Lecture 15: Partial Differential Equations",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-15-partial-differential-equations/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=ChiM2-MV-qM",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec15_300k.mp4"
+      ],
+      "duration_min": 45.4,
+      "topics": [
+        "partial differential equations",
+        "exam 2 review"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/cd2631b97884f36adbc06dfa0432451f_ChiM2-MV-qM.pdf",
+      "notes": "PDEs not in MTH 254. YouTube title: Lec 15: Partial differential equations; review | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L16",
+      "series": "mit-1802-f07",
+      "number": 16,
+      "title": "Lecture 16: Double Integrals",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-16-double-integrals/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=YP_B0AapU0c",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec16_300k.mp4"
+      ],
+      "duration_min": 48.0,
+      "topics": [
+        "double integrals",
+        "iterated integrals",
+        "order of integration"
+      ],
+      "osu_week": 7,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/61b321d07c5ffbc46f64c653061873b0_YP_B0AapU0c.pdf",
+      "notes": "Briggs 13.1-13.2. YouTube title: Lec 16: Double integrals | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L17",
+      "series": "mit-1802-f07",
+      "number": 17,
+      "title": "Lecture 17: Polar Coordinates",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-17-polar-coordinates/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=60e4hdCi1D4",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec17_300k.mp4"
+      ],
+      "duration_min": 51.5,
+      "topics": [
+        "double integrals in polar",
+        "mass",
+        "center of mass",
+        "moment of inertia"
+      ],
+      "osu_week": 8,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/d121837a21b59e800e738135b8597a36_60e4hdCi1D4.pdf",
+      "notes": "Briggs 13.3 (+13.6 apps). YouTube title: Lec 17: Double integrals in polar coords; applications | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L18",
+      "series": "mit-1802-f07",
+      "number": 18,
+      "title": "Lecture 18: Change of Variables",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-18-change-of-variables/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=UZb9hZIAvL4",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec18_300k.mp4"
+      ],
+      "duration_min": 49.9,
+      "topics": [
+        "change of variables",
+        "Jacobian"
+      ],
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/94fecde4fa2b1cc6f9206e823057a3c1_UZb9hZIAvL4.pdf",
+      "notes": "Briggs 13.7, not on F18 calendar. YouTube title: Lec 18: Change of variables | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L19",
+      "series": "mit-1802-f07",
+      "number": 19,
+      "title": "Lecture 19: Vector Fields",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-19-vector-fields/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=xrypSZU8cBE",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec19_300k.mp4"
+      ],
+      "duration_min": 51.1,
+      "topics": [
+        "Vector fields and line integrals in the plane"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/041811d6aab8d55bc3f2959880eed05c_xrypSZU8cBE.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 19: Vector fields and line integrals in the plane | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L20",
+      "series": "mit-1802-f07",
+      "number": 20,
+      "title": "Lecture 20: Path Independence",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-20-path-independence/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=o7UCBjGsRTE",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec20_300k.mp4"
+      ],
+      "duration_min": 50.4,
+      "topics": [
+        "Path independence and conservative fields"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/871465b45c12ea4bbf666a9a7a8a2d37_o7UCBjGsRTE.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 20: Path independence and conservative fields | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L21",
+      "series": "mit-1802-f07",
+      "number": 21,
+      "title": "Lecture 21: Gradient Fields",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-21-gradient-fields/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=z5TPjZrsp2k",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec21_300k.mp4"
+      ],
+      "duration_min": 50.2,
+      "topics": [
+        "Gradient fields and potential functions"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/90688325c5dc28fe81d2538dd60427cf_z5TPjZrsp2k.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 21: Gradient fields and potential functions | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L22",
+      "series": "mit-1802-f07",
+      "number": 22,
+      "title": "Lecture 22: Green's Theorem",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-22-greens-theorem/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=tYdoS0tkAHA",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec22_300k.mp4"
+      ],
+      "duration_min": 46.7,
+      "topics": [
+        "Green's theorem"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/146b24918d4297fb69788c32d9e991fd_tYdoS0tkAHA.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 22: Green's theorem | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L23",
+      "series": "mit-1802-f07",
+      "number": 23,
+      "title": "Lecture 23: Flux",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-23-flux/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=_CdoRiNSrqI",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec23_300k.mp4"
+      ],
+      "duration_min": 50.2,
+      "topics": [
+        "Flux; normal form of Green's theorem"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/6b140b816031bd21d6fad9651f650c93_CdoRiNSrqI.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 23: Flux; normal form of Green's theorem | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L24",
+      "series": "mit-1802-f07",
+      "number": 24,
+      "title": "Lecture 24: Simply Connected Regions",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-24-simply-connected-regions/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=PnPIqh7Frlw",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec24_300k.mp4"
+      ],
+      "duration_min": 49.0,
+      "topics": [
+        "Simply connected regions; review"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/ead3ef2b6dd8d030502e38b8378ce805_PnPIqh7Frlw.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 24: Simply connected regions; review | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L25",
+      "series": "mit-1802-f07",
+      "number": 25,
+      "title": "Lecture 25: Triple Integrals",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-25-triple-integrals/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=44R5HgbrUmc",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec25_300k.mp4"
+      ],
+      "duration_min": 48.7,
+      "topics": [
+        "triple integrals",
+        "rectangular",
+        "cylindrical coordinates"
+      ],
+      "osu_week": 9,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/38639286417c91d6080856f6affd754f_44R5HgbrUmc.pdf",
+      "notes": "Briggs 13.4-13.5. YouTube title: Lec 25: Triple integrals in rectangular & cylindrical | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L26",
+      "series": "mit-1802-f07",
+      "number": 26,
+      "title": "Lecture 26: Spherical Coordinates",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-26-spherical-coordinates/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=RMBGQtwkoyU",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec26_300k.mp4"
+      ],
+      "duration_min": 51.1,
+      "topics": [
+        "spherical coordinates",
+        "surface area"
+      ],
+      "osu_week": 9,
+      "priority": "core",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/ee609387e71dee7352b7f42764042549_RMBGQtwkoyU.pdf",
+      "notes": "Briggs 13.5 (surface area optional). YouTube title: Lec 26: Spherical coordinates; surface area | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L27",
+      "series": "mit-1802-f07",
+      "number": 27,
+      "title": "Lecture 27: Vector Fields in 3D",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-27-vector-fields-in-3d/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=phk05iSMezA",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec27_300k.mp4"
+      ],
+      "duration_min": 50.6,
+      "topics": [
+        "Vector fields in 3D; surface integrals & flux"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/1e8454840e4a5ba924294fb34ac4dda1_phk05iSMezA.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 27: Vector fields in 3D; surface integrals & flux | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L28",
+      "series": "mit-1802-f07",
+      "number": 28,
+      "title": "Lecture 28: Divergence Theorem",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-28-divergence-theorem/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=WfEQabCGAqI",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec28_300k.mp4"
+      ],
+      "duration_min": 49.2,
+      "topics": [
+        "Divergence theorem"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/4787b3f7449a9dd236e9a74b84ff5687_WfEQabCGAqI.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 28: Divergence theorem | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L29",
+      "series": "mit-1802-f07",
+      "number": 29,
+      "title": "Lecture 29: Divergence Theorem (cont.)",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-29-divergence-theorem-cont/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=wu8kXZSAp20",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec29_300k.mp4"
+      ],
+      "duration_min": 50.2,
+      "topics": [
+        "Divergence theorem (cont.): applications & proof"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/b7d644f796f56b59a1e0d81f484b7869_wu8kXZSAp20.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 29: Divergence theorem (cont.): applications & proof | MIT 18.02 Multivariable Calculus, Fall 07. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L30",
+      "series": "mit-1802-f07",
+      "number": 30,
+      "title": "Lecture 30: Line Integrals",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-30-line-integrals/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=seO7-TwXH_I",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec30_300k.mp4"
+      ],
+      "duration_min": 49.7,
+      "topics": [
+        "Line integrals in space, curl, exactness..."
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/d9a3cefd83872472a9c5df0f694d9439_seO7-TwXH_I.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 30: Line integrals in space, curl, exactness... | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L31",
+      "series": "mit-1802-f07",
+      "number": 31,
+      "title": "Lecture 31: Stokes' Theorem",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-31-stokes-theorem/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=tzoYhe3H5dM",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec31_300k.mp4"
+      ],
+      "duration_min": 48.3,
+      "topics": [
+        "Stokes' theorem"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/d75a92f2ebc39b076c050d16c6171db3_tzoYhe3H5dM.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 31: Stokes' theorem | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L32",
+      "series": "mit-1802-f07",
+      "number": 32,
+      "title": "Lecture 32: Stokes' Theorem (cont.)",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-32-stokes-theorem-cont/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=sr7kCpzAuYw",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec32_300k.mp4"
+      ],
+      "duration_min": 50.1,
+      "topics": [
+        "Stokes' theorem (cont.); review"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/3515522981d38f99e16097a22c2c9db6_sr7kCpzAuYw.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 32: Stokes' theorem (cont.); review | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L33",
+      "series": "mit-1802-f07",
+      "number": 33,
+      "title": "Lecture 33: Maxwell's Equations",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-33-maxwells-equations/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=BChhAS1sFvA",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec33_300k.mp4"
+      ],
+      "duration_min": 28.6,
+      "topics": [
+        "Topological considerations; Maxwell's equations"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/11223c52fb049953cd0a8c06e70454b8_BChhAS1sFvA.pdf",
+      "notes": "Vector fields / line & surface integrals / Green / Stokes / divergence: MTH 255. YouTube title: Lec 33: Topological considerations; Maxwell's equations | MIT 18.02 Multivariable Calculus, Fall 07. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L34",
+      "series": "mit-1802-f07",
+      "number": 34,
+      "title": "Lecture 34: Final Review",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-34-final-review/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=ZwpwmGP5ITM",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec34_300k.mp4"
+      ],
+      "duration_min": 43.9,
+      "topics": [
+        "final review"
+      ],
+      "osu_week": 10,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/1659d5133cb68eaf3c17cc0dcc40f104_ZwpwmGP5ITM.pdf",
+      "notes": "MIT final review is mostly vector-field material (MTH 255). YouTube title: Lec 34: Final review | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802f07-L35",
+      "series": "mit-1802-f07",
+      "number": 35,
+      "title": "Lecture 35: Final Review (cont.)",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/resources/lecture-35-final-review-cont/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=24v9onS9Kcg",
+        "https://archive.org/download/MIT18.02F07/ocw-18_02-f07-lec35_300k.mp4"
+      ],
+      "duration_min": 48.9,
+      "topics": [
+        "final review"
+      ],
+      "osu_week": 10,
+      "priority": "skip",
+      "transcript_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/34ffcaef7a31f74560aa6d23604d9b67_24v9onS9Kcg.pdf",
+      "notes": "MIT final review is mostly vector-field material (MTH 255). YouTube title: Lec 35: Final review (cont.) | MIT 18.02 Multivariable Calculus, Fall 2007. Duration from YouTube lengthSeconds."
+    },
+    {
+      "id": "mit1802sc-rec-s01-vectors",
+      "series": "mit-1802sc-recitations",
+      "number": 1,
+      "title": "Coordinate free proofs: centroid of a triangle",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/coordinate-free-proofs-centroid-of-a-triangle/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=AYixF5nY3Vc"
+      ],
+      "duration_min": 11.2,
+      "topics": [
+        "Coordinate free proofs: centroid of a triangle"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 01; Briggs 11.1. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s03-dot-angles",
+      "series": "mit-1802sc-recitations",
+      "number": 2,
+      "title": "Dot products and angles",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/dot-products-and-angles/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=hfyluFvlZ-o"
+      ],
+      "duration_min": 8.7,
+      "topics": [
+        "Dot products and angles"
+      ],
+      "osu_week": 1,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 03; Briggs 11.3. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s04-components",
+      "series": "mit-1802sc-recitations",
+      "number": 3,
+      "title": "Components of a vector",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/components-of-a-vector/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=4kPz8aqm5yE"
+      ],
+      "duration_min": 5.1,
+      "topics": [
+        "Components of a vector"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 04; Briggs 11.3 projections. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s05-area-2d",
+      "series": "mit-1802sc-recitations",
+      "number": 4,
+      "title": "Area of a parallelogram",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/area-of-a-parallelogram/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=oET16XXfcCI"
+      ],
+      "duration_min": 3.4,
+      "topics": [
+        "Area of a parallelogram"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 05; Briggs 11.4. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s06-det-a",
+      "series": "mit-1802sc-recitations",
+      "number": 5,
+      "title": "Determinants",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/determinants/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=PxkEoEbCJT8"
+      ],
+      "duration_min": 4.7,
+      "topics": [
+        "Determinants"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 06; Briggs 11.4. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s06-det-b",
+      "series": "mit-1802sc-recitations",
+      "number": 6,
+      "title": "Volume of a parallelepiped",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/volume-of-a-parallelepiped/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=QCGJVKaCDuI"
+      ],
+      "duration_min": 2.9,
+      "topics": [
+        "Volume of a parallelepiped"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 06; Briggs 11.4 triple product. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s07-cross",
+      "series": "mit-1802sc-recitations",
+      "number": 7,
+      "title": "Finding area using cross products",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/area-using-cross-product/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=QHaAoQQy07I"
+      ],
+      "duration_min": 5.1,
+      "topics": [
+        "Finding area using cross products"
+      ],
+      "osu_week": 1,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 07; Briggs 11.4. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s12-planes-a",
+      "series": "mit-1802sc-recitations",
+      "number": 8,
+      "title": "Distance of a point to a plane",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/distance-of-a-point-to-a-plane/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=SgJo7_4mp6w"
+      ],
+      "duration_min": 8.2,
+      "topics": [
+        "Distance of a point to a plane"
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 12; Briggs 12.1 / 11.5. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s12-planes-b",
+      "series": "mit-1802sc-recitations",
+      "number": 9,
+      "title": "Equations of planes",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/equations-of-planes/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=XmQM5pHxX-o"
+      ],
+      "duration_min": 13.8,
+      "topics": [
+        "Equations of planes"
+      ],
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 12; Briggs 12.1. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s15-lines",
+      "series": "mit-1802sc-recitations",
+      "number": 10,
+      "title": "Parametrized lines and intersections",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/parametrized-lines-and-intersections/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=dUk_I1E5QxY"
+      ],
+      "duration_min": 8.5,
+      "topics": [
+        "Parametrized lines and intersections"
+      ],
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 15; Briggs 11.5. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s16-line-plane",
+      "series": "mit-1802sc-recitations",
+      "number": 11,
+      "title": "Parametric line intersecting a plane",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/parametric-line-intersecting-a-plane/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=rtEaK_Jp7zU"
+      ],
+      "duration_min": 8.1,
+      "topics": [
+        "Parametric line intersecting a plane"
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 16; Briggs 11.5/12.1. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s19-vel-acc",
+      "series": "mit-1802sc-recitations",
+      "number": 12,
+      "title": "Differentiating a vector valued function",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/differentiating-a-vector-valued-function/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=evxReCLA-fU"
+      ],
+      "duration_min": 14.1,
+      "topics": [
+        "Differentiating a vector valued function"
+      ],
+      "osu_week": 2,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 19; Briggs 11.6-11.7. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s20-arc-length",
+      "series": "mit-1802sc-recitations",
+      "number": 13,
+      "title": "Parametric curves: velocity, acceleration, length",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/parametric-curves-velocity-acceleration-length/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=u9YrIxLZJ6s"
+      ],
+      "duration_min": 8.3,
+      "topics": [
+        "Parametric curves: velocity, acceleration, length"
+      ],
+      "osu_week": 3,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 20; Briggs 11.7-11.8. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s24-graphs",
+      "series": "mit-1802sc-recitations",
+      "number": 14,
+      "title": "Graphing surfaces",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/graphing-surfaces/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=f2KsJBClJ1g"
+      ],
+      "duration_min": 7.9,
+      "topics": [
+        "Graphing surfaces"
+      ],
+      "osu_week": 3,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 24; Briggs 12.1-12.2. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s25-level-a",
+      "series": "mit-1802sc-recitations",
+      "number": 15,
+      "title": "Level curves and critical points",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/level-curves-and-critical-points/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=gzbWF-IdscE"
+      ],
+      "duration_min": 8.4,
+      "topics": [
+        "Level curves and critical points"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 25; Briggs 12.2/12.8. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s25-level-b",
+      "series": "mit-1802sc-recitations",
+      "number": 16,
+      "title": "Level curves",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/level-curves/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=uaHiAxFESc4"
+      ],
+      "duration_min": 10.4,
+      "topics": [
+        "Level curves"
+      ],
+      "osu_week": 3,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 25; Briggs 12.2. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s26-partials",
+      "series": "mit-1802sc-recitations",
+      "number": 17,
+      "title": "Partial derivatives",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/partial-derivatives/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=KnVNFj53Eq4"
+      ],
+      "duration_min": 5.3,
+      "topics": [
+        "Partial derivatives"
+      ],
+      "osu_week": 4,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 26; Briggs 12.4. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s27-tangent-approx",
+      "series": "mit-1802sc-recitations",
+      "number": 18,
+      "title": "Tangent plane approximation",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/tangent-plane-approximation/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=idNIKTaBEaI"
+      ],
+      "duration_min": 6.9,
+      "topics": [
+        "Tangent plane approximation"
+      ],
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 27; Briggs 12.7. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s29-least-squares",
+      "series": "mit-1802sc-recitations",
+      "number": 19,
+      "title": "Least squares",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/least-squares/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=YwZYSTQs-Hk"
+      ],
+      "duration_min": 9.1,
+      "topics": [
+        "Least squares"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 29; Briggs 12.8 application. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s30-2nd-deriv",
+      "series": "mit-1802sc-recitations",
+      "number": 20,
+      "title": "Second derivative test",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/second-derivative-test/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=oQgHo7acids"
+      ],
+      "duration_min": 8.6,
+      "topics": [
+        "Second derivative test"
+      ],
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 30; Briggs 12.8. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s31-max-min",
+      "series": "mit-1802sc-recitations",
+      "number": 21,
+      "title": "Max/Min",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/max-min/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=ImzS_gSbjK4"
+      ],
+      "duration_min": 14.0,
+      "topics": [
+        "Max/Min"
+      ],
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 31; Briggs 12.8. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s34-chain",
+      "series": "mit-1802sc-recitations",
+      "number": 22,
+      "title": "Total differentials and the chain rule",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/total-differentials-and-the-chain-rule/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=2bF6H_xu0ao"
+      ],
+      "duration_min": 11.6,
+      "topics": [
+        "Total differentials and the chain rule"
+      ],
+      "osu_week": 5,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 34; Briggs 12.5. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s37-tangent-planes",
+      "series": "mit-1802sc-recitations",
+      "number": 23,
+      "title": "Tangent planes",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/tangent-planes/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=6paZkmBMZwQ"
+      ],
+      "duration_min": 9.0,
+      "topics": [
+        "Tangent planes"
+      ],
+      "osu_week": 6,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 37; Briggs 12.6-12.7. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s38-grad-dir",
+      "series": "mit-1802sc-recitations",
+      "number": 24,
+      "title": "Gradient and directional derivative",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/gradient-and-directional-derivative/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=XZ1QwS1IKgw"
+      ],
+      "duration_min": 13.6,
+      "topics": [
+        "Gradient and directional derivative"
+      ],
+      "osu_week": 5,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 38; Briggs 12.6. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s39-lagrange",
+      "series": "mit-1802sc-recitations",
+      "number": 25,
+      "title": "Lagrange multipliers",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/lagrange-multipliers/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=HyqBcD_e_Uw"
+      ],
+      "duration_min": 10.3,
+      "topics": [
+        "Lagrange multipliers"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 39; Briggs 12.9. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s41-lagrange-3var",
+      "series": "mit-1802sc-recitations",
+      "number": 26,
+      "title": "Lagrange multipliers (3 variables)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/lagrange-multipliers-3-variables/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=nDuS5uQ7-lo"
+      ],
+      "duration_min": 13.3,
+      "topics": [
+        "Lagrange multipliers (3 variables)"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 41; Briggs 12.9. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s43-chain-constraints",
+      "series": "mit-1802sc-recitations",
+      "number": 27,
+      "title": "The chain rule with constraints",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/the-chain-rule-with-constraints/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=U91touR6_UY"
+      ],
+      "duration_min": 15.2,
+      "topics": [
+        "The chain rule with constraints"
+      ],
+      "osu_week": 5,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 43; Briggs MIT-specific (non-independent variables). Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s44-grad-composition",
+      "series": "mit-1802sc-recitations",
+      "number": 28,
+      "title": "Gradients - composition",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/gradients-composition/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=j9GZjr05Heg"
+      ],
+      "duration_min": 10.3,
+      "topics": [
+        "Gradients - composition"
+      ],
+      "osu_week": 5,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 44; Briggs 12.5-12.6. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s48-regions",
+      "series": "mit-1802sc-recitations",
+      "number": 29,
+      "title": "Regions of integration",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/regions-of-integration/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=BefxsWy1HqY"
+      ],
+      "duration_min": 17.8,
+      "topics": [
+        "Regions of integration"
+      ],
+      "osu_week": 7,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 48; Briggs 13.2. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s49-order",
+      "series": "mit-1802sc-recitations",
+      "number": 30,
+      "title": "Changing the order of integration",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/changing-the-order-of-integration/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=p06QDsAPY4g"
+      ],
+      "duration_min": 6.0,
+      "topics": [
+        "Changing the order of integration"
+      ],
+      "osu_week": 7,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 49; Briggs 13.2. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s50-polar",
+      "series": "mit-1802sc-recitations",
+      "number": 31,
+      "title": "Integration in polar coordinates",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/integration-in-polar-coordinates/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=I2Z6K_g5kpc"
+      ],
+      "duration_min": 17.6,
+      "topics": [
+        "Integration in polar coordinates"
+      ],
+      "osu_week": 8,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 50; Briggs 13.3. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s52-density",
+      "series": "mit-1802sc-recitations",
+      "number": 32,
+      "title": "Integrals with density",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/integrals-with-density/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=-pr1TLyPyDw"
+      ],
+      "duration_min": 15.6,
+      "topics": [
+        "Integrals with density"
+      ],
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 52; Briggs 13.6. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s53-change-vars",
+      "series": "mit-1802sc-recitations",
+      "number": 33,
+      "title": "Change of variables",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/change-of-variables/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=lCKxeRiBdjQ"
+      ],
+      "duration_min": 9.3,
+      "topics": [
+        "Change of variables"
+      ],
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 53; Briggs 13.7. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s54-exp-x2",
+      "series": "mit-1802sc-recitations",
+      "number": 34,
+      "title": "Integral of exp(-x^2)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/integral-of-exp-x-sup-2-sup/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=fWOGfzC3IeY"
+      ],
+      "duration_min": 9.6,
+      "topics": [
+        "Integral of exp(-x^2)"
+      ],
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 54; Briggs 13.3. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s55-change-vars-b",
+      "series": "mit-1802sc-recitations",
+      "number": 35,
+      "title": "Change of variables",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/change-of-variables-1/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=G534bz09B4A"
+      ],
+      "duration_min": 19.9,
+      "topics": [
+        "Change of variables"
+      ],
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 55; Briggs 13.7. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s74-cylindrical",
+      "series": "mit-1802sc-recitations",
+      "number": 36,
+      "title": "Volume in cylindrical coordinates",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/volume-in-cylindrical-coordinates/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=qA83eznsKp8"
+      ],
+      "duration_min": 18.1,
+      "topics": [
+        "Volume in cylindrical coordinates"
+      ],
+      "osu_week": 9,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 74; Briggs 13.5. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s75-avg-height",
+      "series": "mit-1802sc-recitations",
+      "number": 37,
+      "title": "Average height",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/average-height/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=cbSkFpO2jgQ"
+      ],
+      "duration_min": 14.7,
+      "topics": [
+        "Average height"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 75; Briggs 13.4/13.6. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s75-moment-cyl",
+      "series": "mit-1802sc-recitations",
+      "number": 38,
+      "title": "Moment of inertia of a cylinder",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/moment-of-inertia-of-a-cylinder/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=iYFogDTPlRo"
+      ],
+      "duration_min": 10.0,
+      "topics": [
+        "Moment of inertia of a cylinder"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 75; Briggs 13.5/13.6. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s77-spherical",
+      "series": "mit-1802sc-recitations",
+      "number": 39,
+      "title": "Average distance on a sphere",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/average-distance-on-a-sphere/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=RoTz_ylFHfY"
+      ],
+      "duration_min": 13.0,
+      "topics": [
+        "Average distance on a sphere"
+      ],
+      "osu_week": 9,
+      "priority": "core",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 77; Briggs 13.5. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "mit1802sc-rec-s78-gravity",
+      "series": "mit-1802sc-recitations",
+      "number": 40,
+      "title": "Gravity and a half-sphere",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/resources/gravity-and-a-half-sphere/",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=jAwWnppdcBE"
+      ],
+      "duration_min": 11.2,
+      "topics": [
+        "Gravity and a half-sphere"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "18.02SC recitation, session 78; Briggs 13.5 application. Transcript exists on OCW page but URL not captured."
+    },
+    {
+      "id": "leonard-c3-01",
+      "series": "leonard-calc3",
+      "number": 1,
+      "title": "Calculus 3 Lecture 11.1:  An Introduction to Vectors",
+      "url": "https://www.youtube.com/watch?v=tGVnBAHLApA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 157.8,
+      "topics": [
+        "An Introduction to Vectors"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-02",
+      "series": "leonard-calc3",
+      "number": 2,
+      "title": "Calculus 3 Lecture 11.2:  Vectors in 3-D Coordinate System",
+      "url": "https://www.youtube.com/watch?v=ZAv3bF2GznI&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 70.8,
+      "topics": [
+        "Vectors in 3-D Coordinate System"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-03",
+      "series": "leonard-calc3",
+      "number": 3,
+      "title": "Calculus 3 Lecture 11.3:  Using the Dot Product",
+      "url": "https://www.youtube.com/watch?v=TKlGMRghcDs&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 149.1,
+      "topics": [
+        "Using the Dot Product"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-04",
+      "series": "leonard-calc3",
+      "number": 4,
+      "title": "Calculus 3 Lecture 11.4:  The Cross Product",
+      "url": "https://www.youtube.com/watch?v=qqfhgStQ-cA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 131.2,
+      "topics": [
+        "The Cross Product"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-05",
+      "series": "leonard-calc3",
+      "number": 5,
+      "title": "Calculus 3 Lecture 11.5:  Lines and Planes in 3-D",
+      "url": "https://www.youtube.com/watch?v=IB1-lrPQjCw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 201.0,
+      "topics": [
+        "Lines and Planes in 3-D"
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-06",
+      "series": "leonard-calc3",
+      "number": 6,
+      "title": "Calculus 3 Lecture 11.6:  Cylinders and Surfaces in 3-D",
+      "url": "https://www.youtube.com/watch?v=aBlKxFsoMZw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 152.4,
+      "topics": [
+        "Cylinders and Surfaces in 3-D"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-07",
+      "series": "leonard-calc3",
+      "number": 7,
+      "title": "Calculus 3 Lecture 11.7:  Using Cylindrical and Spherical Coordinates",
+      "url": "https://www.youtube.com/watch?v=rDeo721ogtk&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 100.2,
+      "topics": [
+        "Using Cylindrical and Spherical Coordinates"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-08",
+      "series": "leonard-calc3",
+      "number": 8,
+      "title": "Calculus 3 Lecture 12.1:  An Introduction To Vector Functions",
+      "url": "https://www.youtube.com/watch?v=YThPIdcwr78&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 124.9,
+      "topics": [
+        "An Introduction To Vector Functions"
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-09",
+      "series": "leonard-calc3",
+      "number": 9,
+      "title": "Calculus 3 Lecture 12.2:  Derivatives and Integrals of Vector Functions",
+      "url": "https://www.youtube.com/watch?v=v_o-allq8LQ&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 162.3,
+      "topics": [
+        "Derivatives and Integrals of Vector Functions"
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-10",
+      "series": "leonard-calc3",
+      "number": 10,
+      "title": "Calculus 3 Lecture 12.3:  Arc Length/Parameterization, TNB (Frenet-Serret) Intro",
+      "url": "https://www.youtube.com/watch?v=Hu72QVWsMlg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 132.8,
+      "topics": [
+        "Arc Length/Parameterization, TNB (Frenet-Serret) Intro"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-11",
+      "series": "leonard-calc3",
+      "number": 11,
+      "title": "Calculus 3 Lecture 12.3/12.5:  TNB (Frenet-Serret) Frames, Curvature, Torsion, Encapsulation",
+      "url": "https://www.youtube.com/watch?v=l7eDxflL-e0&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 157.5,
+      "topics": [
+        "TNB (Frenet-Serret) Frames, Curvature, Torsion, Encapsulation"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-12",
+      "series": "leonard-calc3",
+      "number": 12,
+      "title": "Calculus 3 Lecture 12.4:  Velocity and Acceleration of Vector Functions",
+      "url": "https://www.youtube.com/watch?v=yq4Cj1_bmnE&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 62.0,
+      "topics": [
+        "Velocity and Acceleration of Vector Functions"
+      ],
+      "osu_week": 2,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-13",
+      "series": "leonard-calc3",
+      "number": 13,
+      "title": "Calculus 3 Lecture 13.1:  Intro to Multivariable Functions (Domain, Sketching, Level Curves)",
+      "url": "https://www.youtube.com/watch?v=nIJQPX5kxp4&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 109.1,
+      "topics": [
+        "Intro to Multivariable Functions (Domain, Sketching, Level Curves)"
+      ],
+      "osu_week": 3,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-14",
+      "series": "leonard-calc3",
+      "number": 14,
+      "title": "Calculus 3 Lecture 13.2:  Limits and Continuity of Multivariable Functions (with Squeeze Th.)",
+      "url": "https://www.youtube.com/watch?v=MFF4mvyhAyA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 134.6,
+      "topics": [
+        "Limits and Continuity of Multivariable Functions (with Squeeze Th.)"
+      ],
+      "osu_week": 4,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-15",
+      "series": "leonard-calc3",
+      "number": 15,
+      "title": "Calculus 3 Lecture 13.3:  Partial Derivatives (Derivatives of Multivariable Functions)",
+      "url": "https://www.youtube.com/watch?v=EkZGBdY0vlg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 148.9,
+      "topics": [
+        "Partial Derivatives (Derivatives of Multivariable Functions)"
+      ],
+      "osu_week": 5,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-16",
+      "series": "leonard-calc3",
+      "number": 16,
+      "title": "Calculus 3 Lecture 13.4:  Finding Differentials of Multivariable Functions",
+      "url": "https://www.youtube.com/watch?v=J72AKZtUpgY&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 111.0,
+      "topics": [
+        "Finding Differentials of Multivariable Functions"
+      ],
+      "osu_week": 5,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-17",
+      "series": "leonard-calc3",
+      "number": 17,
+      "title": "Calculus 3 Lecture 13.5:  The Chain Rule for Multivariable Functions",
+      "url": "https://www.youtube.com/watch?v=tXryaM-mTpY&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 131.9,
+      "topics": [
+        "The Chain Rule for Multivariable Functions"
+      ],
+      "osu_week": 5,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-18",
+      "series": "leonard-calc3",
+      "number": 18,
+      "title": "Calculus 3 Lecture 13.6:  Finding Directional Derivatives and Gradients",
+      "url": "https://www.youtube.com/watch?v=tDPp5uWSIiU&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 157.3,
+      "topics": [
+        "Finding Directional Derivatives and Gradients"
+      ],
+      "osu_week": 5,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-19",
+      "series": "leonard-calc3",
+      "number": 19,
+      "title": "Calculus 3 Lecture 13.7:  Finding Tangent Planes and Normal Lines to Surfaces",
+      "url": "https://www.youtube.com/watch?v=yLbqHfuWsr8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 101.8,
+      "topics": [
+        "Finding Tangent Planes and Normal Lines to Surfaces"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-20",
+      "series": "leonard-calc3",
+      "number": 20,
+      "title": "Calculus 3 Lecture 13.8:  Finding Extrema of Functions of 2 Variables (Max and Min)",
+      "url": "https://www.youtube.com/watch?v=kPL28zgEFk8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 218.3,
+      "topics": [
+        "Finding Extrema of Functions of 2 Variables (Max and Min)"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-21",
+      "series": "leonard-calc3",
+      "number": 21,
+      "title": "Calculus 3 Lecture 13.9:  Constrained Optimization with LaGrange Multipliers",
+      "url": "https://www.youtube.com/watch?v=nUfYR5FBGZc&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 58.5,
+      "topics": [
+        "Constrained Optimization with LaGrange Multipliers"
+      ],
+      "osu_week": 6,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-22",
+      "series": "leonard-calc3",
+      "number": 22,
+      "title": "Calculus 3 Lecture 14.1:  INTRODUCTION to Double Integrals (Background Info)",
+      "url": "https://www.youtube.com/watch?v=lv_awaaT6gY&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 52.0,
+      "topics": [
+        "INTRODUCTION to Double Integrals (Background Info)"
+      ],
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-23",
+      "series": "leonard-calc3",
+      "number": 23,
+      "title": "Calculus 3 Lecture 14.2:  How to Solve Double/Repeated/Iterated Integrals",
+      "url": "https://www.youtube.com/watch?v=HxRG_phgGUw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 203.8,
+      "topics": [
+        "How to Solve Double/Repeated/Iterated Integrals"
+      ],
+      "osu_week": 7,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-24",
+      "series": "leonard-calc3",
+      "number": 24,
+      "title": "Calculus 3 Lecture 14.3:  Double Integrals over POLAR REGIONS",
+      "url": "https://www.youtube.com/watch?v=HA41kYxVYnw&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 205.2,
+      "topics": [
+        "Double Integrals over POLAR REGIONS"
+      ],
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-25",
+      "series": "leonard-calc3",
+      "number": 25,
+      "title": "Calculus 3 Lecture 14.4:  Center of Mass (and Moments of Mass and Inertia) for Lamina in 2-D",
+      "url": "https://www.youtube.com/watch?v=WNZ8vMgaPgg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 76.7,
+      "topics": [
+        "Center of Mass (and Moments of Mass and Inertia) for Lamina in 2-D"
+      ],
+      "osu_week": 8,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-26",
+      "series": "leonard-calc3",
+      "number": 26,
+      "title": "Calculus 3 Lecture 14.6:  How to Solve TRIPLE INTEGRALS (Along with Center of Mass and Volume)",
+      "url": "https://www.youtube.com/watch?v=uTLM_iEcVdA&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 213.5,
+      "topics": [
+        "How to Solve TRIPLE INTEGRALS (Along with Center of Mass and Volume)"
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-27",
+      "series": "leonard-calc3",
+      "number": 27,
+      "title": "Calculus 3 Lecture 14.7:  TRIPLE Integrals Over Regions with CYLINDRICAL or SPHERICAL Coord.",
+      "url": "https://www.youtube.com/watch?v=R4vnw-yPnZ8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 200.2,
+      "topics": [
+        "TRIPLE Integrals Over Regions with CYLINDRICAL or SPHERICAL Coord."
+      ],
+      "osu_week": 9,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-28",
+      "series": "leonard-calc3",
+      "number": 28,
+      "title": "Calculus 3 Lecture 14.8:  How to Change Variables in Multiple Integrals (Using the Jacobian)",
+      "url": "https://www.youtube.com/watch?v=VVPu5fWssPg&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 100.1,
+      "topics": [
+        "How to Change Variables in Multiple Integrals (Using the Jacobian)"
+      ],
+      "osu_week": 10,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Long-form alternative/drill lecture; use when 18.02 is too fast. Section numbers are Stewart's, not Briggs'."
+    },
+    {
+      "id": "leonard-c3-29",
+      "series": "leonard-calc3",
+      "number": 29,
+      "title": "Calculus 3 Lecture 15.1:  INTRODUCTION to Vector Fields (and what makes them Conservative)",
+      "url": "https://www.youtube.com/watch?v=71Z1RVYZ8HY&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 58.2,
+      "topics": [
+        "INTRODUCTION to Vector Fields (and what makes them Conservative)"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": null,
+      "notes": "Vector calculus (MTH 255)"
+    },
+    {
+      "id": "leonard-c3-30",
+      "series": "leonard-calc3",
+      "number": 30,
+      "title": "Calculus 3 Lecture 15.2:  How to Find Divergence and Curl of Vector Fields",
+      "url": "https://www.youtube.com/watch?v=TMWevkxtS9s&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 71.8,
+      "topics": [
+        "How to Find Divergence and Curl of Vector Fields"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": null,
+      "notes": "Vector calculus (MTH 255)"
+    },
+    {
+      "id": "leonard-c3-31",
+      "series": "leonard-calc3",
+      "number": 31,
+      "title": "Calculus 3 Lecture 15.3:  How to Compute Line Integrals (Over Non-Conservative V.Fields)",
+      "url": "https://www.youtube.com/watch?v=t6vtOOAnqyU&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 137.4,
+      "topics": [
+        "How to Compute Line Integrals (Over Non-Conservative V.Fields)"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": null,
+      "notes": "Vector calculus (MTH 255)"
+    },
+    {
+      "id": "leonard-c3-32",
+      "series": "leonard-calc3",
+      "number": 32,
+      "title": "Line Integrals on CONSERVATIVE Vector Fields (Independence of Path):  Calculus 3 Lecture 15.4",
+      "url": "https://www.youtube.com/watch?v=HhopxDkW4L8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 114.0,
+      "topics": [
+        "Calculus 3 Lecture 15.4"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": null,
+      "notes": "Vector calculus (MTH 255)"
+    },
+    {
+      "id": "leonard-c3-33",
+      "series": "leonard-calc3",
+      "number": 33,
+      "title": "Green's Theorem:  Calculus 3 Lecture 15.5",
+      "url": "https://www.youtube.com/watch?v=OnyCk62hEL4&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 105.9,
+      "topics": [
+        "Calculus 3 Lecture 15.5"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": null,
+      "notes": "Vector calculus (MTH 255)"
+    },
+    {
+      "id": "leonard-c3-34",
+      "series": "leonard-calc3",
+      "number": 34,
+      "title": "Surface And Flux Integrals, Parametric Surf., Divergence/Stoke's Theorem: Calculus 3 Lecture 15.6_9",
+      "url": "https://www.youtube.com/watch?v=sQ0BJ3H-cZ8&list=PLDesaqWTN6ESk16YRmzuJ8f6-rnuy0Ry7",
+      "alt_urls": [],
+      "duration_min": 211.6,
+      "topics": [
+        "Calculus 3 Lecture 15.6_9"
+      ],
+      "osu_week": null,
+      "priority": "skip",
+      "transcript_url": null,
+      "notes": "Vector calculus (MTH 255)"
+    },
+    {
+      "id": "3b1b-cross",
+      "series": "3b1b-ela",
+      "number": 1,
+      "title": "Cross products",
+      "url": "https://www.3blue1brown.com/lessons/cross-products",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=eu6i7WJeinw"
+      ],
+      "duration_min": 8.9,
+      "topics": [
+        "Cross products"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Geometric intuition; Essence of Linear Algebra series."
+    },
+    {
+      "id": "3b1b-dot",
+      "series": "3b1b-ela",
+      "number": 2,
+      "title": "Dot products and duality",
+      "url": "https://www.3blue1brown.com/lessons/dot-products",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=LyGKycYT2v0"
+      ],
+      "duration_min": 14.2,
+      "topics": [
+        "Dot products and duality"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Geometric intuition; Essence of Linear Algebra series."
+    },
+    {
+      "id": "3b1b-det",
+      "series": "3b1b-ela",
+      "number": 3,
+      "title": "The determinant",
+      "url": "https://www.3blue1brown.com/lessons/determinant",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=Ip3X9LOh2dk"
+      ],
+      "duration_min": 10.1,
+      "topics": [
+        "The determinant"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Geometric intuition; Essence of Linear Algebra series."
+    },
+    {
+      "id": "3b1b-cross2",
+      "series": "3b1b-ela",
+      "number": 4,
+      "title": "Cross products in the light of linear transformations",
+      "url": "https://www.3blue1brown.com/lessons/cross-products-extended",
+      "alt_urls": [
+        "https://www.youtube.com/watch?v=BaM7OCEm3G0"
+      ],
+      "duration_min": 13.2,
+      "topics": [
+        "Cross products in the light of linear transformations"
+      ],
+      "osu_week": 1,
+      "priority": "optional",
+      "transcript_url": null,
+      "notes": "Geometric intuition; Essence of Linear Algebra series."
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "mit1802f07-ps1",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 1",
+      "url": null,
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps1.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "dot product",
+        "determinants",
+        "cross product",
+        "matrices"
+      ],
+      "osu_week": 1,
+      "solution_quality": "none",
+      "problem_count": null,
+      "notes": "Lectures 1-3; skip matrix problems. Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps2",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 2",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/d58d48566a96c5cf4c44e447391e87d2_ps2.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps2.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "square systems",
+        "planes",
+        "parametric curves",
+        "velocity"
+      ],
+      "osu_week": 2,
+      "solution_quality": "none",
+      "problem_count": 2,
+      "notes": "Lectures 4-6; skip square-system problems. Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps3",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 3",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/8dc8a8e39266b88abd2009cf86a181be_ps3.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps3.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "functions of several variables",
+        "level curves",
+        "partial derivatives"
+      ],
+      "osu_week": 4,
+      "solution_quality": "none",
+      "problem_count": 3,
+      "notes": "Lectures 7-9. Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps4",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 4",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/a8acb97357d0a49e2bce79f223abfe43_ps4.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps4.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "max-min",
+        "second derivative test",
+        "differentials",
+        "chain rule"
+      ],
+      "osu_week": 6,
+      "solution_quality": "none",
+      "problem_count": 3,
+      "notes": "Lectures 10-12. Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps5",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 5",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/b4036a083eda01968709dc22325f76d4_ps5.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps5.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "gradient",
+        "directional derivative",
+        "tangent plane",
+        "Lagrange multipliers"
+      ],
+      "osu_week": 5,
+      "solution_quality": "none",
+      "problem_count": 3,
+      "notes": "Lectures 13-14. Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps6",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 6",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/dc99ea7a138836d3d5891a4350c2ffa3_ps6.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps6.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "non-independent variables",
+        "PDEs"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 2,
+      "notes": "Lectures 15-16: mostly not MTH 254 (skip). Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps7",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 7",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/3f39207fe8df2ed1086b0fbfe08e632e_ps7.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps7.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "double integrals",
+        "polar",
+        "change of variables"
+      ],
+      "osu_week": 8,
+      "solution_quality": "none",
+      "problem_count": 6,
+      "notes": "Lectures 18-20. Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps8",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 8",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/c3c56dd876e6435adb7226a4aee52620_ps8.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps8.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "vector fields",
+        "line integrals"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 3,
+      "notes": "MTH 255 (skip). Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps9",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 9",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/898e4125ad5b478789b2ff6c5072b543_ps9.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps9.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "Green's theorem",
+        "flux"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 3,
+      "notes": "MTH 255 (skip). Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps10",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 10",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/e9ae066be1eb0fd66a8f5a7631741f76_ps10.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps10.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "triple integrals",
+        "cylindrical",
+        "spherical"
+      ],
+      "osu_week": 9,
+      "solution_quality": "none",
+      "problem_count": 4,
+      "notes": "Lectures 28-29. Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps11",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 11",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/7a3999a1a12e02f937ec59431ff5e8de_ps11.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps11.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "surface integrals",
+        "divergence theorem"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 5,
+      "notes": "MTH 255 (skip). Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-ps12",
+      "source": "MIT 18.02 F07",
+      "title": "Problem Set 12",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/20d6cb0505dfa858fd2d5d7808f9d78a_ps12.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/mit1802f07/ps12.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "Stokes' theorem"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": 2,
+      "notes": "MTH 255 (skip). Part A = exercises from Edwards&Penney and Mattuck notes (notes exercises have solutions in mit1802f07-notes-ex*); Part B (count given) has NO posted solutions. Use 18.02SC psets for solved versions."
+    },
+    {
+      "id": "mit1802f07-notes-ex1",
+      "source": "MIT 18.02 Mattuck Supplementary Notes",
+      "title": "18.02 Notes exercises 1 (vectors matrices)",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/e98dbac2fcbe843ac0214c1469cef065_vectors_matrices.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/38997951b714e04e4800b9a07f85467b_vectr_mtrics_sol.pdf",
+      "local_path": "library/mth254/mit1802f07/vectors_matrices.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/vectr_mtrics_sol.pdf",
+      "topics": [
+        "vectors",
+        "dot/cross",
+        "planes",
+        "matrices",
+        "parametric curves"
+      ],
+      "osu_week": 1,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Exercise sets 1A-1K style; solutions PDF covers them. Problem count not tallied."
+    },
+    {
+      "id": "mit1802f07-notes-ex2",
+      "source": "MIT 18.02 Mattuck Supplementary Notes",
+      "title": "18.02 Notes exercises 2 (partial diff)",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/2e64bdde03a222e2996cc339fadc4cdb_partial_diff.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/6258a42abf7620e440aa05ab96911853_part_diff_sol.pdf",
+      "local_path": "library/mth254/mit1802f07/partial_diff.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/part_diff_sol.pdf",
+      "topics": [
+        "partial derivatives",
+        "gradient",
+        "chain rule",
+        "max-min",
+        "Lagrange"
+      ],
+      "osu_week": 5,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Exercise sets 1A-1K style; solutions PDF covers them. Problem count not tallied."
+    },
+    {
+      "id": "mit1802f07-notes-ex3",
+      "source": "MIT 18.02 Mattuck Supplementary Notes",
+      "title": "18.02 Notes exercises 3 (double integrals)",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/1f347ef15edbc8817a6ea296d57362f2_double_integrals.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/132514b2e585c774331e5cb449684c0f_dbl_intgrls_sol.pdf",
+      "local_path": "library/mth254/mit1802f07/double_integrals.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/dbl_intgrls_sol.pdf",
+      "topics": [
+        "double integrals",
+        "polar",
+        "change of variables"
+      ],
+      "osu_week": 7,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Exercise sets 1A-1K style; solutions PDF covers them. Problem count not tallied."
+    },
+    {
+      "id": "mit1802f07-notes-ex5",
+      "source": "MIT 18.02 Mattuck Supplementary Notes",
+      "title": "18.02 Notes exercises 5 (triple integrals)",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/5137f99f5ce7830c5fc637a230d4d5b3_triple_integrals.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/7ff072cd961faad14e5d02bdac1ddda1_tripl_intgrl_sol.pdf",
+      "local_path": "library/mth254/mit1802f07/triple_integrals.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/tripl_intgrl_sol.pdf",
+      "topics": [
+        "triple integrals",
+        "cylindrical",
+        "spherical"
+      ],
+      "osu_week": 9,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Exercise sets 1A-1K style; solutions PDF covers them. Problem count not tallied."
+    },
+    {
+      "id": "mit1802sc-pset1",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 1 (Unit 1A)",
+      "url": null,
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/e54088826b5647514efc06071bf46ca5_MIT18_02SC_pset1sol.pdf",
+      "local_path": "library/mth254/mit1802sc/pset1.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pset1sol.pdf",
+      "topics": [
+        "vectors",
+        "dot product",
+        "determinants",
+        "cross product",
+        "planes"
+      ],
+      "osu_week": 1,
+      "solution_quality": "full worked",
+      "problem_count": 3,
+      "notes": "Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset2",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 2 (Unit 1B (skip: matrices))",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/378ff61797746177a933b67e50f1f074_MIT18_02SC_pset2.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/be756e6ef4a4351c90bde6f6d85a608f_MIT18_02SC_pset2sol.pdf",
+      "local_path": null,
+      "solutions_local_path": null,
+      "topics": [
+        "matrices",
+        "linear systems"
+      ],
+      "osu_week": null,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Not downloaded (not MTH 254). Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset3",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 3 (Unit 1C)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/04e1365ae9ea9e0263c9465669db310d_MIT18_02SC_pset3.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/bc8ae5aa4f1dbabde49a6ee7f9be19ee_MIT18_02SC_pset3sol.pdf",
+      "local_path": "library/mth254/mit1802sc/pset3.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pset3sol.pdf",
+      "topics": [
+        "lines",
+        "parametric curves",
+        "velocity",
+        "arc length"
+      ],
+      "osu_week": 2,
+      "solution_quality": "full worked",
+      "problem_count": 4,
+      "notes": "Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset4",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 4 (Unit 2A)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/794cfed250a856ff859098682bd0b844_MIT18_02SC_pset4.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/bd96042c0631d84384f59280c7592665_MIT18_02SC_pset4sol.pdf",
+      "local_path": "library/mth254/mit1802sc/pset4.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pset4sol.pdf",
+      "topics": [
+        "functions of 2 vars",
+        "partials",
+        "tangent approx",
+        "max-min",
+        "2nd derivative test"
+      ],
+      "osu_week": 6,
+      "solution_quality": "full worked",
+      "problem_count": 5,
+      "notes": "Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset5",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 5 (Unit 2B)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/870f3d3f4063d3ac8513be605c29da14_MIT18_02SC_pset5.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/d0b03519d3263f0a90f98553dcf7d9f4_MIT18_02SC_pset5sol.pdf",
+      "local_path": "library/mth254/mit1802sc/pset5.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pset5sol.pdf",
+      "topics": [
+        "differentials",
+        "chain rule",
+        "gradient",
+        "directional derivative"
+      ],
+      "osu_week": 5,
+      "solution_quality": "full worked",
+      "problem_count": 4,
+      "notes": "Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset6",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 6 (Unit 2C (Lagrange optional))",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/b5a808163f48282784ec75ca5ebaa582_MIT18_02SC_pset6.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/e17d1ae13c8fbbe66bccbc3a55b556fb_MIT18_02SC_pset6sol.pdf",
+      "local_path": "library/mth254/mit1802sc/pset6.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pset6sol.pdf",
+      "topics": [
+        "Lagrange multipliers",
+        "constrained differentials"
+      ],
+      "osu_week": 6,
+      "solution_quality": "full worked",
+      "problem_count": 3,
+      "notes": "Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset7",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 7 (Unit 3A)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/ccf6356378d47a90511b5105cbd7b824_MIT18_02SC_pset7.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/b4c07dc90604cec18e0a7c1e1b31490e_MIT18_02SC_pset7sol.pdf",
+      "local_path": "library/mth254/mit1802sc/pset7.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pset7sol.pdf",
+      "topics": [
+        "double integrals",
+        "polar",
+        "applications",
+        "change of variables"
+      ],
+      "osu_week": 8,
+      "solution_quality": "full worked",
+      "problem_count": 5,
+      "notes": "Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset8",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 8 (Unit 3B (skip: MTH 255))",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/2815cfe2c21de819fe5c0fa11165308c_MIT18_02SC_pset8.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/bf5496992ab96752e11aa20b3482ef5a_MIT18_02SC_pset8sol.pdf",
+      "local_path": null,
+      "solutions_local_path": null,
+      "topics": [
+        "vector fields",
+        "line integrals"
+      ],
+      "osu_week": null,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Not downloaded (not MTH 254). Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset9",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 9 (Unit 3C (skip: MTH 255))",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/fa18a2da43d105c7b8c633df974652e6_MIT18_02SC_pset9.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/eebfea1c1dab8376092e0edd86828e58_MIT18_02SC_pset9sol.pdf",
+      "local_path": null,
+      "solutions_local_path": null,
+      "topics": [
+        "Green's theorem"
+      ],
+      "osu_week": null,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Not downloaded (not MTH 254). Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset10",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 10 (Unit 4A)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/9bfbf5bc05f40ab889390d19d58932af_MIT18_02SC_pset10.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/2863a0661d59629365e2c84b2a1d37ba_MIT18_02SC_pset10sol.pdf",
+      "local_path": "library/mth254/mit1802sc/pset10.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pset10sol.pdf",
+      "topics": [
+        "triple integrals",
+        "cylindrical",
+        "spherical",
+        "gravitational attraction"
+      ],
+      "osu_week": 9,
+      "solution_quality": "full worked",
+      "problem_count": 3,
+      "notes": "Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset11",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 11 (Unit 4B (skip: MTH 255))",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/3ab56b603e45206b3b455dfe15791e44_MIT18_02SC_pset11.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/dd2261f1b307ae4b6cf2de90cfe3d8f4_MIT18_02SC_pset11sol.pdf",
+      "local_path": null,
+      "solutions_local_path": null,
+      "topics": [
+        "flux",
+        "divergence theorem"
+      ],
+      "osu_week": null,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Not downloaded (not MTH 254). Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-pset12",
+      "source": "MIT 18.02SC F10",
+      "title": "Problem Set 12 (Unit 4C (skip: MTH 255))",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/61987db4530a0894030cbfbf3373a018_MIT18_02SC_pset12.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/b2b48283719323b2d053890855d83616_MIT18_02SC_pset12sol.pdf",
+      "local_path": null,
+      "solutions_local_path": null,
+      "topics": [
+        "line integrals in space",
+        "Stokes"
+      ],
+      "osu_week": null,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Not downloaded (not MTH 254). Part A refers to the supplemental problem sets (solutions posted separately); problem_count = Part B problems."
+    },
+    {
+      "id": "mit1802sc-supp1",
+      "source": "MIT 18.02SC F10",
+      "title": "Supplemental Problems 1 — Unit 1 (psets 1-3)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/389f3f3c18e4b8b8975947306993983c_MIT18_02SC_SupProb1.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/5a180046cc9037f4c26e13d3c3afc64f_MIT18_02SC_SupProbSol1.pdf",
+      "local_path": "library/mth254/mit1802sc/supprob1.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/supprobsol1.pdf",
+      "topics": [
+        "vectors",
+        "matrices",
+        "parametric curves"
+      ],
+      "osu_week": 1,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "These are the Mattuck-notes exercises referenced by Part A."
+    },
+    {
+      "id": "mit1802sc-supp2",
+      "source": "MIT 18.02SC F10",
+      "title": "Supplemental Problems 2 — Unit 2 (psets 4-6)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/de301eb21501d2eef5a9ebcae0b5a333_MIT18_02SC_SupProb2.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/9f91babaa26e03faba6eddc1b302575e_MIT18_02SC_SupProbSol2.pdf",
+      "local_path": "library/mth254/mit1802sc/supprob2.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/supprobsol2.pdf",
+      "topics": [
+        "partial derivatives"
+      ],
+      "osu_week": 5,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Pset 5 uses an extra supplemental-solutions file: library/mth254/mit1802sc/pset5_suppsol.pdf. These are the Mattuck-notes exercises referenced by Part A."
+    },
+    {
+      "id": "mit1802sc-supp3",
+      "source": "MIT 18.02SC F10",
+      "title": "Supplemental Problems 3 — Unit 3A (pset 7)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/20dccbe7a22d354fb8d7fb0a630f2f05_MIT18_02SC_SupProb3.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/09f91c1171dfddd133f6757e505d4f73_MIT18_02SC_SupProbSol3.pdf",
+      "local_path": "library/mth254/mit1802sc/supprob3.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "topics": [
+        "double integrals"
+      ],
+      "osu_week": 7,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "These are the Mattuck-notes exercises referenced by Part A."
+    },
+    {
+      "id": "mit1802sc-supp5",
+      "source": "MIT 18.02SC F10",
+      "title": "Supplemental Problems 5 — Unit 4A (pset 10)",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/768cfad15f60e810a846cfba8a71f488_MIT18_02SC_SupProb5.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/a070d9639af8073fa9ee0d9b265fe171_MIT18_02SC_SupProbSol5.pdf",
+      "local_path": "library/mth254/mit1802sc/supprob5.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/supprobsol5.pdf",
+      "topics": [
+        "triple integrals"
+      ],
+      "osu_week": 9,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "These are the Mattuck-notes exercises referenced by Part A."
+    },
+    {
+      "id": "openstax-1.3",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 1.3 Polar Coordinates",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/1-3-polar-coordinates",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-1",
+      "local_path": null,
+      "solutions_local_path": null,
+      "topics": [
+        "Polar Coordinates"
+      ],
+      "osu_week": 1,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. Polar review (MTH 252 topic); chapter-1 answer key not fetched; SSG ch1 not extracted."
+    },
+    {
+      "id": "openstax-2.1",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 2.1 Vectors in the Plane",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/2-1-vectors-in-the-plane",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch02_01.docx",
+      "topics": [
+        "Vectors in the Plane"
+      ],
+      "osu_week": 1,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-2.2",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 2.2 Vectors in Three Dimensions",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/2-2-vectors-in-three-dimensions",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch02_02.docx",
+      "topics": [
+        "Vectors in Three Dimensions"
+      ],
+      "osu_week": 1,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-2.3",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 2.3 The Dot Product",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/2-3-the-dot-product",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch02_03.docx",
+      "topics": [
+        "The Dot Product"
+      ],
+      "osu_week": 1,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-2.4",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 2.4 The Cross Product",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/2-4-the-cross-product",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch02_04.docx",
+      "topics": [
+        "The Cross Product"
+      ],
+      "osu_week": 1,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-2.5",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 2.5 Equations of Lines and Planes in Space",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/2-5-equations-of-lines-and-planes-in-space",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch02_05.docx",
+      "topics": [
+        "Equations of Lines and Planes in Space"
+      ],
+      "osu_week": 2,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-2.6",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 2.6 Quadric Surfaces",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/2-6-quadric-surfaces",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch02_06.docx",
+      "topics": [
+        "Quadric Surfaces"
+      ],
+      "osu_week": 3,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-2.7",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 2.7 Cylindrical and Spherical Coordinates",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/2-7-cylindrical-and-spherical-coordinates",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-2",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch02_07.docx",
+      "topics": [
+        "Cylindrical and Spherical Coordinates"
+      ],
+      "osu_week": 9,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-3.1",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 3.1 Vector-Valued Functions and Space Curves",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/3-1-vector-valued-functions-and-space-curves",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-3",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch03_01.docx",
+      "topics": [
+        "Vector-Valued Functions and Space Curves"
+      ],
+      "osu_week": 2,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-3.2",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 3.2 Calculus of Vector-Valued Functions",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/3-2-calculus-of-vector-valued-functions",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-3",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch03_02.docx",
+      "topics": [
+        "Calculus of Vector-Valued Functions"
+      ],
+      "osu_week": 2,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-3.3",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 3.3 Arc Length and Curvature",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/3-3-arc-length-and-curvature",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-3",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch03_03.docx",
+      "topics": [
+        "Arc Length and Curvature"
+      ],
+      "osu_week": 3,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-3.4",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 3.4 Motion in Space",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/3-4-motion-in-space",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-3",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch03_04.docx",
+      "topics": [
+        "Motion in Space"
+      ],
+      "osu_week": 2,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.1",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.1 Functions of Several Variables",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-1-functions-of-several-variables",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_01.docx",
+      "topics": [
+        "Functions of Several Variables"
+      ],
+      "osu_week": 3,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.2",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.2 Limits and Continuity",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-2-limits-and-continuity",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_02.docx",
+      "topics": [
+        "Limits and Continuity"
+      ],
+      "osu_week": 4,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.3",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.3 Partial Derivatives",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-3-partial-derivatives",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_03.docx",
+      "topics": [
+        "Partial Derivatives"
+      ],
+      "osu_week": 5,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.4",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.4 Tangent Planes and Linear Approximations",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-4-tangent-planes-and-linear-approximations",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_04.docx",
+      "topics": [
+        "Tangent Planes and Linear Approximations"
+      ],
+      "osu_week": 6,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.5",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.5 The Chain Rule",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-5-the-chain-rule",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_05.docx",
+      "topics": [
+        "The Chain Rule"
+      ],
+      "osu_week": 5,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.6",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.6 Directional Derivatives and the Gradient",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-6-directional-derivatives-and-the-gradient",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_06.docx",
+      "topics": [
+        "Directional Derivatives and the Gradient"
+      ],
+      "osu_week": 5,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.7",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.7 Maxima/Minima Problems",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-7-maxima-minima-problems",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_07.docx",
+      "topics": [
+        "Maxima/Minima Problems"
+      ],
+      "osu_week": 6,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-4.8",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 4.8 Lagrange Multipliers",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/4-8-lagrange-multipliers",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-4",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch04_08.docx",
+      "topics": [
+        "Lagrange Multipliers"
+      ],
+      "osu_week": 6,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-5.1",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 5.1 Double Integrals over Rectangular Regions",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/5-1-double-integrals-over-rectangular-regions",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-5",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch05_01.docx",
+      "topics": [
+        "Double Integrals over Rectangular Regions"
+      ],
+      "osu_week": 7,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-5.2",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 5.2 Double Integrals over General Regions",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/5-2-double-integrals-over-general-regions",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-5",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch05_02.docx",
+      "topics": [
+        "Double Integrals over General Regions"
+      ],
+      "osu_week": 7,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-5.3",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 5.3 Double Integrals in Polar Coordinates",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/5-3-double-integrals-in-polar-coordinates",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-5",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch05_03.docx",
+      "topics": [
+        "Double Integrals in Polar Coordinates"
+      ],
+      "osu_week": 8,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-5.4",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 5.4 Triple Integrals",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/5-4-triple-integrals",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-5",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch05_04.docx",
+      "topics": [
+        "Triple Integrals"
+      ],
+      "osu_week": 9,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-5.5",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 5.5 Triple Integrals in Cylindrical and Spherical Coordinates",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/5-5-triple-integrals-in-cylindrical-and-spherical-coordinates",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-5",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch05_05.docx",
+      "topics": [
+        "Triple Integrals in Cylindrical and Spherical Coordinates"
+      ],
+      "osu_week": 9,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-5.6",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 5.6 Calculating Centers of Mass and Moments of Inertia",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/5-6-calculating-centers-of-mass-and-moments-of-inertia",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-5",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch05_06.docx",
+      "topics": [
+        "Calculating Centers of Mass and Moments of Inertia"
+      ],
+      "osu_week": 8,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "openstax-5.7",
+      "source": "OpenStax Calculus Vol 3",
+      "title": "Section exercises 5.7 Change of Variables in Multiple Integrals",
+      "url": "https://openstax.org/books/calculus-volume-3/pages/5-7-change-of-variables-in-multiple-integrals",
+      "solutions_url": "https://openstax.org/books/calculus-volume-3/pages/chapter-5",
+      "local_path": null,
+      "solutions_local_path": "library/mth254/openstax/ssg/ch05_07.docx",
+      "topics": [
+        "Change of Variables in Multiple Integrals"
+      ],
+      "osu_week": 10,
+      "solution_quality": "answers only",
+      "problem_count": null,
+      "notes": "Answer key = odd answers. SSG .docx gives answers per exercise."
+    },
+    {
+      "id": "clp3-problembook",
+      "source": "UBC CLP-3",
+      "title": "CLP-3 Problem Book (all sections 1.1-3.7)",
+      "url": "https://personal.math.ubc.ca/~CLP/CLP3/clp_3_mc_problems.pdf",
+      "solutions_url": "https://personal.math.ubc.ca/~CLP/CLP3/clp_3_mc_problems.pdf",
+      "local_path": "library/mth254/clp3/problems.pdf",
+      "solutions_local_path": "library/mth254/clp3/problems.pdf",
+      "topics": [
+        "1.1-1.7 vectors, lines, planes, curves, surfaces",
+        "2.1-2.10 limits, partials, chain rule, tangent planes, linear approx, gradient, max/min, Lagrange",
+        "3.1-3.7 double/polar/applications/surface area/triple/cylindrical/spherical"
+      ],
+      "osu_week": null,
+      "solution_quality": "full worked",
+      "problem_count": null,
+      "notes": "Hints, answers and full solutions in the same PDF (parts II-IV). Many problems from UBC exams. Map by section: 1.x->W1-3, 2.x->W4-6, 3.x->W7-9."
+    },
+    {
+      "id": "osu-sg-exercises",
+      "source": "OSU MTH 254 Study Guide",
+      "title": "Study guide suggested Briggs exercises + recitation worksheets/labs",
+      "url": "https://sites.science.oregonstate.edu/~mpesz/teaching/254_W12/mth254sg.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu/sg_w12.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "all 24 lessons"
+      ],
+      "osu_week": null,
+      "solution_quality": "none",
+      "problem_count": null,
+      "notes": "Exercise lists are Briggs textbook problem numbers (1e page refs; odd answers are in the Briggs back matter, not in the guide). Worksheets pp.69-85 have no answers."
+    }
+  ],
+  "exams": [
+    {
+      "id": "osu-s13-sample-mt",
+      "source": "OSU MTH 254H S13 (Gibson)",
+      "title": "Sample Midterm Problems (ch 11)",
+      "url": "http://sites.science.oregonstate.edu/~gibsonn/Teaching/MTH254H-001S13/Mth254Sample1.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu/s13_sample1.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "projection",
+        "cross product/area",
+        "motion from acceleration",
+        "projectile",
+        "T, N, curvature"
+      ],
+      "time_limit_min": null,
+      "rules": "unknown on file; S13 course page: no books/notes/graphing calculators, one 3x5 card",
+      "notes": "5 problems, no solutions. Good match for OSU Exam 1 (Briggs ch 11)."
+    },
+    {
+      "id": "osu-garity-sample-mt-f11",
+      "source": "OSU MTH 254 F11 (linked from Garity W12)",
+      "title": "Practice Midterm, Lect. 10, Fall 2011",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/SampleTest1-11.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/sample_mt_11.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "unit vectors",
+        "angle",
+        "cross product",
+        "projection",
+        "cycloid tangent line",
+        "arc length",
+        "lines and planes"
+      ],
+      "time_limit_min": null,
+      "rules": "unknown",
+      "notes": "No solutions. Ch 11 + planes: Exam 1 practice."
+    },
+    {
+      "id": "osu-garity-mt-s01",
+      "source": "OSU MTH 254 Sp01",
+      "title": "Midterm Examination, May 7 2001",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/Tests/254_mt_S01.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/mt_s01.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "tangent plane",
+        "double integral",
+        "directional derivative max",
+        "chain rule",
+        "plane through points"
+      ],
+      "time_limit_min": null,
+      "rules": "unknown",
+      "notes": "6 problems, no solutions. Mix of ch 12 and 13.1 (old course order)."
+    },
+    {
+      "id": "osu-garity-mt-f03",
+      "source": "OSU MTH 254 F03",
+      "title": "Midterm Examination, November 2003",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/Tests/254F03mt.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/mt_f03.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "tangent plane",
+        "second derivative test",
+        "directional derivative",
+        "chain rule",
+        "plane through 3 points"
+      ],
+      "time_limit_min": null,
+      "rules": "unknown",
+      "notes": "6 problems, no solutions. Exam 2 practice (ch 12)."
+    },
+    {
+      "id": "osu-garity-mt-2005",
+      "source": "OSU MTH 254 F05",
+      "title": "Midterm Examination, October 2005",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/Tests/mt2005.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/mt_2005.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "angle between planes",
+        "line of intersection",
+        "tangent plane",
+        "second partials test",
+        "directional derivative",
+        "max direction"
+      ],
+      "time_limit_min": null,
+      "rules": "unknown",
+      "notes": "No solutions; text extraction garbled (font encoding) but PDF renders."
+    },
+    {
+      "id": "osu-garity-final-s01",
+      "source": "OSU MTH 254 Sp01",
+      "title": "Final Examination, June 2001",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/Tests/254_S01_final.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/final_s01.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "implicit differentiation",
+        "iterated double integral setup",
+        "spherical triple integral setup",
+        "polar area",
+        "surface area"
+      ],
+      "time_limit_min": null,
+      "rules": "unknown",
+      "notes": "About 10 problems, mostly 'set up' integrals. No solutions."
+    },
+    {
+      "id": "osu-garity-final-f03",
+      "source": "OSU MTH 254 F03",
+      "title": "Final Examination, December 2003",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/Tests/254F03final.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/final_f03.pdf",
+      "solutions_local_path": null,
+      "topics": [
+        "Lagrange system",
+        "double integral setup",
+        "cylindrical volume setup",
+        "polar area"
+      ],
+      "time_limit_min": null,
+      "rules": "unknown",
+      "notes": "About 9 problems, setup-style. No solutions."
+    },
+    {
+      "id": "osu-garity-mt-review",
+      "source": "OSU MTH 254 W12 (Garity)",
+      "title": "Midterm review summary",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/MtReview.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/mt_review.pdf",
+      "solutions_local_path": null,
+      "topics": [],
+      "time_limit_min": null,
+      "rules": "n/a",
+      "notes": "Topic review sheet, not an exam."
+    },
+    {
+      "id": "osu-garity-final-review",
+      "source": "OSU MTH 254 W12 (Garity)",
+      "title": "Final review summary",
+      "url": "http://sites.science.oregonstate.edu/~garity/254W2012/Notes/FinalReview.pdf",
+      "solutions_url": null,
+      "local_path": "library/mth254/osu_garity/final_review.pdf",
+      "solutions_local_path": null,
+      "topics": [],
+      "time_limit_min": null,
+      "rules": "n/a",
+      "notes": "Topic review sheet, not an exam."
+    },
+    {
+      "id": "mit1802f07-prac1a",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 1A",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/7ac1ea75a9b0cd82d84297abe0958407_prac1a.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/dd2524a8ad4d5784979309d6b3cacb6c_prac1asol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac1a.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac1asol.pdf",
+      "topics": [
+        "vectors",
+        "dot/cross",
+        "planes",
+        "parametric motion",
+        "matrices"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Mostly relevant to OSU Exam 1 (skip matrix/inverse problems). Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802f07-prac1b",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 1B",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/164e610e5f4ccff6756b41e79e89300a_prac1b.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/6d5851e73048e1ef128d7ee0babaf783_prac1bsol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac1b.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac1bsol.pdf",
+      "topics": [
+        "vectors",
+        "dot/cross",
+        "planes",
+        "parametric motion",
+        "matrices"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Mostly relevant to OSU Exam 1 (skip matrix/inverse problems). Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802f07-prac2a",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 2A",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/649b356a55a0e95ab36ffc860b69ec7d_prac2a.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/10da469322eadb71bda6c249d4640824_prac2asol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac2a.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac2asol.pdf",
+      "topics": [
+        "gradient",
+        "approximation",
+        "directional derivative",
+        "max-min",
+        "chain rule",
+        "Lagrange"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Directly relevant to OSU Exam 2 (skip non-independent-variable problems). Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802f07-prac2b",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 2B",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/2ccfb6deb4835881de6aa3f9e8586d9f_prac2b.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/6c65ef6fb4a5ade9f804accd09ac2e3e_prac2bsol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac2b.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac2bsol.pdf",
+      "topics": [
+        "gradient",
+        "approximation",
+        "directional derivative",
+        "max-min",
+        "chain rule",
+        "Lagrange"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Directly relevant to OSU Exam 2 (skip non-independent-variable problems). Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802f07-prac3a",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 3A",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/b63578f2c33e58d781a54176947e0093_prac3a.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/1df63ab621e303a87e7939d5a2ec3e29_prac3asol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac3a.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac3asol.pdf",
+      "topics": [
+        "double integrals",
+        "center of mass",
+        "polar",
+        "line integrals",
+        "Green"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Only the double-integral / mass / polar problems are MTH 254 (final); line integral & Green problems are MTH 255. Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802f07-prac3b",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 3B",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/43217ab6605abc8444ea8b4a78f51419_prac3b.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/31f263ae91116123568378bb6838d428_prac3bsol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac3b.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac3bsol.pdf",
+      "topics": [
+        "double integrals",
+        "center of mass",
+        "polar",
+        "line integrals",
+        "Green"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Only the double-integral / mass / polar problems are MTH 254 (final); line integral & Green problems are MTH 255. Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802f07-prac4a",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 4A",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/f130822a92000fab91936e8e800def97_prac4a.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/e87e4407d0378284e94eefb09e3e3a90_prac4asol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac4a.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac4asol.pdf",
+      "topics": [
+        "triple integrals cyl/sph",
+        "conservative fields",
+        "flux",
+        "divergence"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Only the triple-integral (cyl/sph) problems are MTH 254 (final); flux/divergence/potential problems are MTH 255. Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802f07-prac4b",
+      "source": "MIT 18.02 F07",
+      "title": "Practice Exam 4B",
+      "url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/d51b9801aeda7266a7b3d97e8163d8ef_prac4b.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02-multivariable-calculus-fall-2007/8e7af9861fedf8b81de3d8999514787d_prac4bsol.pdf",
+      "local_path": "library/mth254/mit1802f07/prac4b.pdf",
+      "solutions_local_path": "library/mth254/mit1802f07/prac4bsol.pdf",
+      "topics": [
+        "triple integrals cyl/sph",
+        "conservative fields",
+        "flux",
+        "divergence"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Only the triple-integral (cyl/sph) problems are MTH 254 (final); flux/divergence/potential problems are MTH 255. Course page says practice exams match the real exam's difficulty."
+    },
+    {
+      "id": "mit1802sc-exam1",
+      "source": "MIT 18.02SC F10",
+      "title": "Exam 1",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/b5f9a492d8df6830a816bba6c13aecef_MIT18_02SC_exam1.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/c77745b9eb93ee503a5e7f914907804b_MIT18_02SC_exam1sol.pdf",
+      "local_path": "library/mth254/mit1802sc/exam1.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/exam1sol.pdf",
+      "topics": [
+        "vectors",
+        "determinants",
+        "planes",
+        "matrices",
+        "parametric curves"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "OSU Exam 1 practice (skip matrix problems)."
+    },
+    {
+      "id": "mit1802sc-prac1a",
+      "source": "MIT 18.02SC F10",
+      "title": "Practice Exam 1",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/fab3055ba2c2f06834f14004c7d0047e_MIT18_02SC_prac1A.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/32defabf2f2d0b9c2064cd3f65f26a53_MIT18_02SC_prac1Asol.pdf",
+      "local_path": "library/mth254/mit1802sc/prac1a.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/prac1asol.pdf",
+      "topics": [
+        "vectors",
+        "planes",
+        "matrices",
+        "parametric curves"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "OSU Exam 1 practice (skip matrix problems)."
+    },
+    {
+      "id": "mit1802sc-exam2",
+      "source": "MIT 18.02SC F10",
+      "title": "Exam 2",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/82e746297259b200cb983347a8e8b737_MIT18_02SC_exam2.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/b00fab66cbce372b0b0adf416e8737a8_MIT18_02SC_exam2sol.pdf",
+      "local_path": "library/mth254/mit1802sc/exam2.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/exam2sol.pdf",
+      "topics": [
+        "partials",
+        "gradient",
+        "chain rule",
+        "max-min",
+        "Lagrange"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "OSU Exam 2 practice."
+    },
+    {
+      "id": "mit1802sc-prac2a",
+      "source": "MIT 18.02SC F10",
+      "title": "Practice Exam 2A",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/8d46e0b6446f4a0e3a8b8dfb868a90b5_MIT18_02SC_prac2A.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/28e92bddfd9d2affcbda6a982c2d2a75_MIT18_02SC_prac2Asol.pdf",
+      "local_path": "library/mth254/mit1802sc/prac2a.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/prac2asol.pdf",
+      "topics": [
+        "partials",
+        "gradient",
+        "chain rule",
+        "max-min",
+        "Lagrange"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "OSU Exam 2 practice."
+    },
+    {
+      "id": "mit1802sc-exam3",
+      "source": "MIT 18.02SC F10",
+      "title": "Exam 3",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/d888514d0c2dcfec354fd56b8f51dd89_MIT18_02SC_exam3.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/5028c6e086e53bc7ec534ff874b45cd2_MIT18_02SC_exam3sol.pdf",
+      "local_path": "library/mth254/mit1802sc/exam3.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/exam3sol.pdf",
+      "topics": [
+        "double integrals",
+        "line integrals",
+        "Green"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Final: double-integral problems only."
+    },
+    {
+      "id": "mit1802sc-prac3a",
+      "source": "MIT 18.02SC F10",
+      "title": "Practice Exam 3",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/8cac15f06a6cd6e2ad6885241b70c5f7_MIT18_02SC_prac3A.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/f665f6dab145aac534b703b1160cb58c_MIT18_02SC_prac3Asol.pdf",
+      "local_path": "library/mth254/mit1802sc/prac3a.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/prac3asol.pdf",
+      "topics": [
+        "double integrals",
+        "line integrals",
+        "Green"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Final: double-integral problems only."
+    },
+    {
+      "id": "mit1802sc-exam4",
+      "source": "MIT 18.02SC F10",
+      "title": "Exam 4",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/e6deb5160e19e5483e975cdae3004956_MIT18_02SC_exam4.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/40f8e2ee50d708a3f0459c8eca5fb512_MIT18_02SC_exam4sol.pdf",
+      "local_path": "library/mth254/mit1802sc/exam4.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/exam4sol.pdf",
+      "topics": [
+        "triple integrals",
+        "flux",
+        "divergence"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Final: triple-integral problems only."
+    },
+    {
+      "id": "mit1802sc-prac4a",
+      "source": "MIT 18.02SC F10",
+      "title": "Practice Exam 4",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/6223b043b82390b3419c572580dde1fc_MIT18_02SC_prac4A.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/3286570023a551d06088b1f4ce317382_MIT18_02SC_prac4Asol.pdf",
+      "local_path": "library/mth254/mit1802sc/prac4a.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/prac4asol.pdf",
+      "topics": [
+        "triple integrals",
+        "flux",
+        "divergence"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Final: triple-integral problems only."
+    },
+    {
+      "id": "mit1802sc-pracfinal",
+      "source": "MIT 18.02SC F10",
+      "title": "Practice Final Exam",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/904c6ca3318bd35307bb65ba3dd0f50e_MIT18_02SC_pracfinal.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/a0d43da5e56f31dd1e41e874fe5415d2_MIT18_02SC_pracfinalsol.pdf",
+      "local_path": "library/mth254/mit1802sc/pracfinal.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/pracfinalsol.pdf",
+      "topics": [
+        "whole 18.02"
+      ],
+      "time_limit_min": null,
+      "rules": "not stated on exam",
+      "notes": "Final: roughly first half of problems relevant; vector-field problems are MTH 255. 18 problems."
+    },
+    {
+      "id": "mit1802sc-finalexam",
+      "source": "MIT 18.02SC F10",
+      "title": "Final Exam",
+      "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/8048c12b339cefb160f8540aa3507fc7_MIT18_02SC_finalexam.pdf",
+      "solutions_url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/02b7e64d338b9c8561d01377ddfd8c7d_MIT18_02SC_finalexamsol.pdf",
+      "local_path": "library/mth254/mit1802sc/finalexam.pdf",
+      "solutions_local_path": "library/mth254/mit1802sc/finalexamsol.pdf",
+      "topics": [
+        "whole 18.02"
+      ],
+      "time_limit_min": null,
+      "rules": "no books, notes or calculators (stated on exam)",
+      "notes": "Final: roughly first half relevant. 15 problems; header says no books, notes or calculators."
+    }
+  ],
+  "week_map": [
+    {
+      "week": 1,
+      "topics": [
+        "polar/cyl/sph coordinate review",
+        "vectors in plane and 3D",
+        "dot product, projections",
+        "cross product"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "10.2 review, 11.1-11.4"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "1.3 review, 2.1-2.4"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "1.1-1.2"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 1-4"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "13.1-13.4"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L01",
+        "mit1802f07-L02",
+        "mit1802sc-rec-s03-dot-angles",
+        "mit1802sc-rec-s07-cross",
+        "3b1b-cross"
+      ],
+      "problem_sets": [
+        "mit1802sc-pset1",
+        "mit1802sc-supp1",
+        "mit1802f07-notes-ex1",
+        "openstax-2.1",
+        "openstax-2.2",
+        "openstax-2.3",
+        "openstax-2.4"
+      ],
+      "notes": "F18 template: Fri wk0 + Mon 11.1/11.2, Wed 11.3, Fri 11.4/11.5. W27 starts Mon Jan 4 2027 (Ecampus FAQ via search; not opened)."
+    },
+    {
+      "week": 2,
+      "topics": [
+        "lines (and planes) in space",
+        "curves / vector-valued functions",
+        "calculus of vector functions",
+        "motion in space"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "11.5-11.7"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "2.5, 3.1, 3.2, 3.4"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "1.3-1.6"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 5-6"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "13.5, 14.1-14.3"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L05",
+        "mit1802f07-L06",
+        "mit1802sc-rec-s15-lines",
+        "mit1802sc-rec-s12-planes-b",
+        "mit1802sc-rec-s19-vel-acc"
+      ],
+      "problem_sets": [
+        "mit1802sc-pset3",
+        "mit1802f07-ps2",
+        "openstax-2.5",
+        "openstax-3.1",
+        "openstax-3.2",
+        "openstax-3.4"
+      ],
+      "notes": "F18: Mon 11.5, Wed 11.6, Thu recitation Quiz 1, Fri 11.7."
+    },
+    {
+      "week": 3,
+      "topics": [
+        "length of curves (curvature 11.9 optional)",
+        "planes and surfaces, quadrics",
+        "graphs and level curves",
+        "Exam 1 review"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "11.8, (11.9), 12.1-12.2"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "3.3, 2.6, 4.1"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "1.7"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 7-10"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "14.4-(14.5), 13.6, 15.1"
+        }
+      ],
+      "videos": [
+        "mit1802sc-rec-s20-arc-length",
+        "mit1802sc-rec-s24-graphs",
+        "mit1802sc-rec-s25-level-b",
+        "mit1802f07-L08"
+      ],
+      "problem_sets": [
+        "openstax-3.3",
+        "openstax-2.6",
+        "openstax-4.1",
+        "clp3-problembook"
+      ],
+      "notes": "F18: Mon 11.8, Wed 12.1/12.2, Fri Exam 1 review. Exam-1 practice: osu-s13-sample-mt, osu-garity-sample-mt-f11, mit1802sc-prac1a, mit1802sc-exam1, mit1802f07-prac1a/1b (skip matrices)."
+    },
+    {
+      "week": 4,
+      "topics": [
+        "GROUP EXAM 1 (ch 11)",
+        "graphs/level curves continued",
+        "limits and continuity"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "12.2-12.3"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "4.1-4.2"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "2.1"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 10-11"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "15.1-15.2"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L08",
+        "mit1802sc-rec-s26-partials"
+      ],
+      "problem_sets": [
+        "openstax-4.2"
+      ],
+      "notes": "F18 Exam 1: Mon Oct 15 2018 20:30-21:50. W27 (coordinator-reported, not verified): group midterm slot Tuesday 7:00-8:20 pm, i.e. Tue Jan 26 2027 if exam is in week 4 (date computed). No calculators; one 3x5 card (F18 rule)."
+    },
+    {
+      "week": 5,
+      "topics": [
+        "partial derivatives",
+        "chain rule",
+        "directional derivatives and gradient"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "12.4-12.6"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "4.3, 4.5, 4.6"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "2.2-2.4, 2.7"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 12-14"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "15.3-15.5"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L11",
+        "mit1802f07-L12",
+        "mit1802sc-rec-s34-chain",
+        "mit1802sc-rec-s38-grad-dir"
+      ],
+      "problem_sets": [
+        "mit1802sc-pset5",
+        "mit1802sc-supp2",
+        "mit1802f07-ps3",
+        "mit1802f07-ps5",
+        "mit1802f07-notes-ex2",
+        "openstax-4.3",
+        "openstax-4.5",
+        "openstax-4.6"
+      ],
+      "notes": "F18: Mon 12.4, Wed 12.5, Thu Quiz 2, Fri 12.6."
+    },
+    {
+      "week": 6,
+      "topics": [
+        "tangent planes and linear approximation",
+        "max/min, second derivative test, absolute extrema",
+        "(Lagrange multipliers if covered)",
+        "Exam 2 review"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "12.7-12.8, (12.9)"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "4.4, 4.7, (4.8)"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "2.5, 2.6, 2.9, (2.10)"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 15-17"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "15.6-15.7, (15.8)"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L09",
+        "mit1802f07-L10",
+        "mit1802f07-L13",
+        "mit1802sc-rec-s27-tangent-approx",
+        "mit1802sc-rec-s37-tangent-planes",
+        "mit1802sc-rec-s30-2nd-deriv",
+        "mit1802sc-rec-s31-max-min"
+      ],
+      "problem_sets": [
+        "mit1802sc-pset4",
+        "mit1802sc-pset6",
+        "mit1802f07-ps4",
+        "openstax-4.4",
+        "openstax-4.7",
+        "openstax-4.8"
+      ],
+      "notes": "F18: Mon 12.7, Wed 12.8, Fri 12.8 + Exam 2 review (12.9 not on F18 calendar). Exam-2 practice: mit1802sc-prac2a, mit1802sc-exam2, mit1802f07-prac2a/2b, osu-garity-mt-f03, osu-garity-mt-2005, osu-garity-mt-s01."
+    },
+    {
+      "week": 7,
+      "topics": [
+        "GROUP EXAM 2 (12.2-12.8)",
+        "double integrals over rectangles",
+        "double integrals over general regions, order of integration"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "13.1-13.2"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "5.1-5.2"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "3.1"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 18-19"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "16.1-16.2"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L16",
+        "mit1802sc-rec-s48-regions",
+        "mit1802sc-rec-s49-order"
+      ],
+      "problem_sets": [
+        "mit1802sc-supp3",
+        "mit1802f07-notes-ex3",
+        "openstax-5.1",
+        "openstax-5.2"
+      ],
+      "notes": "F18 Exam 2: Mon Nov 5 2018 20:30-21:50. W27 (coordinator-reported): Tuesday 7:00-8:20 pm slot, i.e. Tue Feb 16 2027 if in week 7 (date computed)."
+    },
+    {
+      "week": 8,
+      "topics": [
+        "double integrals (general regions) continued",
+        "double integrals in polar coordinates",
+        "(applications: mass, center of mass)"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "13.2-13.3, (13.6)"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "5.2-5.3, (5.6)"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "3.2-3.3"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 19-20"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "16.2-16.3"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L17",
+        "mit1802sc-rec-s50-polar"
+      ],
+      "problem_sets": [
+        "mit1802sc-pset7",
+        "mit1802f07-ps7",
+        "openstax-5.3",
+        "openstax-5.6"
+      ],
+      "notes": "F18: Mon holiday, Wed 13.2/13.3, Thu Quiz 3, Fri 13.3."
+    },
+    {
+      "week": 9,
+      "topics": [
+        "triple integrals",
+        "cylindrical and spherical coordinates",
+        "triple integrals in cylindrical and spherical"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "13.4-13.5"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "2.7, 5.4, 5.5"
+        },
+        {
+          "resource_id": "clp3-text",
+          "sections": "3.5-3.7"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 1, 21-22"
+        },
+        {
+          "resource_id": "briggs-cet-3e",
+          "sections": "16.4-16.5"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L25",
+        "mit1802f07-L26",
+        "mit1802sc-rec-s74-cylindrical",
+        "mit1802sc-rec-s77-spherical"
+      ],
+      "problem_sets": [
+        "mit1802sc-pset10",
+        "mit1802sc-supp5",
+        "mit1802f07-ps10",
+        "mit1802f07-notes-ex5",
+        "openstax-2.7",
+        "openstax-5.4",
+        "openstax-5.5"
+      ],
+      "notes": "F18: Mon 13.4, Wed 13.5 (Thanksgiving week). W27 has no holiday in this week (not checked)."
+    },
+    {
+      "week": 10,
+      "topics": [
+        "triple integrals in cyl/sph continued",
+        "(change of variables if covered)",
+        "final review"
+      ],
+      "readings": [
+        {
+          "resource_id": "briggs-mvc-2e",
+          "sections": "13.5, (13.7)"
+        },
+        {
+          "resource_id": "openstax-calc3",
+          "sections": "5.5, (5.7)"
+        },
+        {
+          "resource_id": "osu-sg-parks",
+          "sections": "Lessons 22-24"
+        }
+      ],
+      "videos": [
+        "mit1802f07-L26",
+        "mit1802f07-L18"
+      ],
+      "problem_sets": [
+        "openstax-5.7",
+        "clp3-problembook"
+      ],
+      "notes": "F18: Mon 13.5, Wed catch-up/review, Fri final review; F18 final Wed Dec 5 2018 20:00-21:50, cumulative, up to 3 note cards. W27 group final Tue Mar 16 2027 4:00 pm (coordinator-reported, not verified). Final practice: osu-garity-final-s01, osu-garity-final-f03, mit1802sc-pracfinal/finalexam (first half), mit1802f07-prac3a/3b and prac4a/4b (integral problems only), mit1802sc-prac3a/exam3/prac4a/exam4 (integral problems only)."
+    }
+  ],
+  "unverified": [
+    "Current (Winter 2027) MTH 254 textbook, homework platform and syllabus are not public (Ecampus: syllabus in Canvas only). Briggs & Cochran 2e is confirmed only for Fall 2018.",
+    "Briggs 2e section titles assumed equal to the 1e/custom-edition titles in the OSU study guide; the F18 calendar uses the same numbers but its 2e titles were not seen.",
+    "W27 instructors F. Bouya (sec 020), W. Shin (030/040), M. Gilliam (Ecampus) and the Tuesday 7:00-8:20 pm group midterm slot / Tue Mar 16 2027 4:00 pm group final were reported by the coordinator. I confirmed only Gilliam = W27 Ecampus sec 400 and Bouya = F26 Ecampus sec 400 (Ecampus page) and Bouya = OSU math instructor (science.oregonstate.edu profile). No public course pages or old exams from Bouya, Shin or Gilliam were found.",
+    "Exam week numbers (4 and 7) and computed dates Tue Jan 26 / Tue Feb 16 2027 assume term start Mon Jan 4 2027 (Ecampus FAQ seen in search results only).",
+    "Whether W27 covers 11.9 curvature, 12.9 Lagrange multipliers, 13.6 mass applications, 13.7 change of variables (F18 calendar skipped all four; the study guide includes them).",
+    "Spring 2015 OSU study guide (math.oregonstate.edu/files/math/Mth254sgSp15.pdf) is 404 and not in the Wayback Machine; the 2010/2011 versions were used instead.",
+    "Garity W12 links to a 2011 sample final + solution key (oregonstate.edu/~escherc/mth254/) and an old-exam archive (oregonstate.edu/~peterseb/mth254/254docs.html): both dead. No OSU MTH 254 exam with posted solutions was found.",
+    "Gibson F13 'Sample Midterm', 'Sample Final' (Supplements/midterm_sampleS08.pdf, final_sampleS08.pdf) and 'Final Review' links return 404.",
+    "OpenStax Student Answer and Solution Guide: unclear whether it covers all exercises or odd only; it appears to give answers, not worked solutions.",
+    "Khan Academy multivariable calculus page could not be loaded (bot challenge); Grant Sanderson authorship from search results only.",
+    "Paul's Online Notes Calc III chapter list not captured; license not checked (treated as not open).",
+    "APEX Calculus license taken from the v4 GitHub README (CC BY-NC 4.0); the online v5 book page does not state it.",
+    "CLP-4 license assumed same as CLP-3 (not read on the CLP-4 page).",
+    "18.02SC recitation transcript URLs not captured (transcripts exist on the OCW resource pages).",
+    "Professor Leonard / 3Blue1Brown video licenses not checked.",
+    "EOU 'Math 254' W23 syllabus (web.engr.oregonstate.edu/~phamt3/...) turned up in search but is Eastern Oregon University, not OSU; excluded."
+  ]
+}
