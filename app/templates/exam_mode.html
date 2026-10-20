@@ -40,7 +40,8 @@
     const left = Math.round((end - Date.now()) / 1000);
     const s = Math.max(0, left);
     out.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
-    bar.classList.toggle("warn", left <= 300);
+    bar.classList.toggle("warn", left <= 300 && left > 0);
+    bar.classList.toggle("over", left <= 0);
     if (left <= 0 && !done) {
       done = true;
       document.getElementById("times-up").hidden = false;

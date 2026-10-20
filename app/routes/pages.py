@@ -150,6 +150,7 @@ def course_week_page(code: str, number: int, request: Request,
                   tasks=tasks, prep_by_id=prep_by_id, videos=videos,
                   chapter_counts=services.chapter_counts(session, videos),
                   readings=readings, psets=psets, pset_stats=pset_stats, labs=week_labs,
+                  week_list=[weeks[n] for n in sorted(weeks)],
                   prev_n=number - 1 if number > 1 else None,
                   next_n=number + 1 if number < len(weeks) else None)
 
@@ -191,7 +192,8 @@ def progress_page(request: Request, session: Session = Depends(get_session)):
             if a.status == "graded":
                 sittings.append((e, a))
     sittings.sort(key=lambda ea: ea[1].started_at, reverse=True)
-    return render(request, "progress.html", session, sittings=sittings,
+    return render(request, "progress.html", session, sittings=sittings, days=services.study_days(session),
+                  phase=services.phase_for(session, config.today()),
                   progress=services.progress(session), prep_weeks=services.prep_weeks(session),
                   recent=services.recent_study(session, 15),
                   activity=services.recent_activity(session, 15),

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "_macros.html" import task_row, bar %}
 {% block title %}{{ lab.title }} · Homebase{% endblock %}
+{% from "_icons.html" import icon %}
 {% block content %}
 <section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
@@ -11,7 +12,7 @@
 </section>
 
 <section class="card" style="--accent: {{ (course | ccolor) }}">
-  <h2>Do the lab</h2>
+  <div class="sec-head"><span class="icon-tile">{{ icon('code') }}</span><h2>Do the lab</h2><span class="right">{{ lab.est_min | hm }}</span></div>
   <ol>
     <li>In a terminal in the Homebase folder, run the checker once. It makes your own copy of the starter:
       <code class="cmd">.venv\Scripts\python labs\check.py {{ lab.number }}</code></li>
@@ -24,7 +25,8 @@
 </section>
 
 <section class="card" style="--accent: {{ (course | ccolor) }}">
-  <h2>Checks</h2>
+  <div class="sec-head"><span class="icon-tile">{{ icon('target') }}</span><h2>Checks</h2>
+    {% if result %}<span class="right">{{ result.passed }} of {{ result.total }} pass</span>{% endif %}</div>
   {% if result %}
   <p class="small muted">Last checked {{ result.checked_at.replace('T', ' ') }}: {{ result.passed }} of {{ result.total }} pass
     {{ bar(result.passed, result.total, (course | ccolor)) }}</p>
@@ -43,7 +45,7 @@
 </section>
 
 <section class="card" style="--accent: {{ (course | ccolor) }}">
-  <h2>Background handout</h2>
+  <div class="sec-head"><span class="icon-tile">{{ icon('book') }}</span><h2>Background handout</h2></div>
   <p><b>{{ lab.handout.title }}</b></p>
   <p class="small muted">A MATLAB lab from DSP First. Read its Pre-Lab and Warm-up for the ideas; do the work in Python above.</p>
   {% if have_handout %}<a href="/{{ lab.handout.pdf }}" target="_blank">open PDF</a>

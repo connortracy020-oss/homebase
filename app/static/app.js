@@ -30,6 +30,40 @@
   });
 })();
 
+// Snap my work / Upload: send as soon as a photo is chosen (no separate Submit step).
+document.querySelectorAll("input.auto-submit").forEach((inp) => inp.addEventListener("change", () => {
+  if (!inp.files.length) return;
+  const form = inp.form;
+  form.querySelectorAll("input.auto-submit").forEach((o) => { if (o !== inp) o.disabled = true; });
+  form.classList.add("is-sending");
+  const sending = form.parentElement.querySelector(".sending");
+  if (sending) sending.hidden = false;
+  form.submit();
+}));
+
+// Toasts: a small note at the bottom that fades out. window.toast("Logged 25 min").
+// A toast set just before a page reload survives it (sessionStorage).
+window.toast = function (msg, later) {
+  if (later) { try { sessionStorage.setItem("homebase.toast", msg); } catch {} return; }
+  const el = document.createElement("div");
+  el.className = "toast"; el.setAttribute("role", "status"); el.textContent = msg;
+  document.body.append(el);
+  requestAnimationFrame(() => el.classList.add("in"));
+  setTimeout(() => { el.classList.remove("in"); setTimeout(() => el.remove(), 300); }, 2600);
+};
+try {
+  const pending = sessionStorage.getItem("homebase.toast");
+  if (pending) { sessionStorage.removeItem("homebase.toast"); addEventListener("load", () => toast(pending)); }
+} catch {}
+
+// PDF crops shimmer softly until they've loaded.
+document.querySelectorAll("img.pdf-crop").forEach((img) => {
+  if (img.complete) return;
+  img.classList.add("loading");
+  const done = () => img.classList.remove("loading");
+  img.addEventListener("load", done); img.addEventListener("error", done);
+});
+
 // Phone "More" sheet: close it when you tap anywhere else.
 document.addEventListener("click", (e) => {
   document.querySelectorAll("details.tab-more[open]").forEach((d) => { if (!d.contains(e.target)) d.open = false; });
@@ -48,6 +82,7 @@ document.querySelectorAll("form.toggle input[type=checkbox]").forEach((box) => {
       });
       if (!res.ok) throw new Error(res.status);
       row?.classList.toggle("done", box.checked);
+      if (box.checked) toast("Ticked off. Nice.");
     } catch (err) {
       box.checked = !box.checked; // put it back; the save failed
       alert("Couldn't save that. Is Homebase still running?");
@@ -95,6 +130,8 @@ document.querySelectorAll("form.toggle input[type=checkbox]").forEach((box) => {
       const res = await fetch("/study", { method: "POST", body, headers: { "x-requested-with": "fetch" } });
       if (!res.ok) throw new Error(res.status);
       save(null);
+      const name = course.querySelector(`option[value="${t.course}"]`)?.textContent || t.course;
+      toast(`Logged ${Math.min(minutes, 720)} min of ${name}`, true);
       location.reload();
     } catch {
       status.textContent = "Couldn't save the time. The timer is still running; try again.";

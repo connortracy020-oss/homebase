@@ -1,79 +1,133 @@
 {% extends "base.html" %}
 {% from "_macros.html" import bar %}
+{% from "_icons.html" import icon %}
 {% block title %}Progress · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
 {% block content %}
+{% set total_min = progress | map(attribute='minutes') | sum %}
+{% set total_plan = progress | map(attribute='planned_minutes') | sum %}
 <section class="hero">
   <p class="eyebrow">All three courses</p>
   <h1>Progress</h1>
+  <div class="stats">
+    <div class="stat-chip"><b>{{ total_min | hm }}</b><span>of {{ total_plan | hm }} planned</span></div>
+    <div class="stat-chip streak {{ 'on' if days.streak }}"><b>{{ icon('flame') }} {{ days.streak }}</b><span>day{{ 's' if days.streak != 1 }} in a row</span></div>
+    <div class="stat-chip"><b>{{ days.active }}</b><span>study days, last 4 weeks</span></div>
+  </div>
 </section>
 
 <section class="grid3">
   {% for p in progress %}
+  {% set hpct = [100, ((100 * p.minutes / p.planned_minutes) | round | int) if p.planned_minutes else 0] | min %}
+  {% set last = sittings | selectattr('0.course_id', 'equalto', p.course.id) | first %}
   <div class="card stat" style="--accent: {{ (p.course | ccolor) }}">
-    <p class="eyebrow"><span class="dot"></span>{{ p.course.name }}</p>
-    <p class="big">{{ p.minutes | hm }}</p>
-    <p class="muted small">of {{ p.planned_minutes | hm }} planned</p>
-    {{ bar(p.minutes, p.planned_minutes, (p.course | ccolor)) }}
-    <p class="small">{{ p.tasks_done }}/{{ p.tasks_total }} tasks · {{ p.pct }}%</p>
+    <div class="timer-row">
+      <div class="ring" style="--p: {{ hpct }}" data-label="{{ hpct }}%" role="img" aria-label="{{ hpct }}% of planned hours"></div>
+      <div>
+        <p class="eyebrow"><span class="dot"></span>{{ p.course.name }}</p>
+        <p class="big">{{ p.minutes | hm }}</p>
+        <p class="muted small">of {{ p.planned_minutes | hm }} planned</p>
+      </div>
+    </div>
+    <div class="stat-line"><span>Tasks</span>{{ bar(p.tasks_done, p.tasks_total) }}<span class="small muted">{{ p.tasks_done }}/{{ p.tasks_total }}</span></div>
+    <div class="stat-line"><span>Last exam</span>
+      {% if last %}{% set pct = (100 * last[1].total / last[1].max_points) | round | int %}
+      <a class="result result-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}" href="/attempt/{{ last[1].id }}">{{ pct }}%</a>
+      {% else %}<span class="small muted">none yet</span>{% endif %}</div>
   </div>
   {% endfor %}
 </section>
 
+{# ---- weekly chart: planned (light) vs logged (solid), per course ---- #}
+{% set ns = namespace(peak=60) %}
+{% for w in prep_weeks %}{% for p in progress %}
+  {% set ns.peak = [ns.peak, w.planned_minutes.get(p.course.code, 0), p.week_minutes.get(w.number, 0)] | max %}
+{% endfor %}{% endfor %}
+{% set gw, bw, top, h = 58, 12, 14, 130 %}
 <section class="card">
-  <h2>Hours by prep week</h2>
-  <p class="muted small">Logged vs planned, per course.</p>
-  <table class="weeks-table">
-    <thead><tr><th>Week</th>{% for p in progress %}<th style="--accent: {{ (p.course | ccolor) }}"><span class="dot"></span>{{ p.course.name }}</th>{% endfor %}</tr></thead>
-    <tbody>
-      {% for w in prep_weeks %}
-      <tr>
-        <th scope="row">{{ w.number }} <span class="muted small">{{ w.start | md }}</span></th>
-        {% for p in progress %}
-        {% set planned = w.planned_minutes.get(p.course.code, 0) %}
-        {% set logged = p.week_minutes.get(w.number, 0) %}
-        <td>{% if planned or logged %}{{ bar(logged, planned or logged, (p.course | ccolor)) }}<span class="small muted">{{ logged | hm }} / {{ planned | hm }}</span>{% else %}<span class="muted small">—</span>{% endif %}</td>
-        {% endfor %}
-      </tr>
+  <div class="card-head"><h2>Hours by prep week</h2>
+    <span class="right legend">{% for p in progress %}<span style="--accent: {{ (p.course | ccolor) }}"><span class="dot"></span>{{ p.course.name }}</span>{% endfor %}
+      <span><span class="swatch-plan"></span>planned</span></span></div>
+  <div class="chart-wrap">
+  <svg class="week-chart" viewBox="0 0 {{ prep_weeks | length * gw + 10 }} {{ top + h + 30 }}" role="img" aria-label="Hours logged and planned per prep week">
+    {% for frac in [0.5, 1] %}
+    <line class="grid" x1="0" x2="{{ prep_weeks | length * gw + 10 }}" y1="{{ top + h - h * frac }}" y2="{{ top + h - h * frac }}"/>
+    <text class="axis" x="{{ prep_weeks | length * gw + 8 }}" y="{{ top + h - h * frac - 3 }}">{{ (ns.peak * frac) | hm }}</text>
+    {% endfor %}
+    {% for w in prep_weeks %}
+    {% set x0 = 10 + loop.index0 * gw %}
+    {% if phase.prep_week and phase.prep_week.id == w.id %}<rect class="now" x="{{ x0 - 4 }}" y="{{ top - 6 }}" width="{{ gw - 6 }}" height="{{ h + 8 }}" rx="6"/>{% endif %}
+    {% for p in progress %}
+    {% set planned = w.planned_minutes.get(p.course.code, 0) %}
+    {% set logged = p.week_minutes.get(w.number, 0) %}
+    {% set x = x0 + loop.index0 * (bw + 3) %}
+    <g style="--accent: {{ (p.course | ccolor) }}">
+      {% if planned %}<rect class="plan" x="{{ x }}" y="{{ top + h - h * planned / ns.peak }}" width="{{ bw }}" height="{{ h * planned / ns.peak }}" rx="3"/>{% endif %}
+      {% if logged %}<rect class="logged" x="{{ x }}" y="{{ top + h - h * logged / ns.peak }}" width="{{ bw }}" height="{{ h * logged / ns.peak }}" rx="3"><title>{{ p.course.name }}, week {{ w.number }}: {{ logged | hm }} of {{ planned | hm }}</title></rect>{% endif %}
+    </g>
+    {% endfor %}
+    <text class="wk" x="{{ x0 + 22 }}" y="{{ top + h + 15 }}">{{ w.number }}</text>
+    <text class="wkd" x="{{ x0 + 22 }}" y="{{ top + h + 26 }}">{{ w.start | md }}</text>
+    {% endfor %}
+  </svg>
+  </div>
+</section>
+
+{# ---- last 4 weeks, one square per day ---- #}
+<section class="card">
+  <div class="card-head"><h2>Last 4 weeks</h2><span class="right">{{ days.active }} of 28 days</span></div>
+  {% set dmax = [30, days.per_day.values() | max] | max %}
+  <div class="days" role="img" aria-label="Minutes studied per day for the last 28 days">
+    {% for d, m in days.per_day.items() %}
+    <span class="day lvl{{ 0 if not m else (1 if m < dmax * 0.34 else (2 if m < dmax * 0.67 else 3)) }} {{ 'today' if d == days.today }}" title="{{ d | md }}: {{ m | hm if m else 'no study' }}"></span>
+    {% endfor %}
+  </div>
+  <p class="small muted" style="margin:8px 0 0">Darker means more time. Today has a ring.</p>
+</section>
+
+<div class="today-grid">
+  <section class="card">
+    <h2>Practice exam scores</h2>
+    {% if sittings %}
+    <ul class="rows">
+      {% for e, a in sittings %}
+      {% set c = course_by_id[e.course_id] %}
+      {% set pct = (100 * a.total / a.max_points) | round | int %}
+      <li style="--accent: {{ (c | ccolor) }}">
+        <span class="mini-ring score-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}" style="--p: {{ pct }}" data-label="{{ pct }}%"></span>
+        <div class="grow"><a class="t" href="/attempt/{{ a.id }}">{{ e.title }}</a>
+          <div class="m"><span><span class="dot"></span>{{ c.name }}</span><span>{{ a.started_at | md }}</span><span>{{ a.total | num }}/{{ a.max_points | num }}</span></div></div>
+      </li>
       {% endfor %}
-    </tbody>
-  </table>
-</section>
+    </ul>
+    {% else %}<p class="muted" style="margin:0">No graded practice exams yet. <a href="/exams">See the exams</a></p>{% endif %}
+  </section>
 
-<section class="card">
-  <h2>Practice exam scores</h2>
-  {% if sittings %}
-  <ul class="plain">
-    {% for e, a in sittings %}
-    {% set c = course_by_id[e.course_id] %}
-    {% set pct = (100 * a.total / a.max_points) | round | int %}
-    <li class="row" style="--accent: {{ (c | ccolor) }}"><span><span class="dot"></span><a href="/attempt/{{ a.id }}">{{ e.title }}</a> <span class="muted small">{{ a.started_at | md }}</span></span>
-      <span><span class="result result-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}">{{ pct }}%</span> <span class="small muted">{{ a.total | num }}/{{ a.max_points | num }}</span></span></li>
-    {% endfor %}
-  </ul>
-  {% else %}<p class="muted">No graded practice exams yet. <a href="/exams">See the exams</a></p>{% endif %}
-</section>
-
-<section class="card">
-  <h2>Recent study time</h2>
-  {% if recent %}
-  <ul class="plain">
-    {% for s in recent %}
-    <li class="row">
-      <span>{{ s.started_at | md }} · {{ s.minutes | hm }} · {{ course_by_id[s.course_id].name }} <span class="muted small">{{ s.source }}{% if s.note %} · {{ s.note }}{% endif %}</span></span>
-      <form method="post" action="/study/{{ s.id }}/delete"><button class="small link" type="submit" aria-label="Delete this entry">delete</button></form>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}<p class="muted">No time logged yet. Use the timer on Today.</p>{% endif %}
-</section>
+  <section class="card">
+    <h2>Recent study time</h2>
+    {% if recent %}
+    <ul class="rows">
+      {% for s in recent %}
+      {% set c = course_by_id[s.course_id] %}
+      <li style="--accent: {{ (c | ccolor) }}">
+        <div class="grow"><span class="t">{{ s.minutes | hm }} <span class="muted small">· {{ c.name }}</span></span>
+          <div class="m"><span>{{ s.started_at | md }}</span><span>{{ s.source }}</span>{% if s.note %}<span>{{ s.note }}</span>{% endif %}</div></div>
+        <form method="post" action="/study/{{ s.id }}/delete"><button class="small link" type="submit" aria-label="Delete this entry">delete</button></form>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}<p class="muted" style="margin:0">No time logged yet. Use the timer on Today.</p>{% endif %}
+  </section>
+</div>
 
 <section class="card">
   <h2>Activity</h2>
-  <p class="muted small">Every change, including anything Claude does through the API.</p>
+  <p class="muted small">Every change, including anything Claude or the local AI does.</p>
   {% if activity %}
-  <ul class="plain small">
+  <ul class="plain small activity">
     {% for a in activity %}
-    <li><span class="muted">{{ a.at | md }} {{ a.at.strftime('%H:%M') }}</span> {% if a.actor == 'claude' %}<span class="by-claude">Claude</span>{% endif %} {{ a.summary }}</li>
+    <li><span class="muted">{{ a.at | md }} {{ a.at.strftime('%H:%M') }}</span>
+      {% if a.actor == 'claude' %}<span class="ai-chip claude">Claude</span>{% elif a.actor == 'local' %}<span class="ai-chip local">Qwen</span>{% endif %} {{ a.summary }}</li>
     {% endfor %}
   </ul>
   {% else %}<p class="muted">Nothing yet.</p>{% endif %}

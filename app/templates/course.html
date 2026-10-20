@@ -1,32 +1,39 @@
 {% extends "base.html" %}
 {% from "_macros.html" import bar %}
 {% block title %}{{ course.name }} · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ (course | ccolor) }}">
-  <p class="eyebrow"><span class="dot"></span>{{ course.name }} · Winter 2027</p>
+<div style="--accent: {{ (course | ccolor) }}">
+<section class="hero">
+  <p class="eyebrow"><a href="/courses">Courses</a> · <span class="dot"></span>{{ course.name }} · Winter 2027</p>
   <h1>{{ course.title }}</h1>
-  <p class="muted">{{ course.instructor }} · {{ course.meets }}</p>
+  <p class="muted small">{{ course.instructor }} · {{ course.meets }}</p>
+  {% set all_total = weeks | map(attribute=1) | sum %}
+  {% set all_done = weeks | map(attribute=2) | sum %}
+  <div class="stats">
+    <div class="stat-chip"><b>{{ weeks | length }}</b><span>term weeks</span></div>
+    <div class="stat-chip"><b>{{ all_done }}/{{ all_total }}</b><span>prep tasks done</span></div>
+    <div class="stat-chip"><b>{{ 'known' if course.exam_style_known else 'unknown' }}</b><span>exam style</span></div>
+  </div>
 </section>
 
 <section class="card note-card">
   <p>{{ course.term_note }}</p>
-  <p><span class="tag {% if not course.exam_style_known %}warn{% endif %}">
+  <p style="margin-bottom:0"><span class="tag {% if not course.exam_style_known %}warn{% endif %}">
     {% if course.exam_style_known %}Exam style: known from past OSU offerings{% else %}Exam style: unknown{% endif %}
   </span> {{ course.exam_style_note }}</p>
 </section>
 
-<section class="card">
-  <h2>Term weeks</h2>
-  <ol class="weeks">
-    {% for w, total, done in weeks %}
-    <li style="--accent: {{ (course | ccolor) }}">
-      <a href="/course/{{ course.code }}/week/{{ w.number }}">
-        <span class="wk">Week {{ w.number }}</span>
-        <span class="wk-title">{{ w.title }}</span>
-      </a>
-      <span class="right small muted">{% if total %}{{ done }}/{{ total }} {{ bar(done, total, (course | ccolor)) }}{% else %}not in prep plan{% endif %}</span>
-    </li>
-    {% endfor %}
-  </ol>
-</section>
+<p class="section-label">Term weeks</p>
+<div class="wk-grid">
+  {% for w, total, done in weeks %}
+  <a class="wk-tile" href="/course/{{ course.code }}/week/{{ w.number }}">
+    <div class="n">Week {{ w.number }}</div>
+    <div class="t">{{ w.title }}</div>
+    {% if total %}{{ bar(done, total) }}<div class="m">{{ done }}/{{ total }} prep tasks</div>
+    {% else %}<div class="m">not in prep plan</div>{% endif %}
+  </a>
+  {% endfor %}
+</div>
+</div>
 {% endblock %}

@@ -3,10 +3,16 @@
 {% block content %}
 <section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><span class="dot"></span>{{ course.name }} · {{ pset.title }} ·
-    {% if sweep %}pre-exam sweep{% elif m.retired_at %}retired{% else %}box {{ m.box }} of 5{% endif %}</p>
+    {% if sweep %}pre-exam sweep{% elif m.retired_at %}retired{% else %}box {{ m.box }} of 5{% endif %}{% if due_reviews and not sweep %} · {{ due_reviews }} left today{% endif %}</p>
   <h1>Re-solve: {{ problem.label }}</h1>
   <p class="muted small">Cold: put your notes away. {% if m.note %}Last time: {{ m.note }}{% endif %}
     {% if m.cause %}<span class="tag">{{ m.cause }}</span>{% endif %}</p>
+  <div class="ladder mini" role="img" aria-label="Box {{ m.box }} of 5">
+    {% for b in range(1, 6) %}
+    <div class="step {{ 'here' if b == m.box and not m.retired_at }} {{ 'past' if b < m.box or m.retired_at }}"><span class="riser" style="height: {{ 8 + loop.index0 * 6 }}px"></span><span class="lbl">{{ intervals[b] }}d</span></div>
+    {% endfor %}
+    <div class="step retired {{ 'here' if m.retired_at }}"><span class="riser" style="height: 38px"></span><span class="lbl">done</span></div>
+  </div>
 </section>
 
 {% if variant %}
@@ -28,7 +34,7 @@
       {% if marks %}<span class="mark {{ 'ok' if marks[loop.index0] else 'bad' }}">{{ '✓' if marks[loop.index0] else '✗' }}</span>{% endif %}
     </label>
     {% endfor %}
-    <button type="submit">Check</button>
+    <button type="submit" class="primary">Check</button>
   </form>
   {% if marks %}
   <details class="solution" open><summary>Worked steps</summary><ol class="steps">{% for s in variant.key.steps %}<li>{{ s }}</li>{% endfor %}</ol></details>
@@ -56,7 +62,7 @@
     {% if all %}<input type="hidden" name="all" value="1">{% endif %}
     {% if seed %}<input type="hidden" name="seed" value="{{ seed }}">{% endif %}
     {% for o, label in [('solid', 'Solid'), ('shaky', 'Shaky'), ('miss', 'Missed it')] %}
-    <button name="outcome" value="{{ o }}" type="submit" {% if o == suggest %}class="primary"{% endif %}>{{ label }}</button>
+    <button name="outcome" value="{{ o }}" type="submit" class="{{ o }}{{ ' suggested' if o == suggest }}">{{ label }}</button>
     {% endfor %}
     <input type="text" name="note" placeholder="note (optional)" aria-label="Note">
   </form>

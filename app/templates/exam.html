@@ -4,12 +4,18 @@
 <section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/exams">Exams</a> · <span class="dot"></span>{{ course.name }} · term week {{ exam.course_week }}</p>
   <h1>{{ exam.title }}</h1>
-  <p class="muted">{{ exam.scope }}</p>
+  <p class="muted small">{{ exam.scope }}</p>
+  <div class="stats">
+    <div class="stat-chip"><b>{{ exam.time_min }}</b><span>minutes</span></div>
+    <div class="stat-chip"><b>{{ exam.total_points | num }}</b><span>points</span></div>
+    <div class="stat-chip"><b>{{ problems | length }}</b><span>problems</span></div>
+    {% set graded = attempts | selectattr('status', 'equalto', 'graded') | list %}
+    {% if graded %}<div class="stat-chip"><b>{{ (100 * graded[0].total / graded[0].max_points) | round | int }}%</b><span>last sitting</span></div>{% endif %}
+  </div>
 </section>
 
 <section class="card rules-card">
   <h2>Exam rules</h2>
-  <p class="big-time">{{ exam.time_min }} minutes · {{ exam.total_points | num }} points · {{ problems | length }} problems</p>
   <ul>{% for r in exam.practice_rules %}<li>{{ r }}</li>{% endfor %}</ul>
   <p class="small muted">{{ exam.time_note }}</p>
   {% if exam.skipped %}<p class="small"><span class="tag">left out</span> {{ exam.skipped }}</p>{% endif %}
@@ -22,10 +28,10 @@
     <li>When time's up, stop writing and photograph your pages.</li>
   </ul>
   {% if open %}
-  <a class="button primary" href="/attempt/{{ open.id }}">Back to the exam in progress</a>
+  <a class="button primary lg" href="/attempt/{{ open.id }}">Back to the exam in progress</a>
   {% else %}
   <form method="post" action="/exam/{{ exam.slug }}/start" onsubmit="return confirm('Start the {{ exam.time_min }}-minute clock now?')">
-    <button class="primary" type="submit">Start the clock</button>
+    <button class="primary lg" type="submit">Start the clock</button> <span class="small muted">{{ exam.time_min }} minutes, starting the moment you press it.</span>
   </form>
   {% endif %}
 </section>

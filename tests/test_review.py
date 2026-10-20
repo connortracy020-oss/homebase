@@ -153,7 +153,7 @@ def test_variant_review_check(client, session):
     page = client.get(f"/review/{m.id}").text
     assert "new numbers" in page
     r = client.post(f"/review/{m.id}/check", data={"seed": seed, "a0": str(right)}, follow_redirects=True)
-    assert "✓" in r.text and 'value="solid" type="submit" class="primary"' in r.text
+    assert "✓" in r.text and 'value="solid" type="submit" class="solid suggested"' in r.text
     assert client.post(f"/review/{m.id}/check", data={"seed": 1, "a0": "1"}).status_code == 409
 
 

@@ -134,3 +134,16 @@ def test_image_file_keys_render(client):
     assert r.status_code == 200 and r.content[:4] == b"\x89PNG"
     page = client.get("/problem/dspdb-w1-sinusoids-c2-p012").text
     assert "Show the official solution" in page
+
+
+def test_study_streak(session):
+    from datetime import datetime, time, timedelta
+
+    from app import config
+    today = config.today()
+    for back in (1, 2, 4):  # yesterday, the day before, then a gap
+        services.log_study(session, "ECE201", 30, started_at=datetime.combine(today - timedelta(days=back), time(19)))
+    days = services.study_days(session)
+    assert days["streak"] == 2 and days["active"] == 3  # nothing yet today doesn't break it
+    services.log_study(session, "ECE201", 20, started_at=datetime.combine(today, time(9)))
+    assert services.study_days(session)["streak"] == 3

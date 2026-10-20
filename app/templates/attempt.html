@@ -10,14 +10,23 @@
 </section>
 
 {% if attempt.status == 'graded' %}
+{% set pct = (100 * attempt.total / attempt.max_points) | round | int %}
 <section class="card" id="result">
-  <h2>Results</h2>
-  <table class="answers-table">
-    <thead><tr><th>Problem</th><th>Points</th><th></th></tr></thead>
-    <tbody>{% for p in problems %}{% set pts = attempt.scores.get(p.id | string) %}
-      <tr><td>{{ p.label }}</td><td>{{ pts | num }} / {{ p.points | num }}</td>
-        <td>{% if pts >= p.points %}<span class="mark ok">✓</span>{% endif %}</td></tr>{% endfor %}</tbody>
-  </table>
+  <div class="timer-row" style="margin-bottom:12px">
+    <div class="ring lg score-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}" style="--p: {{ pct }}" data-label="{{ pct }}%" role="img" aria-label="{{ pct }} percent"></div>
+    <div><h2 style="margin:0">Results</h2><p class="small muted" style="margin:2px 0 0">{{ attempt.total | num }} of {{ attempt.max_points | num }} points</p></div>
+  </div>
+  <ul class="rows score-rows">
+    {% for p in problems %}{% set pts = attempt.scores.get(p.id | string) %}
+    {% set ppct = ((100 * pts / p.points) | round | int) if p.points else 0 %}
+    <li>
+      <span class="num-badge {{ 'solid' if ppct >= 80 else 'shaky' if ppct >= 50 else 'miss' }}">{{ loop.index }}</span>
+      <div class="grow"><span class="t">{{ p.label }}</span>
+        <span class="bar score-bar"><span style="width: {{ ppct }}%"></span></span></div>
+      <span class="small">{{ pts | num }} / {{ p.points | num }}</span>
+    </li>
+    {% endfor %}
+  </ul>
   <p class="small muted">Problems you lost points on and ticked are in your <a href="/mistakes">mistake log</a>; every problem also counts as an attempt.</p>
 </section>
 {% endif %}
@@ -26,10 +35,11 @@
 <section class="card">
   <h2>1. Photograph your pages</h2>
   <p class="small muted">One photo per page, upright, in good light. Label problems by number so they can be matched to the key.</p>
-  <form method="post" action="/attempt/{{ attempt.id }}/upload" enctype="multipart/form-data" class="submit-form">
-    <input type="file" name="files" accept="image/*,application/pdf" multiple required aria-label="Photos or PDF of your exam work">
-    <button type="submit" class="primary">Upload</button>
+  <form method="post" action="/attempt/{{ attempt.id }}/upload" enctype="multipart/form-data" class="submit-form" id="submit-form">
+    <label class="button primary lg">Add photos or a PDF
+      <input type="file" name="files" accept="image/*,application/pdf" multiple class="visually-hidden auto-submit" aria-label="Photos or PDF of your exam work"></label>
   </form>
+  <p class="small muted sending" hidden><span class="spinner"></span> Uploading…</p>
   <p class="small muted">No photos? You can still grade yourself below.</p>
 </section>
 {% else %}

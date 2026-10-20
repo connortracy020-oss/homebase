@@ -1,25 +1,42 @@
 {% extends "base.html" %}
 {% block title %}{{ pset.title }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ (course | ccolor) }}">
+{% set tried = problems | selectattr('id', 'in', results) | list | length %}
+{% set solid = results.values() | select('in', ['solid', 'correct']) | list | length %}
+{% set pct = ((100 * tried / (problems | length)) | round | int) if problems else 0 %}
+{% set ns = namespace(next=None) %}
+{% for p in problems %}{% if ns.next is none and p.id not in results %}{% set ns.next = p %}{% endif %}{% endfor %}
+<div style="--accent: {{ (course | ccolor) }}">
+<section class="hero">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
     <a href="/course/{{ course.code }}/week/{{ pset.week }}">week {{ pset.week }}</a> · problem set</p>
-  <h1>{{ pset.title }}</h1>
-  <p class="muted">{{ pset.source }}</p>
-  {% if pset.license %}<p class="muted small">License: {{ pset.license }}</p>{% endif %}
+  <div class="timer-row" style="margin-top:4px">
+    <div class="ring" style="--p: {{ pct }}" data-label="{{ tried }}/{{ problems | length }}" role="img" aria-label="{{ tried }} of {{ problems | length }} tried"></div>
+    <div style="min-width:0">
+      <h1 style="margin:0">{{ pset.title }}</h1>
+      <p class="muted small" style="margin:2px 0 0">{{ solid }} solid · {{ tried }} tried · {{ problems | length }} problems</p>
+    </div>
+  </div>
+  <p class="muted small" style="margin-top:10px">{{ pset.source }}{% if pset.license %} · License: {{ pset.license }}{% endif %}</p>
   {% if pset.notes %}<p class="small">{{ pset.notes }}</p>{% endif %}
+  {% if ns.next %}<p><a class="button accent" href="/problem/{{ ns.next.slug }}">{{ 'Start' if not tried else 'Next up' }}: {{ ns.next.label }}</a></p>{% endif %}
 </section>
 
-<section class="card" style="--accent: {{ (course | ccolor) }}">
-  <ol class="problem-list">
+<section class="card">
+  <ul class="rows problem-list">
     {% for p in problems %}
     {% set r = results.get(p.id) %}
+    {% set cls = {'solid': 'solid', 'correct': 'solid', 'shaky': 'shaky', 'miss': 'miss', 'incorrect': 'miss'}.get(r, '') %}
     <li>
-      <a href="/problem/{{ p.slug }}">{{ p.label }}</a>
-      <span class="key-badge key-{{ p.key_type }}" title="{{ KEY_LABELS[p.key_type] }}">{{ KEY_LABELS[p.key_type] }}</span>
-      {% if r %}<span class="result result-{{ r }}">{{ r }}</span>{% endif %}
+      <span class="num-badge {{ cls }}">{{ loop.index }}</span>
+      <div class="grow">
+        <a class="t" href="/problem/{{ p.slug }}">{{ p.label }}</a>
+        <div class="m"><span class="key-badge key-{{ p.key_type }}" title="{{ KEY_LABELS[p.key_type] }}">{{ KEY_LABELS[p.key_type] }}</span>
+          {% if r %}<span class="result result-{{ r }}">{{ r }}</span>{% endif %}</div>
+      </div>
     </li>
     {% endfor %}
-  </ol>
+  </ul>
 </section>
+</div>
 {% endblock %}

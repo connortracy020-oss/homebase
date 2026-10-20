@@ -1,117 +1,140 @@
 {% extends "base.html" %}
-{% from "_macros.html" import task_row, bar, video_item %}
+{% from "_macros.html" import task_row, bar %}
+{% from "_icons.html" import icon %}
 {% block title %}{{ course.name }} week {{ week.number }} · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ (course | ccolor) }}">
+<div style="--accent: {{ course | ccolor }}">
+<nav class="week-strip" aria-label="Term weeks">
+  <a class="button icon {{ 'off' if not prev_n }}" href="/course/{{ course.code }}/week/{{ prev_n or 1 }}" aria-label="Previous week">{{ icon('left') }}</a>
+  <div class="pills">
+    {% for w in week_list %}<a href="/course/{{ course.code }}/week/{{ w.number }}" title="{{ w.title }}" {% if w.number == week.number %}aria-current="page"{% endif %}>{{ w.number }}</a>{% endfor %}
+  </div>
+  <a class="button icon {{ 'off' if not next_n }}" href="/course/{{ course.code }}/week/{{ next_n or week.number }}" aria-label="Next week">{{ icon('right') }}</a>
+</nav>
+
+<section class="hero">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> · Term week {{ week.number }}</p>
   <h1>{{ week.title }}</h1>
-  <ul class="topics muted">
-    {% for t in week.topics %}<li>{{ t }}</li>{% endfor %}
-  </ul>
-  {% if week.notes %}<p class="muted small">{{ week.notes }}</p>{% endif %}
+  {% if week.topics %}<ul class="topic-chips">{% for t in week.topics %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+  {% if week.notes %}<p class="muted small" style="margin-top:8px">{{ week.notes }}</p>{% endif %}
 </section>
 
 {% set core = videos | selectattr('priority', 'equalto', 'core') | list %}
 {% set extra = videos | rejectattr('priority', 'equalto', 'core') | list %}
-<section class="card" style="--accent: {{ (course | ccolor) }}">
-  <h2>Watch</h2>
-  {% if videos %}
-  <ul class="items">
-    {% for v in core %}{{ video_item(v, chapter_counts) }}{% endfor %}
-  </ul>
-  {% if extra %}
-  <details class="more">
-    <summary class="small muted">{{ extra | length }} optional video{{ 's' if extra | length != 1 }}</summary>
-    <ul class="items">{% for v in extra %}{{ video_item(v, chapter_counts) }}{% endfor %}</ul>
-  </details>
-  {% endif %}
-  {% else %}<p class="muted">No videos mapped to this week yet.</p>{% endif %}
-</section>
-
-<section class="card" style="--accent: {{ (course | ccolor) }}">
-  <h2>Read</h2>
-  {% if readings %}
-  <ul class="items">
-    {% for r, res, have in readings %}
-    <li class="item">
-      <div>
-        <span class="item-title">{{ res.title }}</span>{% if r.optional %} <span class="tag">optional</span>{% endif %}
-        <div class="item-meta">
-          <span>{{ r.sections }}</span>
-          {% if r.est_min %}<span>{{ r.est_min | hm }}</span>{% endif %}
-          {% if have %}<a href="/{{ res.local_path }}{% if r.page %}#page={{ r.page }}{% endif %}" target="_blank">open PDF</a>
-          {% elif res.local_path %}<span class="tag warn">not downloaded yet</span>{% endif %}
-          {% if res.url %}<a href="{{ res.url }}" target="_blank" rel="noopener">source ↗</a>{% endif %}
-        </div>
-        {% if res.local_path and not have and res.notes %}<p class="small muted">{{ res.notes }}</p>{% endif %}
-      </div>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}<p class="muted">Readings for this week arrive with the course content.</p>{% endif %}
-</section>
-
-<section class="card" style="--accent: {{ (course | ccolor) }}">
-  <h2>Solve</h2>
-  {% if psets %}
-  <ul class="items">
-    {% for ps in psets %}
-    {% set total, tried, solid = pset_stats[ps.id] %}
-    <li class="item">
-      <div>
-        <a class="item-title" href="/pset/{{ ps.slug }}">{{ ps.title }}</a>{% if ps.optional %} <span class="tag">optional</span>{% endif %}
-        <div class="item-meta">
-          <span>{{ total }} problem{{ 's' if total != 1 }}</span>
-          <span>{{ tried }} tried · {{ solid }} solid</span>
-          {{ bar(tried, total, (course | ccolor)) }}
-        </div>
-      </div>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}<p class="muted">Problem sets for this week arrive with the course content.</p>{% endif %}
-</section>
-
-{% if labs %}
-<section class="card" style="--accent: {{ (course | ccolor) }}">
-  <h2>Labs</h2>
-  <ul class="items">
-    {% for lab, result in labs %}
-    <li class="item">
-      <div>
-        <a class="item-title" href="/lab/{{ lab.id }}">{{ lab.title }}</a> <span class="tag">Python</span>
-        <div class="item-meta">
-          <span>{{ lab.est_min | hm }}</span>
-          {% if result %}
-          <span>last check: {{ result.passed }} of {{ result.total }} pass</span>
-          {{ bar(result.passed, result.total, (course | ccolor)) }}
-          {% else %}<span>not checked yet</span>{% endif %}
-        </div>
-        <p class="small muted">{{ lab.goal }}</p>
-      </div>
-    </li>
-    {% endfor %}
-  </ul>
-</section>
-
-{% endif %}
+{% macro vcard(v) %}
+{% set pct = ((100 * v.last_pos_sec / (60 * v.duration_min)) | round | int) if (v.duration_min and v.last_pos_sec and not v.watched_at) else 0 %}
+<a class="vcard {{ 'done' if v.watched_at }}" href="/video/{{ v.slug }}">
+  <div class="vthumb" {% if v.youtube_id %}style="background-image: url('https://i.ytimg.com/vi/{{ v.youtube_id }}/mqdefault.jpg')"{% endif %}>
+    <span class="play">{{ icon('play') }}</span>
+    {% if v.duration_min %}<span class="dur">{{ v.duration_min | hm }}</span>{% endif %}
+    {% if v.watched_at %}<span class="seen">✓ watched</span>{% endif %}
+    {% if pct %}<span class="watched-line" style="width: {{ [pct, 100] | min }}%"></span>{% endif %}
+  </div>
+  <div class="vbody">
+    <div class="t">{{ v.title }}</div>
+    <div class="m"><span>{{ v.series }}</span>
+      {% if chapter_counts.get(v.id) %}<span>{{ chapter_counts[v.id] }} chapters</span>{% endif %}
+      {% if pct %}<span>stopped at {{ v.last_pos_sec | ts }}</span>{% endif %}
+      {% if not v.verified %}<span class="tag warn">link not verified</span>{% endif %}</div>
+  </div>
+</a>
+{% endmacro %}
 
 <section class="card">
-  <h2>Prep-plan checklist</h2>
-  {% if tasks %}
-  <ul class="tasks">
-    {% for t in tasks %}
-    {% set pw = prep_by_id.get(t.prep_week_id) %}
-    {{ task_row(t, course, ('prep wk ' ~ pw.number) if pw else '') }}
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p class="muted">Nothing from this week is in the Oct–Jan prep plan.</p>
+  <div class="sec-head"><span class="icon-tile">{{ icon('play') }}</span><h2>Watch</h2>
+    {% if videos %}<span class="right">{{ videos | selectattr('watched_at') | list | length }} of {{ videos | length }} watched</span>{% endif %}</div>
+  {% if videos %}
+  <div class="vgrid">{% for v in core %}{{ vcard(v) }}{% endfor %}</div>
+  {% if extra %}
+  <details class="more" style="margin-top:10px">
+    <summary class="small muted">{{ extra | length }} optional video{{ 's' if extra | length != 1 }}</summary>
+    <div class="vgrid" style="margin-top:10px">{% for v in extra %}{{ vcard(v) }}{% endfor %}</div>
+  </details>
   {% endif %}
+  {% else %}<p class="muted" style="margin:0">No videos mapped to this week yet.</p>{% endif %}
 </section>
+
+<div class="today-grid hub-grid">
+  <div>
+    <section class="card">
+      <div class="sec-head"><span class="icon-tile">{{ icon('pencil') }}</span><h2>Solve</h2>
+        {% if psets %}<span class="right">{{ psets | length }} set{{ 's' if psets | length != 1 }}</span>{% endif %}</div>
+      {% if psets %}
+      <ul class="rows">
+        {% for ps in psets %}
+        {% set total, tried, solid = pset_stats[ps.id] %}
+        {% set pct = ((100 * tried / total) | round | int) if total else 0 %}
+        <li>
+          <span class="mini-ring" style="--p: {{ pct }}" data-label="{{ tried }}/{{ total }}" role="img" aria-label="{{ tried }} of {{ total }} tried"></span>
+          <div class="grow">
+            <a class="t" href="/pset/{{ ps.slug }}">{{ ps.title }}</a>{% if ps.optional %} <span class="tag">optional</span>{% endif %}
+            <div class="m"><span>{{ total }} problem{{ 's' if total != 1 }}</span><span>{{ solid }} solid</span></div>
+          </div>
+          <a class="button small" href="/pset/{{ ps.slug }}">{{ 'Continue' if tried else 'Start' }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}<p class="muted" style="margin:0">Problem sets for this week arrive with the course content.</p>{% endif %}
+    </section>
+
+    {% if labs %}
+    <section class="card">
+      <div class="sec-head"><span class="icon-tile">{{ icon('code') }}</span><h2>Labs</h2><span class="right">Python</span></div>
+      <ul class="rows">
+        {% for lab, result in labs %}
+        {% set pct = ((100 * result.passed / result.total) | round | int) if result and result.total else 0 %}
+        <li>
+          <span class="mini-ring" style="--p: {{ pct }}" data-label="{{ (result.passed ~ '/' ~ result.total) if result else '–' }}"></span>
+          <div class="grow">
+            <a class="t" href="/lab/{{ lab.id }}">{{ lab.title }}</a>
+            <div class="m"><span>{{ lab.est_min | hm }}</span><span>{{ ('last check: ' ~ result.passed ~ ' of ' ~ result.total ~ ' pass') if result else 'not checked yet' }}</span></div>
+            <p class="note">{{ lab.goal }}</p>
+          </div>
+          <a class="button small" href="/lab/{{ lab.id }}">Open</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    {% endif %}
+
+    <section class="card">
+      <div class="sec-head"><span class="icon-tile">{{ icon('list') }}</span><h2>Prep-plan checklist</h2>
+        {% if tasks %}<span class="right">{{ tasks | selectattr('done_at') | list | length }} of {{ tasks | length }} done</span>{% endif %}</div>
+      {% if tasks %}
+      <ul class="tasks">
+        {% for t in tasks %}
+        {% set pw = prep_by_id.get(t.prep_week_id) %}
+        {{ task_row(t, course, ('prep wk ' ~ pw.number) if pw else '') }}
+        {% endfor %}
+      </ul>
+      {% else %}<p class="muted" style="margin:0">Nothing from this week is in the Oct–Jan prep plan.</p>{% endif %}
+    </section>
+  </div>
+
+  <section class="card">
+    <div class="sec-head"><span class="icon-tile">{{ icon('book') }}</span><h2>Read</h2></div>
+    {% if readings %}
+    <ul class="rows">
+      {% for r, res, have in readings %}
+      <li>
+        <div class="grow">
+          <span class="t">{{ res.title }}</span>{% if r.optional %} <span class="tag">optional</span>{% endif %}
+          <div class="m"><span>{{ r.sections }}</span>{% if r.est_min %}<span>{{ r.est_min | hm }}</span>{% endif %}
+            {% if res.url %}<a href="{{ res.url }}" target="_blank" rel="noopener">source ↗</a>{% endif %}</div>
+          {% if res.local_path and not have %}<p class="note"><span class="tag warn">not downloaded yet</span> {{ res.notes }}</p>{% endif %}
+        </div>
+        {% if have %}<a class="button small" href="/{{ res.local_path }}{% if r.page %}#page={{ r.page }}{% endif %}" target="_blank">Open</a>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}<p class="muted" style="margin:0">Readings for this week arrive with the course content.</p>{% endif %}
+  </section>
+</div>
 
 <nav class="pager">
   {% if prev_n %}<a href="/course/{{ course.code }}/week/{{ prev_n }}">← Week {{ prev_n }}</a>{% else %}<span></span>{% endif %}
   {% if next_n %}<a href="/course/{{ course.code }}/week/{{ next_n }}">Week {{ next_n }} →</a>{% endif %}
 </nav>
+</div>
 {% endblock %}

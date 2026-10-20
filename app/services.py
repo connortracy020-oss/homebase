@@ -433,6 +433,28 @@ def recent_activity(session: Session, limit: int = 20) -> list[ActivityLog]:
     return list(session.exec(select(ActivityLog).order_by(ActivityLog.at.desc()).limit(limit)))
 
 
+def study_days(session: Session, today: date | None = None, days: int = 28) -> dict:
+    """Minutes studied per day for the last `days` days, and the current streak.
+
+    The streak counts back from today; a day with no study yet today doesn't
+    break it until the day is over."""
+    today = today or config.today()
+    start = today - timedelta(days=days - 1)
+    per_day = {start + timedelta(days=i): 0 for i in range(days)}
+    rows = session.exec(select(StudySession).where(
+        StudySession.started_at >= datetime.combine(start, datetime.min.time()))).all()
+    for row in rows:
+        d = row.started_at.date()
+        if d in per_day:
+            per_day[d] += row.minutes
+    streak, d = 0, today if per_day.get(today) else today - timedelta(days=1)
+    while d >= start and per_day.get(d):
+        streak += 1
+        d -= timedelta(days=1)
+    return {"per_day": per_day, "streak": streak, "today": today,
+            "active": sum(1 for m in per_day.values() if m)}
+
+
 def recent_study(session: Session, limit: int = 10) -> list[StudySession]:
     return list(session.exec(
         select(StudySession).order_by(StudySession.started_at.desc()).limit(limit)))

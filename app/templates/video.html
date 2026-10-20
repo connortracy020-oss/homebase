@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ video.title }} · Homebase{% endblock %}
+{% from "_icons.html" import icon %}
 {% block content %}
 <section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow">
@@ -21,7 +22,7 @@
     {% endif %}
     <div class="video-bar">
       <form method="post" action="/video/{{ video.slug }}/watched" id="watched-form">
-        <label class="watched-toggle"><input type="checkbox" name="watched" id="watched" {% if video.watched_at %}checked{% endif %}> Watched</label>
+        <label class="watched-toggle button"><input type="checkbox" name="watched" id="watched" {% if video.watched_at %}checked{% endif %}> Watched</label>
         <noscript><button class="small">Save</button></noscript>
       </form>
       <span class="muted small">{% if video.duration_min %}{{ video.duration_min | hm }}{% endif %}{% if video.last_pos_sec %} · resumes at {{ video.last_pos_sec | ts }}{% endif %}</span>
@@ -29,12 +30,12 @@
     </div>
 
     <section class="card notes" style="--accent: {{ (course | ccolor) }}">
-      <h2>Notes</h2>
+      <div class="sec-head"><span class="icon-tile">{{ icon('note') }}</span><h2>Notes</h2><span class="right">pinned notes jump the video</span></div>
       <form id="note-form" class="note-form">
         <textarea id="note-body" rows="3" placeholder="Type a note. Math works too: \(v = iR\)" aria-label="New note"></textarea>
         <div class="note-actions">
-          <label class="small"><input type="checkbox" id="note-pin" checked> pin to <output id="note-time">0:00</output></label>
-          <button type="submit" class="primary">Add note</button>
+          <label class="small"><input type="checkbox" id="note-pin" checked> pin to the video time</label>
+          <button type="submit" class="primary">Add note at <output id="note-time">0:00</output></button>
         </div>
       </form>
       <ul class="note-list" id="note-list"></ul>
@@ -45,7 +46,7 @@
   <aside class="video-side">
     {% if chapters %}
     <section class="card chapters" style="--accent: {{ (course | ccolor) }}">
-      <h2>Chapters</h2>
+      <div class="sec-head"><span class="icon-tile">{{ icon('list') }}</span><h2>Chapters</h2><span class="right">{{ chapters | length }}</span></div>
       <ol class="chapter-list" id="chapter-list">
         {% for c in chapters %}
         <li><button type="button" class="chapter" data-t="{{ c.t }}">

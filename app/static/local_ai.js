@@ -202,19 +202,6 @@
     });
   }
 
-  // ---- Snap my work / Upload: send as soon as a photo is chosen --------------------------------
-  const submitForm = $("#submit-form");
-  if (submitForm) {
-    submitForm.querySelectorAll(".auto-submit").forEach((inp) => inp.addEventListener("change", () => {
-      if (!inp.files.length) return;
-      submitForm.querySelectorAll(".auto-submit").forEach((o) => { if (o !== inp) o.disabled = true; });
-      submitForm.classList.add("is-sending");
-      const sending = $("#submit .sending");
-      if (sending) sending.hidden = false;
-      submitForm.submit();
-    }));
-  }
-
   // ---- submission page: quick-check progress ----------------------------------------------------
   const progress = $("#local-progress");
   if (progress) {

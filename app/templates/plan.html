@@ -1,27 +1,38 @@
 {% extends "base.html" %}
 {% from "_macros.html" import task_row, bar %}
+{% from "_icons.html" import icon %}
 {% block title %}Plan · Homebase{% endblock %}
 {% block content %}
+{% set all_tasks = weeks | map(attribute=1) | map('length') | sum %}
+{% set all_done = weeks | map(attribute=2) | sum %}
 <section class="hero">
   <p class="eyebrow">October 19 – January 3</p>
   <h1>Prep plan</h1>
-  <p class="muted">About {{ weeks | map(attribute=0) | map(attribute='planned_hours') | sum | round(0) | int }} planned hours. Lighter until Thanksgiving, heavier in December, a light pass before term.</p>
+  <p class="muted small">About {{ weeks | map(attribute=0) | map(attribute='planned_hours') | sum | round(0) | int }} planned hours. Lighter until Thanksgiving, heavier in December, a light pass before term.</p>
+  <div class="stats">
+    <div class="stat-chip"><b>{{ weeks | length }}</b><span>weeks</span></div>
+    <div class="stat-chip"><b>{{ all_done }}/{{ all_tasks }}</b><span>tasks done</span></div>
+    {% if phase.prep_week %}<div class="stat-chip"><b>Week {{ phase.prep_week.number }}</b><span>you are here</span></div>{% endif %}
+  </div>
 </section>
 
 {% for w, tasks, done in weeks %}
 {% set current = phase.prep_week and phase.prep_week.id == w.id %}
-<details class="card week {% if current %}current{% endif %}" {% if current %}open{% endif %}>
+{% set past = phase.prep_week and w.number < phase.prep_week.number %}
+<details class="card week {% if current %}current{% endif %}" {% if current %}open{% endif %} id="week-{{ w.number }}">
   <summary>
+    <span class="chev">{{ icon('right') }}</span>
     <span class="wk">Week {{ w.number }}</span>
     <span class="dates">{{ w.start | md }} – {{ w.end | md }}</span>
+    {% if current %}<span class="tag">this week</span>{% endif %}
     {% if w.label %}<span class="tag">{{ w.label }}</span>{% endif %}
-    <span class="right muted small">{{ done }}/{{ tasks | length }} · {{ w.planned_hours }} h</span>
+    <span class="right muted small">{{ bar(done, tasks | length) }} {{ done }}/{{ tasks | length }} · {{ w.planned_hours }} h</span>
   </summary>
-  <p class="muted">{{ w.focus }}</p>
+  <p class="muted small">{{ w.focus }}</p>
   <ul class="tasks">
     {% for t in tasks %}
     {% set c = course_by_id[t.course_id] %}
-    {{ task_row(t, c, c.name ~ ' wk ' ~ t.course_week) }}
+    {{ task_row(t, c, c.name ~ ' wk ' ~ t.course_week, keys=current) }}
     {% endfor %}
   </ul>
 </details>

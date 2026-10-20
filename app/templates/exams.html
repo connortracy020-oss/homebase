@@ -1,32 +1,40 @@
 {% extends "base.html" %}
+{% from "_icons.html" import icon %}
 {% block title %}Exams · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
 {% block content %}
 <section class="hero">
   <p class="eyebrow">Timed practice</p>
   <h1>Practice exams</h1>
-  <p class="muted">Real past exams with official solutions, run under exam rules: timed, closed book, no calculator.
+  <p class="muted small">Real past exams with official solutions, run under exam rules: timed, closed book, no calculator.
     Each one is checked by eye so the "blank" copy really is blank.</p>
 </section>
 
+<div class="exam-cols">
 {% for c, rows in groups %}
 <section class="card" style="--accent: {{ (c | ccolor) }}">
-  <h2 class="course-head"><span class="dot"></span>{{ c.name }} <span class="muted">{{ c.title }}</span></h2>
+  <div class="card-head course-head"><h2><span class="dot"></span>{{ c.name }} <span class="muted">{{ c.title }}</span></h2><span class="right">{{ rows | length }} exam{{ 's' if rows | length != 1 }}</span></div>
   {% if not c.exam_style_known %}<p class="small"><span class="tag warn">OSU exam style unknown</span> {{ c.exam_style_note }}</p>{% endif %}
   {% if rows %}
-  <ul class="items">
+  <ul class="rows">
     {% for e, last, open in rows %}
-    <li class="item"><div>
-      <a class="item-title" href="/exam/{{ e.slug }}">{{ e.title }}</a>
-      <div class="item-meta">
-        <span>term week {{ e.course_week }}</span><span>{{ e.time_min }} min</span><span>{{ e.total_points | num }} points</span>
-        {% if open %}<span class="tag warn">in progress</span>{% endif %}
-        {% if last %}<span class="result result-{{ 'solid' if last.total / last.max_points >= 0.8 else 'shaky' if last.total / last.max_points >= 0.6 else 'miss' }}">last: {{ (100 * last.total / last.max_points) | round | int }}%</span>{% endif %}
+    {% set pct = ((100 * last.total / last.max_points) | round | int) if last else None %}
+    <li>
+      {% if pct is not none %}
+      <span class="mini-ring score-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}" style="--p: {{ pct }}" data-label="{{ pct }}%" title="last sitting"></span>
+      {% else %}<span class="icon-tile">{{ icon('clock') }}</span>{% endif %}
+      <div class="grow">
+        <a class="t" href="/exam/{{ e.slug }}">{{ e.title }}</a>
+        <div class="m"><span>{{ e.time_min }} min</span><span>{{ e.total_points | num }} pts</span><span>term week {{ e.course_week }}</span>
+          {% if open %}<span class="tag warn">in progress</span>{% endif %}</div>
+        <p class="note">{{ e.scope }}</p>
       </div>
-      <p class="small muted">{{ e.scope }}</p>
-    </div></li>
+      <a class="button small" href="/exam/{{ e.slug }}">{{ 'Resume' if open else ('Retake' if last else 'Open') }}</a>
+    </li>
     {% endfor %}
   </ul>
-  {% else %}<p class="muted">No exams set up for this course yet.</p>{% endif %}
+  {% else %}<p class="muted" style="margin:0">No exams set up for this course yet.</p>{% endif %}
 </section>
 {% endfor %}
+</div>
 {% endblock %}

@@ -5,8 +5,7 @@
   <p class="eyebrow"><a href="/review">Review</a></p>
   <h1>Mistake log</h1>
   <p class="muted">Every problem you missed, where it sits on the 1-3-7-14-28-day ladder, and why it went wrong.</p>
-  <p class="small"><a href="/mistakes" {% if not selected %}aria-current="page"{% endif %}>All</a>
-    {% for c in courses %} · <a href="/mistakes?course={{ c.code }}">{{ c.name }}</a>{% endfor %}</p>
+  <nav class="tabs filter-tabs" aria-label="Course"><a href="/mistakes" {% if not selected %}aria-current="page"{% endif %}>All</a>{% for c in courses %}<a href="/mistakes?course={{ c.code }}" {% if selected and selected.id == c.id %}aria-current="page"{% endif %}>{{ c.name }}</a>{% endfor %}</nav>
 </section>
 
 <section class="grid3">
@@ -25,7 +24,7 @@
   <ul class="items">
     {% for m, p, c in rows %}
     <li class="item {% if m.retired_at %}done{% endif %}" style="--accent: {{ (c | ccolor) }}">
-      <span class="check">{% if m.retired_at %}✓{% else %}{{ m.box }}{% endif %}</span>
+      <span class="num-badge {{ 'solid' if m.retired_at }}" title="{{ 'retired' if m.retired_at else 'box ' ~ m.box }}">{% if m.retired_at %}✓{% else %}{{ m.box }}{% endif %}</span>
       <div>
         <a class="item-title" href="/review/{{ m.id }}">{{ p.label }}</a>
         <div class="item-meta">
