@@ -46,6 +46,7 @@ def mdlite(text: str) -> Markup:
 
 
 TEMPLATES.env.filters["mdlite"] = mdlite
+TEMPLATES.env.filters["num"] = lambda x: "" if x is None else f"{float(x):g}"  # 85.0 -> "85", 12.5 -> "12.5"
 TEMPLATES.env.filters["hm"] = fmt_minutes
 TEMPLATES.env.filters["md"] = lambda d: f"{d:%b} {d.day}"  # "Oct 19"
 TEMPLATES.env.filters["ts"] = lambda s: (f"{int(s) // 3600}:{int(s) % 3600 // 60:02d}:{int(s) % 60:02d}"
@@ -143,7 +144,14 @@ def course_week_page(code: str, number: int, request: Request,
 
 @router.get("/progress")
 def progress_page(request: Request, session: Session = Depends(get_session)):
-    return render(request, "progress.html", session,
+    from .. import exams
+    sittings = []
+    for e in exams.exams_for(session):
+        for a in exams.attempts_of(session, e):
+            if a.status == "graded":
+                sittings.append((e, a))
+    sittings.sort(key=lambda ea: ea[1].started_at, reverse=True)
+    return render(request, "progress.html", session, sittings=sittings,
                   progress=services.progress(session), prep_weeks=services.prep_weeks(session),
                   recent=services.recent_study(session, 15),
                   activity=services.recent_activity(session, 15),

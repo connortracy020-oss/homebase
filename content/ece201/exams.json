@@ -1,0 +1,46 @@
+[
+  {
+    "id": "ucb40-fa11-mt1",
+    "title": "EE 40 Midterm 1, Fall 2011",
+    "source": "UC Berkeley EE 40 (Maharbiz), via the HKN exam archive",
+    "license": "All rights reserved; posted by HKN with instructor consent (personal study copy)",
+    "course_week": 5,
+    "scope": "Midterm 1: dependent sources, a bridge circuit, mesh and nodal analysis",
+    "time_min": 50,
+    "time_note": "The exam doesn't state a time limit; 50 minutes matches other EE 40 midterms in the archive.",
+    "original_rules": "Not stated on the exam.",
+    "practice_rules": ["Closed book and closed notes", "No calculator: answers are symbolic", "One page of your own handwritten formulas, if you like"],
+    "verified": "Checked by eye 2026-10-19: the exam file is blank (no answers); solutions are 5 handwritten scanned pages.",
+    "exam_pdf": "library/ece201/ucb-ee40/fa11_mt1.pdf",
+    "key_pdf": "library/ece201/ucb-ee40/fa11_mt1_sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: warm-up (dependent source, bridge)", "points": 20, "pages": [2, 3], "key_pages": [1, 2], "topics": ["dependent sources", "series/parallel", "bridge"]},
+      {"label": "Problem 2: mesh analysis", "points": 25, "pages": [4], "key_pages": [3], "topics": ["mesh", "dependent sources"]},
+      {"label": "Problem 3: nodal analysis", "points": 25, "pages": [5], "key_pages": [4], "topics": ["nodal", "dependent sources"]},
+      {"label": "Problem 4: \"wacky\" circuit", "points": 30, "pages": [6], "key_pages": [5], "topics": ["dependent sources", "equivalent circuits"]}
+    ]
+  },
+  {
+    "id": "ucb40-sp12-mt2-ece201",
+    "title": "EE 40 Midterm 2, Spring 2012 (ECE 201 parts)",
+    "source": "UC Berkeley EE 40 (Maharbiz), via the HKN exam archive",
+    "license": "All rights reserved; posted by HKN with instructor consent (personal study copy)",
+    "course_week": 10,
+    "scope": "Midterm 2 / final: op-amps and a first-order switching circuit",
+    "time_min": 40,
+    "time_note": "Only the ECE 201 parts (50 of 100 points) are included, so the time is cut to 40 minutes. The original time limit isn't stated.",
+    "original_rules": "Not stated on the exam.",
+    "practice_rules": ["Closed book and closed notes", "No calculator: answers are symbolic", "One page of your own handwritten formulas, if you like"],
+    "skipped": "Problem 1(b) and Problem 3 (AC phasors, transfer functions, Bode plots) are left out: they belong to ECE 202, not ECE 201.",
+    "verified": "Checked by eye 2026-10-19: the exam file is blank; solutions are typed (Problem 1) and scanned (Problems 2 and 4).",
+    "exam_pdf": "library/ece201/ucb-ee40/sp12_mt2.pdf",
+    "key_pdf": "library/ece201/ucb-ee40/sp12_mt2_sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1(a): op-amp with impedances", "points": 5, "pages": [2], "key_pages": [1], "topics": ["op-amps", "nodal"]},
+      {"label": "Problem 2: first-order circuit after a switch", "points": 20, "pages": [4, 5], "key_pages": [3, 4], "topics": ["RC/RL", "initial conditions", "time constant"]},
+      {"label": "Problem 4: two op-amp stages", "points": 25, "pages": [9, 10], "key_pages": [7], "topics": ["op-amps", "inverting amplifier"]}
+    ]
+  }
+]

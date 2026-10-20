@@ -10,6 +10,7 @@
       <label for="t{{ t.id }}" class="kind kind-{{ t.kind }}">{{ KIND_LABELS.get(t.kind, t.kind) }}</label>
       {% if t.ref_kind == 'video' %}<a href="/video/{{ t.ref }}">{{ t.title }}</a>
       {% elif t.ref_kind == 'pset' %}<a href="/pset/{{ t.ref }}">{{ t.title }}</a>
+      {% elif t.ref_kind == 'exam' %}<a href="/exam/{{ t.ref }}">{{ t.title }}</a>
       {% else %}<label for="t{{ t.id }}">{{ t.title }}</label>{% endif %}
     </span>
     <div class="task-meta">

@@ -243,6 +243,8 @@ async def submit_work(slug: str, request: Request, background: BackgroundTasks,
 @router.get("/submission/{sub_id}")
 def submission_page(sub_id: int, request: Request, session: Session = Depends(get_session)):
     sub = _sub_or_404(session, sub_id)
+    if sub.exam_attempt_id:  # exam work is graded on the exam sitting's page
+        return RedirectResponse(f"/attempt/{sub.exam_attempt_id}#grade", status_code=303)
     problem = session.get(Problem, sub.problem_id) if sub.problem_id else None
     pset = session.get(ProblemSet, problem.set_id) if problem else None
     return render(request, "submission.html", session, sub=sub, problem=problem, pset=pset,

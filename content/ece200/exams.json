@@ -1,0 +1,44 @@
+[
+  {
+    "id": "gt2026-sp25-q1",
+    "title": "Georgia Tech ECE 2026 Quiz 1, Spring 2025",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 2,
+    "scope": "Sinusoids, phasors, complex exponentials, spectrum",
+    "time_min": 50,
+    "time_note": "50 minutes, the length of recent Georgia Tech ECE 2026 quizzes. OSU's ECE 200 exam format is unknown.",
+    "original_rules": "Closed book, except for one two-sided page of handwritten notes. Calculators allowed.",
+    "practice_rules": ["Closed book", "One two-sided page of your own handwritten notes", "No calculator (stricter than Georgia Tech, to match OSU's other ECE exams)"],
+    "verified": "Checked by eye 2026-10-19: pages 1-4 are the blank quiz, pages 5-8 the answer key.",
+    "exam_pdf": "library/ece200/gt2026-barry/q1_sp25.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/q1_sp25.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: match sinusoids to plots", "points": 30, "pages": [2], "key_pages": [6], "topics": ["sinusoids", "phasor addition"]},
+      {"label": "Problem 2: sums of complex exponentials", "points": 35, "pages": [3], "key_pages": [7], "topics": ["complex exponentials", "roots of unity"]},
+      {"label": "Problem 3: reading a spectrum", "points": 35, "pages": [4], "key_pages": [8], "topics": ["spectrum", "time shift", "phase"]}
+    ]
+  },
+  {
+    "id": "gt2026-sp25-q2",
+    "title": "Georgia Tech ECE 2026 Quiz 2, Spring 2025",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 5,
+    "scope": "Fourier series, sampling and aliasing, a spectrogram from MATLAB code, FIR filters and convolution",
+    "time_min": 50,
+    "time_note": "50 minutes, the length of recent Georgia Tech ECE 2026 quizzes. OSU's ECE 200 exam format is unknown.",
+    "original_rules": "Closed book, except for one two-sided page of handwritten notes. Calculators allowed.",
+    "practice_rules": ["Closed book", "One two-sided page of your own handwritten notes", "No calculator (stricter than Georgia Tech)"],
+    "verified": "Checked by eye 2026-10-19: pages 1-4 are the blank quiz, pages 5-8 the answer key. Problem 2 reads MATLAB code.",
+    "exam_pdf": "library/ece200/gt2026-barry/q2_sp25.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/q2_sp25.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: Fourier series and sampling", "points": 35, "pages": [2], "key_pages": [6], "topics": ["Fourier series", "sampling", "aliasing"]},
+      {"label": "Problem 2: chirp spectrogram (MATLAB code)", "points": 30, "pages": [3], "key_pages": [7], "topics": ["chirp", "spectrogram", "aliasing"]},
+      {"label": "Problem 3: FIR filter, step response, convolution", "points": 35, "pages": [4], "key_pages": [8], "topics": ["FIR filters", "step response", "convolution"]}
+    ]
+  }
+]

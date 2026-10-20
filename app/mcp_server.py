@@ -13,9 +13,9 @@ from datetime import date
 from mcp.server.mcpserver import Image, MCPServer
 from sqlmodel import Session, select
 
-from . import config, feedback, review, services
+from . import config, exams, feedback, review, services
 from .db import get_engine, init_db
-from .models import Course, Mistake, Problem, ProblemSet, Submission, Task
+from .models import Course, ExamAttempt, Mistake, Problem, ProblemSet, Submission, Task
 
 INSTRUCTIONS = """\
 Homebase is Connor's self-study platform for three Winter 2027 OSU courses (ECE 201 circuits, \
@@ -30,6 +30,9 @@ packet (problem, key, his pages), then post_feedback. Follow the review instruct
 packet exactly.
 - When he works a problem with you in chat, record it with record_problem_result and log the \
 time with log_study_session. Ask before logging time he didn't mention.
+- Timed practice exams: when a pending submission is a timed exam, get_submission returns the \
+whole exam with its official solutions; suggest per-problem points with post_exam_grades. He \
+enters the final scores himself.
 - Spaced review: list_due_reviews shows today's cold re-solves. Have him re-solve without \
 notes before showing any key, then record_review_outcome (solid / shaky / miss).
 - Everything you change is shown to him as done by Claude.
@@ -170,7 +173,11 @@ def list_pending_submissions() -> str:
         for sub in sorted(rows, key=lambda x: x.created_at):
             problem = s.get(Problem, sub.problem_id) if sub.problem_id else None
             pages = sum(len(f["pages"]) for f in sub.files)
-            out.append(f"- submission {sub.id} · {problem.label if problem else 'no problem'} · "
+            if sub.exam_attempt_id:
+                what = f"timed exam (exam attempt {sub.exam_attempt_id}; grade it with post_exam_grades)"
+            else:
+                what = problem.label if problem else "no problem"
+            out.append(f"- submission {sub.id} · {what} · "
                        f"{pages} page(s) · {sub.created_at:%Y-%m-%d %H:%M} · {sub.status}")
         return "\n".join(out)
 
@@ -181,6 +188,12 @@ def get_submission(submission_id: int) -> list:
         sub = s.get(Submission, submission_id)
         if sub is None:
             raise ValueError(f"No submission {submission_id}")
+        if sub.exam_attempt_id:
+            attempt = s.get(ExamAttempt, sub.exam_attempt_id)
+            items = ["EXAM GRADING INSTRUCTIONS\n" + exams.EXAM_SYSTEM_PROMPT
+                     + f"\nWhen done, call post_exam_grades(attempt_id={attempt.id}, ...) with one "
+                       "entry per problem number."]
+            return items + _packet_content(exams.build_packet(s, attempt))
         packet = feedback.build_packet(s, sub)
         items = ["REVIEW INSTRUCTIONS\n" + feedback.SYSTEM_PROMPT
                  + "\nWhen done, call post_feedback with the fields described above."]
@@ -326,6 +339,37 @@ def record_review_outcome(mistake_id: int, outcome: str, note: str = "") -> str:
         return f"Recorded {outcome}: {state}."
 
 
+def post_exam_grades(attempt_id: int, problems: list[dict], feedback_text: str,
+                     legible: bool = True, confidence: str = "medium") -> str:
+    """Suggest grades for a timed practice exam. Connor makes the final call.
+
+    problems: [{"number": 1, "points_awarded": 18, "comment": "...", "first_error": "...",
+                "cause": "concept|setup|algebra-sign|units|careless|none|unclear"}]
+    """
+    with db() as s:
+        attempt = s.get(ExamAttempt, attempt_id)
+        if attempt is None:
+            raise ValueError(f"No exam attempt {attempt_id}")
+        exams.apply_review(s, attempt, {"problems": problems, "feedback": feedback_text,
+                                        "legible": legible, "confidence": confidence},
+                           reviewer="claude_session", model="Claude (chat session)", actor="claude")
+        total = sum(v["points"] for v in attempt.suggested.values())
+        return f"Saved suggested grades: {total:g}/{attempt.max_points}. He confirms them in Homebase."
+
+
+def list_exams(course: str = "") -> str:
+    """Practice exams set up in Homebase, with time limits and Connor's latest scores."""
+    with db() as s:
+        c = _course(s, course) if course else None
+        out = []
+        for e in exams.exams_for(s, c):
+            graded = [a for a in exams.attempts_of(s, e) if a.status == "graded"]
+            last = f"last {graded[0].total:g}/{graded[0].max_points}" if graded else "not taken"
+            out.append(f"- {e.slug} · {e.title} · term wk {e.course_week} · {e.time_min} min · "
+                       f"{e.total_points} pts · {last}")
+        return "\n".join(out) or "No exams yet."
+
+
 def recent_activity(limit: int = 20) -> str:
     """The latest changes in Homebase, including ones made by Claude."""
     with db() as s:
@@ -336,7 +380,8 @@ def recent_activity(limit: int = 20) -> str:
 TOOLS = [get_overview, get_week, get_progress, list_problems, get_problem,
          list_pending_submissions, get_submission, post_feedback, mark_task_done,
          log_study_session, add_note, record_problem_result, mark_video_watched,
-         list_due_reviews, list_mistakes, add_mistake, record_review_outcome, recent_activity]
+         list_due_reviews, list_mistakes, add_mistake, record_review_outcome,
+         list_exams, post_exam_grades, recent_activity]
 for fn in TOOLS:
     mcp.tool()(fn)
 

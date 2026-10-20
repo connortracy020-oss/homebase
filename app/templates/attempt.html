@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ exam.title }}: results · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><a href="/exams">Exams</a> · <a href="/exam/{{ exam.slug }}">{{ exam.title }}</a> · sitting of {{ attempt.started_at | md }}</p>
+  <h1>{% if attempt.status == 'graded' %}{{ attempt.total | num }} / {{ attempt.max_points }} <span class="muted">({{ (100 * attempt.total / attempt.max_points) | round | int }}%)</span>{% else %}Pencils down{% endif %}</h1>
+  <p class="muted small">{{ ((attempt.finished_at - attempt.started_at).total_seconds() / 60) | round | int }} minutes used of {{ exam.time_min }}
+    {% if attempt.overtime_sec >= 60 %}· <span class="tag warn">{{ attempt.overtime_sec // 60 }} min over time</span>{% endif %}
+    · logged as study time</p>
+</section>
+
+{% if attempt.status == 'graded' %}
+<section class="card" id="result">
+  <h2>Results</h2>
+  <table class="answers-table">
+    <thead><tr><th>Problem</th><th>Points</th><th></th></tr></thead>
+    <tbody>{% for p in problems %}{% set pts = attempt.scores.get(p.id | string) %}
+      <tr><td>{{ p.label }}</td><td>{{ pts | num }} / {{ p.points }}</td>
+        <td>{% if pts >= p.points %}<span class="mark ok">✓</span>{% endif %}</td></tr>{% endfor %}</tbody>
+  </table>
+  <p class="small muted">Problems you lost points on and ticked are in your <a href="/mistakes">mistake log</a>; every problem also counts as an attempt.</p>
+</section>
+{% endif %}
+
+{% if not sub %}
+<section class="card">
+  <h2>1. Photograph your pages</h2>
+  <p class="small muted">One photo per page, upright, in good light. Label problems by number so they can be matched to the key.</p>
+  <form method="post" action="/attempt/{{ attempt.id }}/upload" enctype="multipart/form-data" class="submit-form">
+    <input type="file" name="files" accept="image/*,application/pdf" multiple required aria-label="Photos or PDF of your exam work">
+    <button type="submit" class="primary">Upload</button>
+  </form>
+  <p class="small muted">No photos? You can still grade yourself below.</p>
+</section>
+{% else %}
+<section class="card">
+  <h2>Your pages</h2>
+  <div class="page-grid">{% for f in sub.files %}{% for pg in f.pages %}<a href="/{{ pg }}" target="_blank"><img src="/{{ pg }}" alt="Your page" loading="lazy"></a>{% endfor %}{% endfor %}</div>
+  {% if not attempt.suggested %}
+    {% if sub.status == 'error' %}<p class="tag warn">Grading via the API failed: {{ sub.error }}</p>{% endif %}
+    <p class="small">For suggested grades, open Claude and say <em>"Grade my Homebase practice exam."</em>
+      {% if api_ok %}Or:{% endif %}</p>
+    {% if api_ok %}<form method="post" action="/attempt/{{ attempt.id }}/api-review"><button type="submit">Get suggested grades now (API, about 20–40¢)</button></form>{% endif %}
+  {% else %}
+  <div class="feedback-text">{{ attempt.feedback | mdlite }}</div>
+  <p class="small muted">Suggested by {{ 'Claude via the API' if attempt.reviewer == 'api' else 'Claude in a chat session' }}. You decide the final points.</p>
+  {% endif %}
+</section>
+{% endif %}
+
+<form method="post" action="/attempt/{{ attempt.id }}/grade" id="grade">
+  {% for p in problems %}
+  {% set sug = attempt.suggested.get(p.id | string) %}
+  {% set final = attempt.scores.get(p.id | string) %}
+  <section class="card grade-card">
+    <h2>{{ p.label }} <span class="muted small">({{ p.points }} points)</span></h2>
+    <details><summary class="small">The problem</summary><img loading="lazy" src="/problem/{{ p.slug }}/statement.png" alt="Problem {{ loop.index }}" class="pdf-crop"></details>
+    <details class="solution" {% if attempt.status != 'graded' %}open{% endif %}><summary>Official solution</summary>
+      <img loading="lazy" src="/problem/{{ p.slug }}/key.png" alt="Official solution for problem {{ loop.index }}" class="pdf-crop"></details>
+    {% if sug %}<p class="small"><strong>Claude suggests {{ sug.points | num }}/{{ p.points }}:</strong> {{ sug.comment }}
+      {% if sug.first_error %}<br><span class="muted">First error: {{ sug.first_error }}</span> <span class="tag">{{ sug.cause }}</span>{% endif %}</p>{% endif %}
+    <div class="inline-form">
+      <label>Your points <input type="number" name="p{{ p.id }}" min="0" max="{{ p.points }}" step="0.5" required
+        value="{{ final if final is not none else (sug.points if sug else '') }}" data-max="{{ p.points }}" class="pts"></label>
+      <span class="muted">/ {{ p.points }}</span>
+      <label class="small"><input type="checkbox" name="m{{ p.id }}" class="to-log" {% if sug and sug.points < p.points %}checked{% endif %}> add to mistake log</label>
+    </div>
+  </section>
+  {% endfor %}
+  <p><button class="primary" type="submit">{% if attempt.status == 'graded' %}Save new grades{% else %}Save grades{% endif %}</button></p>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>
+// Losing points ticks "add to mistake log"; you can untick it.
+document.querySelectorAll("input.pts").forEach((input) => {
+  input.addEventListener("change", () => {
+    const box = input.closest(".grade-card").querySelector(".to-log");
+    if (input.value !== "") box.checked = Number(input.value) < Number(input.dataset.max);
+  });
+});
+</script>
+{% endblock %}

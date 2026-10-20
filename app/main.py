@@ -13,7 +13,7 @@ from sqlmodel import Session
 
 from . import backup, config
 from .db import get_engine, init_db
-from .routes import api, pages, reviews, study
+from .routes import api, exam_routes, pages, reviews, study
 from .seed import seed
 
 STATIC_DIR = config.ROOT / "app" / "static"
@@ -42,6 +42,7 @@ def create_app(run_lifespan: bool = True) -> FastAPI:
     app.include_router(pages.router)
     app.include_router(study.router)
     app.include_router(reviews.router)
+    app.include_router(exam_routes.router)
     app.include_router(api.router, prefix="/api")
     return app
 

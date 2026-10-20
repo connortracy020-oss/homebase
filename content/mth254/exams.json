@@ -1,0 +1,50 @@
+[
+  {
+    "id": "mit1802sc-exam1",
+    "title": "MIT 18.02 Exam 1 (vectors and curves)",
+    "source": "MIT OpenCourseWare 18.02SC Multivariable Calculus, Fall 2010",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)",
+    "course_week": 4,
+    "scope": "OSU Group Exam 1: vectors, dot and cross products, planes, parametric curves and speed",
+    "time_min": 35,
+    "time_note": "MIT exams run 50 minutes for 100 points. Problem 4 (matrices, 30 points) isn't in MTH 254, so the practice is 70 points in 35 minutes.",
+    "original_rules": "Not stated on the exam; the 18.02SC final says no books, notes or calculators.",
+    "practice_rules": ["No books or calculators", "One 3x5 index card of your own notes (the OSU MTH 254 rule)"],
+    "skipped": "Problem 4 (determinant, inverse matrix, linear system) is left out: matrices are not part of MTH 254.",
+    "verified": "Checked 2026-10-19: separate blank exam and typed solutions, one page each.",
+    "exam_pdf": "library/mth254/mit1802sc/exam1.pdf",
+    "key_pdf": "library/mth254/mit1802sc/exam1sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: vectors and an angle", "points": 15, "statement": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "key": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "topics": ["vectors", "dot product"]},
+      {"label": "Problem 2: triangle area, plane, parallel line", "points": 20, "statement": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "key": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "topics": ["cross product", "planes"]},
+      {"label": "Problem 3: ladybug on a moving car", "points": 25, "statement": {"page": 1, "start": "Problem 3.", "end": "Problem 4."}, "key": {"page": 1, "start": "Problem 3.", "end": "Problem 4."}, "topics": ["parametric curves", "velocity and speed"]},
+      {"label": "Problem 5: motion in a plane", "points": 10, "statement": {"page": 1, "start": "Problem 5."}, "key": {"page": 1, "start": "Problem 5."}, "topics": ["vector functions", "planes"]}
+    ]
+  },
+  {
+    "id": "mit1802sc-exam2",
+    "title": "MIT 18.02 Exam 2 (partial derivatives)",
+    "source": "MIT OpenCourseWare 18.02SC Multivariable Calculus, Fall 2010",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)",
+    "course_week": 7,
+    "scope": "OSU Group Exam 2: gradient, tangent planes, linear approximation, critical points, chain rule",
+    "time_min": 50,
+    "time_note": "Full exam, 100 points in 50 minutes, as at MIT.",
+    "original_rules": "Not stated on the exam; the 18.02SC final says no books, notes or calculators.",
+    "practice_rules": ["No books or calculators", "One 3x5 index card of your own notes (the OSU MTH 254 rule)"],
+    "skipped": "Nothing is cut. Problem 5 (Lagrange multipliers) and Problem 6 (total differentials) may not be on the OSU exam; the 2018 OSU calendar skipped Lagrange multipliers.",
+    "verified": "Checked 2026-10-19: separate blank exam and typed solutions.",
+    "exam_pdf": "library/mth254/mit1802sc/exam2.pdf",
+    "key_pdf": "library/mth254/mit1802sc/exam2sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: gradient, tangent plane, approximation", "points": 20, "statement": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "key": {"page": 1, "end": "Problem 2."}, "topics": ["gradient", "tangent planes", "linear approximation", "directional derivative"]},
+      {"label": "Problem 2: level curves on a contour plot", "points": 10, "statement": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "key": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "topics": ["level curves", "partial derivatives"]},
+      {"label": "Problem 3: critical points and a maximum", "points": 20, "statement": {"page": 1, "start": "Problem 3.", "end": "Problem 4."}, "key": {"page": 1, "start": "Problem 3.", "end": "Problem 4."}, "topics": ["critical points", "second derivative test"]},
+      {"label": "Problem 4: chain rule with new variables", "points": 20, "statement": {"page": 1, "start": "Problem 4.", "end": "Problem 5."}, "key": {"page": 1, "start": "Problem 4."}, "topics": ["chain rule"]},
+      {"label": "Problem 5: Lagrange multipliers (maybe not on OSU's exam)", "points": 15, "statement": {"page": 1, "start": "Problem 5.", "end": "Problem 6."}, "key": {"page": 2, "end": "Problem 6."}, "topics": ["Lagrange multipliers"]},
+      {"label": "Problem 6: total differentials", "points": 15, "statement": {"page": 1, "start": "Problem 6."}, "key": {"page": 2, "start": "Problem 6."}, "topics": ["total differential", "implicit differentiation"]}
+    ]
+  }
+]

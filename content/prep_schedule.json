@@ -88,7 +88,7 @@
       "number": 6, "start": "2026-11-23", "end": "2026-11-29", "label": "Thanksgiving",
       "focus": "Light week: review only.",
       "tasks": [
-        {"course": "ECE201", "week": 5, "kind": "exam", "title": "Timed Midterm-1-scope set: 50 min, closed book, no calculator (nodal, mesh, dividers)", "est_min": 70},
+        {"course": "ECE201", "week": 5, "kind": "exam", "exam": "ucb40-fa11-mt1"},
         {"course": "MTH254", "week": 2, "kind": "review", "title": "Re-solve cold: the vector and curve problems you missed", "est_min": 25},
         {"course": "ECE200", "week": 1, "kind": "review", "title": "Re-solve cold: phasor addition and spectrum problems you missed", "est_min": 25}
       ]
@@ -127,7 +127,7 @@
         {"course": "MTH254", "week": 5, "kind": "watch", "video": "mit1802f07-L11"},
         {"course": "MTH254", "week": 5, "kind": "watch", "video": "mit1802f07-L12"},
         {"course": "MTH254", "week": 5, "kind": "watch", "video": "mit1802sc-rec-s38-grad-dir"},
-        {"course": "MTH254", "week": 4, "kind": "exam", "title": "Timed Exam 1: MIT 18.02SC Exam 1 (skip matrix problems), closed book, no calculator", "est_min": 70},
+        {"course": "MTH254", "week": 4, "kind": "exam", "exam": "mit1802sc-exam1"},
         {"course": "ECE200", "week": 4, "kind": "watch", "video": "lanterman-L24"},
         {"course": "ECE200", "week": 4, "kind": "watch", "video": "lanterman-L25"},
         {"course": "ECE200", "week": 4, "kind": "lab", "title": "Lab 4: write your own FIR loop; check it against np.convolve and lfilter", "est_min": 30}
@@ -141,7 +141,6 @@
         {"course": "ECE201", "week": 8, "kind": "watch", "video": "yt-idJEMYhrIfs"},
         {"course": "ECE201", "week": 8, "kind": "watch", "video": "yt-uxcCJVl96hU"},
         {"course": "ECE201", "week": 9, "kind": "watch", "video": "mit6002-L12"},
-        {"course": "ECE201", "week": 8, "kind": "exam", "title": "Timed: Berkeley EE 40 Fa08 Test 3 (50 min, no calculator, op-amp heavy)", "est_min": 70},
         {"course": "MTH254", "week": 6, "kind": "watch", "video": "mit1802f07-L09"},
         {"course": "MTH254", "week": 6, "kind": "watch", "video": "mit1802f07-L10"},
         {"course": "MTH254", "week": 6, "kind": "watch", "video": "mit1802sc-rec-s37-tangent-planes"},
@@ -151,7 +150,7 @@
         {"course": "ECE200", "week": 5, "kind": "watch", "video": "lanterman-L27"},
         {"course": "ECE200", "week": 5, "kind": "watch", "video": "lanterman-L28"},
         {"course": "ECE200", "week": 5, "kind": "lab", "title": "Lab 5: convolution by flip-and-slide vs np.convolve; test linearity and time-invariance", "est_min": 35},
-        {"course": "ECE200", "week": 2, "kind": "exam", "title": "Timed: Georgia Tech ECE 2026 Quiz 1 (50 min, closed book)", "est_min": 65}
+        {"course": "ECE200", "week": 2, "kind": "exam", "exam": "gt2026-sp25-q1"}
       ]
     },
     {
@@ -165,7 +164,8 @@
         {"course": "ECE201", "week": 10, "kind": "watch", "video": "yt-Bfvyj88Hs_o"},
         {"course": "ECE201", "week": 10, "kind": "watch", "video": "yt-IkRXpFIRUl4"},
         {"course": "ECE201", "week": 10, "kind": "read", "title": "Ulaby ch 5, sections 5-1 to 5-6 (capacitors, inductors, RC/RL response)", "est_min": 35},
-        {"course": "MTH254", "week": 7, "kind": "exam", "title": "Timed Exam 2 scope: MIT 18.02SC Exam 2, closed book, no calculator", "est_min": 70},
+        {"course": "ECE201", "week": 10, "kind": "exam", "exam": "ucb40-sp12-mt2-ece201"},
+        {"course": "MTH254", "week": 7, "kind": "exam", "exam": "mit1802sc-exam2"},
         {"course": "ECE200", "week": 6, "kind": "watch", "video": "lanterman-L29"},
         {"course": "ECE200", "week": 6, "kind": "watch", "video": "lanterman-L30"}
       ]

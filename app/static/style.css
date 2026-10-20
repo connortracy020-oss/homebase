@@ -247,3 +247,17 @@ ol.steps li { margin: .3rem 0; }
 /* keep anchored sections clear of the sticky header */
 [id] { scroll-margin-top: 6.5rem; }
 .rate-head { margin-top: .9rem !important; }
+
+/* ---- stage e: timed exams ---- */
+.rules-card ul { margin: .3rem 0 .6rem; padding-left: 1.2rem; }
+.big-time { font: 600 1.15rem var(--serif); margin: .2rem 0 .4rem; }
+.exam-top { justify-content: space-between; }
+.exam-clock { font: 600 1.6rem var(--font); font-variant-numeric: tabular-nums; }
+.exam-top.warn { background: #f6e1d8; }
+.exam-top.warn .exam-clock { color: #8a3b1d; }
+.times-up { position: fixed; inset: 0; background: rgba(42, 42, 40, .55); display: grid; place-items: center; z-index: 20; padding: 1rem; }
+.times-up[hidden] { display: none; }
+.times-up .card { max-width: 28rem; }
+.grade-card details { margin: .3rem 0; }
+.grade-card .inline-form label { display: inline-flex; align-items: center; gap: .4rem; }
+.grade-card input.pts { width: 6rem; }

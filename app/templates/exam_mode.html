@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ exam.title }}: exam in progress{% endblock %}
+{% block header %}
+<header class="top exam-top" id="exam-clock-bar">
+  <span class="brand">{{ course.name }} exam</span>
+  <output id="exam-clock" class="exam-clock" data-left="{{ seconds_left }}" aria-live="off">--:--</output>
+  <form method="post" action="/attempt/{{ attempt.id }}/finish" id="finish-form"
+        onsubmit="return this.dataset.auto === '1' || confirm('Finish now? The clock stops.')">
+    <button class="primary" type="submit">Pencils down</button>
+  </form>
+</header>
+{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>{{ exam.title }}</h1>
+  <p class="muted small">{{ exam.practice_rules | join(' · ') }}. Work on paper; label each problem by number. Tap a problem to open it full size.</p>
+</section>
+{% for p in problems %}
+<section class="card statement">
+  <h2>{{ p.label.split(":")[0] }} <span class="muted small">({{ p.points }} points)</span></h2>
+  <a href="/problem/{{ p.slug }}/statement.png" target="_blank" title="Open full size"><img src="/problem/{{ p.slug }}/statement.png" alt="Problem {{ loop.index }} of the exam" class="pdf-crop"></a>
+</section>
+{% endfor %}
+<div class="times-up" id="times-up" hidden>
+  <div class="card">
+    <h2>Time's up: pencils down.</h2>
+    <p>Stop writing. Next, photograph your pages and grade them against the solutions.</p>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+(function () {
+  const out = document.getElementById("exam-clock");
+  const bar = document.getElementById("exam-clock-bar");
+  const end = Date.now() + Number(out.dataset.left) * 1000;
+  const form = document.getElementById("finish-form");
+  let done = false;
+  function tick() {
+    const left = Math.round((end - Date.now()) / 1000);
+    const s = Math.max(0, left);
+    out.textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
+    bar.classList.toggle("warn", left <= 300);
+    if (left <= 0 && !done) {
+      done = true;
+      document.getElementById("times-up").hidden = false;
+      setTimeout(() => { form.dataset.auto = "1"; form.requestSubmit(); }, 4000);
+    }
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
+{% endblock %}

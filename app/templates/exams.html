@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Exams · Homebase{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Timed practice</p>
+  <h1>Practice exams</h1>
+  <p class="muted">Real past exams with official solutions, run under exam rules: timed, closed book, no calculator.
+    Each one is checked by eye so the "blank" copy really is blank.</p>
+</section>
+
+{% for c, rows in groups %}
+<section class="card" style="--accent: {{ c.color }}">
+  <h2 class="course-head"><span class="dot"></span>{{ c.name }} <span class="muted">{{ c.title }}</span></h2>
+  {% if not c.exam_style_known %}<p class="small"><span class="tag warn">OSU exam style unknown</span> {{ c.exam_style_note }}</p>{% endif %}
+  {% if rows %}
+  <ul class="items">
+    {% for e, last, open in rows %}
+    <li class="item"><div>
+      <a class="item-title" href="/exam/{{ e.slug }}">{{ e.title }}</a>
+      <div class="item-meta">
+        <span>term week {{ e.course_week }}</span><span>{{ e.time_min }} min</span><span>{{ e.total_points }} points</span>
+        {% if open %}<span class="tag warn">in progress</span>{% endif %}
+        {% if last %}<span class="result result-{{ 'solid' if last.total / last.max_points >= 0.8 else 'shaky' if last.total / last.max_points >= 0.6 else 'miss' }}">last: {{ (100 * last.total / last.max_points) | round | int }}%</span>{% endif %}
+      </div>
+      <p class="small muted">{{ e.scope }}</p>
+    </div></li>
+    {% endfor %}
+  </ul>
+  {% else %}<p class="muted">No exams set up for this course yet.</p>{% endif %}
+</section>
+{% endfor %}
+{% endblock %}

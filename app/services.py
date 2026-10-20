@@ -293,8 +293,10 @@ def local_file_exists(resource: Resource) -> bool:
 
 
 def psets_for_week(session: Session, course: Course, week: int) -> list[ProblemSet]:
+    """Problem sets for a week (exam problems are kept apart, on the Exams page)."""
     return list(session.exec(select(ProblemSet).where(ProblemSet.course_id == course.id,
-                                                      ProblemSet.week == week)
+                                                      ProblemSet.week == week,
+                                                      ProblemSet.kind != "exam")
                              .order_by(ProblemSet.order)))
 
 
@@ -374,14 +376,14 @@ def check_problem(session: Session, problem: Problem, given: list[str],
 
 def create_submission(session: Session, problem: Problem | None, course: Course,
                       files: list[tuple[str, bytes]], note: str = "",
-                      actor: str = "app") -> Submission:
+                      actor: str = "app", exam_attempt_id: int | None = None) -> Submission:
     """Save uploaded work. Raises uploads.UploadError (and saves nothing) if a file is unusable."""
     import shutil
 
     from . import uploads
 
     sub = Submission(problem_id=problem.id if problem else None, course_id=course.id,
-                     created_at=config.now(), note=note.strip())
+                     created_at=config.now(), note=note.strip(), exam_attempt_id=exam_attempt_id)
     session.add(sub)
     session.flush()  # get an id for the folder name
     try:
@@ -410,6 +412,7 @@ def submissions(session: Session, status: str | None = None, problem: Problem | 
 
 
 def pending_count(session: Session) -> int:
+    """Work waiting for Claude: single-problem submissions and uploaded exam sittings."""
     return int(session.exec(select(func.count()).select_from(Submission)
                             .where(Submission.status.in_(["pending", "error"]))).one())
 

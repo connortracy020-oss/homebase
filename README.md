@@ -97,6 +97,29 @@ Reviewing an item when it comes due:
 - **Pre-exam sweep:** 5 to 7 days before an exam, use the **pre-exam sweep** link for a course. It re-solves every logged problem for that course, including retired ones. A retired one you miss goes back on the ladder.
 - **Mistake log page:** shows every item, where it sits, and which causes keep coming up per course.
 
+## Timed practice exams (stage e)
+
+**Exams** (in the nav) lists real past exams that come with official solutions:
+
+| Course | Exams so far |
+|---|---|
+| ECE 201 | Berkeley EE 40 Fall 2011 Midterm 1; the ECE 201 parts of Spring 2012 Midterm 2 |
+| MTH 254 | MIT 18.02 Exams 1 and 2 |
+| ECE 200 | Georgia Tech ECE 2026 Spring 2025 Quizzes 1 and 2 |
+
+**Taking one:**
+1. **Rules page.** It shows the time limit and practice rules: closed book and no calculator, plus the note sheet or 3x5 card OSU-style exams allow. It also shows the original exam's rules, anything left out as out of scope (with the time cut to match), and how the exam was checked.
+2. **Start the clock.** Exam mode hides the navigation, shows a countdown that turns red at 5 minutes, and runs the clock on the server, so closing the page doesn't pause it. At zero: *Time's up, pencils down.* The time is logged as study time.
+3. **Upload** photos of your pages.
+4. **Grade** problem by problem with the official solution shown next to each one.
+   - **Suggested points (optional):** say *"Grade my Homebase practice exam"* in a Claude session, or use the API button if you have a key. Claude suggests points with a comment and the first error for each problem. You enter the final points.
+   - **Mistake log:** problems you lose points on are ticked for it, and you can untick any.
+5. **Scores** show on the exam page and on Progress.
+
+**Why each exam is checked by eye.** `scripts/exam_audit.py` found that many archive "blank" exams are really solved copies, so every exam is checked by eye before it goes in. The audit results are in `research/exam_audit.txt`, and `scripts/contact_sheet.py` / `scripts/exam_pages.py` show what's on each page.
+
+**Adding more exams:** use `content/<course>/exams.json`. Each problem points at exam and solution pages, or at a text-bounded region of a page.
+
 ## Claude access (MCP server)
 
 `mcp_server.py` gives Claude these tools on your Homebase:
@@ -107,6 +130,7 @@ Reviewing an item when it comes due:
 | `list_pending_submissions`, `get_submission`, `post_feedback` | Review your queued work |
 | `mark_task_done`, `log_study_session`, `add_note`, `record_problem_result`, `mark_video_watched` | Log work you do with Claude in chat |
 | `list_due_reviews`, `list_mistakes`, `add_mistake`, `record_review_outcome` | Run your daily re-solves in chat and log mistakes |
+| `list_exams`, `post_exam_grades` | See practice exams and suggest grades for a finished sitting |
 | `recent_activity` | See what changed recently |
 
 **Connected on this laptop (2026-10-19):**

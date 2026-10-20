@@ -110,11 +110,45 @@ def locate(region: dict) -> tuple[Path, int, float | None, float | None]:
     return path, page_no, top_y, bottom_y
 
 
+def _trim(img: Image.Image) -> Image.Image:
+    box = ImageOps.invert(img.convert("L")).point(lambda p: 255 if p > 24 else 0).getbbox()
+    if not box:
+        return img
+    l, t, r, b = box
+    return img.crop((max(0, l - PAD), max(0, t - PAD), min(img.width, r + PAD), min(img.height, b + PAD)))
+
+
+def _render_pages(region: dict) -> Image.Image:
+    """Whole pages, trimmed and stacked top to bottom (for exam problems)."""
+    path = config.ROOT / region["pdf"]
+    if not path.exists():
+        raise RegionError(f"{region['pdf']} is not in the library yet")
+    pdf = pdfium.PdfDocument(path)
+    imgs = []
+    for n in region["pages"]:
+        if not 1 <= n <= len(pdf):
+            raise RegionError(f"{region['pdf']} has no page {n}")
+        imgs.append(_trim(pdf[n - 1].render(scale=SCALE).to_pil().convert("RGB")))
+    width = max(i.width for i in imgs)
+    out = Image.new("RGB", (width, sum(i.height for i in imgs) + 24 * (len(imgs) - 1)), "white")
+    y = 0
+    for i in imgs:
+        out.paste(i, (0, y))
+        y += i.height + 24
+    return out
+
+
 def render(region: dict) -> bytes:
     key = hashlib.sha1(json.dumps({**region, "_scale": SCALE}, sort_keys=True).encode()).hexdigest()[:16]
     cache = config.DATA_DIR / "cache" / "pdf" / f"{key}.png"
     if cache.exists():
         return cache.read_bytes()
+    if region.get("pages"):
+        buf = io.BytesIO()
+        _render_pages(region).save(buf, "PNG", optimize=True)
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        cache.write_bytes(buf.getvalue())
+        return buf.getvalue()
 
     path, page_no, top_y, bottom_y = locate(region)
     page = pdfium.PdfDocument(path)[page_no - 1]
@@ -124,12 +158,7 @@ def render(region: dict) -> bytes:
     bot_px = img.height if bottom_y is None else min(img.height, int((height - bottom_y) * SCALE) + 2)
     if bot_px - top_px < 10:
         raise RegionError("the region came out empty")
-    img = img.crop((0, top_px, img.width, bot_px))
-    # trim the white margins
-    box = ImageOps.invert(img.convert("L")).point(lambda p: 255 if p > 24 else 0).getbbox()
-    if box:
-        l, t, r, b = box
-        img = img.crop((max(0, l - PAD), max(0, t - PAD), min(img.width, r + PAD), min(img.height, b + PAD)))
+    img = _trim(img.crop((0, top_px, img.width, bot_px)))  # and trim the white margins
     buf = io.BytesIO()
     img.save(buf, "PNG", optimize=True)
     cache.parent.mkdir(parents=True, exist_ok=True)
@@ -139,6 +168,8 @@ def render(region: dict) -> bytes:
 
 def page_of(region: dict) -> int | None:
     """The page number a region is on (for 'open the whole page' links)."""
+    if region.get("pages"):
+        return region["pages"][0]
     try:
         return locate(region)[1]
     except RegionError:

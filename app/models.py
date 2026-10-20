@@ -171,6 +171,51 @@ class Problem(SQLModel, table=True):
     key: dict = Field(default_factory=dict, sa_column=Column(JSON))
     generator: str = ""
     seed: Optional[int] = None
+    points: Optional[int] = None  # for exam problems
+
+
+class Exam(SQLModel, table=True):
+    """A real past exam set up for timed practice (content/<course>/exams.json).
+
+    Its problems live in a hidden problem set, so a missed exam problem can go
+    into the mistake log like any other problem.
+    """
+    id: Optional[int] = Field(default=None, primary_key=True)
+    slug: str = Field(index=True, unique=True)
+    course_id: int = Field(foreign_key="course.id", index=True)
+    set_id: int = Field(foreign_key="problemset.id")
+    title: str
+    source: str = ""
+    license: str = ""
+    course_week: int = 0  # the term week whose exam this imitates
+    scope: str = ""
+    time_min: int
+    time_note: str = ""
+    original_rules: str = ""
+    practice_rules: list[str] = Field(default_factory=list, sa_column=Column(JSON))
+    skipped: str = ""
+    verified: str = ""
+    total_points: int = 0
+    order: int = 0
+
+
+class ExamAttempt(SQLModel, table=True):
+    """One timed sitting: start, deadline, your uploaded work, and the scores."""
+    id: Optional[int] = Field(default=None, primary_key=True)
+    exam_id: int = Field(foreign_key="exam.id", index=True)
+    started_at: datetime
+    deadline: datetime
+    finished_at: Optional[datetime] = None
+    status: str = "in_progress"  # in_progress | finished | graded
+    overtime_sec: int = 0
+    # {problem_id: points}, set when you grade; Claude's suggestions are kept separately
+    scores: dict = Field(default_factory=dict, sa_column=Column(JSON))
+    suggested: dict = Field(default_factory=dict, sa_column=Column(JSON))
+    total: Optional[float] = None
+    max_points: int = 0
+    feedback: str = ""  # Claude's overall comments, if reviewed
+    reviewer: str = ""
+    graded_at: Optional[datetime] = None
 
 
 class Attempt(SQLModel, table=True):
@@ -193,6 +238,7 @@ class Submission(SQLModel, table=True):
     """
     id: Optional[int] = Field(default=None, primary_key=True)
     problem_id: Optional[int] = Field(default=None, foreign_key="problem.id", index=True)
+    exam_attempt_id: Optional[int] = Field(default=None, foreign_key="examattempt.id", index=True)
     course_id: int = Field(foreign_key="course.id", index=True)
     created_at: datetime
     # [{"name": original file name, "original": path, "pages": [processed page paths]}]

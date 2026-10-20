@@ -17,12 +17,13 @@ from sqlmodel import Session, select
 from . import config
 from .db import get_engine, init_db
 from .generators import generate
-from .models import (ActivityLog, Chapter, Course, CourseWeek, PrepWeek, Problem, ProblemSet,
+from .models import (ActivityLog, Chapter, Course, CourseWeek, Exam, PrepWeek, Problem, ProblemSet,
                      Reading, Resource, Task, Video)
 
 WATCH_SPEED = 1.25  # plan assumes videos at 1.25x
 NOTE_MINUTES = 5  # time to jot notes after a video
 DEFAULT_PSET_MIN = 45
+GRADING_MIN = 20  # time to grade a practice exam against the key
 
 
 def _read(path):
@@ -110,18 +111,54 @@ def problem_rows(pset_spec: dict) -> list[dict]:
 
 # ---- tasks ------------------------------------------------------------------------
 
+def seed_exam(session: Session, course: Course, ex: dict, order: int) -> Exam:
+    """One exam: a hidden problem set (one problem per exam question) plus its Exam row."""
+    pset = _upsert(session, ProblemSet, {"slug": f"exam-{ex['id']}"}, {
+        "course_id": course.id, "week": ex.get("course_week", 0), "title": ex["title"],
+        "source": ex.get("source", ""), "license": ex.get("license", ""), "kind": "exam",
+        "notes": ex.get("skipped", ""), "optional": False, "order": 100 + order,
+    })
+    session.flush()
+    total = 0
+    for n, p in enumerate(ex["problems"], 1):
+        if "pages" in p:
+            statement = {"pdf": ex["exam_pdf"], "pages": p["pages"]}
+        else:
+            statement = {"pdf": ex["exam_pdf"], **p["statement"]}
+        if "key_pages" in p:
+            key = {"pdf": ex["key_pdf"], "pages": p["key_pages"]}
+        else:
+            key = {"pdf": ex["key_pdf"], **p["key"]}
+        _upsert(session, Problem, {"slug": f"exam-{ex['id']}-{n}"}, {
+            "set_id": pset.id, "label": p["label"], "order": n, "topics": p.get("topics", []),
+            "key_type": ex.get("key_type", "official_worked"), "statement": statement, "key": key,
+            "generator": "", "seed": None, "points": p["points"],
+        })
+        total += p["points"]
+    return _upsert(session, Exam, {"slug": ex["id"]}, {
+        "course_id": course.id, "set_id": pset.id, "title": ex["title"],
+        "source": ex.get("source", ""), "license": ex.get("license", ""),
+        "course_week": ex.get("course_week", 0), "scope": ex.get("scope", ""),
+        "time_min": ex["time_min"], "time_note": ex.get("time_note", ""),
+        "original_rules": ex.get("original_rules", ""), "practice_rules": ex.get("practice_rules", []),
+        "skipped": ex.get("skipped", ""), "verified": ex.get("verified", ""),
+        "total_points": total, "order": order,
+    })
+
+
 def task_slug(prep_number: int, spec: dict) -> str:
     """A stable key, so editing other tasks never resets this one's done mark."""
     if spec.get("id"):
         return spec["id"]
-    what = (spec.get("video") or spec.get("reading") or spec.get("pset")
+    what = (spec.get("video") or spec.get("reading") or spec.get("pset") or spec.get("exam")
             or hashlib.sha1(spec["title"].encode()).hexdigest()[:8])
     return f"p{prep_number:02d}-{spec['course'].lower()}-{spec['kind']}-{what}"
 
 
 def resolve_task(spec: dict, videos: dict[str, dict], series: dict[str, str] | None = None,
-                 readings: dict | None = None, psets: dict | None = None) -> dict:
-    """Fill in title/url/time for a task that points at a video, reading or problem set."""
+                 readings: dict | None = None, psets: dict | None = None,
+                 exams: dict | None = None) -> dict:
+    """Fill in title/url/time for a task that points at a video, reading, problem set or exam."""
     out = {"title": spec.get("title", ""), "url": spec.get("url", ""),
            "detail": spec.get("detail", ""), "est_min": spec.get("est_min", 0),
            "ref_kind": "", "ref": ""}
@@ -150,6 +187,13 @@ def resolve_task(spec: dict, videos: dict[str, dict], series: dict[str, str] | N
         out["title"] = out["title"] or pset.title
         out["est_min"] = out["est_min"] or DEFAULT_PSET_MIN
         out["ref_kind"], out["ref"] = "pset", spec["pset"]
+    elif "exam" in spec:
+        exam = (exams or {}).get(spec["exam"])
+        if exam is None:
+            raise ValueError(f"task points at unknown exam {spec['exam']!r}")
+        out["title"] = out["title"] or f"Timed: {exam.title} ({exam.time_min} min)"
+        out["est_min"] = out["est_min"] or exam.time_min + GRADING_MIN
+        out["ref_kind"], out["ref"] = "exam", spec["exam"]
     if not out["title"]:
         raise ValueError(f"task has no title: {spec}")
     return out
@@ -158,7 +202,7 @@ def resolve_task(spec: dict, videos: dict[str, dict], series: dict[str, str] | N
 # ---- the seed -----------------------------------------------------------------------
 
 def seed(session: Session) -> dict:
-    counts = {"courses": 0, "weeks": 0, "videos": 0, "readings": 0, "problems": 0,
+    counts = {"courses": 0, "weeks": 0, "videos": 0, "readings": 0, "problems": 0, "exams": 0,
               "prep_weeks": 0, "tasks": 0, "removed": 0}
 
     courses = {}
@@ -173,6 +217,7 @@ def seed(session: Session) -> dict:
     series = load_series_names()
     readings: dict[str, tuple[Reading, Resource]] = {}
     psets: dict[str, ProblemSet] = {}
+    exams: dict[str, Exam] = {}
 
     for code, course in courses.items():
         folder = config.CONTENT_DIR / code.lower()
@@ -234,6 +279,11 @@ def seed(session: Session) -> dict:
                     slug = pr.pop("slug")
                     _upsert(session, Problem, {"slug": slug}, {"set_id": pset.id, "order": i, **pr})
                     counts["problems"] += 1
+
+        exams_path = folder / "exams.json"
+        for order, ex in enumerate(_read(exams_path) if exams_path.exists() else []):
+            exams[ex["id"]] = seed_exam(session, course, ex, order)
+            counts["exams"] += 1
     session.flush()
 
     schedule = _read(config.CONTENT_DIR / "prep_schedule.json")
@@ -249,7 +299,7 @@ def seed(session: Session) -> dict:
         planned: dict[str, int] = {}
         for order, spec in enumerate(pw["tasks"]):
             course = courses[spec["course"]]
-            info = resolve_task(spec, videos[spec["course"]], series, readings, psets)
+            info = resolve_task(spec, videos[spec["course"]], series, readings, psets, exams)
             slug = task_slug(pw["number"], spec)
             if slug in seen_slugs:
                 raise ValueError(f"duplicate task {slug}")

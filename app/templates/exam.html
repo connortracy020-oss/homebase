@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}{{ exam.title }} · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><a href="/exams">Exams</a> · <span class="dot"></span>{{ course.name }} · term week {{ exam.course_week }}</p>
+  <h1>{{ exam.title }}</h1>
+  <p class="muted">{{ exam.scope }}</p>
+</section>
+
+<section class="card rules-card">
+  <h2>Exam rules</h2>
+  <p class="big-time">{{ exam.time_min }} minutes · {{ exam.total_points }} points · {{ problems | length }} problems</p>
+  <ul>{% for r in exam.practice_rules %}<li>{{ r }}</li>{% endfor %}</ul>
+  <p class="small muted">{{ exam.time_note }}</p>
+  {% if exam.skipped %}<p class="small"><span class="tag">left out</span> {{ exam.skipped }}</p>{% endif %}
+  <p class="small muted">Original rules: {{ exam.original_rules }}</p>
+  <h2>Before you start</h2>
+  <ul class="small">
+    <li>Clear your desk: paper, pencil, and only the notes the rules allow.</li>
+    <li>Put your phone on Do Not Disturb. If you're using the phone for the exam, don't switch apps.</li>
+    <li>The clock runs on the server, so closing the page doesn't pause it.</li>
+    <li>When time's up, stop writing and photograph your pages.</li>
+  </ul>
+  {% if open %}
+  <a class="button primary" href="/attempt/{{ open.id }}">Back to the exam in progress</a>
+  {% else %}
+  <form method="post" action="/exam/{{ exam.slug }}/start" onsubmit="return confirm('Start the {{ exam.time_min }}-minute clock now?')">
+    <button class="primary" type="submit">Start the clock</button>
+  </form>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>About this exam</h2>
+  <p class="small">{{ exam.source }}. <span class="muted">License: {{ exam.license }}</span></p>
+  <p class="small muted">{{ exam.verified }}</p>
+  <p class="small">Key: <span class="key-badge key-{{ problems[0].key_type if problems else 'none' }}">{{ KEY_LABELS[problems[0].key_type] if problems else '' }}</span></p>
+  {% if attempts %}
+  <h2>Your sittings</h2>
+  <ul class="plain small">
+    {% for a in attempts %}
+    <li><a href="/attempt/{{ a.id }}">{{ a.started_at | md }} {{ a.started_at.strftime('%H:%M') }}</a> ·
+      {% if a.status == 'graded' %}{{ a.total | num }}/{{ a.max_points }} ({{ (100 * a.total / a.max_points) | round | int }}%){% else %}{{ a.status.replace('_', ' ') }}{% endif %}
+      {% if a.overtime_sec >= 60 %} · {{ a.overtime_sec // 60 }} min over{% endif %}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</section>
+{% endblock %}
