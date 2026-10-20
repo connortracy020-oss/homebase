@@ -11,7 +11,7 @@
 
 <section class="grid3">
   {% for c, boxes, causes in summary %}
-  <div class="card stat" style="--accent: {{ c.color }}">
+  <div class="card stat" style="--accent: {{ (c | ccolor) }}">
     <p class="eyebrow"><span class="dot"></span>{{ c.name }}</p>
     <p class="big">{{ boxes.values() | sum - boxes['retired'] }} open</p>
     <p class="small muted">{{ boxes['retired'] }} retired</p>
@@ -24,7 +24,7 @@
   {% if rows %}
   <ul class="items">
     {% for m, p, c in rows %}
-    <li class="item {% if m.retired_at %}done{% endif %}" style="--accent: {{ c.color }}">
+    <li class="item {% if m.retired_at %}done{% endif %}" style="--accent: {{ (c | ccolor) }}">
       <span class="check">{% if m.retired_at %}✓{% else %}{{ m.box }}{% endif %}</span>
       <div>
         <a class="item-title" href="/review/{{ m.id }}">{{ p.label }}</a>

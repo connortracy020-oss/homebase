@@ -15,6 +15,17 @@ def test_pages_render(client):
         assert "Homebase" in r.text
 
 
+def test_courses_page_and_shell(client):
+    r = client.get("/courses")
+    assert r.status_code == 200
+    for name in ("ECE 201", "MTH 254", "ECE 200"):
+        assert name in r.text
+    assert "var(--c-ece201)" in r.text  # course colors come from the theme, not hex
+    assert 'class="tabbar"' in r.text and "theme-toggle" in r.text
+    assert 'href="/courses" aria-current="page"' in r.text
+    assert "/static/style.css?v=" in r.text
+
+
 def test_today_shows_current_prep_week(client):
     r = client.get("/")
     assert "Prep week 3 of 11" in r.text

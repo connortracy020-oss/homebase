@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ pset.title }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
     <a href="/course/{{ course.code }}/week/{{ pset.week }}">week {{ pset.week }}</a> · problem set</p>
   <h1>{{ pset.title }}</h1>
@@ -10,7 +10,7 @@
   {% if pset.notes %}<p class="small">{{ pset.notes }}</p>{% endif %}
 </section>
 
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <ol class="problem-list">
     {% for p in problems %}
     {% set r = results.get(p.id) %}

@@ -13,7 +13,7 @@
   {% if queue %}
   <ul class="items">
     {% for m, p, c in queue %}
-    <li class="item" style="--accent: {{ c.color }}"><span class="check"><span class="dot"></span></span><div>
+    <li class="item" style="--accent: {{ (c | ccolor) }}"><span class="check"><span class="dot"></span></span><div>
       <a class="item-title" href="/review/{{ m.id }}">{{ p.label }}</a>
       <div class="item-meta"><span>{{ c.name }}</span><span>box {{ m.box }}</span><span>due {{ m.due | md }}</span>{% if m.cause %}<span class="tag">{{ m.cause }}</span>{% endif %}</div>
     </div></li>
@@ -32,7 +32,7 @@
     <thead><tr><th>Course</th>{% for b in ['1', '2', '3', '4', '5'] %}<th>Box {{ b }}</th>{% endfor %}<th>Retired</th><th></th></tr></thead>
     <tbody>
       {% for c, counts in per_course %}
-      <tr style="--accent: {{ c.color }}">
+      <tr style="--accent: {{ (c | ccolor) }}">
         <th scope="row"><span class="dot"></span>{{ c.name }}</th>
         {% for b in ['1', '2', '3', '4', '5', 'retired'] %}<td>{{ counts[b] or '·' }}</td>{% endfor %}
         <td>{% if counts.values() | sum %}<a class="small" href="/review/next?sweep={{ c.code }}">pre-exam sweep</a>{% endif %}</td>

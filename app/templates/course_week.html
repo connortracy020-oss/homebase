@@ -2,7 +2,7 @@
 {% from "_macros.html" import task_row, bar, video_item %}
 {% block title %}{{ course.name }} week {{ week.number }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> · Term week {{ week.number }}</p>
   <h1>{{ week.title }}</h1>
   <ul class="topics muted">
@@ -13,7 +13,7 @@
 
 {% set core = videos | selectattr('priority', 'equalto', 'core') | list %}
 {% set extra = videos | rejectattr('priority', 'equalto', 'core') | list %}
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <h2>Watch</h2>
   {% if videos %}
   <ul class="items">
@@ -28,7 +28,7 @@
   {% else %}<p class="muted">No videos mapped to this week yet.</p>{% endif %}
 </section>
 
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <h2>Read</h2>
   {% if readings %}
   <ul class="items">
@@ -51,7 +51,7 @@
   {% else %}<p class="muted">Readings for this week arrive with the course content.</p>{% endif %}
 </section>
 
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <h2>Solve</h2>
   {% if psets %}
   <ul class="items">
@@ -63,7 +63,7 @@
         <div class="item-meta">
           <span>{{ total }} problem{{ 's' if total != 1 }}</span>
           <span>{{ tried }} tried · {{ solid }} solid</span>
-          {{ bar(tried, total, course.color) }}
+          {{ bar(tried, total, (course | ccolor)) }}
         </div>
       </div>
     </li>
@@ -73,7 +73,7 @@
 </section>
 
 {% if labs %}
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <h2>Labs</h2>
   <ul class="items">
     {% for lab, result in labs %}
@@ -84,7 +84,7 @@
           <span>{{ lab.est_min | hm }}</span>
           {% if result %}
           <span>last check: {{ result.passed }} of {{ result.total }} pass</span>
-          {{ bar(result.passed, result.total, course.color) }}
+          {{ bar(result.passed, result.total, (course | ccolor)) }}
           {% else %}<span>not checked yet</span>{% endif %}
         </div>
         <p class="small muted">{{ lab.goal }}</p>

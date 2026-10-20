@@ -2,7 +2,7 @@
 {% from "_macros.html" import task_row, bar %}
 {% block title %}{{ lab.title }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
     <a href="/course/{{ course.code }}/week/{{ lab.week }}">week {{ lab.week }}</a> · Python lab</p>
   <h1>{{ lab.title }}</h1>
@@ -10,7 +10,7 @@
   <p class="muted small">About {{ lab.est_min | hm }}. OSU's ECE 200 lab list isn't published; this is Homebase's own Python lab on the same topic.</p>
 </section>
 
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <h2>Do the lab</h2>
   <ol>
     <li>In a terminal in the Homebase folder, run the checker once. It makes your own copy of the starter:
@@ -23,11 +23,11 @@
   </ol>
 </section>
 
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <h2>Checks</h2>
   {% if result %}
   <p class="small muted">Last checked {{ result.checked_at.replace('T', ' ') }}: {{ result.passed }} of {{ result.total }} pass
-    {{ bar(result.passed, result.total, course.color) }}</p>
+    {{ bar(result.passed, result.total, (course | ccolor)) }}</p>
   {% else %}
   <p class="small muted">Not checked yet.</p>
   {% endif %}
@@ -42,7 +42,7 @@
   </ul>
 </section>
 
-<section class="card" style="--accent: {{ course.color }}">
+<section class="card" style="--accent: {{ (course | ccolor) }}">
   <h2>Background handout</h2>
   <p><b>{{ lab.handout.title }}</b></p>
   <p class="small muted">A MATLAB lab from DSP First. Read its Pre-Lab and Warm-up for the ideas; do the work in Python above.</p>

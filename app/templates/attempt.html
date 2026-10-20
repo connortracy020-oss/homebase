@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ exam.title }}: results · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/exams">Exams</a> · <a href="/exam/{{ exam.slug }}">{{ exam.title }}</a> · sitting of {{ attempt.started_at | md }}</p>
   <h1>{% if attempt.status == 'graded' %}{{ attempt.total | num }} / {{ attempt.max_points | num }} <span class="muted">({{ (100 * attempt.total / attempt.max_points) | round | int }}%)</span>{% else %}Pencils down{% endif %}</h1>
   <p class="muted small">{{ ((attempt.finished_at - attempt.started_at).total_seconds() / 60) | round | int }} minutes used of {{ exam.time_min }}

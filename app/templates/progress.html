@@ -9,11 +9,11 @@
 
 <section class="grid3">
   {% for p in progress %}
-  <div class="card stat" style="--accent: {{ p.course.color }}">
+  <div class="card stat" style="--accent: {{ (p.course | ccolor) }}">
     <p class="eyebrow"><span class="dot"></span>{{ p.course.name }}</p>
     <p class="big">{{ p.minutes | hm }}</p>
     <p class="muted small">of {{ p.planned_minutes | hm }} planned</p>
-    {{ bar(p.minutes, p.planned_minutes, p.course.color) }}
+    {{ bar(p.minutes, p.planned_minutes, (p.course | ccolor)) }}
     <p class="small">{{ p.tasks_done }}/{{ p.tasks_total }} tasks · {{ p.pct }}%</p>
   </div>
   {% endfor %}
@@ -23,7 +23,7 @@
   <h2>Hours by prep week</h2>
   <p class="muted small">Logged vs planned, per course.</p>
   <table class="weeks-table">
-    <thead><tr><th>Week</th>{% for p in progress %}<th style="--accent: {{ p.course.color }}"><span class="dot"></span>{{ p.course.name }}</th>{% endfor %}</tr></thead>
+    <thead><tr><th>Week</th>{% for p in progress %}<th style="--accent: {{ (p.course | ccolor) }}"><span class="dot"></span>{{ p.course.name }}</th>{% endfor %}</tr></thead>
     <tbody>
       {% for w in prep_weeks %}
       <tr>
@@ -31,7 +31,7 @@
         {% for p in progress %}
         {% set planned = w.planned_minutes.get(p.course.code, 0) %}
         {% set logged = p.week_minutes.get(w.number, 0) %}
-        <td>{% if planned or logged %}{{ bar(logged, planned or logged, p.course.color) }}<span class="small muted">{{ logged | hm }} / {{ planned | hm }}</span>{% else %}<span class="muted small">—</span>{% endif %}</td>
+        <td>{% if planned or logged %}{{ bar(logged, planned or logged, (p.course | ccolor)) }}<span class="small muted">{{ logged | hm }} / {{ planned | hm }}</span>{% else %}<span class="muted small">—</span>{% endif %}</td>
         {% endfor %}
       </tr>
       {% endfor %}
@@ -46,7 +46,7 @@
     {% for e, a in sittings %}
     {% set c = course_by_id[e.course_id] %}
     {% set pct = (100 * a.total / a.max_points) | round | int %}
-    <li class="row" style="--accent: {{ c.color }}"><span><span class="dot"></span><a href="/attempt/{{ a.id }}">{{ e.title }}</a> <span class="muted small">{{ a.started_at | md }}</span></span>
+    <li class="row" style="--accent: {{ (c | ccolor) }}"><span><span class="dot"></span><a href="/attempt/{{ a.id }}">{{ e.title }}</a> <span class="muted small">{{ a.started_at | md }}</span></span>
       <span><span class="result result-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}">{{ pct }}%</span> <span class="small muted">{{ a.total | num }}/{{ a.max_points | num }}</span></span></li>
     {% endfor %}
   </ul>

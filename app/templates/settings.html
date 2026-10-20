@@ -8,6 +8,27 @@
 </section>
 
 <section class="card">
+  <h2>Appearance</h2>
+  <p class="small muted">Saved on this device only, so your phone and laptop can differ.</p>
+  <div class="inline-form" id="theme-choice">
+    <button type="button" data-mode="device">Match device</button>
+    <button type="button" data-mode="light">Light</button>
+    <button type="button" data-mode="dark">Dark</button>
+  </div>
+</section>
+<script>
+(function () {
+  const keys = document.querySelectorAll("#theme-choice button");
+  const mark = () => {
+    const mode = window.homebaseTheme ? (homebaseTheme.saved() || "device") : "device";
+    keys.forEach((k) => k.classList.toggle("primary", k.dataset.mode === mode));
+  };
+  keys.forEach((k) => k.addEventListener("click", () => { homebaseTheme.set(k.dataset.mode); mark(); }));
+  addEventListener("DOMContentLoaded", mark); mark();
+})();
+</script>
+
+<section class="card">
   <h2>Export</h2>
   <p>One zip with every table as JSON plus your uploaded work. Readable by any program.</p>
   <p><a class="button primary" href="/export">Download export</a></p>

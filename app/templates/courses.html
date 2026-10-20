@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "_macros.html" import bar %}
+{% block title %}Courses · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Winter 2027</p>
+  <h1>Courses</h1>
+</section>
+<div class="courses-grid">
+  {% for p in progress %}
+  <a class="card ctile" href="/course/{{ p.course.code }}" style="--accent: {{ p.course | ccolor }}">
+    <p class="eyebrow">{{ p.course.name }}</p>
+    <h3>{{ p.course.title }}</h3>
+    {{ bar(p.tasks_done, p.tasks_total) }}
+    <p class="small muted" style="margin:0">{{ p.tasks_done }} of {{ p.tasks_total }} tasks · {{ p.minutes | hm }} of {{ p.planned_minutes | hm }} logged</p>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

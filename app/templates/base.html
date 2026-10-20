@@ -1,11 +1,36 @@
+{% from "_icons.html" import icon %}
+{% set path = request.url.path %}
+{% set here = {
+  'today': path == '/',
+  'plan': path == '/plan',
+  'courses': path == '/courses' or path.startswith('/course/') or path.startswith('/video/') or path.startswith('/pset/') or path.startswith('/problem/') or path.startswith('/lab/'),
+  'review': path.startswith('/review') or path == '/mistakes',
+  'exams': path.startswith('/exam') or path.startswith('/attempt'),
+  'feedback': path.startswith('/submission'),
+  'progress': path == '/progress',
+  'settings': path == '/settings',
+} %}
+{% macro cur(key) %}{% if here[key] %}aria-current="page"{% endif %}{% endmacro %}
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f0e6">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f2ece0">
   <title>{% block title %}Homebase{% endblock %}</title>
-  <link rel="stylesheet" href="/static/style.css">
+  <script>
+    // Pick the theme before anything paints: your choice if you made one, else the device setting.
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("homebase.theme"); } catch (e) {}
+      var dark = saved ? saved === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/static/style.css?v={{ static_v('style.css') }}">
   <link rel="manifest" href="/static/manifest.webmanifest">
   <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
@@ -16,26 +41,41 @@
 <body>
   {% block header %}
   <header class="top">
-    <a class="brand" href="/">Homebase</a>
-    <nav>
-      <a href="/" {% if request.url.path == '/' %}aria-current="page"{% endif %}>Today</a>
-      <a href="/plan" {% if request.url.path == '/plan' %}aria-current="page"{% endif %}>Plan</a>
-      {% for c in courses %}
-      <a href="/course/{{ c.code }}" style="--accent: {{ c.color }}"
-         {% if request.url.path.startswith('/course/' ~ c.code) %}aria-current="page"{% endif %}>{{ c.name }}</a>
-      {% endfor %}
-      <a href="/review" {% if request.url.path.startswith('/review') or request.url.path == '/mistakes' %}aria-current="page"{% endif %}>Review{% if due_reviews %} <span class="count">{{ due_reviews }}</span>{% endif %}</a>
-      <a href="/exams" {% if request.url.path.startswith('/exam') or request.url.path.startswith('/attempt') %}aria-current="page"{% endif %}>Exams</a>
-      <a href="/submissions" {% if request.url.path.startswith('/submission') %}aria-current="page"{% endif %}>Feedback{% if pending_reviews %} <span class="count">{{ pending_reviews }}</span>{% endif %}</a>
-      <a href="/progress" {% if request.url.path == '/progress' %}aria-current="page"{% endif %}>Progress</a>
-      <a href="/settings" {% if request.url.path == '/settings' %}aria-current="page"{% endif %}>Settings</a>
+    <a class="brand" href="/"><span class="mark">{{ icon('home') }}</span>Homebase</a>
+    <nav class="tabs" aria-label="Main">
+      <a href="/" {{ cur('today') }}>Today</a>
+      <a href="/plan" {{ cur('plan') }}>Plan</a>
+      <a href="/courses" {{ cur('courses') }}>Courses</a>
+      <a href="/review" {{ cur('review') }}>Review{% if due_reviews %}<span class="count">{{ due_reviews }}</span>{% endif %}</a>
+      <a href="/exams" {{ cur('exams') }}>Exams</a>
+      <a href="/submissions" {{ cur('feedback') }}>Feedback{% if pending_reviews %}<span class="count">{{ pending_reviews }}</span>{% endif %}</a>
+      <a href="/progress" {{ cur('progress') }}>Progress</a>
     </nav>
+    <div class="top-tools">
+      <a class="button icon desk-only" href="/settings" title="Settings" aria-label="Settings">{{ icon('settings') }}</a>
+      <button type="button" class="icon theme-toggle" title="Switch light / dark" aria-label="Switch light or dark mode">{{ icon('moon') }}</button>
+    </div>
   </header>
+  <nav class="tabbar" aria-label="Main">
+    <a href="/" {{ cur('today') }}>{{ icon('today') }}Today</a>
+    <a href="/courses" {{ cur('courses') }}>{{ icon('courses') }}Courses</a>
+    <a href="/review" {{ cur('review') }}>{{ icon('review') }}Review{% if due_reviews %}<span class="count">{{ due_reviews }}</span>{% endif %}</a>
+    <a href="/exams" {{ cur('exams') }}>{{ icon('exams') }}Exams</a>
+    <details class="tab-more">
+      <summary {% if here.plan or here.feedback or here.progress or here.settings %}aria-current="page"{% endif %}>{{ icon('more') }}More{% if pending_reviews %}<span class="count">{{ pending_reviews }}</span>{% endif %}</summary>
+      <div class="sheet">
+        <a href="/plan" {{ cur('plan') }}>{{ icon('plan') }}Plan</a>
+        <a href="/submissions" {{ cur('feedback') }}>{{ icon('feedback') }}Feedback{% if pending_reviews %}<span class="count">{{ pending_reviews }}</span>{% endif %}</a>
+        <a href="/progress" {{ cur('progress') }}>{{ icon('progress') }}Progress</a>
+        <a href="/settings" {{ cur('settings') }}>{{ icon('settings') }}Settings</a>
+      </div>
+    </details>
+  </nav>
   {% endblock %}
-  <main>
+  <main class="{% block main_class %}{% endblock %}">
     {% block content %}{% endblock %}
   </main>
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v={{ static_v('app.js') }}"></script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ video.title }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow">
     <a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a>
     {% if video.osu_week %} · <a href="/course/{{ course.code }}/week/{{ video.osu_week }}">week {{ video.osu_week }}</a>{% endif %}
@@ -28,7 +28,7 @@
       <a class="small" href="{{ video.url }}" target="_blank" rel="noopener">source ↗</a>
     </div>
 
-    <section class="card notes" style="--accent: {{ course.color }}">
+    <section class="card notes" style="--accent: {{ (course | ccolor) }}">
       <h2>Notes</h2>
       <form id="note-form" class="note-form">
         <textarea id="note-body" rows="3" placeholder="Type a note. Math works too: \(v = iR\)" aria-label="New note"></textarea>
@@ -44,7 +44,7 @@
 
   <aside class="video-side">
     {% if chapters %}
-    <section class="card chapters" style="--accent: {{ course.color }}">
+    <section class="card chapters" style="--accent: {{ (course | ccolor) }}">
       <h2>Chapters</h2>
       <ol class="chapter-list" id="chapter-list">
         {% for c in chapters %}
@@ -65,4 +65,4 @@
 
 <script id="notes-data" type="application/json">{{ notes | tojson }}</script>
 {% endblock %}
-{% block scripts %}<script src="/static/video.js"></script>{% endblock %}
+{% block scripts %}<script src="/static/video.js?v={{ static_v('video.js') }}"></script>{% endblock %}

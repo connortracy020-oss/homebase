@@ -2,7 +2,7 @@
 {% block title %}Submission #{{ sub.id }} · Homebase{% endblock %}
 {% block content %}
 {% if sub.status == 'reviewing' %}<meta http-equiv="refresh" content="5">{% endif %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a>
     {% if pset %} · <a href="/pset/{{ pset.slug }}">{{ pset.title }}</a>{% endif %} · submission #{{ sub.id }}</p>
   <h1>{% if problem %}<a href="/problem/{{ problem.slug }}">{{ problem.label }}</a>{% else %}Your work{% endif %}</h1>

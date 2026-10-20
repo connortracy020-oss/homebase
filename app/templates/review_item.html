@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Re-solve: {{ problem.label }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><span class="dot"></span>{{ course.name }} · {{ pset.title }} ·
     {% if sweep %}pre-exam sweep{% elif m.retired_at %}retired{% else %}box {{ m.box }} of 5{% endif %}</p>
   <h1>Re-solve: {{ problem.label }}</h1>

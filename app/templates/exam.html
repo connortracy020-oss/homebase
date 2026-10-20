@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ exam.title }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/exams">Exams</a> · <span class="dot"></span>{{ course.name }} · term week {{ exam.course_week }}</p>
   <h1>{{ exam.title }}</h1>
   <p class="muted">{{ exam.scope }}</p>

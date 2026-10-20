@@ -1,5 +1,6 @@
-{% macro task_row(t, course=None, show_week=None) %}
-<li class="task {% if t.done_at %}done{% endif %}" {% if course %}style="--accent: {{ course.color }}"{% endif %}>
+{# keys=True adds an action key (Play / Start / Open) on the right; next=True colors it with the course. #}
+{% macro task_row(t, course=None, show_week=None, keys=False, next=False) %}
+<li class="task {% if t.done_at %}done{% endif %}" {% if course %}style="--accent: {{ (course | ccolor) }}"{% endif %}>
   <form method="post" action="/tasks/{{ t.id }}/toggle" class="toggle">
     <input type="checkbox" name="done" id="t{{ t.id }}" {% if t.done_at %}checked{% endif %}
            aria-label="Mark done: {{ t.title }}">
@@ -7,7 +8,6 @@
   </form>
   <div class="task-body">
     <span class="task-title">
-      <label for="t{{ t.id }}" class="kind kind-{{ t.kind }}">{{ KIND_LABELS.get(t.kind, t.kind) }}</label>
       {% if t.ref_kind == 'video' %}<a href="/video/{{ t.ref }}">{{ t.title }}</a>
       {% elif t.ref_kind == 'pset' %}<a href="/pset/{{ t.ref }}">{{ t.title }}</a>
       {% elif t.ref_kind == 'exam' %}<a href="/exam/{{ t.ref }}">{{ t.title }}</a>
@@ -15,13 +15,19 @@
       {% else %}<label for="t{{ t.id }}">{{ t.title }}</label>{% endif %}
     </span>
     <div class="task-meta">
+      <label for="t{{ t.id }}" class="kind kind-{{ t.kind }}">{{ KIND_LABELS.get(t.kind, t.kind) }}</label>
       {% if t.est_min %}<span>{{ t.est_min | hm }}</span>{% endif %}
       {% if t.detail %}<span>{{ t.detail }}</span>{% endif %}
       {% if show_week %}<span>{{ show_week }}</span>{% endif %}
-      {% if t.url and t.ref_kind not in ('video', 'pset') %}<a href="{{ t.url }}" target="_blank" rel="noopener">open ↗</a>{% endif %}
+      {% if t.url and t.ref_kind not in ('video', 'pset') and not keys %}<a href="{{ t.url }}" target="_blank" rel="noopener">open ↗</a>{% endif %}
       {% if t.done_by == 'claude' %}<span class="by-claude">ticked by Claude</span>{% endif %}
     </div>
   </div>
+  {% if keys %}
+  {% set go = {'video': ('/video/', 'Play'), 'pset': ('/pset/', 'Start'), 'exam': ('/exam/', 'Start'), 'lab': ('/lab/', 'Open')}.get(t.ref_kind) %}
+  {% if go %}<a class="button task-go {{ 'accent' if next }}" href="{{ go[0] }}{{ t.ref }}">{{ go[1] }}</a>
+  {% elif t.url %}<a class="button task-go {{ 'accent' if next }}" href="{{ t.url }}" target="_blank" rel="noopener">Open</a>{% endif %}
+  {% endif %}
 </li>
 {% endmacro %}
 

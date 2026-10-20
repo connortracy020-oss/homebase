@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homebase style tile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens ---------- */
+:root {
+  --bg: #f2ece0; --surface: #fbf8f1; --raised: #fffdf8; --sunken: #ebe4d5;
+  --line: #e2d9c6; --ink: #26251f; --ink-soft: #5d594f; --ink-faint: #8d877a;
+  --key: #fffaf0; --key-edge: #d9cdb7; --key-shadow: #c9bca2;
+  --key-ink-bg: #2e2c27; --key-ink-edge: #151410; --key-ink-text: #f5efe2;
+  --ece201: #b06a4a; --mth254: #7a8456; --ece200: #5b7790;
+  --ochre: #c49a45; --moss: #6f8a5e; --brick: #a8553d; --plum: #8a6a86;
+  --shine: rgba(255,255,255,.55);
+  --card-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 1px 2px rgba(60,48,30,.05), 0 4px 14px -10px rgba(60,48,30,.16);
+  --serif: "Fraunces", Georgia, serif; --sans: "Inter", system-ui, sans-serif;
+}
+[data-theme="dark"] {
+  --bg: #1a1916; --surface: #23221e; --raised: #2b2a25; --sunken: #171613;
+  --line: #36332d; --ink: #efe7d6; --ink-soft: #bdb4a1; --ink-faint: #877f70;
+  --key: #34322c; --key-edge: #22201c; --key-shadow: #0e0d0b;
+  --key-ink-bg: #ece2cd; --key-ink-edge: #b3a68b; --key-ink-text: #23211c;
+  --ece201: #c98466; --mth254: #9aa36f; --ece200: #7f9bb4;
+  --ochre: #d4ac5c; --moss: #8da57a; --brick: #c36d55; --plum: #a888a4;
+  --shine: rgba(255,255,255,.08);
+  --card-shadow: 0 1px 0 rgba(255,255,255,.035) inset, 0 6px 18px -12px rgba(0,0,0,.55);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14.5px/1.5 var(--sans); }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.005em; margin: 0; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 18px 16px 64px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.label { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin: 26px 0 10px; }
+.note { font-size: 12.5px; color: var(--ink-faint); }
+
+/* ---------- 3D keys: small travel, soft shadow, top reflection ---------- */
+.btn {
+  --face: var(--key); --edge: var(--key-edge); --text: var(--ink);
+  border: 0; cursor: pointer; font: 600 13px var(--sans); color: var(--text);
+  padding: 7px 13px 8px; border-radius: 9px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--face) 93%, white) 0%, var(--face) 55%, color-mix(in srgb, var(--face) 97%, black) 100%);
+  box-shadow: 0 1px 0 var(--shine) inset, 0 2px 0 var(--edge), 0 4px 8px -5px rgba(40,30,15,.28);
+  transition: transform .07s ease, box-shadow .07s ease, filter .15s;
+}
+.btn:hover { filter: brightness(1.025); }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 2px rgba(0,0,0,.14) inset, 0 0 0 var(--edge), 0 1px 3px -2px rgba(40,30,15,.25); }
+.btn:focus-visible { outline: 2px solid var(--ink-faint); outline-offset: 2px; }
+.btn.ink  { --face: var(--key-ink-bg); --edge: var(--key-ink-edge); --text: var(--key-ink-text); }
+.btn.c201 { --face: var(--ece201); --edge: color-mix(in srgb, var(--ece201) 62%, black); --text: #fff8ef; }
+.btn.c254 { --face: var(--mth254); --edge: color-mix(in srgb, var(--mth254) 62%, black); --text: #fbf8ec; }
+.btn.c200 { --face: var(--ece200); --edge: color-mix(in srgb, var(--ece200) 62%, black); --text: #f4f7fa; }
+.btn.solid { --face: var(--moss);  --edge: color-mix(in srgb, var(--moss) 60%, black);  --text: #f7f9f2; }
+.btn.shaky { --face: var(--ochre); --edge: color-mix(in srgb, var(--ochre) 60%, black); --text: #fffaf0; }
+.btn.miss  { --face: var(--brick); --edge: color-mix(in srgb, var(--brick) 60%, black); --text: #fff6f2; }
+.btn.lg { padding: 9px 16px 10px; font-size: 14px; border-radius: 10px; }
+.btn.icon { width: 32px; height: 32px; padding: 0; border-radius: 50%; display: inline-grid; place-items: center; }
+.btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.rate { display: inline-flex; gap: 6px; }
+
+/* ---------- surfaces ---------- */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--card-shadow); padding: 16px; }
+.grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 14px; }
+
+/* top bar */
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px 8px 14px; border-radius: 14px;
+  background: var(--surface); border: 1px solid var(--line); box-shadow: var(--card-shadow); }
+.brand { font: 600 16px var(--serif); display: flex; align-items: center; gap: 8px; }
+.mark { width: 24px; height: 24px; border-radius: 7px; background: var(--key-ink-bg); color: var(--key-ink-text); display: grid; place-items: center; box-shadow: 0 1px 0 var(--shine) inset, 0 2px 0 var(--key-ink-edge); }
+.mark svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+.tabs { display: flex; gap: 2px; padding: 3px; background: var(--sunken); border-radius: 10px; box-shadow: inset 0 1px 2px rgba(0,0,0,.07); }
+.tab { padding: 5px 10px; border-radius: 7px; font-weight: 500; color: var(--ink-soft); font-size: 12.5px; white-space: nowrap; }
+.tab.on { background: var(--raised); color: var(--ink); box-shadow: 0 1px 0 var(--key-edge), 0 2px 5px -3px rgba(0,0,0,.18); }
+.badge { display: inline-block; min-width: 16px; padding: 0 4px; margin-left: 3px; border-radius: 99px; background: var(--ece201); color: #fff; font-size: 10px; line-height: 16px; text-align: center; }
+
+/* today */
+.eyebrow { font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); }
+.hero h1 { font-size: 22px; line-height: 1.25; margin: 4px 0 10px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; font-size: 11.5px; font-weight: 500; background: var(--sunken); color: var(--ink-soft); }
+.chip i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.chip.c201 { color: var(--ece201); background: color-mix(in srgb, var(--ece201) 13%, var(--surface)); }
+.chip.c254 { color: var(--mth254); background: color-mix(in srgb, var(--mth254) 15%, var(--surface)); }
+.chip.c200 { color: var(--ece200); background: color-mix(in srgb, var(--ece200) 14%, var(--surface)); }
+.chip.claude { color: var(--plum); background: color-mix(in srgb, var(--plum) 14%, var(--surface)); }
+
+.task { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: center; padding: 9px 4px; }
+.task + .task { border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
+.check { width: 19px; height: 19px; border-radius: 6px; cursor: pointer; display: grid; place-items: center; color: transparent; font-size: 11px; font-weight: 700;
+  background: var(--key); border: 1px solid var(--key-edge); box-shadow: 0 1px 0 var(--shine) inset, 0 1.5px 0 var(--key-edge); transition: .08s; }
+.check.on { background: var(--moss); border-color: color-mix(in srgb, var(--moss) 70%, black); color: #fff; box-shadow: none; transform: translateY(1px); }
+.task .t { font-weight: 500; font-size: 14px; }
+.task .m { font-size: 12px; color: var(--ink-faint); display: flex; gap: 8px; align-items: center; margin-top: 1px; }
+.task.done .t { color: var(--ink-faint); text-decoration: line-through; text-decoration-color: var(--line); }
+.kind { font-size: 9.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 1px 6px; border-radius: 5px; }
+.kind.watch { color: var(--ece200); background: color-mix(in srgb, var(--ece200) 13%, transparent); }
+.kind.solve { color: var(--ece201); background: color-mix(in srgb, var(--ece201) 13%, transparent); }
+.kind.read  { color: var(--mth254); background: color-mix(in srgb, var(--mth254) 15%, transparent); }
+
+.timer { display: flex; align-items: center; gap: 12px; margin: 10px 0 12px; }
+.ring { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  background: conic-gradient(var(--ece201) calc(var(--p) * 1%), var(--sunken) 0); }
+.ring::after { content: attr(data-label); width: 42px; height: 42px; border-radius: 50%; background: var(--surface); display: grid; place-items: center; font: 600 11.5px var(--sans); color: var(--ink-soft); }
+.clock { font: 600 24px/1 var(--sans); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.side-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 1px solid color-mix(in srgb, var(--line) 70%, transparent); font-size: 13px; }
+
+/* course tiles */
+.courses { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.ctile { position: relative; overflow: hidden; padding: 12px 14px 12px 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--card-shadow); }
+.ctile::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--c); }
+.ctile h3 { font-size: 14.5px; margin-top: 1px; }
+.bar { height: 5px; border-radius: 99px; background: var(--sunken); overflow: hidden; margin: 9px 0 5px; }
+.bar span { display: block; height: 100%; border-radius: 99px; background: var(--c); }
+
+/* swatches */
+.sw { width: 84px; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); font-size: 11px; }
+.sw div:first-child { height: 32px; }
+.sw div:last-child { padding: 5px 7px; color: var(--ink-soft); }
+
+/* phone */
+.tabbar { display: none; position: fixed; left: 10px; right: 10px; bottom: 10px; justify-content: space-around; padding: 5px; border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(10px); border: 1px solid var(--line); box-shadow: var(--card-shadow); }
+.tabbar a { display: grid; justify-items: center; gap: 1px; font-size: 10px; color: var(--ink-faint); padding: 4px 10px; border-radius: 9px; }
+.tabbar svg { width: 19px; height: 19px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.tabbar a.on { color: var(--ink); background: var(--raised); box-shadow: 0 1px 0 var(--key-edge); }
+@media (max-width: 760px) {
+  .grid, .courses { grid-template-columns: 1fr; }
+  .wrap { padding: 10px 12px 88px; }
+  .topbar .tabs { display: none; }
+  .tabbar { display: flex; }
+  .hero h1 { font-size: 19px; }
+}
+/* touch screens: same look, slightly bigger tap targets */
+@media (pointer: coarse) {
+  .btn { min-height: 36px; }
+  .btn.icon { width: 36px; height: 36px; }
+  .check { width: 22px; height: 22px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8H4z"/></svg></span>Homebase</div>
+    <div class="tabs"><span class="tab on">Today</span><span class="tab">Plan</span><span class="tab">Courses</span><span class="tab">Review<span class="badge">3</span></span><span class="tab">Exams</span><span class="tab">Progress</span></div>
+    <button class="btn icon" id="theme" title="Dark mode"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+  </div>
+
+  <p class="label">Today</p>
+  <div class="grid">
+    <div class="card">
+      <div class="eyebrow">Monday, Oct 19 · Prep week 1 of 11</div>
+      <div class="hero"><h1>Circuit basics: charge, V, I, power</h1></div>
+      <div class="chips" style="margin-bottom:8px"><span class="chip c201"><i></i>ECE 201 · 85 / 188 min</span><span class="chip claude"><i></i>1 ticked by Claude</span></div>
+      <div class="task done"><span class="check on">✓</span><div><div class="t">Get the free Ulaby 3rd edition PDF</div><div class="m"><span class="kind read">Read</span>10 min</div></div><span></span></div>
+      <div class="task"><span class="check">✓</span><div><div class="t">Lecture 1: Introduction and Lumped Abstraction</div><div class="m"><span class="kind watch">Watch</span>MIT 6.002 · 38 min</div></div><button class="btn">Play</button></div>
+      <div class="task"><span class="check">✓</span><div><div class="t">Power and the passive sign convention</div><div class="m"><span class="kind solve">Solve</span>13 problems</div></div><button class="btn c201">Start</button></div>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Study timer</div>
+      <div class="timer"><div class="ring" style="--p:46" data-label="46%"></div><div><div class="clock">24:18</div><div class="note">ECE 201 · 46% of this week</div></div></div>
+      <div class="row"><button class="btn ink lg">Stop &amp; log</button><button class="btn lg">Pause</button></div>
+      <div style="margin-top:14px">
+        <div class="side-row"><span>3 cold re-solves due</span><button class="btn">Review</button></div>
+        <div class="side-row"><span>0 submissions waiting</span><span class="note">all clear</span></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="label">Course tiles</p>
+  <div class="courses">
+    <div class="ctile" style="--c:var(--ece201)"><div class="eyebrow">ECE 201</div><h3>DC &amp; Transient Circuits</h3><div class="bar"><span style="width:22%"></span></div><div class="note">1 h 25 m of 23 h</div></div>
+    <div class="ctile" style="--c:var(--mth254)"><div class="eyebrow">MTH 254</div><h3>Vector Calculus I</h3><div class="bar"><span style="width:6%"></span></div><div class="note">starts prep week 2</div></div>
+    <div class="ctile" style="--c:var(--ece200)"><div class="eyebrow">ECE 200</div><h3>Discrete-Time Signals</h3><div class="bar"><span style="width:3%"></span></div><div class="note">starts prep week 3</div></div>
+  </div>
+
+  <p class="label">Keys (they press in)</p>
+  <div class="card">
+    <div class="row"><button class="btn ink">Primary</button><button class="btn">Secondary</button><button class="btn c201">ECE 201</button><button class="btn c254">MTH 254</button><button class="btn c200">ECE 200</button><button class="btn icon"><svg viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></svg></button></div>
+    <div class="row" style="margin-top:14px"><div class="rate"><button class="btn solid">Solid</button><button class="btn shaky">Shaky</button><button class="btn miss">Missed</button></div></div>
+  </div>
+
+  <p class="label">Palette</p>
+  <div class="row">
+    <div class="sw"><div style="background:var(--bg)"></div><div>Background</div></div>
+    <div class="sw"><div style="background:var(--surface)"></div><div>Card</div></div>
+    <div class="sw"><div style="background:var(--ink)"></div><div>Ink</div></div>
+    <div class="sw"><div style="background:var(--ece201)"></div><div>Terracotta</div></div>
+    <div class="sw"><div style="background:var(--mth254)"></div><div>Olive</div></div>
+    <div class="sw"><div style="background:var(--ece200)"></div><div>Slate</div></div>
+    <div class="sw"><div style="background:var(--moss)"></div><div>Moss</div></div>
+    <div class="sw"><div style="background:var(--ochre)"></div><div>Ochre</div></div>
+    <div class="sw"><div style="background:var(--brick)"></div><div>Brick</div></div>
+    <div class="sw"><div style="background:var(--plum)"></div><div>Plum</div></div>
+  </div>
+</div>
+<nav class="tabbar">
+  <a class="on"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Today</a>
+  <a><svg viewBox="0 0 24 24"><path d="M4 5h6v14H4zM14 5h6v14h-6z"/></svg>Courses</a>
+  <a><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg>Review</a>
+  <a><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M12 9v4l2 2M10 3h4"/></svg>Exams</a>
+  <a><svg viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01"/></svg>More</a>
+</nav>
+<script>
+const root = document.documentElement;
+document.getElementById("theme").onclick = () => { root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark"; };
+document.querySelectorAll(".check").forEach(c => c.onclick = () => { c.classList.toggle("on"); c.closest(".task").classList.toggle("done"); });
+</script>
+</body>
+</html>

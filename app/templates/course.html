@@ -2,7 +2,7 @@
 {% from "_macros.html" import bar %}
 {% block title %}{{ course.name }} · Homebase{% endblock %}
 {% block content %}
-<section class="hero" style="--accent: {{ course.color }}">
+<section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><span class="dot"></span>{{ course.name }} · Winter 2027</p>
   <h1>{{ course.title }}</h1>
   <p class="muted">{{ course.instructor }} · {{ course.meets }}</p>
@@ -19,12 +19,12 @@
   <h2>Term weeks</h2>
   <ol class="weeks">
     {% for w, total, done in weeks %}
-    <li style="--accent: {{ course.color }}">
+    <li style="--accent: {{ (course | ccolor) }}">
       <a href="/course/{{ course.code }}/week/{{ w.number }}">
         <span class="wk">Week {{ w.number }}</span>
         <span class="wk-title">{{ w.title }}</span>
       </a>
-      <span class="right small muted">{% if total %}{{ done }}/{{ total }} {{ bar(done, total, course.color) }}{% else %}not in prep plan{% endif %}</span>
+      <span class="right small muted">{% if total %}{{ done }}/{{ total }} {{ bar(done, total, (course | ccolor)) }}{% else %}not in prep plan{% endif %}</span>
     </li>
     {% endfor %}
   </ol>

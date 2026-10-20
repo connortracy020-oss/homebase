@@ -9,7 +9,7 @@
 </section>
 
 {% for c, rows in groups %}
-<section class="card" style="--accent: {{ c.color }}">
+<section class="card" style="--accent: {{ (c | ccolor) }}">
   <h2 class="course-head"><span class="dot"></span>{{ c.name }} <span class="muted">{{ c.title }}</span></h2>
   {% if not c.exam_style_known %}<p class="small"><span class="tag warn">OSU exam style unknown</span> {{ c.exam_style_note }}</p>{% endif %}
   {% if rows %}

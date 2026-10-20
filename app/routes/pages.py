@@ -54,6 +54,10 @@ TEMPLATES.env.filters["ts"] = lambda s: (f"{int(s) // 3600}:{int(s) % 3600 // 60
                                          if s and s >= 3600 else f"{int(s or 0) // 60}:{int(s or 0) % 60:02d}")
 TEMPLATES.env.filters["longdate"] = lambda d: f"{d:%A, %B} {d.day}"  # "Monday, October 19"
 TEMPLATES.env.globals["KIND_LABELS"] = KIND_LABELS
+# Course colors live in style.css (--c-ece201 ...) so they can change with the dark theme.
+# "?v=..." on /static links, so browsers (and the phone) fetch a fresh copy after an edit.
+TEMPLATES.env.globals["static_v"] = lambda name: int((config.ROOT / "app" / "static" / name).stat().st_mtime)
+TEMPLATES.env.filters["ccolor"] = lambda c: f"var(--c-{c.code.lower()})"
 
 
 def render(request: Request, name: str, session: Session, **ctx):
@@ -104,6 +108,11 @@ def plan_page(request: Request, session: Session = Depends(get_session)):
         weeks.append((w, tasks, sum(1 for t in tasks if t.done_at)))
     return render(request, "plan.html", session, weeks=weeks, phase=phase,
                   course_by_id={c.id: c for c in services.courses(session)})
+
+
+@router.get("/courses")
+def courses_page(request: Request, session: Session = Depends(get_session)):
+    return render(request, "courses.html", session, progress=services.progress(session))
 
 
 @router.get("/course/{code}")
