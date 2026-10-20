@@ -64,7 +64,8 @@ def test_pages(client):
     hub = client.get("/course/ECE201/week/1").text
     for heading in ("Watch", "Read", "Solve", "Prep-plan checklist"):
         assert f"<h2>{heading}</h2>" in hub
-    assert "not downloaded yet" in hub  # the Ulaby book isn't in the library yet
+    have_book = (config.ROOT / "library/ece201/ulaby/ulaby_cad3e.pdf").exists()
+    assert ("not downloaded yet" in hub) != have_book  # the badge shows only while the book is missing
 
 
 def test_video_notes_api(client):
