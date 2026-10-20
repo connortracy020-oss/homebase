@@ -261,6 +261,13 @@ class Submission(SQLModel, table=True):
     tokens_out: int = 0
     user_verdict: str = ""  # what you decided after reading the feedback
     confirmed_at: Optional[datetime] = None
+    # The quick check by the local model (app/local_ai.py). Kept apart from Claude's review
+    # above, so asking Claude afterwards never overwrites it. status "local" on the
+    # submission means: checked locally, not in Claude's queue.
+    local_status: str = ""  # "" | queued | waiting | running | done | error
+    local_review: dict = Field(default_factory=dict, sa_column=Column(JSON))
+    local_model: str = ""
+    local_error: str = ""
 
 
 class Mistake(SQLModel, table=True):
@@ -321,3 +328,27 @@ class ActivityLog(SQLModel, table=True):
 class Setting(SQLModel, table=True):
     key: str = Field(primary_key=True)
     value: str = ""
+
+
+class LocalJob(SQLModel, table=True):
+    """One request to the local model, run one at a time by app/local_ai.py.
+
+    kind: review (a submission), answer (a typed final answer), ask (a chat turn).
+    status: queued -> running -> done | error | cancelled, or waiting while
+    another app's model is on the GPU.
+    """
+    id: Optional[int] = Field(default=None, primary_key=True)
+    kind: str = Field(index=True)
+    status: str = Field(default="queued", index=True)
+    problem_id: Optional[int] = Field(default=None, foreign_key="problem.id", index=True)
+    submission_id: Optional[int] = Field(default=None, foreign_key="submission.id", index=True)
+    created_at: datetime
+    started_at: Optional[datetime] = None
+    finished_at: Optional[datetime] = None
+    model: str = ""
+    input: dict = Field(default_factory=dict, sa_column=Column(JSON))  # question, typed answer, mode
+    output: str = ""  # the reply text (ask)
+    result: dict = Field(default_factory=dict, sa_column=Column(JSON))  # structured result
+    error: str = ""
+    wait_note: str = ""  # what we're waiting for, shown on the page
+    run_anyway: bool = False  # you chose not to wait for other apps

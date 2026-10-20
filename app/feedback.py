@@ -240,9 +240,11 @@ def confirm(session: Session, sub: Submission, verdict: str, actor: str = "app")
     session.refresh(sub)
     if sub.problem_id and verdict in ("incorrect", "partial"):
         from . import review
-        cause = sub.cause if sub.cause not in ("none", "") else ""
+        # Claude's review if there is one, else the local check's
+        src = {"cause": sub.cause, "first_error": sub.first_error} if sub.status == "reviewed"             else (sub.local_review or {})
+        cause = src.get("cause", "") if src.get("cause") not in ("none", "") else ""
         review.add_mistake(session, session.get(Problem, sub.problem_id), source="submission",
-                           cause=cause, note=sub.first_error, submission_id=sub.id, actor=actor)
+                           cause=cause, note=src.get("first_error", ""), submission_id=sub.id, actor=actor)
     return sub
 
 

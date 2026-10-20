@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse, RedirectResponse, Response
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
-from .. import backup, config, feedback, pdfpages, review, services, uploads
+from .. import backup, config, feedback, local_ai, pdfpages, review, services, uploads
 from ..db import get_session
 from ..models import Course, Problem, ProblemSet, Submission
 from .pages import render
@@ -141,6 +141,7 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
     history = services.attempts(session, problem)
     last_check = next((a for a in history if a.id == checked), None) if checked else None
     st, key = problem.statement, problem.key
+    local = local_ai.status(session)
     return render(
         request, "problem.html", session, problem=problem, pset=pset,
         subs=services.submissions(session, problem=problem, limit=5),
@@ -153,6 +154,8 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
         key_page=pdfpages.page_of(key) if "pdf" in key else None,
         statement_missing="pdf" in st and not (config.ROOT / st["pdf"]).exists(),
         mistake=review.open_mistake_for(session, problem), CAUSES=feedback.CAUSES,
+        local=local, ask_log=local_ai.history(session, problem.id),
+        local_check=local.ready and local_ai.setting(session, "local_check_submissions") == "1",
     )
 
 
@@ -237,7 +240,18 @@ async def submit_work(slug: str, request: Request, background: BackgroundTasks,
         sub.status = "reviewing"
         session.commit()
         background.add_task(feedback.run_api_review_by_id, sub.id)
+    elif local_check_on(session):
+        # a quick check by the local model; Claude only gets it if you ask (or if it fails)
+        from .local_routes import queue_local_review
+        sub.status = "local"
+        queue_local_review(session, sub)
     return RedirectResponse(f"/submission/{sub.id}", status_code=303)
+
+
+def local_check_on(session: Session) -> bool:
+    if local_ai.setting(session, "local_check_submissions") != "1":
+        return False
+    return local_ai.status(session).ready
 
 
 @router.get("/submission/{sub_id}")

@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block title %}{{ problem.label }} · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
+{% from "_icons.html" import icon %}
 {% block content %}
+<div class="problem-grid">
+<div class="problem-main">
 <section class="hero" style="--accent: {{ (course | ccolor) }}">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
     <a href="/pset/{{ pset.slug }}">{{ pset.title }}</a> · {{ position[0] }} of {{ position[1] }}</p>
@@ -52,6 +56,19 @@
   </details>
 </section>
 {% elif key.pdf or key.images %}
+<section class="card answer-check" id="answer-check" data-slug="{{ problem.slug }}">
+  <div class="card-head"><h2>Check your final answer</h2><span class="ai-chip local">Qwen · local</span></div>
+  {% if local.ready %}
+  <form class="answer-check-form inline-form">
+    <input type="text" name="answer" placeholder="e.g. P = 6 W, delivered" autocomplete="off" aria-label="Your final answer" required>
+    <button type="submit" class="primary">Check</button>
+  </form>
+  <div class="check-result" hidden aria-live="polite"></div>
+  <p class="small muted" style="margin:6px 0 0">Compared with the official {{ 'solution' if problem.key_type == 'official_worked' else 'answer' }} on this laptop. It won't show the key's numbers unless you ask.</p>
+  {% else %}
+  <p class="small muted" style="margin:0">The local AI is off ({{ local.error or 'no model that reads images' }}). Open the Ollama app to use this.</p>
+  {% endif %}
+</section>
 <section class="card">
   <h2>Solution</h2>
   <p class="small muted">Work it on paper first. Then open the official {{ 'worked solution' if problem.key_type == 'official_worked' else 'answer' }}.</p>
@@ -66,19 +83,27 @@
 {% endif %}
 
 <section class="card" id="submit">
-  <h2>Submit your handwritten work</h2>
-  <p class="small muted">Photos (one per page, upright, in good light) or a PDF scan. Claude checks your reasoning against
-    {% if problem.key_type == 'none' %}<strong>no key</strong>, because none exists for this problem, so it can comment on your reasoning but not certify the answer{% else %}the key above{% endif %}.</p>
-  <form method="post" action="/problem/{{ problem.slug }}/submit" enctype="multipart/form-data" class="submit-form">
-    <input type="file" name="files" accept="image/*,application/pdf" multiple required aria-label="Photos or PDF of your work">
-    <input type="text" name="note" placeholder="anything Claude should know (optional)" aria-label="Note for the reviewer">
-    <button type="submit" class="primary">Submit for feedback</button>
+  <h2>Get feedback on your work</h2>
+  <p class="small muted">{% if local_check %}Qwen checks it right here, usually in under a minute, against
+    {% else %}Claude reviews it against {% endif %}{% if problem.key_type == 'none' %}<strong>no key</strong> (none exists, so it can comment on your reasoning but not certify the answer){% else %}the official key{% endif %}.{% if local_check %} You can ask Claude for a second opinion after.{% endif %}</p>
+  <form method="post" action="/problem/{{ problem.slug }}/submit" enctype="multipart/form-data" class="submit-form" id="submit-form">
+    <label class="button primary lg snap">{{ icon('camera') }}Snap my work
+      <input type="file" name="files" accept="image/*" capture="environment" class="visually-hidden auto-submit" aria-label="Take a photo of your work"></label>
+    <label class="button lg">{{ icon('upload') }}Upload photos or PDF
+      <input type="file" name="files" accept="image/*,application/pdf" multiple class="visually-hidden auto-submit" aria-label="Photos or PDF of your work"></label>
+    <details class="note-more"><summary class="small muted">Add a note first</summary>
+      <input type="text" name="note" placeholder="anything the reviewer should know" aria-label="Note for the reviewer"></details>
   </form>
+  <p class="small muted sending" hidden><span class="spinner"></span> Sending your work…</p>
   {% if subs %}
   <ul class="plain small">
     {% for s in subs %}
     <li><a href="/submission/{{ s.id }}">Submission #{{ s.id }}</a> · {{ s.created_at | md }} ·
-      {% if s.status == 'reviewed' %}<span class="result result-{{ s.user_verdict or s.verdict }}">{{ s.user_verdict or s.verdict }}</span>{% else %}<span class="tag">{{ s.status }}</span>{% endif %}</li>
+      {% if s.user_verdict %}<span class="result result-{{ s.user_verdict }}">{{ s.user_verdict }}</span>
+      {% elif s.status == 'reviewed' %}<span class="result result-{{ s.verdict }}">{{ s.verdict }}</span> <span class="ai-chip claude">Claude</span>
+      {% elif s.local_review %}<span class="result result-{{ s.local_review.verdict }}">{{ s.local_review.verdict }}</span> <span class="ai-chip local">Qwen</span>
+      {% elif s.local_status in ('queued', 'waiting', 'running') %}<span class="tag">checking…</span>
+      {% else %}<span class="tag">{{ 'waiting for Claude' if s.status == 'pending' else s.status }}</span>{% endif %}</li>
     {% endfor %}
   </ul>
   {% endif %}
@@ -90,9 +115,9 @@
   <p class="small"><a href="/review/{{ mistake.id }}">In your mistake log</a>: box {{ mistake.box }} of 5, next cold re-solve {{ mistake.due | md }}{% if mistake.cause %} · <span class="tag">{{ mistake.cause }}</span>{% endif %}</p>
   {% endif %}
   <form method="post" action="/problem/{{ problem.slug }}/rate" class="rate-form">
-    <button name="result" value="solid" type="submit">Solid</button>
-    <button name="result" value="shaky" type="submit">Shaky</button>
-    <button name="result" value="miss" type="submit">Missed it</button>
+    <button name="result" value="solid" type="submit" class="solid">Solid</button>
+    <button name="result" value="shaky" type="submit" class="shaky">Shaky</button>
+    <button name="result" value="miss" type="submit" class="miss">Missed it</button>
     <input type="text" name="note" placeholder="what went wrong? (optional)" aria-label="What went wrong">
     <select name="cause" aria-label="Cause">
       <option value="">cause…</option>
@@ -123,4 +148,44 @@
   {% if prev %}<a href="/problem/{{ prev.slug }}">← {{ prev.label }}</a>{% else %}<span></span>{% endif %}
   {% if next %}<a href="/problem/{{ next.slug }}">{{ next.label }} →</a>{% else %}<a href="/pset/{{ pset.slug }}">Back to the set</a>{% endif %}
 </nav>
+</div>
+
+<aside class="card ask-panel" id="ask" data-slug="{{ problem.slug }}" data-ready="{{ 1 if local.ready else 0 }}" aria-label="Ask the local AI">
+  <div class="ask-grab" aria-hidden="true"></div>
+  <div class="card-head ask-head">
+    <h2>Ask</h2><span class="ai-chip local">{{ 'Qwen' if 'qwen' in local.model.lower() else (local.model or 'local AI') }} · local</span>
+    <button type="button" class="icon ask-close" aria-label="Close">{{ icon('close') }}</button>
+  </div>
+  {% if local.ready %}
+  <div class="ask-log" aria-live="polite">
+    {% for j in ask_log %}
+    <p class="msg me">{{ j.input.question }}</p>
+    {% if j.status == 'done' %}<div class="msg ai"><span class="who">{{ j.input.mode }}</span><div class="msg-body">{{ j.output | tex | mdlite }}</div></div>
+    {% elif j.status == 'error' %}<div class="msg ai err"><span class="who">didn't work</span>{{ j.error }}</div>
+    {% elif j.status in ('queued', 'waiting', 'running') %}<div class="msg ai pending" data-job="{{ j.id }}"><span class="who">{{ j.input.mode }}</span><div class="msg-body"></div></div>{% endif %}
+    {% endfor %}
+  </div>
+  <div class="ask-busy" hidden>
+    <p class="busy-note"></p>
+    <div class="inline-form"><button type="button" class="small" data-act="run-anyway">Run anyway</button><button type="button" class="small" data-act="cancel">Cancel</button></div>
+  </div>
+  <div class="presets">
+    <button type="button" class="small" data-mode="hint" data-q="Give me a hint.">Give me a hint</button>
+    {% if key.pdf or key.images %}<button type="button" class="small" data-goto="answer-check">Check my final answer</button>
+    {% elif key.answers %}<button type="button" class="small" data-goto="result">Check my final answer</button>{% endif %}
+    {% if problem.key_type != 'none' %}<button type="button" class="small needs-reveal" data-mode="explain" data-q="Walk me through the official solution, step by step.">Explain the solution</button>{% endif %}
+  </div>
+  <form class="composer">
+    <input type="text" name="question" placeholder="Ask about this problem…" autocomplete="off" aria-label="Your question">
+    <button type="submit" class="primary">Send</button>
+  </form>
+  <p class="small muted ask-foot">{% if problem.key_type != 'none' %}It sees the problem and the official key. Before you reveal the solution it only gives hints{% if key.answers %}, and Homebase blocks any reply that contains the answer{% endif %}.{% else %}It sees the problem; no official key exists, so double-check what it says.{% endif %}
+    {% if ask_log %}<button type="button" class="link ask-clear">Clear chat</button>{% endif %}</p>
+  {% else %}
+  <p class="small muted" style="margin:0">The local AI is off: {{ local.error or 'Ollama has no model that reads images.' }} Open the Ollama app, then reload this page.</p>
+  {% endif %}
+</aside>
+</div>
+<button type="button" class="button primary ask-fab" aria-controls="ask">{{ icon('spark') }}Ask</button>
 {% endblock %}
+{% block scripts %}<script src="/static/local_ai.js?v={{ static_v('local_ai.js') }}"></script>{% endblock %}

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local AI mockup</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="../app/static/style.css">
+<style>
+  body { padding-bottom: 40px; }
+  .mock-label { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-faint); margin: 26px 0 8px; }
+  .two { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+  .paper { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; height: 120px; display: grid; place-items: center; color: #8d877a; font-size: 12px; }
+  .local { color: var(--info); background: var(--info-bg); font-size: 11px; font-weight: 500; border-radius: 5px; padding: 0 6px; }
+  .claude { color: var(--claude); background: var(--claude-bg); font-size: 11px; font-weight: 500; border-radius: 5px; padding: 0 6px; }
+  .ask-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .ask-head h2 { margin: 0; }
+  .presets { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 10px; }
+  .msg { padding: 8px 11px; border-radius: 11px; margin: 0 0 8px; font-size: 13.5px; max-width: 92%; }
+  .msg.me { background: var(--sunken); margin-left: auto; }
+  .msg.ai { background: var(--raised); border: 1px solid var(--line); }
+  .msg .who { display: block; font-size: 10.5px; color: var(--ink-faint); margin-bottom: 2px; }
+  .composer { display: flex; gap: 6px; margin-top: 6px; }
+  .composer input { flex: 1; }
+  .status { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 7px 0; border-top: 1px solid var(--hair); }
+  .status:first-of-type { border-top: 0; }
+  .led { width: 8px; height: 8px; border-radius: 50%; background: var(--moss); flex: none; }
+  .led.wait { background: var(--ochre); }
+  .busy { display: flex; gap: 10px; align-items: center; padding: 9px 11px; border-radius: 10px; background: var(--mid-bg); color: var(--mid); font-size: 13px; margin-bottom: 10px; }
+  .verdict { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 1px 8px; border-radius: 999px; }
+  .v-partial { color: var(--mid); background: var(--mid-bg); }
+  .phone { width: 375px; border: 1px solid var(--line); border-radius: 26px; overflow: hidden; background: var(--bg); position: relative; height: 640px; }
+  .phone .inner { padding: 12px; }
+  .sheet-up { position: absolute; left: 0; right: 0; bottom: 0; background: var(--surface); border-top: 1px solid var(--line); border-radius: 18px 18px 0 0; padding: 8px 14px 16px; box-shadow: 0 -10px 30px -18px var(--drop); }
+  .grab { width: 36px; height: 4px; border-radius: 9px; background: var(--line); margin: 0 auto 10px; }
+  .row-mock { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+  select.wide { width: 100%; }
+  @media (max-width: 820px) { .two { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main class="wide">
+  <div class="row" style="display:flex;justify-content:space-between;align-items:center">
+    <h1 style="font-size:22px;margin:0">Local AI in Homebase: mockup</h1>
+    <button class="icon" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'" title="Light / dark"><svg class="i" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+  </div>
+
+  <p class="mock-label">1 · Problem page, laptop: an "Ask" card next to the problem</p>
+  <div class="two">
+    <div>
+      <section class="card statement" style="--accent: var(--c-ece201)">
+        <p class="eyebrow">ECE 201 · Ulaby chapter 1 exercises · 3 of 10</p>
+        <h2 style="font-size:20px;margin:4px 0 10px">Exercise 1-3</h2>
+        <div class="paper">[ problem cropped from the Ulaby PDF ]</div>
+      </section>
+      <section class="card feedback-card verdict-partial">
+        <div class="card-head"><h2>Feedback on your work</h2><span class="local">Qwen · local</span><span class="right">2 min ago</span></div>
+        <p style="margin:4px 0 8px"><span class="verdict v-partial">Partly right</span></p>
+        <p class="small" style="margin:0 0 6px"><strong>Read from your photo:</strong> P = VI = (12)(0.5) = 6 W, absorbed</p>
+        <p class="small" style="margin:0 0 6px">Your power is right, but the key has the current entering the − terminal, so the element <em>delivers</em> 6 W. Check the passive sign convention on line 2.</p>
+        <p class="small muted" style="margin:0 0 10px">Local model, checked against the official worked solution. It can misread handwriting; the key is the authority.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="small">Agree, log as shaky</button><button class="small">It misread me</button><button class="small">Ask Claude to review too</button></div>
+      </section>
+    </div>
+    <section class="card">
+      <div class="ask-head"><h2>Ask</h2><span class="local">Qwen 3.5 9B · local</span><span class="right small muted" style="margin-left:auto">sees the problem and the key</span></div>
+      <div class="presets"><button class="small">Give me a hint</button><button class="small">Check my final answer</button><button class="small">Explain the solution step</button></div>
+      <p class="msg me">Which way should I draw the current?</p>
+      <p class="msg ai"><span class="who">Qwen · local · hint, no answers</span>Look at which terminal of the element is marked +. Under the passive sign convention, current is drawn <em>into</em> that terminal. What does that make the sign of P?</p>
+      <div class="composer"><input type="text" placeholder="Ask about this problem…"><button class="primary">Send</button></div>
+      <p class="small muted" style="margin:8px 0 0">Hints won't state the final answer. For generated problems Homebase also blocks any reply that contains the computed answer.</p>
+    </section>
+  </div>
+
+  <p class="mock-label">2 · When another app is using the AI</p>
+  <section class="card" style="max-width:560px">
+    <div class="busy"><span class="led wait"></span><span><strong>Another app is using the local AI</strong> (OpenClaw's Qwen 3.8 27B is loaded). Your question is first in line and will run when it's done.</span></div>
+    <div style="display:flex;gap:8px"><button class="small">Keep waiting</button><button class="small">Cancel</button></div>
+  </section>
+
+  <p class="mock-label">3 · Settings → Local AI</p>
+  <section class="card" style="max-width:560px">
+    <h2>Local AI</h2>
+    <div class="status"><span class="led"></span>Ollama 0.40.6 is running on this laptop<span class="right small muted">Homebase never starts, stops or changes it</span></div>
+    <div class="status"><span class="led"></span>Qwen 3.5 9B can see images<span class="right small muted">6.6 GB · shared with Lecture Desk (read only)</span></div>
+    <label class="small muted" style="display:block;margin:10px 0 4px">Model for hints and quick checks</label>
+    <select class="wide"><option>qwen3.5:9b (recommended)</option><option>qwen9b-unc (uncensored 9B)</option><option>Qwen3.8 27B IQ2_M (slow, shared with OpenClaw)</option></select>
+    <div class="inline-form" style="margin-top:12px">
+      <label class="small"><input type="checkbox" checked> Quick local check on every submission</label>
+      <label class="small"><input type="checkbox" checked> Wait for other apps instead of pushing their model out</label>
+    </div>
+    <button class="small">Run a test question</button>
+  </section>
+
+  <p class="mock-label">4 · Phone: Ask opens as a bottom sheet</p>
+  <div class="row-mock">
+    <div class="phone">
+      <div class="inner">
+        <p class="eyebrow">ECE 201 · 3 of 10</p>
+        <h2 style="font-size:19px;margin:4px 0 10px">Exercise 1-3</h2>
+        <div class="paper" style="height:150px">[ problem ]</div>
+        <div style="display:flex;gap:8px;margin-top:12px"><button>Reveal solution</button><button class="primary">Ask</button></div>
+      </div>
+      <div class="sheet-up">
+        <div class="grab"></div>
+        <div class="ask-head"><h2 style="font-size:15px">Ask</h2><span class="local">Qwen · local</span></div>
+        <div class="presets"><button class="small">Hint</button><button class="small">Check answer</button><button class="small">Explain step</button></div>
+        <p class="msg ai"><span class="who">Qwen · local · hint</span>Which terminal is marked +? Draw the current into it, then check the sign of P.</p>
+        <div class="composer"><input type="text" placeholder="Ask…"><button class="primary">Send</button></div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

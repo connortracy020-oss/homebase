@@ -161,7 +161,7 @@ def test_confirming_records_an_attempt(session):
 def test_submit_and_view(client, session):
     r = client.post("/problem/ulaby-ex-ch1-1/submit", files={"files": ("w.jpg", jpeg(), "image/jpeg")},
                     data={"note": ""}, follow_redirects=True)
-    assert r.status_code == 200 and "Waiting for review" in r.text
+    assert r.status_code == 200 and "Waiting for Claude" in r.text
     assert "Instant feedback is off" in r.text  # no API key in tests
     sub = session.exec(select(Submission)).one()
     page = sub.files[0]["pages"][0]

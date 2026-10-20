@@ -7,6 +7,55 @@
   <p class="muted">Everything lives in <code>{{ data_dir }}</code>.</p>
 </section>
 
+<section class="card" id="local-ai">
+  <div class="card-head"><h2>Local AI</h2><span class="ai-chip local">Qwen · local</span></div>
+  {% if local.running %}
+  <div class="side-row"><span><span class="led"></span>Ollama {{ local.version }} is running on this laptop</span><span class="small muted">Homebase never starts, stops or changes it</span></div>
+  {% if local.model %}
+  <div class="side-row"><span><span class="led"></span>{{ local.model }} can read images</span><span class="small muted">used read-only, shared with your other apps</span></div>
+  {% else %}
+  <div class="side-row"><span><span class="led off"></span>No model in Ollama can read images</span></div>
+  {% endif %}
+  <div class="side-row"><span><span class="led {{ 'wait' if local_busy else '' }}"></span>{% if local_busy %}Another app has {{ local_busy }} loaded right now{% else %}The GPU is free{% endif %}</span>
+    <span class="small muted">{{ 'Homebase waits its turn' if local_busy else '' }}</span></div>
+  <form method="post" action="/settings/local" style="margin-top:12px">
+    <label class="small muted" for="local-model" style="display:block;margin-bottom:4px">Model for hints, answer checks and quick checks</label>
+    <select name="model" id="local-model" style="width:100%">
+      {% for m in local.vision_models %}<option value="{{ m }}" {% if m == local.model %}selected{% endif %}>{{ m }}{% if m == 'qwen3.5:9b' %} (recommended){% endif %}</option>{% endfor %}
+    </select>
+    <p class="small muted" style="margin:6px 0 0">qwen3.5:9b is the plain model Lecture Desk also uses. The 27B is OpenClaw's and much slower here; the uncensored ones are less careful.</p>
+    <div class="inline-form" style="margin-top:10px">
+      <label class="small"><input type="checkbox" name="check_submissions" {% if local_settings.local_check_submissions == '1' %}checked{% endif %}> Quick local check on every submission</label>
+      <label class="small"><input type="checkbox" name="polite" {% if local_settings.local_polite == '1' %}checked{% endif %}> Wait for other apps instead of pushing their model off the GPU</label>
+    </div>
+    <div class="inline-form"><button type="submit" class="primary">Save</button><button type="button" id="local-test">Run a test question</button><span class="small muted" id="local-test-out"></span></div>
+  </form>
+  {% else %}
+  <div class="side-row"><span><span class="led off"></span>Ollama isn't running</span><span class="small muted">{{ local.error }}</span></div>
+  <p class="small muted">Open the Ollama app to use hints, answer checks and quick checks. Everything else works without it, and submissions go to Claude as before.</p>
+  {% endif %}
+</section>
+<script>
+(function () {
+  const btn = document.getElementById("local-test"), out = document.getElementById("local-test-out");
+  if (!btn) return;
+  btn.addEventListener("click", async () => {
+    btn.disabled = true; out.textContent = "Asking…";
+    try {
+      let job = await (await fetch("/local/test", { method: "POST" })).json();
+      const t0 = Date.now();
+      while (!["done", "error", "cancelled"].includes(job.status)) {
+        out.textContent = job.status === "waiting" ? job.wait_note + " Waiting…" : job.status === "running" ? "Thinking…" : "In line…";
+        await new Promise((r) => setTimeout(r, 1000));
+        job = await (await fetch(`/local/jobs/${job.id}`)).json();
+      }
+      out.textContent = job.status === "done" ? `“${job.text}” (${((Date.now() - t0) / 1000).toFixed(1)} s)` : job.error;
+    } catch (e) { out.textContent = String(e); }
+    btn.disabled = false;
+  });
+})();
+</script>
+
 <section class="card">
   <h2>Appearance</h2>
   <p class="small muted">Saved on this device only, so your phone and laptop can differ.</p>

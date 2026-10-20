@@ -14,7 +14,7 @@ from fastapi.responses import FileResponse, PlainTextResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, select
 
-from .. import backup, config, labs, services
+from .. import backup, config, labs, local_ai, services
 from ..db import get_session
 from ..models import Task
 
@@ -57,6 +57,7 @@ TEMPLATES.env.globals["KIND_LABELS"] = KIND_LABELS
 # Course colors live in style.css (--c-ece201 ...) so they can change with the dark theme.
 # "?v=..." on /static links, so browsers (and the phone) fetch a fresh copy after an edit.
 TEMPLATES.env.globals["static_v"] = lambda name: int((config.ROOT / "app" / "static" / name).stat().st_mtime)
+TEMPLATES.env.filters["tex"] = local_ai.tex  # $x$ -> \(x\) for KaTeX
 TEMPLATES.env.filters["ccolor"] = lambda c: f"var(--c-{c.code.lower()})"
 
 
@@ -200,10 +201,14 @@ def progress_page(request: Request, session: Session = Depends(get_session)):
 @router.get("/settings")
 def settings_page(request: Request, session: Session = Depends(get_session)):
     folder = backup.backup_dir(session)
+    local = local_ai.status(session)
+    busy = local_ai.blocker(local.loaded, local.model) if local.running else None
     return render(request, "settings.html", session, backup_dir=folder,
                   last_backup=backup.get_setting(session, "last_backup"),
                   last_error=backup.get_setting(session, "last_backup_error"),
-                  data_dir=config.DATA_DIR)
+                  data_dir=config.DATA_DIR, local=local,
+                  local_settings={k: local_ai.setting(session, k) for k in local_ai.SETTINGS},
+                  local_busy=local_ai.short_name(busy) if busy else None)
 
 
 # ---- form posts -----------------------------------------------------------------

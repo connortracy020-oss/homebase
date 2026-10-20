@@ -16,11 +16,13 @@ Then open **http://localhost:8254**. The first run sets up the Python packages (
 
 | Page | What it does |
 |---|---|
-| **Today** | This prep week's checklist, a study timer, and logging time by hand |
+| **Today** | This prep week's checklist (the next task's key is course-colored), a study timer with this week's progress ring, reviews and feedback waiting, and logging time by hand |
 | **Plan** | All 11 prep weeks (Oct 19 – Jan 3), with planned hours and tasks |
-| **ECE 201 / MTH 254 / ECE 200** | Instructor, exam-style notes (marked *unknown* where they are), and the 10 term weeks |
+| **Courses** | The three course tiles; each opens the course page (instructor, exam-style notes marked *unknown* where they are, the 10 term weeks) |
 | **Progress** | Hours logged vs planned per course and week, tasks done, and the activity log |
-| **Settings** | Export everything as a zip; daily backup to OneDrive |
+| **Settings** | Local AI status, light / dark / match device, export everything as a zip, daily backup to OneDrive |
+
+On a laptop the nav is the tab strip at the top. On a phone it's the bottom bar (Today, Courses, Review, Exams, and More for the rest). The moon/sun key switches light and dark mode, per device.
 
 The timer keeps running if you close the tab or your phone sleeps; press **Stop & log** when you finish.
 
@@ -65,6 +67,41 @@ The rules Claude follows are in `app/feedback.py`:
 Then you settle the verdict (**Agree** or pick another), and that counts as an attempt on the problem.
 
 `scripts/feedback_eval.py` makes fake handwritten submissions with known mistakes to check review quality. In the first run, a separate Claude reviewer got 7/7 verdicts and causes right.
+
+## Local AI (Qwen in your own Ollama)
+
+When the Ollama app is running, Homebase uses a local model (default `qwen3.5:9b`) for four things:
+
+| Where | What |
+|---|---|
+| Problem page → **Ask** (right-hand card on a laptop; the **Ask** button on a phone) | Hints, "check my final answer", and "explain the solution" after you've revealed it. Chats are saved per problem. |
+| Problem page → **Check your final answer** (book problems) | Type your answer (`P = 6 W delivered`); Qwen compares it with the official key in about 5–15 s. If its tip quotes the key, the tip is hidden until you press "Show the key's values". |
+| Problem page → **Snap my work** | Opens the phone camera, sends the photo straight away, and Qwen does a quick check against the key (about a minute). |
+| Submission page | The quick check's feedback (labelled **Qwen · local**), with **Ask Claude to review too** for a second opinion. |
+
+How it shares Ollama with your other apps (Lecture Desk uses `qwen3.5:9b`, OpenClaw uses the Qwen 3.8 27B):
+- **It only sends chat requests.** It never starts, stops or reconfigures Ollama, and never pulls, deletes, copies, creates or renames models. All settings (context size, thinking, temperature) go on each request.
+- **It waits its turn on the GPU.** If another app's model is loaded, the job waits, and the page says so, instead of pushing that model out. **Run anyway** is there if you know the other app is idle.
+- **It does one job at a time,** with small contexts (8–16k tokens), and lets the model unload within a few minutes.
+
+Hints are checked before you see them. For generated problems, Homebase blocks any hint containing the computed answer. For every problem, the model also checks its own hint for a give-away; a leaking hint is redone once, then held back.
+
+Local verdicts are only suggestions. Nothing counts toward your results until you press **Agree** or rate the problem yourself. Timed exams never use the local model. If Ollama is off, everything else works, and submissions go to Claude as before. Settings → **Local AI** shows the status, the model and two switches.
+
+How far to trust it: once you have 10–15 submissions with settled verdicts, run
+
+```
+.venv\Scripts\python scripts\eval_local.py
+```
+
+It re-checks them with the local model, without changing anything, and reports how often it agrees. If it agrees about 85% of the time and never calls wrong work correct, it's trustworthy enough to rely on.
+
+First trial (2026-10-19, `qwen3.5:9b`):
+- **Answer checks:** right verdicts on all-correct, all-wrong and one-part-wrong typed answers.
+- **Quick checks:** right verdicts on typed-up work, one right and one with a sign-convention error. It found the first error.
+- **Hints:** "just tell me the answer" got a hint instead of the answer.
+
+That trial used typed-up work, not your handwriting. Your handwriting is still untested.
 
 ## Mistake log and spaced review (stage d)
 

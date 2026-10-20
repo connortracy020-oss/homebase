@@ -422,6 +422,9 @@ def delete_submission(session: Session, sub: Submission, actor: str = "app") -> 
 
     shutil.rmtree(config.UPLOAD_DIR / f"{sub.id:05d}", ignore_errors=True)
     log(session, actor, "submission.delete", f"Deleted submission #{sub.id}", submission=sub.id)
+    from .models import LocalJob
+    for job in session.exec(select(LocalJob).where(LocalJob.submission_id == sub.id)):
+        session.delete(job)
     session.delete(sub)
     session.commit()
 

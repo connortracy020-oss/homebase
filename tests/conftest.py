@@ -10,6 +10,23 @@ from app import config, db
 from app.seed import seed
 
 
+class _NoOllama:
+    """Tests never talk to the real Ollama (it's shared with your other apps)."""
+    def _down(self, *a, **k):
+        from app.local_ai import OllamaError
+        raise OllamaError("Ollama is off in tests")
+    version = models = capabilities = loaded = chat = _down
+
+
+@pytest.fixture(autouse=True)
+def no_real_ollama():
+    from app import local_ai
+    local_ai.set_client(_NoOllama())
+    local_ai._caps_cache.clear()
+    yield
+    local_ai.set_client(_NoOllama())
+
+
 @pytest.fixture
 def data_dir(tmp_path, monkeypatch):
     monkeypatch.setattr(config, "DATA_DIR", tmp_path)

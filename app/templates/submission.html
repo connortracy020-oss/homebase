@@ -1,5 +1,33 @@
 {% extends "base.html" %}
 {% block title %}Submission #{{ sub.id }} · Homebase{% endblock %}
+
+{% macro review_card(r, who, model, when) %}
+<section class="card feedback-card verdict-{{ r.verdict }}">
+  <div class="card-head">
+    <h2>Feedback</h2>
+    <span class="result result-{{ r.verdict }}">{{ r.verdict }}</span>
+    {% if who == 'local' %}<span class="ai-chip local">Qwen · local</span>{% else %}<span class="ai-chip claude">Claude</span>{% endif %}
+    {% if r.confidence == 'low' %}<span class="tag warn">low confidence</span>{% endif %}
+    {% if r.legible is defined and not r.legible %}<span class="tag warn">parts were illegible</span>{% endif %}
+  </div>
+  {% if r.first_error %}<p><strong>First error:</strong> {{ r.first_error }} <span class="tag">{{ r.cause }}</span></p>{% endif %}
+  <div class="feedback-text">{{ r.feedback | mdlite }}</div>
+  {% if r.answers %}
+  <table class="answers-table">
+    <thead><tr><th>Quantity</th><th>You</th><th>Key</th><th></th></tr></thead>
+    <tbody>{% for a in r.answers %}<tr><td>{{ a.label }}</td><td>{{ a.student }}</td><td>{{ a.key }}</td>
+      <td>{% if a.match == 'yes' %}<span class="mark ok">✓</span>{% elif a.match == 'no' %}<span class="mark bad">✗</span>{% else %}?{% endif %}</td></tr>{% endfor %}</tbody>
+  </table>
+  {% endif %}
+  {% if problem and problem.key_type == 'none' %}<p class="tag warn">No official key exists for this problem, so this is feedback on reasoning only.</p>{% endif %}
+  <details class="solution"><summary>What {{ 'Qwen' if who == 'local' else 'Claude' }} read in your work</summary><div class="transcription">{{ r.transcription | mdlite }}</div>
+    <p class="small muted">If this misreads your handwriting, the feedback may be off. Resubmit with a clearer photo.</p></details>
+  <p class="small muted">
+    {% if who == 'local' %}Checked on this laptop by {{ model }}. It can misread handwriting; the key is the authority.
+    {% else %}Reviewed by {{ 'Claude via the API' if sub.reviewer == 'api' else 'Claude in a chat session' }}{% if model %} ({{ model }}){% endif %} · {{ when | md }}{% if sub.tokens_in %} · {{ sub.tokens_in + sub.tokens_out }} tokens{% endif %}{% endif %}</p>
+</section>
+{% endmacro %}
+
 {% block content %}
 {% if sub.status == 'reviewing' %}<meta http-equiv="refresh" content="5">{% endif %}
 <section class="hero" style="--accent: {{ (course | ccolor) }}">
@@ -10,10 +38,43 @@
     {% if problem %}· key: <span class="key-badge key-{{ problem.key_type }}">{{ KEY_LABELS[problem.key_type] }}</span>{% endif %}</p>
 </section>
 
-{% if sub.status in ('pending', 'error') %}
+{% set local = sub.local_review %}
+{% set claude_done = sub.status == 'reviewed' %}
+
+{# ---- the quick local check ---- #}
+{% if sub.local_status in ('queued', 'waiting', 'running') %}
+<section class="card local-progress" id="local-progress" data-sub="{{ sub.id }}">
+  <div class="card-head"><h2>Quick check</h2><span class="ai-chip local">Qwen · local</span></div>
+  <p class="local-msg"><span class="spinner"></span> <span class="local-text">{% if sub.local_status == 'waiting' %}Waiting for the local AI…{% elif sub.local_status == 'running' %}Reading your work and comparing it with the key…{% else %}In line for the local AI…{% endif %}</span></p>
+  <div class="local-wait" hidden>
+    <p class="busy-note"></p>
+    <div class="inline-form"><button type="button" class="small" data-act="run-anyway">Run anyway</button>
+      <button type="button" class="small" data-act="cancel">Cancel and send to Claude</button></div>
+  </div>
+  <p class="small muted">Usually under a minute. You can leave this page; the result will be here.</p>
+</section>
+{% elif sub.local_status == 'error' %}
+<section class="card">
+  <div class="card-head"><h2>Quick check didn't run</h2><span class="ai-chip local">Qwen · local</span></div>
+  <p class="small">{{ sub.local_error }}</p>
+  <form method="post" action="/submission/{{ sub.id }}/local-check"><button type="submit" class="small">Try the local check again</button></form>
+</section>
+{% endif %}
+
+{% if local and not claude_done %}{{ review_card(local, 'local', sub.local_model, None) }}{% endif %}
+
+{# ---- Claude ---- #}
+{% if sub.status == 'local' %}
+  {% if local %}
+  <section class="card second-opinion">
+    <p style="margin:0"><strong>Want a second opinion?</strong> <span class="muted small">Claude reads the same problem, key and pages.</span></p>
+    <form method="post" action="/submission/{{ sub.id }}/to-claude"><button type="submit" class="small">Ask Claude to review too</button></form>
+  </section>
+  {% endif %}
+{% elif sub.status in ('pending', 'error') %}
 <section class="card">
   {% if sub.status == 'error' %}<p class="tag warn">The API review failed: {{ sub.error }}</p>{% endif %}
-  <h2>Waiting for review</h2>
+  <div class="card-head"><h2>Waiting for Claude</h2><span class="ai-chip claude">Claude</span></div>
   <p>Open <strong>Claude Code</strong> or <strong>Claude Desktop</strong> with the Homebase tools connected and say:
      <em>"Review my pending Homebase submissions."</em> Claude reads this packet (problem, official key, your pages)
      and posts its feedback here.</p>
@@ -23,40 +84,32 @@
   {% else %}
   <p class="small muted">Instant feedback is off: there is no Anthropic API key in <code>.env</code> (see the README).</p>
   {% endif %}
+  {% if not sub.local_status and not sub.exam_attempt_id %}
+  <form method="post" action="/submission/{{ sub.id }}/local-check"><button type="submit" class="small">Quick check with the local AI meanwhile</button></form>
+  {% endif %}
 </section>
 {% elif sub.status == 'reviewing' %}
 <section class="card"><h2>Reviewing…</h2><p class="muted">Claude is reading your work. This page refreshes on its own; it usually takes under a minute.</p></section>
-{% else %}
-<section class="card feedback-card verdict-{{ sub.verdict }}">
-  <h2>Feedback <span class="result result-{{ sub.verdict }}">{{ sub.verdict }}</span>
-    {% if sub.confidence == 'low' %}<span class="tag warn">low confidence</span>{% endif %}
-    {% if not sub.legible %}<span class="tag warn">parts were illegible</span>{% endif %}</h2>
-  {% if sub.first_error %}<p><strong>First error:</strong> {{ sub.first_error }} <span class="tag">{{ sub.cause }}</span></p>{% endif %}
-  <div class="feedback-text">{{ sub.feedback | mdlite }}</div>
-  {% if sub.answers %}
-  <table class="answers-table">
-    <thead><tr><th>Quantity</th><th>You</th><th>Key</th><th></th></tr></thead>
-    <tbody>{% for a in sub.answers %}<tr><td>{{ a.label }}</td><td>{{ a.student }}</td><td>{{ a.key }}</td>
-      <td>{% if a.match == 'yes' %}<span class="mark ok">✓</span>{% elif a.match == 'no' %}<span class="mark bad">✗</span>{% else %}?{% endif %}</td></tr>{% endfor %}</tbody>
-  </table>
-  {% endif %}
-  {% if problem and problem.key_type == 'none' %}<p class="tag warn">No official key exists for this problem, so this is feedback on reasoning only.</p>{% endif %}
-  <details class="solution"><summary>What Claude read in your work</summary><div class="transcription">{{ sub.transcription | mdlite }}</div>
-    <p class="small muted">If this misreads your handwriting, the feedback may be off. Resubmit with a clearer photo.</p></details>
-  <p class="small muted">Reviewed by {{ 'Claude via the API' if sub.reviewer == 'api' else 'Claude in a chat session' }}{% if sub.model %} ({{ sub.model }}){% endif %}
-    · {{ sub.reviewed_at | md }}{% if sub.tokens_in %} · {{ sub.tokens_in + sub.tokens_out }} tokens{% endif %}</p>
-</section>
+{% elif claude_done %}
+{{ review_card(sub, 'claude', sub.model, sub.reviewed_at) }}
+{% if local %}
+<details class="card local-earlier"><summary>What the quick local check said <span class="result result-{{ local.verdict }}">{{ local.verdict }}</span></summary>
+  <div class="feedback-text small">{{ local.feedback | mdlite }}</div></details>
+{% endif %}
+{% endif %}
 
+{% set suggested = sub.verdict if claude_done else (local.verdict if local else '') %}
+{% if claude_done or local %}
 <section class="card" id="confirm">
   <h2>Do you agree?</h2>
   {% if sub.user_verdict %}
-  <p>You settled on <span class="result result-{{ sub.user_verdict }}">{{ sub.user_verdict }}</span>{% if sub.user_verdict != sub.verdict %} (Claude said {{ sub.verdict }}){% endif %}. It's saved as an attempt on this problem.</p>
+  <p>You settled on <span class="result result-{{ sub.user_verdict }}">{{ sub.user_verdict }}</span>{% if sub.user_verdict != suggested %} ({{ 'Claude' if claude_done else 'Qwen' }} said {{ suggested }}){% endif %}. It's saved as an attempt on this problem.</p>
   {% else %}
-  <p class="small muted">The key decides. If Claude misread something, pick what's actually true.</p>
+  <p class="small muted">The key decides. If {{ 'Claude' if claude_done else 'Qwen' }} misread something, pick what's actually true.</p>
   {% endif %}
   <form method="post" action="/submission/{{ sub.id }}/confirm" class="rate-form">
     {% for v in ['correct', 'partial', 'incorrect'] %}
-    <button name="verdict" value="{{ v }}" type="submit" {% if v == sub.verdict and not sub.user_verdict %}class="primary"{% endif %}>{{ 'Agree: ' if v == sub.verdict else '' }}{{ v }}</button>
+    <button name="verdict" value="{{ v }}" type="submit" class="{{ {'correct': 'solid', 'partial': 'shaky', 'incorrect': 'miss'}[v] if v == suggested and not sub.user_verdict else '' }}">{{ 'Agree: ' if v == suggested else '' }}{{ v }}</button>
     {% endfor %}
   </form>
 </section>
@@ -74,3 +127,5 @@
     <button class="link small" type="submit">Delete this submission</button></form>
 </section>
 {% endblock %}
+
+{% block scripts %}<script src="/static/local_ai.js?v={{ static_v('local_ai.js') }}"></script>{% endblock %}
