@@ -5,18 +5,30 @@ and then checked a second, independent way. If the two disagree the
 generator raises instead of producing a problem with a wrong key.
 
 A generator returns:
-    {"statement": {"text": ..., "svg": ...},
+    {"statement": {"text": ..., "diagram": ..., "svg": ...},
      "key": {"answers": [{"label", "value", "unit", "tol"}], "steps": [...],
              "checks": [...]},
      "topics": [...]}
-"""
-from . import circuits_basics
 
-GENERATORS = {
-    "element_power": circuits_basics.element_power,
-    "loop_power": circuits_basics.loop_power,
-    "charge_current": circuits_basics.charge_current,
-}
+Each module below defines GENERATORS = {name: function}; they are merged
+here, so modules can be added without editing this file's logic.
+"""
+import importlib
+
+MODULES = ["circuits_basics", "circuits_dc", "circuits_transient", "dsp", "vectorcalc"]
+
+GENERATORS: dict = {}
+for _name in MODULES:
+    try:
+        _mod = importlib.import_module(f"{__name__}.{_name}")
+    except ModuleNotFoundError as _e:
+        if _e.name != f"{__name__}.{_name}":
+            raise  # a real import error inside the module
+        continue
+    for _key, _fn in getattr(_mod, "GENERATORS", {}).items():
+        if _key in GENERATORS:
+            raise RuntimeError(f"generator {_key!r} is defined twice")
+        GENERATORS[_key] = _fn
 
 
 def generate(name: str, seed: int) -> dict:

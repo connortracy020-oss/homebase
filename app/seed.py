@@ -97,6 +97,17 @@ def problem_rows(pset_spec: dict) -> list[dict]:
                 })
         return rows
     p = pset_spec["problems"]
+    if isinstance(p, list):  # problems listed one by one
+        for n, item in enumerate(p, 1):
+            rows.append({
+                "slug": f"{pset_spec['id']}-{item.get('id', n)}",
+                "label": item["label"],
+                "key_type": item.get("key_type", pset_spec.get("key_type", "none")),
+                "statement": {k: v for k, v in item["statement"].items()},
+                "key": {k: v for k, v in item.get("key", {}).items()},
+                "topics": item.get("topics", []), "generator": "", "seed": None,
+            })
+        return rows
     for n in range(1, p["count"] + 1):
         rows.append({
             "slug": f"{pset_spec['id']}-{n}",

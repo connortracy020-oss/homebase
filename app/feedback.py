@@ -135,7 +135,7 @@ def build_packet(session: Session, sub: Submission) -> Packet:
         pset = session.get(ProblemSet, problem.set_id)
         packet = Packet(title=f"{course.name} · {pset.title} · {problem.label}", key_type=problem.key_type)
         st, key = problem.statement, problem.key
-        if "pdf" in st:
+        if "pdf" in st or "images" in st:
             packet.parts.append(_region_part("Problem statement (as printed):", st))
         else:
             asked = "; ".join(f"{a['label']} ({a['unit']})" for a in key.get("answers", []))
@@ -144,7 +144,7 @@ def build_packet(session: Session, sub: Submission) -> Packet:
                                      + (f"\nQuantities asked for: {asked}" if asked else "")))
         if problem.key_type == "none":
             packet.parts.append(Part(text="Answer key: none exists for this problem."))
-        elif "pdf" in key:
+        elif "pdf" in key or "images" in key:
             packet.parts.append(_region_part(f"Answer key ({KEY_DESCRIPTIONS[problem.key_type]}):", key))
         else:
             lines = [f"- {a['label']}: {a['value']:g} {a['unit']}" for a in key.get("answers", [])]

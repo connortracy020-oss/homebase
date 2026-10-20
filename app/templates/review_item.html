@@ -36,13 +36,13 @@
 {% else %}
 {% set st = problem.statement %}
 <section class="card statement">
-  {% if st.pdf %}<img src="/problem/{{ problem.slug }}/statement.png" alt="{{ problem.label }}" class="pdf-crop">
+  {% if st.pdf or st.images %}<img src="/problem/{{ problem.slug }}/statement.png" alt="{{ problem.label }}" class="pdf-crop">
   {% else %}<p class="problem-text">{{ st.text }}</p>{% if st.svg %}<div class="circuit-wrap">{{ st.svg | safe }}</div>{% endif %}{% endif %}
 </section>
 <section class="card" id="rate">
   {% if problem.key_type != 'none' %}
   <details class="solution"><summary>Show the key (after you've finished)</summary>
-    {% if problem.key.pdf %}<img loading="lazy" src="/problem/{{ problem.slug }}/key.png" alt="Key" class="pdf-crop">
+    {% if problem.key.pdf or problem.key.images %}<img loading="lazy" src="/problem/{{ problem.slug }}/key.png" alt="Key" class="pdf-crop">
     {% else %}<ul class="plain">{% for a in problem.key.answers %}<li>{{ a.label }}: {{ a.value }} {{ a.unit }}</li>{% endfor %}</ul>
       <ol class="steps">{% for s in problem.key.steps %}<li>{{ s }}</li>{% endfor %}</ol>{% endif %}
   </details>

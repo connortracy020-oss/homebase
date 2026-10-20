@@ -11,13 +11,13 @@
 
 {% set st = problem.statement %}
 <section class="card statement">
-  {% if st.pdf %}
+  {% if st.pdf or st.images %}
     {% if statement_missing %}
     <p class="tag warn">The source PDF isn't in your library yet ({{ st.pdf }}).</p>
     {% else %}
     <a href="/problem/{{ problem.slug }}/statement.png" target="_blank" title="Open full size"><img src="/problem/{{ problem.slug }}/statement.png" alt="{{ problem.label }}, as printed in the source" class="pdf-crop"></a>
     <p class="small muted">Cut from page {{ statement_page or '?' }} of the source.
-      <a href="/{{ st.pdf }}#page={{ statement_page or 1 }}" target="_blank">Open the whole page</a> (may show the solution).</p>
+      {% if st.pdf %}<a href="/{{ st.pdf }}#page={{ statement_page or 1 }}" target="_blank">Open the whole page</a> (may show the solution).{% endif %}</p>
     {% endif %}
   {% else %}
     <p class="problem-text">{{ st.text }}</p>
@@ -51,14 +51,14 @@
     <p class="small muted">Checks the code ran before showing you this problem: {{ key.checks | join(' ') }}</p>
   </details>
 </section>
-{% elif key.pdf %}
+{% elif key.pdf or key.images %}
 <section class="card">
   <h2>Solution</h2>
   <p class="small muted">Work it on paper first. Then open the official {{ 'worked solution' if problem.key_type == 'official_worked' else 'answer' }}.</p>
   <details class="solution">
     <summary>Show the official {{ 'solution' if problem.key_type == 'official_worked' else 'answer' }}</summary>
     <a href="/problem/{{ problem.slug }}/key.png" target="_blank" title="Open full size"><img loading="lazy" src="/problem/{{ problem.slug }}/key.png" alt="Official solution for {{ problem.label }}" class="pdf-crop"></a>
-    <p class="small muted">From page {{ key_page or '?' }}. <a href="/{{ key.pdf }}#page={{ key_page or 1 }}" target="_blank">Open the whole page</a></p>
+    {% if key.pdf %}<p class="small muted">From page {{ key_page or '?' }}. <a href="/{{ key.pdf }}#page={{ key_page or 1 }}" target="_blank">Open the whole page</a></p>{% endif %}
   </details>
 </section>
 {% else %}

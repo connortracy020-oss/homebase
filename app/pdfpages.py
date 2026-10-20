@@ -138,14 +138,33 @@ def _render_pages(region: dict) -> Image.Image:
     return out
 
 
+def _render_images(region: dict) -> Image.Image:
+    """Image files (e.g. scanned solution PNGs), trimmed and stacked."""
+    imgs = []
+    for rel in region["images"]:
+        path = config.ROOT / rel
+        if not path.exists():
+            raise RegionError(f"{rel} is not in the library yet")
+        imgs.append(_trim(Image.open(path).convert("RGB")))
+    width = max(i.width for i in imgs)
+    out = Image.new("RGB", (width, sum(i.height for i in imgs) + 24 * (len(imgs) - 1)), "white")
+    y = 0
+    for i in imgs:
+        out.paste(i, (0, y))
+        y += i.height + 24
+    return out
+
+
 def render(region: dict) -> bytes:
+    """A region may be {"pdf", "page", "start"/"end"...}, {"pdf", "pages": [...]},
+    or {"images": ["library/...png", ...]}."""
     key = hashlib.sha1(json.dumps({**region, "_scale": SCALE}, sort_keys=True).encode()).hexdigest()[:16]
     cache = config.DATA_DIR / "cache" / "pdf" / f"{key}.png"
     if cache.exists():
         return cache.read_bytes()
-    if region.get("pages"):
+    if region.get("pages") or region.get("images"):
         buf = io.BytesIO()
-        _render_pages(region).save(buf, "PNG", optimize=True)
+        (_render_images(region) if region.get("images") else _render_pages(region)).save(buf, "PNG", optimize=True)
         cache.parent.mkdir(parents=True, exist_ok=True)
         cache.write_bytes(buf.getvalue())
         return buf.getvalue()
@@ -170,6 +189,8 @@ def page_of(region: dict) -> int | None:
     """The page number a region is on (for 'open the whole page' links)."""
     if region.get("pages"):
         return region["pages"][0]
+    if region.get("images"):
+        return None
     try:
         return locate(region)[1]
     except RegionError:

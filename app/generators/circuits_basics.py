@@ -7,6 +7,8 @@ import random
 import numpy as np
 import sympy as sp
 
+GENERATORS = {}  # filled at the bottom of this file
+
 # ---- helpers ------------------------------------------------------------------
 
 
@@ -237,3 +239,10 @@ def charge_current(seed: int) -> dict:
                 "checks": ["SymPy result matches a numerical integral / derivative."]},
         "topics": ["charge and current"],
     }
+
+
+GENERATORS.update({
+    "element_power": element_power,
+    "loop_power": loop_power,
+    "charge_current": charge_current,
+})
