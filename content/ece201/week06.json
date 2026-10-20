@@ -6,7 +6,8 @@
       "id": "ece201-w6-ulaby-3-5",
       "resource": "ulaby-cad3e",
       "sections": "Supermesh (end of the mesh section), 3-5 superposition, 3-6 Thevenin and Norton (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 45
+      "est_min": 45,
+      "page": 148
     },
     {
       "id": "ece201-w6-6002-notes",

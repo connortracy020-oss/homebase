@@ -6,7 +6,8 @@
       "id": "ece201-w3-ulaby-2-2",
       "resource": "ulaby-cad3e",
       "sections": "2-2 and 2-3 (KVL, equivalent circuits, series/parallel, source transformation, voltage and current division) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 45
+      "est_min": 45,
+      "page": 75
     },
     {
       "id": "ece201-w3-6002-notes",

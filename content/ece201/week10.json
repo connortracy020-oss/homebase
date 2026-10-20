@@ -6,13 +6,15 @@
       "id": "ece201-w10-ulaby-5-3",
       "resource": "ulaby-cad3e",
       "sections": "5-3 to 5-6 (inductors, natural and step response of RC and RL circuits, op-amp integrator and differentiator) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 55
+      "est_min": 55,
+      "page": 284
     },
     {
       "id": "ece201-w10-ulaby-devices",
       "resource": "ulaby-cad3e",
       "sections": "Device sections: 2-6 (diodes), 3-9 (BJT model), 4-11 (MOSFET) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 40
+      "est_min": 40,
+      "page": 101
     },
     {
       "id": "ece201-w10-tb07",

@@ -6,7 +6,8 @@
       "id": "ece201-w2-ulaby-2-1",
       "resource": "ulaby-cad3e",
       "sections": "2-1 and 2-2 (Ohm's law, KCL) plus the dependent-source part of 1-6 (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 45
+      "est_min": 45,
+      "page": 66
     },
     {
       "id": "ece201-w2-6002-notes",
