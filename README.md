@@ -12,6 +12,16 @@ Then open **http://localhost:8254**. The first run sets up the Python packages (
 
 **On your phone:** install Tailscale on the laptop and the phone and sign in to both with the same account. While the laptop is on, open `http://<laptop-name>:8254` on the phone. In the phone browser's menu, choose "Add to Home Screen" to get an app icon.
 
+## Desktop app
+
+Open **Homebase** from the Start menu or the desktop icon. Right-click it to pin it to the taskbar. It opens in its own window, with no tabs or address bar. Homebase starts quietly in the background if it isn't already running.
+
+- **Closing the window** leaves Homebase running, so your phone can still reach it over Tailscale.
+- **To stop it,** go to Settings → Desktop app → **Stop Homebase**. This only works from the laptop.
+- **Server messages** go to `data/logs/server.log`.
+
+The shortcuts come from `.venv\Scripts\python scripts\install_desktop.py`. Add `--remove` to take them away again. The window uses Edge in app mode (Chrome if Edge is missing), with its own profile in `data/desktop/`. On the iPhone, Safari → Share → **Add to Home Screen** gives the same icon.
+
 ## Pages
 
 | Page | What it does |

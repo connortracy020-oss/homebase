@@ -56,6 +56,23 @@
 })();
 </script>
 
+<section class="card" id="desktop">
+  <h2>Desktop app</h2>
+  {% if shortcut %}
+  <p class="small" style="margin:0 0 8px">Open Homebase from the <strong>Start menu</strong> or the desktop icon (right-click it to pin it to the taskbar).
+    Closing the window keeps Homebase running for your phone.</p>
+  {% else %}
+  <p class="small" style="margin:0 0 8px">To get a Homebase icon in the Start menu and on the desktop, run this once in the Homebase folder:</p>
+  <code class="cmd">.venv\Scripts\python scripts\install_desktop.py</code>
+  {% endif %}
+  <div class="side-row"><span><span class="led"></span>Running since {{ started_at | md }} {{ started_at.strftime('%H:%M') }}</span>
+    {% if on_laptop %}
+    <form method="post" action="/settings/stop" onsubmit="return confirm('Stop Homebase? Your phone won\'t reach it until you open it again.')">
+      <button type="submit" class="small">Stop Homebase</button></form>
+    {% else %}<span class="small muted">stop it from the laptop</span>{% endif %}
+  </div>
+</section>
+
 <section class="card">
   <h2>Appearance</h2>
   <p class="small muted">Saved on this device only, so your phone and laptop can differ.</p>

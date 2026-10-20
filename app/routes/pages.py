@@ -210,7 +210,9 @@ def settings_page(request: Request, session: Session = Depends(get_session)):
                   last_error=backup.get_setting(session, "last_backup_error"),
                   data_dir=config.DATA_DIR, local=local,
                   local_settings={k: local_ai.setting(session, k) for k in local_ai.SETTINGS},
-                  local_busy=local_ai.short_name(busy) if busy else None)
+                  local_busy=local_ai.short_name(busy) if busy else None,
+                  on_laptop=on_this_laptop(request), started_at=STARTED_AT,
+                  shortcut=desktop_shortcut().exists())
 
 
 # ---- form posts -----------------------------------------------------------------
@@ -249,6 +251,36 @@ def delete_study(study_id: int, request: Request, session: Session = Depends(get
     except LookupError:
         raise HTTPException(404, "No such entry")
     return back(request, "/progress")
+
+
+LOCAL_HOSTS = {"127.0.0.1", "::1", "localhost"}
+STARTED_AT = config.now()  # when this server process started
+
+
+def on_this_laptop(request: Request) -> bool:
+    return bool(request.client) and request.client.host in LOCAL_HOSTS
+
+
+def desktop_shortcut() -> Path:
+    import os
+    return Path(os.environ.get("APPDATA", "")) / "Microsoft/Windows/Start Menu/Programs/Homebase.lnk"
+
+
+@router.post("/settings/stop")
+def stop_server(request: Request, session: Session = Depends(get_session)):
+    """Stop Homebase (the desktop app's server). Only from the laptop itself, so a tap
+    on the phone can't switch it off. Everything is already saved: each change is
+    committed to SQLite the moment you make it."""
+    import os
+    import threading
+
+    if not on_this_laptop(request):
+        raise HTTPException(403, "Stop Homebase from the laptop, not over the network.")
+    services.log(session, "app", "server.stop", "Stopped Homebase from Settings")
+    session.commit()
+    local_ai.stop_worker()
+    threading.Timer(0.8, os._exit, (0,)).start()
+    return TEMPLATES.TemplateResponse(request, "stopped.html", {})
 
 
 @router.post("/settings/backup")

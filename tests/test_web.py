@@ -75,3 +75,15 @@ def test_backup_copies_db(session, data_dir):
     assert target.exists() and target.stat().st_size > 0
     assert backup.get_setting(session, "last_backup")
     assert backup.backup_if_due(session) is None  # just backed up
+
+
+def test_stop_only_from_the_laptop(client, monkeypatch):
+    import threading
+    from app.routes import pages
+    assert "Desktop app" in client.get("/settings").text
+    assert client.post("/settings/stop").status_code == 403  # the test client isn't 127.0.0.1
+    stops = []
+    monkeypatch.setattr(pages, "on_this_laptop", lambda request: True)
+    monkeypatch.setattr(threading, "Timer", lambda delay, fn, args: type("T", (), {"start": lambda self: stops.append(fn)})())
+    r = client.post("/settings/stop")
+    assert r.status_code == 200 and "Homebase has stopped" in r.text and stops  # exit scheduled, not run
