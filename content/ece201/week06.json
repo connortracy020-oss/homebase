@@ -1,0 +1,569 @@
+{
+  "_about": "ECE 201 term week 6. Videos for this week come from videos.json (osu_week = 6). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 6,
+  "readings": [
+    {
+      "id": "ece201-w6-ulaby-3-5",
+      "resource": "ulaby-cad3e",
+      "sections": "Supermesh (end of the mesh section), 3-5 superposition, 3-6 Thevenin and Norton (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 45
+    },
+    {
+      "id": "ece201-w6-6002-notes",
+      "resource": "mit6002-notes-L3",
+      "sections": "Lecture 3 notes (superposition, Thevenin, Norton), to review after the video",
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "ece201-w6-fiore-6-3",
+      "resource": "fiore-dc",
+      "sections": "6.2 Source Conversions, 6.3 Superposition, 6.4 Thevenin's Theorem",
+      "est_min": 40,
+      "page": 171,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w6-ulaby-ex",
+      "title": "Ulaby chapter 3 exercises: supermesh, superposition, Thevenin",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Homebase shows only the exercise until you ask for the solution. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex3-6",
+          "label": "Exercise 3-6",
+          "key_type": "official_worked",
+          "topics": [
+            "supermesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 47,
+            "start": "Exercise 3-6",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 47,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-9",
+          "label": "Exercise 3-9",
+          "key_type": "official_worked",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 50,
+            "start": "Exercise 3-9",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 50,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-10",
+          "label": "Exercise 3-10",
+          "key_type": "official_worked",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 51,
+            "start": "Exercise 3-10",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              51,
+              52
+            ]
+          }
+        },
+        {
+          "id": "ex3-11",
+          "label": "Exercise 3-11",
+          "key_type": "official_worked",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 53,
+            "start": "Exercise 3-11",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              53,
+              54
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w6-ulaby-cq",
+      "title": "Ulaby chapter 3 concept questions: supermesh, superposition, Thevenin",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch3",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq3-6",
+          "label": "Concept question 3-6",
+          "key_type": "official_answer",
+          "topics": [
+            "supermesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 6,
+            "start": "Concept Question 3-6",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 6
+          }
+        },
+        {
+          "id": "cq3-9",
+          "label": "Concept question 3-9",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 9,
+            "start": "Concept Question 3-9",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 9
+          }
+        },
+        {
+          "id": "cq3-10",
+          "label": "Concept question 3-10",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 10,
+            "start": "Concept Question 3-10",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 10
+          }
+        },
+        {
+          "id": "cq3-11",
+          "label": "Concept question 3-11",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition",
+            "power"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 11,
+            "start": "Concept Question 3-11",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 11
+          }
+        },
+        {
+          "id": "cq3-12",
+          "label": "Concept question 3-12",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 12,
+            "start": "Concept Question 3-12",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w6-kuphaldt",
+      "title": "Kuphaldt worksheets: superposition and Thevenin",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (super, thev), CC BY 1.0",
+      "resource": "kuphaldt-super",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "super-q2",
+          "label": "Superposition worksheet, question 2: one resistor, two series sources",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 3,
+            "start": "Question 2",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 15,
+            "start": "Answer 2",
+            "end": "Answer 3|Notes"
+          }
+        },
+        {
+          "id": "super-q8",
+          "label": "Superposition worksheet, question 8: superposition in a circuit that won't reduce",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 7,
+            "start": "Question 8",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 16,
+            "start": "Answer 8",
+            "end": "Answer 9|Notes"
+          }
+        },
+        {
+          "id": "super-q9",
+          "label": "Superposition worksheet, question 9: generator and battery feeding a lamp",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 7,
+            "start": "Question 9",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 16,
+            "start": "Answer 9",
+            "end": "Answer 10|Notes"
+          }
+        },
+        {
+          "id": "super-q11",
+          "label": "Superposition worksheet, question 11: heater current from two sources",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 8,
+            "start": "Question 11",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 16,
+            "start": "Answer 11",
+            "end": "Answer 12|Notes"
+          }
+        },
+        {
+          "id": "super-q13",
+          "label": "Superposition worksheet, question 13: battery charging currents",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 10,
+            "start": "Question 13",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/super.pdf",
+            "page": 17,
+            "start": "Answer 13",
+            "end": "Answer 14|Notes"
+          }
+        },
+        {
+          "id": "thev-q26",
+          "label": "Thevenin/Norton worksheet, question 26: Thevenin equivalent of a source and two resistors",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 23,
+            "start": "Question 26",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 44,
+            "start": "Answer 26",
+            "end": "Answer 27|Notes"
+          }
+        },
+        {
+          "id": "thev-q27",
+          "label": "Thevenin/Norton worksheet, question 27: Thevenin equivalent with a current source",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 23,
+            "start": "Question 27",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 45,
+            "start": "Answer 27",
+            "end": "Answer 28|Notes"
+          }
+        },
+        {
+          "id": "thev-q28",
+          "label": "Thevenin/Norton worksheet, question 28: Thevenize a resistor network",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 24,
+            "start": "Question 28",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 45,
+            "start": "Answer 28",
+            "end": "Answer 29|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w6-fiore",
+      "title": "Fiore: superposition and Thevenin (answers only)",
+      "source": "James Fiore, DC Electrical Circuit Analysis (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-dc",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c6-p15",
+          "label": "Problem 6.15: node voltage by superposition (uses Figure 6.47)",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              201,
+              202
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p17",
+          "label": "Problem 6.17: resistor current by superposition (uses Figure 6.48)",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              201,
+              202
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p19",
+          "label": "Problem 6.19: node voltage by superposition, second circuit (uses Figure 6.49)",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              201,
+              202
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p21",
+          "label": "Problem 6.21: resistor current by superposition, second circuit (uses Figure 6.50)",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              202
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p25",
+          "label": "Problem 6.25: resistor current by superposition, third circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "superposition"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 203,
+            "start": "25. Using superposition,",
+            "end": "26. Using superposition,"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p45",
+          "label": "Problem 6.45: Thevenin equivalent",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 206,
+            "start": "45. Given the",
+            "end": "46. Given the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p49",
+          "label": "Problem 6.49: Thevenin equivalent, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 206,
+            "start": "49. Given the",
+            "end": "50. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece201-w06",
+      "title": "Circuit drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "supermesh",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "superposition",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

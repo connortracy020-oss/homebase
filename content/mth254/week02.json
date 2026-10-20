@@ -1,0 +1,534 @@
+{
+  "_about": "MTH 254 term week 2. Videos come from videos.json (osu_week = 2). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+  "week": 2,
+  "readings": [
+    {
+      "id": "mth254-w2-os-2-5",
+      "resource": "openstax-c3-2-5",
+      "sections": "2.5 Equations of Lines and Planes in Space (the lines part; planes come back in week 3)",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w2-os-3-1",
+      "resource": "openstax-c3-3-1",
+      "sections": "3.1 Vector-Valued Functions and Space Curves",
+      "est_min": 25
+    },
+    {
+      "id": "mth254-w2-os-3-2",
+      "resource": "openstax-c3-3-2",
+      "sections": "3.2 Calculus of Vector-Valued Functions",
+      "est_min": 30
+    },
+    {
+      "id": "mth254-w2-os-3-4",
+      "resource": "openstax-c3-3-4",
+      "sections": "3.4 Motion in Space",
+      "est_min": 30
+    },
+    {
+      "id": "mth254-w2-clp-1-5-1-6",
+      "resource": "clp3-text",
+      "sections": "1.5 Equations of Lines in 3d and 1.6 Curves and their Tangent Vectors",
+      "page": 56,
+      "est_min": 45,
+      "optional": true
+    },
+    {
+      "id": "mth254-w2-sg",
+      "resource": "osu-sg-parks",
+      "sections": "Lessons 5-6: lines and curves, calculus on curves, motion in space",
+      "page": 22,
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "mth254-w2-briggs",
+      "resource": "briggs-mvc-2e",
+      "sections": "Briggs 11.5-11.7 (reference only; the book isn't free)",
+      "est_min": 0,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "sc-supp-1e-1j",
+      "title": "18.02 exercises: lines, parametric curves, vector derivatives",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 1 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-supp1",
+      "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages.",
+      "problems": [
+        {
+          "id": "1E-3",
+          "label": "Exercise 1E-3: parametric equations of lines",
+          "key_type": "official_worked",
+          "topics": [
+            "lines"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 6,
+            "start": "1E-3",
+            "end": "1E-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 6,
+            "start": "1E-3"
+          }
+        },
+        {
+          "id": "1E-4",
+          "label": "Exercise 1E-4: where a line meets a plane",
+          "key_type": "official_worked",
+          "topics": [
+            "lines",
+            "planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 6,
+            "start": "1E-4",
+            "end": "1E-5"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 7,
+            "start": "1E-4",
+            "end": "1E-5"
+          }
+        },
+        {
+          "id": "1I-3",
+          "label": "Exercise 1I-3: describe the path of four parametrized motions",
+          "key_type": "official_worked",
+          "topics": [
+            "parametric curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 10,
+            "start": "1I-3",
+            "end": "1I-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 10,
+            "start": "1I-3",
+            "end": "1I-4"
+          }
+        },
+        {
+          "id": "1I-5",
+          "label": "Exercise 1I-5: unwinding a string from a circle",
+          "key_type": "official_worked",
+          "topics": [
+            "parametric curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 10,
+            "start": "1I-5",
+            "end": "1I-6"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 10,
+            "start": "1I-5",
+            "end": "1I-6"
+          }
+        },
+        {
+          "id": "1J-2",
+          "label": "Exercise 1J-2: velocity, speed and the path of a motion",
+          "key_type": "official_worked",
+          "topics": [
+            "velocity and speed",
+            "unit tangent"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 11,
+            "start": "1J-2",
+            "end": "1J-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 11,
+            "start": "1J-2",
+            "end": "1J-3"
+          }
+        },
+        {
+          "id": "1J-4",
+          "label": "Exercise 1J-4: motion on a sphere: position is perpendicular to velocity",
+          "key_type": "official_worked",
+          "topics": [
+            "vector derivatives"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 11,
+            "start": "1J-4",
+            "end": "1J-5"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 11,
+            "start": "1J-4",
+            "end": "1J-5"
+          }
+        },
+        {
+          "id": "1J-6",
+          "label": "Exercise 1J-6: a helix: velocity, speed, unit tangent, v perpendicular to a",
+          "key_type": "official_worked",
+          "topics": [
+            "vector derivatives",
+            "motion"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 11,
+            "start": "1J-6",
+            "end": "1J-7"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "pages": [
+              11,
+              12
+            ]
+          }
+        },
+        {
+          "id": "1J-9",
+          "label": "Exercise 1J-9: a motion on a sphere and in a plane",
+          "key_type": "official_worked",
+          "topics": [
+            "vector derivatives"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 12,
+            "start": "1J-9",
+            "end": "1J-10"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 12,
+            "start": "1J-9",
+            "end": "1J-10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sc-pset3-part2",
+      "title": "18.02 Problem Set 3, Part II",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 3 Part II with posted solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-pset3",
+      "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages. Problem 1(c) uses an online MIT 'Mathlet'; the rest is paper and pencil.",
+      "problems": [
+        {
+          "id": "p1",
+          "label": "Problem 1: a dot on a rolling disk (cycloid-type curve)",
+          "key_type": "official_worked",
+          "topics": [
+            "parametric curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset3.pdf",
+            "page": 2,
+            "start": "Problem 1 (",
+            "end": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset3sol.pdf",
+            "page": 1,
+            "end": "2. (a)"
+          }
+        },
+        {
+          "id": "p2",
+          "label": "Problem 2: parametrizing a circle in a tilted plane",
+          "key_type": "official_worked",
+          "topics": [
+            "vector functions"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset3.pdf",
+            "page": 2,
+            "start": "Problem 2 (",
+            "end": "Problem 3 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset3sol.pdf",
+            "page": 1,
+            "start": "2. (a)"
+          }
+        },
+        {
+          "id": "p3",
+          "label": "Problem 3: lines and planes",
+          "key_type": "official_worked",
+          "topics": [
+            "lines",
+            "planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset3.pdf",
+            "page": 2,
+            "start": "Problem 3 (",
+            "end": "Problem 4 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset3sol.pdf",
+            "page": 2,
+            "start": "3. a)",
+            "end": "4. (a)"
+          }
+        },
+        {
+          "id": "p4",
+          "label": "Problem 4: a model for a photo enlarger (starts below Problem 3)",
+          "key_type": "official_worked",
+          "topics": [
+            "lines",
+            "parametric curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset3.pdf",
+            "pages": [
+              2,
+              3
+            ]
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset3sol.pdf",
+            "pages": [
+              2,
+              3
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "clp-1-5-1-6",
+      "title": "CLP-3 problems: lines in space, curves and motion",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-1.5-7",
+          "label": "CLP-3 1.5 Q7: a line given as two planes, in vector form (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "lines"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 21,
+            "start": "Q[7]",
+            "end": "Q[8]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 203,
+            "start": "S-7:",
+            "end": "S-8:"
+          }
+        },
+        {
+          "id": "clp-1.5-10",
+          "label": "CLP-3 1.5 Q10: a line parallel to a plane and perpendicular to a line (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "lines",
+            "planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 22,
+            "start": "Q[10]",
+            "end": "Q[11]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 204,
+            "start": "S-10:"
+          }
+        },
+        {
+          "id": "clp-1.5-13",
+          "label": "CLP-3 1.5 Q13: line of intersection of two planes (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "lines",
+            "planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 22,
+            "start": "Q[13]",
+            "end": "Q[14]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 206,
+            "start": "S-13:",
+            "end": "S-14:"
+          }
+        },
+        {
+          "id": "clp-1.5-14",
+          "label": "CLP-3 1.5 Q14: equidistant point; plane through a point and a line (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "lines",
+            "planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 22,
+            "start": "Q[14]",
+            "end": "Q[15]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 206,
+            "start": "S-14:"
+          }
+        },
+        {
+          "id": "clp-1.6-14",
+          "label": "CLP-3 1.6 Q14: magnitude of the acceleration",
+          "key_type": "official_worked",
+          "topics": [
+            "acceleration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 26,
+            "start": "Q[14]",
+            "end": "Q[15]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 214,
+            "start": "S-14:",
+            "end": "S-15:"
+          }
+        },
+        {
+          "id": "clp-1.6-16",
+          "label": "CLP-3 1.6 Q16: velocity, arc length and acceleration on a helix (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "velocity and speed",
+            "arc length"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 26,
+            "start": "Q[16]",
+            "end": "Q[17]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              214,
+              215
+            ]
+          }
+        },
+        {
+          "id": "clp-1.6-20",
+          "label": "CLP-3 1.6 Q20: rate of change of angular momentum",
+          "key_type": "official_worked",
+          "topics": [
+            "vector derivatives"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 26,
+            "start": "Q[20]"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 216,
+            "start": "S-20:"
+          }
+        },
+        {
+          "id": "clp-1.6-24",
+          "label": "CLP-3 1.6 Q24: position from a force (integrating acceleration) (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "motion in space"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 27,
+            "start": "Q[24]",
+            "end": "Q[25]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              218,
+              219
+            ]
+          }
+        },
+        {
+          "id": "clp-1.6-28",
+          "label": "CLP-3 1.6 Q28: position from acceleration and initial data (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "motion in space"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 28,
+            "start": "Q[28]",
+            "end": "Q[29]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 221,
+            "start": "S-28:"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-mth254-w02",
+      "title": "Calculus drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "plane_through_points",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "line_plane_intersection",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

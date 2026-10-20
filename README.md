@@ -120,6 +120,30 @@ Reviewing an item when it comes due:
 
 **Adding more exams:** use `content/<course>/exams.json`. Each problem points at exam and solution pages, or at a text-bounded region of a page.
 
+## What's in the courses (stage f)
+
+All 10 term weeks of all three courses are filled in:
+
+| Course | Readings | Problems with keys (generated, with new numbers each time) | Timed exams |
+|---|---|---|---|
+| ECE 201 | 48 | 344 (65) | 7 Berkeley EE 40/100 exams |
+| MTH 254 | 64 | 228 (40) | 7 MIT 18.02 exams and practice exams |
+| ECE 200 | 34 | 190 (36) | 8 Georgia Tech ECE 2026 quizzes and finals |
+
+The main sources for each course:
+- **ECE 201:** Ulaby exercises and concept questions, Kuphaldt worksheets, Fiore answers (optional), MIT 6.002 notes, OpenStax Physics.
+- **MTH 254:** OpenStax Calculus Vol 3 (every section), CLP-3 text and problem book, MIT 18.02SC problem sets and supplementary problems.
+- **ECE 200:** Signal Processing First slides, Think DSP, the DSP First problem database (worked solutions as scans), and the DTFT/DFT draft chapters.
+
+Every problem's key is a published solution or code-computed. Every exam was checked by eye.
+
+**Known thin spots:**
+- ECE 201 Y-Delta and supermesh: the generated drills help.
+- MTH 254: no keyed curvature practice.
+- ECE 200 weeks 8–10 (DTFT, DFS, DFT): these come only from exam problems plus generated DTFT/DFT drills.
+
+**Adding or changing content:** see [content/README.md](content/README.md). `scripts/validate_content.py --render` checks every file, link, page and crop; `scripts/wire_generated.py --write` adds a generator's drills to its week.
+
 ## Claude access (MCP server)
 
 `mcp_server.py` gives Claude these tools on your Homebase:

@@ -1,0 +1,563 @@
+{
+  "_about": "ECE 201 term week 2. Videos for this week come from videos.json (osu_week = 2). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 2,
+  "readings": [
+    {
+      "id": "ece201-w2-ulaby-2-1",
+      "resource": "ulaby-cad3e",
+      "sections": "2-1 and 2-2 (Ohm's law, KCL) plus the dependent-source part of 1-6 (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 45
+    },
+    {
+      "id": "ece201-w2-6002-notes",
+      "resource": "mit6002-notes-L2",
+      "sections": "Lecture 2 notes (KVL/KCL method), to review after the video",
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "ece201-w2-fiore-2-7",
+      "resource": "fiore-dc",
+      "sections": "2.7 Resistance and Conductance",
+      "est_min": 20,
+      "page": 47,
+      "optional": true
+    },
+    {
+      "id": "ece201-w2-fiore-4-4",
+      "resource": "fiore-dc",
+      "sections": "4.4 Kirchhoff's Current Law",
+      "est_min": 15,
+      "page": 115,
+      "optional": true
+    },
+    {
+      "id": "ece201-w2-up2-9-4",
+      "resource": "openstax-up2-9-4",
+      "sections": "9.3 and 9.4 (resistivity, Ohm's law; physics background)",
+      "est_min": 20,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w2-ulaby-ex",
+      "title": "Ulaby chapter 2 exercises: Ohm's law, KCL, dependent sources",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Homebase shows only the exercise until you ask for the solution. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex2-1",
+          "label": "Exercise 2-1",
+          "key_type": "official_worked",
+          "topics": [
+            "resistance",
+            "power rating"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 26,
+            "start": "Exercise 2-1",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 26,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex2-2",
+          "label": "Exercise 2-2",
+          "key_type": "official_worked",
+          "topics": [
+            "resistance",
+            "power"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 27,
+            "start": "Exercise 2-2",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 27,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex2-3",
+          "label": "Exercise 2-3",
+          "key_type": "official_worked",
+          "topics": [
+            "nonlinear element",
+            "power"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 28,
+            "start": "Exercise 2-3",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 28,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex2-4",
+          "label": "Exercise 2-4",
+          "key_type": "official_worked",
+          "topics": [
+            "KCL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 29,
+            "start": "Exercise 2-4",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 29,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex2-6",
+          "label": "Exercise 2-6",
+          "key_type": "official_worked",
+          "topics": [
+            "KCL",
+            "KVL",
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 31,
+            "start": "Exercise 2-6",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 31,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w2-ulaby-cq",
+      "title": "Ulaby chapter 2 concept questions: resistance and KCL",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch2",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq2-1",
+          "label": "Concept question 2-1",
+          "key_type": "official_answer",
+          "topics": [
+            "resistance"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 1,
+            "start": "Concept Question 2-1",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 1
+          }
+        },
+        {
+          "id": "cq2-2",
+          "label": "Concept question 2-2",
+          "key_type": "official_answer",
+          "topics": [
+            "conductivity"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 2,
+            "start": "Concept Question 2-2",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 2
+          }
+        },
+        {
+          "id": "cq2-3",
+          "label": "Concept question 2-3",
+          "key_type": "official_answer",
+          "topics": [
+            "resistance"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 3,
+            "start": "Concept Question 2-3",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 3
+          }
+        },
+        {
+          "id": "cq2-4",
+          "label": "Concept question 2-4",
+          "key_type": "official_answer",
+          "topics": [
+            "resistance"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 4,
+            "start": "Concept Question 2-4",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 4
+          }
+        },
+        {
+          "id": "cq2-5",
+          "label": "Concept question 2-5",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 5,
+            "start": "Concept Question 2-5",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w2-kuphaldt-kcl",
+      "title": "Kuphaldt worksheet: Kirchhoff's current law",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (kvl), CC BY 1.0",
+      "resource": "kuphaldt-kvl",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "kvl-q31",
+          "label": "KVL/KCL worksheet, question 31: ammeter readings and KCL",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 26,
+            "start": "Question 31",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 44,
+            "start": "Answer 31",
+            "end": "Answer 32|Notes"
+          }
+        },
+        {
+          "id": "kvl-q33",
+          "label": "KVL/KCL worksheet, question 33: parallel current sources into a load",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "current sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 28,
+            "start": "Question 33",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 44,
+            "start": "Answer 33",
+            "end": "Answer 34|Notes"
+          }
+        },
+        {
+          "id": "kvl-q34",
+          "label": "KVL/KCL worksheet, question 34: parallel current sources, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "current sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 28,
+            "start": "Question 34",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 45,
+            "start": "Answer 34",
+            "end": "Answer 35|Notes"
+          }
+        },
+        {
+          "id": "kvl-q35",
+          "label": "KVL/KCL worksheet, question 35: one unknown current in a resistor network",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 28,
+            "start": "Question 35",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 45,
+            "start": "Answer 35",
+            "end": "Answer 36|Notes"
+          }
+        },
+        {
+          "id": "kvl-q36",
+          "label": "KVL/KCL worksheet, question 36: every current in a resistor network",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 29,
+            "start": "Question 36",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 45,
+            "start": "Answer 36",
+            "end": "Answer 37|Notes"
+          }
+        },
+        {
+          "id": "kvl-q41",
+          "label": "KVL/KCL worksheet, question 41: currents at each node",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "Ohm's law"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 31,
+            "start": "Question 41",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 47,
+            "start": "Answer 41",
+            "end": "Answer 42|Notes"
+          }
+        },
+        {
+          "id": "kvl-q42",
+          "label": "KVL/KCL worksheet, question 42: currents at each node, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "Ohm's law"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 32,
+            "start": "Question 42",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 47,
+            "start": "Answer 42",
+            "end": "Answer 43|Notes"
+          }
+        },
+        {
+          "id": "kvl-q43",
+          "label": "KVL/KCL worksheet, question 43: battery currents in a power system",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 32,
+            "start": "Question 43",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 47,
+            "start": "Answer 43",
+            "end": "Answer 44|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w2-fiore",
+      "title": "Fiore: parallel circuits and KCL (answers only)",
+      "source": "James Fiore, DC Electrical Circuit Analysis (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-dc",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c4-p1",
+          "label": "Problem 4.1: effective resistance of a network",
+          "key_type": "official_answer",
+          "topics": [
+            "parallel resistance"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 128,
+            "start": "1. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              366
+            ]
+          }
+        },
+        {
+          "id": "c4-p5",
+          "label": "Problem 4.5: effective source current",
+          "key_type": "official_answer",
+          "topics": [
+            "current sources",
+            "KCL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 129,
+            "start": "5. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              366
+            ]
+          }
+        },
+        {
+          "id": "c4-p7",
+          "label": "Problem 4.7: source and resistor currents",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "Ohm's law"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 130,
+            "start": "7. Determine the",
+            "end": "8. Find the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              366
+            ]
+          }
+        },
+        {
+          "id": "c4-p9",
+          "label": "Problem 4.9: source and resistor currents, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "Ohm's law"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 130,
+            "start": "9. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              366
+            ]
+          }
+        },
+        {
+          "id": "c4-p13",
+          "label": "Problem 4.13: current through each resistor",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "current divider"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 131,
+            "start": "13. Find the",
+            "end": "14. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              366
+            ]
+          }
+        },
+        {
+          "id": "c4-p15",
+          "label": "Problem 4.15: current through each resistor, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "current divider"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 132,
+            "start": "15. Determine the",
+            "end": "16. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              366
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

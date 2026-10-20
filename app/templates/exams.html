@@ -18,7 +18,7 @@
     <li class="item"><div>
       <a class="item-title" href="/exam/{{ e.slug }}">{{ e.title }}</a>
       <div class="item-meta">
-        <span>term week {{ e.course_week }}</span><span>{{ e.time_min }} min</span><span>{{ e.total_points }} points</span>
+        <span>term week {{ e.course_week }}</span><span>{{ e.time_min }} min</span><span>{{ e.total_points | num }} points</span>
         {% if open %}<span class="tag warn">in progress</span>{% endif %}
         {% if last %}<span class="result result-{{ 'solid' if last.total / last.max_points >= 0.8 else 'shaky' if last.total / last.max_points >= 0.6 else 'miss' }}">last: {{ (100 * last.total / last.max_points) | round | int }}%</span>{% endif %}
       </div>

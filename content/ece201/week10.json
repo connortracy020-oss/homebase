@@ -1,0 +1,1007 @@
+{
+  "_about": "ECE 201 term week 10. Videos for this week come from videos.json (osu_week = 10). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 10,
+  "readings": [
+    {
+      "id": "ece201-w10-ulaby-5-3",
+      "resource": "ulaby-cad3e",
+      "sections": "5-3 to 5-6 (inductors, natural and step response of RC and RL circuits, op-amp integrator and differentiator) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 55
+    },
+    {
+      "id": "ece201-w10-ulaby-devices",
+      "resource": "ulaby-cad3e",
+      "sections": "Device sections: 2-6 (diodes), 3-9 (BJT model), 4-11 (MOSFET) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 40
+    },
+    {
+      "id": "ece201-w10-tb07",
+      "resource": "ulaby-tb07",
+      "sections": "Technology Brief 7: Integrated Circuit Fabrication Process (all 4 pages)",
+      "est_min": 20
+    },
+    {
+      "id": "ece201-w10-fiore-semi-2",
+      "resource": "fiore-semis",
+      "sections": "2.2 The PN Junction and 2.4 Diode Circuit Models",
+      "est_min": 35,
+      "page": 30,
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-fiore-semi-12",
+      "resource": "fiore-semis",
+      "sections": "12.4 The E-MOSFET (structure and switching use; skip the biasing math)",
+      "est_min": 20,
+      "page": 332,
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-fiore-8-4",
+      "resource": "fiore-dc",
+      "sections": "8.4 Transient Response of RC Circuits",
+      "est_min": 30,
+      "page": 274,
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-fiore-9-5",
+      "resource": "fiore-dc",
+      "sections": "9.2 Inductance and Inductors to 9.5 Transient Response of RL Circuits",
+      "est_min": 35,
+      "page": 295,
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-6002-L14",
+      "resource": "mit6002-notes-L14",
+      "sections": "Lecture 14 notes (state and memory: RC response), to review after the video",
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-6002-L23",
+      "resource": "mit6002-notes-L23",
+      "sections": "Lecture 23 notes (energy, CMOS), to review after the video",
+      "est_min": 10,
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-up2-10-5",
+      "resource": "openstax-up2-10-5",
+      "sections": "10.5 RC Circuits (physics background)",
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-up2-14",
+      "resource": "openstax-up2-14-2",
+      "sections": "14.2 Self-Inductance and Inductors, then 14.4 RL Circuits (physics background)",
+      "est_min": 30,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w10-ulaby-ex",
+      "title": "Ulaby exercises: inductors, RC/RL response, devices",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Homebase shows only the exercise until you ask for the solution. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex5-11",
+          "label": "Exercise 5-11",
+          "key_type": "official_worked",
+          "topics": [
+            "inductors"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 92,
+            "start": "Exercise 5-11",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 92,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-12",
+          "label": "Exercise 5-12",
+          "key_type": "official_worked",
+          "topics": [
+            "inductors",
+            "dc steady state"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 93,
+            "start": "Exercise 5-12",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 93,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-13",
+          "label": "Exercise 5-13",
+          "key_type": "official_worked",
+          "topics": [
+            "inductors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 94,
+            "start": "Exercise 5-13",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 94,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-14",
+          "label": "Exercise 5-14",
+          "key_type": "official_worked",
+          "topics": [
+            "RC natural response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 95,
+            "start": "Exercise 5-14",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 95,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-15",
+          "label": "Exercise 5-15",
+          "key_type": "official_worked",
+          "topics": [
+            "RC step response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 96,
+            "start": "Exercise 5-15",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 96,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-16",
+          "label": "Exercise 5-16",
+          "key_type": "official_worked",
+          "topics": [
+            "RL response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 97,
+            "start": "Exercise 5-16",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 97,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-17",
+          "label": "Exercise 5-17",
+          "key_type": "official_worked",
+          "topics": [
+            "op-amp integrator"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 98,
+            "start": "Exercise 5-17",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 98,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-18",
+          "label": "Exercise 5-18",
+          "key_type": "official_worked",
+          "topics": [
+            "op-amp differentiator"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 99,
+            "start": "Exercise 5-18",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 99,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex2-11",
+          "label": "Exercise 2-11",
+          "key_type": "official_worked",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 38,
+            "start": "Exercise 2-11",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 38,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-15",
+          "label": "Exercise 3-15",
+          "key_type": "official_worked",
+          "topics": [
+            "BJT model"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 62,
+            "start": "Exercise 3-15",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              62,
+              63
+            ]
+          }
+        },
+        {
+          "id": "ex5-19",
+          "label": "Exercise 5-19",
+          "key_type": "official_worked",
+          "topics": [
+            "CMOS inverter",
+            "RC delay"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 100,
+            "start": "Exercise 5-19",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 100,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w10-ulaby-cq",
+      "title": "Ulaby concept questions: inductors, first-order circuits, devices",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch5",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq5-14",
+          "label": "Concept question 5-14",
+          "key_type": "official_answer",
+          "topics": [
+            "inductors"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 14,
+            "start": "Concept Question 5-14",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 14
+          }
+        },
+        {
+          "id": "cq5-15",
+          "label": "Concept question 5-15",
+          "key_type": "official_answer",
+          "topics": [
+            "inductors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 15,
+            "start": "Concept Question 5-15",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 15
+          }
+        },
+        {
+          "id": "cq5-17",
+          "label": "Concept question 5-17",
+          "key_type": "official_answer",
+          "topics": [
+            "first-order circuits"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 17,
+            "start": "Concept Question 5-17",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 17
+          }
+        },
+        {
+          "id": "cq5-18",
+          "label": "Concept question 5-18",
+          "key_type": "official_answer",
+          "topics": [
+            "time constant"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 18,
+            "start": "Concept Question 5-18",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 18
+          }
+        },
+        {
+          "id": "cq5-19",
+          "label": "Concept question 5-19",
+          "key_type": "official_answer",
+          "topics": [
+            "RC natural response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 19,
+            "start": "Concept Question 5-19",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 19
+          }
+        },
+        {
+          "id": "cq5-20",
+          "label": "Concept question 5-20",
+          "key_type": "official_answer",
+          "topics": [
+            "RC response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 20,
+            "start": "Concept Question 5-20",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 20
+          }
+        },
+        {
+          "id": "cq5-22",
+          "label": "Concept question 5-22",
+          "key_type": "official_answer",
+          "topics": [
+            "RL response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 22,
+            "start": "Concept Question 5-22",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 22
+          }
+        },
+        {
+          "id": "cq5-23",
+          "label": "Concept question 5-23",
+          "key_type": "official_answer",
+          "topics": [
+            "RL response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 23,
+            "start": "Concept Question 5-23",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 23
+          }
+        },
+        {
+          "id": "cq2-15",
+          "label": "Concept question 2-15",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 15,
+            "start": "Concept Question 2-15",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 15
+          }
+        },
+        {
+          "id": "cq4-20",
+          "label": "Concept question 4-20",
+          "key_type": "official_answer",
+          "topics": [
+            "CMOS"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 20,
+            "start": "Concept Question 4-20",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w10-kuphaldt-time",
+      "title": "Kuphaldt worksheets: inductors and time constants",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (inds, time2), CC BY 1.0",
+      "resource": "kuphaldt-time2",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "inds-q1",
+          "label": "Inductors worksheet, question 1: inductor voltage from di/dt",
+          "key_type": "official_answer",
+          "topics": [
+            "inductors",
+            "v = L di/dt"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/inds.pdf",
+            "page": 2,
+            "start": "Question 1",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/inds.pdf",
+            "page": 6,
+            "start": "Answer 1",
+            "end": "Answer 2|Notes"
+          }
+        },
+        {
+          "id": "inds-q4",
+          "label": "Inductors worksheet, question 4: two inductors in parallel",
+          "key_type": "official_answer",
+          "topics": [
+            "inductors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/inds.pdf",
+            "page": 2,
+            "start": "Question 4",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/inds.pdf",
+            "page": 6,
+            "start": "Answer 4",
+            "end": "Answer 5|Notes"
+          }
+        },
+        {
+          "id": "inds-q5",
+          "label": "Inductors worksheet, question 5: total inductance of a network",
+          "key_type": "official_answer",
+          "topics": [
+            "inductors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/inds.pdf",
+            "page": 3,
+            "start": "Question 5",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/inds.pdf",
+            "page": 6,
+            "start": "Answer 5",
+            "end": "Answer 6|Notes"
+          }
+        },
+        {
+          "id": "time2-q18",
+          "label": "Time constants worksheet, question 18: capacitor voltage after discharging",
+          "key_type": "official_answer",
+          "topics": [
+            "RC natural response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 12,
+            "start": "Question 18",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 36,
+            "start": "Answer 18",
+            "end": "Answer 19|Notes"
+          }
+        },
+        {
+          "id": "time2-q21",
+          "label": "Time constants worksheet, question 21: inductor current while charging",
+          "key_type": "official_answer",
+          "topics": [
+            "RL step response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 14,
+            "start": "Question 21",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 37,
+            "start": "Answer 21",
+            "end": "Answer 22|Notes"
+          }
+        },
+        {
+          "id": "time2-q24",
+          "label": "Time constants worksheet, question 24: capacitor voltage at given times",
+          "key_type": "official_answer",
+          "topics": [
+            "RC step response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 15,
+            "start": "Question 24",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 38,
+            "start": "Answer 24",
+            "end": "Answer 25|Notes"
+          }
+        },
+        {
+          "id": "time2-q26",
+          "label": "Time constants worksheet, question 26: inductor voltage and current at given times",
+          "key_type": "official_answer",
+          "topics": [
+            "RL step response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 16,
+            "start": "Question 26",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 38,
+            "start": "Answer 26",
+            "end": "Answer 27|Notes"
+          }
+        },
+        {
+          "id": "time2-q38",
+          "label": "Time constants worksheet, question 38: time to charge to a given voltage",
+          "key_type": "official_answer",
+          "topics": [
+            "RC step response"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 23,
+            "start": "Question 38",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 42,
+            "start": "Answer 38",
+            "end": "Answer 39|Notes"
+          }
+        },
+        {
+          "id": "time2-q48",
+          "label": "Time constants worksheet, question 48: initial rate of change of capacitor voltage",
+          "key_type": "official_answer",
+          "topics": [
+            "initial conditions"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 29,
+            "start": "Question 48",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/time2.pdf",
+            "page": 44,
+            "start": "Answer 48",
+            "end": "Answer 49|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w10-kuphaldt-devices",
+      "title": "Kuphaldt worksheets: diodes and MOSFETs",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (diode1, igfet), CC BY 1.0",
+      "resource": "kuphaldt-igfet",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "diode1-q3",
+          "label": "Diodes worksheet, question 3: diode circuit table (0.65 V drop)",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/diode1.pdf",
+            "page": 2,
+            "start": "Question 3",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/diode1.pdf",
+            "page": 12,
+            "start": "Answer 3",
+            "end": "Answer 4|Notes"
+          }
+        },
+        {
+          "id": "diode1-q4",
+          "label": "Diodes worksheet, question 4: diode circuit table (0.72 V drop)",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/diode1.pdf",
+            "page": 2,
+            "start": "Question 4",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/diode1.pdf",
+            "page": 12,
+            "start": "Answer 4",
+            "end": "Answer 5|Notes"
+          }
+        },
+        {
+          "id": "igfet-q1",
+          "label": "MOSFETs worksheet, question 1: MOSFET cross-section",
+          "key_type": "official_answer",
+          "topics": [
+            "MOSFET",
+            "device structure"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 2,
+            "start": "Question 1",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 20,
+            "start": "Answer 1",
+            "end": "Answer 2|Notes"
+          }
+        },
+        {
+          "id": "igfet-q4",
+          "label": "MOSFETs worksheet, question 4: enhancement versus depletion MOSFETs",
+          "key_type": "official_answer",
+          "topics": [
+            "MOSFET"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 3,
+            "start": "Question 4",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 21,
+            "start": "Answer 4",
+            "end": "Answer 5|Notes"
+          }
+        },
+        {
+          "id": "igfet-q13",
+          "label": "MOSFETs worksheet, question 13: identify MOSFET types and states",
+          "key_type": "official_answer",
+          "topics": [
+            "MOSFET"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 5,
+            "start": "Question 13",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 23,
+            "start": "Answer 13",
+            "end": "Answer 14|Notes"
+          }
+        },
+        {
+          "id": "igfet-q23",
+          "label": "MOSFETs worksheet, question 23: MOSFET as a switch: is the load on?",
+          "key_type": "official_answer",
+          "topics": [
+            "MOSFET",
+            "switch"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 10,
+            "start": "Question 23",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/igfet.pdf",
+            "page": 26,
+            "start": "Answer 23",
+            "end": "Answer 24|Notes"
+          }
+        }
+      ],
+      "optional": true
+    },
+    {
+      "id": "ece201-w10-fiore-semis",
+      "title": "Fiore: diode circuits (answers only)",
+      "source": "James Fiore, Semiconductor Devices: Theory and Application (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-semis",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c2-p1",
+          "label": "Problem 2.1: circulating current with a diode",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 56,
+            "start": "1. For the",
+            "end": "2. Repeat Problem"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 476,
+            "start": "Chapter 2",
+            "end": "Chapter 3"
+          }
+        },
+        {
+          "id": "c2-p3",
+          "label": "Problem 2.3: voltage drops with a diode",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 57,
+            "start": "3. Given the",
+            "end": "4. In Figure"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 476,
+            "start": "Chapter 2",
+            "end": "Chapter 3"
+          }
+        },
+        {
+          "id": "c2-p5",
+          "label": "Problem 2.5: LED current",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes",
+            "LED"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 57,
+            "start": "5. Determine the",
+            "end": "6. Repeat Problem"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 476,
+            "start": "Chapter 2",
+            "end": "Chapter 3"
+          }
+        },
+        {
+          "id": "c2-p7",
+          "label": "Problem 2.7: resistor currents with diodes",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 57,
+            "start": "7. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 476,
+            "start": "Chapter 2",
+            "end": "Chapter 3"
+          }
+        },
+        {
+          "id": "c2-p9",
+          "label": "Problem 2.9: resistor voltage with diodes",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 58,
+            "start": "9. For the",
+            "end": "10. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 476,
+            "start": "Chapter 2",
+            "end": "Chapter 3"
+          }
+        },
+        {
+          "id": "c2-p11",
+          "label": "Problem 2.11: resistor voltage with two sources and a diode",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 58,
+            "start": "11. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 476,
+            "start": "Chapter 2",
+            "end": "Chapter 3"
+          }
+        },
+        {
+          "id": "c2-p13",
+          "label": "Problem 2.13: resistor value to set a diode current (uses Figure 2.32)",
+          "key_type": "official_answer",
+          "topics": [
+            "diodes",
+            "design"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "pages": [
+              56,
+              59
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/semis.pdf",
+            "page": 476,
+            "start": "Chapter 2",
+            "end": "Chapter 3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece201-w10",
+      "title": "Circuit drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "rc_step",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "rl_step",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

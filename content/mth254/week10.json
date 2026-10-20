@@ -1,0 +1,298 @@
+{
+ "_about": "MTH 254 term week 10. Videos come from videos.json (osu_week = 10). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+ "week": 10,
+ "readings": [
+  {
+   "id": "mth254-w10-os-5-5",
+   "resource": "openstax-c3-5-5",
+   "sections": "5.5 Triple Integrals in Cylindrical and Spherical Coordinates (review the spherical examples)",
+   "est_min": 20
+  },
+  {
+   "id": "mth254-w10-os-5-7",
+   "resource": "openstax-c3-5-7",
+   "sections": "5.7 Change of Variables in Multiple Integrals (only if change of variables is covered)",
+   "est_min": 40,
+   "optional": true
+  },
+  {
+   "id": "mth254-w10-clp-3-8",
+   "resource": "clp3-text",
+   "sections": "3.8 (Optional) Integrals in General Coordinates",
+   "page": 359,
+   "est_min": 30,
+   "optional": true
+  },
+  {
+   "id": "mth254-w10-sg",
+   "resource": "osu-sg-parks",
+   "sections": "Lesson 24: change of variables (optional)",
+   "page": 65,
+   "est_min": 10,
+   "optional": true
+  },
+  {
+   "id": "mth254-w10-briggs",
+   "resource": "briggs-mvc-2e",
+   "sections": "Briggs 13.5, (13.7); final review (reference only; the book isn't free)",
+   "est_min": 0,
+   "optional": true
+  }
+ ],
+ "problem_sets": [
+  {
+   "id": "clp-final-review",
+   "title": "CLP-3 problems: more cylindrical and spherical, mixed orders",
+   "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+   "resource": "clp3-problems",
+   "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+   "problems": [
+    {
+     "id": "clp-3.5-6",
+     "label": "CLP-3 3.5 Q6: rewrite a triple integral in another order (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "order of integration",
+      "triple integrals"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 84,
+      "start": "Q[6]",
+      "end": "Q[7]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       450,
+       451
+      ]
+     }
+    },
+    {
+     "id": "clp-3.5-16",
+     "label": "CLP-3 3.5 Q16: reverse the order of a triple integral (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "order of integration"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 85,
+      "start": "Q[16]"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       463,
+       464
+      ]
+     }
+    },
+    {
+     "id": "clp-3.6-8",
+     "label": "CLP-3 3.6 Q8: centroid of a region below a sphere (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "cylindrical coordinates",
+      "center of mass"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 88,
+      "start": "Q[8]",
+      "end": "Q[9]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       480,
+       481
+      ]
+     }
+    },
+    {
+     "id": "clp-3.6-10",
+     "label": "CLP-3 3.6 Q10: volume inside a cylinder and a sphere (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "cylindrical coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 88,
+      "start": "Q[10]",
+      "end": "Q[11]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       482,
+       483
+      ]
+     }
+    },
+    {
+     "id": "clp-3.7-10",
+     "label": "CLP-3 3.7 Q10: mass and center of mass of a hemispherical shell (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "spherical coordinates",
+      "center of mass"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 91,
+      "start": "Q[10]",
+      "end": "Q[11]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       496,
+       497
+      ]
+     }
+    },
+    {
+     "id": "clp-3.7-13",
+     "label": "CLP-3 3.7 Q13: an integral over all of space (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "spherical coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 92,
+      "start": "Q[13]",
+      "end": "Q[14]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 499,
+      "start": "S-13:",
+      "end": "S-14:"
+     }
+    },
+    {
+     "id": "clp-3.7-17",
+     "label": "CLP-3 3.7 Q17: z over an eighth of a ball; centroid (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "spherical coordinates",
+      "center of mass"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 92,
+      "start": "Q[17]",
+      "end": "Q[18]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       501,
+       502
+      ]
+     }
+    },
+    {
+     "id": "clp-3.7-21",
+     "label": "CLP-3 3.7 Q21: mass of a cone-and-sphere solid, cylindrical and spherical (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "spherical coordinates",
+      "cylindrical coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 93,
+      "start": "Q[21]",
+      "end": "Q[22]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       505,
+       506
+      ]
+     }
+    },
+    {
+     "id": "clp-3.7-23",
+     "label": "CLP-3 3.7 Q23: the same integral in spherical and cylindrical form (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "spherical coordinates",
+      "cylindrical coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 93,
+      "start": "Q[23]",
+      "end": "Q[24]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       507,
+       508
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "sc-supp-3d",
+   "title": "18.02 exercises: change of variables (optional)",
+   "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 3 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+   "resource": "mit1802sc-supp3",
+   "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages. Only if your section covers Briggs 13.7.",
+   "problems": [
+    {
+     "id": "3D-1",
+     "label": "Exercise 3D-1: change of variables over a parallelogram",
+     "key_type": "official_worked",
+     "topics": [
+      "change of variables"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 4,
+      "start": "3D-1",
+      "end": "3D-2"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "pages": [
+       5,
+       6
+      ]
+     }
+    },
+    {
+     "id": "3D-2",
+     "label": "Exercise 3D-2: change of variables over a triangle",
+     "key_type": "official_worked",
+     "topics": [
+      "change of variables",
+      "Jacobian"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 4,
+      "start": "3D-2",
+      "end": "3D-3"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "page": 6,
+      "start": "3D-2",
+      "end": "3D-3"
+     }
+    }
+   ],
+   "optional": true
+  }
+ ]
+}

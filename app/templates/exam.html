@@ -9,7 +9,7 @@
 
 <section class="card rules-card">
   <h2>Exam rules</h2>
-  <p class="big-time">{{ exam.time_min }} minutes · {{ exam.total_points }} points · {{ problems | length }} problems</p>
+  <p class="big-time">{{ exam.time_min }} minutes · {{ exam.total_points | num }} points · {{ problems | length }} problems</p>
   <ul>{% for r in exam.practice_rules %}<li>{{ r }}</li>{% endfor %}</ul>
   <p class="small muted">{{ exam.time_note }}</p>
   {% if exam.skipped %}<p class="small"><span class="tag">left out</span> {{ exam.skipped }}</p>{% endif %}
@@ -40,7 +40,7 @@
   <ul class="plain small">
     {% for a in attempts %}
     <li><a href="/attempt/{{ a.id }}">{{ a.started_at | md }} {{ a.started_at.strftime('%H:%M') }}</a> ·
-      {% if a.status == 'graded' %}{{ a.total | num }}/{{ a.max_points }} ({{ (100 * a.total / a.max_points) | round | int }}%){% else %}{{ a.status.replace('_', ' ') }}{% endif %}
+      {% if a.status == 'graded' %}{{ a.total | num }}/{{ a.max_points | num }} ({{ (100 * a.total / a.max_points) | round | int }}%){% else %}{{ a.status.replace('_', ' ') }}{% endif %}
       {% if a.overtime_sec >= 60 %} · {{ a.overtime_sec // 60 }} min over{% endif %}</li>
     {% endfor %}
   </ul>

@@ -1,0 +1,266 @@
+{
+ "_about": "MTH 254 term week 4. Videos come from videos.json (osu_week = 4). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+ "week": 4,
+ "readings": [
+  {
+   "id": "mth254-w4-os-4-1",
+   "resource": "openstax-c3-4-1",
+   "sections": "4.1 Functions of Several Variables (level curves, again after the exam)",
+   "est_min": 15,
+   "optional": true
+  },
+  {
+   "id": "mth254-w4-os-4-2",
+   "resource": "openstax-c3-4-2",
+   "sections": "4.2 Limits and Continuity",
+   "est_min": 35
+  },
+  {
+   "id": "mth254-w4-clp-2-1",
+   "resource": "clp3-text",
+   "sections": "2.1 Limits",
+   "page": 94,
+   "est_min": 35,
+   "optional": true
+  },
+  {
+   "id": "mth254-w4-sg",
+   "resource": "osu-sg-parks",
+   "sections": "Lesson 11: limits and continuity",
+   "page": 35,
+   "est_min": 10,
+   "optional": true
+  },
+  {
+   "id": "mth254-w4-briggs",
+   "resource": "briggs-mvc-2e",
+   "sections": "Briggs 12.2-12.3 (reference only; the book isn't free)",
+   "est_min": 0,
+   "optional": true
+  }
+ ],
+ "problem_sets": [
+  {
+   "id": "clp-2-1",
+   "title": "CLP-3 problems: limits and continuity",
+   "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+   "resource": "clp3-problems",
+   "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+   "problems": [
+    {
+     "id": "clp-2.1-3",
+     "label": "CLP-3 2.1 Q3: two rays toward the origin with different values",
+     "key_type": "official_worked",
+     "topics": [
+      "limits"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       33,
+       34
+      ]
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 236,
+      "start": "S-3:",
+      "end": "S-4:"
+     }
+    },
+    {
+     "id": "clp-2.1-6",
+     "label": "CLP-3 2.1 Q6: evaluate limits, if they exist",
+     "key_type": "official_worked",
+     "topics": [
+      "limits"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 34,
+      "start": "Q[6]",
+      "end": "Q[7]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       237,
+       238
+      ]
+     }
+    },
+    {
+     "id": "clp-2.1-7",
+     "label": "CLP-3 2.1 Q7: one limit that exists and one that doesn't (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "limits"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 34,
+      "start": "Q[7]",
+      "end": "Q[8]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       238,
+       239
+      ]
+     }
+    },
+    {
+     "id": "clp-2.1-9",
+     "label": "CLP-3 2.1 Q9: two limits, or show they don't exist (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "limits"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 35,
+      "start": "Q[9]",
+      "end": "Q[10]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 240,
+      "start": "S-9:"
+     }
+    },
+    {
+     "id": "clp-2.1-10",
+     "label": "CLP-3 2.1 Q10: approaching the origin along lines and a parabola",
+     "key_type": "official_worked",
+     "topics": [
+      "limits"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 35,
+      "start": "Q[10]",
+      "end": "Q[11]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 241,
+      "start": "S-10:",
+      "end": "S-11:"
+     }
+    },
+    {
+     "id": "clp-2.1-11",
+     "label": "CLP-3 2.1 Q11: four limits, or explain why they don't exist (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "limits",
+      "continuity"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 35,
+      "start": "Q[11]",
+      "end": "Q[12]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       241,
+       242
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "sc-supp-2a",
+   "title": "18.02 exercises: functions of two variables and partial derivatives",
+   "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 2 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+   "resource": "mit1802sc-supp2",
+   "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages. Partial derivatives are next week's topic at OSU; these are a head start after the exam.",
+   "problems": [
+    {
+     "id": "2A-1",
+     "label": "Exercise 2A-1: sketching level curves",
+     "key_type": "official_worked",
+     "topics": [
+      "level curves"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+      "page": 1,
+      "start": "2A-1",
+      "end": "2A-2"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+      "page": 1,
+      "start": "2A-1",
+      "end": "2A-2"
+     }
+    },
+    {
+     "id": "2A-2",
+     "label": "Exercise 2A-2: computing first partial derivatives",
+     "key_type": "official_worked",
+     "topics": [
+      "partial derivatives"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+      "page": 1,
+      "start": "2A-2",
+      "end": "2A-3"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+      "page": 1,
+      "start": "2A-2",
+      "end": "2A-3"
+     }
+    },
+    {
+     "id": "2A-3",
+     "label": "Exercise 2A-3: check that the mixed partials agree",
+     "key_type": "official_worked",
+     "topics": [
+      "partial derivatives"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+      "page": 1,
+      "start": "2A-3",
+      "end": "2A-4"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+      "page": 1,
+      "start": "2A-3",
+      "end": "2A-4"
+     }
+    },
+    {
+     "id": "2A-5",
+     "label": "Exercise 2A-5: functions that satisfy Laplace's equation",
+     "key_type": "official_worked",
+     "topics": [
+      "partial derivatives"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+      "page": 1,
+      "start": "2A-5",
+      "end": "2B."
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+      "page": 1,
+      "start": "2A-5",
+      "end": "2B."
+     }
+    }
+   ]
+  }
+ ]
+}

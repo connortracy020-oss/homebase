@@ -1,0 +1,439 @@
+{
+  "_about": "ECE 200 term week 1. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 1). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 1,
+  "readings": [
+    {
+      "id": "ece200-w1-spf-l01",
+      "resource": "spf-L01",
+      "sections": "Lecture 1: Sinusoids. All slides",
+      "est_min": 20
+    },
+    {
+      "id": "ece200-w1-spf-l02",
+      "resource": "spf-L02",
+      "sections": "Lecture 2: Time and phase shift. All slides",
+      "est_min": 15
+    },
+    {
+      "id": "ece200-w1-spf-l03",
+      "resource": "spf-L03",
+      "sections": "Lecture 3: Phasor Addition Theorem. All slides",
+      "est_min": 20
+    },
+    {
+      "id": "ece200-w1-thinkdsp-ch1",
+      "resource": "thinkdsp",
+      "sections": "Chapter 1, Sounds and signals (book p. 1; Python view of sinusoids)",
+      "page": 13,
+      "est_min": 30,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "dspdb-w1-sinusoids",
+      "title": "DSP First problems: complex numbers, sinusoids, phasors",
+      "source": "DSP First problem database (Georgia Tech ECE 2025/2026 problem sets, quizzes and finals, 1993-2002)",
+      "resource": "dspfirst-db",
+      "notes": "Each statement PDF holds only the problem (checked by eye for every problem in this set); the worked solution is a separate scanned or typeset image. Problems are old Georgia Tech work, labelled quiz/final/homework from their file names.",
+      "problems": [
+        {
+          "id": "c2-p012",
+          "label": "DSP First DB 2-12 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex numbers",
+            "polar form"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p012.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p012s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p020",
+          "label": "DSP First DB 2-20 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex numbers",
+            "polar form"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p020.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p020s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p013",
+          "label": "DSP First DB 2-13 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "sinusoid from a plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p013.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p013s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p070",
+          "label": "DSP First DB 2-70 (GT quiz, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "sinusoid from a plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p070.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p070s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p094",
+          "label": "DSP First DB 2-94 (GT quiz, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "sinusoid from a plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p094.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p094s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p109",
+          "label": "DSP First DB 2-109 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "sinusoid from a plot",
+            "time shift"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p109.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p109s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p007",
+          "label": "DSP First DB 2-7 (GT quiz, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor addition"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p007.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p007s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p038",
+          "label": "DSP First DB 2-38 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor addition"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p038.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p038s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p047",
+          "label": "DSP First DB 2-47 (GT quiz, f_98)",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor addition"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p047.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p047s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p071",
+          "label": "DSP First DB 2-71 (GT quiz, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor addition",
+            "solve for a sinusoid"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p071.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p071s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p093",
+          "label": "DSP First DB 2-93 (GT quiz, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor addition",
+            "complex amplitude"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p093.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p093s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p123",
+          "label": "DSP First DB 2-123 (GT quiz, sp_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor addition",
+            "three sinusoids"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p123.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p123s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p155",
+          "label": "DSP First DB 2-155 (GT quiz, su_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor addition",
+            "phasor diagram"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p155.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p155s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p036",
+          "label": "DSP First DB 2-36 (GT quiz, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "time shift",
+            "phase"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p036.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p036s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p161",
+          "label": "DSP First DB 2-161 (GT quiz, w_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "time shift",
+            "phase"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p161.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p161s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p054",
+          "label": "DSP First DB 2-54 (GT quiz, f_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex amplitude",
+            "equivalent representations"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p054.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p054s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p132",
+          "label": "DSP First DB 2-132 (GT quiz, sp_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex amplitude",
+            "equivalent representations"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p132.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p132s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p156",
+          "label": "DSP First DB 2-156 (GT quiz, su_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "Euler's formula",
+            "rotating phasors"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p156.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p156s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p039",
+          "label": "DSP First DB 2-39 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "derivative as phasor multiplication"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p039.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p039s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p154",
+          "label": "DSP First DB 2-154 (GT final, su_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex amplitude",
+            "derivative"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p154.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p154s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c2-p157",
+          "label": "DSP First DB 2-157 (GT final, w_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "discrete-time phasor addition"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch02/p157.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch02/p157s1.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece200-w01",
+      "title": "Signal drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "sinusoid_parameters",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "phasor_addition",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

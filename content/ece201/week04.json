@@ -1,0 +1,631 @@
+{
+  "_about": "ECE 201 term week 4. Videos for this week come from videos.json (osu_week = 4). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 4,
+  "readings": [
+    {
+      "id": "ece201-w4-ulaby-2-4",
+      "resource": "ulaby-cad3e",
+      "sections": "2-4 and 2-5 (Y-Delta transformation, Wheatstone bridge) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 30
+    },
+    {
+      "id": "ece201-w4-ulaby-3-1",
+      "resource": "ulaby-cad3e",
+      "sections": "3-1 and 3-2 (node-voltage method, supernode) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 40
+    },
+    {
+      "id": "ece201-w4-fiore-6-7",
+      "resource": "fiore-dc",
+      "sections": "6.7 Delta-Y Conversions",
+      "est_min": 20,
+      "page": 191,
+      "optional": true
+    },
+    {
+      "id": "ece201-w4-fiore-7-2",
+      "resource": "fiore-dc",
+      "sections": "7.2 Nodal Analysis and 7.4 Dependent Sources",
+      "est_min": 35,
+      "page": 215,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w4-ulaby-ex",
+      "title": "Ulaby exercises: Y-Delta, bridge, nodal analysis",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Exercise 2-10 refers to a sensor circuit in the book (Fig. 2-37), so have Ulaby open for it. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex2-9",
+          "label": "Exercise 2-9",
+          "key_type": "official_worked",
+          "topics": [
+            "Y-Delta",
+            "equivalent resistance"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 34,
+            "start": "Exercise 2-9",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              34,
+              35,
+              36
+            ]
+          }
+        },
+        {
+          "id": "ex2-10",
+          "label": "Exercise 2-10",
+          "key_type": "official_worked",
+          "topics": [
+            "Wheatstone bridge"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 37,
+            "start": "Exercise 2-10",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 37,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-1",
+          "label": "Exercise 3-1",
+          "key_type": "official_worked",
+          "topics": [
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 42,
+            "start": "Exercise 3-1",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 42,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-2",
+          "label": "Exercise 3-2",
+          "key_type": "official_worked",
+          "topics": [
+            "nodal",
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 43,
+            "start": "Exercise 3-2",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 43,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-3",
+          "label": "Exercise 3-3",
+          "key_type": "official_worked",
+          "topics": [
+            "supernode"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 44,
+            "start": "Exercise 3-3",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 44,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-7",
+          "label": "Exercise 3-7",
+          "key_type": "official_worked",
+          "topics": [
+            "nodal",
+            "by inspection"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 48,
+            "start": "Exercise 3-7",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 48,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w4-ulaby-cq",
+      "title": "Ulaby concept questions: Y-Delta, bridges, nodal analysis",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch2",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq2-10",
+          "label": "Concept question 2-10",
+          "key_type": "official_answer",
+          "topics": [
+            "Y-Delta"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 10,
+            "start": "Concept Question 2-10",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 10
+          }
+        },
+        {
+          "id": "cq2-11",
+          "label": "Concept question 2-11",
+          "key_type": "official_answer",
+          "topics": [
+            "Y-Delta"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 11,
+            "start": "Concept Question 2-11",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 11
+          }
+        },
+        {
+          "id": "cq2-12",
+          "label": "Concept question 2-12",
+          "key_type": "official_answer",
+          "topics": [
+            "Wheatstone bridge"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 12,
+            "start": "Concept Question 2-12",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 12
+          }
+        },
+        {
+          "id": "cq2-13",
+          "label": "Concept question 2-13",
+          "key_type": "official_answer",
+          "topics": [
+            "Wheatstone bridge"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 13,
+            "start": "Concept Question 2-13",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 13
+          }
+        },
+        {
+          "id": "cq3-1",
+          "label": "Concept question 3-1",
+          "key_type": "official_answer",
+          "topics": [
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 1,
+            "start": "Concept Question 3-1",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 1
+          }
+        },
+        {
+          "id": "cq3-2",
+          "label": "Concept question 3-2",
+          "key_type": "official_answer",
+          "topics": [
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 2,
+            "start": "Concept Question 3-2",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 2
+          }
+        },
+        {
+          "id": "cq3-3",
+          "label": "Concept question 3-3",
+          "key_type": "official_answer",
+          "topics": [
+            "nodal",
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 3,
+            "start": "Concept Question 3-3",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 3
+          }
+        },
+        {
+          "id": "cq3-4",
+          "label": "Concept question 3-4",
+          "key_type": "official_answer",
+          "topics": [
+            "supernode"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 4,
+            "start": "Concept Question 3-4",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w4-kuphaldt",
+      "title": "Kuphaldt worksheets: branch currents and simultaneous equations",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (dcbranch, simultaneous), CC BY 1.0",
+      "resource": "kuphaldt-dcbranch",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out. The simultaneous-equation drills are good no-calculator practice for nodal analysis.",
+      "problems": [
+        {
+          "id": "dcbranch-q4",
+          "label": "Branch currents worksheet, question 4: unbalanced bridge by branch currents",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "KVL",
+            "bridge"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dcbranch.pdf",
+            "page": 6,
+            "start": "Question 4",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dcbranch.pdf",
+            "page": 10,
+            "start": "Answer 4",
+            "end": "Answer 5|Notes"
+          }
+        },
+        {
+          "id": "dcbranch-q6",
+          "label": "Branch currents worksheet, question 6: battery charging current by branch currents",
+          "key_type": "official_answer",
+          "topics": [
+            "KCL",
+            "KVL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dcbranch.pdf",
+            "page": 8,
+            "start": "Question 6",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dcbranch.pdf",
+            "page": 10,
+            "start": "Answer 6",
+            "end": "Answer 7|Notes"
+          }
+        },
+        {
+          "id": "simultaneous-q10",
+          "label": "Simultaneous equations worksheet, question 10: two equations, two unknowns",
+          "key_type": "official_answer",
+          "topics": [
+            "linear equations"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 9,
+            "start": "Question 10",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 21,
+            "start": "Answer 10",
+            "end": "Answer 11|Notes"
+          }
+        },
+        {
+          "id": "simultaneous-q11",
+          "label": "Simultaneous equations worksheet, question 11: two equations, two unknowns",
+          "key_type": "official_answer",
+          "topics": [
+            "linear equations"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 9,
+            "start": "Question 11",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 22,
+            "start": "Answer 11",
+            "end": "Answer 12|Notes"
+          }
+        },
+        {
+          "id": "simultaneous-q12",
+          "label": "Simultaneous equations worksheet, question 12: two equations, two unknowns",
+          "key_type": "official_answer",
+          "topics": [
+            "linear equations"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 10,
+            "start": "Question 12",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 22,
+            "start": "Answer 12",
+            "end": "Answer 13|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w4-fiore",
+      "title": "Fiore: nodal analysis and dependent sources (answers only)",
+      "source": "James Fiore, DC Electrical Circuit Analysis (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-dc",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c7-p47",
+          "label": "Problem 7.47: node voltage by nodal analysis (uses Figure 7.51)",
+          "key_type": "official_answer",
+          "topics": [
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              250
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              370
+            ]
+          }
+        },
+        {
+          "id": "c7-p51",
+          "label": "Problem 7.51: resistor current by nodal analysis (uses Figure 7.52)",
+          "key_type": "official_answer",
+          "topics": [
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              251
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              370
+            ]
+          }
+        },
+        {
+          "id": "c7-p53",
+          "label": "Problem 7.53: voltage between two nodes (uses Figure 7.53)",
+          "key_type": "official_answer",
+          "topics": [
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              251
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              370
+            ]
+          }
+        },
+        {
+          "id": "c7-p59",
+          "label": "Problem 7.59: node voltage, larger circuit (uses Figure 7.55)",
+          "key_type": "official_answer",
+          "topics": [
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              252
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              370
+            ]
+          }
+        },
+        {
+          "id": "c7-p73",
+          "label": "Problem 7.73: voltage-controlled voltage source",
+          "key_type": "official_answer",
+          "topics": [
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 253,
+            "start": "73. For the",
+            "end": "74. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "end": "8 Capacitors"
+          }
+        },
+        {
+          "id": "c7-p75",
+          "label": "Problem 7.75: current-controlled source",
+          "key_type": "official_answer",
+          "topics": [
+            "dependent sources",
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 254,
+            "start": "75. Given the",
+            "end": "76. Find the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "end": "8 Capacitors"
+          }
+        },
+        {
+          "id": "c7-p77",
+          "label": "Problem 7.77: current-controlled source, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "dependent sources",
+            "nodal"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 254,
+            "start": "77. Given the",
+            "end": "78. In the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "end": "8 Capacitors"
+          }
+        },
+        {
+          "id": "c7-p79",
+          "label": "Problem 7.79: current-controlled voltage source",
+          "key_type": "official_answer",
+          "topics": [
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 255,
+            "start": "79. For the",
+            "end": "80. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "end": "8 Capacitors"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece201-w04",
+      "title": "Circuit drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "delta_wye",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "nodal_two_node",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

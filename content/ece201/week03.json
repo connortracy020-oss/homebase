@@ -1,0 +1,657 @@
+{
+  "_about": "ECE 201 term week 3. Videos for this week come from videos.json (osu_week = 3). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 3,
+  "readings": [
+    {
+      "id": "ece201-w3-ulaby-2-2",
+      "resource": "ulaby-cad3e",
+      "sections": "2-2 and 2-3 (KVL, equivalent circuits, series/parallel, source transformation, voltage and current division) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 45
+    },
+    {
+      "id": "ece201-w3-6002-notes",
+      "resource": "mit6002-notes-L8",
+      "sections": "Lecture 8 notes (dependent sources), to review after the video",
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "ece201-w3-fiore-3-6",
+      "resource": "fiore-dc",
+      "sections": "3.6 KVL and 3.7 Series Analysis (voltage divider rule)",
+      "est_min": 30,
+      "page": 82,
+      "optional": true
+    },
+    {
+      "id": "ece201-w3-fiore-5",
+      "resource": "fiore-dc",
+      "sections": "5.2 to 5.4 Series-Parallel Connections and Analysis",
+      "est_min": 30,
+      "page": 139,
+      "optional": true
+    },
+    {
+      "id": "ece201-w3-up2-10-2",
+      "resource": "openstax-up2-10-2",
+      "sections": "10.2 Resistors in Series and Parallel, 10.3 Kirchhoff's Rules (physics background)",
+      "est_min": 25,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w3-ulaby-ex",
+      "title": "Ulaby chapter 2 exercises: KVL, combining resistors, source transformation",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Homebase shows only the exercise until you ask for the solution. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex2-5",
+          "label": "Exercise 2-5",
+          "key_type": "official_worked",
+          "topics": [
+            "KCL",
+            "KVL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 30,
+            "start": "Exercise 2-5",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 30,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex2-7",
+          "label": "Exercise 2-7",
+          "key_type": "official_worked",
+          "topics": [
+            "series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 32,
+            "start": "Exercise 2-7",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 32,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex2-8",
+          "label": "Exercise 2-8",
+          "key_type": "official_worked",
+          "topics": [
+            "source transformation"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 33,
+            "start": "Exercise 2-8",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 33,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w3-ulaby-cq",
+      "title": "Ulaby chapter 2 concept questions: KVL, equivalence, dividers",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch2",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq2-6",
+          "label": "Concept question 2-6",
+          "key_type": "official_answer",
+          "topics": [
+            "KVL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 6,
+            "start": "Concept Question 2-6",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 6
+          }
+        },
+        {
+          "id": "cq2-7",
+          "label": "Concept question 2-7",
+          "key_type": "official_answer",
+          "topics": [
+            "equivalent circuits"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 7,
+            "start": "Concept Question 2-7",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 7
+          }
+        },
+        {
+          "id": "cq2-8",
+          "label": "Concept question 2-8",
+          "key_type": "official_answer",
+          "topics": [
+            "voltage and current division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 8,
+            "start": "Concept Question 2-8",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 8
+          }
+        },
+        {
+          "id": "cq2-9",
+          "label": "Concept question 2-9",
+          "key_type": "official_answer",
+          "topics": [
+            "conductance"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 9,
+            "start": "Concept Question 2-9",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 9
+          }
+        },
+        {
+          "id": "cq2-14",
+          "label": "Concept question 2-14",
+          "key_type": "official_answer",
+          "topics": [
+            "fuses"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 14,
+            "start": "Concept Question 2-14",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch2.pdf",
+            "page": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w3-kuphaldt",
+      "title": "Kuphaldt worksheets: KVL, series-parallel, dividers",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (kvl, dc_s, dc_p, dc_sp, e_divide, i_divide), CC BY 1.0",
+      "resource": "kuphaldt-dc_sp",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "kvl-q22",
+          "label": "KVL/KCL worksheet, question 22: KVL in a resistor network",
+          "key_type": "official_answer",
+          "topics": [
+            "KVL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 19,
+            "start": "Question 22",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 43,
+            "start": "Answer 22",
+            "end": "Answer 23|Notes"
+          }
+        },
+        {
+          "id": "kvl-q28",
+          "label": "KVL/KCL worksheet, question 28: voltage between two points",
+          "key_type": "official_answer",
+          "topics": [
+            "KVL",
+            "voltage division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 24,
+            "start": "Question 28",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/kvl.pdf",
+            "page": 44,
+            "start": "Answer 28",
+            "end": "Answer 29|Notes"
+          }
+        },
+        {
+          "id": "dc_s-q19",
+          "label": "Series worksheet, question 19: voltage divider drops and current",
+          "key_type": "official_answer",
+          "topics": [
+            "series",
+            "voltage division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dc_s.pdf",
+            "page": 12,
+            "start": "Question 19",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dc_s.pdf",
+            "page": 22,
+            "start": "Answer 19",
+            "end": "Answer 20|Notes"
+          }
+        },
+        {
+          "id": "dc_s-q21",
+          "label": "Series worksheet, question 21: series circuit table of V, I, R, P",
+          "key_type": "official_answer",
+          "topics": [
+            "series",
+            "power"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dc_s.pdf",
+            "page": 13,
+            "start": "Question 21",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dc_s.pdf",
+            "page": 22,
+            "start": "Answer 21",
+            "end": "Answer 22|Notes"
+          }
+        },
+        {
+          "id": "dc_p-q12",
+          "label": "Parallel worksheet, question 12: parallel circuit table of V, I, R, P",
+          "key_type": "official_answer",
+          "topics": [
+            "parallel",
+            "power"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dc_p.pdf",
+            "page": 8,
+            "start": "Question 12",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dc_p.pdf",
+            "page": 16,
+            "start": "Answer 12",
+            "end": "Answer 13|Notes"
+          }
+        },
+        {
+          "id": "dc_sp-q17",
+          "label": "Series-parallel worksheet, question 17: voltage across one resistor",
+          "key_type": "official_answer",
+          "topics": [
+            "series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dc_sp.pdf",
+            "page": 13,
+            "start": "Question 17",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dc_sp.pdf",
+            "page": 33,
+            "start": "Answer 17",
+            "end": "Answer 18|Notes"
+          }
+        },
+        {
+          "id": "dc_sp-q18",
+          "label": "Series-parallel worksheet, question 18: series-parallel table of V, I, R, P",
+          "key_type": "official_answer",
+          "topics": [
+            "series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dc_sp.pdf",
+            "page": 14,
+            "start": "Question 18",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dc_sp.pdf",
+            "page": 34,
+            "start": "Answer 18",
+            "end": "Answer 19|Notes"
+          }
+        },
+        {
+          "id": "dc_sp-q31",
+          "label": "Series-parallel worksheet, question 31: five-resistor series-parallel table",
+          "key_type": "official_answer",
+          "topics": [
+            "series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dc_sp.pdf",
+            "page": 22,
+            "start": "Question 31",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dc_sp.pdf",
+            "page": 36,
+            "start": "Answer 31",
+            "end": "Answer 32|Notes"
+          }
+        },
+        {
+          "id": "e_divide-q6",
+          "label": "Voltage dividers worksheet, question 6: outputs of two voltage dividers",
+          "key_type": "official_answer",
+          "topics": [
+            "voltage division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/e_divide.pdf",
+            "page": 5,
+            "start": "Question 6",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/e_divide.pdf",
+            "page": 29,
+            "start": "Answer 6",
+            "end": "Answer 7|Notes"
+          }
+        },
+        {
+          "id": "e_divide-q17",
+          "label": "Voltage dividers worksheet, question 17: divider resistance and loaded output",
+          "key_type": "official_answer",
+          "topics": [
+            "voltage division",
+            "loading"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/e_divide.pdf",
+            "page": 15,
+            "start": "Question 17",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/e_divide.pdf",
+            "page": 34,
+            "start": "Answer 17",
+            "end": "Answer 18|Notes"
+          }
+        },
+        {
+          "id": "e_divide-q29",
+          "label": "Voltage dividers worksheet, question 29: sizing a divider resistor for a load",
+          "key_type": "official_answer",
+          "topics": [
+            "voltage division",
+            "design"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/e_divide.pdf",
+            "page": 22,
+            "start": "Question 29",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/e_divide.pdf",
+            "page": 35,
+            "start": "Answer 29",
+            "end": "Answer 30|Notes"
+          }
+        },
+        {
+          "id": "i_divide-q6",
+          "label": "Current dividers worksheet, question 6: share of total current in each branch",
+          "key_type": "official_answer",
+          "topics": [
+            "current division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/i_divide.pdf",
+            "page": 4,
+            "start": "Question 6",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/i_divide.pdf",
+            "page": 7,
+            "start": "Answer 6",
+            "end": "Answer 7|Notes"
+          }
+        },
+        {
+          "id": "i_divide-q7",
+          "label": "Current dividers worksheet, question 7: resistor that draws 40% of the current",
+          "key_type": "official_answer",
+          "topics": [
+            "current division",
+            "design"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/i_divide.pdf",
+            "page": 4,
+            "start": "Question 7",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/i_divide.pdf",
+            "page": 7,
+            "start": "Answer 7",
+            "end": "Answer 8|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w3-fiore",
+      "title": "Fiore: series and series-parallel circuits (answers only)",
+      "source": "James Fiore, DC Electrical Circuit Analysis (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-dc",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c3-p11",
+          "label": "Problem 3.11: circulating current in a series loop",
+          "key_type": "official_answer",
+          "topics": [
+            "series",
+            "KVL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 99,
+            "start": "11. For the",
+            "end": "12. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              365
+            ]
+          }
+        },
+        {
+          "id": "c3-p19",
+          "label": "Problem 3.19: current and polarities with two sources",
+          "key_type": "official_answer",
+          "topics": [
+            "series",
+            "KVL"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 100,
+            "start": "19. For the",
+            "end": "20. Given the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              365
+            ]
+          }
+        },
+        {
+          "id": "c3-p35",
+          "label": "Problem 3.35: voltage divider rule",
+          "key_type": "official_answer",
+          "topics": [
+            "voltage division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 103,
+            "start": "35. Using the",
+            "end": "36. Using the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              365
+            ]
+          }
+        },
+        {
+          "id": "c3-p39",
+          "label": "Problem 3.39: voltage drop across one resistor",
+          "key_type": "official_answer",
+          "topics": [
+            "voltage division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 104,
+            "start": "39. Given the",
+            "end": "40. Given the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              365
+            ]
+          }
+        },
+        {
+          "id": "c5-p17",
+          "label": "Problem 5.17: node voltages in a series-parallel circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 159,
+            "start": "17. For the",
+            "end": "18. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              367
+            ]
+          }
+        },
+        {
+          "id": "c5-p29",
+          "label": "Problem 5.29: node voltages, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 161,
+            "start": "29. For the",
+            "end": "30. For the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              367
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece201-w03",
+      "title": "Circuit drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "equivalent_resistance",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "voltage_divider",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "current_divider",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

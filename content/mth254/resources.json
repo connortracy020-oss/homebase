@@ -1,0 +1,351 @@
+[
+ {
+  "id": "openstax-c3-1-3",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 1.3 Polar Coordinates",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/1-3-polar-coordinates",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-2-1",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 2.1 Vectors in the Plane",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/2-1-vectors-in-the-plane",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-2-2",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 2.2 Vectors in Three Dimensions",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/2-2-vectors-in-three-dimensions",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-2-3",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 2.3 The Dot Product",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/2-3-the-dot-product",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-2-4",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 2.4 The Cross Product",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/2-4-the-cross-product",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-2-5",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 2.5 Equations of Lines and Planes in Space",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/2-5-equations-of-lines-and-planes-in-space",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-2-6",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 2.6 Quadric Surfaces",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/2-6-quadric-surfaces",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-2-7",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 2.7 Cylindrical and Spherical Coordinates",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/2-7-cylindrical-and-spherical-coordinates",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-3-1",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 3.1 Vector-Valued Functions and Space Curves",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/3-1-vector-valued-functions-and-space-curves",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-3-2",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 3.2 Calculus of Vector-Valued Functions",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/3-2-calculus-of-vector-valued-functions",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-3-3",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 3.3 Arc Length and Curvature",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/3-3-arc-length-and-curvature",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-3-4",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 3.4 Motion in Space",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/3-4-motion-in-space",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-1",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.1 Functions of Several Variables",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-1-functions-of-several-variables",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-2",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.2 Limits and Continuity",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-2-limits-and-continuity",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-3",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.3 Partial Derivatives",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-3-partial-derivatives",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-4",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.4 Tangent Planes and Linear Approximations",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-4-tangent-planes-and-linear-approximations",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-5",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.5 The Chain Rule",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-5-the-chain-rule",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-6",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.6 Directional Derivatives and the Gradient",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-6-directional-derivatives-and-the-gradient",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-7",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.7 Maxima/Minima Problems",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-7-maxima-minima-problems",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-4-8",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 4.8 Lagrange Multipliers",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/4-8-lagrange-multipliers",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-5-1",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 5.1 Double Integrals over Rectangular Regions",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/5-1-double-integrals-over-rectangular-regions",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-5-2",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 5.2 Double Integrals over General Regions",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/5-2-double-integrals-over-general-regions",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-5-3",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 5.3 Double Integrals in Polar Coordinates",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/5-3-double-integrals-in-polar-coordinates",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-5-4",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 5.4 Triple Integrals",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/5-4-triple-integrals",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-5-5",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 5.5 Triple Integrals in Cylindrical and Spherical Coordinates",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/5-5-triple-integrals-in-cylindrical-and-spherical-coordinates",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-5-6",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 5.6 Calculating Centers of Mass and Moments of Inertia",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/5-6-calculating-centers-of-mass-and-moments-of-inertia",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "openstax-c3-5-7",
+  "kind": "textbook",
+  "title": "OpenStax Calculus Volume 3, 5.7 Change of Variables in Multiple Integrals",
+  "url": "https://openstax.org/books/calculus-volume-3/pages/5-7-change-of-variables-in-multiple-integrals",
+  "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
+  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+ },
+ {
+  "id": "clp3-text",
+  "kind": "textbook",
+  "title": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus (UBC), text",
+  "url": "https://personal.math.ubc.ca/~CLP/CLP3/clp_3_mc_text.pdf",
+  "local_path": "library/mth254/clp3/text.pdf",
+  "license": "CC BY-NC-SA 4.0 (stated on the PDF's legal page and the CLP-3 web page)",
+  "notes": "PDF page = printed page + 7. Covers vectors, lines, planes, curves and surfaces, partial derivatives, and multiple integrals; little on arc length/curvature and motion."
+ },
+ {
+  "id": "clp3-problems",
+  "kind": "problems",
+  "title": "CLP-3 problem book: questions, hints, answers and full solutions",
+  "url": "https://personal.math.ubc.ca/~CLP/CLP3/clp_3_mc_problems.pdf",
+  "local_path": "library/mth254/clp3/problems.pdf",
+  "license": "CC BY-NC-SA 4.0 (stated on the PDF's legal page and the CLP-3 web page)",
+  "notes": "Questions are in Part I (PDF pages 10-96); full solutions in Part IV (PDF pages 163-521). Starred questions come from UBC exams. Question numbers restart in each section, so Homebase points at exact pages."
+ },
+ {
+  "id": "briggs-mvc-2e",
+  "kind": "reference",
+  "title": "Briggs & Cochran, Multivariable Calculus 2e (Pearson 2015), the 2018 OSU text",
+  "license": "All rights reserved (commercial textbook, not free)",
+  "notes": "Section numbers only, from the OSU 2018 calendar and study guide, so you can match an OSU syllabus. The Winter 2027 textbook isn't public; check Canvas in week 1."
+ },
+ {
+  "id": "osu-sg-parks",
+  "kind": "notes",
+  "title": "OSU MTH 254 Study Guide (H. Parks et al., OSU Math Department; 2010-2011 copy with worksheets)",
+  "url": "https://sites.science.oregonstate.edu/~mpesz/teaching/254_W12/mth254sg.pdf",
+  "local_path": "library/mth254/osu/sg_w12.pdf",
+  "license": "unknown",
+  "notes": "No license stated; one section carries 'Copyright 2005 W. A. Bogley'. Publicly posted on an OSU course page; personal study copy. 24 lessons keyed to Briggs sections (PDF page = printed page); the worksheets on pages 69-85 have no answers."
+ },
+ {
+  "id": "mit1802sc-supp1",
+  "kind": "problems",
+  "title": "MIT 18.02SC supplementary problems 1 (vectors, matrices, curves) with solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/supprob1.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/supprobsol1.pdf. These are A. Mattuck's 18.02 exercises (also posted in 18.02 Fall 2007 as scanned copies). Files are linked from the unit pages of the 18.02SC course."
+ },
+ {
+  "id": "mit1802sc-supp2",
+  "kind": "problems",
+  "title": "MIT 18.02SC supplementary problems 2 (partial derivatives) with solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/supprob2.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/supprobsol2.pdf. These are A. Mattuck's 18.02 exercises (also posted in 18.02 Fall 2007 as scanned copies). Files are linked from the unit pages of the 18.02SC course."
+ },
+ {
+  "id": "mit1802sc-supp3",
+  "kind": "problems",
+  "title": "MIT 18.02SC supplementary problems 3 (double integrals) with solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/supprob3.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/supprobsol3.pdf. These are A. Mattuck's 18.02 exercises (also posted in 18.02 Fall 2007 as scanned copies). Files are linked from the unit pages of the 18.02SC course."
+ },
+ {
+  "id": "mit1802sc-supp5",
+  "kind": "problems",
+  "title": "MIT 18.02SC supplementary problems 5 (triple integrals) with solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/supprob5.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/supprobsol5.pdf. These are A. Mattuck's 18.02 exercises (also posted in 18.02 Fall 2007 as scanned copies). Files are linked from the unit pages of the 18.02SC course."
+ },
+ {
+  "id": "mit1802sc-pset1",
+  "kind": "problems",
+  "title": "MIT 18.02SC Problem Set 1 (vectors, dot and cross product) with Part II solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/pset1.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/pset1sol.pdf. Part I of each set is a list of supplementary exercises; Part II is the longer problems."
+ },
+ {
+  "id": "mit1802sc-pset3",
+  "kind": "problems",
+  "title": "MIT 18.02SC Problem Set 3 (lines, curves, motion) with Part II solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/pset3.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/pset3sol.pdf. Part I of each set is a list of supplementary exercises; Part II is the longer problems."
+ },
+ {
+  "id": "mit1802sc-pset4",
+  "kind": "problems",
+  "title": "MIT 18.02SC Problem Set 4 (partial derivatives, tangent planes, max/min) with Part II solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/pset4.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/pset4sol.pdf. Part I of each set is a list of supplementary exercises; Part II is the longer problems."
+ },
+ {
+  "id": "mit1802sc-pset5",
+  "kind": "problems",
+  "title": "MIT 18.02SC Problem Set 5 (differentials, chain rule, gradient) with Part II solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/pset5.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/pset5sol.pdf. Part I of each set is a list of supplementary exercises; Part II is the longer problems."
+ },
+ {
+  "id": "mit1802sc-pset6",
+  "kind": "problems",
+  "title": "MIT 18.02SC Problem Set 6 (Lagrange multipliers) with Part II solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/pset6.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/pset6sol.pdf. Part I of each set is a list of supplementary exercises; Part II is the longer problems."
+ },
+ {
+  "id": "mit1802sc-pset7",
+  "kind": "problems",
+  "title": "MIT 18.02SC Problem Set 7 (double integrals, polar, centroids) with Part II solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/pset7.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/pset7sol.pdf. Part I of each set is a list of supplementary exercises; Part II is the longer problems."
+ },
+ {
+  "id": "mit1802sc-pset10",
+  "kind": "problems",
+  "title": "MIT 18.02SC Problem Set 10 (triple integrals) with Part II solutions",
+  "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/",
+  "local_path": "library/mth254/mit1802sc/pset10.pdf",
+  "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare; footer license checked 2026-10-19)",
+  "notes": "Solutions: library/mth254/mit1802sc/pset10sol.pdf. Part I of each set is a list of supplementary exercises; Part II is the longer problems."
+ }
+]

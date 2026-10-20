@@ -17,7 +17,7 @@
 </section>
 {% for p in problems %}
 <section class="card statement">
-  <h2>{{ p.label.split(":")[0] }} <span class="muted small">({{ p.points }} points)</span></h2>
+  <h2>{{ p.label.split(":")[0] }} <span class="muted small">({{ p.points | num }} points)</span></h2>
   <a href="/problem/{{ p.slug }}/statement.png" target="_blank" title="Open full size"><img src="/problem/{{ p.slug }}/statement.png" alt="Problem {{ loop.index }} of the exam" class="pdf-crop"></a>
 </section>
 {% endfor %}

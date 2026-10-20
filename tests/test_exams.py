@@ -16,10 +16,16 @@ def exam(session, slug):
     return exams.exam_by_slug(session, slug)
 
 
-def test_six_starter_exams_with_points(session):
+def test_starter_exams_with_points(session):
     totals = {e.slug: e.total_points for e in exams.exams_for(session)}
-    assert totals == {"ucb40-fa11-mt1": 100, "ucb40-sp12-mt2-ece201": 50, "mit1802sc-exam1": 70,
-                      "mit1802sc-exam2": 100, "gt2026-sp25-q1": 100, "gt2026-sp25-q2": 100}
+    starters = {"ucb40-fa11-mt1": 100, "ucb40-sp12-mt2-ece201": 50, "mit1802sc-exam1": 70,
+                "mit1802sc-exam2": 100, "gt2026-sp25-q1": 100, "gt2026-sp25-q2": 100}
+    assert {k: totals[k] for k in starters} == starters
+    for e in exams.exams_for(session):  # every exam: points add up, every problem has a key
+        probs = exams.problems_of(session, e)
+        assert probs and abs(sum(p.points for p in probs) - e.total_points) < 1e-9
+        assert all(p.key and p.key_type.startswith("official") for p in probs)
+        assert "by eye" in e.verified
     e = exam(session, "mit1802sc-exam1")
     assert e.time_min == 35 and "matrices" in e.skipped
     assert all(p.key_type == "official_worked" for p in exams.problems_of(session, e))
@@ -32,7 +38,7 @@ def test_exam_problems_stay_off_the_week_pages(session):
 
 def test_prep_plan_links_real_exams(session):
     refs = {t.ref for t in session.exec(select(Task).where(Task.ref_kind == "exam"))}
-    assert refs == {"ucb40-fa11-mt1", "ucb40-sp12-mt2-ece201", "mit1802sc-exam1",
+    assert refs >= {"ucb40-fa11-mt1", "ucb40-sp12-mt2-ece201", "mit1802sc-exam1",
                     "mit1802sc-exam2", "gt2026-sp25-q1"}
 
 

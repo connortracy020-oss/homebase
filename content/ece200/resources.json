@@ -1,0 +1,189 @@
+[
+  {
+    "id": "spf-L01",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 1: Sinusoids (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L01.pdf",
+    "local_path": "library/ece200/spfirst-slides/L01.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L02",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 2: Time and phase shift (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L02.pdf",
+    "local_path": "library/ece200/spfirst-slides/L02.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L03",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 3: Phasor Addition Theorem (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L03.pdf",
+    "local_path": "library/ece200/spfirst-slides/L03.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L04",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 4: The Spectrum (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L04.pdf",
+    "local_path": "library/ece200/spfirst-slides/L04.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L05",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 5: Periodic Signals and Time-Varying Spectrum (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L05.pdf",
+    "local_path": "library/ece200/spfirst-slides/L05.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L06",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 6: Fourier Series Analysis (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L06.pdf",
+    "local_path": "library/ece200/spfirst-slides/L06.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L07",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 7: Fourier Series & Spectrum (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L07.pdf",
+    "local_path": "library/ece200/spfirst-slides/L07.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L08",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 8: Sampling and Aliasing (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L08.pdf",
+    "local_path": "library/ece200/spfirst-slides/L08.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L09",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 9: Bandlimited Reconstruction (D-to-A) (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L09.pdf",
+    "local_path": "library/ece200/spfirst-slides/L09.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L10",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 10: FIR Filtering Intro (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L10.pdf",
+    "local_path": "library/ece200/spfirst-slides/L10.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L11",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 11: Linearity, Time-Invariance & Convolution (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L11.pdf",
+    "local_path": "library/ece200/spfirst-slides/L11.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L12",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 12: Frequency Response for FIR (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L12.pdf",
+    "local_path": "library/ece200/spfirst-slides/L12.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L13",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 13: Digital Filtering of Analog Signals (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L13.pdf",
+    "local_path": "library/ece200/spfirst-slides/L13.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "spf-L26",
+    "kind": "slides",
+    "title": "Signal Processing First, Lecture 26: Review: Digital Filter of Analog Signals (slides)",
+    "url": "https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirst-L26.pdf",
+    "local_path": "library/ece200/spfirst-slides/L26.pdf",
+    "license": "Creative Commons BY-NC-SA 1.0 (the slides index page says the slides are available under Creative Commons terms, with the attribution '(c) 2003-2006 James H. McClellan and Ronald W. Schafer'; checked 2026-10-19)",
+    "notes": "McClellan & Schafer's 2003-2006 lecture slides (4-up). Index: https://dspfirst.gatech.edu/spfirst/LectureSlides/SPFirstLectureSlides.html"
+  },
+  {
+    "id": "thinkdsp",
+    "kind": "textbook",
+    "title": "Allen B. Downey, Think DSP (Green Tea Press), free PDF",
+    "url": "https://greenteapress.com/wp/think-dsp/",
+    "local_path": "library/ece200/thinkdsp/thinkdsp.pdf",
+    "license": "CC BY-NC 3.0 Unported (book); the companion code is MIT-licensed",
+    "notes": "Python-first. Page numbers in this app are PDF pages; the printed book page is 12 lower."
+  },
+  {
+    "id": "barry-ch66-dtft",
+    "kind": "notes",
+    "title": "DRAFT DSP First chapter 66: The Discrete-Time Fourier Transform (McClellan, Schafer & Yoder)",
+    "url": "https://barry.ece.gatech.edu/2026/handouts/Chap66_DTFT.pdf",
+    "local_path": "library/ece200/gt2026-barry/ch66_dtft.pdf",
+    "license": "(c) J. H. McClellan, R. W. Schafer & M. A. Yoder, all rights reserved; draft handed out on John Barry's Georgia Tech ECE 2026 course site (personal study copy)",
+    "notes": "34-page draft chapter. Its end-of-chapter problems have no published solutions."
+  },
+  {
+    "id": "barry-ch67-dft",
+    "kind": "notes",
+    "title": "DRAFT DSP First chapter 67: The Discrete Fourier Transform (McClellan, Schafer & Yoder)",
+    "url": "https://barry.ece.gatech.edu/2026/handouts/Chap67_DFT.pdf",
+    "local_path": "library/ece200/gt2026-barry/ch67_dft.pdf",
+    "license": "(c) J. H. McClellan, R. W. Schafer & M. A. Yoder, all rights reserved; draft handed out on John Barry's Georgia Tech ECE 2026 course site (personal study copy)",
+    "notes": "54-page draft chapter: DFT, properties, DT Fourier series (67-5), windows, spectrogram, FFT."
+  },
+  {
+    "id": "barry-tables-q2",
+    "kind": "reference",
+    "title": "Georgia Tech ECE 2026 tables: DTFT pairs and properties, N-point DFT pairs and properties (2 pp)",
+    "url": "https://barry.ece.gatech.edu/2026/handouts/tablesQ2.pdf",
+    "local_path": "library/ece200/gt2026-barry/tables_q2.pdf",
+    "license": "All rights reserved; posted publicly on Georgia Tech course sites (personal study copy)",
+    "notes": "Page 1 is DTFT, page 2 is DFT. Copy what you need onto your own note sheet."
+  },
+  {
+    "id": "barry-final-tables",
+    "kind": "reference",
+    "title": "Georgia Tech ECE 2026 final-exam tables: DTFT, DFT and z-transform (2 pp)",
+    "url": "https://barry.ece.gatech.edu/2026/handouts/Final_Tables.pdf",
+    "local_path": "library/ece200/gt2026-barry/fin_tables.pdf",
+    "license": "All rights reserved; posted publicly on Georgia Tech course sites (personal study copy)",
+    "notes": "The z-transform half is ECE 350 material, not ECE 200."
+  },
+  {
+    "id": "dspfirst-db",
+    "kind": "problems",
+    "title": "DSP First problem database: Georgia Tech problem sets, quizzes and finals with solutions (chapters 2-6 used)",
+    "url": "https://dspfirst.gatech.edu/database/?d=homework&chap=2",
+    "license": "All rights reserved (c) Pearson Education (Pearson single-computer license on dspfirst.gatech.edu/license.html, checked 2026-10-19); publicly posted companion content, personal study copy",
+    "notes": "Local folder: library/ece200/dspfirst-db/chNN/. One statement PDF per problem (pNNN.pdf) and separate solution images (pNNNsK.png). Whether a problem came from a quiz, final or homework is inferred from Georgia Tech file names."
+  },
+  {
+    "id": "gt2026-barry-exams",
+    "kind": "solutions",
+    "title": "John Barry's archive of Georgia Tech ECE 2026 quizzes and finals with answer keys (2004-2026)",
+    "url": "https://barry.ece.gatech.edu/2026/exams.html",
+    "license": "All rights reserved; posted publicly on Georgia Tech course sites (personal study copy)",
+    "notes": "Local folder: library/ece200/gt2026-barry/. Most PDFs hold the blank exam followed by the answer key. Problems used as practice sets here were checked by eye: blank page first, key page second."
+  }
+]

@@ -1,0 +1,405 @@
+{
+  "_about": "ECE 200 term week 4. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 4). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 4,
+  "readings": [
+    {
+      "id": "ece200-w4-spf-l10",
+      "resource": "spf-L10",
+      "sections": "Lecture 10: FIR Filtering Intro. All slides",
+      "est_min": 30
+    },
+    {
+      "id": "ece200-w4-thinkdsp-ch8",
+      "resource": "thinkdsp",
+      "sections": "Chapter 8, Filtering and convolution: 8.1 Smoothing and 8.2 Convolution (chapter starts book p. 89)",
+      "page": 101,
+      "est_min": 20,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "dspdb-w4-fir",
+      "title": "DSP First problems: DT signals, FIR filters, impulse response",
+      "source": "DSP First problem database (Georgia Tech ECE 2025/2026 problem sets, quizzes and finals, 1993-2002)",
+      "resource": "dspfirst-db",
+      "notes": "Each statement PDF holds only the problem (checked by eye for every problem in this set); the worked solution is a separate scanned or typeset image. Problems are old Georgia Tech work, labelled quiz/final/homework from their file names.",
+      "problems": [
+        {
+          "id": "c5-p011",
+          "label": "DSP First DB 5-11 (GT quiz, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "impulse and step signals"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p011.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p011s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p037",
+          "label": "DSP First DB 5-37 (GT homework, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "unit step",
+            "3-point averager"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p037.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p037s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p033",
+          "label": "DSP First DB 5-33 (GT homework, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "unit step",
+            "4-point averager"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p033.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p033s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p008",
+          "label": "DSP First DB 5-8 (GT homework, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "running average",
+            "step response"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p008.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p008s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p012",
+          "label": "DSP First DB 5-12 (GT quiz, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "block diagram",
+            "difference equation"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p012.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p012s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p010",
+          "label": "DSP First DB 5-10 (GT homework, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "block diagram",
+            "difference equation"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p010.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p010s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p005",
+          "label": "DSP First DB 5-5 (GT homework, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "block diagram",
+            "impulse response"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p005.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p005s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p041",
+          "label": "DSP First DB 5-41 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "impulse response",
+            "difference equation",
+            "linearity"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p041.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p041s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p030",
+          "label": "DSP First DB 5-30 (GT quiz, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "step response",
+            "frequency response preview"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p030.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p030s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p031",
+          "label": "DSP First DB 5-31 (GT quiz, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "step response",
+            "frequency response preview"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p031.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p031s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p051",
+          "label": "DSP First DB 5-51 (GT quiz, sp_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "FIR output",
+            "impulse inputs"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p051.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p051s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p067",
+          "label": "DSP First DB 5-67 (GT quiz, w_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "impulse response",
+            "FIR output"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p067.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p067s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p052",
+          "label": "DSP First DB 5-52 (GT quiz, sp_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "impulse response",
+            "complex exponential input"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p052.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p052s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p014",
+          "label": "DSP First DB 5-14 (GT quiz, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex exponential input"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p014.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p014s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p006",
+          "label": "DSP First DB 5-6 (GT homework, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "FIR output",
+            "impulse response"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p006.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p006s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p001",
+          "label": "DSP First DB 5-1 (GT homework, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "step response",
+            "impulse response"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p001.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p001s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p056",
+          "label": "DSP First DB 5-56 (GT quiz, sp_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "match output to filter"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p056.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p056s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p076",
+          "label": "DSP First DB 5.6-76 (GT quiz, sp_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "filter coefficients from h[n]"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p076.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p076s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p024",
+          "label": "DSP First DB 5-24 (GT homework, f_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "time invariance",
+            "causality"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p024.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p024s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p071",
+          "label": "DSP First DB 5-71 (GT homework, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "FIR output",
+            "MATLAB"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p071.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p071s1.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece200-w04",
+      "title": "Signal drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "fir_output",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

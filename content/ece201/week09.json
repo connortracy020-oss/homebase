@@ -1,0 +1,632 @@
+{
+  "_about": "ECE 201 term week 9. Videos for this week come from videos.json (osu_week = 9). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 9,
+  "readings": [
+    {
+      "id": "ece201-w9-ulaby-5-1",
+      "resource": "ulaby-cad3e",
+      "sections": "5-1 and 5-2 (step, ramp, pulse and exponential waveforms; capacitors) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 45
+    },
+    {
+      "id": "ece201-w9-6002-L12",
+      "resource": "mit6002-notes-L12",
+      "sections": "Lecture 12 notes (capacitors and first-order systems), to review after the video",
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "ece201-w9-fiore-8",
+      "resource": "fiore-dc",
+      "sections": "8.2 Capacitance and Capacitors, 8.3 Initial and Steady-State Analysis of RC Circuits",
+      "est_min": 35,
+      "page": 261,
+      "optional": true
+    },
+    {
+      "id": "ece201-w9-up2-8",
+      "resource": "openstax-up2-8-1",
+      "sections": "8.1 to 8.3 (capacitance, series and parallel, stored energy; physics background)",
+      "est_min": 30,
+      "optional": true
+    },
+    {
+      "id": "ece201-w9-equations",
+      "resource": "ulaby-equations",
+      "sections": "Equation summary, chapters 3 and 4 (for your Midterm 2 formula page)",
+      "est_min": 10,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w9-ulaby-ex",
+      "title": "Ulaby chapter 5 exercises: waveforms and capacitors",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Exercise 5-3 refers to Fig. 5-6 in the book. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex5-1",
+          "label": "Exercise 5-1",
+          "key_type": "official_worked",
+          "topics": [
+            "step functions",
+            "ramp"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 81,
+            "start": "Exercise 5-1",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              81,
+              82
+            ]
+          }
+        },
+        {
+          "id": "ex5-2",
+          "label": "Exercise 5-2",
+          "key_type": "official_worked",
+          "topics": [
+            "step functions"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 83,
+            "start": "Exercise 5-2",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 83,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-3",
+          "label": "Exercise 5-3",
+          "key_type": "official_worked",
+          "topics": [
+            "step functions",
+            "switches"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 84,
+            "start": "Exercise 5-3",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 84,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-4",
+          "label": "Exercise 5-4",
+          "key_type": "official_worked",
+          "topics": [
+            "exponentials",
+            "time constant"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 85,
+            "start": "Exercise 5-4",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 85,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-5",
+          "label": "Exercise 5-5",
+          "key_type": "official_worked",
+          "topics": [
+            "exponentials",
+            "power"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 86,
+            "start": "Exercise 5-5",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 86,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-6",
+          "label": "Exercise 5-6",
+          "key_type": "official_worked",
+          "topics": [
+            "capacitors",
+            "energy"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 87,
+            "start": "Exercise 5-6",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 87,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-7",
+          "label": "Exercise 5-7",
+          "key_type": "official_worked",
+          "topics": [
+            "capacitors"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 88,
+            "start": "Exercise 5-7",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 88,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-8",
+          "label": "Exercise 5-8",
+          "key_type": "official_worked",
+          "topics": [
+            "capacitors",
+            "dc steady state"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 89,
+            "start": "Exercise 5-8",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 89,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-9",
+          "label": "Exercise 5-9",
+          "key_type": "official_worked",
+          "topics": [
+            "capacitors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 90,
+            "start": "Exercise 5-9",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 90,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex5-10",
+          "label": "Exercise 5-10",
+          "key_type": "official_worked",
+          "topics": [
+            "capacitors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 91,
+            "start": "Exercise 5-10",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 91,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w9-ulaby-cq",
+      "title": "Ulaby chapter 5 concept questions: waveforms and capacitors",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch5",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq5-3",
+          "label": "Concept question 5-3",
+          "key_type": "official_answer",
+          "topics": [
+            "ramp"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 3,
+            "start": "Concept Question 5-3",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 3
+          }
+        },
+        {
+          "id": "cq5-4",
+          "label": "Concept question 5-4",
+          "key_type": "official_answer",
+          "topics": [
+            "step functions"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 4,
+            "start": "Concept Question 5-4",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 4
+          }
+        },
+        {
+          "id": "cq5-5",
+          "label": "Concept question 5-5",
+          "key_type": "official_answer",
+          "topics": [
+            "step functions"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 5,
+            "start": "Concept Question 5-5",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 5
+          }
+        },
+        {
+          "id": "cq5-6",
+          "label": "Concept question 5-6",
+          "key_type": "official_answer",
+          "topics": [
+            "time constant"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 6,
+            "start": "Concept Question 5-6",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 6
+          }
+        },
+        {
+          "id": "cq5-8",
+          "label": "Concept question 5-8",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors",
+            "dc steady state"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 8,
+            "start": "Concept Question 5-8",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 8
+          }
+        },
+        {
+          "id": "cq5-9",
+          "label": "Concept question 5-9",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 9,
+            "start": "Concept Question 5-9",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 9
+          }
+        },
+        {
+          "id": "cq5-10",
+          "label": "Concept question 5-10",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors",
+            "energy"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 10,
+            "start": "Concept Question 5-10",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 10
+          }
+        },
+        {
+          "id": "cq5-11",
+          "label": "Concept question 5-11",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors in series"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 11,
+            "start": "Concept Question 5-11",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 11
+          }
+        },
+        {
+          "id": "cq5-12",
+          "label": "Concept question 5-12",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors in series"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 12,
+            "start": "Concept Question 5-12",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch5.pdf",
+            "page": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w9-kuphaldt",
+      "title": "Kuphaldt worksheet: capacitors",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (caps), CC BY 1.0",
+      "resource": "kuphaldt-caps",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "caps-q6",
+          "label": "Capacitors worksheet, question 6: charge stored on a capacitor",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors",
+            "charge"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 2,
+            "start": "Question 6",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 5,
+            "start": "Answer 6",
+            "end": "Answer 7|Notes"
+          }
+        },
+        {
+          "id": "caps-q7",
+          "label": "Capacitors worksheet, question 7: current from dv/dt",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors",
+            "i = C dv/dt"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 3,
+            "start": "Question 7",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 5,
+            "start": "Answer 7",
+            "end": "Answer 8|Notes"
+          }
+        },
+        {
+          "id": "caps-q8",
+          "label": "Capacitors worksheet, question 8: series capacitors with a changing voltage",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors in series"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 3,
+            "start": "Question 8",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 5,
+            "start": "Answer 8",
+            "end": "Answer 9|Notes"
+          }
+        },
+        {
+          "id": "caps-q9",
+          "label": "Capacitors worksheet, question 9: two capacitors in series",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors in series"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 3,
+            "start": "Question 9",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 5,
+            "start": "Answer 9",
+            "end": "Answer 10|Notes"
+          }
+        },
+        {
+          "id": "caps-q10",
+          "label": "Capacitors worksheet, question 10: total capacitance of a network",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 3,
+            "start": "Question 10",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/caps.pdf",
+            "page": 5,
+            "start": "Answer 10",
+            "end": "Answer 11|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w9-fiore",
+      "title": "Fiore: capacitor networks and DC steady state (answers only)",
+      "source": "James Fiore, DC Electrical Circuit Analysis (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-dc",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c8-p1",
+          "label": "Problem 8.1: effective capacitance",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 287,
+            "start": "1. For the",
+            "end": "2. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "start": "8 Capacitors"
+          }
+        },
+        {
+          "id": "c8-p3",
+          "label": "Problem 8.3: effective capacitance, second network",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors in series/parallel"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 287,
+            "start": "3. Given the",
+            "end": "4. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "start": "8 Capacitors"
+          }
+        },
+        {
+          "id": "c8-p5",
+          "label": "Problem 8.5: voltage across each capacitor",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors",
+            "dc steady state"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 288,
+            "start": "5. Determine the",
+            "end": "6. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "start": "8 Capacitors"
+          }
+        },
+        {
+          "id": "c8-p7",
+          "label": "Problem 8.7: initial voltages across each component",
+          "key_type": "official_answer",
+          "topics": [
+            "capacitors",
+            "initial conditions"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 288,
+            "start": "7. Determine the",
+            "end": "8. Given the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 371,
+            "start": "8 Capacitors"
+          }
+        }
+      ]
+    }
+  ]
+}

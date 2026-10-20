@@ -1,0 +1,616 @@
+{
+  "_about": "MTH 254 term week 5. Videos come from videos.json (osu_week = 5). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+  "week": 5,
+  "readings": [
+    {
+      "id": "mth254-w5-os-4-3",
+      "resource": "openstax-c3-4-3",
+      "sections": "4.3 Partial Derivatives",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w5-os-4-5",
+      "resource": "openstax-c3-4-5",
+      "sections": "4.5 The Chain Rule",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w5-os-4-6",
+      "resource": "openstax-c3-4-6",
+      "sections": "4.6 Directional Derivatives and the Gradient",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w5-clp-2-2-2-4",
+      "resource": "clp3-text",
+      "sections": "2.2 Partial Derivatives, 2.3 Higher Order Derivatives, 2.4 The Chain Rule (PDF page 123)",
+      "page": 104,
+      "est_min": 50,
+      "optional": true
+    },
+    {
+      "id": "mth254-w5-clp-2-7",
+      "resource": "clp3-text",
+      "sections": "2.7 Directional Derivatives and the Gradient",
+      "page": 169,
+      "est_min": 30,
+      "optional": true
+    },
+    {
+      "id": "mth254-w5-sg",
+      "resource": "osu-sg-parks",
+      "sections": "Lessons 12-14: partial derivatives, chain rule, directional derivatives and the gradient",
+      "page": 37,
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "mth254-w5-briggs",
+      "resource": "briggs-mvc-2e",
+      "sections": "Briggs 12.4-12.6 (reference only; the book isn't free)",
+      "est_min": 0,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "sc-supp-2c-2e",
+      "title": "18.02 exercises: differentials, chain rule, gradient",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 2 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-supp2",
+      "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages.",
+      "problems": [
+        {
+          "id": "2C-1",
+          "label": "Exercise 2C-1: computing differentials",
+          "key_type": "official_worked",
+          "topics": [
+            "differentials"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 2,
+            "start": "2C-1",
+            "end": "2C-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 3,
+            "start": "2C-1",
+            "end": "2C-2"
+          }
+        },
+        {
+          "id": "2C-2",
+          "label": "Exercise 2C-2: possible error in the volume of a box",
+          "key_type": "official_worked",
+          "topics": [
+            "differentials",
+            "linear approximation"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 2,
+            "start": "2C-2",
+            "end": "2C-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 3,
+            "start": "2C-2",
+            "end": "2C-3"
+          }
+        },
+        {
+          "id": "2C-3",
+          "label": "Exercise 2C-3: how sensitive a triangle's area is to errors",
+          "key_type": "official_worked",
+          "topics": [
+            "differentials"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 2,
+            "start": "2C-3",
+            "end": "2C-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 3,
+            "start": "2C-3",
+            "end": "2C-4"
+          }
+        },
+        {
+          "id": "2C-5",
+          "label": "Exercise 2C-5: differentials of implicitly defined functions",
+          "key_type": "official_worked",
+          "topics": [
+            "differentials"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 3,
+            "start": "2C-5",
+            "end": "2D."
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 3,
+            "start": "2C-5",
+            "end": "2D."
+          }
+        },
+        {
+          "id": "2E-1",
+          "label": "Exercise 2E-1: dw/dt two ways: chain rule and substitution",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 4,
+            "start": "2E-1",
+            "end": "2E-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 6,
+            "start": "2E-1",
+            "end": "2E-2"
+          }
+        },
+        {
+          "id": "2E-2",
+          "label": "Exercise 2E-2: chain rule when only the gradient is known",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 4,
+            "start": "2E-2",
+            "end": "2E-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 6,
+            "start": "2E-2",
+            "end": "2E-3"
+          }
+        },
+        {
+          "id": "2E-7",
+          "label": "Exercise 2E-7: the chain rule in matrix form",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule",
+            "gradient"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 5,
+            "start": "2E-7",
+            "end": "2E-8"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 7,
+            "start": "2E-7",
+            "end": "2E-8"
+          }
+        },
+        {
+          "id": "2E-8",
+          "label": "Exercise 2E-8: showing composite functions satisfy PDEs",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 5,
+            "start": "2E-8",
+            "end": "2F."
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 7,
+            "start": "2E-8",
+            "end": "2F."
+          }
+        },
+        {
+          "id": "2D-1",
+          "label": "Exercise 2D-1: gradients and directional derivatives",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient",
+            "directional derivative"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 3,
+            "start": "2D-1",
+            "end": "2D-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "pages": [
+              3,
+              4
+            ]
+          }
+        },
+        {
+          "id": "2D-2",
+          "label": "Exercise 2D-2: largest and smallest directional derivatives",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 3,
+            "start": "2D-2",
+            "end": "2D-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 4,
+            "end": "2D-3"
+          }
+        },
+        {
+          "id": "2D-3",
+          "label": "Exercise 2D-3: tangent planes to level surfaces",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient",
+            "level curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 3,
+            "start": "2D-3",
+            "end": "2D-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 4,
+            "start": "2D-3",
+            "end": "2D-4"
+          }
+        },
+        {
+          "id": "2D-8",
+          "label": "Exercise 2D-8: where pressure drops fastest",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient",
+            "tangent planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 4,
+            "start": "2D-8",
+            "end": "2D-9"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 5,
+            "start": "2D-8",
+            "end": "2D-9"
+          }
+        },
+        {
+          "id": "2D-9",
+          "label": "Exercise 2D-9: gradient and directional derivatives from a contour map",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 4,
+            "start": "2D-9",
+            "end": "2E."
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 5,
+            "start": "2D-9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sc-pset5-part2",
+      "title": "18.02 Problem Set 5, Part II",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 5 Part II with posted solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-pset5",
+      "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages.",
+      "problems": [
+        {
+          "id": "p1",
+          "label": "Problem 1: differentials for flow resistance",
+          "key_type": "official_worked",
+          "topics": [
+            "differentials",
+            "linear approximation"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset5.pdf",
+            "page": 2,
+            "start": "Problem 1 (",
+            "end": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset5sol.pdf",
+            "page": 1,
+            "start": "Problem 1",
+            "end": "Problem 2"
+          }
+        },
+        {
+          "id": "p2",
+          "label": "Problem 2: the material derivative (chain rule)",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset5.pdf",
+            "page": 2,
+            "start": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset5sol.pdf",
+            "page": 1,
+            "start": "Problem 2",
+            "end": "Problem 3"
+          }
+        },
+        {
+          "id": "p3",
+          "label": "Problem 3: incompressible and stratified flow (chain rule)",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule",
+            "gradient"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset5.pdf",
+            "page": 3,
+            "start": "Problem 3 (",
+            "end": "Problem 4 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset5sol.pdf",
+            "page": 1,
+            "start": "Problem 3",
+            "end": "Problem 4"
+          }
+        },
+        {
+          "id": "p4",
+          "label": "Problem 4: gradient, level curve and directional derivative",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient",
+            "directional derivative",
+            "level curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset5.pdf",
+            "page": 3,
+            "start": "Problem 4 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset5sol.pdf",
+            "pages": [
+              1,
+              2
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "clp-2-2-2-7",
+      "title": "CLP-3 problems: partials, chain rule, gradient",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-2.2-4",
+          "label": "CLP-3 2.2 Q4: first partials at a point",
+          "key_type": "official_worked",
+          "topics": [
+            "partial derivatives"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 36,
+            "start": "Q[4]",
+            "end": "Q[5]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              244,
+              245
+            ]
+          }
+        },
+        {
+          "id": "clp-2.2-6",
+          "label": "CLP-3 2.2 Q6: implicit partial derivatives (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "partial derivatives",
+            "implicit differentiation"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 37,
+            "start": "Q[6]",
+            "end": "Q[7]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              245,
+              246
+            ]
+          }
+        },
+        {
+          "id": "clp-2.4-3",
+          "label": "CLP-3 2.4 Q3: chain rule with numbers (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 39,
+            "start": "Q[3]",
+            "end": "Q[4]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              255,
+              256
+            ]
+          }
+        },
+        {
+          "id": "clp-2.4-6",
+          "label": "CLP-3 2.4 Q6: chain rule two ways",
+          "key_type": "official_worked",
+          "topics": [
+            "chain rule"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 40,
+            "start": "Q[6]",
+            "end": "Q[7]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              257,
+              258
+            ]
+          }
+        },
+        {
+          "id": "clp-2.7-8",
+          "label": "CLP-3 2.7 Q8: a hiker on a mountain (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient",
+            "directional derivative"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 51,
+            "start": "Q[8]",
+            "end": "Q[9]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 305,
+            "start": "S-8:",
+            "end": "S-9:"
+          }
+        },
+        {
+          "id": "clp-2.7-10",
+          "label": "CLP-3 2.7 Q10: a mosquito keeping its temperature (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 51,
+            "start": "Q[10]",
+            "end": "Q[11]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 306,
+            "start": "S-10:",
+            "end": "S-11:"
+          }
+        },
+        {
+          "id": "clp-2.7-12",
+          "label": "CLP-3 2.7 Q12: maximum rate of change and directions (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient",
+            "directional derivative"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 51,
+            "start": "Q[12]",
+            "end": "Q[13]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 307,
+            "start": "S-12:",
+            "end": "S-13:"
+          }
+        },
+        {
+          "id": "clp-2.7-19",
+          "label": "CLP-3 2.7 Q19: tangent to a level curve from the gradient (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "gradient",
+            "level curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 53,
+            "start": "Q[19]",
+            "end": "Q[20]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 311,
+            "start": "S-19:",
+            "end": "S-20:"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-mth254-w05",
+      "title": "Calculus drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "gradient_directional",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

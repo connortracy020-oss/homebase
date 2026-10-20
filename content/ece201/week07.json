@@ -1,0 +1,677 @@
+{
+  "_about": "ECE 201 term week 7. Videos for this week come from videos.json (osu_week = 7). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 7,
+  "readings": [
+    {
+      "id": "ece201-w7-ulaby-3-6",
+      "resource": "ulaby-cad3e",
+      "sections": "3-6 to 3-8 (Thevenin/Norton methods, maximum power transfer) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 35
+    },
+    {
+      "id": "ece201-w7-ulaby-4-1",
+      "resource": "ulaby-cad3e",
+      "sections": "4-1 to 4-4 (op-amp model, negative feedback, ideal op-amp, inverting amplifier) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 40
+    },
+    {
+      "id": "ece201-w7-fiore-6-5",
+      "resource": "fiore-dc",
+      "sections": "6.5 Norton's Theorem and 6.6 Maximum Power Transfer",
+      "est_min": 25,
+      "page": 187,
+      "optional": true
+    },
+    {
+      "id": "ece201-w7-fiore-op-2",
+      "resource": "fiore-opamps",
+      "sections": "2.2 What Is An Op Amp?",
+      "est_min": 25,
+      "page": 63,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w7-ulaby-ex",
+      "title": "Ulaby exercises: Thevenin/Norton, maximum power, op-amp model",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Exercises 4-1 to 4-3 build on an example or figure in the book (Example 4-1, Fig. 4-9), so have Ulaby open. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex3-12",
+          "label": "Exercise 3-12",
+          "key_type": "official_worked",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 55,
+            "start": "Exercise 3-12",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              55,
+              56
+            ]
+          }
+        },
+        {
+          "id": "ex3-13",
+          "label": "Exercise 3-13",
+          "key_type": "official_worked",
+          "topics": [
+            "Norton",
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 57,
+            "start": "Exercise 3-13",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              57,
+              58
+            ]
+          }
+        },
+        {
+          "id": "ex3-14",
+          "label": "Exercise 3-14",
+          "key_type": "official_worked",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 59,
+            "start": "Exercise 3-14",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              59,
+              60,
+              61
+            ]
+          }
+        },
+        {
+          "id": "ex4-1",
+          "label": "Exercise 4-1",
+          "key_type": "official_worked",
+          "topics": [
+            "op-amp model"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 65,
+            "start": "Exercise 4-1",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "pages": [
+              65,
+              66
+            ]
+          }
+        },
+        {
+          "id": "ex4-2",
+          "label": "Exercise 4-2",
+          "key_type": "official_worked",
+          "topics": [
+            "op-amp model",
+            "gain"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 67,
+            "start": "Exercise 4-2",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 67,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex4-3",
+          "label": "Exercise 4-3",
+          "key_type": "official_worked",
+          "topics": [
+            "noninverting amplifier",
+            "saturation"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 68,
+            "start": "Exercise 4-3",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 68,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w7-ulaby-cq",
+      "title": "Ulaby concept questions: Thevenin/Norton, max power, op-amp basics",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch4",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq3-13",
+          "label": "Concept question 3-13",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 13,
+            "start": "Concept Question 3-13",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 13
+          }
+        },
+        {
+          "id": "cq3-14",
+          "label": "Concept question 3-14",
+          "key_type": "official_answer",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 14,
+            "start": "Concept Question 3-14",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 14
+          }
+        },
+        {
+          "id": "cq3-15",
+          "label": "Concept question 3-15",
+          "key_type": "official_answer",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 15,
+            "start": "Concept Question 3-15",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 15
+          }
+        },
+        {
+          "id": "cq4-1",
+          "label": "Concept question 4-1",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 1,
+            "start": "Concept Question 4-1",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 1
+          }
+        },
+        {
+          "id": "cq4-2",
+          "label": "Concept question 4-2",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 2,
+            "start": "Concept Question 4-2",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 2
+          }
+        },
+        {
+          "id": "cq4-5",
+          "label": "Concept question 4-5",
+          "key_type": "official_answer",
+          "topics": [
+            "negative feedback"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 5,
+            "start": "Concept Question 4-5",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 5
+          }
+        },
+        {
+          "id": "cq4-7",
+          "label": "Concept question 4-7",
+          "key_type": "official_answer",
+          "topics": [
+            "ideal op-amp"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 7,
+            "start": "Concept Question 4-7",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 7
+          }
+        },
+        {
+          "id": "cq4-8",
+          "label": "Concept question 4-8",
+          "key_type": "official_answer",
+          "topics": [
+            "ideal op-amp"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 8,
+            "start": "Concept Question 4-8",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w7-kuphaldt",
+      "title": "Kuphaldt worksheets: Norton, maximum power, first op-amp ideas",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (thev, opamp1, opamp3), CC BY 1.0",
+      "resource": "kuphaldt-thev",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "thev-q30",
+          "label": "Thevenin/Norton worksheet, question 30: Thevenin to Norton",
+          "key_type": "official_answer",
+          "topics": [
+            "Norton",
+            "source transformation"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 26,
+            "start": "Question 30",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 45,
+            "start": "Answer 30",
+            "end": "Answer 31|Notes"
+          }
+        },
+        {
+          "id": "thev-q31",
+          "label": "Thevenin/Norton worksheet, question 31: Norton to Thevenin",
+          "key_type": "official_answer",
+          "topics": [
+            "Norton",
+            "source transformation"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 26,
+            "start": "Question 31",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 45,
+            "start": "Answer 31",
+            "end": "Answer 32|Notes"
+          }
+        },
+        {
+          "id": "thev-q36",
+          "label": "Thevenin/Norton worksheet, question 36: Thevenin equivalent for a load in a bridge-like network",
+          "key_type": "official_answer",
+          "topics": [
+            "Thevenin"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 32,
+            "start": "Question 36",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 47,
+            "start": "Answer 36",
+            "end": "Answer 37|Notes"
+          }
+        },
+        {
+          "id": "thev-q37",
+          "label": "Thevenin/Norton worksheet, question 37: load power versus load resistance",
+          "key_type": "official_answer",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 33,
+            "start": "Question 37",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 48,
+            "start": "Answer 37",
+            "end": "Answer 38|Notes"
+          }
+        },
+        {
+          "id": "thev-q39",
+          "label": "Thevenin/Norton worksheet, question 39: load resistance for maximum power",
+          "key_type": "official_answer",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 33,
+            "start": "Question 39",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 48,
+            "start": "Answer 39",
+            "end": "Answer 40|Notes"
+          }
+        },
+        {
+          "id": "thev-q41",
+          "label": "Thevenin/Norton worksheet, question 41: source resistance for maximum load power",
+          "key_type": "official_answer",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 34,
+            "start": "Question 41",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/thev.pdf",
+            "page": 48,
+            "start": "Answer 41",
+            "end": "Answer 42|Notes"
+          }
+        },
+        {
+          "id": "opamp1-q10",
+          "label": "Op-amp basics worksheet, question 10: what the output does for a given input difference",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp1.pdf",
+            "page": 10,
+            "start": "Question 10",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp1.pdf",
+            "page": 18,
+            "start": "Answer 10",
+            "end": "Answer 11|Notes"
+          }
+        },
+        {
+          "id": "opamp1-q11",
+          "label": "Op-amp basics worksheet, question 11: output polarity for given inputs",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp1.pdf",
+            "page": 11,
+            "start": "Question 11",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp1.pdf",
+            "page": 19,
+            "start": "Answer 11",
+            "end": "Answer 12|Notes"
+          }
+        },
+        {
+          "id": "opamp3-q4",
+          "label": "Negative feedback worksheet, question 4: open-loop gain arithmetic",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps",
+            "open-loop gain"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp3.pdf",
+            "page": 3,
+            "start": "Question 4",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp3.pdf",
+            "page": 20,
+            "start": "Answer 4",
+            "end": "Answer 5|Notes"
+          }
+        },
+        {
+          "id": "opamp3-q8",
+          "label": "Negative feedback worksheet, question 8: voltage follower table",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps",
+            "follower"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp3.pdf",
+            "page": 5,
+            "start": "Question 8",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp3.pdf",
+            "page": 21,
+            "start": "Answer 8",
+            "end": "Answer 9|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w7-fiore",
+      "title": "Fiore: Norton and maximum power (answers only)",
+      "source": "James Fiore, DC Electrical Circuit Analysis (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-dc",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c6-p47",
+          "label": "Problem 6.47: Norton equivalent (uses Figure 6.61)",
+          "key_type": "official_answer",
+          "topics": [
+            "Norton"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              206
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p51",
+          "label": "Problem 6.51: Norton equivalent, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "Norton"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 207,
+            "start": "51. Given the",
+            "end": "52. Determine the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p53",
+          "label": "Problem 6.53: Norton equivalent, third circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "Norton"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "page": 207,
+            "start": "53. Given the",
+            "end": "54. Given the"
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p55",
+          "label": "Problem 6.55: load power and the maximum-power load (uses Figure 6.62)",
+          "key_type": "official_answer",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              206,
+              207
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        },
+        {
+          "id": "c6-p57",
+          "label": "Problem 6.57: load power and the maximum-power load, second circuit (uses Figure 6.65)",
+          "key_type": "official_answer",
+          "topics": [
+            "maximum power transfer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              207
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              368
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece201-w07",
+      "title": "Circuit drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "thevenin",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "max_power",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

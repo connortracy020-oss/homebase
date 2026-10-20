@@ -1,0 +1,399 @@
+{
+  "_about": "MTH 254 term week 7. Videos come from videos.json (osu_week = 7). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+  "week": 7,
+  "readings": [
+    {
+      "id": "mth254-w7-os-5-1",
+      "resource": "openstax-c3-5-1",
+      "sections": "5.1 Double Integrals over Rectangular Regions",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w7-os-5-2",
+      "resource": "openstax-c3-5-2",
+      "sections": "5.2 Double Integrals over General Regions",
+      "est_min": 40
+    },
+    {
+      "id": "mth254-w7-clp-3-1",
+      "resource": "clp3-text",
+      "sections": "3.1 Double Integrals (vertical and horizontal slices, volumes, examples)",
+      "page": 235,
+      "est_min": 60,
+      "optional": true
+    },
+    {
+      "id": "mth254-w7-sg",
+      "resource": "osu-sg-parks",
+      "sections": "Lessons 18-19: double integrals over rectangles and general regions",
+      "page": 51,
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "mth254-w7-briggs",
+      "resource": "briggs-mvc-2e",
+      "sections": "Briggs 13.1-13.2 (reference only; the book isn't free)",
+      "est_min": 0,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "sc-supp-3a",
+      "title": "18.02 exercises: double integrals in rectangular coordinates",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 3 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-supp3",
+      "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages.",
+      "problems": [
+        {
+          "id": "3A-2",
+          "label": "Exercise 3A-2: set up iterated integrals over regions, both orders",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+            "page": 1,
+            "start": "3A-2",
+            "end": "3A-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+            "page": 1,
+            "start": "3A-2",
+            "end": "3A-3"
+          }
+        },
+        {
+          "id": "3A-3",
+          "label": "Exercise 3A-3: evaluate double integrals over regions",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+            "page": 1,
+            "start": "3A-3",
+            "end": "3A-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+            "pages": [
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "id": "3A-4",
+          "label": "Exercise 3A-4: volumes under surfaces",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals",
+            "volume"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+            "page": 1,
+            "start": "3A-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+            "page": 2,
+            "start": "3A-4",
+            "end": "3A-5"
+          }
+        },
+        {
+          "id": "3A-5",
+          "label": "Exercise 3A-5: evaluate by changing the order of integration",
+          "key_type": "official_worked",
+          "topics": [
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+            "page": 2,
+            "start": "3A-5",
+            "end": "3A-6"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+            "page": 2,
+            "start": "3A-5",
+            "end": "3A-6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sc-pset7-part2a",
+      "title": "18.02 Problem Set 7, Part II: a volume",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 7 Part II with posted solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-pset7",
+      "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages.",
+      "problems": [
+        {
+          "id": "p1",
+          "label": "Problem 1: volume of a solid in the first octant",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals",
+            "volume"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset7.pdf",
+            "page": 2,
+            "start": "Problem 1 (",
+            "end": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset7sol.pdf",
+            "page": 1,
+            "end": "2. (a)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "clp-3-1",
+      "title": "CLP-3 problems: double integrals and order of integration",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-3.1-2",
+          "label": "CLP-3 3.1 Q2: iterated integrals of 12x^2y^3",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              70,
+              71
+            ]
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 376,
+            "start": "S-2:",
+            "end": "S-3:"
+          }
+        },
+        {
+          "id": "clp-3.1-3",
+          "label": "CLP-3 3.1 Q3: integrals over a rectangle and a triangle",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 71,
+            "start": "Q[3]",
+            "end": "Q[4]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              376,
+              377,
+              378
+            ]
+          }
+        },
+        {
+          "id": "clp-3.1-6",
+          "label": "CLP-3 3.1 Q6: reverse the order to evaluate (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 72,
+            "start": "Q[6]",
+            "end": "Q[7]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              379,
+              380
+            ]
+          }
+        },
+        {
+          "id": "clp-3.1-9",
+          "label": "CLP-3 3.1 Q9: integral of sin(y^2) over a triangle (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 72,
+            "start": "Q[9]",
+            "end": "Q[10]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 382,
+            "start": "S-9:",
+            "end": "S-10:"
+          }
+        },
+        {
+          "id": "clp-3.1-10",
+          "label": "CLP-3 3.1 Q10: sketch, then reverse the order (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 72,
+            "start": "Q[10]",
+            "end": "Q[11]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              382,
+              383
+            ]
+          }
+        },
+        {
+          "id": "clp-3.1-12",
+          "label": "CLP-3 3.1 Q12: volume under e^(-x^2) (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals",
+            "volume"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 73,
+            "start": "Q[12]",
+            "end": "Q[13]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              384,
+              385
+            ]
+          }
+        },
+        {
+          "id": "clp-3.1-13",
+          "label": "CLP-3 3.1 Q13: sketch, interchange, evaluate (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 73,
+            "start": "Q[13]",
+            "end": "Q[14]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              385,
+              386
+            ]
+          }
+        },
+        {
+          "id": "clp-3.1-14",
+          "label": "CLP-3 3.1 Q14: an integral that needs the order reversed (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 73,
+            "start": "Q[14]",
+            "end": "Q[15]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              386,
+              387
+            ]
+          }
+        },
+        {
+          "id": "clp-3.1-19",
+          "label": "CLP-3 3.1 Q19: evaluate by reversing the order (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 74,
+            "start": "Q[19]",
+            "end": "Q[20]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              391,
+              392
+            ]
+          }
+        },
+        {
+          "id": "clp-3.1-28",
+          "label": "CLP-3 3.1 Q28: xy over a region between a line and a parabola (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "double integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 75,
+            "start": "Q[28]",
+            "end": "Q[29]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              400,
+              401
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-mth254-w07",
+      "title": "Calculus drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "double_integral",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

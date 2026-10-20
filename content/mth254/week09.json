@@ -1,0 +1,545 @@
+{
+  "_about": "MTH 254 term week 9. Videos come from videos.json (osu_week = 9). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+  "week": 9,
+  "readings": [
+    {
+      "id": "mth254-w9-os-5-4",
+      "resource": "openstax-c3-5-4",
+      "sections": "5.4 Triple Integrals",
+      "est_min": 40
+    },
+    {
+      "id": "mth254-w9-os-2-7",
+      "resource": "openstax-c3-2-7",
+      "sections": "2.7 Cylindrical and Spherical Coordinates (cylindrical and spherical coordinates)",
+      "est_min": 25
+    },
+    {
+      "id": "mth254-w9-os-5-5",
+      "resource": "openstax-c3-5-5",
+      "sections": "5.5 Triple Integrals in Cylindrical and Spherical Coordinates",
+      "est_min": 45
+    },
+    {
+      "id": "mth254-w9-clp-3-5-3-7",
+      "resource": "clp3-text",
+      "sections": "3.5 Triple Integrals, 3.6 Cylindrical Coordinates (PDF page 337), 3.7 Spherical Coordinates (PDF page 347)",
+      "page": 329,
+      "est_min": 60,
+      "optional": true
+    },
+    {
+      "id": "mth254-w9-sg",
+      "resource": "osu-sg-parks",
+      "sections": "Lessons 21-22: triple integrals; cylindrical and spherical coordinates",
+      "page": 61,
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "mth254-w9-briggs",
+      "resource": "briggs-mvc-2e",
+      "sections": "Briggs 13.4-13.5 (reference only; the book isn't free)",
+      "est_min": 0,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "sc-supp-5a-5b",
+      "title": "18.02 exercises: triple integrals, cylindrical and spherical",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 5 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-supp5",
+      "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages.",
+      "problems": [
+        {
+          "id": "5A-2",
+          "label": "Exercise 5A-2: limits for triple integrals in several orders",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 1,
+            "start": "5A-2",
+            "end": "5A-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "page": 1,
+            "start": "5A-2",
+            "end": "5A-3"
+          }
+        },
+        {
+          "id": "5A-3",
+          "label": "Exercise 5A-3: center of mass of a tetrahedron",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 1,
+            "start": "5A-3",
+            "end": "5A-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "page": 1,
+            "start": "5A-3",
+            "end": "5A-4"
+          }
+        },
+        {
+          "id": "5A-4",
+          "label": "Exercise 5A-4: mass and center of mass of a cone",
+          "key_type": "official_worked",
+          "topics": [
+            "cylindrical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 1,
+            "start": "5A-4",
+            "end": "5A-5"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "pages": [
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "id": "5A-5",
+          "label": "Exercise 5A-5: moment of inertia of a pyramid (set up)",
+          "key_type": "official_worked",
+          "topics": [
+            "cylindrical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 1,
+            "start": "5A-5",
+            "end": "5A-6"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "page": 2,
+            "start": "5A-5",
+            "end": "5A-6"
+          }
+        },
+        {
+          "id": "5B-1",
+          "label": "Exercise 5B-1: limits in spherical coordinates",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 2,
+            "start": "5B-1",
+            "end": "5B-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "page": 3,
+            "start": "5B-1"
+          }
+        },
+        {
+          "id": "5B-2",
+          "label": "Exercise 5B-2: center of mass of a solid hemisphere",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 2,
+            "start": "5B-2",
+            "end": "5B-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "page": 4,
+            "start": "5B-2",
+            "end": "5B-3"
+          }
+        },
+        {
+          "id": "5B-3",
+          "label": "Exercise 5B-3: moment of inertia of a cone-shaped solid",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 2,
+            "start": "5B-3",
+            "end": "5B-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "page": 4,
+            "start": "5B-3",
+            "end": "5B-4"
+          }
+        },
+        {
+          "id": "5B-4",
+          "label": "Exercise 5B-4: average distance in a solid sphere",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob5.pdf",
+            "page": 2,
+            "start": "5B-4",
+            "end": "5C."
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol5.pdf",
+            "page": 4,
+            "start": "5B-4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sc-pset10-part2",
+      "title": "18.02 Problem Set 10, Part II",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 10 Part II with posted solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-pset10",
+      "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages.",
+      "problems": [
+        {
+          "id": "p1",
+          "label": "Problem 1: volume and centroid under a cone, over a disk (cylindrical)",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals",
+            "cylindrical coordinates",
+            "center of mass"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset10.pdf",
+            "page": 2,
+            "start": "Problem 1 (",
+            "end": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset10sol.pdf",
+            "pages": [
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "id": "p2",
+          "label": "Problem 2: changing the order of a triple integral",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals",
+            "order of integration"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset10.pdf",
+            "page": 2,
+            "start": "Problem 2 (",
+            "end": "Problem 3 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset10sol.pdf",
+            "pages": [
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "id": "p3",
+          "label": "Problem 3: energy stored in a water tank (starts below Problem 2)",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals",
+            "applications"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset10.pdf",
+            "pages": [
+              2,
+              3
+            ]
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset10sol.pdf",
+            "page": 3,
+            "start": "3. If"
+          }
+        }
+      ]
+    },
+    {
+      "id": "clp-3-5-3-7",
+      "title": "CLP-3 problems: triple integrals in rectangular, cylindrical and spherical coordinates",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-3.5-3",
+          "label": "CLP-3 3.5 Q3: x over a tetrahedron",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 84,
+            "start": "Q[3]",
+            "end": "Q[4]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              446,
+              447
+            ]
+          }
+        },
+        {
+          "id": "clp-3.5-11",
+          "label": "CLP-3 3.5 Q11: mass of a region above a plane (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals",
+            "mass"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 85,
+            "start": "Q[11]",
+            "end": "Q[12]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 459,
+            "start": "S-11:",
+            "end": "S-12:"
+          }
+        },
+        {
+          "id": "clp-3.5-12",
+          "label": "CLP-3 3.5 Q12: x over a region bounded by a parabolic cylinder (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 85,
+            "start": "Q[12]",
+            "end": "Q[13]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              459,
+              460,
+              461
+            ]
+          }
+        },
+        {
+          "id": "clp-3.5-13",
+          "label": "CLP-3 3.5 Q13: z over a region under z = y^2 (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "triple integrals"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 85,
+            "start": "Q[13]",
+            "end": "Q[14]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              461,
+              462
+            ]
+          }
+        },
+        {
+          "id": "clp-3.6-7",
+          "label": "CLP-3 3.6 Q7: integral between two paraboloids (cylindrical) (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "cylindrical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 88,
+            "start": "Q[7]",
+            "end": "Q[8]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 479,
+            "start": "S-7:"
+          }
+        },
+        {
+          "id": "clp-3.6-9",
+          "label": "CLP-3 3.6 Q9: region between a paraboloid and a sphere (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "cylindrical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 88,
+            "start": "Q[9]",
+            "end": "Q[10]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              481,
+              482
+            ]
+          }
+        },
+        {
+          "id": "clp-3.6-15",
+          "label": "CLP-3 3.6 Q15: volume inside a cylinder below a plane (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "cylindrical coordinates",
+            "volume"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 89,
+            "start": "Q[15]",
+            "end": "Q[16]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              485,
+              486
+            ]
+          }
+        },
+        {
+          "id": "clp-3.7-6",
+          "label": "CLP-3 3.7 Q6: volume of the unit ball in spherical coordinates (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 91,
+            "start": "Q[6]",
+            "end": "Q[7]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 491,
+            "start": "S-6:",
+            "end": "S-7:"
+          }
+        },
+        {
+          "id": "clp-3.7-8",
+          "label": "CLP-3 3.7 Q8: z over a cone-and-sphere region (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 91,
+            "start": "Q[8]",
+            "end": "Q[9]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              493,
+              494
+            ]
+          }
+        },
+        {
+          "id": "clp-3.7-12",
+          "label": "CLP-3 3.7 Q12: xz over an eighth of a ball (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 92,
+            "start": "Q[12]",
+            "end": "Q[13]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 498,
+            "start": "S-12:"
+          }
+        },
+        {
+          "id": "clp-3.7-16",
+          "label": "CLP-3 3.7 Q16: moment of inertia of an ice-cream cone (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "spherical coordinates"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 92,
+            "start": "Q[16]",
+            "end": "Q[17]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 501,
+            "start": "S-16:",
+            "end": "S-17:"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-mth254-w09",
+      "title": "Calculus drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "triple_integral",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

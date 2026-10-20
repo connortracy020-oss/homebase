@@ -47,7 +47,7 @@
     {% set c = course_by_id[e.course_id] %}
     {% set pct = (100 * a.total / a.max_points) | round | int %}
     <li class="row" style="--accent: {{ c.color }}"><span><span class="dot"></span><a href="/attempt/{{ a.id }}">{{ e.title }}</a> <span class="muted small">{{ a.started_at | md }}</span></span>
-      <span><span class="result result-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}">{{ pct }}%</span> <span class="small muted">{{ a.total | num }}/{{ a.max_points }}</span></span></li>
+      <span><span class="result result-{{ 'solid' if pct >= 80 else 'shaky' if pct >= 60 else 'miss' }}">{{ pct }}%</span> <span class="small muted">{{ a.total | num }}/{{ a.max_points | num }}</span></span></li>
     {% endfor %}
   </ul>
   {% else %}<p class="muted">No graded practice exams yet. <a href="/exams">See the exams</a></p>{% endif %}

@@ -42,5 +42,408 @@
       {"label": "Problem 2: first-order circuit after a switch", "points": 20, "pages": [4, 5], "key_pages": [3, 4], "topics": ["RC/RL", "initial conditions", "time constant"]},
       {"label": "Problem 4: two op-amp stages", "points": 25, "pages": [9, 10], "key_pages": [7], "topics": ["op-amps", "inverting amplifier"]}
     ]
+  },
+  {
+    "id": "ucb40-sp00-mt1-ece201",
+    "title": "EE 40 Midterm 1, Spring 2000 (ECE 201 parts)",
+    "source": "UC Berkeley EE 40 (Prof. King), via the HKN exam archive",
+    "license": "All rights reserved; posted by HKN with instructor consent (personal study copy)",
+    "course_week": 5,
+    "scope": "Midterm 1: equivalent resistance, dividers, power, nodal analysis with a supernode",
+    "time_min": 25,
+    "time_note": "The exam doesn't state a time limit. Only 50 of its 100 points are included, so the time is half of the usual 50-minute EE 40 midterm.",
+    "original_rules": "Not stated on the exam.",
+    "practice_rules": [
+      "Closed book and closed notes",
+      "No calculator",
+      "One page of your own handwritten formulas, if you like"
+    ],
+    "skipped": "Problem 1 (logic gates and timing diagrams, 25 points) is beyond ECE 201. Problem 4 (Thevenin and Norton equivalents, 25 points) is left out to keep this at Midterm 1 scope; Thevenin/Norton practice is in the Spring 2012 Midterm 1 (week 7).",
+    "verified": "Checked by eye 2026-10-19: rendered all 6 blank pages and all 6 solution pages. The blank has no answers written in (tables and boxes are empty). Problem 2 is on blank pages 2-3 with its typed and scanned solution on pages 2-4; Problem 3 is on blank pages 3-4 with its solution on page 4. Points come from the problem headings (30 and 20).",
+    "exam_pdf": "library/ece201/ucb-ee40/sp00_mt1.pdf",
+    "key_pdf": "library/ece201/ucb-ee40/sp00_mt1_sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {
+        "label": "Problem 2: resistive circuits (equivalent resistance, design, divider, power)",
+        "points": 30,
+        "pages": [
+          2,
+          3
+        ],
+        "key_pages": [
+          2,
+          3,
+          4
+        ],
+        "topics": [
+          "equivalent resistance",
+          "voltage division",
+          "power",
+          "current division"
+        ]
+      },
+      {
+        "label": "Problem 3: nodal analysis (write the equations)",
+        "points": 20,
+        "pages": [
+          3,
+          4
+        ],
+        "key_pages": [
+          4
+        ],
+        "topics": [
+          "nodal",
+          "supernode"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ucb40-sp12-mt1",
+    "title": "EE 40 Midterm 1, Spring 2012",
+    "source": "UC Berkeley EE 40 (Maharbiz), via the HKN exam archive",
+    "license": "All rights reserved; posted by HKN with instructor consent (personal study copy)",
+    "course_week": 7,
+    "scope": "Midterm 1 material (series-parallel reduction, nodal and mesh with dependent sources) plus supermesh and Thevenin/Norton equivalents, so it fits after week 7. After week 5, try Problems 1 and 2 only.",
+    "time_min": 50,
+    "time_note": "The exam doesn't state a time limit; 50 minutes matches other EE 40 midterms in the archive.",
+    "original_rules": "Not stated on the exam (the cover asks for answers boxed and units shown).",
+    "practice_rules": [
+      "Closed book and closed notes",
+      "No calculator",
+      "One page of your own handwritten formulas, if you like"
+    ],
+    "verified": "Checked by eye 2026-10-19: rendered all 6 blank pages and all 7 solution pages. The blank has empty Solution boxes on every page and no answers. Points come from the cover table (12.5, 35, 27.5, 25; Problem 4 is two 12.5-point parts). Solutions: Problem 1 typed with hand-drawn reduction steps (page 1), Problem 3 typed (page 2), Problem 2 handwritten scan (page 3), Problem 4 typed with a grading rubric (pages 4-7).",
+    "exam_pdf": "library/ece201/ucb-ee40/sp12_mt1.pdf",
+    "key_pdf": "library/ece201/ucb-ee40/sp12_mt1_sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {
+        "label": "Problem 1: warm-up (reduce a source-resistor network)",
+        "points": 12.5,
+        "pages": [
+          2
+        ],
+        "key_pages": [
+          1
+        ],
+        "topics": [
+          "series/parallel",
+          "source transformation"
+        ]
+      },
+      {
+        "label": "Problem 2: nodal analysis with dependent sources",
+        "points": 35,
+        "pages": [
+          3
+        ],
+        "key_pages": [
+          3
+        ],
+        "topics": [
+          "nodal",
+          "supernode",
+          "dependent sources"
+        ]
+      },
+      {
+        "label": "Problem 3: mesh analysis with a supermesh",
+        "points": 27.5,
+        "pages": [
+          4
+        ],
+        "key_pages": [
+          2
+        ],
+        "topics": [
+          "mesh",
+          "supermesh",
+          "dependent sources"
+        ]
+      },
+      {
+        "label": "Problem 4(a): equivalent circuit of a box with a dependent source",
+        "points": 12.5,
+        "pages": [
+          5
+        ],
+        "key_pages": [
+          4,
+          5
+        ],
+        "topics": [
+          "Thevenin",
+          "Norton",
+          "dependent sources"
+        ]
+      },
+      {
+        "label": "Problem 4(b): equivalent circuit of a transistor-like model",
+        "points": 12.5,
+        "pages": [
+          6
+        ],
+        "key_pages": [
+          6,
+          7
+        ],
+        "topics": [
+          "Norton",
+          "dependent sources"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ucb40-sp00-mt2-ece201",
+    "title": "EE 40 Midterm 2, Spring 2000 (ECE 201 parts)",
+    "source": "UC Berkeley EE 40 (Prof. King), via the HKN exam archive",
+    "license": "All rights reserved; posted by HKN with instructor consent (personal study copy)",
+    "course_week": 9,
+    "scope": "Midterm 2: dependent sources, nodal equations, Thevenin equivalent, capacitor charge sharing, op-amp circuits and saturation",
+    "time_min": 25,
+    "time_note": "The exam doesn't state a time limit. Only 50 of its 100 points are included, so the time is half of a 50-minute midterm.",
+    "original_rules": "Not stated on the exam (Problem 3 says to assume ideal op-amps).",
+    "practice_rules": [
+      "Closed book and closed notes",
+      "No calculator",
+      "One page of your own handwritten formulas, if you like"
+    ],
+    "skipped": "Problem 2(a) (RL switching) and 2(c) (RC model of an NMOS inverter), 20 points, are first-order transients taught in week 10, after Midterm 2; they are good practice once you reach week 10. Problem 4 (semiconductor physics: doping, carrier concentrations, sheet resistance, small-signal diode model, a rectifier plot), 25 points, goes beyond ECE 201's short devices unit.",
+    "verified": "Checked by eye 2026-10-19: rendered all 5 blank pages and all 8 solution pages. The blank has no answers. It does carry two handwritten instructor corrections: a note that the 1 uF capacitor in 2(b) starts uncharged (the typed solution states the same) and a redrawn wire in the Problem 3(b) op-amp circuit; neither gives an answer. Points come from the problem headings. Solutions are typed with a few handwritten sketches.",
+    "exam_pdf": "library/ece201/ucb-ee40/sp00_mt2.pdf",
+    "key_pdf": "library/ece201/ucb-ee40/sp00_mt2_sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {
+        "label": "Problem 1: circuits with dependent sources (current divider, nodal equations, Thevenin)",
+        "points": 20,
+        "pages": [
+          1,
+          2
+        ],
+        "key_pages": [
+          1,
+          2
+        ],
+        "topics": [
+          "dependent sources",
+          "nodal",
+          "Thevenin"
+        ]
+      },
+      {
+        "label": "Problem 2(b): two capacitors sharing charge",
+        "points": 5,
+        "statement": {
+          "page": 2,
+          "start": "b) In the circuit below, the 5",
+          "end": "c) The following"
+        },
+        "key": {
+          "pages": [
+            3
+          ]
+        },
+        "topics": [
+          "capacitors",
+          "charge conservation"
+        ]
+      },
+      {
+        "label": "Problem 3: op-amp circuits (difference amplifier, saturation, two-op-amp superposition)",
+        "points": 25,
+        "pages": [
+          3,
+          4
+        ],
+        "key_pages": [
+          4,
+          5,
+          6
+        ],
+        "topics": [
+          "op-amps",
+          "difference amplifier",
+          "saturation",
+          "superposition"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ucb40-fa06-mt1",
+    "title": "EE 40 Midterm 1, Fall 2006",
+    "source": "UC Berkeley EE 40 (Prof. Chang-Hasnain), via the HKN exam archive",
+    "license": "All rights reserved; posted by HKN with instructor consent (personal study copy)",
+    "course_week": 10,
+    "scope": "Final review: a dependent-source circuit taken to its Thevenin equivalent (KVL, KCL, open-circuit voltage, short-circuit current), and an RC circuit switched on and off (differential equation, time constant, sketches)",
+    "time_min": 50,
+    "time_note": "50 minutes, as stated on the exam.",
+    "original_rules": "Total time 50 minutes, 100 points. Closed book, but one single-sided 8.5 x 11 in. page of notes is allowed. No electronic devices (calculators, cell phones, computers).",
+    "practice_rules": [
+      "Closed book and closed notes",
+      "No calculator",
+      "One page of your own handwritten formulas, if you like"
+    ],
+    "verified": "Checked by eye 2026-10-19: rendered all 5 blank pages and all 8 solution pages. The blank is a scan with no answers; the two empty graphs on pages 1-2 have a few faint stray scan marks but no values or curves to copy. The blank has no cover page and puts Problem 2 first (pages 1-2), then Problem 1 (pages 3-5). The solution file is the typed model answer (cover plus pages 2-4 for Problem 1, pages 5-8 for Problem 2), with point values in each part.",
+    "exam_pdf": "library/ece201/ucb-ee40/fa06_mt1.pdf",
+    "key_pdf": "library/ece201/ucb-ee40/fa06_mt1_sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {
+        "label": "Problem 1: equivalent circuit with dependent sources",
+        "points": 50,
+        "pages": [
+          3,
+          4,
+          5
+        ],
+        "key_pages": [
+          2,
+          3,
+          4
+        ],
+        "topics": [
+          "dependent sources",
+          "KCL",
+          "KVL",
+          "Thevenin"
+        ]
+      },
+      {
+        "label": "Problem 2: RC circuit after a switch closes and re-opens",
+        "points": 50,
+        "pages": [
+          1,
+          2
+        ],
+        "key_pages": [
+          5,
+          6,
+          7,
+          8
+        ],
+        "topics": [
+          "RC/RL",
+          "time constant",
+          "Thevenin",
+          "switching"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ucb100-su12-mt1-ece201",
+    "title": "EE 42/100 Midterm, Summer 2012 (ECE 201 parts)",
+    "source": "UC Berkeley EE 42/100 (Tony Dear), via the HKN exam archive",
+    "license": "All rights reserved; posted by HKN with instructor consent (personal study copy)",
+    "course_week": 10,
+    "scope": "Final review: dependent-source amplifier power, L and C at DC steady state, op-amp amplifier design, Thevenin/Norton from measurements, an op-amp circuit with an inductor and an RC input",
+    "time_min": 75,
+    "time_note": "The exam allows 110 minutes for 100 points. 70 points are included here, so the time is cut to 75 minutes.",
+    "original_rules": "110 minutes. One sheet of notes may be used. No electronic computational devices.",
+    "practice_rules": [
+      "Closed book and closed notes",
+      "No calculator",
+      "One page of your own handwritten formulas, if you like"
+    ],
+    "skipped": "Problem 1(c) (a series RLC circuit's second-order equation, 10 points) and Problem 5 (phasors and impedances, 20 points) are left out: second-order circuits and AC analysis belong to ECE 202.",
+    "verified": "Checked by eye 2026-10-19: rendered all 17 blank pages and all 15 solution pages. The blank is typed and every answer space is empty (page 2 is blank by design; page 17 is an ungraded doodle page). Points come from the cover table (25, 15, 15, 25, 20) and the part headings. Solutions are typed in red and follow the same order.",
+    "exam_pdf": "library/ece201/ucb-ee100/su12_mt1.pdf",
+    "key_pdf": "library/ece201/ucb-ee100/su12_mt1_sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {
+        "label": "Problem 1(a): power gain of an amplifier with a dependent source",
+        "points": 5,
+        "pages": [
+          3
+        ],
+        "key_pages": [
+          1
+        ],
+        "topics": [
+          "dependent sources",
+          "power"
+        ]
+      },
+      {
+        "label": "Problem 1(b): resistors, capacitors and an inductor at DC steady state",
+        "points": 10,
+        "pages": [
+          4
+        ],
+        "key_pages": [
+          2
+        ],
+        "topics": [
+          "capacitors",
+          "inductors",
+          "dc steady state",
+          "power"
+        ]
+      },
+      {
+        "label": "Problem 2: designing an inverting amplifier chain",
+        "points": 15,
+        "pages": [
+          6,
+          7,
+          8
+        ],
+        "key_pages": [
+          4,
+          5,
+          6
+        ],
+        "topics": [
+          "op-amps",
+          "inverting amplifier",
+          "follower",
+          "saturation"
+        ]
+      },
+      {
+        "label": "Problem 3: Thevenin and Norton from two measurements",
+        "points": 15,
+        "pages": [
+          9,
+          10
+        ],
+        "key_pages": [
+          7,
+          8
+        ],
+        "topics": [
+          "Thevenin",
+          "Norton",
+          "dependent sources"
+        ]
+      },
+      {
+        "label": "Problem 4: op-amp circuit with an inductor and an RC input after switches close",
+        "points": 25,
+        "pages": [
+          11,
+          12,
+          13
+        ],
+        "key_pages": [
+          9,
+          10,
+          11
+        ],
+        "topics": [
+          "op-amps",
+          "RC/RL",
+          "time constant",
+          "inductors"
+        ]
+      }
+    ]
   }
 ]

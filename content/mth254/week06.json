@@ -1,0 +1,775 @@
+{
+  "_about": "MTH 254 term week 6. Videos come from videos.json (osu_week = 6). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+  "week": 6,
+  "readings": [
+    {
+      "id": "mth254-w6-os-4-4",
+      "resource": "openstax-c3-4-4",
+      "sections": "4.4 Tangent Planes and Linear Approximations",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w6-os-4-7",
+      "resource": "openstax-c3-4-7",
+      "sections": "4.7 Maxima/Minima Problems",
+      "est_min": 40
+    },
+    {
+      "id": "mth254-w6-os-4-8",
+      "resource": "openstax-c3-4-8",
+      "sections": "4.8 Lagrange Multipliers (only if Lagrange multipliers are covered)",
+      "est_min": 35,
+      "optional": true
+    },
+    {
+      "id": "mth254-w6-clp-2-5-2-6",
+      "resource": "clp3-text",
+      "sections": "2.5 Tangent Planes and Normal Lines and 2.6 Linear Approximations and Error",
+      "page": 134,
+      "est_min": 50,
+      "optional": true
+    },
+    {
+      "id": "mth254-w6-clp-2-9",
+      "resource": "clp3-text",
+      "sections": "2.9 Maximum and Minimum Values (2.10 Lagrange Multipliers at PDF page 221, optional)",
+      "page": 188,
+      "est_min": 50,
+      "optional": true
+    },
+    {
+      "id": "mth254-w6-sg",
+      "resource": "osu-sg-parks",
+      "sections": "Lessons 15-17: tangent planes and linear approximation, max/min, Lagrange multipliers (optional)",
+      "page": 44,
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "mth254-w6-briggs",
+      "resource": "briggs-mvc-2e",
+      "sections": "Briggs 12.7-12.8, (12.9) (reference only; the book isn't free)",
+      "est_min": 0,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "sc-supp-2b-2h",
+      "title": "18.02 exercises: tangent planes and max/min",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 2 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-supp2",
+      "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages.",
+      "problems": [
+        {
+          "id": "2B-1",
+          "label": "Exercise 2B-1: tangent planes at given points",
+          "key_type": "official_worked",
+          "topics": [
+            "tangent planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 1,
+            "start": "2B-1",
+            "end": "2B-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "pages": [
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "id": "2B-6",
+          "label": "Exercise 2B-6: measurement error in a cylinder's volume",
+          "key_type": "official_worked",
+          "topics": [
+            "linear approximation"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 2,
+            "start": "2B-6",
+            "end": "2B-7"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 2,
+            "start": "2B-6",
+            "end": "2B-7"
+          }
+        },
+        {
+          "id": "2B-9",
+          "label": "Exercise 2B-9: which variable a function is more sensitive to",
+          "key_type": "official_worked",
+          "topics": [
+            "tangent planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 2,
+            "start": "2B-9",
+            "end": "2B-10"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 3,
+            "start": "2B-9",
+            "end": "2C."
+          }
+        },
+        {
+          "id": "2F-1",
+          "label": "Exercise 2F-1: points of a surface closest to the origin",
+          "key_type": "official_worked",
+          "topics": [
+            "critical points"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 5,
+            "start": "2F-1",
+            "end": "2F-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 7,
+            "start": "2F-1",
+            "end": "2F-2"
+          }
+        },
+        {
+          "id": "2F-2",
+          "label": "Exercise 2F-2: least cardboard for a produce box",
+          "key_type": "official_worked",
+          "topics": [
+            "max/min"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 5,
+            "start": "2F-2",
+            "end": "2F-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "pages": [
+              7,
+              8
+            ]
+          }
+        },
+        {
+          "id": "2H-1",
+          "label": "Exercise 2H-1: classify critical points with the second derivative test",
+          "key_type": "official_worked",
+          "topics": [
+            "second derivative test"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 6,
+            "start": "2H-1",
+            "end": "2H-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 9,
+            "start": "2H-1",
+            "end": "2H-3"
+          }
+        },
+        {
+          "id": "2H-3",
+          "label": "Exercise 2H-3: max and min on a half-plane",
+          "key_type": "official_worked",
+          "topics": [
+            "absolute extrema"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 6,
+            "start": "2H-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 9,
+            "start": "2H-3"
+          }
+        },
+        {
+          "id": "2H-4",
+          "label": "Exercise 2H-4: max and min on a quadrant and a square",
+          "key_type": "official_worked",
+          "topics": [
+            "absolute extrema"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 7,
+            "start": "2H-4",
+            "end": "2H-5"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 10,
+            "start": "2H-4",
+            "end": "2H-5"
+          }
+        },
+        {
+          "id": "2H-7",
+          "label": "Exercise 2H-7: max and min on a rectangle",
+          "key_type": "official_worked",
+          "topics": [
+            "second derivative test",
+            "absolute extrema"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 7,
+            "start": "2H-7",
+            "end": "2I."
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 11,
+            "start": "2H-7",
+            "end": "2I."
+          }
+        }
+      ]
+    },
+    {
+      "id": "sc-pset4-part2",
+      "title": "18.02 Problem Set 4, Part II",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 4 Part II with posted solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-pset4",
+      "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages. Problem 1 uses an online MIT 'Mathlet'. Problem 5 continues Problem 3 of Problem Set 1 (week 1).",
+      "problems": [
+        {
+          "id": "p1",
+          "label": "Problem 1: a travelling wave F(x,t) (graphs and partials)",
+          "key_type": "official_worked",
+          "topics": [
+            "level curves",
+            "partial derivatives"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset4.pdf",
+            "page": 2,
+            "start": "Problem 1 (",
+            "end": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset4sol.pdf",
+            "page": 1,
+            "start": "1. (a)",
+            "end": "2. We"
+          }
+        },
+        {
+          "id": "p2",
+          "label": "Problem 2: tangent line to the intersection of two surfaces",
+          "key_type": "official_worked",
+          "topics": [
+            "tangent planes",
+            "gradient"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset4.pdf",
+            "page": 2,
+            "start": "Problem 2 (",
+            "end": "Problem 3 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset4sol.pdf",
+            "pages": [
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "id": "p3",
+          "label": "Problem 3: a curve on a surface, its shadow and max/min along it",
+          "key_type": "official_worked",
+          "topics": [
+            "level curves",
+            "tangent planes",
+            "linear approximation"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset4.pdf",
+            "page": 2,
+            "start": "Problem 3 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset4sol.pdf",
+            "pages": [
+              3,
+              4
+            ]
+          }
+        },
+        {
+          "id": "p4",
+          "label": "Problem 4: three numbers whose squares sum to 27",
+          "key_type": "official_worked",
+          "topics": [
+            "max/min",
+            "boundary"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset4.pdf",
+            "page": 3,
+            "start": "Problem 4 (",
+            "end": "Problem 5 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset4sol.pdf",
+            "pages": [
+              4,
+              5
+            ]
+          }
+        },
+        {
+          "id": "p5",
+          "label": "Problem 5: best tacking angles (critical points)",
+          "key_type": "official_worked",
+          "topics": [
+            "critical points",
+            "second derivative test"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset4.pdf",
+            "page": 3,
+            "start": "Problem 5 (",
+            "end": "Suggestion for"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset4sol.pdf",
+            "pages": [
+              5,
+              6
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "clp-2-5-2-9",
+      "title": "CLP-3 problems: tangent planes, linear approximation, max/min",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-2.5-6",
+          "label": "CLP-3 2.5 Q6: tangent plane to a level surface (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "tangent planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 44,
+            "start": "Q[6]",
+            "end": "Q[7]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 281,
+            "start": "S-6:",
+            "end": "S-7:"
+          }
+        },
+        {
+          "id": "clp-2.5-8",
+          "label": "CLP-3 2.5 Q8: tangent plane to an implicit surface (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "tangent planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 44,
+            "start": "Q[8]",
+            "end": "Q[9]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 282,
+            "start": "S-8:",
+            "end": "S-9:"
+          }
+        },
+        {
+          "id": "clp-2.5-11",
+          "label": "CLP-3 2.5 Q11: points where the tangent plane is parallel to a plane (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "tangent planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 45,
+            "start": "Q[11]",
+            "end": "Q[12]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 283,
+            "start": "S-11:",
+            "end": "S-12:"
+          }
+        },
+        {
+          "id": "clp-2.6-4",
+          "label": "CLP-3 2.6 Q4: approximate a value without a calculator (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "linear approximation"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 46,
+            "start": "Q[4]",
+            "end": "Q[5]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 289,
+            "start": "S-4:"
+          }
+        },
+        {
+          "id": "clp-2.6-7",
+          "label": "CLP-3 2.6 Q7: resistors in parallel (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "linear approximation"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 47,
+            "start": "Q[7]",
+            "end": "Q[8]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              290,
+              291
+            ]
+          }
+        },
+        {
+          "id": "clp-2.9-6",
+          "label": "CLP-3 2.9 Q6: find and classify critical points (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "critical points",
+            "second derivative test"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 61,
+            "start": "Q[6]"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 331,
+            "start": "S-6:",
+            "end": "S-7:"
+          }
+        },
+        {
+          "id": "clp-2.9-17",
+          "label": "CLP-3 2.9 Q17: absolute max and min on a rectangle (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "absolute extrema"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 63,
+            "start": "Q[17]",
+            "end": "Q[18]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              338,
+              339
+            ]
+          }
+        },
+        {
+          "id": "clp-2.9-18",
+          "label": "CLP-3 2.9 Q18: minimum on a disk (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "absolute extrema"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 63,
+            "start": "Q[18]",
+            "end": "Q[19]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 339,
+            "start": "S-18:",
+            "end": "S-19:"
+          }
+        },
+        {
+          "id": "clp-2.9-22",
+          "label": "CLP-3 2.9 Q22: critical points of x^4 + y^4 - 4xy + 2 (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "second derivative test"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 63,
+            "start": "Q[22]",
+            "end": "Q[23]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              342,
+              343
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sc-supp-2i",
+      "title": "18.02 exercises: Lagrange multipliers (optional)",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 2 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-supp2",
+      "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages. Only if your section covers Briggs 12.9.",
+      "problems": [
+        {
+          "id": "2I-1",
+          "label": "Exercise 2I-1: largest box under a surface",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 7,
+            "start": "2I-1",
+            "end": "2I-2"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "pages": [
+              11,
+              12
+            ]
+          }
+        },
+        {
+          "id": "2I-3",
+          "label": "Exercise 2I-3: the produce box again, by Lagrange multipliers",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob2.pdf",
+            "page": 7,
+            "start": "2I-3",
+            "end": "2I-4"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol2.pdf",
+            "page": 12,
+            "start": "2I-3"
+          }
+        }
+      ],
+      "optional": true
+    },
+    {
+      "id": "sc-pset6-part2",
+      "title": "18.02 Problem Set 6, Part II: Lagrange multipliers (optional)",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 6 Part II with posted solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-pset6",
+      "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages. Only if your section covers Briggs 12.9. Problem 1 uses an online MIT 'Mathlet'. Problem 3 (non-independent variables) is left out.",
+      "problems": [
+        {
+          "id": "p1",
+          "label": "Problem 1: Lagrange multipliers with the Mathlet",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset6.pdf",
+            "page": 2,
+            "start": "Problem 1 (",
+            "end": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset6sol.pdf",
+            "page": 1,
+            "start": "Problem 1",
+            "end": "Problem 2"
+          }
+        },
+        {
+          "id": "p2",
+          "label": "Problem 2: Lagrange multipliers (currents in parallel resistors)",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset6.pdf",
+            "page": 2,
+            "start": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset6sol.pdf",
+            "pages": [
+              1,
+              2
+            ]
+          }
+        }
+      ],
+      "optional": true
+    },
+    {
+      "id": "clp-2-10",
+      "title": "CLP-3 problems: Lagrange multipliers (optional)",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-2.10-5",
+          "label": "CLP-3 2.10 Q5: minimum of x^2 + y^2 on x^2 y = 1 (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 66,
+            "start": "Q[5]",
+            "end": "Q[6]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              353,
+              354
+            ]
+          }
+        },
+        {
+          "id": "clp-2.10-7",
+          "label": "CLP-3 2.10 Q7: max and min of xy on an ellipse (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 66,
+            "start": "Q[7]",
+            "end": "Q[8]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 355,
+            "start": "S-7:",
+            "end": "S-8:"
+          }
+        },
+        {
+          "id": "clp-2.10-9",
+          "label": "CLP-3 2.10 Q9: closest and farthest points on a sphere (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 66,
+            "start": "Q[9]",
+            "end": "Q[10]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              356,
+              357
+            ]
+          }
+        },
+        {
+          "id": "clp-2.10-20",
+          "label": "CLP-3 2.10 Q20: cheapest box with a given volume (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "Lagrange multipliers"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 67,
+            "start": "Q[20]",
+            "end": "Q[21]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 366,
+            "start": "S-20:"
+          }
+        }
+      ],
+      "optional": true
+    },
+    {
+      "id": "gen-mth254-w06",
+      "title": "Calculus drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "tangent_plane",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "critical_points",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

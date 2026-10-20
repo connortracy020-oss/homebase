@@ -1,0 +1,406 @@
+{
+  "_about": "ECE 201 term week 5. Videos for this week come from videos.json (osu_week = 5). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 5,
+  "readings": [
+    {
+      "id": "ece201-w5-ulaby-3-3",
+      "resource": "ulaby-cad3e",
+      "sections": "3-3 and 3-4 (mesh-current method, by-inspection methods) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 40
+    },
+    {
+      "id": "ece201-w5-fiore-7-3",
+      "resource": "fiore-dc",
+      "sections": "7.3 Mesh Analysis",
+      "est_min": 25,
+      "page": 229,
+      "optional": true
+    },
+    {
+      "id": "ece201-w5-equations",
+      "resource": "ulaby-equations",
+      "sections": "Equation summary, chapters 2 and 3 (for your Midterm 1 formula page)",
+      "est_min": 10,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w5-ulaby-ex",
+      "title": "Ulaby chapter 3 exercises: mesh analysis",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Homebase shows only the exercise until you ask for the solution. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex3-4",
+          "label": "Exercise 3-4",
+          "key_type": "official_worked",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 45,
+            "start": "Exercise 3-4",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 45,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-5",
+          "label": "Exercise 3-5",
+          "key_type": "official_worked",
+          "topics": [
+            "mesh",
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 46,
+            "start": "Exercise 3-5",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 46,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex3-8",
+          "label": "Exercise 3-8",
+          "key_type": "official_worked",
+          "topics": [
+            "mesh",
+            "by inspection"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 49,
+            "start": "Exercise 3-8",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 49,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w5-ulaby-cq",
+      "title": "Ulaby chapter 3 concept questions: mesh and by-inspection",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch3",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq3-5",
+          "label": "Concept question 3-5",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh",
+            "dependent sources"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 5,
+            "start": "Concept Question 3-5",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 5
+          }
+        },
+        {
+          "id": "cq3-7",
+          "label": "Concept question 3-7",
+          "key_type": "official_answer",
+          "topics": [
+            "by inspection"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 7,
+            "start": "Concept Question 3-7",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 7
+          }
+        },
+        {
+          "id": "cq3-8",
+          "label": "Concept question 3-8",
+          "key_type": "official_answer",
+          "topics": [
+            "by inspection",
+            "source transformation"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 8,
+            "start": "Concept Question 3-8",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch3.pdf",
+            "page": 8
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w5-kuphaldt",
+      "title": "Kuphaldt worksheets: mesh currents",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (dcmesh, simultaneous), CC BY 1.0",
+      "resource": "kuphaldt-dcmesh",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "dcmesh-q3",
+          "label": "Mesh currents worksheet, question 3: two KVL loop equations",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dcmesh.pdf",
+            "page": 6,
+            "start": "Question 3",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dcmesh.pdf",
+            "page": 12,
+            "start": "Answer 3",
+            "end": "Answer 4|Notes"
+          }
+        },
+        {
+          "id": "dcmesh-q6",
+          "label": "Mesh currents worksheet, question 6: unbalanced bridge by mesh currents",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh",
+            "bridge"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/dcmesh.pdf",
+            "page": 8,
+            "start": "Question 6",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/dcmesh.pdf",
+            "page": 12,
+            "start": "Answer 6",
+            "end": "Answer 7|Notes"
+          }
+        },
+        {
+          "id": "simultaneous-q22",
+          "label": "Simultaneous equations worksheet, question 22: divider adjustment range by simultaneous equations",
+          "key_type": "official_answer",
+          "topics": [
+            "linear equations",
+            "voltage division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 16,
+            "start": "Question 22",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 23,
+            "start": "Answer 22",
+            "end": "Answer 23|Notes"
+          }
+        },
+        {
+          "id": "simultaneous-q23",
+          "label": "Simultaneous equations worksheet, question 23: divider adjustment range, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "linear equations",
+            "voltage division"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 17,
+            "start": "Question 23",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/simultaneous.pdf",
+            "page": 23,
+            "start": "Answer 23",
+            "end": "Answer 24|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w5-fiore",
+      "title": "Fiore: mesh analysis (answers only)",
+      "source": "James Fiore, DC Electrical Circuit Analysis (CC BY-NC-SA 3.0), odd-numbered problems with answers",
+      "resource": "fiore-dc",
+      "optional": true,
+      "notes": "Answers only (Fiore's odd-numbered answers appendix): the key shows that chapter's whole answer list, so find your problem number. Technician-level numbers, so a calculator helps. Fiore asks that his work not be used for AI training; Homebase only shows it to you.",
+      "problems": [
+        {
+          "id": "c7-p3",
+          "label": "Problem 7.3: mesh analysis for a current (uses Figure 7.36)",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              244
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              369
+            ]
+          }
+        },
+        {
+          "id": "c7-p5",
+          "label": "Problem 7.5: mesh analysis for a node voltage (uses Figure 7.37)",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              244,
+              245
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              369
+            ]
+          }
+        },
+        {
+          "id": "c7-p11",
+          "label": "Problem 7.11: mesh analysis for a voltage between nodes (uses Figure 7.39)",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              245
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              369
+            ]
+          }
+        },
+        {
+          "id": "c7-p17",
+          "label": "Problem 7.17: mesh analysis, larger circuit (uses Figure 7.41)",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              246
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              369
+            ]
+          }
+        },
+        {
+          "id": "c7-p23",
+          "label": "Problem 7.23: mesh analysis, three loops (uses Figure 7.43)",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              247
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              369
+            ]
+          }
+        },
+        {
+          "id": "c7-p29",
+          "label": "Problem 7.29: mesh analysis with two sources (uses Figure 7.45)",
+          "key_type": "official_answer",
+          "topics": [
+            "mesh"
+          ],
+          "statement": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              248
+            ]
+          },
+          "key": {
+            "pdf": "library/ece201/fiore/dc_text.pdf",
+            "pages": [
+              369
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece201-w05",
+      "title": "Circuit drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "mesh_two_loop",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

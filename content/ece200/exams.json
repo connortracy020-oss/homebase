@@ -40,5 +40,159 @@
       {"label": "Problem 2: chirp spectrogram (MATLAB code)", "points": 30, "pages": [3], "key_pages": [7], "topics": ["chirp", "spectrogram", "aliasing"]},
       {"label": "Problem 3: FIR filter, step response, convolution", "points": 35, "pages": [4], "key_pages": [8], "topics": ["FIR filters", "step response", "convolution"]}
     ]
+  },
+  {
+    "id": "gt2026-sp23-q1",
+    "title": "Georgia Tech ECE 2026 Quiz 1, Spring 2023",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 2,
+    "scope": "Sinusoids and time shift, phasor addition, reading a two-sided spectrum",
+    "time_min": 50,
+    "time_note": "50 minutes, the length of recent Georgia Tech ECE 2026 quizzes. OSU's ECE 200 exam format is unknown.",
+    "original_rules": "Closed book, except for one two-sided page (8.5 x 11) of handwritten notes. Calculators allowed, no other electronics.",
+    "practice_rules": [
+      "Closed book",
+      "One two-sided page of your own handwritten notes",
+      "No calculator (stricter than Georgia Tech, to match OSU's other ECE exams)"
+    ],
+    "verified": "Checked by eye 2026-10-19: pages 1-4 are the blank quiz with every answer box empty, pages 5-8 the answer key (marked ANSWER KEY). Cover table: 35 + 30 + 35 = 100 points.",
+    "exam_pdf": "library/ece200/gt2026-barry/q1_sp23.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/q1_sp23.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: match seven sinusoid formulas to plots", "points": 35, "pages": [2], "key_pages": [6], "topics": ["sinusoids", "time shift", "phase"]},
+      {"label": "Problem 2: solve phasor equations for A and phase", "points": 30, "pages": [3], "key_pages": [7], "topics": ["phasor addition", "complex numbers"]},
+      {"label": "Problem 3: unknown amplitudes, frequencies and phases from a spectrum", "points": 35, "pages": [4], "key_pages": [8], "topics": ["spectrum", "time shift", "complex amplitude"]}
+    ]
+  },
+  {
+    "id": "gt2026-su24-q1",
+    "title": "Georgia Tech ECE 2026 Quiz 1, Summer 2024",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 3,
+    "scope": "Complex numbers in the plane, sums and products of sinusoids, spectrograms of chirps, sampling and reconstruction",
+    "time_min": 50,
+    "time_note": "The quiz does not print its length; 50 minutes assumed, as for recent Georgia Tech ECE 2026 quizzes. OSU's ECE 200 exam format is unknown.",
+    "original_rules": "Closed book, except for one two-sided page (8.5 x 11) of handwritten notes. No calculators or other electronics.",
+    "practice_rules": [
+      "Closed book",
+      "One two-sided page of your own handwritten notes",
+      "No calculator (stricter than Georgia Tech, to match OSU's other ECE exams)"
+    ],
+    "verified": "Checked by eye 2026-10-19: pages 1-5 are the blank quiz with empty answer boxes and page 6 is a blank scratch page; pages 7-11 are the key (marked VERSION A, answers in red). Cover table: four problems of 25 points.",
+    "exam_pdf": "library/ece200/gt2026-barry/q1_su24.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/q1_su24.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: locate complex numbers and their powers in the complex plane", "points": 25, "pages": [2], "key_pages": [8], "topics": ["complex numbers", "polar form"]},
+      {"label": "Problem 2: make a sum of sinusoids collapse to one sinusoid", "points": 25, "pages": [3], "key_pages": [9], "topics": ["phasor addition", "product of sinusoids", "spectrum"]},
+      {"label": "Problem 3: match ten signals to their spectrograms", "points": 25, "pages": [4], "key_pages": [10], "topics": ["spectrogram", "chirp", "instantaneous frequency"]},
+      {"label": "Problem 4: sampling and reconstruction of a periodic signal", "points": 25, "pages": [5], "key_pages": [11], "topics": ["sampling", "aliasing", "fundamental frequency"]}
+    ]
+  },
+  {
+    "id": "gt2026-sp23-q2",
+    "title": "Georgia Tech ECE 2026 Quiz 2, Spring 2023",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 5,
+    "scope": "Fourier series of sums and products of sinusoids, sampling and aliasing, a cascade of FIR filters and convolution",
+    "time_min": 50,
+    "time_note": "50 minutes, the length of recent Georgia Tech ECE 2026 quizzes. OSU's ECE 200 exam format is unknown.",
+    "original_rules": "Closed book, except for one two-sided page (8.5 x 11) of handwritten notes. Calculators allowed, no other electronics.",
+    "practice_rules": [
+      "Closed book",
+      "One two-sided page of your own handwritten notes",
+      "No calculator (stricter than Georgia Tech, to match OSU's other ECE exams)"
+    ],
+    "verified": "Checked by eye 2026-10-19: pages 1-4 are the blank quiz with empty answer boxes, pages 5-8 the answer key (marked ANSWER KEY). Cover table: 35 + 35 + 30 = 100 points.",
+    "exam_pdf": "library/ece200/gt2026-barry/q2_sp23.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/q2_sp23.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: Fourier series coefficients of a sum of products of sinusoids", "points": 35, "pages": [2], "key_pages": [6], "topics": ["Fourier series", "fundamental frequency", "product of sinusoids"]},
+      {"label": "Problem 2: sampling rates, aliasing and reconstruction from a spectrum", "points": 35, "pages": [3], "key_pages": [7], "topics": ["sampling", "aliasing", "reconstruction"]},
+      {"label": "Problem 3: cascade of two FIR filters, difference equation and output", "points": 30, "pages": [4], "key_pages": [8], "topics": ["FIR filters", "cascade", "convolution"]}
+    ]
+  },
+  {
+    "id": "gt2026-sp23-q3",
+    "title": "Georgia Tech ECE 2026 Quiz 3, Spring 2023",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 10,
+    "scope": "FIR nulling via the frequency response, matching signals to DTFTs (ideal filters), small DFTs",
+    "time_min": 50,
+    "time_note": "50 minutes, the length of recent Georgia Tech ECE 2026 quizzes. OSU's ECE 200 exam format is unknown.",
+    "original_rules": "Closed book, except for one two-sided page (8.5 x 11) of handwritten notes. Calculators allowed, no other electronics.",
+    "practice_rules": [
+      "Closed book",
+      "One two-sided page of your own handwritten notes",
+      "No calculator (stricter than Georgia Tech, to match OSU's other ECE exams)"
+    ],
+    "verified": "Checked by eye 2026-10-19: pages 1-4 are the blank quiz with empty answer boxes, pages 5-8 the answer key (marked ANSWER KEY). Cover table: 36 + 36 + 28 = 100 points. No z-transform or IIR content, so nothing was cut.",
+    "exam_pdf": "library/ece200/gt2026-barry/q3_sp23.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/q3_sp23.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: which input sinusoid each filter setting nulls", "points": 36, "pages": [2], "key_pages": [6], "topics": ["frequency response", "nulling"]},
+      {"label": "Problem 2: match thirteen signals to their DTFTs", "points": 36, "pages": [3], "key_pages": [7], "topics": ["DTFT", "ideal filters", "modulation"]},
+      {"label": "Problem 3: 2-point, 1000-point and 20-point DFTs", "points": 28, "pages": [4], "key_pages": [8], "topics": ["DFT", "frequency sampling", "inverse DFT"]}
+    ]
+  },
+  {
+    "id": "gt2026-sp25-q3",
+    "title": "Georgia Tech ECE 2026 Quiz 3, Spring 2025",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 10,
+    "scope": "FIR nulls and DC gain, matching signals to DTFTs, DFT by hand and the DFT delay property",
+    "time_min": 50,
+    "time_note": "50 minutes, the length of recent Georgia Tech ECE 2026 quizzes. OSU's ECE 200 exam format is unknown. Georgia Tech stapled DTFT and DFT tables to the quiz (pages 5-6); for practice, put what you need on your own note sheet.",
+    "original_rules": "Closed book, except for one two-sided page (8.5 x 11) of handwritten notes. Calculators allowed, no other electronics. DTFT and DFT tables attached to the quiz.",
+    "practice_rules": [
+      "Closed book",
+      "One two-sided page of your own handwritten notes",
+      "No calculator (stricter than Georgia Tech, to match OSU's other ECE exams)"
+    ],
+    "verified": "Checked by eye 2026-10-19: pages 1-4 are the blank quiz with empty answer boxes, pages 5-6 the attached DTFT/DFT tables, pages 7-10 the solutions (marked SOLUTIONS, VERSION A, answers in red). Cover table: 32 + 36 + 32 = 100 points. No z-transform or IIR content.",
+    "exam_pdf": "library/ece200/gt2026-barry/q3_sp25.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/q3_sp25.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: null frequencies and DC gain of a symmetric FIR filter", "points": 32, "pages": [2], "key_pages": [8], "topics": ["frequency response", "nulling", "DC gain"]},
+      {"label": "Problem 2: match twelve signals to their DTFT plots", "points": 36, "pages": [3], "key_pages": [9], "topics": ["DTFT", "ideal filters", "modulation"]},
+      {"label": "Problem 3: 3-point DFT, inverse of a 32-point DFT, DFT delay property", "points": 32, "pages": [4], "key_pages": [10], "topics": ["DFT", "inverse DFT", "DFT delay property"]}
+    ]
+  },
+  {
+    "id": "gt2026-sp25-fin",
+    "title": "Georgia Tech ECE 2026 Final, Spring 2025 (problems 1-5)",
+    "source": "Georgia Tech ECE 2026 (DSP First), John Barry's exam archive",
+    "license": "All rights reserved; posted publicly on the course site (personal study copy)",
+    "course_week": 10,
+    "scope": "Comprehensive: spectrum and Fourier series, convolution lengths, sampling with FIR nulling, DFT of a cosine, ideal bandpass filters",
+    "time_min": 125,
+    "time_note": "The exam does not print its length. Georgia Tech final-exam periods are 2 h 50 min (170 min); problems 1-5 are 73 of 100 points, so about 125 minutes. OSU's ECE 200 exam format is unknown.",
+    "original_rules": "Closed book, except for one two-sided page (8.5 x 11) of handwritten notes. Calculators allowed, no other electronics. DTFT, DFT and z-transform tables attached (pages 9-11).",
+    "practice_rules": [
+      "Closed book",
+      "One two-sided page of your own handwritten notes",
+      "No calculator (stricter than Georgia Tech, to match OSU's other ECE exams)"
+    ],
+    "verified": "Checked by eye 2026-10-19: pages 1-8 are the blank exam with empty answer boxes, pages 9-11 the attached tables, pages 12-19 the solutions (marked SOLUTIONS, VERSION A, answers in red). Cover table: 15 + 16 + 17 + 9 + 16 + 16 + 11 = 100 points; problems 6 and 7 are left out.",
+    "exam_pdf": "library/ece200/gt2026-barry/fin_sp25.pdf",
+    "key_pdf": "library/ece200/gt2026-barry/fin_sp25.pdf",
+    "key_type": "official_worked",
+    "skipped": "Left out problem 6 (16 points, an IIR filter with poles, via its system function H(z)) and problem 7 (11 points, matching pole-zero plots to magnitude responses). Both are z-transform/IIR topics that OSU teaches in ECE 350. The time is cut in proportion: 73 of 100 points.",
+    "problems": [
+      {"label": "Problem 1: spectrum of a sum of sinusoids, Fourier series after modulation", "points": 15, "pages": [2], "key_pages": [13], "topics": ["spectrum", "Fourier series", "modulation"]},
+      {"label": "Problem 2: match convolutions to their plots by length", "points": 16, "pages": [3], "key_pages": [14], "topics": ["convolution", "length of convolution"]},
+      {"label": "Problem 3: sampling, a 3-point FIR filter and zero output", "points": 17, "pages": [4], "key_pages": [15], "topics": ["sampling", "nulling", "aliasing"]},
+      {"label": "Problem 4: match 50-point DFT magnitudes of a cosine to its frequency", "points": 9, "pages": [5], "key_pages": [16], "topics": ["DFT", "DFT of a cosine"]},
+      {"label": "Problem 5: match ideal bandpass frequency responses to their parameters", "points": 16, "pages": [6], "key_pages": [17], "topics": ["ideal filters", "DTFT", "sinc impulse responses"]}
+    ]
   }
 ]

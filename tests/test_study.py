@@ -123,3 +123,13 @@ def test_old_database_gets_new_columns(data_dir):
     db.init_db()
     cols = {row[1] for row in sqlite3.connect(path).execute("PRAGMA table_info(task)")}
     assert {"ref_kind", "ref"} <= cols
+
+
+@pytest.mark.skipif(not (config.ROOT / "library/ece200/dspfirst-db/ch02/p012s1.png").exists(),
+                    reason="DSP First database not in library/")
+def test_image_file_keys_render(client):
+    """DSP First solutions are PNG scans, not PDFs; the key route must still serve them."""
+    r = client.get("/problem/dspdb-w1-sinusoids-c2-p012/key.png")
+    assert r.status_code == 200 and r.content[:4] == b"\x89PNG"
+    page = client.get("/problem/dspdb-w1-sinusoids-c2-p012").text
+    assert "Show the official solution" in page

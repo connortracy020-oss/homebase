@@ -1,0 +1,365 @@
+{
+  "_about": "ECE 200 term week 5. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 5). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 5,
+  "readings": [
+    {
+      "id": "ece200-w5-spf-l11",
+      "resource": "spf-L11",
+      "sections": "Lecture 11: Linearity, Time-Invariance & Convolution. All slides",
+      "est_min": 30
+    },
+    {
+      "id": "ece200-w5-thinkdsp-ch10",
+      "resource": "thinkdsp",
+      "sections": "Chapter 10, LTI systems: 10.1 Signals and systems and 10.4 Systems and convolution (chapter starts book p. 113)",
+      "page": 125,
+      "est_min": 25,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "dspdb-w5-lti",
+      "title": "DSP First problems: linearity, time invariance, convolution, cascades",
+      "source": "DSP First problem database (Georgia Tech ECE 2025/2026 problem sets, quizzes and finals, 1993-2002)",
+      "resource": "dspfirst-db",
+      "notes": "Each statement PDF holds only the problem (checked by eye for every problem in this set); the worked solution is a separate scanned or typeset image. Problems are old Georgia Tech work, labelled quiz/final/homework from their file names.",
+      "problems": [
+        {
+          "id": "c5-p023",
+          "label": "DSP First DB 5-23 (GT homework, f_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "linear",
+            "time-invariant",
+            "causal"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p023.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p023s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p013",
+          "label": "DSP First DB 5-13 (GT quiz, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "linearity and time invariance"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p013.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p013s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p047",
+          "label": "DSP First DB 5-47 (GT final, sp_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "linearity and time invariance"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p047.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p047s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p077",
+          "label": "DSP First DB 5.8-77 (GT quiz, sp_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "linearity and time invariance"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p077.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p077s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p009",
+          "label": "DSP First DB 5-9 (GT homework, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "linearity and time invariance"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p009.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p009s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p058",
+          "label": "DSP First DB 5-58 (GT quiz, su_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "linearity and time invariance",
+            "step response"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p058.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p058s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p072",
+          "label": "DSP First DB 5-72 (GT homework, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "linearity and time invariance",
+            "delayed impulse"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p072.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p072s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p042",
+          "label": "DSP First DB 5-42 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "convolution by hand"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p042.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p042s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p044",
+          "label": "DSP First DB 5-44 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "convolution by hand"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p044.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p044s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p046",
+          "label": "DSP First DB 5-46 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "convolution by hand"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p046.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p046s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p002",
+          "label": "DSP First DB 5-2 (GT homework, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "length of convolution",
+            "sliding window"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p002.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p002s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p034",
+          "label": "DSP First DB 5-34 (GT homework, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "length of convolution"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p034.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p034s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p069",
+          "label": "DSP First DB 5-69 (GT homework, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "length of convolution"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p069.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p069s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p003",
+          "label": "DSP First DB 5-3 (GT homework, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "running average",
+            "first difference"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p003.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p003s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p022",
+          "label": "DSP First DB 5-22 (GT homework, f_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "impulse response"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p022.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p022s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p035",
+          "label": "DSP First DB 5-35 (GT homework, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "difference equation"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p035.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p035s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p039",
+          "label": "DSP First DB 5-39 (GT homework, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "blurring filter"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p039.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p039s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c5-p074",
+          "label": "DSP First DB 5-74 (GT homework, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "blurring filter"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch05/p074.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch05/p074s1.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece200-w05",
+      "title": "Signal drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "convolution",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

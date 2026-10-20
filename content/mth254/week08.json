@@ -1,0 +1,449 @@
+{
+ "_about": "MTH 254 term week 8. Videos come from videos.json (osu_week = 8). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+ "week": 8,
+ "readings": [
+  {
+   "id": "mth254-w8-os-5-2",
+   "resource": "openstax-c3-5-2",
+   "sections": "5.2 Double Integrals over General Regions (finish general regions)",
+   "est_min": 15,
+   "optional": true
+  },
+  {
+   "id": "mth254-w8-os-5-3",
+   "resource": "openstax-c3-5-3",
+   "sections": "5.3 Double Integrals in Polar Coordinates",
+   "est_min": 40
+  },
+  {
+   "id": "mth254-w8-os-5-6",
+   "resource": "openstax-c3-5-6",
+   "sections": "5.6 Calculating Centers of Mass and Moments of Inertia (mass and center of mass, if covered)",
+   "est_min": 35,
+   "optional": true
+  },
+  {
+   "id": "mth254-w8-clp-3-2-3-3",
+   "resource": "clp3-text",
+   "sections": "3.2 Double Integrals in Polar Coordinates and 3.3 Applications of Double Integrals (PDF page 303)",
+   "page": 280,
+   "est_min": 60,
+   "optional": true
+  },
+  {
+   "id": "mth254-w8-sg",
+   "resource": "osu-sg-parks",
+   "sections": "Lessons 20 and 23: double integrals in polar coordinates, integrals for mass",
+   "page": 59,
+   "est_min": 15,
+   "optional": true
+  },
+  {
+   "id": "mth254-w8-briggs",
+   "resource": "briggs-mvc-2e",
+   "sections": "Briggs 13.2-13.3, (13.6) (reference only; the book isn't free)",
+   "est_min": 0,
+   "optional": true
+  }
+ ],
+ "problem_sets": [
+  {
+   "id": "sc-supp-3b-3c",
+   "title": "18.02 exercises: polar coordinates and applications",
+   "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 3 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+   "resource": "mit1802sc-supp3",
+   "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages.",
+   "problems": [
+    {
+     "id": "3B-1",
+     "label": "Exercise 3B-1: set up polar iterated integrals for regions",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 2,
+      "start": "3B-1"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "page": 3,
+      "start": "3B-1",
+      "end": "3B-2"
+     }
+    },
+    {
+     "id": "3B-2",
+     "label": "Exercise 3B-2: evaluate double integrals in polar coordinates",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 3,
+      "start": "3B-2",
+      "end": "3B-3"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "page": 3,
+      "end": "3B-3"
+     }
+    },
+    {
+     "id": "3B-3",
+     "label": "Exercise 3B-3: volumes by polar integration",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 3,
+      "start": "3B-3",
+      "end": "3B-4"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "pages": [
+       3,
+       4
+      ]
+     }
+    },
+    {
+     "id": "3C-1",
+     "label": "Exercise 3C-1: moments of inertia of a right triangle",
+     "key_type": "official_worked",
+     "topics": [
+      "center of mass"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 3,
+      "start": "3C-1",
+      "end": "3C-2"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "page": 4,
+      "start": "3C-1",
+      "end": "3C-2"
+     }
+    },
+    {
+     "id": "3C-2",
+     "label": "Exercise 3C-2: center of mass under an arch of sin x",
+     "key_type": "official_worked",
+     "topics": [
+      "center of mass"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 3,
+      "start": "3C-2",
+      "end": "3C-3"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "page": 4,
+      "start": "3C-2"
+     }
+    },
+    {
+     "id": "3C-4",
+     "label": "Exercise 3C-4: center of gravity of a circular sector",
+     "key_type": "official_worked",
+     "topics": [
+      "moment of inertia"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/supprob3.pdf",
+      "page": 3,
+      "start": "3C-4"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/supprobsol3.pdf",
+      "page": 5,
+      "start": "3C-4",
+      "end": "3C-5"
+     }
+    }
+   ]
+  },
+  {
+   "id": "sc-pset7-part2b",
+   "title": "18.02 Problem Set 7, Part II: polar coordinates and centroids",
+   "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 7 Part II with posted solutions, CC BY-NC-SA 4.0",
+   "resource": "mit1802sc-pset7",
+   "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages. Problems 4 and 5 (Jacobians of fluid flows) are left out; their solutions are scanned pages.",
+   "problems": [
+    {
+     "id": "p2",
+     "label": "Problem 2: the shell method as a polar double integral",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates",
+      "double integrals"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/pset7.pdf",
+      "page": 2,
+      "start": "Problem 2 (",
+      "end": "Problem 3 ("
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/pset7sol.pdf",
+      "pages": [
+       1,
+       2
+      ]
+     }
+    },
+    {
+     "id": "p3",
+     "label": "Problem 3: centroid of a circular sector and of a triangle",
+     "key_type": "official_worked",
+     "topics": [
+      "center of mass",
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/mit1802sc/pset7.pdf",
+      "page": 2,
+      "start": "Problem 3 (",
+      "end": "Background for"
+     },
+     "key": {
+      "pdf": "library/mth254/mit1802sc/pset7sol.pdf",
+      "pages": [
+       2,
+       3
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "clp-3-2-3-3",
+   "title": "CLP-3 problems: polar coordinates, mass and center of mass",
+   "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+   "resource": "clp3-problems",
+   "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+   "problems": [
+    {
+     "id": "clp-3.2-7",
+     "label": "CLP-3 3.2 Q7: integrals over parts of disks in polar",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 77,
+      "start": "Q[7]",
+      "end": "Q[8]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       412,
+       413
+      ]
+     }
+    },
+    {
+     "id": "clp-3.2-8",
+     "label": "CLP-3 3.2 Q8: volume inside a sphere above a paraboloid",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates",
+      "volume"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 77,
+      "start": "Q[8]",
+      "end": "Q[9]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       413,
+       414
+      ]
+     }
+    },
+    {
+     "id": "clp-3.2-12",
+     "label": "CLP-3 3.2 Q12: convert an iterated integral to polar (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 78,
+      "start": "Q[12]",
+      "end": "Q[13]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 417,
+      "start": "S-12:",
+      "end": "S-13:"
+     }
+    },
+    {
+     "id": "clp-3.2-14",
+     "label": "CLP-3 3.2 Q14: an integral over the whole plane (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 78,
+      "start": "Q[14]",
+      "end": "Q[15]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       418,
+       419
+      ]
+     }
+    },
+    {
+     "id": "clp-3.2-15",
+     "label": "CLP-3 3.2 Q15: a polar integral over a wedge (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 78,
+      "start": "Q[15]",
+      "end": "Q[16]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 419,
+      "start": "S-15:",
+      "end": "S-16:"
+     }
+    },
+    {
+     "id": "clp-3.2-17",
+     "label": "CLP-3 3.2 Q17: region between a line and a circle (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 78,
+      "start": "Q[17]"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       420,
+       421
+      ]
+     }
+    },
+    {
+     "id": "clp-3.3-2",
+     "label": "CLP-3 3.3 Q2: center of mass with variable density (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "center of mass"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 80,
+      "start": "Q[2]",
+      "end": "Q[3]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       428,
+       429
+      ]
+     }
+    },
+    {
+     "id": "clp-3.3-4",
+     "label": "CLP-3 3.3 Q4: center of mass of a cardioid region (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "center of mass",
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 81,
+      "start": "Q[4]",
+      "end": "Q[5]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       431,
+       432
+      ]
+     }
+    },
+    {
+     "id": "clp-3.3-5",
+     "label": "CLP-3 3.3 Q5: center of mass of a quarter disk (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "center of mass"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 81,
+      "start": "Q[5]",
+      "end": "Q[6]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       432,
+       433
+      ]
+     }
+    },
+    {
+     "id": "clp-3.3-9",
+     "label": "CLP-3 3.3 Q9: mass of a region between two circles (UBC exam)",
+     "key_type": "official_worked",
+     "topics": [
+      "mass",
+      "polar coordinates"
+     ],
+     "statement": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "page": 81,
+      "start": "Q[9]",
+      "end": "Q[10]|§§ Stage"
+     },
+     "key": {
+      "pdf": "library/mth254/clp3/problems.pdf",
+      "pages": [
+       436,
+       437
+      ]
+     }
+    }
+   ]
+  }
+ ]
+}

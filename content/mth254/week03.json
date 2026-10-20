@@ -1,0 +1,357 @@
+{
+  "_about": "MTH 254 term week 3. Videos come from videos.json (osu_week = 3). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+  "week": 3,
+  "readings": [
+    {
+      "id": "mth254-w3-os-3-3",
+      "resource": "openstax-c3-3-3",
+      "sections": "3.3 Arc Length and Curvature (arc length; curvature is optional)",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w3-os-2-5",
+      "resource": "openstax-c3-2-5",
+      "sections": "2.5 Equations of Lines and Planes in Space (the planes part)",
+      "est_min": 20
+    },
+    {
+      "id": "mth254-w3-os-2-6",
+      "resource": "openstax-c3-2-6",
+      "sections": "2.6 Quadric Surfaces",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w3-os-4-1",
+      "resource": "openstax-c3-4-1",
+      "sections": "4.1 Functions of Several Variables",
+      "est_min": 30
+    },
+    {
+      "id": "mth254-w3-clp-1-4-1-7",
+      "resource": "clp3-text",
+      "sections": "1.4 Equations of Planes in 3d (PDF page 50) and 1.7-1.9 Sketching Surfaces, Cylinders, Quadric Surfaces (PDF page 77)",
+      "page": 50,
+      "est_min": 50,
+      "optional": true
+    },
+    {
+      "id": "mth254-w3-sg",
+      "resource": "osu-sg-parks",
+      "sections": "Lessons 7-10: lengths of curves, curvature (optional), planes and surfaces, graphs and level curves",
+      "page": 28,
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "mth254-w3-briggs",
+      "resource": "briggs-mvc-2e",
+      "sections": "Briggs 11.8, (11.9), 12.1-12.2 (reference only; the book isn't free)",
+      "est_min": 0,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "clp-arc-planes",
+      "title": "CLP-3 problems: arc length and planes",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-1.6-12",
+          "label": "CLP-3 1.6 Q12: unit tangent and arc length of a twisted curve (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "arc length",
+            "unit tangent"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 26,
+            "start": "Q[12]",
+            "end": "Q[13]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 213,
+            "start": "S-12:",
+            "end": "S-13:"
+          }
+        },
+        {
+          "id": "clp-1.6-15",
+          "label": "CLP-3 1.6 Q15: length of a spiral and its tangent line (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "arc length"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 26,
+            "start": "Q[15]",
+            "end": "Q[16]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 214,
+            "start": "S-15:",
+            "end": "S-16:"
+          }
+        },
+        {
+          "id": "clp-1.6-17",
+          "label": "CLP-3 1.6 Q17: arc length of an astroid-like curve (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "arc length"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 26,
+            "start": "Q[17]",
+            "end": "Q[18]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 215,
+            "start": "S-17:",
+            "end": "S-18:"
+          }
+        },
+        {
+          "id": "clp-1.6-18",
+          "label": "CLP-3 1.6 Q18: the arc-length function s(t) (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "arc length"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 26,
+            "start": "Q[18]",
+            "end": "Q[19]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 215,
+            "start": "S-18:"
+          }
+        },
+        {
+          "id": "clp-1.4-9",
+          "label": "CLP-3 1.4 Q9: plane through three points and a perpendicular foot (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "planes"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 20,
+            "start": "Q[9]",
+            "end": "Q[10]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 192,
+            "start": "S-9:",
+            "end": "S-10:"
+          }
+        },
+        {
+          "id": "clp-1.4-12",
+          "label": "CLP-3 1.4 Q12: distance from a point to a plane (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "planes",
+            "distance"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 20,
+            "start": "Q[12]",
+            "end": "Q[13]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 194,
+            "start": "S-12:",
+            "end": "S-13:"
+          }
+        },
+        {
+          "id": "clp-1.4-19",
+          "label": "CLP-3 1.4 Q19: area of a triangle and distance to its plane (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "planes",
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 20,
+            "start": "Q[19]",
+            "end": "Q[20]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 198,
+            "start": "S-19:",
+            "end": "S-20:"
+          }
+        }
+      ]
+    },
+    {
+      "id": "clp-1-7",
+      "title": "CLP-3 problems: surfaces, quadrics and level curves",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-1.7-4",
+          "label": "CLP-3 1.7 Q4: level curves of three functions",
+          "key_type": "official_worked",
+          "topics": [
+            "level curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 30,
+            "start": "Q[4]",
+            "end": "Q[5]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              226,
+              227,
+              228
+            ]
+          }
+        },
+        {
+          "id": "clp-1.7-5",
+          "label": "CLP-3 1.7 Q5: level curves of 2y/(x^2+y^2) (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "level curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 30,
+            "start": "Q[5]",
+            "end": "Q[6]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 228,
+            "start": "S-5:",
+            "end": "S-6:"
+          }
+        },
+        {
+          "id": "clp-1.7-7",
+          "label": "CLP-3 1.7 Q7: level curves and a sketch of a surface (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "quadric surfaces",
+            "level curves"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 31,
+            "start": "Q[7]",
+            "end": "Q[8]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 229,
+            "start": "S-7:"
+          }
+        },
+        {
+          "id": "clp-1.7-8",
+          "label": "CLP-3 1.7 Q8: sketching a hyperboloid (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "quadric surfaces"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 31,
+            "start": "Q[8]",
+            "end": "Q[9]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 230,
+            "start": "S-8:",
+            "end": "S-9:"
+          }
+        },
+        {
+          "id": "clp-1.7-9",
+          "label": "CLP-3 1.7 Q9: level surfaces of functions of three variables",
+          "key_type": "official_worked",
+          "topics": [
+            "level surfaces"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 31,
+            "start": "Q[9]",
+            "end": "Q[10]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 230,
+            "start": "S-9:",
+            "end": "S-10:"
+          }
+        },
+        {
+          "id": "clp-1.7-11",
+          "label": "CLP-3 1.7 Q11: sketch and describe several surfaces",
+          "key_type": "official_worked",
+          "topics": [
+            "quadric surfaces",
+            "cylinders"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 31,
+            "start": "Q[11]",
+            "end": "Q[12]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              231,
+              232,
+              233
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-mth254-w03",
+      "title": "Calculus drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "arc_length",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

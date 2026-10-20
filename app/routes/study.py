@@ -160,7 +160,7 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
 def problem_image(slug: str, part: str, session: Session = Depends(get_session)):
     problem = _problem_or_404(session, slug)
     region = {"statement": problem.statement, "key": problem.key}.get(part)
-    if not region or "pdf" not in region:
+    if not region or not ("pdf" in region or "images" in region):
         raise HTTPException(404, "No image for this part")
     try:
         png = pdfpages.render(region)

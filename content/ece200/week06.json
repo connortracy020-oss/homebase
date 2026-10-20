@@ -1,0 +1,401 @@
+{
+  "_about": "ECE 200 term week 6. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 6). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 6,
+  "readings": [
+    {
+      "id": "ece200-w6-spf-l12",
+      "resource": "spf-L12",
+      "sections": "Lecture 12: Frequency Response for FIR. All slides",
+      "est_min": 30
+    },
+    {
+      "id": "ece200-w6-thinkdsp-ch8",
+      "resource": "thinkdsp",
+      "sections": "Chapter 8, Filtering and convolution: 8.3 The frequency domain and 8.4 The convolution theorem (chapter starts book p. 89)",
+      "page": 101,
+      "est_min": 20,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "dspdb-w6-freqresp",
+      "title": "DSP First problems: FIR frequency response",
+      "source": "DSP First problem database (Georgia Tech ECE 2025/2026 problem sets, quizzes and finals, 1993-2002)",
+      "resource": "dspfirst-db",
+      "notes": "Each statement PDF holds only the problem (checked by eye for every problem in this set); the worked solution is a separate scanned or typeset image. Problems are old Georgia Tech work, labelled quiz/final/homework from their file names.",
+      "problems": [
+        {
+          "id": "c6-p072",
+          "label": "DSP First DB 6-72 (GT quiz, sp_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "frequency response",
+            "matching"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p072.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p072s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p043",
+          "label": "DSP First DB 6-43 (GT quiz, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "frequency response",
+            "matching"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p043.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p043s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p011",
+          "label": "DSP First DB 6-11 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "equivalent representations"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p011.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p011s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p018",
+          "label": "DSP First DB 6-18 (GT final, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "magnitude and phase"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p018.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p018s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p085",
+          "label": "DSP First DB 6-85 (GT quiz, w_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "first difference",
+            "magnitude and phase"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p085.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p085s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p095",
+          "label": "DSP First DB 6-95 (GT quiz, w_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "magnitude",
+            "highpass"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p095.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p095s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p080",
+          "label": "DSP First DB 6-80 (GT quiz, su_93)",
+          "key_type": "official_worked",
+          "topics": [
+            "magnitude",
+            "lowpass",
+            "blurring"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p080.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p080s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p033",
+          "label": "DSP First DB 6-33 (GT quiz, f_98)",
+          "key_type": "official_worked",
+          "topics": [
+            "impulse response",
+            "magnitude plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p033.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p033s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p104",
+          "label": "DSP First DB 6-104 (GT quiz, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "FIR output",
+            "magnitude plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p104.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p104s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p106",
+          "label": "DSP First DB 6-106 (GT quiz, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "FIR output",
+            "magnitude plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p106.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p106s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p074",
+          "label": "DSP First DB 6-74 (GT quiz, sp_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "FIR output",
+            "highpass"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p074.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p074s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p076",
+          "label": "DSP First DB 6-76 (GT quiz, su_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "polar form",
+            "magnitude plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p076.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p076s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p004",
+          "label": "DSP First DB 6-4 (GT quiz, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "sinusoid in, sinusoid out"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p004.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p004s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p060",
+          "label": "DSP First DB 6-60 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex exponential input"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p060.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p060s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p062",
+          "label": "DSP First DB 6-62 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "complex exponential input"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p062.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p062s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p096",
+          "label": "DSP First DB 6-96 (GT quiz, w_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "input spectrum",
+            "difference equation"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p096.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p096s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p067",
+          "label": "DSP First DB 6-67 (GT homework, sp_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "difference equation from H",
+            "convolution"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p067.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p067s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p098",
+          "label": "DSP First DB 6-98 (GT final, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "DC gain",
+            "short answer"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p098.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p098s1.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gtex-w6-freqresp",
+      "title": "Exam problem: impulse response, difference equation and DTFT basics",
+      "source": "Georgia Tech ECE 2026 quizzes and finals, John Barry's exam archive",
+      "resource": "gt2026-barry-exams",
+      "notes": "Single problems cut from Georgia Tech ECE 2026 quizzes and finals (John Barry's archive). Each statement page is from the blank copy and was checked by eye to have no answers written in; the key page is the same problem in the answer key.",
+      "problems": [
+        {
+          "id": "q3_sp14-spring2014quiz3,problem1",
+          "label": "Spring 2014 Quiz 3, Problem 1: impulse response, difference equation, DC output, cascade",
+          "key_type": "official_worked",
+          "topics": [
+            "impulse response",
+            "difference equation",
+            "DC gain",
+            "LTI cascade"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp14.pdf",
+            "pages": [
+              2
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp14.pdf",
+            "pages": [
+              7
+            ]
+          }
+        }
+      ],
+      "optional": true
+    },
+    {
+      "id": "gen-ece200-w06",
+      "title": "Signal drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "fir_frequency_response",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

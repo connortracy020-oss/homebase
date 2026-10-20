@@ -1,0 +1,430 @@
+{
+  "_about": "ECE 200 term week 2. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 2). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 2,
+  "readings": [
+    {
+      "id": "ece200-w2-spf-l04",
+      "resource": "spf-L04",
+      "sections": "Lecture 4: The Spectrum. All slides",
+      "est_min": 20
+    },
+    {
+      "id": "ece200-w2-spf-l05",
+      "resource": "spf-L05",
+      "sections": "Lecture 5: Periodic Signals and Time-Varying Spectrum. All slides",
+      "est_min": 20
+    },
+    {
+      "id": "ece200-w2-spf-l06",
+      "resource": "spf-L06",
+      "sections": "Lecture 6: Fourier Series Analysis. All slides",
+      "est_min": 20
+    },
+    {
+      "id": "ece200-w2-spf-l07",
+      "resource": "spf-L07",
+      "sections": "Lecture 7: Fourier Series & Spectrum. All slides",
+      "est_min": 20
+    },
+    {
+      "id": "ece200-w2-thinkdsp-ch2",
+      "resource": "thinkdsp",
+      "sections": "Chapter 2, Harmonics (book p. 13)",
+      "page": 25,
+      "est_min": 30,
+      "optional": true
+    },
+    {
+      "id": "ece200-w2-thinkdsp-ch3",
+      "resource": "thinkdsp",
+      "sections": "Chapter 3, Non-periodic signals: chirps and the spectrogram (book p. 23)",
+      "page": 35,
+      "est_min": 30,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "dspdb-w2-spectrum",
+      "title": "DSP First problems: spectrum, AM, Fourier series",
+      "source": "DSP First problem database (Georgia Tech ECE 2025/2026 problem sets, quizzes and finals, 1993-2002)",
+      "resource": "dspfirst-db",
+      "notes": "Each statement PDF holds only the problem (checked by eye for every problem in this set); the worked solution is a separate scanned or typeset image. Problems are old Georgia Tech work, labelled quiz/final/homework from their file names.",
+      "problems": [
+        {
+          "id": "c3-p005",
+          "label": "DSP First DB 3-5 (GT quiz, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "spectrum",
+            "equivalent representations"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p005.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p005s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p006",
+          "label": "DSP First DB 3-6 (GT quiz, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "spectrum from a time plot"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p006.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p006s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p007",
+          "label": "DSP First DB 3-7 (GT quiz, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "signal from its spectrum",
+            "periodicity"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p007.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p007s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p059",
+          "label": "DSP First DB 3-59 (GT quiz, f_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "signal from its spectrum",
+            "periodicity"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p059.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p059s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p041",
+          "label": "DSP First DB 3-41 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "two-sided spectrum",
+            "period"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p041.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p041s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p105",
+          "label": "DSP First DB 3-105 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "signal from its spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p105.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p105s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p151",
+          "label": "DSP First DB 3-151 (GT quiz, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "spectrum",
+            "conjugate symmetry"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p151.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p151s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p023",
+          "label": "DSP First DB 3-23 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "spectrum",
+            "conjugate symmetry"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p023.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p023s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p024",
+          "label": "DSP First DB 3-24 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "AM",
+            "spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p024.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p024s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p141",
+          "label": "DSP First DB 3-141 (GT quiz, w_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "AM",
+            "phasors"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p141.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p141s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p106",
+          "label": "DSP First DB 3-106 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "product of sinusoids",
+            "spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p106.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p106s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p115",
+          "label": "DSP First DB 3-115 (GT final, sp_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "beat notes",
+            "sum of sinusoids"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p115.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p115s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p050",
+          "label": "DSP First DB 3-50 (GT quiz, f_98)",
+          "key_type": "official_worked",
+          "topics": [
+            "match spectra to waveforms"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p050.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p050s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p020",
+          "label": "DSP First DB 3-20 (GT quiz, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "Fourier series",
+            "sum of sinusoids"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p020.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p020s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p111",
+          "label": "DSP First DB 3-111 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "Fourier series",
+            "spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p111.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p111s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p075",
+          "label": "DSP First DB 3-75 (GT quiz, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "Fourier series integral",
+            "pulse train"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p075.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p075s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p089",
+          "label": "DSP First DB 3-89 (GT quiz, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "Fourier series integral",
+            "DC value"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p089.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p089s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p060",
+          "label": "DSP First DB 3-60 (GT final, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "Fourier series integral"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p060.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p060s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p133",
+          "label": "DSP First DB 3-133 (GT quiz, su_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "Fourier series",
+            "DC value"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p133.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p133s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c3-p119",
+          "label": "DSP First DB 3-119 (GT quiz, sp_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "chirp",
+            "instantaneous frequency"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch03/p119.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch03/p119s1.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece200-w02",
+      "title": "Signal drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "spectrum_reading",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

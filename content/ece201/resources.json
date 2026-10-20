@@ -55,5 +55,337 @@
     "url": "https://www.ibiblio.org/kuphaldt/socratic/output/ewp.pdf",
     "local_path": "library/ece201/kuphaldt/ewp.pdf",
     "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "ulaby-cq-ch2",
+    "kind": "solutions",
+    "title": "Ulaby: chapter 2 concept questions with answers",
+    "url": "http://cad3e.eecs.umich.edu/concept_questions/chapter2.html",
+    "local_path": "library/ece201/ulaby/cq_ch2.pdf",
+    "license": "Posted publicly by the authors on the book's companion site; terms not stated"
+  },
+  {
+    "id": "ulaby-cq-ch3",
+    "kind": "solutions",
+    "title": "Ulaby: chapter 3 concept questions with answers",
+    "url": "http://cad3e.eecs.umich.edu/concept_questions/chapter3.html",
+    "local_path": "library/ece201/ulaby/cq_ch3.pdf",
+    "license": "Posted publicly by the authors on the book's companion site; terms not stated"
+  },
+  {
+    "id": "ulaby-cq-ch4",
+    "kind": "solutions",
+    "title": "Ulaby: chapter 4 concept questions with answers",
+    "url": "http://cad3e.eecs.umich.edu/concept_questions/chapter4.html",
+    "local_path": "library/ece201/ulaby/cq_ch4.pdf",
+    "license": "Posted publicly by the authors on the book's companion site; terms not stated"
+  },
+  {
+    "id": "ulaby-cq-ch5",
+    "kind": "solutions",
+    "title": "Ulaby: chapter 5 concept questions with answers",
+    "url": "http://cad3e.eecs.umich.edu/concept_questions/chapter5.html",
+    "local_path": "library/ece201/ulaby/cq_ch5.pdf",
+    "license": "Posted publicly by the authors on the book's companion site; terms not stated"
+  },
+  {
+    "id": "ulaby-tb07",
+    "kind": "notes",
+    "title": "Ulaby Technology Brief 7: Integrated Circuit Fabrication Process (4 pp)",
+    "url": "http://cad3e.eecs.umich.edu/techbriefs/tb07.pdf",
+    "local_path": "library/ece201/ulaby/tb07_ic_fab.pdf",
+    "license": "Posted publicly by the authors on the book's companion site; terms not stated",
+    "notes": "Covers the new ECE 201 device-fabrication topic: wafers, oxidation, photolithography, doping, metallization."
+  },
+  {
+    "id": "mit6002-notes-L2",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 2 notes (Agarwal): basic circuit analysis (KVL and KCL method)",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L2.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "mit6002-notes-L3",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 3 notes (Agarwal): superposition, Thevenin and Norton",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L3.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "mit6002-notes-L8",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 8 notes (Agarwal): dependent sources and amplifiers",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L8.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "mit6002-notes-L12",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 12 notes (Agarwal): capacitors and first-order systems",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L12.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "mit6002-notes-L14",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 14 notes (Agarwal): state and memory (RC response)",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L14.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "mit6002-notes-L19",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 19 notes (Agarwal): the operational amplifier abstraction",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L19.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "mit6002-notes-L20",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 20 notes (Agarwal): operational amplifier circuits",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L20.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "mit6002-notes-L23",
+    "kind": "notes",
+    "title": "MIT 6.002 Lecture 23 notes (Agarwal): energy, CMOS",
+    "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/pages/lecture-notes/",
+    "local_path": "library/ece201/mit6002/notes_L23.pdf",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)"
+  },
+  {
+    "id": "openstax-up2-9-4",
+    "kind": "textbook",
+    "title": "OpenStax University Physics Vol. 2, 9.4 Ohm's Law",
+    "url": "https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law",
+    "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+  },
+  {
+    "id": "openstax-up2-10-2",
+    "kind": "textbook",
+    "title": "OpenStax University Physics Vol. 2, 10.2 Resistors in Series and Parallel",
+    "url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel",
+    "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+  },
+  {
+    "id": "openstax-up2-10-5",
+    "kind": "textbook",
+    "title": "OpenStax University Physics Vol. 2, 10.5 RC Circuits",
+    "url": "https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits",
+    "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+  },
+  {
+    "id": "openstax-up2-8-1",
+    "kind": "textbook",
+    "title": "OpenStax University Physics Vol. 2, 8.1 Capacitors and Capacitance",
+    "url": "https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance",
+    "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+  },
+  {
+    "id": "openstax-up2-14-2",
+    "kind": "textbook",
+    "title": "OpenStax University Physics Vol. 2, 14.2 Self-Inductance and Inductors",
+    "url": "https://openstax.org/books/university-physics-volume-2/pages/14-2-self-inductance-and-inductors",
+    "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+  },
+  {
+    "id": "fiore-dc",
+    "kind": "textbook",
+    "title": "James Fiore, DC Electrical Circuit Analysis: A Practical Approach, v1.0.14",
+    "url": "https://www2.mvcc.edu/users/faculty/jfiore/books/DCElectricalCircuitAnalysis.pdf",
+    "local_path": "library/ece201/fiore/dc_text.pdf",
+    "license": "CC BY-NC-SA 3.0 (stated in the book and on the author's site, checked 2026-10-19)",
+    "notes": "Free alternative text. Printed page numbers match the PDF pages. Appendix D (p. 363) has answers to odd-numbered problems. The author says none of his books may be used for AI training without his written consent; Homebase only shows the pages to you."
+  },
+  {
+    "id": "fiore-semis",
+    "kind": "textbook",
+    "title": "James Fiore, Semiconductor Devices: Theory and Application, v2.0.10",
+    "url": "https://www2.mvcc.edu/users/faculty/jfiore/books/SemiconductorDevices.pdf",
+    "local_path": "library/ece201/fiore/semis.pdf",
+    "license": "CC BY-NC-SA 3.0 (stated in the book and on the author's site, checked 2026-10-19)",
+    "notes": "For the devices unit: PN junctions and diodes (ch 2), MOSFETs (ch 12). Appendix C (p. 476) has answers to selected problems. The author says none of his books may be used for AI training without his written consent; Homebase only shows the pages to you."
+  },
+  {
+    "id": "fiore-opamps",
+    "kind": "textbook",
+    "title": "James Fiore, Operational Amplifiers & Linear Integrated Circuits, 3E, v3.2.11",
+    "url": "https://www2.mvcc.edu/users/faculty/jfiore/books/OperationalAmplifiersAndLinearICs_3E.pdf",
+    "local_path": "library/ece201/fiore/opamps.pdf",
+    "license": "CC BY-NC-SA 3.0 (stated in the book and on the author's site, checked 2026-10-19)",
+    "notes": "Optional op-amp reading. The author says none of his books may be used for AI training without his written consent; Homebase only shows the pages to you."
+  },
+  {
+    "id": "kuphaldt-kvl",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Kirchhoff's laws",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/kvl.pdf",
+    "local_path": "library/ece201/kuphaldt/kvl.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-dc_s",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Series DC circuits",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/dc_s.pdf",
+    "local_path": "library/ece201/kuphaldt/dc_s.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-dc_p",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Parallel DC circuits",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/dc_p.pdf",
+    "local_path": "library/ece201/kuphaldt/dc_p.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-dc_sp",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Series-parallel DC circuits",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/dc_sp.pdf",
+    "local_path": "library/ece201/kuphaldt/dc_sp.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-e_divide",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Voltage divider circuits",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/e_divide.pdf",
+    "local_path": "library/ece201/kuphaldt/e_divide.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-i_divide",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Current divider circuits",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/i_divide.pdf",
+    "local_path": "library/ece201/kuphaldt/i_divide.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-dcbranch",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Branch current analysis",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/dcbranch.pdf",
+    "local_path": "library/ece201/kuphaldt/dcbranch.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-dcmesh",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Mesh current analysis",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/dcmesh.pdf",
+    "local_path": "library/ece201/kuphaldt/dcmesh.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-simultaneous",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Simultaneous equations",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/simultaneous.pdf",
+    "local_path": "library/ece201/kuphaldt/simultaneous.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-super",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Superposition theorem",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/super.pdf",
+    "local_path": "library/ece201/kuphaldt/super.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-thev",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Thevenin's, Norton's and maximum power transfer theorems",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/thev.pdf",
+    "local_path": "library/ece201/kuphaldt/thev.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-opamp1",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Basic operational amplifiers",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/opamp1.pdf",
+    "local_path": "library/ece201/kuphaldt/opamp1.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-opamp3",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Negative feedback",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/opamp3.pdf",
+    "local_path": "library/ece201/kuphaldt/opamp3.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-opamp5",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Inverting and noninverting amplifiers",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/opamp5.pdf",
+    "local_path": "library/ece201/kuphaldt/opamp5.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-opamp6",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Summer and subtractor circuits",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/opamp6.pdf",
+    "local_path": "library/ece201/kuphaldt/opamp6.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-caps",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Capacitors",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/caps.pdf",
+    "local_path": "library/ece201/kuphaldt/caps.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-inds",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Inductors",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/inds.pdf",
+    "local_path": "library/ece201/kuphaldt/inds.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-time2",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Time constant calculations",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/time2.pdf",
+    "local_path": "library/ece201/kuphaldt/time2.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-diode1",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Rectifying diodes",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/diode1.pdf",
+    "local_path": "library/ece201/kuphaldt/diode1.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
+  },
+  {
+    "id": "kuphaldt-igfet",
+    "kind": "worksheet",
+    "title": "Kuphaldt, Socratic Electronics worksheet: Insulated-gate field-effect transistors",
+    "url": "https://www.ibiblio.org/kuphaldt/socratic/output/igfet.pdf",
+    "local_path": "library/ece201/kuphaldt/igfet.pdf",
+    "license": "CC BY 1.0 (stated in the worksheet)"
   }
 ]

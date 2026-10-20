@@ -1,0 +1,426 @@
+{
+  "_about": "ECE 200 term week 3. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 3). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 3,
+  "readings": [
+    {
+      "id": "ece200-w3-spf-l08",
+      "resource": "spf-L08",
+      "sections": "Lecture 8: Sampling and Aliasing. All slides",
+      "est_min": 25
+    },
+    {
+      "id": "ece200-w3-spf-l09",
+      "resource": "spf-L09",
+      "sections": "Lecture 9: Bandlimited Reconstruction (D-to-A). All slides",
+      "est_min": 20
+    },
+    {
+      "id": "ece200-w3-thinkdsp-ch11",
+      "resource": "thinkdsp",
+      "sections": "Chapter 11, Modulation and sampling: sections 11.3 Sampling to 11.5 Interpolation (chapter starts book p. 127)",
+      "page": 139,
+      "est_min": 25,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "dspdb-w3-sampling",
+      "title": "DSP First problems: sampling, aliasing, reconstruction",
+      "source": "DSP First problem database (Georgia Tech ECE 2025/2026 problem sets, quizzes and finals, 1993-2002)",
+      "resource": "dspfirst-db",
+      "notes": "Each statement PDF holds only the problem (checked by eye for every problem in this set); the worked solution is a separate scanned or typeset image. Problems are old Georgia Tech work, labelled quiz/final/homework from their file names.",
+      "problems": [
+        {
+          "id": "c4-p006",
+          "label": "DSP First DB 4-6 (GT quiz, f_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "aliasing",
+            "C-to-D and D-to-C"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p006.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p006s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p013",
+          "label": "DSP First DB 4-13 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "sampling and reconstruction"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p013.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p013s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p034",
+          "label": "DSP First DB 4-34 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "aliases of a DT sinusoid"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p034.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p034s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p120",
+          "label": "DSP First DB 4-120 (GT quiz, su_93)",
+          "key_type": "official_worked",
+          "topics": [
+            "aliases of a DT sinusoid"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p120.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p120s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p048",
+          "label": "DSP First DB 4-48 (GT quiz, f_98)",
+          "key_type": "official_worked",
+          "topics": [
+            "aliasing",
+            "DT spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p048.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p048s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p111",
+          "label": "DSP First DB 4-111 (GT quiz, sp_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "sampling",
+            "DT spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p111.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p111s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p027",
+          "label": "DSP First DB 4-27 (GT quiz, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "C-to-D and D-to-C cascade"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p027.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p027s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p033",
+          "label": "DSP First DB 4-33 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "C-to-D and D-to-C cascade",
+            "DT spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p033.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p033s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p064",
+          "label": "DSP First DB 4-64 (GT quiz, sp_00)",
+          "key_type": "official_worked",
+          "topics": [
+            "DT spectrum",
+            "chirp after sampling"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p064.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p064s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p049",
+          "label": "DSP First DB 4-49 (GT quiz, f_98)",
+          "key_type": "official_worked",
+          "topics": [
+            "Nyquist rate",
+            "chirp after sampling"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p049.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p049s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p078",
+          "label": "DSP First DB 4-78 (GT quiz, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "sampling theorem",
+            "aliasing"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p078.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p078s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p091",
+          "label": "DSP First DB 4-91 (GT quiz, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "minimum sampling rate",
+            "DC alias"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p091.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p091s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p028",
+          "label": "DSP First DB 4-28 (GT quiz, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "Nyquist rate",
+            "period"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p028.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p028s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p152",
+          "label": "DSP First DB 4-152 (GT quiz, w_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "Nyquist rate",
+            "period"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p152.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p152s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p030",
+          "label": "DSP First DB 4-30 (GT final, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "DT spectrum",
+            "sampling"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p030.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p030s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p036",
+          "label": "DSP First DB 4-36 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "D-to-C pulse reconstruction"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p036.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p036s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p035",
+          "label": "DSP First DB 4-35 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "strobe effect"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p035.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p035s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p106",
+          "label": "DSP First DB 4-106 (GT quiz, sp_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "strobe effect",
+            "wagon wheel"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p106.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p106s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p009",
+          "label": "DSP First DB 4-9 (GT final, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "aliasing",
+            "short answer"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p009.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p009s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p156",
+          "label": "DSP First DB 4-156 (GT final, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "aliasing",
+            "Nyquist rate",
+            "short answer"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p156.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p156s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c4-p089",
+          "label": "DSP First DB 4-89 (GT homework, sp_02)",
+          "key_type": "official_worked",
+          "topics": [
+            "periodicity of DT sinusoids"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch04/p089.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch04/p089s1.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece200-w03",
+      "title": "Signal drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "alias_frequency",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

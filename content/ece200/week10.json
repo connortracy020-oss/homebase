@@ -1,0 +1,219 @@
+{
+  "_about": "ECE 200 term week 10. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 10). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 10,
+  "readings": [
+    {
+      "id": "ece200-w10-ch67-1",
+      "resource": "barry-ch67-dft",
+      "sections": "67-1 The DFT, inverse DFT, DFT pairs from the DTFT, matrix form",
+      "page": 1,
+      "est_min": 40
+    },
+    {
+      "id": "ece200-w10-ch67-2",
+      "resource": "barry-ch67-dft",
+      "sections": "67-2 and 67-3 DFT properties: periodicity, symmetry, frequency sampling and zero padding, delay and circular convolution",
+      "page": 9,
+      "est_min": 45
+    },
+    {
+      "id": "ece200-w10-ch67-8",
+      "resource": "barry-ch67-dft",
+      "sections": "67-6 Windows and 67-8 The FFT (light)",
+      "page": 32,
+      "est_min": 25,
+      "optional": true
+    },
+    {
+      "id": "ece200-w10-thinkdsp-ch7",
+      "resource": "thinkdsp",
+      "sections": "Chapter 7, Discrete Fourier Transform: synthesis and analysis with matrices, np.fft (book p. 75)",
+      "page": 87,
+      "est_min": 30,
+      "optional": true
+    },
+    {
+      "id": "ece200-w10-tables",
+      "resource": "barry-tables-q2",
+      "sections": "Page 2: N-point DFT pairs and properties",
+      "page": 2,
+      "est_min": 10
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "gtex-w10-dft",
+      "title": "Exam problems: the DFT",
+      "source": "Georgia Tech ECE 2026 quizzes and finals, John Barry's exam archive",
+      "resource": "gt2026-barry-exams",
+      "notes": "Single problems cut from Georgia Tech ECE 2026 quizzes and finals (John Barry's archive). Each statement page is from the blank copy and was checked by eye to have no answers written in; the key page is the same problem in the answer key. The DSP First database's chapter 8 (DFT) problems are not usable here: their statement PDFs were not downloaded.",
+      "problems": [
+        {
+          "id": "q3_sp14-spring2014quiz3,problem3",
+          "label": "Spring 2014 Quiz 3, Problem 3: 4-point DFT, inverse, Parseval, modulation, zero padding",
+          "key_type": "official_worked",
+          "topics": [
+            "DFT by hand",
+            "inverse DFT",
+            "zero padding"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp14.pdf",
+            "pages": [
+              4,
+              5
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp14.pdf",
+            "pages": [
+              9,
+              10
+            ]
+          }
+        },
+        {
+          "id": "q3_fa23-fall2023exam3,problem3",
+          "label": "Fall 2023 Exam 3, Problem 3: DFS/DFT of a sum of sinusoids; match signals to DFT magnitudes",
+          "key_type": "official_worked",
+          "topics": [
+            "DT Fourier series",
+            "DFT of sinusoids",
+            "DFT matching"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/q3_fa23.pdf",
+            "pages": [
+              4
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/q3_fa23.pdf",
+            "pages": [
+              8
+            ]
+          }
+        },
+        {
+          "id": "q3_sp22-spring2022quiz3,problem3",
+          "label": "Spring 2022 Quiz 3, Problem 3: match ten signals to their 64-point DFT magnitudes",
+          "key_type": "official_worked",
+          "topics": [
+            "DFT matching"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp22.pdf",
+            "pages": [
+              4
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp22.pdf",
+            "pages": [
+              8
+            ]
+          }
+        },
+        {
+          "id": "fin_su23-f4",
+          "label": "Summer 2023 Final, Problem 4: match signals to 64-point DFT magnitudes",
+          "key_type": "official_worked",
+          "topics": [
+            "DFT matching"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              6
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              15
+            ]
+          }
+        },
+        {
+          "id": "fin_su26-summer2026final,problem7",
+          "label": "Summer 2026 Final, Problem 7: match length-64 signals to their DFT magnitudes",
+          "key_type": "official_worked",
+          "topics": [
+            "DFT matching"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su26.pdf",
+            "pages": [
+              8
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su26.pdf",
+            "pages": [
+              17
+            ]
+          }
+        },
+        {
+          "id": "fin_su24-summer2024final,problem7",
+          "label": "Summer 2024 Final, Problem 7: 16-point DFT on a circle, find the length-4 signal",
+          "key_type": "official_worked",
+          "topics": [
+            "inverse DFT",
+            "DFT delay property"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su24.pdf",
+            "pages": [
+              8
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su24.pdf",
+            "pages": [
+              20
+            ]
+          }
+        },
+        {
+          "id": "fin_sp22-spring2022final,problem7",
+          "label": "Spring 2022 Final, Problem 7: DFT magnitudes of boxcars for different L and N",
+          "key_type": "official_worked",
+          "topics": [
+            "DFT of a boxcar",
+            "zero padding"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_sp22.pdf",
+            "pages": [
+              8
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_sp22.pdf",
+            "pages": [
+              17
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece200-w10",
+      "title": "Signal drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "dft_small",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

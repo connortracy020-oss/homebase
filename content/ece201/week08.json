@@ -1,0 +1,647 @@
+{
+  "_about": "ECE 201 term week 8. Videos for this week come from videos.json (osu_week = 8). Problems point at PDF pages in library/ece201/ (no problem or solution text is stored here). Generated problem sets are added separately.",
+  "week": 8,
+  "readings": [
+    {
+      "id": "ece201-w8-ulaby-4-4",
+      "resource": "ulaby-cad3e",
+      "sections": "4-4 to 4-9 (inverting and noninverting amplifiers, summer, difference amplifier, follower, multistage, instrumentation amplifier) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
+      "est_min": 50
+    },
+    {
+      "id": "ece201-w8-6002-L19",
+      "resource": "mit6002-notes-L19",
+      "sections": "Lecture 19 notes (op-amp abstraction), to review after the video",
+      "est_min": 15,
+      "optional": true
+    },
+    {
+      "id": "ece201-w8-6002-L20",
+      "resource": "mit6002-notes-L20",
+      "sections": "Lecture 20 notes (op-amp circuits), to review after the video",
+      "est_min": 10,
+      "optional": true
+    },
+    {
+      "id": "ece201-w8-fiore-op-4",
+      "resource": "fiore-opamps",
+      "sections": "4.2 Inverting and Noninverting Amplifiers",
+      "est_min": 35,
+      "page": 118,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "ece201-w8-ulaby-ex",
+      "title": "Ulaby chapter 4 exercises: op-amp circuits",
+      "source": "Ulaby, Maharbiz & Furse, in-chapter exercises (worked solutions from the book's companion site)",
+      "resource": "ulaby-exercise-sol",
+      "notes": "The worked-solutions PDF prints each exercise above its solution. Several exercises name a figure or example in the book (Figs. 4-13, 4-15, 4-22, Example 4-10), so have Ulaby open. Solutions that run onto a second page show the whole pages.",
+      "problems": [
+        {
+          "id": "ex4-4",
+          "label": "Exercise 4-4",
+          "key_type": "official_worked",
+          "topics": [
+            "inverting amplifier",
+            "saturation"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 69,
+            "start": "Exercise 4-4",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 69,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex4-5",
+          "label": "Exercise 4-5",
+          "key_type": "official_worked",
+          "topics": [
+            "summer",
+            "design"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 70,
+            "start": "Exercise 4-5",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 70,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex4-6",
+          "label": "Exercise 4-6",
+          "key_type": "official_worked",
+          "topics": [
+            "difference amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 71,
+            "start": "Exercise 4-6",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 71,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex4-7",
+          "label": "Exercise 4-7",
+          "key_type": "official_worked",
+          "topics": [
+            "multistage"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 72,
+            "start": "Exercise 4-7",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 72,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex4-8",
+          "label": "Exercise 4-8",
+          "key_type": "official_worked",
+          "topics": [
+            "instrumentation amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 73,
+            "start": "Exercise 4-8",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 73,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex4-9",
+          "label": "Exercise 4-9",
+          "key_type": "official_worked",
+          "topics": [
+            "DAC",
+            "summer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 74,
+            "start": "Exercise 4-9",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 74,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        },
+        {
+          "id": "ex4-11",
+          "label": "Exercise 4-11",
+          "key_type": "official_worked",
+          "topics": [
+            "follower",
+            "loading"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 76,
+            "start": "Exercise 4-11",
+            "end": "Solution:"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/exercise_sol.pdf",
+            "page": 76,
+            "start": "Solution:",
+            "end": "Fawwaz T"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w8-ulaby-cq",
+      "title": "Ulaby chapter 4 concept questions: op-amp circuits",
+      "source": "Ulaby companion site, concept questions with answers",
+      "resource": "ulaby-cq-ch4",
+      "optional": true,
+      "notes": "Short conceptual checks. Some refer to a figure or section in the Ulaby book.",
+      "problems": [
+        {
+          "id": "cq4-3",
+          "label": "Concept question 4-3",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 3,
+            "start": "Concept Question 4-3",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 3
+          }
+        },
+        {
+          "id": "cq4-6",
+          "label": "Concept question 4-6",
+          "key_type": "official_answer",
+          "topics": [
+            "negative feedback"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 6,
+            "start": "Concept Question 4-6",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 6
+          }
+        },
+        {
+          "id": "cq4-9",
+          "label": "Concept question 4-9",
+          "key_type": "official_answer",
+          "topics": [
+            "ideal op-amp"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 9,
+            "start": "Concept Question 4-9",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 9
+          }
+        },
+        {
+          "id": "cq4-10",
+          "label": "Concept question 4-10",
+          "key_type": "official_answer",
+          "topics": [
+            "inverting amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 10,
+            "start": "Concept Question 4-10",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 10
+          }
+        },
+        {
+          "id": "cq4-11",
+          "label": "Concept question 4-11",
+          "key_type": "official_answer",
+          "topics": [
+            "inverting amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 11,
+            "start": "Concept Question 4-11",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 11
+          }
+        },
+        {
+          "id": "cq4-12",
+          "label": "Concept question 4-12",
+          "key_type": "official_answer",
+          "topics": [
+            "summer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 12,
+            "start": "Concept Question 4-12",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 12
+          }
+        },
+        {
+          "id": "cq4-13",
+          "label": "Concept question 4-13",
+          "key_type": "official_answer",
+          "topics": [
+            "summer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 13,
+            "start": "Concept Question 4-13",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 13
+          }
+        },
+        {
+          "id": "cq4-14",
+          "label": "Concept question 4-14",
+          "key_type": "official_answer",
+          "topics": [
+            "follower"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 14,
+            "start": "Concept Question 4-14",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 14
+          }
+        },
+        {
+          "id": "cq4-16",
+          "label": "Concept question 4-16",
+          "key_type": "official_answer",
+          "topics": [
+            "multistage",
+            "saturation"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 16,
+            "start": "Concept Question 4-16",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 16
+          }
+        },
+        {
+          "id": "cq4-17",
+          "label": "Concept question 4-17",
+          "key_type": "official_answer",
+          "topics": [
+            "instrumentation amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 17,
+            "start": "Concept Question 4-17",
+            "end": "paragraph"
+          },
+          "key": {
+            "pdf": "library/ece201/ulaby/cq_ch4.pdf",
+            "page": 17
+          }
+        }
+      ]
+    },
+    {
+      "id": "ece201-w8-kuphaldt",
+      "title": "Kuphaldt worksheets: amplifiers, summers, subtractors",
+      "source": "Tony Kuphaldt, Socratic Electronics worksheets (opamp5, opamp6), CC BY 1.0",
+      "resource": "kuphaldt-opamp5",
+      "notes": "Answers are short (often just the number) and sit in the worksheet's separate Answers section. The questions were picked for calculation practice; lab and discussion questions are left out.",
+      "problems": [
+        {
+          "id": "opamp5-q6",
+          "label": "Inverting/noninverting worksheet, question 6: all voltages and currents in an amplifier",
+          "key_type": "official_answer",
+          "topics": [
+            "noninverting amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 5,
+            "start": "Question 6",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 28,
+            "start": "Answer 6",
+            "end": "Answer 7|Notes"
+          }
+        },
+        {
+          "id": "opamp5-q8",
+          "label": "Inverting/noninverting worksheet, question 8: input and output from a known current",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 6,
+            "start": "Question 8",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 28,
+            "start": "Answer 8",
+            "end": "Answer 9|Notes"
+          }
+        },
+        {
+          "id": "opamp5-q11",
+          "label": "Inverting/noninverting worksheet, question 11: resistor for a gain of 30",
+          "key_type": "official_answer",
+          "topics": [
+            "noninverting amplifier",
+            "design"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 8,
+            "start": "Question 11",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 29,
+            "start": "Answer 11",
+            "end": "Answer 12|Notes"
+          }
+        },
+        {
+          "id": "opamp5-q20",
+          "label": "Inverting/noninverting worksheet, question 20: all voltages and currents, second amplifier",
+          "key_type": "official_answer",
+          "topics": [
+            "inverting amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 13,
+            "start": "Question 20",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 31,
+            "start": "Answer 20",
+            "end": "Answer 21|Notes"
+          }
+        },
+        {
+          "id": "opamp5-q21",
+          "label": "Inverting/noninverting worksheet, question 21: input and output from a known current, second circuit",
+          "key_type": "official_answer",
+          "topics": [
+            "op-amps"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 13,
+            "start": "Question 21",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 31,
+            "start": "Answer 21",
+            "end": "Answer 22|Notes"
+          }
+        },
+        {
+          "id": "opamp5-q23",
+          "label": "Inverting/noninverting worksheet, question 23: resistor for a gain of 15",
+          "key_type": "official_answer",
+          "topics": [
+            "design"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 14,
+            "start": "Question 23",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 31,
+            "start": "Answer 23",
+            "end": "Answer 24|Notes"
+          }
+        },
+        {
+          "id": "opamp5-q27",
+          "label": "Inverting/noninverting worksheet, question 27: output voltage and currents with feedback",
+          "key_type": "official_answer",
+          "topics": [
+            "inverting amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 16,
+            "start": "Question 27",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp5.pdf",
+            "page": 32,
+            "start": "Answer 27",
+            "end": "Answer 28|Notes"
+          }
+        },
+        {
+          "id": "opamp6-q5",
+          "label": "Summer/subtractor worksheet, question 5: currents and voltages in a summer",
+          "key_type": "official_answer",
+          "topics": [
+            "summer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 4,
+            "start": "Question 5",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 20,
+            "start": "Answer 5",
+            "end": "Answer 6|Notes"
+          }
+        },
+        {
+          "id": "opamp6-q8",
+          "label": "Summer/subtractor worksheet, question 8: current and output of a summer",
+          "key_type": "official_answer",
+          "topics": [
+            "summer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 6,
+            "start": "Question 8",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 20,
+            "start": "Answer 8",
+            "end": "Answer 9|Notes"
+          }
+        },
+        {
+          "id": "opamp6-q12",
+          "label": "Summer/subtractor worksheet, question 12: summer output table",
+          "key_type": "official_answer",
+          "topics": [
+            "summer"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 8,
+            "start": "Question 12",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 21,
+            "start": "Answer 12",
+            "end": "Answer 13|Notes"
+          }
+        },
+        {
+          "id": "opamp6-q13",
+          "label": "Summer/subtractor worksheet, question 13: difference amplifier equation",
+          "key_type": "official_answer",
+          "topics": [
+            "difference amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 8,
+            "start": "Question 13",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 22,
+            "start": "Answer 13",
+            "end": "Answer 14|Notes"
+          }
+        },
+        {
+          "id": "opamp6-q18",
+          "label": "Summer/subtractor worksheet, question 18: instrumentation amplifier with a DC input",
+          "key_type": "official_answer",
+          "topics": [
+            "instrumentation amplifier"
+          ],
+          "statement": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 12,
+            "start": "Question 18",
+            "end_after": "file "
+          },
+          "key": {
+            "pdf": "library/ece201/kuphaldt/opamp6.pdf",
+            "page": 23,
+            "start": "Answer 18",
+            "end": "Answer 19|Notes"
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-ece201-w08",
+      "title": "Circuit drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "opamp_circuit",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

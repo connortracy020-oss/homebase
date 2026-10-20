@@ -46,5 +46,125 @@
       {"label": "Problem 5: Lagrange multipliers (maybe not on OSU's exam)", "points": 15, "statement": {"page": 1, "start": "Problem 5.", "end": "Problem 6."}, "key": {"page": 2, "end": "Problem 6."}, "topics": ["Lagrange multipliers"]},
       {"label": "Problem 6: total differentials", "points": 15, "statement": {"page": 1, "start": "Problem 6."}, "key": {"page": 2, "start": "Problem 6."}, "topics": ["total differential", "implicit differentiation"]}
     ]
+  },
+  {
+    "id": "mit1802sc-prac1a",
+    "title": "MIT 18.02 Practice Exam 1 (vectors, planes, curves)",
+    "source": "MIT OpenCourseWare 18.02SC Multivariable Calculus, Fall 2010 (the same exam is 18.02 Fall 2007 Practice Exam 1A)",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)",
+    "course_week": 4,
+    "scope": "OSU Group Exam 1: vectors, dot and cross products, planes and lines, parametric curves, velocity and speed, vector derivatives",
+    "time_min": 43,
+    "time_note": "MIT exams run 50 minutes for 100 points. Problem 3 (matrices, 15 points) isn't in MTH 254, so the practice is 85 points in about 43 minutes.",
+    "original_rules": "Not stated on the exam; the 18.02SC final says no books, notes or calculators.",
+    "practice_rules": ["No books or calculators", "One 3x5 index card of your own notes (the OSU MTH 254 rule)"],
+    "skipped": "Problem 3 (determinant, inverse matrix, linear system) is left out: matrices are not part of MTH 254.",
+    "verified": "Checked by eye 2026-10-19: the exam page is blank (no answers written in; page 2 is the OCW notice); typed solutions on pages 1-2, Problem 6 alone on page 2. Each kept region was rendered and looked at.",
+    "exam_pdf": "library/mth254/mit1802sc/prac1a.pdf",
+    "key_pdf": "library/mth254/mit1802sc/prac1asol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: cube diagonals and an angle", "points": 15, "statement": {"page": 1, "end": "Problem 2."}, "key": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "topics": ["vectors", "dot product"]},
+      {"label": "Problem 2: velocity and speed of a helix", "points": 10, "statement": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "key": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "topics": ["vector functions", "velocity and speed"]},
+      {"label": "Problem 4: midpoint of a sliding ladder", "points": 15, "statement": {"page": 1, "start": "Problem 4.", "end": "Problem 5."}, "key": {"page": 1, "start": "Problem 4.", "end": "Problem 5."}, "topics": ["parametric curves"]},
+      {"label": "Problem 5: triangle area, plane, line meeting the plane", "points": 25, "statement": {"page": 1, "start": "Problem 5.", "end": "Problem 6."}, "key": {"page": 1, "start": "Problem 5."}, "topics": ["cross product", "planes", "lines"]},
+      {"label": "Problem 6: derivatives of dot products (constant length)", "points": 20, "statement": {"page": 1, "start": "Problem 6."}, "key": {"page": 2, "start": "Problem 6."}, "topics": ["vector derivatives", "dot product"]}
+    ]
+  },
+  {
+    "id": "mit1802sc-prac2a",
+    "title": "MIT 18.02 Practice Exam 2A (partial derivatives)",
+    "source": "MIT OpenCourseWare 18.02SC Multivariable Calculus, Fall 2010 (the same exam is 18.02 Fall 2007 Practice Exam 2A)",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)",
+    "course_week": 7,
+    "scope": "OSU Group Exam 2: gradient, linear approximation, directional derivatives on a contour map, tangent planes, critical points and the second derivative test, chain rule",
+    "time_min": 43,
+    "time_note": "MIT exams run 50 minutes for 100 points. Problem 7 (15 points) is left out, so the practice is 85 points in about 43 minutes.",
+    "original_rules": "Not stated on the exam; the 18.02SC final says no books, notes or calculators.",
+    "practice_rules": ["No books or calculators", "One 3x5 index card of your own notes (the OSU MTH 254 rule)"],
+    "skipped": "Problem 7 (a partial derivative with non-independent variables, MIT's (dw/dz)_y notation) is left out: it is an 18.02 topic, not in Briggs. Problem 5 (Lagrange multipliers) is kept but may not be on the OSU exam; the 2018 OSU calendar skipped Lagrange multipliers.",
+    "verified": "Checked by eye 2026-10-19: both exam pages are blank (no answers written in; page 3 is the OCW notice); typed solutions to all seven problems on solution page 1. Each kept region was rendered and looked at; the contour map stays with Problem 2.",
+    "exam_pdf": "library/mth254/mit1802sc/prac2a.pdf",
+    "key_pdf": "library/mth254/mit1802sc/prac2asol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: gradient and approximate change", "points": 10, "statement": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "key": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "topics": ["gradient", "linear approximation"]},
+      {"label": "Problem 2: directional derivative from a contour map", "points": 20, "statement": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "key": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "topics": ["level curves", "directional derivative", "partial derivatives"]},
+      {"label": "Problem 3: tangent plane to a surface", "points": 10, "statement": {"page": 1, "start": "Problem 3."}, "key": {"page": 1, "start": "Problem 3.", "end": "Problem 4."}, "topics": ["tangent planes", "gradient"]},
+      {"label": "Problem 4: box under a paraboloid, critical point and test", "points": 20, "statement": {"page": 2, "start": "Problem 4.", "end": "Problem 5."}, "key": {"page": 1, "start": "Problem 4.", "end": "Problem 5."}, "topics": ["critical points", "second derivative test", "absolute extrema"]},
+      {"label": "Problem 5: the same box by Lagrange multipliers (maybe not on OSU's exam)", "points": 15, "statement": {"page": 2, "start": "Problem 5.", "end": "Problem 6."}, "key": {"page": 1, "start": "Problem 5.", "end": "Problem 6."}, "topics": ["Lagrange multipliers"]},
+      {"label": "Problem 6: chain rule with u = xy, v = x/y", "points": 10, "statement": {"page": 2, "start": "Problem 6.", "end": "Problem 7."}, "key": {"page": 1, "start": "Problem 6.", "end": "Problem 7."}, "topics": ["chain rule"]}
+    ]
+  },
+  {
+    "id": "mit1802sc-final",
+    "title": "MIT 18.02 Final Exam (MTH 254 problems)",
+    "source": "MIT OpenCourseWare 18.02SC Multivariable Calculus, Fall 2010",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)",
+    "course_week": 10,
+    "scope": "OSU group final (cumulative): planes and lines, unit tangent vectors, tangent planes and linear approximation, critical points, Lagrange setup, chain rule and gradients, order of integration, cylindrical and spherical setups",
+    "time_min": 68,
+    "time_note": "The exam has 250 points; the 9 kept problems are 135 points. At the MIT midterm pace of 50 minutes per 100 points that is about 68 minutes. (The 18.02SC practice final is marked 3 hours, which would give about 97 minutes; the OSU final slot is 110 minutes.)",
+    "original_rules": "No books, notes or calculators (stated on the exam).",
+    "practice_rules": ["No books or calculators", "One 3x5 index card of your own notes (OSU allowed up to three cards for the 2018 final)"],
+    "skipped": "Left out: Problem 3 (matrices, 20), Problem 10 (change of variables in a double integral, 15; optional in MTH 254 and skipped on the 2018 OSU calendar), Problems 11, 13, 14, 15 (flux, conservative fields, divergence and Stokes, 80; MTH 255). Problem 7 (Lagrange setup) may not be on the OSU final.",
+    "verified": "Checked by eye 2026-10-19: the four exam pages are blank (no answers written in; page 5 is the OCW notice); typed and hand-drawn solutions on pages 1-8. Each kept region was rendered and looked at; Problem 3's solution runs onto page 2 but Problem 3 is not used.",
+    "exam_pdf": "library/mth254/mit1802sc/finalexam.pdf",
+    "key_pdf": "library/mth254/mit1802sc/finalexamsol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: plane through a line and a point; a projection", "points": 20, "statement": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "key": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "topics": ["planes", "cross product", "projections"]},
+      {"label": "Problem 2: a line, a perpendicular plane, reflecting a point", "points": 15, "statement": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "key": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "topics": ["lines", "planes"]},
+      {"label": "Problem 4: unit tangent vector and its derivative", "points": 10, "statement": {"page": 1, "start": "Problem 4."}, "key": {"page": 2, "start": "Problem 4.", "end": "Problem 5."}, "topics": ["vector functions", "unit tangent"]},
+      {"label": "Problem 5: tangent plane, largest change, linearization", "points": 20, "statement": {"page": 2, "start": "Problem 5.", "end": "Problem 6."}, "key": {"page": 2, "start": "Problem 5."}, "topics": ["tangent planes", "linear approximation", "directional derivative"]},
+      {"label": "Problem 6: critical point and second derivative test", "points": 15, "statement": {"page": 2, "start": "Problem 6.", "end": "Problem 7."}, "key": {"page": 3, "start": "Problem 6.", "end": "Problem 7."}, "topics": ["critical points", "second derivative test"]},
+      {"label": "Problem 7: closest point on a plane, Lagrange setup (maybe not on OSU's final)", "points": 10, "statement": {"page": 2, "start": "Problem 7.", "end": "Problem 8."}, "key": {"page": 3, "start": "Problem 7.", "end": "Problem 8."}, "topics": ["Lagrange multipliers"]},
+      {"label": "Problem 8: chain rule in spherical coordinates; is it a gradient?", "points": 15, "statement": {"page": 2, "start": "Problem 8.", "end": "Problem 9."}, "key": {"page": 3, "start": "Problem 8."}, "topics": ["chain rule", "gradient"]},
+      {"label": "Problem 9: sketch a region and reverse the order", "points": 10, "statement": {"page": 2, "start": "Problem 9."}, "key": {"page": 4, "start": "Problem 9.", "end": "Problem 10."}, "topics": ["double integrals", "order of integration"]},
+      {"label": "Problem 12: mass and center of mass of a cone, cylindrical and spherical", "points": 20, "statement": {"page": 3, "start": "Problem 12.", "end": "Problem 13."}, "key": {"page": 5, "start": "Problem 12."}, "topics": ["triple integrals", "cylindrical coordinates", "spherical coordinates", "center of mass"]}
+    ]
+  },
+  {
+    "id": "mit1802sc-prac3a",
+    "title": "MIT 18.02 Practice Exam 3A (double integrals only)",
+    "source": "MIT OpenCourseWare 18.02SC Multivariable Calculus, Fall 2010",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)",
+    "course_week": 10,
+    "scope": "OSU final, double integrals: center of mass of a triangle, polar moment of inertia, and (optional) a change of variables",
+    "time_min": 25,
+    "time_note": "MIT exams run 50 minutes for 100 points. The three kept problems are 50 points, so about 25 minutes (about 15 minutes if you skip the optional Problem 5).",
+    "original_rules": "Not stated on the exam; the 18.02SC final says no books, notes or calculators.",
+    "practice_rules": ["No books or calculators", "One 3x5 index card of your own notes (the OSU MTH 254 rule)"],
+    "skipped": "Problems 3, 4, 6 and 7 (conservative fields, line integrals, Green's theorem and flux; 50 points) are MTH 255. Problem 5 (change of variables) is kept but optional: OSU's 2018 calendar skipped 13.7.",
+    "verified": "Checked by eye 2026-10-19: the exam page is blank (no answers written in; page 2 is the OCW notice); typed solutions on one page. The problems are numbered '1.', '2.' with no 'Problem' heading, and each kept region was rendered and looked at; the Problem 5 key starts at the one-line Problem 4 solution because the Jacobian matrix sits above the '5.' label.",
+    "exam_pdf": "library/mth254/mit1802sc/prac3a.pdf",
+    "key_pdf": "library/mth254/mit1802sc/prac3asol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: center of mass of a triangle (set up)", "points": 15, "statement": {"page": 1, "start": "1. Let", "end": "2. (15)"}, "key": {"page": 1, "start": "1. a)", "end": "2. δ"}, "topics": ["double integrals", "center of mass"]},
+      {"label": "Problem 2: polar moment of inertia of a disk", "points": 15, "statement": {"page": 1, "start": "2. (15)", "end": "3. Let"}, "key": {"page": 1, "start": "2. δ", "end": "3. a)"}, "topics": ["polar coordinates", "moment of inertia"]},
+      {"label": "Problem 5: area by a change of variables (optional topic)", "points": 20, "statement": {"page": 1, "start": "5. Consider", "end": "6. a)"}, "key": {"page": 1, "start": "4. yx", "end": "6. a)"}, "topics": ["change of variables", "Jacobian"]}
+    ]
+  },
+  {
+    "id": "mit1802sc-exam4",
+    "title": "MIT 18.02 Exam 4 (triple-integral setups only)",
+    "source": "MIT OpenCourseWare 18.02SC Multivariable Calculus, Fall 2010",
+    "license": "CC BY-NC-SA 4.0 (MIT OpenCourseWare)",
+    "course_week": 10,
+    "scope": "OSU final, triple integrals: setting up integrals in cylindrical and spherical coordinates",
+    "time_min": 15,
+    "time_note": "MIT exams run 50 minutes for 100 points. The two kept problems are 30 points, so about 15 minutes.",
+    "original_rules": "Not stated on the exam; the 18.02SC final says no books, notes or calculators.",
+    "practice_rules": ["No books or calculators", "One 3x5 index card of your own notes (the OSU MTH 254 rule)"],
+    "skipped": "Problems 3, 4 and 5 (conservative fields, flux, divergence theorem and curl; 70 points) are MTH 255.",
+    "verified": "Checked by eye 2026-10-19: the exam page is blank (no answers written in; page 2 is the OCW notice); typed solutions on one page. Each kept region was rendered and looked at.",
+    "exam_pdf": "library/mth254/mit1802sc/exam4.pdf",
+    "key_pdf": "library/mth254/mit1802sc/exam4sol.pdf",
+    "key_type": "official_worked",
+    "problems": [
+      {"label": "Problem 1: moment of inertia of a quarter cylinder (cylindrical setup)", "points": 10, "statement": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "key": {"page": 1, "start": "Problem 1.", "end": "Problem 2."}, "topics": ["triple integrals", "cylindrical coordinates"]},
+      {"label": "Problem 2: sphere and plane in spherical coordinates; volume setup", "points": 20, "statement": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "key": {"page": 1, "start": "Problem 2.", "end": "Problem 3."}, "topics": ["spherical coordinates", "triple integrals"]}
+    ]
   }
 ]

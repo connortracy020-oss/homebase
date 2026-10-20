@@ -1,0 +1,564 @@
+{
+  "_about": "MTH 254 term week 1. Videos come from videos.json (osu_week = 1). Problems point at PDF pages in library/mth254; no problem text is stored here.",
+  "week": 1,
+  "readings": [
+    {
+      "id": "mth254-w1-os-2-1",
+      "resource": "openstax-c3-2-1",
+      "sections": "2.1 Vectors in the Plane",
+      "est_min": 30
+    },
+    {
+      "id": "mth254-w1-os-2-2",
+      "resource": "openstax-c3-2-2",
+      "sections": "2.2 Vectors in Three Dimensions",
+      "est_min": 30
+    },
+    {
+      "id": "mth254-w1-os-2-3",
+      "resource": "openstax-c3-2-3",
+      "sections": "2.3 The Dot Product",
+      "est_min": 30
+    },
+    {
+      "id": "mth254-w1-os-2-4",
+      "resource": "openstax-c3-2-4",
+      "sections": "2.4 The Cross Product",
+      "est_min": 35
+    },
+    {
+      "id": "mth254-w1-os-1-3",
+      "resource": "openstax-c3-1-3",
+      "sections": "1.3 Polar Coordinates (polar review from MTH 252)",
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "mth254-w1-os-2-7",
+      "resource": "openstax-c3-2-7",
+      "sections": "2.7 Cylindrical and Spherical Coordinates (review of cylindrical and spherical coordinates; used again in week 9)",
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "mth254-w1-clp-1-2",
+      "resource": "clp3-text",
+      "sections": "1.1 Points and 1.2 Vectors (dot product 1.2.2 starts at PDF page 21, cross product 1.2.5 at page 32)",
+      "page": 8,
+      "est_min": 45,
+      "optional": true
+    },
+    {
+      "id": "mth254-w1-sg",
+      "resource": "osu-sg-parks",
+      "sections": "Lessons 1-4: coordinate systems, vectors, dot and cross products",
+      "page": 3,
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "mth254-w1-briggs",
+      "resource": "briggs-mvc-2e",
+      "sections": "Briggs 10.2, 11.1-11.4 (reference only; the book isn't free)",
+      "est_min": 0,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "sc-supp-1a-1d",
+      "title": "18.02 exercises: vectors, dot and cross products",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), supplementary problems 1 (Mattuck's 18.02 exercises) with solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-supp1",
+      "notes": "These are the exercises MIT assigned as Part I of the matching problem set; the solutions file is posted alongside. When a solution runs over a page break the key shows both whole pages.",
+      "problems": [
+        {
+          "id": "1A-6",
+          "label": "Exercise 1A-6: a plane flying in a cross-wind",
+          "key_type": "official_worked",
+          "topics": [
+            "vectors"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 1,
+            "start": "1A-6",
+            "end": "1A-7"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 1,
+            "start": "1A-6",
+            "end": "1A-7"
+          }
+        },
+        {
+          "id": "1A-7",
+          "label": "Exercise 1A-7: rotating a vector by 90 degrees",
+          "key_type": "official_worked",
+          "topics": [
+            "vectors",
+            "unit vectors"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 1,
+            "start": "1A-7",
+            "end": "1A-8"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 1,
+            "start": "1A-7",
+            "end": "1A-8"
+          }
+        },
+        {
+          "id": "1A-9",
+          "label": "Exercise 1A-9: midpoints of a triangle, with vectors",
+          "key_type": "official_worked",
+          "topics": [
+            "vectors"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 2,
+            "start": "1A-9",
+            "end": "1A-10"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 1,
+            "start": "1A-9",
+            "end": "1A-10"
+          }
+        },
+        {
+          "id": "1B-2",
+          "label": "Exercise 1B-2: when two vectors are orthogonal or at an acute angle",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 2,
+            "start": "1B-2",
+            "end": "1B-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 2,
+            "start": "1B-2",
+            "end": "1B-3"
+          }
+        },
+        {
+          "id": "1B-5",
+          "label": "Exercise 1B-5: component of a force along a direction",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product",
+            "projections"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 2,
+            "start": "1B-5"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 2,
+            "start": "1B-5",
+            "end": "1B-6"
+          }
+        },
+        {
+          "id": "1B-12",
+          "label": "Exercise 1B-12: angle inscribed in a semicircle",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 3,
+            "start": "1B-12",
+            "end": "1B-13"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 3,
+            "start": "1B-12",
+            "end": "1B-13"
+          }
+        },
+        {
+          "id": "1B-13",
+          "label": "Exercise 1B-13: the cosine difference formula from the dot product",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 3,
+            "start": "1B-13",
+            "end": "1B-14"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 3,
+            "start": "1B-13",
+            "end": "1B-14"
+          }
+        },
+        {
+          "id": "1C-2",
+          "label": "Exercise 1C-2: a 3x3 determinant by cofactor expansion",
+          "key_type": "official_worked",
+          "topics": [
+            "determinants"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 4,
+            "start": "1C-2",
+            "end": "1C-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 4,
+            "start": "1C-2",
+            "end": "1C-3"
+          }
+        },
+        {
+          "id": "1C-5",
+          "label": "Exercise 1C-5: row and column operations on a 2x2 determinant",
+          "key_type": "official_worked",
+          "topics": [
+            "determinants"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 4,
+            "start": "1C-5",
+            "end": "1C-6"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 4,
+            "start": "1C-5",
+            "end": "1C-6"
+          }
+        },
+        {
+          "id": "1D-2",
+          "label": "Exercise 1D-2: area of a triangle in space",
+          "key_type": "official_worked",
+          "topics": [
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 5,
+            "start": "1D-2",
+            "end": "1D-3"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 5,
+            "start": "1D-2",
+            "end": "1D-3"
+          }
+        },
+        {
+          "id": "1D-5",
+          "label": "Exercise 1D-5: what |A x B| = |A||B| or = A . B tells you",
+          "key_type": "official_worked",
+          "topics": [
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 5,
+            "start": "1D-5",
+            "end": "1D-6"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 5,
+            "start": "1D-5",
+            "end": "1D-6"
+          }
+        },
+        {
+          "id": "1D-7",
+          "label": "Exercise 1D-7: volume of a tetrahedron",
+          "key_type": "official_worked",
+          "topics": [
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/supprob1.pdf",
+            "page": 5,
+            "start": "1D-7",
+            "end": "1D-8"
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/supprobsol1.pdf",
+            "page": 5,
+            "start": "1D-7",
+            "end": "1D-8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "sc-pset1-part2",
+      "title": "18.02 Problem Set 1, Part II",
+      "source": "MIT OpenCourseWare 18.02SC (Fall 2010), Problem Set 1 Part II with posted solutions, CC BY-NC-SA 4.0",
+      "resource": "mit1802sc-pset1",
+      "notes": "Longer multi-part problems (MIT students did these without the solutions). Problems that run over a page, and solutions that do, are shown as whole pages.",
+      "problems": [
+        {
+          "id": "p1",
+          "label": "Problem 1: dihedral angle of a tetrahedron",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product",
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset1.pdf",
+            "page": 2,
+            "start": "Problem 1 (",
+            "end": "Problem 2 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset1sol.pdf",
+            "page": 1,
+            "end": "2. (a)"
+          }
+        },
+        {
+          "id": "p2",
+          "label": "Problem 2: polarization identity; angle bisector",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product",
+            "unit vectors"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset1.pdf",
+            "page": 2,
+            "start": "Problem 2 (",
+            "end": "Problem 3 ("
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset1sol.pdf",
+            "pages": [
+              1,
+              2
+            ]
+          }
+        },
+        {
+          "id": "p3",
+          "label": "Problem 3: tacking a sailboat with projections (starts below Problem 2)",
+          "key_type": "official_worked",
+          "topics": [
+            "projections"
+          ],
+          "statement": {
+            "pdf": "library/mth254/mit1802sc/pset1.pdf",
+            "pages": [
+              2,
+              3
+            ]
+          },
+          "key": {
+            "pdf": "library/mth254/mit1802sc/pset1sol.pdf",
+            "page": 2,
+            "start": "3. a)"
+          }
+        }
+      ]
+    },
+    {
+      "id": "clp-1-2",
+      "title": "CLP-3 problems: vectors, dot and cross products",
+      "source": "Feldman, Rechnitzer & Yeager, CLP-3 Multivariable Calculus problem book (UBC), CC BY-NC-SA 4.0",
+      "resource": "clp3-problems",
+      "notes": "Questions marked (UBC exam) come from past UBC exams. The key is the book's full worked solution; when a solution runs over a page break the key shows the whole pages, so neighbouring solutions are visible too.",
+      "problems": [
+        {
+          "id": "clp-1.2-19",
+          "label": "CLP-3 1.2 Q19: area of a parallelogram lying on a plane (UBC exam)",
+          "key_type": "official_worked",
+          "topics": [
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 14,
+            "start": "Q[19]",
+            "end": "Q[20]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 175,
+            "start": "S-19:"
+          }
+        },
+        {
+          "id": "clp-1.2-21",
+          "label": "CLP-3 1.2 Q21: dot products and angles",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 15,
+            "start": "Q[21]",
+            "end": "Q[22]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 176,
+            "start": "S-21:",
+            "end": "S-22:"
+          }
+        },
+        {
+          "id": "clp-1.2-22",
+          "label": "CLP-3 1.2 Q22: angle between two vectors",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 15,
+            "start": "Q[22]",
+            "end": "Q[23]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 176,
+            "start": "S-22:"
+          }
+        },
+        {
+          "id": "clp-1.2-25",
+          "label": "CLP-3 1.2 Q25: component and projection of one vector on another",
+          "key_type": "official_worked",
+          "topics": [
+            "projections"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 15,
+            "start": "Q[25]",
+            "end": "Q[26]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 177,
+            "start": "S-25:",
+            "end": "S-26:"
+          }
+        },
+        {
+          "id": "clp-1.2-27",
+          "label": "CLP-3 1.2 Q27: computing cross products",
+          "key_type": "official_worked",
+          "topics": [
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 15,
+            "start": "Q[27]",
+            "end": "Q[28]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 178,
+            "start": "S-27:",
+            "end": "S-28:"
+          }
+        },
+        {
+          "id": "clp-1.2-29",
+          "label": "CLP-3 1.2 Q29: area of a triangle in space",
+          "key_type": "official_worked",
+          "topics": [
+            "cross product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 16,
+            "start": "Q[29]",
+            "end": "Q[30]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 179,
+            "start": "S-29:",
+            "end": "S-30:"
+          }
+        },
+        {
+          "id": "clp-1.2-33",
+          "label": "CLP-3 1.2 Q33: angle between a cube diagonal and a face diagonal",
+          "key_type": "official_worked",
+          "topics": [
+            "dot product"
+          ],
+          "statement": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "page": 16,
+            "start": "Q[33]",
+            "end": "Q[34]|§§ Stage"
+          },
+          "key": {
+            "pdf": "library/mth254/clp3/problems.pdf",
+            "pages": [
+              180,
+              181
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gen-mth254-w01",
+      "title": "Calculus drills (generated, new numbers each time)",
+      "source": "Generated by Homebase; each answer is computed and checked a second way by code",
+      "kind": "generated",
+      "generated": [
+        {
+          "generator": "dot_angle",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "generator": "cross_area",
+          "seeds": [
+            1,
+            2,
+            3,
+            4
+          ]
+        }
+      ]
+    }
+  ]
+}

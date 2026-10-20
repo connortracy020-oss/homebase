@@ -2,183 +2,857 @@
   "_about": "Oct 19 2026 - Jan 3 2027 prep plan (PLAN.md section 7). Planned time per week is the sum of task est_min. A task with \"video\" takes its title, link and time from content/<course>/videos.json (watched at about 1.25x, plus 5 min for notes). Readings and problem sets are linked in detail in stage (b).",
   "weeks": [
     {
-      "number": 1, "start": "2026-10-19", "end": "2026-10-25", "label": "Getting started",
+      "number": 1,
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "label": "Getting started",
       "focus": "Set up Homebase and the Ulaby book; first circuits ideas.",
       "tasks": [
-        {"course": "ECE201", "week": 1, "kind": "read", "title": "Get the free Ulaby 3rd edition PDF (Google Form) and save it to library/ece201/ulaby/", "url": "https://www.fulcrum.org/concern/monographs/5t34sp19h", "est_min": 10},
-        {"course": "ECE201", "week": 1, "kind": "watch", "video": "mit6002-L01"},
-        {"course": "ECE201", "week": 1, "kind": "watch", "video": "yt-C_EDm61hwLw"},
-        {"course": "ECE201", "week": 1, "kind": "read", "reading": "ece201-w1-ulaby-ch1"},
-        {"course": "ECE201", "week": 1, "kind": "solve", "pset": "ulaby-ex-ch1", "est_min": 40},
-        {"course": "ECE201", "week": 1, "kind": "solve", "pset": "gen-ece201-w1-power", "est_min": 25},
-        {"course": "ECE201", "week": 1, "kind": "review", "title": "Write a one-page summary: sign convention, power absorbed vs delivered", "est_min": 15}
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "read",
+          "title": "Get the free Ulaby 3rd edition PDF (Google Form) and save it to library/ece201/ulaby/",
+          "url": "https://www.fulcrum.org/concern/monographs/5t34sp19h",
+          "est_min": 10
+        },
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "watch",
+          "video": "mit6002-L01"
+        },
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "watch",
+          "video": "yt-C_EDm61hwLw"
+        },
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "read",
+          "reading": "ece201-w1-ulaby-ch1"
+        },
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "solve",
+          "pset": "ulaby-ex-ch1",
+          "est_min": 40
+        },
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "solve",
+          "pset": "gen-ece201-w1-power",
+          "est_min": 25
+        },
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "review",
+          "title": "Write a one-page summary: sign convention, power absorbed vs delivered",
+          "est_min": 15
+        }
       ]
     },
     {
-      "number": 2, "start": "2026-10-26", "end": "2026-11-01", "label": "",
+      "number": 2,
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "label": "",
       "focus": "Circuit laws; start vectors.",
       "tasks": [
-        {"course": "ECE201", "week": 2, "kind": "watch", "video": "mit6002-L02"},
-        {"course": "ECE201", "week": 2, "kind": "watch", "video": "yt-P3QX1PQnoo0"},
-        {"course": "ECE201", "week": 2, "kind": "watch", "video": "yt-nbzWLzDPFBU"},
-        {"course": "ECE201", "week": 2, "kind": "watch", "video": "yt-d-NK63PEkM8"},
-        {"course": "ECE201", "week": 2, "kind": "read", "title": "Ulaby ch 2, sections 2-1 to 2-3 (Ohm, KCL/KVL, series/parallel)", "est_min": 35},
-        {"course": "ECE201", "week": 2, "kind": "solve", "title": "Ulaby ch 2 exercises 2.1-2.7", "est_min": 40},
-        {"course": "MTH254", "week": 1, "kind": "watch", "video": "mit1802f07-L01"},
-        {"course": "MTH254", "week": 1, "kind": "watch", "video": "mit1802sc-rec-s03-dot-angles"},
-        {"course": "MTH254", "week": 1, "kind": "read", "title": "OpenStax Calculus Vol 3, sections 2.1-2.3 (vectors, dot product)", "url": "https://openstax.org/details/books/calculus-volume-3", "est_min": 30},
-        {"course": "MTH254", "week": 1, "kind": "solve", "title": "MIT 18.02SC Problem Set 1, dot-product problems (solutions in library/mth254/mit1802sc/)", "est_min": 25}
+        {
+          "course": "ECE201",
+          "week": 2,
+          "kind": "watch",
+          "video": "mit6002-L02"
+        },
+        {
+          "course": "ECE201",
+          "week": 2,
+          "kind": "watch",
+          "video": "yt-P3QX1PQnoo0"
+        },
+        {
+          "course": "ECE201",
+          "week": 2,
+          "kind": "watch",
+          "video": "yt-nbzWLzDPFBU"
+        },
+        {
+          "course": "ECE201",
+          "week": 2,
+          "kind": "watch",
+          "video": "yt-d-NK63PEkM8"
+        },
+        {
+          "course": "ECE201",
+          "week": 2,
+          "kind": "read",
+          "title": "Ulaby ch 2, sections 2-1 to 2-3 (Ohm, KCL/KVL, series/parallel)",
+          "est_min": 35,
+          "reading": "ece201-w2-ulaby-2-1",
+          "id": "p02-ece201-read-b4f48524"
+        },
+        {
+          "course": "ECE201",
+          "week": 2,
+          "kind": "solve",
+          "title": "Ulaby ch 2 exercises 2.1-2.7",
+          "est_min": 40,
+          "pset": "ece201-w2-ulaby-ex",
+          "id": "p02-ece201-solve-9d7a43f5"
+        },
+        {
+          "course": "MTH254",
+          "week": 1,
+          "kind": "watch",
+          "video": "mit1802f07-L01"
+        },
+        {
+          "course": "MTH254",
+          "week": 1,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s03-dot-angles"
+        },
+        {
+          "course": "MTH254",
+          "week": 1,
+          "kind": "read",
+          "title": "OpenStax Calculus Vol 3, sections 2.1-2.3 (vectors, dot product)",
+          "url": "https://openstax.org/details/books/calculus-volume-3",
+          "est_min": 30,
+          "reading": "mth254-w1-os-2-1",
+          "id": "p02-mth254-read-719ae0c1"
+        },
+        {
+          "course": "MTH254",
+          "week": 1,
+          "kind": "solve",
+          "title": "MIT 18.02SC Problem Set 1, dot-product problems (solutions in library/mth254/mit1802sc/)",
+          "est_min": 25,
+          "pset": "sc-supp-1a-1d",
+          "id": "p02-mth254-solve-3ef19c21"
+        }
       ]
     },
     {
-      "number": 3, "start": "2026-11-02", "end": "2026-11-08", "label": "",
+      "number": 3,
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "label": "",
       "focus": "Dividers and Y-Delta; cross product; first ECE 200 look at sinusoids.",
       "tasks": [
-        {"course": "ECE201", "week": 3, "kind": "watch", "video": "yt-AGP3x069cFA"},
-        {"course": "ECE201", "week": 3, "kind": "watch", "video": "yt-tCJ2s4aoHvM"},
-        {"course": "ECE201", "week": 4, "kind": "watch", "video": "yt-XtciQU4KMSg"},
-        {"course": "ECE201", "week": 3, "kind": "read", "title": "Ulaby ch 2, sections 2-4 and 2-5 (Y-Delta, Wheatstone bridge)", "est_min": 25},
-        {"course": "ECE201", "week": 3, "kind": "solve", "title": "Ulaby ch 2 exercises 2.8-2.14 (dividers, Y-Delta)", "est_min": 50},
-        {"course": "MTH254", "week": 1, "kind": "watch", "video": "mit1802f07-L02"},
-        {"course": "MTH254", "week": 1, "kind": "watch", "video": "mit1802sc-rec-s07-cross"},
-        {"course": "MTH254", "week": 1, "kind": "solve", "title": "18.02SC Problem Set 1, cross-product problems + OpenStax 2.4 odd exercises", "est_min": 25},
-        {"course": "ECE200", "week": 1, "kind": "watch", "video": "lanterman-L03"},
-        {"course": "ECE200", "week": 1, "kind": "watch", "video": "lanterman-L04"},
-        {"course": "ECE200", "week": 1, "kind": "watch", "video": "lanterman-L05"},
-        {"course": "ECE200", "week": 1, "kind": "read", "title": "Signal Processing First slides L01-L02 (library/ece200/spfirst-slides/)", "est_min": 15}
+        {
+          "course": "ECE201",
+          "week": 3,
+          "kind": "watch",
+          "video": "yt-AGP3x069cFA"
+        },
+        {
+          "course": "ECE201",
+          "week": 3,
+          "kind": "watch",
+          "video": "yt-tCJ2s4aoHvM"
+        },
+        {
+          "course": "ECE201",
+          "week": 4,
+          "kind": "watch",
+          "video": "yt-XtciQU4KMSg"
+        },
+        {
+          "course": "ECE201",
+          "week": 3,
+          "kind": "read",
+          "title": "Ulaby ch 2, sections 2-4 and 2-5 (Y-Delta, Wheatstone bridge)",
+          "est_min": 25,
+          "reading": "ece201-w4-ulaby-2-4",
+          "id": "p03-ece201-read-a3195554"
+        },
+        {
+          "course": "ECE201",
+          "week": 3,
+          "kind": "solve",
+          "title": "Ulaby ch 2 exercises 2.8-2.14 (dividers, Y-Delta)",
+          "est_min": 50,
+          "pset": "ece201-w3-ulaby-ex",
+          "id": "p03-ece201-solve-1e8a70a0"
+        },
+        {
+          "course": "MTH254",
+          "week": 1,
+          "kind": "watch",
+          "video": "mit1802f07-L02"
+        },
+        {
+          "course": "MTH254",
+          "week": 1,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s07-cross"
+        },
+        {
+          "course": "MTH254",
+          "week": 1,
+          "kind": "solve",
+          "title": "18.02SC Problem Set 1, cross-product problems + OpenStax 2.4 odd exercises",
+          "est_min": 25,
+          "pset": "sc-pset1-part2",
+          "id": "p03-mth254-solve-ff47be3d"
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "watch",
+          "video": "lanterman-L03"
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "watch",
+          "video": "lanterman-L04"
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "watch",
+          "video": "lanterman-L05"
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "read",
+          "title": "Signal Processing First slides L01-L02 (library/ece200/spfirst-slides/)",
+          "est_min": 15,
+          "reading": "ece200-w1-spf-l01",
+          "id": "p03-ece200-read-cc9120c1"
+        }
       ]
     },
     {
-      "number": 4, "start": "2026-11-09", "end": "2026-11-15", "label": "Veterans Day Wed",
+      "number": 4,
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "label": "Veterans Day Wed",
       "focus": "Nodal analysis; lines and curves; phasors.",
       "tasks": [
-        {"course": "ECE201", "week": 4, "kind": "watch", "video": "yt-f-sbANgw4fo"},
-        {"course": "ECE201", "week": 4, "kind": "watch", "video": "yt-JptsfzvKbuo"},
-        {"course": "ECE201", "week": 4, "kind": "watch", "video": "yt-khtZubT9K8E"},
-        {"course": "ECE201", "week": 4, "kind": "watch", "video": "yt-2JfKcLuESTw"},
-        {"course": "ECE201", "week": 4, "kind": "solve", "title": "Ulaby ch 3 nodal and supernode exercises (sections 3-1, 3-2)", "est_min": 45},
-        {"course": "MTH254", "week": 2, "kind": "watch", "video": "mit1802f07-L05"},
-        {"course": "MTH254", "week": 2, "kind": "watch", "video": "mit1802sc-rec-s12-planes-b"},
-        {"course": "MTH254", "week": 2, "kind": "watch", "video": "mit1802sc-rec-s15-lines"},
-        {"course": "MTH254", "week": 2, "kind": "read", "title": "OpenStax 2.5 and 3.1 (lines and planes; vector-valued functions)", "est_min": 20},
-        {"course": "ECE200", "week": 1, "kind": "watch", "video": "lanterman-L06"},
-        {"course": "ECE200", "week": 1, "kind": "watch", "video": "lanterman-L07"},
-        {"course": "ECE200", "week": 1, "kind": "lab", "title": "Lab 1: add three same-frequency cosines numerically and by phasor sum (Python)", "est_min": 40}
+        {
+          "course": "ECE201",
+          "week": 4,
+          "kind": "watch",
+          "video": "yt-f-sbANgw4fo"
+        },
+        {
+          "course": "ECE201",
+          "week": 4,
+          "kind": "watch",
+          "video": "yt-JptsfzvKbuo"
+        },
+        {
+          "course": "ECE201",
+          "week": 4,
+          "kind": "watch",
+          "video": "yt-khtZubT9K8E"
+        },
+        {
+          "course": "ECE201",
+          "week": 4,
+          "kind": "watch",
+          "video": "yt-2JfKcLuESTw"
+        },
+        {
+          "course": "ECE201",
+          "week": 4,
+          "kind": "solve",
+          "title": "Ulaby ch 3 nodal and supernode exercises (sections 3-1, 3-2)",
+          "est_min": 45,
+          "pset": "ece201-w4-ulaby-ex",
+          "id": "p04-ece201-solve-8b37c4f2"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "watch",
+          "video": "mit1802f07-L05"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s12-planes-b"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s15-lines"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "read",
+          "title": "OpenStax 2.5 and 3.1 (lines and planes; vector-valued functions)",
+          "est_min": 20,
+          "reading": "mth254-w2-os-2-5",
+          "id": "p04-mth254-read-d22ea817"
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "watch",
+          "video": "lanterman-L06"
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "watch",
+          "video": "lanterman-L07"
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "lab",
+          "title": "Lab 1: add three same-frequency cosines numerically and by phasor sum (Python)",
+          "est_min": 40
+        }
       ]
     },
     {
-      "number": 5, "start": "2026-11-16", "end": "2026-11-22", "label": "",
+      "number": 5,
+      "start": "2026-11-16",
+      "end": "2026-11-22",
+      "label": "",
       "focus": "Mesh analysis; motion in space; spectrum and Fourier series.",
       "tasks": [
-        {"course": "ECE201", "week": 5, "kind": "watch", "video": "yt-eQpc2QRFv7Y"},
-        {"course": "ECE201", "week": 5, "kind": "watch", "video": "yt-D92DjS43-Qw"},
-        {"course": "ECE201", "week": 3, "kind": "watch", "video": "yt-VN3QXcvSmVI"},
-        {"course": "ECE201", "week": 5, "kind": "solve", "title": "Ulaby ch 3 mesh exercises + one problem done both by nodal and by mesh", "est_min": 40},
-        {"course": "MTH254", "week": 2, "kind": "watch", "video": "mit1802f07-L06"},
-        {"course": "MTH254", "week": 2, "kind": "watch", "video": "mit1802sc-rec-s19-vel-acc"},
-        {"course": "MTH254", "week": 3, "kind": "watch", "video": "mit1802sc-rec-s20-arc-length"},
-        {"course": "MTH254", "week": 2, "kind": "solve", "title": "18.02SC Problem Set 3 (curves, velocity, arc length)", "est_min": 25},
-        {"course": "ECE200", "week": 2, "kind": "watch", "video": "lanterman-L08"},
-        {"course": "ECE200", "week": 2, "kind": "watch", "video": "lanterman-L09"},
-        {"course": "ECE200", "week": 2, "kind": "watch", "video": "lanterman-L14"},
-        {"course": "ECE200", "week": 2, "kind": "lab", "title": "Lab 2: sum of sinusoids and its spectrum; check FFT peaks (Python)", "est_min": 30}
+        {
+          "course": "ECE201",
+          "week": 5,
+          "kind": "watch",
+          "video": "yt-eQpc2QRFv7Y"
+        },
+        {
+          "course": "ECE201",
+          "week": 5,
+          "kind": "watch",
+          "video": "yt-D92DjS43-Qw"
+        },
+        {
+          "course": "ECE201",
+          "week": 3,
+          "kind": "watch",
+          "video": "yt-VN3QXcvSmVI"
+        },
+        {
+          "course": "ECE201",
+          "week": 5,
+          "kind": "solve",
+          "title": "Ulaby ch 3 mesh exercises + one problem done both by nodal and by mesh",
+          "est_min": 40,
+          "pset": "ece201-w5-ulaby-ex",
+          "id": "p05-ece201-solve-84b35312"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "watch",
+          "video": "mit1802f07-L06"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s19-vel-acc"
+        },
+        {
+          "course": "MTH254",
+          "week": 3,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s20-arc-length"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "solve",
+          "title": "18.02SC Problem Set 3 (curves, velocity, arc length)",
+          "est_min": 25,
+          "pset": "sc-pset3-part2",
+          "id": "p05-mth254-solve-48e41de9"
+        },
+        {
+          "course": "ECE200",
+          "week": 2,
+          "kind": "watch",
+          "video": "lanterman-L08"
+        },
+        {
+          "course": "ECE200",
+          "week": 2,
+          "kind": "watch",
+          "video": "lanterman-L09"
+        },
+        {
+          "course": "ECE200",
+          "week": 2,
+          "kind": "watch",
+          "video": "lanterman-L14"
+        },
+        {
+          "course": "ECE200",
+          "week": 2,
+          "kind": "lab",
+          "title": "Lab 2: sum of sinusoids and its spectrum; check FFT peaks (Python)",
+          "est_min": 30
+        }
       ]
     },
     {
-      "number": 6, "start": "2026-11-23", "end": "2026-11-29", "label": "Thanksgiving",
+      "number": 6,
+      "start": "2026-11-23",
+      "end": "2026-11-29",
+      "label": "Thanksgiving",
       "focus": "Light week: review only.",
       "tasks": [
-        {"course": "ECE201", "week": 5, "kind": "exam", "exam": "ucb40-fa11-mt1"},
-        {"course": "MTH254", "week": 2, "kind": "review", "title": "Re-solve cold: the vector and curve problems you missed", "est_min": 25},
-        {"course": "ECE200", "week": 1, "kind": "review", "title": "Re-solve cold: phasor addition and spectrum problems you missed", "est_min": 25}
+        {
+          "course": "ECE201",
+          "week": 5,
+          "kind": "exam",
+          "exam": "ucb40-fa11-mt1"
+        },
+        {
+          "course": "MTH254",
+          "week": 2,
+          "kind": "review",
+          "title": "Re-solve cold: the vector and curve problems you missed",
+          "est_min": 25
+        },
+        {
+          "course": "ECE200",
+          "week": 1,
+          "kind": "review",
+          "title": "Re-solve cold: phasor addition and spectrum problems you missed",
+          "est_min": 25
+        }
       ]
     },
     {
-      "number": 7, "start": "2026-11-30", "end": "2026-12-06", "label": "Heavy December starts",
+      "number": 7,
+      "start": "2026-11-30",
+      "end": "2026-12-06",
+      "label": "Heavy December starts",
       "focus": "Superposition and Thevenin; partial derivatives; sampling.",
       "tasks": [
-        {"course": "ECE201", "week": 6, "kind": "watch", "video": "yt-72W_ZQl4qmE"},
-        {"course": "ECE201", "week": 6, "kind": "watch", "video": "yt-2Yc5zvDIvJ0"},
-        {"course": "ECE201", "week": 6, "kind": "watch", "video": "mit6002-L03"},
-        {"course": "ECE201", "week": 6, "kind": "watch", "video": "yt-uoZ0E6zxoi0"},
-        {"course": "ECE201", "week": 7, "kind": "watch", "video": "yt--X7otqsma4Q"},
-        {"course": "ECE201", "week": 6, "kind": "read", "title": "Ulaby ch 3, sections 3-5 and 3-6 (superposition, Thevenin/Norton)", "est_min": 30},
-        {"course": "ECE201", "week": 6, "kind": "solve", "title": "Ulaby ch 3 superposition and Thevenin exercises", "est_min": 45},
-        {"course": "MTH254", "week": 3, "kind": "watch", "video": "mit1802sc-rec-s24-graphs"},
-        {"course": "MTH254", "week": 3, "kind": "watch", "video": "mit1802sc-rec-s25-level-b"},
-        {"course": "MTH254", "week": 4, "kind": "watch", "video": "mit1802f07-L08"},
-        {"course": "MTH254", "week": 4, "kind": "watch", "video": "mit1802sc-rec-s26-partials"},
-        {"course": "MTH254", "week": 4, "kind": "read", "title": "OpenStax 2.6, 4.1-4.3 (surfaces, functions of several variables, partials)", "est_min": 25},
-        {"course": "ECE200", "week": 3, "kind": "watch", "video": "lanterman-L19"},
-        {"course": "ECE200", "week": 3, "kind": "watch", "video": "lanterman-L20"},
-        {"course": "ECE200", "week": 3, "kind": "watch", "video": "lanterman-L21"},
-        {"course": "ECE200", "week": 3, "kind": "watch", "video": "lanterman-L22"},
-        {"course": "ECE200", "week": 3, "kind": "lab", "title": "Lab 3: predict an alias frequency, then confirm it with the FFT (Python)", "est_min": 35}
+        {
+          "course": "ECE201",
+          "week": 6,
+          "kind": "watch",
+          "video": "yt-72W_ZQl4qmE"
+        },
+        {
+          "course": "ECE201",
+          "week": 6,
+          "kind": "watch",
+          "video": "yt-2Yc5zvDIvJ0"
+        },
+        {
+          "course": "ECE201",
+          "week": 6,
+          "kind": "watch",
+          "video": "mit6002-L03"
+        },
+        {
+          "course": "ECE201",
+          "week": 6,
+          "kind": "watch",
+          "video": "yt-uoZ0E6zxoi0"
+        },
+        {
+          "course": "ECE201",
+          "week": 7,
+          "kind": "watch",
+          "video": "yt--X7otqsma4Q"
+        },
+        {
+          "course": "ECE201",
+          "week": 6,
+          "kind": "read",
+          "title": "Ulaby ch 3, sections 3-5 and 3-6 (superposition, Thevenin/Norton)",
+          "est_min": 30,
+          "reading": "ece201-w6-ulaby-3-5",
+          "id": "p07-ece201-read-e30dcc3f"
+        },
+        {
+          "course": "ECE201",
+          "week": 6,
+          "kind": "solve",
+          "title": "Ulaby ch 3 superposition and Thevenin exercises",
+          "est_min": 45,
+          "pset": "ece201-w6-ulaby-ex",
+          "id": "p07-ece201-solve-abecc229"
+        },
+        {
+          "course": "MTH254",
+          "week": 3,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s24-graphs"
+        },
+        {
+          "course": "MTH254",
+          "week": 3,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s25-level-b"
+        },
+        {
+          "course": "MTH254",
+          "week": 4,
+          "kind": "watch",
+          "video": "mit1802f07-L08"
+        },
+        {
+          "course": "MTH254",
+          "week": 4,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s26-partials"
+        },
+        {
+          "course": "MTH254",
+          "week": 4,
+          "kind": "read",
+          "title": "OpenStax 2.6, 4.1-4.3 (surfaces, functions of several variables, partials)",
+          "est_min": 25,
+          "reading": "mth254-w3-os-2-6",
+          "id": "p07-mth254-read-0830990d"
+        },
+        {
+          "course": "ECE200",
+          "week": 3,
+          "kind": "watch",
+          "video": "lanterman-L19"
+        },
+        {
+          "course": "ECE200",
+          "week": 3,
+          "kind": "watch",
+          "video": "lanterman-L20"
+        },
+        {
+          "course": "ECE200",
+          "week": 3,
+          "kind": "watch",
+          "video": "lanterman-L21"
+        },
+        {
+          "course": "ECE200",
+          "week": 3,
+          "kind": "watch",
+          "video": "lanterman-L22"
+        },
+        {
+          "course": "ECE200",
+          "week": 3,
+          "kind": "lab",
+          "title": "Lab 3: predict an alias frequency, then confirm it with the FFT (Python)",
+          "est_min": 35
+        }
       ]
     },
     {
-      "number": 8, "start": "2026-12-07", "end": "2026-12-13", "label": "OSU fall finals week",
+      "number": 8,
+      "start": "2026-12-07",
+      "end": "2026-12-13",
+      "label": "OSU fall finals week",
       "focus": "Max power and op-amps; chain rule and gradient; MTH 254 timed Exam 1.",
       "tasks": [
-        {"course": "ECE201", "week": 7, "kind": "watch", "video": "yt-rSP32xF5MUc"},
-        {"course": "ECE201", "week": 7, "kind": "watch", "video": "yt-bPG7o-97dJ0"},
-        {"course": "ECE201", "week": 8, "kind": "watch", "video": "mit6002-L19"},
-        {"course": "ECE201", "week": 7, "kind": "solve", "title": "Ulaby ch 3 max-power and Norton exercises; ch 4 exercises 4.1-4.5", "est_min": 40},
-        {"course": "MTH254", "week": 5, "kind": "watch", "video": "mit1802f07-L11"},
-        {"course": "MTH254", "week": 5, "kind": "watch", "video": "mit1802f07-L12"},
-        {"course": "MTH254", "week": 5, "kind": "watch", "video": "mit1802sc-rec-s38-grad-dir"},
-        {"course": "MTH254", "week": 4, "kind": "exam", "exam": "mit1802sc-exam1"},
-        {"course": "ECE200", "week": 4, "kind": "watch", "video": "lanterman-L24"},
-        {"course": "ECE200", "week": 4, "kind": "watch", "video": "lanterman-L25"},
-        {"course": "ECE200", "week": 4, "kind": "lab", "title": "Lab 4: write your own FIR loop; check it against np.convolve and lfilter", "est_min": 30}
+        {
+          "course": "ECE201",
+          "week": 7,
+          "kind": "watch",
+          "video": "yt-rSP32xF5MUc"
+        },
+        {
+          "course": "ECE201",
+          "week": 7,
+          "kind": "watch",
+          "video": "yt-bPG7o-97dJ0"
+        },
+        {
+          "course": "ECE201",
+          "week": 8,
+          "kind": "watch",
+          "video": "mit6002-L19"
+        },
+        {
+          "course": "ECE201",
+          "week": 7,
+          "kind": "solve",
+          "title": "Ulaby ch 3 max-power and Norton exercises; ch 4 exercises 4.1-4.5",
+          "est_min": 40,
+          "pset": "ece201-w7-ulaby-ex",
+          "id": "p08-ece201-solve-57be6fb2"
+        },
+        {
+          "course": "MTH254",
+          "week": 5,
+          "kind": "watch",
+          "video": "mit1802f07-L11"
+        },
+        {
+          "course": "MTH254",
+          "week": 5,
+          "kind": "watch",
+          "video": "mit1802f07-L12"
+        },
+        {
+          "course": "MTH254",
+          "week": 5,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s38-grad-dir"
+        },
+        {
+          "course": "MTH254",
+          "week": 4,
+          "kind": "exam",
+          "exam": "mit1802sc-exam1"
+        },
+        {
+          "course": "ECE200",
+          "week": 4,
+          "kind": "watch",
+          "video": "lanterman-L24"
+        },
+        {
+          "course": "ECE200",
+          "week": 4,
+          "kind": "watch",
+          "video": "lanterman-L25"
+        },
+        {
+          "course": "ECE200",
+          "week": 4,
+          "kind": "lab",
+          "title": "Lab 4: write your own FIR loop; check it against np.convolve and lfilter",
+          "est_min": 30
+        }
       ]
     },
     {
-      "number": 9, "start": "2026-12-14", "end": "2026-12-20", "label": "Winter break",
+      "number": 9,
+      "start": "2026-12-14",
+      "end": "2026-12-20",
+      "label": "Winter break",
       "focus": "Op-amp drills and capacitors; max/min; convolution. Three timed sets.",
       "tasks": [
-        {"course": "ECE201", "week": 8, "kind": "watch", "video": "mit6002-L20"},
-        {"course": "ECE201", "week": 8, "kind": "watch", "video": "yt-idJEMYhrIfs"},
-        {"course": "ECE201", "week": 8, "kind": "watch", "video": "yt-uxcCJVl96hU"},
-        {"course": "ECE201", "week": 9, "kind": "watch", "video": "mit6002-L12"},
-        {"course": "MTH254", "week": 6, "kind": "watch", "video": "mit1802f07-L09"},
-        {"course": "MTH254", "week": 6, "kind": "watch", "video": "mit1802f07-L10"},
-        {"course": "MTH254", "week": 6, "kind": "watch", "video": "mit1802sc-rec-s37-tangent-planes"},
-        {"course": "MTH254", "week": 6, "kind": "watch", "video": "mit1802sc-rec-s31-max-min"},
-        {"course": "MTH254", "week": 6, "kind": "solve", "title": "18.02SC Problem Set 4 (tangent planes, max/min)", "est_min": 30},
-        {"course": "ECE200", "week": 5, "kind": "watch", "video": "lanterman-L26"},
-        {"course": "ECE200", "week": 5, "kind": "watch", "video": "lanterman-L27"},
-        {"course": "ECE200", "week": 5, "kind": "watch", "video": "lanterman-L28"},
-        {"course": "ECE200", "week": 5, "kind": "lab", "title": "Lab 5: convolution by flip-and-slide vs np.convolve; test linearity and time-invariance", "est_min": 35},
-        {"course": "ECE200", "week": 2, "kind": "exam", "exam": "gt2026-sp25-q1"}
+        {
+          "course": "ECE201",
+          "week": 8,
+          "kind": "watch",
+          "video": "mit6002-L20"
+        },
+        {
+          "course": "ECE201",
+          "week": 8,
+          "kind": "watch",
+          "video": "yt-idJEMYhrIfs"
+        },
+        {
+          "course": "ECE201",
+          "week": 8,
+          "kind": "watch",
+          "video": "yt-uxcCJVl96hU"
+        },
+        {
+          "course": "ECE201",
+          "week": 9,
+          "kind": "watch",
+          "video": "mit6002-L12"
+        },
+        {
+          "course": "MTH254",
+          "week": 6,
+          "kind": "watch",
+          "video": "mit1802f07-L09"
+        },
+        {
+          "course": "MTH254",
+          "week": 6,
+          "kind": "watch",
+          "video": "mit1802f07-L10"
+        },
+        {
+          "course": "MTH254",
+          "week": 6,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s37-tangent-planes"
+        },
+        {
+          "course": "MTH254",
+          "week": 6,
+          "kind": "watch",
+          "video": "mit1802sc-rec-s31-max-min"
+        },
+        {
+          "course": "MTH254",
+          "week": 6,
+          "kind": "solve",
+          "title": "18.02SC Problem Set 4 (tangent planes, max/min)",
+          "est_min": 30,
+          "pset": "sc-pset4-part2",
+          "id": "p09-mth254-solve-ee5859e9"
+        },
+        {
+          "course": "ECE200",
+          "week": 5,
+          "kind": "watch",
+          "video": "lanterman-L26"
+        },
+        {
+          "course": "ECE200",
+          "week": 5,
+          "kind": "watch",
+          "video": "lanterman-L27"
+        },
+        {
+          "course": "ECE200",
+          "week": 5,
+          "kind": "watch",
+          "video": "lanterman-L28"
+        },
+        {
+          "course": "ECE200",
+          "week": 5,
+          "kind": "lab",
+          "title": "Lab 5: convolution by flip-and-slide vs np.convolve; test linearity and time-invariance",
+          "est_min": 35
+        },
+        {
+          "course": "ECE200",
+          "week": 2,
+          "kind": "exam",
+          "exam": "gt2026-sp25-q1"
+        }
       ]
     },
     {
-      "number": 10, "start": "2026-12-21", "end": "2026-12-27", "label": "Christmas",
+      "number": 10,
+      "start": "2026-12-21",
+      "end": "2026-12-27",
+      "label": "Christmas",
       "focus": "First-order transients and the devices intro; MTH 254 Exam 2-scope practice.",
       "tasks": [
-        {"course": "ECE201", "week": 9, "kind": "watch", "video": "yt-KylJ2v1_c-o"},
-        {"course": "ECE201", "week": 9, "kind": "watch", "video": "yt-N0vcIGaXsn4"},
-        {"course": "ECE201", "week": 10, "kind": "watch", "video": "yt-ZYrO0I35mho"},
-        {"course": "ECE201", "week": 10, "kind": "watch", "video": "yt-btOIDQeMrMg"},
-        {"course": "ECE201", "week": 10, "kind": "watch", "video": "yt-Bfvyj88Hs_o"},
-        {"course": "ECE201", "week": 10, "kind": "watch", "video": "yt-IkRXpFIRUl4"},
-        {"course": "ECE201", "week": 10, "kind": "read", "title": "Ulaby ch 5, sections 5-1 to 5-6 (capacitors, inductors, RC/RL response)", "est_min": 35},
-        {"course": "ECE201", "week": 10, "kind": "exam", "exam": "ucb40-sp12-mt2-ece201"},
-        {"course": "MTH254", "week": 7, "kind": "exam", "exam": "mit1802sc-exam2"},
-        {"course": "ECE200", "week": 6, "kind": "watch", "video": "lanterman-L29"},
-        {"course": "ECE200", "week": 6, "kind": "watch", "video": "lanterman-L30"}
+        {
+          "course": "ECE201",
+          "week": 9,
+          "kind": "watch",
+          "video": "yt-KylJ2v1_c-o"
+        },
+        {
+          "course": "ECE201",
+          "week": 9,
+          "kind": "watch",
+          "video": "yt-N0vcIGaXsn4"
+        },
+        {
+          "course": "ECE201",
+          "week": 10,
+          "kind": "watch",
+          "video": "yt-ZYrO0I35mho"
+        },
+        {
+          "course": "ECE201",
+          "week": 10,
+          "kind": "watch",
+          "video": "yt-btOIDQeMrMg"
+        },
+        {
+          "course": "ECE201",
+          "week": 10,
+          "kind": "watch",
+          "video": "yt-Bfvyj88Hs_o"
+        },
+        {
+          "course": "ECE201",
+          "week": 10,
+          "kind": "watch",
+          "video": "yt-IkRXpFIRUl4"
+        },
+        {
+          "course": "ECE201",
+          "week": 10,
+          "kind": "read",
+          "title": "Ulaby ch 5, sections 5-1 to 5-6 (capacitors, inductors, RC/RL response)",
+          "est_min": 35,
+          "reading": "ece201-w9-ulaby-5-1",
+          "id": "p10-ece201-read-6270daa8"
+        },
+        {
+          "course": "ECE201",
+          "week": 10,
+          "kind": "exam",
+          "exam": "ucb40-sp12-mt2-ece201"
+        },
+        {
+          "course": "MTH254",
+          "week": 7,
+          "kind": "exam",
+          "exam": "mit1802sc-exam2"
+        },
+        {
+          "course": "ECE200",
+          "week": 6,
+          "kind": "watch",
+          "video": "lanterman-L29"
+        },
+        {
+          "course": "ECE200",
+          "week": 6,
+          "kind": "watch",
+          "video": "lanterman-L30"
+        }
       ]
     },
     {
-      "number": 11, "start": "2026-12-28", "end": "2027-01-03", "label": "Light pass before term",
+      "number": 11,
+      "start": "2026-12-28",
+      "end": "2027-01-03",
+      "label": "Light pass before term",
       "focus": "Sweep the mistake log; preview double integrals; get ready for Jan 4.",
       "tasks": [
-        {"course": "ECE201", "week": 10, "kind": "review", "title": "Mistake-log sweep for ECE 201; write your own one-page formula sheet", "est_min": 50},
-        {"course": "MTH254", "week": 7, "kind": "watch", "video": "mit1802f07-L16"},
-        {"course": "MTH254", "week": 6, "kind": "review", "title": "Mistake-log sweep for MTH 254", "est_min": 25},
-        {"course": "ECE200", "week": 5, "kind": "review", "title": "Mistake-log sweep for ECE 200", "est_min": 25},
-        {"course": "ECE201", "week": 1, "kind": "review", "title": "Term setup: add real syllabus dates in Homebase once Canvas opens (Jan 4)", "est_min": 10}
+        {
+          "course": "ECE201",
+          "week": 10,
+          "kind": "review",
+          "title": "Mistake-log sweep for ECE 201; write your own one-page formula sheet",
+          "est_min": 50
+        },
+        {
+          "course": "MTH254",
+          "week": 7,
+          "kind": "watch",
+          "video": "mit1802f07-L16"
+        },
+        {
+          "course": "MTH254",
+          "week": 6,
+          "kind": "review",
+          "title": "Mistake-log sweep for MTH 254",
+          "est_min": 25
+        },
+        {
+          "course": "ECE200",
+          "week": 5,
+          "kind": "review",
+          "title": "Mistake-log sweep for ECE 200",
+          "est_min": 25
+        },
+        {
+          "course": "ECE201",
+          "week": 1,
+          "kind": "review",
+          "title": "Term setup: add real syllabus dates in Homebase once Canvas opens (Jan 4)",
+          "est_min": 10
+        }
       ]
     }
   ]

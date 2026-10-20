@@ -1,0 +1,403 @@
+{
+  "_about": "ECE 200 term week 7. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 7). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 7,
+  "readings": [
+    {
+      "id": "ece200-w7-spf-l13",
+      "resource": "spf-L13",
+      "sections": "Lecture 13: Digital Filtering of Analog Signals. All slides",
+      "est_min": 30
+    },
+    {
+      "id": "ece200-w7-spf-l26",
+      "resource": "spf-L26",
+      "sections": "Lecture 26: Review: Digital Filter of Analog Signals. Review of the C-to-D, filter, D-to-C chain",
+      "est_min": 20,
+      "optional": true
+    },
+    {
+      "id": "ece200-w7-thinkdsp-ch9",
+      "resource": "thinkdsp",
+      "sections": "Chapter 9, Differentiation and integration: the first difference as a filter (book p. 101)",
+      "page": 113,
+      "est_min": 20,
+      "optional": true
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "dspdb-w7-averaging",
+      "title": "DSP First problems: averaging filters, Dirichlet, cascades, filtering sampled signals",
+      "source": "DSP First problem database (Georgia Tech ECE 2025/2026 problem sets, quizzes and finals, 1993-2002)",
+      "resource": "dspfirst-db",
+      "notes": "Each statement PDF holds only the problem (checked by eye for every problem in this set); the worked solution is a separate scanned or typeset image. Problems are old Georgia Tech work, labelled quiz/final/homework from their file names. Problem 6-24 labels the filter H(z) but needs only the averager's frequency response.",
+      "problems": [
+        {
+          "id": "c6-p022",
+          "label": "DSP First DB 6-22 (GT homework, f_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "Dirichlet",
+            "aliased sinc"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p022.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p022s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p038",
+          "label": "DSP First DB 6-38 (GT homework, f_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "Dirichlet",
+            "zero crossings"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p038.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p038s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p077",
+          "label": "DSP First DB 6-77 (GT final, su_93)",
+          "key_type": "official_worked",
+          "topics": [
+            "Dirichlet",
+            "period"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p077.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p077s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p078",
+          "label": "DSP First DB 6-78 (GT homework, su_93)",
+          "key_type": "official_worked",
+          "topics": [
+            "L-point averager",
+            "magnitude and phase"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p078.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p078s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p079",
+          "label": "DSP First DB 6-79 (GT homework, su_93)",
+          "key_type": "official_worked",
+          "topics": [
+            "4-point averager",
+            "sinusoid input"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p079.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p079s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p037",
+          "label": "DSP First DB 6-37 (GT homework, f_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "9-point averager",
+            "input spectrum"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p037.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p037s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p086",
+          "label": "DSP First DB 6-86 (GT final, w_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "Dirichlet",
+            "nulling"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p086.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p086s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p082",
+          "label": "DSP First DB 6-82 (GT final, su_94)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "averagers"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p082.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p082s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p010",
+          "label": "DSP First DB 6-10 (GT quiz, f_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "delay"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p010.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p010s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p052",
+          "label": "DSP First DB 6-52 (GT quiz, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "convolution",
+            "frequency response"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p052.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p052s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p050",
+          "label": "DSP First DB 6-50 (GT homework, sp_01)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "product of frequency responses"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p050.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p050s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p094",
+          "label": "DSP First DB 6-94 (GT homework, w_96)",
+          "key_type": "official_worked",
+          "topics": [
+            "cascade",
+            "order does not matter"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p094.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p094s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p024",
+          "label": "DSP First DB 6-24 (GT quiz, f_95)",
+          "key_type": "official_worked",
+          "topics": [
+            "averager nulls a sampled sinusoid"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p024.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p024s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p073",
+          "label": "DSP First DB 6-73 (GT quiz, sp_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "sampling",
+            "frequency response",
+            "short answer"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p073.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p073s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p103",
+          "label": "DSP First DB 6-103 (GT homework, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "C-to-D, filter, D-to-C",
+            "Dirichlet"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p103.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p103s1.png"
+            ]
+          }
+        },
+        {
+          "id": "c6-p101",
+          "label": "DSP First DB 6-101 (GT homework, w_99)",
+          "key_type": "official_worked",
+          "topics": [
+            "sampling",
+            "nulling filter"
+          ],
+          "statement": {
+            "pdf": "library/ece200/dspfirst-db/ch06/p101.pdf",
+            "page": 1
+          },
+          "key": {
+            "images": [
+              "library/ece200/dspfirst-db/ch06/p101s1.png"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "gtex-w7-nulling",
+      "title": "Exam problems: nulling and filtering sampled signals",
+      "source": "Georgia Tech ECE 2026 quizzes and finals, John Barry's exam archive",
+      "resource": "gt2026-barry-exams",
+      "notes": "Single problems cut from Georgia Tech ECE 2026 quizzes and finals (John Barry's archive). Each statement page is from the blank copy and was checked by eye to have no answers written in; the key page is the same problem in the answer key.",
+      "problems": [
+        {
+          "id": "q3_sp22-spring2022quiz3,problem1",
+          "label": "Spring 2022 Quiz 3, Problem 1: 3-tap FIR filter, nulls and DC gain",
+          "key_type": "official_worked",
+          "topics": [
+            "nulling",
+            "DC gain",
+            "magnitude"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp22.pdf",
+            "pages": [
+              2
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp22.pdf",
+            "pages": [
+              6
+            ]
+          }
+        },
+        {
+          "id": "fin_su23-f2",
+          "label": "Summer 2023 Final, Problem 2: FIR nulling filter",
+          "key_type": "official_worked",
+          "topics": [
+            "nulling",
+            "DC gain"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              3
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              12
+            ]
+          }
+        },
+        {
+          "id": "fin_su23-f3",
+          "label": "Summer 2023 Final, Problem 3: sampling, filtering and reconstruction",
+          "key_type": "official_worked",
+          "topics": [
+            "sampling",
+            "nulling",
+            "aliasing"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              4,
+              5
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              13,
+              14
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

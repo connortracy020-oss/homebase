@@ -1,0 +1,146 @@
+{
+  "_about": "ECE 200 term week 9. GENERALIZED from DSP First order and Georgia Tech ECE 2026; OSU publishes no ECE 200 syllabus. Videos come from videos.json (osu_week = 9). Problems point at PDF pages and solution images; no problem text is stored here.",
+  "week": 9,
+  "readings": [
+    {
+      "id": "ece200-w9-ch66-3",
+      "resource": "barry-ch66-dtft",
+      "sections": "66-3 Ideal lowpass, highpass and bandpass filters",
+      "page": 19,
+      "est_min": 30
+    },
+    {
+      "id": "ece200-w9-ch66-4",
+      "resource": "barry-ch66-dtft",
+      "sections": "66-4 Practical FIR filters: windowing the ideal impulse response",
+      "page": 23,
+      "est_min": 25,
+      "optional": true
+    },
+    {
+      "id": "ece200-w9-ch67-5",
+      "resource": "barry-ch67-dft",
+      "sections": "67-5 Spectrum analysis of discrete periodic signals: the DT Fourier series (67-5.1) and sampling bandlimited periodic signals (67-5.2)",
+      "page": 23,
+      "est_min": 40
+    }
+  ],
+  "problem_sets": [
+    {
+      "id": "gtex-w9-ideal",
+      "title": "Exam problems: ideal filters and their impulse responses",
+      "source": "Georgia Tech ECE 2026 quizzes and finals, John Barry's exam archive",
+      "resource": "gt2026-barry-exams",
+      "notes": "Single problems cut from Georgia Tech ECE 2026 quizzes and finals (John Barry's archive). Each statement page is from the blank copy and was checked by eye to have no answers written in; the key page is the same problem in the answer key. For the DT Fourier series itself there is no keyed practice beyond Fall 2023 Exam 3 Problem 3(a), listed in week 10.",
+      "problems": [
+        {
+          "id": "q3_fa23-fall2023exam3,problem1",
+          "label": "Fall 2023 Exam 3, Problem 1: cascade with an ideal filter; sinusoid through an averager",
+          "key_type": "official_worked",
+          "topics": [
+            "ideal filters",
+            "cascade",
+            "Dirichlet"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/q3_fa23.pdf",
+            "pages": [
+              2
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/q3_fa23.pdf",
+            "pages": [
+              6
+            ]
+          }
+        },
+        {
+          "id": "q3_sp22-spring2022quiz3,problem2",
+          "label": "Spring 2022 Quiz 3, Problem 2: impulse responses that build a given ideal frequency response",
+          "key_type": "official_worked",
+          "topics": [
+            "ideal filters",
+            "sinc impulse responses"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp22.pdf",
+            "pages": [
+              3
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/q3_sp22.pdf",
+            "pages": [
+              7
+            ]
+          }
+        },
+        {
+          "id": "fin_su26-summer2026final,problem6",
+          "label": "Summer 2026 Final, Problem 6: an ideal highpass filter written three ways",
+          "key_type": "official_worked",
+          "topics": [
+            "ideal highpass",
+            "sinc impulse responses",
+            "modulation"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su26.pdf",
+            "pages": [
+              7
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su26.pdf",
+            "pages": [
+              16
+            ]
+          }
+        },
+        {
+          "id": "fin_su24-summer2024final,problem6",
+          "label": "Summer 2024 Final, Problem 6: real-valued frequency response, sinusoid input, impulse response forms",
+          "key_type": "official_worked",
+          "topics": [
+            "ideal filters",
+            "sinc impulse responses"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su24.pdf",
+            "pages": [
+              7
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su24.pdf",
+            "pages": [
+              19
+            ]
+          }
+        },
+        {
+          "id": "fin_su23-f1",
+          "label": "Summer 2023 Final, Problem 1: periodic sums of sinusoids; impulse response for a bandpass shape",
+          "key_type": "official_worked",
+          "topics": [
+            "phasor sums",
+            "ideal bandpass"
+          ],
+          "statement": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              2
+            ]
+          },
+          "key": {
+            "pdf": "library/ece200/gt2026-barry/fin_su23.pdf",
+            "pages": [
+              11
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

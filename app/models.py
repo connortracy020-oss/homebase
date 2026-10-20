@@ -171,7 +171,7 @@ class Problem(SQLModel, table=True):
     key: dict = Field(default_factory=dict, sa_column=Column(JSON))
     generator: str = ""
     seed: Optional[int] = None
-    points: Optional[int] = None  # for exam problems
+    points: Optional[float] = None  # for exam problems (some exams use 12.5-point parts)
 
 
 class Exam(SQLModel, table=True):
@@ -195,7 +195,7 @@ class Exam(SQLModel, table=True):
     practice_rules: list[str] = Field(default_factory=list, sa_column=Column(JSON))
     skipped: str = ""
     verified: str = ""
-    total_points: int = 0
+    total_points: float = 0
     order: int = 0
 
 
@@ -212,7 +212,7 @@ class ExamAttempt(SQLModel, table=True):
     scores: dict = Field(default_factory=dict, sa_column=Column(JSON))
     suggested: dict = Field(default_factory=dict, sa_column=Column(JSON))
     total: Optional[float] = None
-    max_points: int = 0
+    max_points: float = 0
     feedback: str = ""  # Claude's overall comments, if reviewed
     reviewer: str = ""
     graded_at: Optional[datetime] = None

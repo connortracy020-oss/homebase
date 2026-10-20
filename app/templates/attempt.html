@@ -3,7 +3,7 @@
 {% block content %}
 <section class="hero" style="--accent: {{ course.color }}">
   <p class="eyebrow"><a href="/exams">Exams</a> · <a href="/exam/{{ exam.slug }}">{{ exam.title }}</a> · sitting of {{ attempt.started_at | md }}</p>
-  <h1>{% if attempt.status == 'graded' %}{{ attempt.total | num }} / {{ attempt.max_points }} <span class="muted">({{ (100 * attempt.total / attempt.max_points) | round | int }}%)</span>{% else %}Pencils down{% endif %}</h1>
+  <h1>{% if attempt.status == 'graded' %}{{ attempt.total | num }} / {{ attempt.max_points | num }} <span class="muted">({{ (100 * attempt.total / attempt.max_points) | round | int }}%)</span>{% else %}Pencils down{% endif %}</h1>
   <p class="muted small">{{ ((attempt.finished_at - attempt.started_at).total_seconds() / 60) | round | int }} minutes used of {{ exam.time_min }}
     {% if attempt.overtime_sec >= 60 %}· <span class="tag warn">{{ attempt.overtime_sec // 60 }} min over time</span>{% endif %}
     · logged as study time</p>
@@ -15,7 +15,7 @@
   <table class="answers-table">
     <thead><tr><th>Problem</th><th>Points</th><th></th></tr></thead>
     <tbody>{% for p in problems %}{% set pts = attempt.scores.get(p.id | string) %}
-      <tr><td>{{ p.label }}</td><td>{{ pts | num }} / {{ p.points }}</td>
+      <tr><td>{{ p.label }}</td><td>{{ pts | num }} / {{ p.points | num }}</td>
         <td>{% if pts >= p.points %}<span class="mark ok">✓</span>{% endif %}</td></tr>{% endfor %}</tbody>
   </table>
   <p class="small muted">Problems you lost points on and ticked are in your <a href="/mistakes">mistake log</a>; every problem also counts as an attempt.</p>
@@ -53,16 +53,16 @@
   {% set sug = attempt.suggested.get(p.id | string) %}
   {% set final = attempt.scores.get(p.id | string) %}
   <section class="card grade-card">
-    <h2>{{ p.label }} <span class="muted small">({{ p.points }} points)</span></h2>
+    <h2>{{ p.label }} <span class="muted small">({{ p.points | num }} points)</span></h2>
     <details><summary class="small">The problem</summary><img loading="lazy" src="/problem/{{ p.slug }}/statement.png" alt="Problem {{ loop.index }}" class="pdf-crop"></details>
     <details class="solution" {% if attempt.status != 'graded' %}open{% endif %}><summary>Official solution</summary>
       <img loading="lazy" src="/problem/{{ p.slug }}/key.png" alt="Official solution for problem {{ loop.index }}" class="pdf-crop"></details>
-    {% if sug %}<p class="small"><strong>Claude suggests {{ sug.points | num }}/{{ p.points }}:</strong> {{ sug.comment }}
+    {% if sug %}<p class="small"><strong>Claude suggests {{ sug.points | num }}/{{ p.points | num }}:</strong> {{ sug.comment }}
       {% if sug.first_error %}<br><span class="muted">First error: {{ sug.first_error }}</span> <span class="tag">{{ sug.cause }}</span>{% endif %}</p>{% endif %}
     <div class="inline-form">
-      <label>Your points <input type="number" name="p{{ p.id }}" min="0" max="{{ p.points }}" step="0.5" required
-        value="{{ final if final is not none else (sug.points if sug else '') }}" data-max="{{ p.points }}" class="pts"></label>
-      <span class="muted">/ {{ p.points }}</span>
+      <label>Your points <input type="number" name="p{{ p.id }}" min="0" max="{{ p.points | num }}" step="0.5" required
+        value="{{ final if final is not none else (sug.points if sug else '') }}" data-max="{{ p.points | num }}" class="pts"></label>
+      <span class="muted">/ {{ p.points | num }}</span>
       <label class="small"><input type="checkbox" name="m{{ p.id }}" class="to-log" {% if sug and sug.points < p.points %}checked{% endif %}> add to mistake log</label>
     </div>
   </section>
