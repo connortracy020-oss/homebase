@@ -72,6 +72,30 @@
   {% else %}<p class="muted">Problem sets for this week arrive with the course content.</p>{% endif %}
 </section>
 
+{% if labs %}
+<section class="card" style="--accent: {{ course.color }}">
+  <h2>Labs</h2>
+  <ul class="items">
+    {% for lab, result in labs %}
+    <li class="item">
+      <div>
+        <a class="item-title" href="/lab/{{ lab.id }}">{{ lab.title }}</a> <span class="tag">Python</span>
+        <div class="item-meta">
+          <span>{{ lab.est_min | hm }}</span>
+          {% if result %}
+          <span>last check: {{ result.passed }} of {{ result.total }} pass</span>
+          {{ bar(result.passed, result.total, course.color) }}
+          {% else %}<span>not checked yet</span>{% endif %}
+        </div>
+        <p class="small muted">{{ lab.goal }}</p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endif %}
+
 <section class="card">
   <h2>Prep-plan checklist</h2>
   {% if tasks %}

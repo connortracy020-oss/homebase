@@ -65,7 +65,7 @@ class Task(SQLModel, table=True):
     done_at: Optional[datetime] = None
     done_by: str = ""  # "app" or "claude"
     # what the task points at inside Homebase, e.g. ("video", "mit6002-L01")
-    ref_kind: str = ""  # video | reading | pset | ""
+    ref_kind: str = ""  # video | reading | pset | exam | lab | ""
     ref: str = ""
 
 

@@ -215,5 +215,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab10",
+      "number": 10,
+      "title": "Lab 10: The DFT by hand and touch-tone decoding",
+      "goal": "Write an N-squared DFT and match np.fft.fft, see what zero padding does, then generate and decode touch-tone (DTMF) keys.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/DTMFdecodeLab.pdf",
+        "title": "DSP First Lab 09: Encoding and Decoding Touch-Tone (DTMF) Signals"
+      },
+      "starter": "labs/ece200/lab10_dft_dtmf.py",
+      "est_min": 50
+    }
   ]
 }

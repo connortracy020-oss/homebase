@@ -12,7 +12,10 @@ Checks:
   - generated problem sets name generators that exist and run for their seeds
   - exams: files exist, pages are in range, every problem has points and a key,
     and the exam has a "verified" note saying it was checked by eye
-  - prep_schedule.json tasks resolve (video / reading / pset / exam)
+  - labs: ids unique, fields present, handout PDF and starter file exist, the
+    lab has checks, and running the checker on the blank starter gives only
+    "todo" (so the starter and the checks agree on every function)
+  - prep_schedule.json tasks resolve (video / reading / pset / exam / lab)
   - with --render: every statement and key region actually renders
 Exit code 1 if anything is an ERROR.
 """
@@ -31,6 +34,8 @@ import pypdfium2 as pdfium  # noqa: E402
 
 from app import pdfpages  # noqa: E402
 from app.generators import GENERATORS, generate  # noqa: E402
+from app import labs  # noqa: E402
+from app.lab_checks import CHECKS as LAB_CHECKS  # noqa: E402
 from app.seed import expand_region, problem_rows  # noqa: E402
 
 KEY_TYPES = {"official_worked", "official_answer", "computed", "none"}
@@ -146,6 +151,7 @@ def check_course(code: str, render: bool):
                         err(f"{w}: official key but no key region")
                     else:
                         check_region(w + " key", r["key"], render)
+    check_labs(code, resources)
     exams_path = folder / "exams.json"
     for ex in (read(exams_path) or []) if exams_path.exists() else []:
         where = f"{code} exam {ex.get('id')}"
@@ -164,6 +170,37 @@ def check_course(code: str, render: bool):
             check_region(w + " key", ky, render)
 
 
+LAB_FIELDS = ("id", "number", "title", "goal", "handout", "starter", "est_min")
+
+
+def check_labs(code: str, resources: dict):
+    seen = set()
+    for lab in labs.load_labs(code):
+        where = f"{code} week {lab['week']} lab {lab.get('id')}"
+        missing = [f for f in LAB_FIELDS if not lab.get(f)]
+        if missing:
+            err(f"{where}: missing {', '.join(missing)}")
+            continue
+        if lab["id"] in seen:
+            err(f"{where}: duplicate lab id")
+        seen.add(lab["id"])
+        handout = lab["handout"]
+        if handout.get("resource") not in resources:
+            err(f"{where}: handout resource {handout.get('resource')!r} not in resources.json")
+        if not handout.get("pdf") or not (ROOT / handout["pdf"]).exists():
+            err(f"{where}: handout {handout.get('pdf')} is not in the library")
+        starter = ROOT / lab["starter"]
+        if not starter.exists():
+            err(f"{where}: starter {lab['starter']} doesn't exist")
+            continue
+        if lab["number"] not in LAB_CHECKS.get(code, {}):
+            err(f"{where}: no checks for lab {lab['number']} in app/lab_checks/{code}.py")
+            continue
+        for r in labs.check_lab(lab, starter):
+            if r.status != "todo":
+                err(f"{where}: on the blank starter, check '{r.name}' gave {r.status}: {r.message}")
+
+
 def check_schedule():
     from app.seed import load_videos
     sched = read(CONTENT / "prep_schedule.json") or {"weeks": []}
@@ -175,10 +212,11 @@ def check_schedule():
             "reading": {rd["id"] for w in f.glob("week[0-9][0-9].json") for rd in (read(w) or {}).get("readings", [])},
             "pset": {ps["id"] for w in f.glob("week[0-9][0-9].json") for ps in (read(w) or {}).get("problem_sets", [])},
             "exam": {e["id"] for e in (read(f / "exams.json") or [])} if (f / "exams.json").exists() else set(),
+            "lab": {lab["id"] for lab in labs.load_labs(code)},
         }
     for w in sched["weeks"]:
         for t in w["tasks"]:
-            for kind in ("video", "reading", "pset", "exam"):
+            for kind in ("video", "reading", "pset", "exam", "lab"):
                 if kind in t and t[kind] not in ids[t["course"]][kind]:
                     err(f"prep week {w['number']}: {t['course']} {kind} {t[kind]!r} not found")
 

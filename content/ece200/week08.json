@@ -146,5 +146,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab08",
+      "number": 8,
+      "title": "Lab 8: The DTFT",
+      "goal": "Compute DTFTs on a dense frequency grid, match the boxcar to its Dirichlet formula, check the shift and modulation properties, and build an ideal lowpass impulse response.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/FIRfilterDesign.pdf",
+        "title": "DSP First Lab S-6: FIR Filter Design GUI"
+      },
+      "starter": "labs/ece200/lab08_dtft.py",
+      "est_min": 45
+    }
   ]
 }

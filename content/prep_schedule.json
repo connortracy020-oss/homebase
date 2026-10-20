@@ -316,7 +316,9 @@
           "week": 1,
           "kind": "lab",
           "title": "Lab 1: add three same-frequency cosines numerically and by phasor sum (Python)",
-          "est_min": 40
+          "est_min": 40,
+          "id": "p04-ece200-lab-d9d32756",
+          "lab": "ece200-lab01"
         }
       ]
     },
@@ -404,7 +406,9 @@
           "week": 2,
           "kind": "lab",
           "title": "Lab 2: sum of sinusoids and its spectrum; check FFT peaks (Python)",
-          "est_min": 30
+          "est_min": 30,
+          "id": "p05-ece200-lab-cbb3f7d3",
+          "lab": "ece200-lab02"
         }
       ]
     },
@@ -554,7 +558,9 @@
           "week": 3,
           "kind": "lab",
           "title": "Lab 3: predict an alias frequency, then confirm it with the FFT (Python)",
-          "est_min": 35
+          "est_min": 35,
+          "id": "p07-ece200-lab-928e87de",
+          "lab": "ece200-lab03"
         }
       ]
     },
@@ -633,7 +639,9 @@
           "week": 4,
           "kind": "lab",
           "title": "Lab 4: write your own FIR loop; check it against np.convolve and lfilter",
-          "est_min": 30
+          "est_min": 30,
+          "id": "p08-ece200-lab-a71f5dfb",
+          "lab": "ece200-lab04"
         }
       ]
     },
@@ -724,7 +732,9 @@
           "week": 5,
           "kind": "lab",
           "title": "Lab 5: convolution by flip-and-slide vs np.convolve; test linearity and time-invariance",
-          "est_min": 35
+          "est_min": 35,
+          "id": "p09-ece200-lab-9f11d57c",
+          "lab": "ece200-lab05"
         },
         {
           "course": "ECE200",

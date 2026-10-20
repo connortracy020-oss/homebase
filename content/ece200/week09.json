@@ -142,5 +142,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab09",
+      "number": 9,
+      "title": "Lab 9: Discrete-time Fourier series",
+      "goal": "Compute DT Fourier series coefficients by the analysis sum, resynthesize the signal, relate them to the DFT of one period, and check Parseval.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/OctaveBandFiltLab.pdf",
+        "title": "DSP First Lab P-14: Octave Band Filtering"
+      },
+      "starter": "labs/ece200/lab09_dtfs.py",
+      "est_min": 35
+    }
   ]
 }

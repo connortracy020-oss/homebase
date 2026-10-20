@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% from "_macros.html" import task_row, bar %}
+{% block title %}{{ lab.title }} · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
+    <a href="/course/{{ course.code }}/week/{{ lab.week }}">week {{ lab.week }}</a> · Python lab</p>
+  <h1>{{ lab.title }}</h1>
+  <p>{{ lab.goal }}</p>
+  <p class="muted small">About {{ lab.est_min | hm }}. OSU's ECE 200 lab list isn't published; this is Homebase's own Python lab on the same topic.</p>
+</section>
+
+<section class="card" style="--accent: {{ course.color }}">
+  <h2>Do the lab</h2>
+  <ol>
+    <li>In a terminal in the Homebase folder, run the checker once. It makes your own copy of the starter:
+      <code class="cmd">.venv\Scripts\python labs\check.py {{ lab.number }}</code></li>
+    <li>Open your copy and fill in every function marked <b>TODO</b>:
+      <code class="cmd">{{ work_file }}</code>
+      (<a href="/lab/{{ lab.id }}/starter" target="_blank">view the starter</a>)</li>
+    <li>Run the checker again until every check passes. Run your file to see its plots:
+      <code class="cmd">.venv\Scripts\python {{ work_file }}</code></li>
+  </ol>
+</section>
+
+<section class="card" style="--accent: {{ course.color }}">
+  <h2>Checks</h2>
+  {% if result %}
+  <p class="small muted">Last checked {{ result.checked_at.replace('T', ' ') }}: {{ result.passed }} of {{ result.total }} pass
+    {{ bar(result.passed, result.total, course.color) }}</p>
+  {% else %}
+  <p class="small muted">Not checked yet.</p>
+  {% endif %}
+  <ul class="check-list">
+    {% for name, r in checks %}
+    <li>
+      {% if r %}<span class="result result-{{ r.status }}">{{ r.status }}</span>{% endif %}
+      {{ name }}
+      {% if r and r.message %}<span class="check-msg muted">{{ r.message }}</span>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="card" style="--accent: {{ course.color }}">
+  <h2>Background handout</h2>
+  <p><b>{{ lab.handout.title }}</b></p>
+  <p class="small muted">A MATLAB lab from DSP First. Read its Pre-Lab and Warm-up for the ideas; do the work in Python above.</p>
+  {% if have_handout %}<a href="/{{ lab.handout.pdf }}" target="_blank">open PDF</a>
+  {% else %}<span class="tag warn">not downloaded yet</span>{% endif %}
+  · <a href="https://dspfirst.gatech.edu/labs.html" target="_blank" rel="noopener">source ↗</a>
+</section>
+
+{% if tasks %}
+<section class="card">
+  <h2>In the prep plan</h2>
+  <ul class="tasks">
+    {% for t in tasks %}
+    {% set pw = prep_by_id.get(t.prep_week_id) %}
+    {{ task_row(t, course, ('prep wk ' ~ pw.number) if pw else '') }}
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

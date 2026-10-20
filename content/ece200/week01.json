@@ -435,5 +435,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab01",
+      "number": 1,
+      "title": "Lab 1: Sinusoids and phasors",
+      "goal": "Make cosines in NumPy, add three same-frequency cosines numerically and by phasor sum, and see that both give the same cosine.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/MultipathLab.pdf",
+        "title": "DSP First Lab P-2: Introduction to Complex Exponentials (Multipath)"
+      },
+      "starter": "labs/ece200/lab01_phasors.py",
+      "est_min": 40
+    }
   ]
 }

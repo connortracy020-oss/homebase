@@ -426,5 +426,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab02",
+      "number": 2,
+      "title": "Lab 2: Spectrum and synthesis",
+      "goal": "Build a sum of sinusoids, write down its two-sided spectrum, and read the A/2 line heights back off np.fft.fft.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/lab04.pdf",
+        "title": "DSP First Lab 04: Synthesis of Sinusoidal Signals (Music Synthesis)"
+      },
+      "starter": "labs/ece200/lab02_spectrum.py",
+      "est_min": 30
+    }
   ]
 }

@@ -399,5 +399,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab07",
+      "number": 7,
+      "title": "Lab 7: Averaging and nulling filters on sampled signals",
+      "goal": "Check the Dirichlet formula for the averager, then remove unwanted tones from a sampled signal with a cascade of nulling filters.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/mp03.pdf",
+        "title": "DSP First Mini-Project 03: Tone Removal"
+      },
+      "starter": "labs/ece200/lab07_tone_removal.py",
+      "est_min": 40
+    }
   ]
 }

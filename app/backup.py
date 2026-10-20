@@ -43,12 +43,18 @@ def export_all(session: Session) -> Path:
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as zf:
         zf.writestr("README.txt",
                     "Homebase export. data.json has every table as a list of rows.\n"
-                    "uploads/ has your submitted photos and PDFs.\n")
+                    "uploads/ has your submitted photos and PDFs.\n"
+                    "labs/ has your Python lab files and their check results.\n")
         zf.writestr("data.json", json.dumps(tables, indent=2, default=_json_default))
         if config.UPLOAD_DIR.exists():
             for f in config.UPLOAD_DIR.rglob("*"):
                 if f.is_file():
                     zf.write(f, Path("uploads") / f.relative_to(config.UPLOAD_DIR))
+        lab_dir = config.DATA_DIR / "labs"
+        if lab_dir.exists():
+            for f in lab_dir.rglob("*"):
+                if f.is_file():
+                    zf.write(f, Path("labs") / f.relative_to(lab_dir))
     return path
 
 
@@ -92,6 +98,8 @@ def backup_db(session: Session, target_dir: Path | None = None) -> Path:
     dst.close()
     if config.UPLOAD_DIR.exists():
         shutil.copytree(config.UPLOAD_DIR, target_dir / "uploads", dirs_exist_ok=True)
+    if (config.DATA_DIR / "labs").exists():  # your lab files and check results
+        shutil.copytree(config.DATA_DIR / "labs", target_dir / "labs", dirs_exist_ok=True)
     _prune(target_dir)
     set_setting(session, "last_backup", config.now().isoformat(timespec="minutes"))
     return target

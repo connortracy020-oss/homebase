@@ -17,6 +17,7 @@ from sqlmodel import Session, select
 from . import config
 from .db import get_engine, init_db
 from .generators import generate
+from .labs import load_labs
 from .models import (ActivityLog, Chapter, Course, CourseWeek, Exam, PrepWeek, Problem, ProblemSet,
                      Reading, Resource, Task, Video)
 
@@ -168,8 +169,8 @@ def task_slug(prep_number: int, spec: dict) -> str:
 
 def resolve_task(spec: dict, videos: dict[str, dict], series: dict[str, str] | None = None,
                  readings: dict | None = None, psets: dict | None = None,
-                 exams: dict | None = None) -> dict:
-    """Fill in title/url/time for a task that points at a video, reading, problem set or exam."""
+                 exams: dict | None = None, labs: dict | None = None) -> dict:
+    """Fill in title/url/time for a task that points at a video, reading, problem set, exam or lab."""
     out = {"title": spec.get("title", ""), "url": spec.get("url", ""),
            "detail": spec.get("detail", ""), "est_min": spec.get("est_min", 0),
            "ref_kind": "", "ref": ""}
@@ -205,6 +206,13 @@ def resolve_task(spec: dict, videos: dict[str, dict], series: dict[str, str] | N
         out["title"] = out["title"] or f"Timed: {exam.title} ({exam.time_min} min)"
         out["est_min"] = out["est_min"] or exam.time_min + GRADING_MIN
         out["ref_kind"], out["ref"] = "exam", spec["exam"]
+    elif "lab" in spec:
+        lab = (labs or {}).get(spec["lab"])
+        if lab is None:
+            raise ValueError(f"task points at unknown lab {spec['lab']!r}")
+        out["title"] = out["title"] or lab["title"]
+        out["est_min"] = out["est_min"] or lab["est_min"]
+        out["ref_kind"], out["ref"] = "lab", spec["lab"]
     if not out["title"]:
         raise ValueError(f"task has no title: {spec}")
     return out
@@ -297,6 +305,8 @@ def seed(session: Session) -> dict:
             counts["exams"] += 1
     session.flush()
 
+    all_labs = {lab["id"]: lab for code in courses for lab in load_labs(code)}
+    counts["labs"] = len(all_labs)
     schedule = _read(config.CONTENT_DIR / "prep_schedule.json")
     seen_slugs = set()
     for pw in schedule["weeks"]:
@@ -310,7 +320,7 @@ def seed(session: Session) -> dict:
         planned: dict[str, int] = {}
         for order, spec in enumerate(pw["tasks"]):
             course = courses[spec["course"]]
-            info = resolve_task(spec, videos[spec["course"]], series, readings, psets, exams)
+            info = resolve_task(spec, videos[spec["course"]], series, readings, psets, exams, all_labs)
             slug = task_slug(pw["number"], spec)
             if slug in seen_slugs:
                 raise ValueError(f"duplicate task {slug}")

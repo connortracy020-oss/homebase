@@ -422,5 +422,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab03",
+      "number": 3,
+      "title": "Lab 3: Sampling and aliasing",
+      "goal": "Sample cosines above and below fs/2, predict the alias frequency, confirm it with the FFT, and rebuild a signal with sinc interpolation.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/SpecgramHarmonicLinesChirpAliasing.pdf",
+        "title": "DSP First Lab S-8: Spectrograms: Harmonic Lines & Chirp Aliasing"
+      },
+      "starter": "labs/ece200/lab03_aliasing.py",
+      "est_min": 35
+    }
   ]
 }

@@ -98,6 +98,37 @@ Also on a problem set:
 
 **The statement region must not show the answer.** If a source prints the answer right under the problem, end the statement region above it. If the answer is interleaved with the problem, don't use that source.
 
+### Labs (ECE 200)
+
+A week can list Python labs:
+
+```json
+"labs": [
+  {"id": "ece200-lab04", "number": 4, "title": "Lab 4: FIR filters by hand",
+   "goal": "Write your own FIR filter loop, check it against np.convolve ...",
+   "handout": {"resource": "dspfirst-labs", "pdf": "library/ece200/dspfirst-labs/convolutionFIR.pdf",
+               "title": "DSP First Lab S-4: Convolution & FIR Filters"},
+   "starter": "labs/ece200/lab04_fir.py", "est_min": 30}
+]
+```
+
+- `id` must be unique.
+- `number` picks the checks in `app/lab_checks/<course>.py` (`CHECKS[number]`).
+- `handout` is background reading: a MATLAB handout, a resource in `resources.json`. Its `pdf` must be in `library/`.
+- `starter` is our own Python file. Each function it asks for:
+  - says what to compute in its docstring
+  - has `return None  # TODO` as its body
+  - is matched by the checks (which call it through `ask(m, "name", ...)`)
+
+To add or change a lab:
+1. Write the starter.
+2. Write its checks: compare with NumPy/SciPy using `same(...)`, and use `by_hand(...)` when the function must not call the built-in.
+3. Put a worked answer in `tests/lab_answers/<course>/` with the same file name. `tests/test_labs.py` checks that the answer passes every check.
+
+The validator runs the checker on every blank starter, and every check must come back `todo`.
+
+A prep-plan task links to a lab with `"lab": "ece200-lab04"`. The lab tasks also have an explicit `"id"` (the one they had before the link was added), so their done marks are kept.
+
 ## exams.json
 
 See `ece201/exams.json`. Per problem, use `pages` + `key_pages`, or `statement` + `key` regions (without `pdf`; it comes from the exam's `exam_pdf` / `key_pdf`). Each problem needs `points`.

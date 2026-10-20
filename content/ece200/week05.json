@@ -361,5 +361,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab05",
+      "number": 5,
+      "title": "Lab 5: Convolution and LTI systems",
+      "goal": "Write full flip-and-slide convolution, combine two filters into one, and write tests that tell whether a system is linear and time-invariant.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/SamplingConvFiltering.pdf",
+        "title": "DSP First Lab P-9: Sampling, Convolution, and FIR Filtering"
+      },
+      "starter": "labs/ece200/lab05_convolution.py",
+      "est_min": 35
+    }
   ]
 }

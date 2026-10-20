@@ -401,5 +401,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab04",
+      "number": 4,
+      "title": "Lab 4: FIR filters by hand",
+      "goal": "Write your own FIR filter loop, check it against np.convolve and scipy.signal.lfilter, and look at impulse and step responses of a running average and a first difference.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/convolutionFIR.pdf",
+        "title": "DSP First Lab S-4: Convolution & FIR Filters"
+      },
+      "starter": "labs/ece200/lab04_fir.py",
+      "est_min": 30
+    }
   ]
 }

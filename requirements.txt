@@ -13,6 +13,9 @@ pillow==11.2.1
 # Generated problems: compute answers and check them a second way
 numpy==2.2.6
 sympy==1.14.0
+# ECE 200 Python labs: the checker compares your code with SciPy; Matplotlib draws the plots
+scipy==1.15.3
+matplotlib==3.10.3
 
 # Submissions: iPhone HEIC photos
 pillow-heif==1.8.1

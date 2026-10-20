@@ -261,3 +261,12 @@ ol.steps li { margin: .3rem 0; }
 .grade-card details { margin: .3rem 0; }
 .grade-card .inline-form label { display: inline-flex; align-items: center; gap: .4rem; }
 .grade-card input.pts { width: 6rem; }
+
+/* Python labs */
+.result-pass { background: #e6efdc; color: #3f5a24; }
+.result-todo { background: #efe8da; color: #6b6253; }
+.result-fail, .result-error { background: #f6e1d8; color: #8a3b1d; }
+.check-list { list-style: none; padding: 0; margin: 0; }
+.check-list li { padding: .35rem 0; border-bottom: 1px solid #ebe3d4; }
+.check-list .check-msg { display: block; font-size: .85rem; margin-top: .15rem; }
+.cmd { display: block; white-space: pre-wrap; word-break: break-all; padding: .5rem .7rem; margin: .3rem 0 .8rem; }

@@ -10,12 +10,13 @@ from pathlib import Path
 from markupsafe import Markup, escape
 
 from fastapi import APIRouter, Depends, Form, HTTPException, Request
-from fastapi.responses import FileResponse, RedirectResponse
+from fastapi.responses import FileResponse, PlainTextResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from sqlmodel import Session
+from sqlmodel import Session, select
 
-from .. import backup, config, services
+from .. import backup, config, labs, services
 from ..db import get_session
+from ..models import Task
 
 TEMPLATES = Jinja2Templates(directory=config.ROOT / "app" / "templates")
 router = APIRouter()
@@ -134,12 +135,41 @@ def course_week_page(code: str, number: int, request: Request,
                              sum(1 for r in results.values() if r in ("solid", "correct")))
     readings = [(r, res, services.local_file_exists(res))
                 for r, res in services.readings_for_week(session, course, number)]
+    week_labs = [(lab, labs.last_result(lab)) for lab in labs.labs_for_week(course.code, number)]
     return render(request, "course_week.html", session, course=course, week=weeks[number],
                   tasks=tasks, prep_by_id=prep_by_id, videos=videos,
                   chapter_counts=services.chapter_counts(session, videos),
-                  readings=readings, psets=psets, pset_stats=pset_stats,
+                  readings=readings, psets=psets, pset_stats=pset_stats, labs=week_labs,
                   prev_n=number - 1 if number > 1 else None,
                   next_n=number + 1 if number < len(weeks) else None)
+
+
+@router.get("/lab/{lab_id}")
+def lab_page(lab_id: str, request: Request, session: Session = Depends(get_session)):
+    lab = labs.find_lab(lab_id)
+    if lab is None:
+        raise HTTPException(404, f"No lab {lab_id}")
+    course = _course_or_404(session, lab["course"])
+    result = labs.last_result(lab)
+    status_by_name = {r["name"]: r for r in (result or {}).get("results", [])}
+    checks = [(name, status_by_name.get(name)) for name, _ in labs.checks_for(lab)]
+    tasks = session.exec(select(Task).where(Task.ref_kind == "lab", Task.ref == lab["id"])).all()
+    prep_by_id = {w.id: w for w in services.prep_weeks(session)}
+    work_file = labs.work_file(lab)
+    if work_file.is_relative_to(config.ROOT):  # show data\labs\... rather than the full path
+        work_file = work_file.relative_to(config.ROOT)
+    return render(request, "lab.html", session, lab=lab, course=course, result=result, checks=checks,
+                  have_handout=(config.ROOT / lab["handout"]["pdf"]).exists(),
+                  work_file=work_file, tasks=tasks, prep_by_id=prep_by_id)
+
+
+@router.get("/lab/{lab_id}/starter")
+def lab_starter(lab_id: str):
+    """The starter file as plain text (handy on the phone)."""
+    lab = labs.find_lab(lab_id)
+    if lab is None:
+        raise HTTPException(404, f"No lab {lab_id}")
+    return PlainTextResponse((config.ROOT / lab["starter"]).read_text(encoding="utf-8"))
 
 
 @router.get("/progress")

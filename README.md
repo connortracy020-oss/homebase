@@ -144,6 +144,51 @@ Every problem's key is a published solution or code-computed. Every exam was che
 
 **Adding or changing content:** see [content/README.md](content/README.md). `scripts/validate_content.py --render` checks every file, link, page and crop; `scripts/wire_generated.py --write` adds a generator's drills to its week.
 
+## Python labs (ECE 200)
+
+ECE 200 at OSU has a weekly 2-hour computer lab. OSU doesn't publish its lab list, so Homebase has its own: 10 Python labs, one per term week, using NumPy, SciPy and Matplotlib in place of MATLAB. They're on each ECE 200 week page under **Labs**.
+
+| Week | Lab | Background handout (DSP First, MATLAB) |
+|---|---|---|
+| 1 | Sinusoids and phasors | Lab P-2: complex exponentials (multipath) |
+| 2 | Spectrum and synthesis | Lab 04: music synthesis |
+| 3 | Sampling and aliasing | Lab S-8: spectrograms, chirp aliasing |
+| 4 | FIR filters by hand | Lab S-4: convolution and FIR filters |
+| 5 | Convolution and LTI systems | Lab P-9: sampling, convolution, FIR filtering |
+| 6 | Frequency response of FIR filters | Lab P-12: bandpass and nulling filters |
+| 7 | Averaging and nulling filters on sampled signals | Mini-Project 03: tone removal |
+| 8 | The DTFT | Lab S-6: FIR filter design |
+| 9 | Discrete-time Fourier series | Lab P-14: octave band filtering |
+| 10 | The DFT by hand and touch-tone decoding | Lab 09: DTMF encoding and decoding |
+
+**Doing a lab** (in a terminal in the Homebase folder; lab 4 as the example):
+
+1. Run the checker once. It copies the starter to `data\labs\lab04_fir.py`, your own copy:
+   ```powershell
+   .venv\Scripts\python labs\check.py 4
+   ```
+2. Open `data\labs\lab04_fir.py` (VS Code works well: the `# %%` lines make cells you can run one at a time). Fill in every function marked **TODO**.
+3. Run the checker again. Each check prints:
+   - **PASS:** your function matches NumPy/SciPy.
+   - **FAIL:** it doesn't, and the message says by how much.
+   - **TODO:** the function still returns `None`.
+   - **ERROR:** your code crashed, and the message gives the line.
+4. Run your file to see its plots: `.venv\Scripts\python data\labs\lab04_fir.py`.
+5. When everything passes, tick the lab in the plan. The lab page and the week page show your last check.
+
+**How it checks:**
+- Your functions get test inputs, and the answers are compared with NumPy/SciPy. For example, your FIR loop is compared with `np.convolve` and `scipy.signal.lfilter`, and your DFT with `np.fft.fft`.
+- When the point of a lab is to write something by hand (convolution, the DFT, frequency response), that function fails if it calls the built-in. Comments that mention the built-in are fine.
+- Check a file somewhere else with `labs\check.py 4 --file C:\path\to\file.py`.
+
+**Where things are kept:**
+- Your lab files and check results are in `data\labs\`, which is backed up and included in the export.
+- The starters in `labs\ece200\` stay blank.
+- The checks are in `app/lab_checks/ece200.py`.
+- Worked answers for the tests are in `tests/lab_answers/`. They are spoilers, so do the lab first.
+
+If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m pip install -r requirements.txt` once.
+
 ## Claude access (MCP server)
 
 `mcp_server.py` gives Claude these tools on your Homebase:
@@ -195,7 +240,9 @@ The MCP server reads the same database as the web app, so the web app doesn't ne
 app/        the app (models, services, pages, API, backup)
 app/generators/   problem generators with code-checked answers
 app/pdfpages.py   cuts one problem or solution out of a PDF page
+app/labs.py, app/lab_checks/   loads labs, runs the checks against NumPy/SciPy
 content/    course content as JSON: weeks, videos, prep schedule (committed)
+labs/       Python lab starters (labs/ece200/) and labs/check.py, the lab checker
 research/   research reports + data the content came from (committed)
 library/    downloaded course PDFs (git-ignored)
 data/       your database, uploads, exports (git-ignored)

@@ -185,5 +185,14 @@
     "url": "https://barry.ece.gatech.edu/2026/exams.html",
     "license": "All rights reserved; posted publicly on Georgia Tech course sites (personal study copy)",
     "notes": "Local folder: library/ece200/gt2026-barry/. Most PDFs hold the blank exam followed by the answer key. Problems used as practice sets here were checked by eye: blank page first, key page second."
+  },
+  {
+    "id": "dspfirst-labs",
+    "kind": "reference",
+    "title": "DSP First 2e MATLAB lab handouts (McClellan, Schafer, Yoder)",
+    "url": "https://dspfirst.gatech.edu/labs.html",
+    "local_path": "library/ece200/dspfirst-labs/",
+    "license": "All rights reserved (c) Pearson Education; publicly posted companion content on dspfirst.gatech.edu (personal study copy)",
+    "notes": "MATLAB labs, used as background reading for Homebase's own Python labs (labs/ece200/). The MATLAB support ZIP files were not downloaded."
   }
 ]

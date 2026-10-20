@@ -397,5 +397,20 @@
         }
       ]
     }
+  ],
+  "labs": [
+    {
+      "id": "ece200-lab06",
+      "number": 6,
+      "title": "Lab 6: Frequency response of FIR filters",
+      "goal": "Compute H(e^jw) from the filter coefficients, design a nulling filter, and predict a filter's sinusoidal output from |H| and its angle.",
+      "handout": {
+        "resource": "dspfirst-labs",
+        "pdf": "library/ece200/dspfirst-labs/BPFnullingFilters.pdf",
+        "title": "DSP First Lab P-12: Frequency Response: Bandpass and Nulling Filters"
+      },
+      "starter": "labs/ece200/lab06_freq_response.py",
+      "est_min": 40
+    }
   ]
 }
