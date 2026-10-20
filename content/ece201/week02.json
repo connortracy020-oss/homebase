@@ -37,7 +37,8 @@
       "resource": "openstax-up2-9-4",
       "sections": "9.3 and 9.4 (resistivity, Ohm's law; physics background)",
       "est_min": 20,
-      "optional": true
+      "optional": true,
+      "page": 392
     }
   ],
   "problem_sets": [

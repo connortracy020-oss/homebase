@@ -7,13 +7,15 @@
    "resource": "openstax-c3-4-1",
    "sections": "4.1 Functions of Several Variables (level curves, again after the exam)",
    "est_min": 15,
-   "optional": true
+   "optional": true,
+   "page": 310
   },
   {
    "id": "mth254-w4-os-4-2",
    "resource": "openstax-c3-4-2",
    "sections": "4.2 Limits and Continuity",
-   "est_min": 35
+   "est_min": 35,
+   "page": 324
   },
   {
    "id": "mth254-w4-clp-2-1",

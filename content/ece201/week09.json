@@ -29,7 +29,8 @@
       "resource": "openstax-up2-8-1",
       "sections": "8.1 to 8.3 (capacitance, series and parallel, stored energy; physics background)",
       "est_min": 30,
-      "optional": true
+      "optional": true,
+      "page": 335
     },
     {
       "id": "ece201-w9-equations",

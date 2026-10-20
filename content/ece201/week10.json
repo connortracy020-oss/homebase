@@ -73,14 +73,16 @@
       "resource": "openstax-up2-10-5",
       "sections": "10.5 RC Circuits (physics background)",
       "est_min": 20,
-      "optional": true
+      "optional": true,
+      "page": 452
     },
     {
       "id": "ece201-w10-up2-14",
       "resource": "openstax-up2-14-2",
       "sections": "14.2 Self-Inductance and Inductors, then 14.4 RL Circuits (physics background)",
       "est_min": 30,
-      "optional": true
+      "optional": true,
+      "page": 607
     }
   ],
   "problem_sets": [

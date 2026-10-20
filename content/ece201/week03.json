@@ -37,7 +37,8 @@
       "resource": "openstax-up2-10-2",
       "sections": "10.2 Resistors in Series and Parallel, 10.3 Kirchhoff's Rules (physics background)",
       "est_min": 25,
-      "optional": true
+      "optional": true,
+      "page": 425
     }
   ],
   "problem_sets": [

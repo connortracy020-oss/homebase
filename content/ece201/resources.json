@@ -46,7 +46,8 @@
     "title": "OpenStax University Physics Vol. 2, ch 9: Current and Resistance",
     "url": "https://openstax.org/books/university-physics-volume-2/pages/9-1-electrical-current",
     "license": "CC BY-NC-SA 4.0 (OpenStax; checked in the OpenStax catalog 2026-10-19)",
-    "notes": "Physics background for current and charge, since PH 211/212 come later. Each chapter has an answer key."
+    "notes": "Physics background for current and charge, since PH 211/212 come later. Each chapter has an answer key. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 374.",
+    "local_path": "library/ece201/openstax/university-physics-volume-2.pdf"
   },
   {
     "id": "kuphaldt-ewp",
@@ -167,7 +168,8 @@
     "title": "OpenStax University Physics Vol. 2, 9.4 Ohm's Law",
     "url": "https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law",
     "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
-    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4). Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 392.",
+    "local_path": "library/ece201/openstax/university-physics-volume-2.pdf"
   },
   {
     "id": "openstax-up2-10-2",
@@ -175,7 +177,8 @@
     "title": "OpenStax University Physics Vol. 2, 10.2 Resistors in Series and Parallel",
     "url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel",
     "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
-    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4). Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 425.",
+    "local_path": "library/ece201/openstax/university-physics-volume-2.pdf"
   },
   {
     "id": "openstax-up2-10-5",
@@ -183,7 +186,8 @@
     "title": "OpenStax University Physics Vol. 2, 10.5 RC Circuits",
     "url": "https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits",
     "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
-    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4). Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 452.",
+    "local_path": "library/ece201/openstax/university-physics-volume-2.pdf"
   },
   {
     "id": "openstax-up2-8-1",
@@ -191,7 +195,8 @@
     "title": "OpenStax University Physics Vol. 2, 8.1 Capacitors and Capacitance",
     "url": "https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance",
     "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
-    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4). Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 335.",
+    "local_path": "library/ece201/openstax/university-physics-volume-2.pdf"
   },
   {
     "id": "openstax-up2-14-2",
@@ -199,7 +204,8 @@
     "title": "OpenStax University Physics Vol. 2, 14.2 Self-Inductance and Inductors",
     "url": "https://openstax.org/books/university-physics-volume-2/pages/14-2-self-inductance-and-inductors",
     "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the page, checked 2026-10-19)",
-    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4)."
+    "notes": "Physics background. Use the page's Next link for the following sections (for example 10.3, 8.2-8.3, 14.4). Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 607.",
+    "local_path": "library/ece201/openstax/university-physics-volume-2.pdf"
   },
   {
     "id": "fiore-dc",

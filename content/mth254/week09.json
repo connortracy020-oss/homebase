@@ -6,19 +6,22 @@
       "id": "mth254-w9-os-5-4",
       "resource": "openstax-c3-5-4",
       "sections": "5.4 Triple Integrals",
-      "est_min": 40
+      "est_min": 40,
+      "page": 492
     },
     {
       "id": "mth254-w9-os-2-7",
       "resource": "openstax-c3-2-7",
       "sections": "2.7 Cylindrical and Spherical Coordinates (cylindrical and spherical coordinates)",
-      "est_min": 25
+      "est_min": 25,
+      "page": 217
     },
     {
       "id": "mth254-w9-os-5-5",
       "resource": "openstax-c3-5-5",
       "sections": "5.5 Triple Integrals in Cylindrical and Spherical Coordinates",
-      "est_min": 45
+      "est_min": 45,
+      "page": 511
     },
     {
       "id": "mth254-w9-clp-3-5-3-7",

@@ -6,14 +6,16 @@
    "id": "mth254-w10-os-5-5",
    "resource": "openstax-c3-5-5",
    "sections": "5.5 Triple Integrals in Cylindrical and Spherical Coordinates (review the spherical examples)",
-   "est_min": 20
+   "est_min": 20,
+   "page": 511
   },
   {
    "id": "mth254-w10-os-5-7",
    "resource": "openstax-c3-5-7",
    "sections": "5.7 Change of Variables in Multiple Integrals (only if change of variables is covered)",
    "est_min": 40,
-   "optional": true
+   "optional": true,
+   "page": 553
   },
   {
    "id": "mth254-w10-clp-3-8",

@@ -21,7 +21,8 @@
       "resource": "openstax-up2-ch9",
       "sections": "9.1 Electrical current (physics background)",
       "est_min": 20,
-      "optional": true
+      "optional": true,
+      "page": 374
     },
     {
       "id": "ece201-w1-equations",

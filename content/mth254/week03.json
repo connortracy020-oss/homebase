@@ -6,25 +6,29 @@
       "id": "mth254-w3-os-3-3",
       "resource": "openstax-c3-3-3",
       "sections": "3.3 Arc Length and Curvature (arc length; curvature is optional)",
-      "est_min": 35
+      "est_min": 35,
+      "page": 265
     },
     {
       "id": "mth254-w3-os-2-5",
       "resource": "openstax-c3-2-5",
       "sections": "2.5 Equations of Lines and Planes in Space (the planes part)",
-      "est_min": 20
+      "est_min": 20,
+      "page": 177
     },
     {
       "id": "mth254-w3-os-2-6",
       "resource": "openstax-c3-2-6",
       "sections": "2.6 Quadric Surfaces",
-      "est_min": 35
+      "est_min": 35,
+      "page": 200
     },
     {
       "id": "mth254-w3-os-4-1",
       "resource": "openstax-c3-4-1",
       "sections": "4.1 Functions of Several Variables",
-      "est_min": 30
+      "est_min": 30,
+      "page": 310
     },
     {
       "id": "mth254-w3-clp-1-4-1-7",

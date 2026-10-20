@@ -5,7 +5,8 @@
   "title": "OpenStax Calculus Volume 3, 1.3 Polar Coordinates",
   "url": "https://openstax.org/books/calculus-volume-3/pages/1-3-polar-coordinates",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 46.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-2-1",
@@ -13,7 +14,8 @@
   "title": "OpenStax Calculus Volume 3, 2.1 Vectors in the Plane",
   "url": "https://openstax.org/books/calculus-volume-3/pages/2-1-vectors-in-the-plane",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 98.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-2-2",
@@ -21,7 +23,8 @@
   "title": "OpenStax Calculus Volume 3, 2.2 Vectors in Three Dimensions",
   "url": "https://openstax.org/books/calculus-volume-3/pages/2-2-vectors-in-three-dimensions",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 117.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-2-3",
@@ -29,7 +32,8 @@
   "title": "OpenStax Calculus Volume 3, 2.3 The Dot Product",
   "url": "https://openstax.org/books/calculus-volume-3/pages/2-3-the-dot-product",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 139.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-2-4",
@@ -37,7 +41,8 @@
   "title": "OpenStax Calculus Volume 3, 2.4 The Cross Product",
   "url": "https://openstax.org/books/calculus-volume-3/pages/2-4-the-cross-product",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 157.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-2-5",
@@ -45,7 +50,8 @@
   "title": "OpenStax Calculus Volume 3, 2.5 Equations of Lines and Planes in Space",
   "url": "https://openstax.org/books/calculus-volume-3/pages/2-5-equations-of-lines-and-planes-in-space",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 177.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-2-6",
@@ -53,7 +59,8 @@
   "title": "OpenStax Calculus Volume 3, 2.6 Quadric Surfaces",
   "url": "https://openstax.org/books/calculus-volume-3/pages/2-6-quadric-surfaces",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 200.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-2-7",
@@ -61,7 +68,8 @@
   "title": "OpenStax Calculus Volume 3, 2.7 Cylindrical and Spherical Coordinates",
   "url": "https://openstax.org/books/calculus-volume-3/pages/2-7-cylindrical-and-spherical-coordinates",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 217.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-3-1",
@@ -69,7 +77,8 @@
   "title": "OpenStax Calculus Volume 3, 3.1 Vector-Valued Functions and Space Curves",
   "url": "https://openstax.org/books/calculus-volume-3/pages/3-1-vector-valued-functions-and-space-curves",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 243.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-3-2",
@@ -77,7 +86,8 @@
   "title": "OpenStax Calculus Volume 3, 3.2 Calculus of Vector-Valued Functions",
   "url": "https://openstax.org/books/calculus-volume-3/pages/3-2-calculus-of-vector-valued-functions",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 252.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-3-3",
@@ -85,7 +95,8 @@
   "title": "OpenStax Calculus Volume 3, 3.3 Arc Length and Curvature",
   "url": "https://openstax.org/books/calculus-volume-3/pages/3-3-arc-length-and-curvature",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 265.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-3-4",
@@ -93,7 +104,8 @@
   "title": "OpenStax Calculus Volume 3, 3.4 Motion in Space",
   "url": "https://openstax.org/books/calculus-volume-3/pages/3-4-motion-in-space",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 283.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-1",
@@ -101,7 +113,8 @@
   "title": "OpenStax Calculus Volume 3, 4.1 Functions of Several Variables",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-1-functions-of-several-variables",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 310.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-2",
@@ -109,7 +122,8 @@
   "title": "OpenStax Calculus Volume 3, 4.2 Limits and Continuity",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-2-limits-and-continuity",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 324.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-3",
@@ -117,7 +131,8 @@
   "title": "OpenStax Calculus Volume 3, 4.3 Partial Derivatives",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-3-partial-derivatives",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 338.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-4",
@@ -125,7 +140,8 @@
   "title": "OpenStax Calculus Volume 3, 4.4 Tangent Planes and Linear Approximations",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-4-tangent-planes-and-linear-approximations",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 355.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-5",
@@ -133,7 +149,8 @@
   "title": "OpenStax Calculus Volume 3, 4.5 The Chain Rule",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-5-the-chain-rule",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 369.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-6",
@@ -141,7 +158,8 @@
   "title": "OpenStax Calculus Volume 3, 4.6 Directional Derivatives and the Gradient",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-6-directional-derivatives-and-the-gradient",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 382.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-7",
@@ -149,7 +167,8 @@
   "title": "OpenStax Calculus Volume 3, 4.7 Maxima/Minima Problems",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-7-maxima-minima-problems",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 394.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-4-8",
@@ -157,7 +176,8 @@
   "title": "OpenStax Calculus Volume 3, 4.8 Lagrange Multipliers",
   "url": "https://openstax.org/books/calculus-volume-3/pages/4-8-lagrange-multipliers",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 410.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-5-1",
@@ -165,7 +185,8 @@
   "title": "OpenStax Calculus Volume 3, 5.1 Double Integrals over Rectangular Regions",
   "url": "https://openstax.org/books/calculus-volume-3/pages/5-1-double-integrals-over-rectangular-regions",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 428.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-5-2",
@@ -173,7 +194,8 @@
   "title": "OpenStax Calculus Volume 3, 5.2 Double Integrals over General Regions",
   "url": "https://openstax.org/books/calculus-volume-3/pages/5-2-double-integrals-over-general-regions",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 448.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-5-3",
@@ -181,7 +203,8 @@
   "title": "OpenStax Calculus Volume 3, 5.3 Double Integrals in Polar Coordinates",
   "url": "https://openstax.org/books/calculus-volume-3/pages/5-3-double-integrals-in-polar-coordinates",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 472.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-5-4",
@@ -189,7 +212,8 @@
   "title": "OpenStax Calculus Volume 3, 5.4 Triple Integrals",
   "url": "https://openstax.org/books/calculus-volume-3/pages/5-4-triple-integrals",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 492.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-5-5",
@@ -197,7 +221,8 @@
   "title": "OpenStax Calculus Volume 3, 5.5 Triple Integrals in Cylindrical and Spherical Coordinates",
   "url": "https://openstax.org/books/calculus-volume-3/pages/5-5-triple-integrals-in-cylindrical-and-spherical-coordinates",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 511.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-5-6",
@@ -205,7 +230,8 @@
   "title": "OpenStax Calculus Volume 3, 5.6 Calculating Centers of Mass and Moments of Inertia",
   "url": "https://openstax.org/books/calculus-volume-3/pages/5-6-calculating-centers-of-mass-and-moments-of-inertia",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 536.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "openstax-c3-5-7",
@@ -213,7 +239,8 @@
   "title": "OpenStax Calculus Volume 3, 5.7 Change of Variables in Multiple Integrals",
   "url": "https://openstax.org/books/calculus-volume-3/pages/5-7-change-of-variables-in-multiple-integrals",
   "license": "CC BY-NC-SA 4.0 (OpenStax; stated on the section page, checked 2026-10-19)",
-  "notes": "Read online (the full PDF is 79 MB and isn't downloaded). Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions."
+  "notes": "Exercises have odd-numbered answers in the chapter answer key; Homebase uses the CLP-3 and MIT sets instead because they have worked solutions. Local copy: the official OpenStax PDF, downloaded 2026-10-20; this section starts on PDF page 553.",
+  "local_path": "library/mth254/openstax/calculus-volume-3.pdf"
  },
  {
   "id": "clp3-text",
