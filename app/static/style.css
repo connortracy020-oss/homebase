@@ -246,3 +246,4 @@ ol.steps li { margin: .3rem 0; }
 .today-alert { display: block; text-decoration: none; }
 /* keep anchored sections clear of the sticky header */
 [id] { scroll-margin-top: 6.5rem; }
+.rate-head { margin-top: .9rem !important; }

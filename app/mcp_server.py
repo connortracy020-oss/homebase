@@ -13,9 +13,9 @@ from datetime import date
 from mcp.server.mcpserver import Image, MCPServer
 from sqlmodel import Session, select
 
-from . import config, feedback, services
+from . import config, feedback, review, services
 from .db import get_engine, init_db
-from .models import Course, Problem, ProblemSet, Submission, Task
+from .models import Course, Mistake, Problem, ProblemSet, Submission, Task
 
 INSTRUCTIONS = """\
 Homebase is Connor's self-study platform for three Winter 2027 OSU courses (ECE 201 circuits, \
@@ -30,6 +30,8 @@ packet (problem, key, his pages), then post_feedback. Follow the review instruct
 packet exactly.
 - When he works a problem with you in chat, record it with record_problem_result and log the \
 time with log_study_session. Ask before logging time he didn't mention.
+- Spaced review: list_due_reviews shows today's cold re-solves. Have him re-solve without \
+notes before showing any key, then record_review_outcome (solid / shaky / miss).
 - Everything you change is shown to him as done by Claude.
 """
 
@@ -75,6 +77,7 @@ def get_overview(day: str = "") -> str:
             lines.append("Tasks this week:")
             lines += [_task_line(t, names[t.course_id]) for t in services.tasks_for_prep_week(s, pw)]
         lines.append(f"Submissions waiting for review: {services.pending_count(s)}")
+        lines.append(f"Mistakes due for a cold re-solve today: {len(review.due_items(s, d))}")
         return "\n".join(lines)
 
 
@@ -263,6 +266,66 @@ def mark_video_watched(video_slug: str, watched: bool = True) -> str:
         return f"{video.title}: {'watched' if watched else 'not watched'}."
 
 
+def list_due_reviews() -> str:
+    """Mistakes due for a cold re-solve today (spaced review), oldest first, mixed across courses."""
+    with db() as s:
+        items = review.due_items(s)
+        if not items:
+            return "No reviews due today."
+        out = [f"{len(items)} due (about {review.MINUTES_PER_ITEM} min each; daily budget "
+               f"{review.DAILY_BUDGET_MIN} min):"]
+        for m in items:
+            p = s.get(Problem, m.problem_id)
+            out.append(f"- mistake {m.id} · {p.slug} · {p.label} · box {m.box} · due {m.due}"
+                       f"{' · ' + m.cause if m.cause else ''}{' · ' + m.note if m.note else ''}")
+        return "\n".join(out)
+
+
+def list_mistakes(course: str = "") -> str:
+    """The mistake log (open and retired), optionally for one course, with cause counts."""
+    with db() as s:
+        c = _course(s, course) if course else None
+        rows = review.all_mistakes(s, c)
+        if not rows:
+            return "The mistake log is empty."
+        out = []
+        for m in rows:
+            p = s.get(Problem, m.problem_id)
+            state = "retired" if m.retired_at else f"box {m.box}, due {m.due}"
+            out.append(f"- mistake {m.id} · {p.label} ({p.slug}) · {state} · cause {m.cause or '?'} · "
+                       f"{m.reviews} reviews · {m.note}")
+        courses = [c] if c else services.courses(s)
+        for co in courses:
+            out.append(f"{co.name} causes: {review.cause_counts(s, co)}")
+        return "\n".join(out)
+
+
+def add_mistake(problem_slug: str, cause: str = "", note: str = "") -> str:
+    """Put a problem in the mistake log (for example, one Connor got wrong while working with you).
+
+    cause: concept | setup | algebra-sign | units | careless | unclear
+    """
+    with db() as s:
+        p = services.problem_by_slug(s, problem_slug)
+        if p is None:
+            raise ValueError(f"No problem {problem_slug!r}")
+        if cause and cause not in feedback.CAUSES:
+            raise ValueError(f"cause must be one of {feedback.CAUSES}")
+        m = review.add_mistake(s, p, source="claude", cause=cause, note=note, actor="claude")
+        return f"Mistake {m.id}: {p.label} in box {m.box}, due {m.due}."
+
+
+def record_review_outcome(mistake_id: int, outcome: str, note: str = "") -> str:
+    """Record a cold re-solve of a logged mistake: solid | shaky | miss (moves it on the ladder)."""
+    with db() as s:
+        m = s.get(Mistake, mistake_id)
+        if m is None:
+            raise ValueError(f"No mistake {mistake_id}")
+        review.record_review(s, m, outcome, note, actor="claude")
+        state = "retired" if m.retired_at else f"box {m.box}, next review {m.due}"
+        return f"Recorded {outcome}: {state}."
+
+
 def recent_activity(limit: int = 20) -> str:
     """The latest changes in Homebase, including ones made by Claude."""
     with db() as s:
@@ -272,7 +335,8 @@ def recent_activity(limit: int = 20) -> str:
 
 TOOLS = [get_overview, get_week, get_progress, list_problems, get_problem,
          list_pending_submissions, get_submission, post_feedback, mark_task_done,
-         log_study_session, add_note, record_problem_result, mark_video_watched, recent_activity]
+         log_study_session, add_note, record_problem_result, mark_video_watched,
+         list_due_reviews, list_mistakes, add_mistake, record_review_outcome, recent_activity]
 for fn in TOOLS:
     mcp.tool()(fn)
 

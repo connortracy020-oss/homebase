@@ -217,6 +217,41 @@ class Submission(SQLModel, table=True):
     confirmed_at: Optional[datetime] = None
 
 
+class Mistake(SQLModel, table=True):
+    """A problem you got wrong, scheduled for spaced review (see app/review.py).
+
+    box 1-5 sets the gap until the next review: 1, 3, 7, 14, 28 days.
+    """
+    id: Optional[int] = Field(default=None, primary_key=True)
+    problem_id: int = Field(foreign_key="problem.id", index=True)
+    course_id: int = Field(foreign_key="course.id", index=True)
+    created_at: datetime
+    source: str = "rating"  # rating | check | submission | manual | claude
+    submission_id: Optional[int] = Field(default=None, foreign_key="submission.id")
+    cause: str = ""  # concept | setup | algebra-sign | units | careless | unclear
+    note: str = ""  # what went wrong, in your words or from the feedback
+    box: int = 1
+    due: date
+    reviews: int = 0
+    lapses: int = 0  # times it fell back to box 1
+    last_reviewed: Optional[datetime] = None
+    retired_at: Optional[datetime] = None
+
+
+class ReviewAttempt(SQLModel, table=True):
+    """One cold re-solve of a mistake."""
+    id: Optional[int] = Field(default=None, primary_key=True)
+    mistake_id: int = Field(foreign_key="mistake.id", index=True)
+    at: datetime
+    outcome: str  # solid | shaky | miss
+    box_before: int
+    box_after: int
+    sweep: bool = False  # part of a pre-exam sweep
+    variant_seed: Optional[int] = None  # generated problems are re-solved with new numbers
+    note: str = ""
+    actor: str = "app"
+
+
 class StudySession(SQLModel, table=True):
     """Time you spent studying. Hours on the Progress page come from here."""
     id: Optional[int] = Field(default=None, primary_key=True)

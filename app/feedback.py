@@ -238,6 +238,11 @@ def confirm(session: Session, sub: Submission, verdict: str, actor: str = "app")
         submission=sub.id)
     session.commit()
     session.refresh(sub)
+    if sub.problem_id and verdict in ("incorrect", "partial"):
+        from . import review
+        cause = sub.cause if sub.cause not in ("none", "") else ""
+        review.add_mistake(session, session.get(Problem, sub.problem_id), source="submission",
+                           cause=cause, note=sub.first_error, submission_id=sub.id, actor=actor)
     return sub
 
 

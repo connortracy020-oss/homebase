@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Re-solve: {{ problem.label }} · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course.color }}">
+  <p class="eyebrow"><span class="dot"></span>{{ course.name }} · {{ pset.title }} ·
+    {% if sweep %}pre-exam sweep{% elif m.retired_at %}retired{% else %}box {{ m.box }} of 5{% endif %}</p>
+  <h1>Re-solve: {{ problem.label }}</h1>
+  <p class="muted small">Cold: put your notes away. {% if m.note %}Last time: {{ m.note }}{% endif %}
+    {% if m.cause %}<span class="tag">{{ m.cause }}</span>{% endif %}</p>
+</section>
+
+{% if variant %}
+{% set st = variant.statement %}
+<section class="card statement">
+  <p class="small muted">Same type of problem, new numbers.</p>
+  <p class="problem-text">{{ st.text }}</p>
+  {% if st.svg %}<div class="circuit-wrap">{{ st.svg | safe }}</div><p class="visually-hidden">{{ st.diagram }}</p>{% endif %}
+</section>
+<section class="card" id="rate">
+  <form method="post" action="/review/{{ m.id }}/check" class="answer-form">
+    <input type="hidden" name="seed" value="{{ seed }}">
+    {% if sweep %}<input type="hidden" name="sweep" value="{{ sweep }}">{% endif %}
+    {% if all %}<input type="hidden" name="all" value="1">{% endif %}
+    {% for a in variant.key.answers %}
+    <label class="answer-row"><span>{{ a.label }}</span>
+      <input type="text" inputmode="decimal" name="a{{ loop.index0 }}" autocomplete="off" aria-label="{{ a.label }}">
+      <span class="unit">{{ a.unit }}</span>
+      {% if marks %}<span class="mark {{ 'ok' if marks[loop.index0] else 'bad' }}">{{ '✓' if marks[loop.index0] else '✗' }}</span>{% endif %}
+    </label>
+    {% endfor %}
+    <button type="submit">Check</button>
+  </form>
+  {% if marks %}
+  <details class="solution" open><summary>Worked steps</summary><ol class="steps">{% for s in variant.key.steps %}<li>{{ s }}</li>{% endfor %}</ol></details>
+  {% endif %}
+{% else %}
+{% set st = problem.statement %}
+<section class="card statement">
+  {% if st.pdf %}<img src="/problem/{{ problem.slug }}/statement.png" alt="{{ problem.label }}" class="pdf-crop">
+  {% else %}<p class="problem-text">{{ st.text }}</p>{% if st.svg %}<div class="circuit-wrap">{{ st.svg | safe }}</div>{% endif %}{% endif %}
+</section>
+<section class="card" id="rate">
+  {% if problem.key_type != 'none' %}
+  <details class="solution"><summary>Show the key (after you've finished)</summary>
+    {% if problem.key.pdf %}<img loading="lazy" src="/problem/{{ problem.slug }}/key.png" alt="Key" class="pdf-crop">
+    {% else %}<ul class="plain">{% for a in problem.key.answers %}<li>{{ a.label }}: {{ a.value }} {{ a.unit }}</li>{% endfor %}</ul>
+      <ol class="steps">{% for s in problem.key.steps %}<li>{{ s }}</li>{% endfor %}</ol>{% endif %}
+  </details>
+  {% else %}<p class="tag warn">No key exists for this problem; compare with your earlier feedback.</p>{% endif %}
+{% endif %}
+
+  <h2 class="rate-head">How did it go?</h2>
+  {% set suggest = ('solid' if marks and marks | select | list | length == marks | length else 'miss') if marks else '' %}
+  <form method="post" action="/review/{{ m.id }}/rate" class="rate-form">
+    {% if sweep %}<input type="hidden" name="sweep" value="{{ sweep }}">{% endif %}
+    {% if all %}<input type="hidden" name="all" value="1">{% endif %}
+    {% if seed %}<input type="hidden" name="seed" value="{{ seed }}">{% endif %}
+    {% for o, label in [('solid', 'Solid'), ('shaky', 'Shaky'), ('miss', 'Missed it')] %}
+    <button name="outcome" value="{{ o }}" type="submit" {% if o == suggest %}class="primary"{% endif %}>{{ label }}</button>
+    {% endfor %}
+    <input type="text" name="note" placeholder="note (optional)" aria-label="Note">
+  </form>
+  <p class="small muted">
+    {% if m.retired_at %}Solid keeps it retired; a miss puts it back in box 1.
+    {% elif m.box == 5 %}Solid retires it. Shaky: again in {{ intervals[5] }} days. Missed: back to box 1, tomorrow.
+    {% else %}Solid: box {{ m.box + 1 }}, again in {{ intervals[m.box + 1] }} days. Shaky: again in {{ intervals[m.box] }} day{{ "s" if intervals[m.box] != 1 }}. Missed: back to box 1, tomorrow.{% endif %}
+  </p>
+</section>
+
+<section class="card">
+  <p class="small"><a href="/problem/{{ problem.slug }}">Open the original problem</a>{% if m.submission_id %} · <a href="/submission/{{ m.submission_id }}">the feedback that logged it</a>{% endif %}</p>
+  {% if history %}
+  <ul class="plain small">{% for a in history[:8] %}<li><span class="result result-{{ a.outcome }}">{{ a.outcome }}</span> <span class="muted">{{ a.at | md }} · box {{ a.box_before }} → {{ a.box_after }}{% if a.sweep %} · sweep{% endif %}</span>{% if a.note %} · {{ a.note }}{% endif %}</li>{% endfor %}</ul>
+  {% endif %}
+</section>
+{% endblock %}

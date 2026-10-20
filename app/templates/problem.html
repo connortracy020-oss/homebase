@@ -86,13 +86,21 @@
 
 <section class="card" id="history">
   <h2>How did it go?</h2>
+  {% if mistake %}
+  <p class="small"><a href="/review/{{ mistake.id }}">In your mistake log</a>: box {{ mistake.box }} of 5, next cold re-solve {{ mistake.due | md }}{% if mistake.cause %} · <span class="tag">{{ mistake.cause }}</span>{% endif %}</p>
+  {% endif %}
   <form method="post" action="/problem/{{ problem.slug }}/rate" class="rate-form">
     <button name="result" value="solid" type="submit">Solid</button>
     <button name="result" value="shaky" type="submit">Shaky</button>
     <button name="result" value="miss" type="submit">Missed it</button>
     <input type="text" name="note" placeholder="what went wrong? (optional)" aria-label="What went wrong">
+    <select name="cause" aria-label="Cause">
+      <option value="">cause…</option>
+      {% for c in CAUSES if c not in ('none',) %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+    </select>
+    <label class="small"><input type="checkbox" name="log" checked> add shaky/missed to my mistake log</label>
   </form>
-  <p class="small muted">Solid: right without help. Shaky: right, but you needed a hint or took a long time. Missed: wrong.</p>
+  <p class="small muted">Solid: right without help. Shaky: right, but you needed a hint or took a long time. Missed: wrong. Logged mistakes come back for a cold re-solve after 1, 3, 7, 14 and 28 days.</p>
   {% if history %}
   <ul class="plain small">
     {% for a in history[:6] %}

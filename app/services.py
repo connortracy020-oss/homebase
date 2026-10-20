@@ -330,7 +330,10 @@ SELF_RATINGS = ("solid", "shaky", "miss")
 
 
 def rate_problem(session: Session, problem: Problem, result: str, note: str = "",
-                 actor: str = "app") -> Attempt:
+                 actor: str = "app", add_to_log: bool | None = None, cause: str = "") -> Attempt:
+    """Record how a problem went. A miss goes into the mistake log (a shaky one if you ask)."""
+    from . import review
+
     if result not in SELF_RATINGS:
         raise ValueError(f"rating must be one of {SELF_RATINGS}")
     attempt = Attempt(problem_id=problem.id, at=config.now(), result=result,
@@ -339,6 +342,9 @@ def rate_problem(session: Session, problem: Problem, result: str, note: str = ""
     log(session, actor, "problem.rate", f"{problem.label}: {result}", problem=problem.slug)
     session.commit()
     session.refresh(attempt)
+    if add_to_log if add_to_log is not None else result == "miss":
+        review.add_mistake(session, problem, source="claude" if actor == "claude" else "rating",
+                           cause=cause, note=note, actor=actor)
     return attempt
 
 
@@ -356,6 +362,11 @@ def check_problem(session: Session, problem: Problem, given: list[str],
     log(session, actor, "problem.check", f"{problem.label}: {result}", problem=problem.slug)
     session.commit()
     session.refresh(attempt)
+    if result == "incorrect":
+        from . import review
+        wrong = [a["label"] for a, ok in zip(expected, marks) if not ok]
+        review.add_mistake(session, problem, source="check", note="Wrong: " + ", ".join(wrong),
+                           actor=actor)
     return attempt, marks
 
 

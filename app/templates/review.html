@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Review · Homebase{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Spaced review</p>
+  <h1>Today's re-solves</h1>
+  <p class="muted">Each one is a cold re-solve: no notes, no peeking. About {{ budget }} minutes a day; anything extra waits, with no penalty.</p>
+  {% if request.query_params.get('done') %}<p class="tag">Done for today. Nice work.</p>{% endif %}
+  {% if request.query_params.get('swept') %}<p class="tag">Sweep finished for {{ request.query_params.get('swept') }}.</p>{% endif %}
+</section>
+
+<section class="card">
+  {% if queue %}
+  <ul class="items">
+    {% for m, p, c in queue %}
+    <li class="item" style="--accent: {{ c.color }}"><span class="check"><span class="dot"></span></span><div>
+      <a class="item-title" href="/review/{{ m.id }}">{{ p.label }}</a>
+      <div class="item-meta"><span>{{ c.name }}</span><span>box {{ m.box }}</span><span>due {{ m.due | md }}</span>{% if m.cause %}<span class="tag">{{ m.cause }}</span>{% endif %}</div>
+    </div></li>
+    {% endfor %}
+  </ul>
+  <p><a class="button primary" href="/review/next">Start (≈{{ queue | length * minutes }} min)</a>
+    {% if more %}<span class="small muted">{{ more }} more due; <a href="/review/next?all=1">do them all</a></span>{% endif %}</p>
+  {% else %}
+  <p class="muted">Nothing due today.{% if coming %} {{ coming }} coming up in the next week.{% endif %}</p>
+  {% endif %}
+</section>
+
+<section class="card">
+  <h2>By course</h2>
+  <table class="weeks-table">
+    <thead><tr><th>Course</th>{% for b in ['1', '2', '3', '4', '5'] %}<th>Box {{ b }}</th>{% endfor %}<th>Retired</th><th></th></tr></thead>
+    <tbody>
+      {% for c, counts in per_course %}
+      <tr style="--accent: {{ c.color }}">
+        <th scope="row"><span class="dot"></span>{{ c.name }}</th>
+        {% for b in ['1', '2', '3', '4', '5', 'retired'] %}<td>{{ counts[b] or '·' }}</td>{% endfor %}
+        <td>{% if counts.values() | sum %}<a class="small" href="/review/next?sweep={{ c.code }}">pre-exam sweep</a>{% endif %}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="small muted">A sweep re-solves every logged problem for one course, retired ones included. Do one 5 to 7 days before an exam. <a href="/mistakes">See the whole mistake log</a></p>
+</section>
+{% endblock %}

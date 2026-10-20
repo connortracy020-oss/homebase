@@ -13,6 +13,9 @@
   {% endif %}
 </section>
 
+{% if due_reviews %}
+<a class="card today-alert" href="/review"><strong>{{ due_reviews }}</strong> mistake{{ 's' if due_reviews != 1 }} due for a cold re-solve today →</a>
+{% endif %}
 {% if pending_reviews %}
 <a class="card today-alert" href="/submissions"><strong>{{ pending_reviews }}</strong> submission{{ 's' if pending_reviews != 1 }} waiting for feedback →</a>
 {% endif %}

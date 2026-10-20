@@ -58,6 +58,8 @@ def render(request: Request, name: str, session: Session, **ctx):
     ctx.setdefault("courses", services.courses(session))
     ctx.setdefault("today", config.today())
     ctx.setdefault("pending_reviews", services.pending_count(session))
+    from .. import review
+    ctx.setdefault("due_reviews", len(review.due_items(session)))
     return TEMPLATES.TemplateResponse(request, name, ctx)
 
 

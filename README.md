@@ -66,6 +66,37 @@ Then you settle the verdict (**Agree** or pick another), and that counts as an a
 
 `scripts/feedback_eval.py` makes fake handwritten submissions with known mistakes to check review quality. In the first run, a separate Claude reviewer got 7/7 verdicts and causes right.
 
+## Mistake log and spaced review (stage d)
+
+**What goes in the log:**
+- a problem you rate *Missed it* (or *Shaky*, while the "add to mistake log" box is ticked, which it is by default)
+- a wrong typed answer on a generated problem
+- feedback you settle as incorrect or partial, which brings its cause tag and "first error" note along
+
+Missing a problem that's already in the log sends it back to box 1 instead of making a copy.
+
+**Review** (in the nav, with a count) lists today's **cold re-solves**: no notes and no peeking until you're done. It follows the 5-box ladder from the research:
+
+| Box | Next re-solve after |
+|---|---|
+| 1 | 1 day |
+| 2 | 3 days |
+| 3 | 7 days |
+| 4 | 14 days |
+| 5 | 28 days |
+
+- **Solid** (right, no help): up one box. Solid from box 5 retires it.
+- **Shaky** (hint needed or slow): same box, same gap again.
+- **Missed it**: back to box 1, tomorrow.
+
+Reviewing an item when it comes due:
+
+- **Order:** today's queue is oldest-due first and mixes courses.
+- **Daily budget:** it holds about 20 minutes of re-solves. Extra items wait, with no penalty.
+- **Generated problems:** these come back with **new numbers** each time, so you can't just remember the answer.
+- **Pre-exam sweep:** 5 to 7 days before an exam, use the **pre-exam sweep** link for a course. It re-solves every logged problem for that course, including retired ones. A retired one you miss goes back on the ladder.
+- **Mistake log page:** shows every item, where it sits, and which causes keep coming up per course.
+
 ## Claude access (MCP server)
 
 `mcp_server.py` gives Claude these tools on your Homebase:
@@ -75,7 +106,12 @@ Then you settle the verdict (**Agree** or pick another), and that counts as an a
 | `get_overview`, `get_week`, `get_progress`, `list_problems`, `get_problem` | See your plan, progress and problems |
 | `list_pending_submissions`, `get_submission`, `post_feedback` | Review your queued work |
 | `mark_task_done`, `log_study_session`, `add_note`, `record_problem_result`, `mark_video_watched` | Log work you do with Claude in chat |
+| `list_due_reviews`, `list_mistakes`, `add_mistake`, `record_review_outcome` | Run your daily re-solves in chat and log mistakes |
 | `recent_activity` | See what changed recently |
+
+**Connected on this laptop (2026-10-19):**
+- **Claude Code:** user scope, so every project sees Homebase.
+- **Claude Desktop:** restart it once to load Homebase. Its previous config is saved next to it as `claude_desktop_config.before-homebase.json`.
 
 Everything Claude changes shows up as **Claude** in the activity log on the Progress page.
 

@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse, RedirectResponse, Response
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
-from .. import backup, config, feedback, pdfpages, services, uploads
+from .. import backup, config, feedback, pdfpages, review, services, uploads
 from ..db import get_session
 from ..models import Course, Problem, ProblemSet, Submission
 from .pages import render
@@ -152,6 +152,7 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
         statement_page=pdfpages.page_of(st) if "pdf" in st else None,
         key_page=pdfpages.page_of(key) if "pdf" in key else None,
         statement_missing="pdf" in st and not (config.ROOT / st["pdf"]).exists(),
+        mistake=review.open_mistake_for(session, problem), CAUSES=feedback.CAUSES,
     )
 
 
@@ -182,10 +183,13 @@ async def problem_check(slug: str, request: Request, session: Session = Depends(
 
 @router.post("/problem/{slug}/rate")
 def problem_rate(slug: str, result: str = Form(...), note: str = Form(""),
+                 log: str = Form(""), cause: str = Form(""),
                  session: Session = Depends(get_session)):
+    """The rating form's "add to mistake log" box (on by default) decides for shaky and miss."""
     problem = _problem_or_404(session, slug)
     try:
-        services.rate_problem(session, problem, result, note)
+        services.rate_problem(session, problem, result, note,
+                              add_to_log=(log == "on" and result != "solid"), cause=cause)
     except ValueError as e:
         raise HTTPException(422, str(e))
     return RedirectResponse(f"/problem/{slug}#history", status_code=303)

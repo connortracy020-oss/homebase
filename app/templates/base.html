@@ -23,6 +23,7 @@
       <a href="/course/{{ c.code }}" style="--accent: {{ c.color }}"
          {% if request.url.path.startswith('/course/' ~ c.code) %}aria-current="page"{% endif %}>{{ c.name }}</a>
       {% endfor %}
+      <a href="/review" {% if request.url.path.startswith('/review') or request.url.path == '/mistakes' %}aria-current="page"{% endif %}>Review{% if due_reviews %} <span class="count">{{ due_reviews }}</span>{% endif %}</a>
       <a href="/submissions" {% if request.url.path.startswith('/submission') %}aria-current="page"{% endif %}>Feedback{% if pending_reviews %} <span class="count">{{ pending_reviews }}</span>{% endif %}</a>
       <a href="/progress" {% if request.url.path == '/progress' %}aria-current="page"{% endif %}>Progress</a>
       <a href="/settings" {% if request.url.path == '/settings' %}aria-current="page"{% endif %}>Settings</a>
