@@ -250,8 +250,11 @@ def run_next(engine=None) -> bool:
             job.status, job.finished_at = "done", config.now()
             session.commit()
         except Exception as e:  # keep the job; show what went wrong
+            raw = job.output
             session.rollback()
-            _fail(session, job, f"{type(e).__name__}: {e}"[:400])
+            if raw:
+                job.output = raw
+            _fail(session, job, (str(e) if isinstance(e, BadReply) else f"{type(e).__name__}: {e}")[:400])
         finally:
             _partial.pop(job.id, None)
         return True
@@ -370,7 +373,36 @@ def _json_reply(text: str) -> dict:
     text = text.strip()
     if text.startswith("```"):
         text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.M).strip()
-    return json.loads(text)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        # small models' usual slips: trailing commas, or text around the object
+        fixed = re.sub(r",\s*([}\]])", r"\1", text)
+        start, end = fixed.find("{"), fixed.rfind("}")
+        if start >= 0 and end > start:
+            return json.loads(fixed[start:end + 1])
+        raise
+
+
+class BadReply(Exception):
+    """The model's reply wasn't the JSON we asked for, even after a retry."""
+
+
+def _json_chat(job: LocalJob, payload: dict, live: bool = False) -> dict:
+    """Ask for structured JSON; if the reply doesn't parse, ask once more with thinking off
+    (Ollama keeps to the format most reliably without thinking) and a low temperature."""
+    _, text = _stream(job, payload, live=live)
+    try:
+        return _json_reply(text)
+    except (json.JSONDecodeError, ValueError):
+        first = text
+    retry = {**payload, "think": False, "options": {**payload.get("options", {}), "temperature": 0}}
+    _, text = _stream(job, retry, live=False)
+    try:
+        return _json_reply(text)
+    except (json.JSONDecodeError, ValueError) as e:
+        job.output = (first[:2000] + "\n---- retry ----\n" + text[:2000])  # kept for debugging
+        raise BadReply("The local AI's reply came back garbled twice. Try again, or ask Claude instead.") from e
 
 
 # ---- 1. a first look at a submission -----------------------------------------------------
@@ -391,8 +423,7 @@ def review_submission(session: Session, sub: Submission, model: str, job: LocalJ
         "options": {"num_ctx": 16384, "temperature": 0.2},
         "messages": [{"role": "system", "content": feedback.SYSTEM_PROMPT + "\n" + LOCAL_NOTE}, message],
     }
-    _, text = _stream(job or LocalJob(id=0, kind="review", created_at=config.now()), payload)
-    review = feedback._clean(_json_reply(text))
+    review = feedback._clean(_json_chat(job or LocalJob(id=0, kind="review", created_at=config.now()), payload, live=True))
     for k in ("transcription", "first_error", "feedback"):
         review[k] = tex(review[k])
     for a in review["answers"]:
@@ -452,12 +483,11 @@ def run_answer(session: Session, job: LocalJob) -> None:
     parts = _problem_parts(session, problem)
     message = _packet_message(parts, f"Problem: {problem.label}",
                               f"The student's typed final answer:\n{job.input.get('answer', '')}")
-    _, text = _stream(job, {
+    data = _json_chat(job, {
         "model": job.model, "think": ANSWER_THINK, "format": ANSWER_SCHEMA, "keep_alive": "2m",
         "options": {"num_ctx": 8192, "temperature": 0.1},
         "messages": [{"role": "system", "content": ANSWER_PROMPT}, message],
-    }, live=False)
-    data = _json_reply(text)
+    })
     verdict = data.get("verdict") if data.get("verdict") in feedback.VERDICTS else "unclear"
     parts = [{k: str(p.get(k, "")) for k in ("label", "student", "key", "match")}
              for p in data.get("parts") or [] if isinstance(p, dict)]
@@ -706,15 +736,16 @@ def run_note_draft(session: Session, job: LocalJob) -> None:
     outline = "\n".join(f"{u.term_week}: {u.title}" + (f" ({', '.join(u.topics)})" if u.topics else "")
                         for u in notes.units(session, nb) if u.kind == "unit" and u.term_week)
     image = (config.DATA_DIR / b.asset).read_bytes()
-    _, text = _stream(job, {
-        "model": job.model, "think": True, "format": NOTE_DRAFT_SCHEMA, "keep_alive": "2m",
+    data = _json_chat(job, {
+        # thinking off: 21 s instead of ~145 s on a lecture screenshot, same quality, and the
+        # JSON format holds (with thinking on, one reply came back malformed)
+        "model": job.model, "think": False, "format": NOTE_DRAFT_SCHEMA, "keep_alive": "2m",
         "options": {"num_ctx": 8192, "temperature": 0.2},
         "messages": [{"role": "system", "content": NOTE_DRAFT_PROMPT},
                      {"role": "user", "content": f"{nb.title}. Units:\n{outline}\n\n"
                       f"The student added this screenshot while on unit {unit.term_week or 0}.",
                       "images": [_image_b64(image)]}],
-    }, live=False)
-    data = _json_reply(text)
+    })
     week_to_unit = {u.term_week: u for u in notes.units(session, nb) if u.term_week}
     out = []
     for d in data.get("blocks") or []:

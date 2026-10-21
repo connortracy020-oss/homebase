@@ -7,7 +7,7 @@ from PIL import Image
 from sqlmodel import select
 
 from app import local_ai, notes, services
-from app.models import Course, NoteBlock, NoteRevision, NoteUnit, Video
+from app.models import Course, LocalJob, NoteBlock, NoteRevision, NoteUnit, Video
 from tests.test_local_ai import FakeOllama
 
 
@@ -244,3 +244,28 @@ def test_interactive_block_runs_in_a_locked_sandbox(client, session):
     assert "Updated" in m.notes_update(bid, description="New text")
     session.expire_all()
     assert session.get(NoteBlock, bid).extra["description"] == "New text"
+
+
+def test_garbled_draft_is_retried_then_reported(client, session):
+    fake = FakeOllama()
+    local_ai.set_client(fake)
+    u = unit(session, 1)
+    img = client.post("/notes/assets", data={"unit_id": u.id}, files={"file": ("s.png", png(), "image/png")}).json()
+    good = json.dumps({"blocks": [{"unit": 1, "part": "tips", "kind": "tip", "title": "Arrow", "body": "Draw it first."}]})
+    fake.replies = ['{\n "blocks": [\n  {\n   unit: 1, oops', good]
+    job = client.post(f"/notes/blocks/{img['id']}/draft").json()
+    local_ai.run_next()
+    j = client.get(f"/local/jobs/{job['id']}").json()
+    assert j["status"] == "done" and j["result"]["blocks"][0]["title"] == "Arrow"
+    assert fake.chats[0]["think"] is False and fake.chats[1]["options"]["temperature"] == 0
+    fake.replies = ["not json", "still not json"]
+    job = client.post(f"/notes/blocks/{img['id']}/draft").json()
+    local_ai.run_next()
+    j = client.get(f"/local/jobs/{job['id']}").json()
+    assert j["status"] == "error" and j["error"].startswith("The local AI's reply came back garbled twice")
+    assert "still not json" in session.get(LocalJob, job["id"]).output
+
+
+def test_json_repair():
+    assert local_ai._json_reply('{"a": [1, 2,], }') == {"a": [1, 2]}
+    assert local_ai._json_reply('Here you go: {"a": 1} thanks') == {"a": 1}
