@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ course.name }} notes history · Homebase{% endblock %}
+{% block content %}
+<section class="hero" style="--accent: {{ course | ccolor }}">
+  <p class="eyebrow"><a href="/notes/{{ course.code }}"><span class="dot"></span>{{ course.name }} notes</a> · history</p>
+  <h1>History</h1>
+  <p class="muted small">Every change to these notes, newest first, including what Claude and the local AI added. <strong>Undo</strong> puts that block back the way it was before the change.</p>
+</section>
+<section class="card">
+  {% if rows %}
+  <ul class="rows">
+    {% for rev, b in rows %}
+    <li>
+      <span class="num-badge">{{ {'add': '+', 'edit': '✎', 'move': '⇄', 'delete': '×', 'restore': '↺', 'star': '★'}.get(rev.action, '·') }}</span>
+      <div class="grow">
+        <span class="t">{{ rev.action | capitalize }}: {{ (b.title or b.body)[:70] or b.kind }}</span>
+        <div class="m"><span>{{ rev.at | md }} {{ rev.at.strftime('%H:%M') }}</span>
+          {% if rev.actor == 'claude' %}<span class="ai-chip claude">Claude</span>{% elif rev.actor == 'local' %}<span class="ai-chip local">Qwen</span>{% else %}<span>you</span>{% endif %}
+          <span>{{ unit_title(b.unit_id) }} · {{ PART_NAMES.get(b.part, b.part) }}</span>
+          {% if b.deleted_at %}<span class="tag">deleted</span>{% endif %}</div>
+      </div>
+      <form method="post" action="/notes/revisions/{{ rev.id }}/undo" class="undo-form"><button class="small" type="submit">Undo</button></form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}<p class="muted" style="margin:0">No changes yet.</p>{% endif %}
+</section>
+{% endblock %}
+{% block scripts %}
+<script>
+document.querySelectorAll(".undo-form").forEach((f) => f.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const res = await fetch(f.action, { method: "POST" });
+  if (res.ok) { toast("Undone."); setTimeout(() => location.reload(), 500); }
+}));
+</script>
+{% endblock %}

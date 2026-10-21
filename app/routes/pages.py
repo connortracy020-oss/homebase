@@ -126,6 +126,11 @@ def course_page(code: str, request: Request, session: Session = Depends(get_sess
     return render(request, "course.html", session, course=course, weeks=weeks)
 
 
+def notes_counts(session, course):
+    from .. import notes
+    return notes.counts_by_week(session, course)
+
+
 @router.get("/course/{code}/week/{number}")
 def course_week_page(code: str, number: int, request: Request,
                      session: Session = Depends(get_session)):
@@ -151,6 +156,7 @@ def course_week_page(code: str, number: int, request: Request,
                   chapter_counts=services.chapter_counts(session, videos),
                   readings=readings, psets=psets, pset_stats=pset_stats, labs=week_labs,
                   week_list=[weeks[n] for n in sorted(weeks)],
+                  note_count=notes_counts(session, course).get(number, 0),
                   prev_n=number - 1 if number > 1 else None,
                   next_n=number + 1 if number < len(weeks) else None)
 

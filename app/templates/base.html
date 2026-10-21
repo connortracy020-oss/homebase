@@ -4,6 +4,7 @@
   'today': path == '/',
   'plan': path == '/plan',
   'courses': path == '/courses' or path.startswith('/course/') or path.startswith('/video/') or path.startswith('/pset/') or path.startswith('/problem/') or path.startswith('/lab/'),
+  'notes': path.startswith('/notes'),
   'review': path.startswith('/review') or path == '/mistakes',
   'exams': path.startswith('/exam') or path.startswith('/attempt'),
   'feedback': path.startswith('/submission'),
@@ -48,6 +49,7 @@
       <a href="/" {{ cur('today') }}>Today</a>
       <a href="/plan" {{ cur('plan') }}>Plan</a>
       <a href="/courses" {{ cur('courses') }}>Courses</a>
+      <a href="/notes" {{ cur('notes') }}>Notes</a>
       <a href="/review" {{ cur('review') }}>Review{% if due_reviews %}<span class="count">{{ due_reviews }}</span>{% endif %}</a>
       <a href="/exams" {{ cur('exams') }}>Exams</a>
       <a href="/submissions" {{ cur('feedback') }}>Feedback{% if pending_reviews %}<span class="count">{{ pending_reviews }}</span>{% endif %}</a>
@@ -64,8 +66,9 @@
     <a href="/review" {{ cur('review') }}>{{ icon('review') }}Review{% if due_reviews %}<span class="count">{{ due_reviews }}</span>{% endif %}</a>
     <a href="/exams" {{ cur('exams') }}>{{ icon('exams') }}Exams</a>
     <details class="tab-more">
-      <summary {% if here.plan or here.feedback or here.progress or here.settings %}aria-current="page"{% endif %}>{{ icon('more') }}More{% if pending_reviews %}<span class="count">{{ pending_reviews }}</span>{% endif %}</summary>
+      <summary {% if here.plan or here.notes or here.feedback or here.progress or here.settings %}aria-current="page"{% endif %}>{{ icon('more') }}More{% if pending_reviews %}<span class="count">{{ pending_reviews }}</span>{% endif %}</summary>
       <div class="sheet">
+        <a href="/notes" {{ cur('notes') }}>{{ icon('note') }}Notes</a>
         <a href="/plan" {{ cur('plan') }}>{{ icon('plan') }}Plan</a>
         <a href="/submissions" {{ cur('feedback') }}>{{ icon('feedback') }}Feedback{% if pending_reviews %}<span class="count">{{ pending_reviews }}</span>{% endif %}</a>
         <a href="/progress" {{ cur('progress') }}>{{ icon('progress') }}Progress</a>

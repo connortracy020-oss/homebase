@@ -97,7 +97,14 @@
         const res = await fetch(`/api/notes/${n.id}`, { method: "DELETE" });
         if (res.ok) { notes = notes.filter((x) => x.id !== n.id); draw(); }
       };
-      tools.append(edit, del);
+      const send = Object.assign(document.createElement("button"), { type: "button", className: "link small", textContent: "→ notebook", title: "Copy into this week's notebook unit" });
+      send.onclick = async () => {
+        const res = await fetch(`/notes/from-video-note/${n.id}`, { method: "POST" });
+        if (!res.ok) { toast("Couldn't copy that note."); return; }
+        const out = await res.json();
+        toast(`Copied to ${out.unit}`);
+      };
+      tools.append(send, edit, del);
       li.append(time, body, tools);
       list.append(li);
     }

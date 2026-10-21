@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% from "_notes.html" import note_block %}
+{% from "_icons.html" import icon %}
+{% block title %}{{ unit.title }} · {{ course.name }} notes · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
+{% block content %}
+<div class="notes-layout" style="--accent: {{ course | ccolor }}" data-course="{{ course.code }}" data-unit="{{ unit.id }}">
+  <aside class="nb-side">
+    <nav class="tabs nb-courses" aria-label="Notebooks">
+      {% for c, n in all_notebooks %}<a href="/notes/{{ c.code }}" {% if c.id == course.id %}aria-current="page"{% endif %}>{{ c.name }}</a>{% endfor %}
+    </nav>
+    <div class="nb-search">
+      <input type="search" id="nb-search" placeholder="Search {{ course.name }} notes…" aria-label="Search notes" autocomplete="off">
+      <div class="nb-results" hidden></div>
+    </div>
+    <details class="nb-outline" open>
+      <summary class="small muted"><span class="desk">Units</span><span class="phone">{{ unit.title }} ▾</span></summary>
+      <ul class="nb-units">
+        {% for o in outline %}{% set u = o.unit %}
+        <li class="{{ 'on' if u.id == unit.id }} {{ 'inbox' if u.kind == 'inbox' }}">
+          <a href="/notes/{{ course.code }}?u={{ u.id }}">
+            <span class="n">{{ '✉' if u.kind == 'inbox' else (u.term_week or '·') }}</span>
+            <span class="t">{{ u.title }}</span>
+            {% if o.total %}<span class="c">{{ o.total }}</span>{% endif %}
+          </a>
+          {% if u.id == unit.id and u.kind == 'unit' %}
+          <ul class="nb-parts">{% for p in o.parts %}<li><a href="#part-{{ p.key }}">{{ p.name }}</a>{% if p.count %} <span class="c">{{ p.count }}</span>{% endif %}</li>{% endfor %}</ul>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul>
+      <form method="post" action="/notes/{{ course.code }}/units" class="nb-newunit">
+        <input type="hidden" name="after" value="{{ unit.id if unit.kind == 'unit' else '' }}">
+        <input type="text" name="title" placeholder="New unit…" aria-label="New unit title" required>
+        <button type="submit" class="small">Add</button>
+      </form>
+    </details>
+    <div class="nb-links">
+      <a class="button small" href="/notes/{{ course.code }}/formulas">∑ Formula sheet</a>
+      <a class="button small" href="/notes/{{ course.code }}/history">History</a>
+    </div>
+  </aside>
+
+  <section class="nb-main">
+    <header class="nb-head">
+      <p class="eyebrow"><span class="dot"></span>{{ course.name }} notes{% if unit.term_week %} · unit {{ unit.term_week }}{% endif %}</p>
+      <h1 class="nb-unit-title" data-unit="{{ unit.id }}" title="Click to rename">{{ unit.title }}</h1>
+      {% if unit.topics %}<ul class="topic-chips">{% for t in unit.topics %}<li>{{ t }}</li>{% endfor %}</ul>{% endif %}
+      <div class="nb-head-actions">
+        {% if unit.term_week %}<a class="small" href="/course/{{ course.code }}/week/{{ unit.term_week }}">Week {{ unit.term_week }} videos and problems →</a>{% endif %}
+        <label class="button small nb-paste-btn">{{ icon('camera') }} Add a screenshot
+          <input type="file" accept="image/*" class="visually-hidden" id="nb-file"></label>
+      </div>
+      <div class="nb-drop" hidden><p class="small muted">Drop or paste (Ctrl+V) a screenshot anywhere on this page.</p></div>
+      <div class="nb-shot" hidden></div>
+    </header>
+
+    {% if unit.kind == 'inbox' %}
+    <p class="small muted">Things that aren't sorted yet. Claude puts notes here when it isn't sure where they go, with a suggested home.</p>
+    {% endif %}
+
+    {% set empty_parts = [] %}
+    {% for key, name in PARTS %}
+    {% set items = by_part[key] %}
+    {% if items or unit.kind == 'inbox' and key == 'ideas' %}
+    <section class="nb-part" id="part-{{ key }}" data-part="{{ key }}">
+      <div class="nb-part-head"><h2>{{ 'Notes' if unit.kind == 'inbox' else name }}</h2><span class="c">{{ items | length }}</span>
+        <button type="button" class="small nb-add" data-part="{{ key }}" data-kind="{{ DEFAULT_KIND[key] }}">+ Add</button></div>
+      <div class="nb-list" data-part="{{ key }}">
+        {% for b in items %}{{ note_block(b, source_label, unit_title) }}{% endfor %}
+      </div>
+    </section>
+    {% else %}{% set _ = empty_parts.append((key, name)) %}{% endif %}
+    {% endfor %}
+    {% if empty_parts %}
+    <div class="nb-empty-parts">
+      <span class="small muted">{{ 'Start this unit:' if empty_parts | length == 5 else 'Add to:' }}</span>
+      {% for key, name in empty_parts %}<button type="button" class="small nb-add" data-part="{{ key }}" data-kind="{{ DEFAULT_KIND[key] }}">+ {{ name }}</button>{% endfor %}
+    </div>
+    {% endif %}
+  </section>
+</div>
+
+<template id="nb-part-tpl">
+  <section class="nb-part" data-part="">
+    <div class="nb-part-head"><h2></h2><span class="c">0</span><button type="button" class="small nb-add">+ Add</button></div>
+    <div class="nb-list"></div>
+  </section>
+</template>
+<script id="nb-move-targets" type="application/json">{{ move_targets | tojson }}</script>
+<script id="nb-parts" type="application/json">{{ PARTS | tojson }}</script>
+{% endblock %}
+{% block scripts %}<script src="/static/notes.js?v={{ static_v('notes.js') }}"></script>{% endblock %}

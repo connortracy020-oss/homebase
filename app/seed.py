@@ -343,6 +343,10 @@ def seed(session: Session) -> dict:
             session.delete(task)
             counts["removed"] += 1
 
+    from .notes import ensure_notebooks
+    session.flush()
+    counts["note_units"] = ensure_notebooks(session)  # adds only what's missing; your notes are kept
+
     session.commit()
     return counts
 

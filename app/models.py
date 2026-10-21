@@ -352,3 +352,56 @@ class LocalJob(SQLModel, table=True):
     error: str = ""
     wait_note: str = ""  # what we're waiting for, shown on the page
     run_anyway: bool = False  # you chose not to wait for other apps
+
+
+# ---- Notes: one notebook per course (app/notes.py) ----------------------------------------
+
+class Notebook(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    course_id: int = Field(foreign_key="course.id", index=True, unique=True)
+    title: str
+
+
+class NoteUnit(SQLModel, table=True):
+    """A unit of a notebook (one per term-week topic, plus your own), or the Inbox."""
+    id: Optional[int] = Field(default=None, primary_key=True)
+    notebook_id: int = Field(foreign_key="notebook.id", index=True)
+    kind: str = "unit"  # unit | inbox
+    position: float = 0
+    title: str = ""
+    topics: list = Field(default_factory=list, sa_column=Column(JSON))
+    term_week: Optional[int] = None  # the course week it came from, if any
+
+
+class NoteBlock(SQLModel, table=True):
+    """One block of notes: text, formula, definition, example, tip or image.
+
+    part says where in the unit it lives (ideas, definitions, formulas, examples, tips).
+    Deleting only sets deleted_at, so it can be undone."""
+    id: Optional[int] = Field(default=None, primary_key=True)
+    unit_id: int = Field(foreign_key="noteunit.id", index=True)
+    part: str = "ideas"
+    kind: str = "text"
+    position: float = 0
+    title: str = ""  # formula name, defined term, example title
+    body: str = ""   # Markdown with \( \) / $$ $$ math
+    extra: dict = Field(default_factory=dict, sa_column=Column(JSON))  # where (variables), when, answer
+    starred: bool = False  # on the printable formula sheet
+    source: dict = Field(default_factory=dict, sa_column=Column(JSON))  # video_slug, t, label, url, page
+    asset: str = ""  # image path under data/notes/
+    suggested: dict = Field(default_factory=dict, sa_column=Column(JSON))  # Inbox only: unit_id, part
+    created_by: str = "you"  # you | claude | local
+    created_at: datetime
+    updated_at: datetime
+    updated_by: str = "you"
+    deleted_at: Optional[datetime] = None
+
+
+class NoteRevision(SQLModel, table=True):
+    """A copy of a block before each change, for history and undo."""
+    id: Optional[int] = Field(default=None, primary_key=True)
+    block_id: int = Field(foreign_key="noteblock.id", index=True)
+    at: datetime
+    actor: str
+    action: str  # add | edit | move | delete | restore | star
+    before: dict = Field(default_factory=dict, sa_column=Column(JSON))

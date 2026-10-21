@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ course.name }} formula sheet · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
+{% block header %}{% if not printing %}{{ super() }}{% endif %}{% endblock %}
+{% block content %}
+<div class="fsheet {{ 'printing' if printing }}" style="--accent: {{ course | ccolor }}">
+  {% if not printing %}
+  <section class="hero">
+    <p class="eyebrow"><a href="/notes/{{ course.code }}"><span class="dot"></span>{{ course.name }} notes</a> · formula sheet</p>
+    <h1>Formula sheet</h1>
+    <p class="muted small">Every formula from your {{ course.name }} notes, by unit. Star (★) the ones for your exam sheet, then print the starred ones on one page{% if course.code == 'ECE201' %} (ECE 201 practice exams allow one page of your own handwritten formulas: copy it by hand){% endif %}.</p>
+    <div class="row" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+      <a class="button {{ 'primary' if not starred_only }}" href="/notes/{{ course.code }}/formulas">All formulas</a>
+      <a class="button {{ 'primary' if starred_only }}" href="/notes/{{ course.code }}/formulas?starred=1">★ Starred ({{ n_starred }})</a>
+      <a class="button" href="/notes/{{ course.code }}/formulas?print=1" target="_blank">Print the starred ones</a>
+    </div>
+  </section>
+  {% else %}
+  <h1 class="fsheet-title">{{ course.name }} · formula sheet</h1>
+  {% endif %}
+
+  {% if sheet %}
+  <div class="fsheet-grid">
+    {% for u, items in sheet %}
+    <section class="fsheet-unit">
+      <h2><span class="n">{{ u.term_week or '·' }}</span> {{ u.title }}</h2>
+      {% for b in items %}
+      <div class="fcard {{ 'starred' if b.starred }}" data-id="{{ b.id }}">
+        {% if not printing %}<button type="button" class="icon nb-star" data-act="star" aria-pressed="{{ 'true' if b.starred else 'false' }}" title="Star for the exam sheet">★</button>{% endif %}
+        {% if b.title %}<div class="nb-title">{{ b.title }}</div>{% endif %}
+        <div class="nb-eq">{% if '\\(' in b.body or '$' in b.body %}{{ b.body | notemd }}{% else %}$${{ b.body }}$${% endif %}</div>
+        {% if b.extra.where and not printing %}<div class="nb-where"><span>where</span> {{ b.extra.where | notemd }}</div>{% endif %}
+        {% if b.extra.when %}<div class="nb-when"><span>use when</span> {{ b.extra.when | notemd }}</div>{% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endfor %}
+  </div>
+  {% else %}
+  <section class="card"><p class="muted" style="margin:0">{% if printing or starred_only %}No starred formulas yet. Star (★) formulas in your notes to put them here.{% else %}No formulas yet. Add them to a unit's "Formulas & equations" part, or ask Claude to add the ones from a lecture screenshot.{% endif %}</p></section>
+  {% endif %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+document.querySelectorAll(".fcard .nb-star").forEach((b) => b.addEventListener("click", async () => {
+  const on = b.getAttribute("aria-pressed") !== "true";
+  const body = new FormData(); body.append("starred", on);
+  const res = await fetch(`/notes/blocks/${b.closest(".fcard").dataset.id}/star`, { method: "POST", body });
+  if (res.ok) { b.setAttribute("aria-pressed", on); b.closest(".fcard").classList.toggle("starred", on); }
+}));
+{% if printing %}addEventListener("load", () => setTimeout(() => print(), 600));{% endif %}
+</script>
+{% endblock %}

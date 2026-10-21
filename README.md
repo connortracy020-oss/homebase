@@ -78,6 +78,41 @@ Then you settle the verdict (**Agree** or pick another), and that counts as an a
 
 `scripts/feedback_eval.py` makes fake handwritten submissions with known mistakes to check review quality. In the first run, a separate Claude reviewer got 7/7 verdicts and causes right.
 
+## Notes (organized notebooks)
+
+**Notes** in the nav opens one notebook per course.
+
+**How each notebook is laid out:**
+- **Inbox:** things not sorted yet.
+- **Units:** one per term week, named by its topic. You can rename them by clicking the title, and add your own.
+- **Formula sheet:** collected automatically, see below.
+
+Every unit has the same five parts: **Key ideas, Definitions, Formulas & equations, Worked examples, and Pitfalls & tips**.
+
+**Editing:**
+- **+ Add** a block, then edit it in place. ✎ or a double-click reopens a block.
+- Math is LaTeX, with `\( \)` inline and `$$ $$` on its own line, and a live preview shows it as you type.
+- Formula blocks have a name, the equation, "where" (what the symbols mean) and "use when".
+- Drag a block to reorder it or move it to another part. ⇄ moves it to another unit.
+- Delete with × and undo from the message that pops up. **History** lists every change, with Undo.
+
+**Formula sheet:** every formula from all units, grouped by unit. Star (★) the ones you want for an exam sheet. **Print the starred ones** lays them out on one page.
+
+**Screenshots:**
+- **Add a screenshot**, paste one (Ctrl+V) or drag one onto the page. It's kept in `data/notes/`, which stays out of git.
+- **✦ Draft notes** on a screenshot asks the local AI to draft blocks with a suggested unit and part. You check each draft and press **Add**, or **Add all**. Nothing is saved until you do.
+
+**Elsewhere in Homebase:**
+- **→ notebook** on a video note copies it into that week's unit, linked back to the video at that time.
+- The week hub shows how many notes the week has, with a link.
+
+**With Claude:** give Claude Code or Claude Desktop a screenshot and say *"Add this to my MTH 254 notes"*.
+- Claude reads the outline and writes the content in its own words.
+- It puts each piece in the matching unit and part, and updates an existing formula instead of adding a duplicate.
+- If it isn't sure where something goes, it puts it in the Inbox with a suggested home.
+- It tells you what it added and where. Its blocks show a **by Claude** label and can be undone.
+- The tools it uses are `notes_outline`, `notes_search`, `notes_add`, `notes_update`, `notes_move` and `notes_add_unit`.
+
 ## Local AI (Qwen in your own Ollama)
 
 When the Ollama app is running, Homebase uses a local model (default `qwen3.5:9b`) for four things:

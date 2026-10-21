@@ -1,0 +1,45 @@
+{# One block of notes. Used by the notebook page and returned by the editor API after a save. #}
+{% macro note_block(b, source_label, unit_title=None) -%}
+<article class="nblock kind-{{ b.kind }}{{ ' starred' if b.starred }}" id="b{{ b.id }}" data-id="{{ b.id }}" data-kind="{{ b.kind }}"
+         data-part="{{ b.part }}" draggable="true">
+  <div class="nb-tools">
+    {% if b.kind == 'formula' %}<button type="button" class="icon nb-star" data-act="star" title="{{ 'On' if b.starred else 'Add to' }} the exam formula sheet" aria-pressed="{{ 'true' if b.starred else 'false' }}">★</button>{% endif %}
+    {% if b.kind == 'image' %}<button type="button" class="small nb-draft-btn" data-act="draft" title="Have the local AI draft notes from this screenshot; you approve each one">✦ Draft notes</button>{% endif %}
+    <button type="button" class="icon" data-act="edit" title="Edit" aria-label="Edit">✎</button>
+    <button type="button" class="icon" data-act="move" title="Move to another unit" aria-label="Move">⇄</button>
+    <button type="button" class="icon" data-act="delete" title="Delete (you can undo)" aria-label="Delete">×</button>
+  </div>
+  <div class="nb-view">
+  {% if b.kind == 'formula' %}
+    {% if b.title %}<div class="nb-title">{{ b.title }}</div>{% endif %}
+    <div class="nb-eq">{% if '\\(' in b.body or '$' in b.body %}{{ b.body | notemd }}{% else %}$${{ b.body }}$${% endif %}</div>
+    {% if b.extra.where %}<div class="nb-where"><span>where</span> {{ b.extra.where | notemd }}</div>{% endif %}
+    {% if b.extra.when %}<div class="nb-when"><span>use when</span> {{ b.extra.when | notemd }}</div>{% endif %}
+  {% elif b.kind == 'definition' %}
+    <div class="nb-def"><strong class="nb-term">{{ b.title or 'Term' }}</strong>{{ b.body | notemd }}</div>
+  {% elif b.kind == 'example' %}
+    <details class="nb-example" open>
+      <summary><span class="nb-title">{{ b.title or 'Example' }}</span></summary>
+      <div class="nb-body">{{ b.body | notemd }}</div>
+      {% if b.extra.answer %}<div class="nb-answer"><span>Answer</span> {{ b.extra.answer | notemd }}</div>{% endif %}
+    </details>
+  {% elif b.kind == 'image' %}
+    <figure class="nb-figure"><a href="/notes-assets/{{ b.asset.split('/')[-1] }}" target="_blank"><img src="/notes-assets/{{ b.asset.split('/')[-1] }}" alt="{{ b.body or 'Screenshot' }}" loading="lazy"></a>
+      {% if b.body %}<figcaption>{{ b.body | notemd }}</figcaption>{% endif %}</figure>
+  {% else %}
+    {% if b.title %}<div class="nb-title">{{ b.title }}</div>{% endif %}
+    <div class="nb-body">{{ b.body | notemd if b.body else '' }}{% if not b.body and not b.title %}<p class="muted">Empty. Click ✎ to write.</p>{% endif %}</div>
+  {% endif %}
+  </div>
+  {% set src = source_label(b.source) %}
+  {% if src or b.created_by != 'you' or b.suggested %}
+  <div class="nb-meta">
+    {% if src %}{% if b.source.video_slug %}<a href="/video/{{ b.source.video_slug }}{% if b.source.t is not none %}?t={{ b.source.t }}{% endif %}">▶ {{ src }}</a>{% elif b.source.url %}<a href="{{ b.source.url }}" target="_blank" rel="noopener">{{ src }} ↗</a>{% else %}<span>{{ src }}</span>{% endif %}{% endif %}
+    {% if b.created_by == 'claude' %}<span class="ai-chip claude">by Claude</span>{% elif b.created_by == 'local' %}<span class="ai-chip local">by Qwen</span>{% endif %}
+    {% if b.suggested and b.suggested.unit_id %}<span class="nb-suggest">Suggested: {{ unit_title(b.suggested.unit_id) if unit_title else '' }} · {{ {'ideas': 'Key ideas', 'definitions': 'Definitions', 'formulas': 'Formulas', 'examples': 'Examples', 'tips': 'Tips'}.get(b.suggested.part, '') }}
+      <button type="button" class="small" data-act="accept" data-unit="{{ b.suggested.unit_id }}" data-part="{{ b.suggested.part }}">Move there</button></span>{% endif %}
+  </div>
+  {% endif %}
+  <script type="application/json" class="nb-data">{{ {'title': b.title, 'body': b.body, 'extra': b.extra, 'kind': b.kind} | tojson }}</script>
+</article>
+{%- endmacro %}

@@ -36,6 +36,20 @@ enters the final scores himself.
 - Spaced review: list_due_reviews shows today's cold re-solves. Have him re-solve without \
 notes before showing any key, then record_review_outcome (solid / shaky / miss).
 - Everything you change is shown to him as done by Claude.
+
+Notes (his organized notebooks, one per course). When he shares a screenshot (a lecture frame, slide or page) or asks you to add something to his notes:
+1. Call notes_outline(course) to see the units and their topics. If he didn't say the course, use the video's course, else ask.
+2. Write the content in your own words and equations; don't copy a slide's text word for word. Split it into blocks by kind:
+   - an equation -> part "formulas" (body = LaTeX only; title = its name; where = what each symbol means, with units; when = when it applies). Set star=true only for core formulas worth an exam sheet.
+   - a term and its meaning -> part "definitions" (title = the term)
+   - a solved problem -> part "examples" (title, steps in body, answer)
+   - a warning, common mistake or trick -> part "tips"
+   - explanation and intuition -> part "ideas"
+   - keep the screenshot itself only if a figure matters (kind "image" with image_path)
+3. Unit = the term week whose topic matches (a video's unit is its term week). Before adding a formula, notes_search for it; if it's there, notes_update that block instead of adding a duplicate.
+4. If you're not sure where something goes, add it to unit "inbox" with suggested_unit and suggested_part.
+5. Link each block to its source: video_slug + t_sec when he names the video or time.
+6. Then tell him exactly what you added and where (unit and part).
 """
 
 mcp = MCPServer("homebase", instructions=INSTRUCTIONS)
@@ -377,11 +391,147 @@ def recent_activity(limit: int = 20) -> str:
                          for a in services.recent_activity(s, limit)) or "No activity yet."
 
 
+# ---- Notes: the organized notebooks ------------------------------------------------------------
+
+def _notebook(s, course: str):
+    from . import notes
+    return notes.notebook_for(s, _course(s, course))
+
+
+def notes_outline(course: str) -> str:
+    """The notebook for one course: its units (with their topics) and how many blocks each
+    part holds. Read this first to decide where new notes go."""
+    from . import notes
+    with db() as s:
+        nb = _notebook(s, course)
+        lines = [f"{nb.title}. Parts in every unit: " + ", ".join(f"{k} ({n})" for k, n in notes.PARTS) + "."]
+        for o in notes.outline(s, nb):
+            u = o["unit"]
+            ref = "inbox" if u.kind == "inbox" else (str(u.term_week) if u.term_week else f"id:{u.id}")
+            parts = ", ".join(f"{p['key']} {p['count']}" for p in o["parts"] if p["count"]) or "empty"
+            topics = f" — topics: {', '.join(u.topics)}" if u.topics else ""
+            lines.append(f"- unit {ref}: {u.title}{topics} [{parts}]")
+        return "\n".join(lines)
+
+
+def notes_search(query: str, course: str = "") -> str:
+    """Find existing note blocks (title, text or LaTeX). Use it before adding a formula,
+    so you add to an existing card instead of making a duplicate."""
+    from . import notes
+    from .models import NoteUnit
+    with db() as s:
+        nb = _notebook(s, course) if course else None
+        rows = notes.search(s, query, nb)
+        if not rows:
+            return "No matches."
+        out = []
+        for b in rows:
+            u = s.get(NoteUnit, b.unit_id)
+            body = b.body.replace("\n", " ")[:120]
+            out.append(f"- block {b.id} [{b.kind}] in {u.title} · {notes.PART_NAMES[b.part]}: {b.title + ': ' if b.title else ''}{body}")
+        return "\n".join(out)
+
+
+def notes_add(course: str, unit: str, part: str, body: str, kind: str = "", title: str = "",
+              where: str = "", when: str = "", answer: str = "", video_slug: str = "", t_sec: int | None = None,
+              source_label: str = "", source_url: str = "", image_path: str = "", star: bool = False,
+              suggested_unit: str = "", suggested_part: str = "") -> str:
+    """Add one block of notes.
+
+    unit: a term-week number ("4"), a unit title, or "inbox". part: ideas, definitions,
+    formulas, examples or tips. kind defaults from the part (formula, definition, example,
+    tip, text); use "image" with image_path to keep a screenshot. For a formula, body is the
+    LaTeX equation only (no $), title its name, where = what the symbols mean, when = when to
+    use it. For an example, answer = the final answer. Math in other text goes in \\( \\).
+    video_slug + t_sec link the note back to the lecture at that time. When unsure where it
+    goes, use unit "inbox" with suggested_unit / suggested_part."""
+    from . import notes
+    with db() as s:
+        nb = _notebook(s, course)
+        u = notes.unit_by_ref(s, nb, unit)
+        source = {}
+        if video_slug:
+            if services.video_by_slug(s, video_slug) is None:
+                raise ValueError(f"No video {video_slug!r}")
+            source = {"video_slug": video_slug, "t": t_sec}
+        elif source_label or source_url:
+            source = {"label": source_label, "url": source_url}
+        asset = ""
+        if image_path:
+            from pathlib import Path
+            path = Path(image_path)
+            if not path.is_file():
+                raise ValueError(f"No image file at {image_path}")
+            asset = notes.save_asset(path.read_bytes(), path.name)
+            kind = kind or "image"
+        k = kind or notes.DEFAULT_KIND.get(part, "text")
+        if k == "formula":
+            dup = notes.similar_formula(s, nb, body)
+            if dup is not None:
+                return (f"Not added: block {dup.id} already has this formula ({dup.title or dup.body}). "
+                        f"Use notes_update(block_id={dup.id}, ...) to add the new detail or source instead.")
+        suggested = {}
+        if u.kind == "inbox" and suggested_unit:
+            su = notes.unit_by_ref(s, nb, suggested_unit)
+            suggested = {"unit_id": su.id, "part": suggested_part or part}
+        extra = {k2: v for k2, v in (("where", where), ("when", when), ("answer", answer)) if v}
+        b = notes.add_block(s, u, part, k, body, title, extra=extra, source=source, asset=asset, starred=star,
+                            suggested=suggested, actor="claude")
+        return f"Added block {b.id} ({b.kind}) to {u.title} · {notes.PART_NAMES[part]}."
+
+
+def notes_update(block_id: int, body: str | None = None, title: str | None = None, where: str | None = None,
+                 when: str | None = None, answer: str | None = None, video_slug: str = "", t_sec: int | None = None) -> str:
+    """Change a block: new text, title, or formula details. Giving video_slug adds a second source
+    (the block keeps its first one and lists this one in its details)."""
+    from . import notes
+    from .models import NoteBlock
+    with db() as s:
+        b = s.get(NoteBlock, block_id)
+        if b is None or b.deleted_at:
+            raise ValueError(f"No block {block_id}")
+        extra = dict(b.extra or {})
+        for key, val in (("where", where), ("when", when), ("answer", answer)):
+            if val is not None:
+                extra[key] = val
+        if video_slug:
+            if services.video_by_slug(s, video_slug) is None:
+                raise ValueError(f"No video {video_slug!r}")
+            extra.setdefault("also_from", []).append({"video_slug": video_slug, "t": t_sec})
+        notes.update_block(s, b, actor="claude", body=body, title=title, extra=extra)
+        return f"Updated block {block_id}."
+
+
+def notes_move(block_id: int, unit: str, part: str, course: str = "") -> str:
+    """Move a block to another unit and/or part (for example out of the Inbox)."""
+    from . import notes
+    from .models import NoteBlock, NoteUnit, Notebook
+    with db() as s:
+        b = s.get(NoteBlock, block_id)
+        if b is None:
+            raise ValueError(f"No block {block_id}")
+        nb = _notebook(s, course) if course else s.get(Notebook, s.get(NoteUnit, b.unit_id).notebook_id)
+        u = notes.unit_by_ref(s, nb, unit)
+        notes.move_block(s, b, u, part, actor="claude")
+        return f"Moved block {block_id} to {u.title} · {notes.PART_NAMES[part]}."
+
+
+def notes_add_unit(course: str, title: str, after_unit: str = "", topics: list[str] | None = None) -> str:
+    """Add a unit when nothing in the outline fits (rare: the units follow the term weeks)."""
+    from . import notes
+    with db() as s:
+        nb = _notebook(s, course)
+        after = notes.unit_by_ref(s, nb, after_unit) if after_unit else None
+        u = notes.add_unit(s, nb, title, after=after, topics=topics or [], actor="claude")
+        return f"Added unit {u.id}: {u.title}."
+
+
 TOOLS = [get_overview, get_week, get_progress, list_problems, get_problem,
          list_pending_submissions, get_submission, post_feedback, mark_task_done,
          log_study_session, add_note, record_problem_result, mark_video_watched,
          list_due_reviews, list_mistakes, add_mistake, record_review_outcome,
-         list_exams, post_exam_grades, recent_activity]
+         list_exams, post_exam_grades, recent_activity,
+         notes_outline, notes_search, notes_add, notes_update, notes_move, notes_add_unit]
 for fn in TOOLS:
     mcp.tool()(fn)
 
