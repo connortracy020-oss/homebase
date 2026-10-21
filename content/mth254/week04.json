@@ -14,7 +14,7 @@
    "id": "mth254-w4-os-4-2",
    "resource": "openstax-c3-4-2",
    "sections": "4.2 Limits and Continuity",
-   "est_min": 35,
+   "est_min": 50,
    "page": 324
   },
   {
@@ -22,7 +22,7 @@
    "resource": "clp3-text",
    "sections": "2.1 Limits",
    "page": 94,
-   "est_min": 35,
+   "est_min": 30,
    "optional": true
   },
   {

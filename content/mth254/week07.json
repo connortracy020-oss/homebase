@@ -6,14 +6,14 @@
       "id": "mth254-w7-os-5-1",
       "resource": "openstax-c3-5-1",
       "sections": "5.1 Double Integrals over Rectangular Regions",
-      "est_min": 35,
+      "est_min": 60,
       "page": 428
     },
     {
       "id": "mth254-w7-os-5-2",
       "resource": "openstax-c3-5-2",
       "sections": "5.2 Double Integrals over General Regions",
-      "est_min": 40,
+      "est_min": 70,
       "page": 448
     },
     {
@@ -21,7 +21,7 @@
       "resource": "clp3-text",
       "sections": "3.1 Double Integrals (vertical and horizontal slices, volumes, examples)",
       "page": 235,
-      "est_min": 60,
+      "est_min": 135,
       "optional": true
     },
     {

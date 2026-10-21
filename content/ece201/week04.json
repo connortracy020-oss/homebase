@@ -6,21 +6,21 @@
       "id": "ece201-w4-ulaby-2-4",
       "resource": "ulaby-cad3e",
       "sections": "2-4 and 2-5 (Y-Delta transformation, Wheatstone bridge) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 30,
+      "est_min": 25,
       "page": 95
     },
     {
       "id": "ece201-w4-ulaby-3-1",
       "resource": "ulaby-cad3e",
       "sections": "3-1 and 3-2 (node-voltage method, supernode) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 40,
+      "est_min": 30,
       "page": 131
     },
     {
       "id": "ece201-w4-fiore-6-7",
       "resource": "fiore-dc",
       "sections": "6.7 Delta-Y Conversions",
-      "est_min": 20,
+      "est_min": 10,
       "page": 191,
       "optional": true
     },
@@ -28,7 +28,7 @@
       "id": "ece201-w4-fiore-7-2",
       "resource": "fiore-dc",
       "sections": "7.2 Nodal Analysis and 7.4 Dependent Sources",
-      "est_min": 35,
+      "est_min": 55,
       "page": 215,
       "optional": true
     }

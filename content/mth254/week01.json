@@ -6,35 +6,35 @@
       "id": "mth254-w1-os-2-1",
       "resource": "openstax-c3-2-1",
       "sections": "2.1 Vectors in the Plane",
-      "est_min": 30,
+      "est_min": 55,
       "page": 98
     },
     {
       "id": "mth254-w1-os-2-2",
       "resource": "openstax-c3-2-2",
       "sections": "2.2 Vectors in Three Dimensions",
-      "est_min": 30,
+      "est_min": 70,
       "page": 117
     },
     {
       "id": "mth254-w1-os-2-3",
       "resource": "openstax-c3-2-3",
       "sections": "2.3 The Dot Product",
-      "est_min": 30,
+      "est_min": 55,
       "page": 139
     },
     {
       "id": "mth254-w1-os-2-4",
       "resource": "openstax-c3-2-4",
       "sections": "2.4 The Cross Product",
-      "est_min": 35,
+      "est_min": 55,
       "page": 157
     },
     {
       "id": "mth254-w1-os-1-3",
       "resource": "openstax-c3-1-3",
       "sections": "1.3 Polar Coordinates (polar review from MTH 252)",
-      "est_min": 20,
+      "est_min": 30,
       "optional": true,
       "page": 46
     },
@@ -42,7 +42,7 @@
       "id": "mth254-w1-os-2-7",
       "resource": "openstax-c3-2-7",
       "sections": "2.7 Cylindrical and Spherical Coordinates (review of cylindrical and spherical coordinates; used again in week 9)",
-      "est_min": 20,
+      "est_min": 30,
       "optional": true,
       "page": 217
     },
@@ -51,7 +51,7 @@
       "resource": "clp3-text",
       "sections": "1.1 Points and 1.2 Vectors (dot product 1.2.2 starts at PDF page 21, cross product 1.2.5 at page 32)",
       "page": 8,
-      "est_min": 45,
+      "est_min": 115,
       "optional": true
     },
     {
@@ -59,7 +59,7 @@
       "resource": "osu-sg-parks",
       "sections": "Lessons 1-4: coordinate systems, vectors, dot and cross products",
       "page": 3,
-      "est_min": 20,
+      "est_min": 30,
       "optional": true
     },
     {

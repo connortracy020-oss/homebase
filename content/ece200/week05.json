@@ -6,7 +6,7 @@
       "id": "ece200-w5-spf-l11",
       "resource": "spf-L11",
       "sections": "Lecture 11: Linearity, Time-Invariance & Convolution. All slides",
-      "est_min": 30
+      "est_min": 25
     },
     {
       "id": "ece200-w5-thinkdsp-ch10",
@@ -374,7 +374,7 @@
         "title": "DSP First Lab P-9: Sampling, Convolution, and FIR Filtering"
       },
       "starter": "labs/ece200/lab05_convolution.py",
-      "est_min": 35
+      "est_min": 60
     }
   ]
 }

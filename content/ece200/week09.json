@@ -7,14 +7,14 @@
       "resource": "barry-ch66-dtft",
       "sections": "66-3 Ideal lowpass, highpass and bandpass filters",
       "page": 19,
-      "est_min": 30
+      "est_min": 20
     },
     {
       "id": "ece200-w9-ch66-4",
       "resource": "barry-ch66-dtft",
       "sections": "66-4 Practical FIR filters: windowing the ideal impulse response",
       "page": 23,
-      "est_min": 25,
+      "est_min": 35,
       "optional": true
     },
     {
@@ -22,7 +22,7 @@
       "resource": "barry-ch67-dft",
       "sections": "67-5 Spectrum analysis of discrete periodic signals: the DT Fourier series (67-5.1) and sampling bandlimited periodic signals (67-5.2)",
       "page": 23,
-      "est_min": 40
+      "est_min": 45
     }
   ],
   "problem_sets": [
@@ -155,7 +155,7 @@
         "title": "DSP First Lab P-14: Octave Band Filtering"
       },
       "starter": "labs/ece200/lab09_dtfs.py",
-      "est_min": 35
+      "est_min": 60
     }
   ]
 }

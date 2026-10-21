@@ -6,14 +6,14 @@
       "id": "mth254-w2-os-2-5",
       "resource": "openstax-c3-2-5",
       "sections": "2.5 Equations of Lines and Planes in Space (the lines part; planes come back in week 3)",
-      "est_min": 35,
+      "est_min": 30,
       "page": 177
     },
     {
       "id": "mth254-w2-os-3-1",
       "resource": "openstax-c3-3-1",
       "sections": "3.1 Vector-Valued Functions and Space Curves",
-      "est_min": 25,
+      "est_min": 30,
       "page": 243
     },
     {
@@ -27,7 +27,7 @@
       "id": "mth254-w2-os-3-4",
       "resource": "openstax-c3-3-4",
       "sections": "3.4 Motion in Space",
-      "est_min": 30,
+      "est_min": 65,
       "page": 283
     },
     {
@@ -35,7 +35,7 @@
       "resource": "clp3-text",
       "sections": "1.5 Equations of Lines in 3d and 1.6 Curves and their Tangent Vectors",
       "page": 56,
-      "est_min": 45,
+      "est_min": 65,
       "optional": true
     },
     {

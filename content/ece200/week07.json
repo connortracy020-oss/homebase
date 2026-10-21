@@ -6,13 +6,13 @@
       "id": "ece200-w7-spf-l13",
       "resource": "spf-L13",
       "sections": "Lecture 13: Digital Filtering of Analog Signals. All slides",
-      "est_min": 30
+      "est_min": 25
     },
     {
       "id": "ece200-w7-spf-l26",
       "resource": "spf-L26",
       "sections": "Lecture 26: Review: Digital Filter of Analog Signals. Review of the C-to-D, filter, D-to-C chain",
-      "est_min": 20,
+      "est_min": 25,
       "optional": true
     },
     {
@@ -20,7 +20,7 @@
       "resource": "thinkdsp",
       "sections": "Chapter 9, Differentiation and integration: the first difference as a filter (book p. 101)",
       "page": 113,
-      "est_min": 20,
+      "est_min": 35,
       "optional": true
     }
   ],
@@ -412,7 +412,7 @@
         "title": "DSP First Mini-Project 03: Tone Removal"
       },
       "starter": "labs/ece200/lab07_tone_removal.py",
-      "est_min": 40
+      "est_min": 60
     }
   ]
 }

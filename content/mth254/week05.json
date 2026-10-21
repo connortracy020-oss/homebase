@@ -6,21 +6,21 @@
       "id": "mth254-w5-os-4-3",
       "resource": "openstax-c3-4-3",
       "sections": "4.3 Partial Derivatives",
-      "est_min": 35,
+      "est_min": 55,
       "page": 338
     },
     {
       "id": "mth254-w5-os-4-5",
       "resource": "openstax-c3-4-5",
       "sections": "4.5 The Chain Rule",
-      "est_min": 35,
+      "est_min": 40,
       "page": 369
     },
     {
       "id": "mth254-w5-os-4-6",
       "resource": "openstax-c3-4-6",
       "sections": "4.6 Directional Derivatives and the Gradient",
-      "est_min": 35,
+      "est_min": 40,
       "page": 382
     },
     {
@@ -28,7 +28,7 @@
       "resource": "clp3-text",
       "sections": "2.2 Partial Derivatives, 2.3 Higher Order Derivatives, 2.4 The Chain Rule (PDF page 123)",
       "page": 104,
-      "est_min": 50,
+      "est_min": 90,
       "optional": true
     },
     {

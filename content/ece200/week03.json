@@ -6,7 +6,7 @@
       "id": "ece200-w3-spf-l08",
       "resource": "spf-L08",
       "sections": "Lecture 8: Sampling and Aliasing. All slides",
-      "est_min": 25
+      "est_min": 20
     },
     {
       "id": "ece200-w3-spf-l09",
@@ -435,7 +435,7 @@
         "title": "DSP First Lab S-8: Spectrograms: Harmonic Lines & Chirp Aliasing"
       },
       "starter": "labs/ece200/lab03_aliasing.py",
-      "est_min": 35
+      "est_min": 60
     }
   ]
 }

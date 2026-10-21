@@ -6,21 +6,21 @@
       "id": "ece201-w1-ulaby-ch1",
       "resource": "ulaby-cad3e",
       "sections": "Chapter 1, sections 1-1 to 1-6 (terminology, charge, current, voltage, power)",
-      "est_min": 50,
+      "est_min": 150,
       "page": 19
     },
     {
       "id": "ece201-w1-6002-notes",
       "resource": "mit6002-notes-L1",
       "sections": "Lecture 1 notes, to review after the video",
-      "est_min": 10,
+      "est_min": 35,
       "optional": true
     },
     {
       "id": "ece201-w1-up2-ch9",
       "resource": "openstax-up2-ch9",
       "sections": "9.1 Electrical current (physics background)",
-      "est_min": 20,
+      "est_min": 15,
       "optional": true,
       "page": 374
     },

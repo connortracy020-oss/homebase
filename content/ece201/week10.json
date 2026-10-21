@@ -6,27 +6,27 @@
       "id": "ece201-w10-ulaby-5-3",
       "resource": "ulaby-cad3e",
       "sections": "5-3 to 5-6 (inductors, natural and step response of RC and RL circuits, op-amp integrator and differentiator) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 55,
+      "est_min": 145,
       "page": 284
     },
     {
       "id": "ece201-w10-ulaby-devices",
       "resource": "ulaby-cad3e",
       "sections": "Device sections: 2-6 (diodes), 3-9 (BJT model), 4-11 (MOSFET) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 40,
+      "est_min": 85,
       "page": 101
     },
     {
       "id": "ece201-w10-tb07",
       "resource": "ulaby-tb07",
       "sections": "Technology Brief 7: Integrated Circuit Fabrication Process (all 4 pages)",
-      "est_min": 20
+      "est_min": 15
     },
     {
       "id": "ece201-w10-fiore-semi-2",
       "resource": "fiore-semis",
       "sections": "2.2 The PN Junction and 2.4 Diode Circuit Models",
-      "est_min": 35,
+      "est_min": 50,
       "page": 30,
       "optional": true
     },
@@ -34,7 +34,7 @@
       "id": "ece201-w10-fiore-semi-12",
       "resource": "fiore-semis",
       "sections": "12.4 The E-MOSFET (structure and switching use; skip the biasing math)",
-      "est_min": 20,
+      "est_min": 10,
       "page": 332,
       "optional": true
     },
@@ -42,7 +42,7 @@
       "id": "ece201-w10-fiore-8-4",
       "resource": "fiore-dc",
       "sections": "8.4 Transient Response of RC Circuits",
-      "est_min": 30,
+      "est_min": 35,
       "page": 274,
       "optional": true
     },
@@ -50,7 +50,7 @@
       "id": "ece201-w10-fiore-9-5",
       "resource": "fiore-dc",
       "sections": "9.2 Inductance and Inductors to 9.5 Transient Response of RL Circuits",
-      "est_min": 35,
+      "est_min": 65,
       "page": 295,
       "optional": true
     },
@@ -58,14 +58,14 @@
       "id": "ece201-w10-6002-L14",
       "resource": "mit6002-notes-L14",
       "sections": "Lecture 14 notes (state and memory: RC response), to review after the video",
-      "est_min": 15,
+      "est_min": 25,
       "optional": true
     },
     {
       "id": "ece201-w10-6002-L23",
       "resource": "mit6002-notes-L23",
       "sections": "Lecture 23 notes (energy, CMOS), to review after the video",
-      "est_min": 10,
+      "est_min": 20,
       "optional": true
     },
     {
@@ -80,7 +80,7 @@
       "id": "ece201-w10-up2-14",
       "resource": "openstax-up2-14-2",
       "sections": "14.2 Self-Inductance and Inductors, then 14.4 RL Circuits (physics background)",
-      "est_min": 30,
+      "est_min": 35,
       "optional": true,
       "page": 607
     }

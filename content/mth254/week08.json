@@ -14,14 +14,14 @@
    "id": "mth254-w8-os-5-3",
    "resource": "openstax-c3-5-3",
    "sections": "5.3 Double Integrals in Polar Coordinates",
-   "est_min": 40,
+   "est_min": 50,
    "page": 472
   },
   {
    "id": "mth254-w8-os-5-6",
    "resource": "openstax-c3-5-6",
    "sections": "5.6 Calculating Centers of Mass and Moments of Inertia (mass and center of mass, if covered)",
-   "est_min": 35,
+   "est_min": 25,
    "optional": true,
    "page": 536
   },
@@ -30,7 +30,7 @@
    "resource": "clp3-text",
    "sections": "3.2 Double Integrals in Polar Coordinates and 3.3 Applications of Double Integrals (PDF page 303)",
    "page": 280,
-   "est_min": 60,
+   "est_min": 125,
    "optional": true
   },
   {

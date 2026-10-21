@@ -147,6 +147,7 @@ class ProblemSet(SQLModel, table=True):
     notes: str = ""
     optional: bool = False
     order: int = 0
+    est_min: int = 0  # problems x minutes each, plus checking (seed.pset_minutes)
 
 
 class Problem(SQLModel, table=True):

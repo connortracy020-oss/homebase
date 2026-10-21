@@ -6,13 +6,13 @@
       "id": "ece200-w1-spf-l01",
       "resource": "spf-L01",
       "sections": "Lecture 1: Sinusoids. All slides",
-      "est_min": 20
+      "est_min": 15
     },
     {
       "id": "ece200-w1-spf-l02",
       "resource": "spf-L02",
       "sections": "Lecture 2: Time and phase shift. All slides",
-      "est_min": 15
+      "est_min": 20
     },
     {
       "id": "ece200-w1-spf-l03",
@@ -25,7 +25,7 @@
       "resource": "thinkdsp",
       "sections": "Chapter 1, Sounds and signals (book p. 1; Python view of sinusoids)",
       "page": 13,
-      "est_min": 30,
+      "est_min": 35,
       "optional": true
     }
   ],
@@ -448,7 +448,7 @@
         "title": "DSP First Lab P-2: Introduction to Complex Exponentials (Multipath)"
       },
       "starter": "labs/ece200/lab01_phasors.py",
-      "est_min": 40
+      "est_min": 75
     }
   ]
 }

@@ -6,14 +6,14 @@
       "id": "ece200-w4-spf-l10",
       "resource": "spf-L10",
       "sections": "Lecture 10: FIR Filtering Intro. All slides",
-      "est_min": 30
+      "est_min": 20
     },
     {
       "id": "ece200-w4-thinkdsp-ch8",
       "resource": "thinkdsp",
       "sections": "Chapter 8, Filtering and convolution: 8.1 Smoothing and 8.2 Convolution (chapter starts book p. 89)",
       "page": 101,
-      "est_min": 20,
+      "est_min": 10,
       "optional": true
     }
   ],
@@ -414,7 +414,7 @@
         "title": "DSP First Lab S-4: Convolution & FIR Filters"
       },
       "starter": "labs/ece200/lab04_fir.py",
-      "est_min": 30
+      "est_min": 60
     }
   ]
 }

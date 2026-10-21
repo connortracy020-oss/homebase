@@ -1,5 +1,5 @@
 {
-  "_about": "Oct 19 2026 - Jan 3 2027 prep plan (PLAN.md section 7). Planned time per week is the sum of task est_min. A task with \"video\" takes its title, link and time from content/<course>/videos.json (watched at about 1.25x, plus 5 min for notes). Readings and problem sets are linked in detail in stage (b).",
+  "_about": "Oct 19 2026 - Jan 3 2027 prep plan (PLAN.md section 7). Planned time per week is the sum of task est_min. A task with \"video\" takes its title, link and time from content/<course>/videos.json (watched at about 1.25x, plus 5 min for notes); one with \"reading\", \"pset\" or \"lab\" takes its time from that reading (measured pages x minutes per page), problem set (problems x minutes each, see app/seed.py) or lab. Readings and problem sets are linked in detail in stage (b).",
   "weeks": [
     {
       "number": 1,
@@ -38,15 +38,13 @@
           "course": "ECE201",
           "week": 1,
           "kind": "solve",
-          "pset": "ulaby-ex-ch1",
-          "est_min": 40
+          "pset": "ulaby-ex-ch1"
         },
         {
           "course": "ECE201",
           "week": 1,
           "kind": "solve",
-          "pset": "gen-ece201-w1-power",
-          "est_min": 25
+          "pset": "gen-ece201-w1-power"
         },
         {
           "course": "ECE201",
@@ -93,7 +91,6 @@
           "week": 2,
           "kind": "read",
           "title": "Ulaby ch 2, sections 2-1 to 2-3 (Ohm, KCL/KVL, series/parallel)",
-          "est_min": 35,
           "reading": "ece201-w2-ulaby-2-1",
           "id": "p02-ece201-read-b4f48524"
         },
@@ -102,7 +99,6 @@
           "week": 2,
           "kind": "solve",
           "title": "Ulaby ch 2 exercises 2.1-2.7",
-          "est_min": 40,
           "pset": "ece201-w2-ulaby-ex",
           "id": "p02-ece201-solve-9d7a43f5"
         },
@@ -124,7 +120,6 @@
           "kind": "read",
           "title": "OpenStax Calculus Vol 3, sections 2.1-2.3 (vectors, dot product)",
           "url": "https://openstax.org/details/books/calculus-volume-3",
-          "est_min": 30,
           "reading": "mth254-w1-os-2-1",
           "id": "p02-mth254-read-719ae0c1"
         },
@@ -133,7 +128,6 @@
           "week": 1,
           "kind": "solve",
           "title": "MIT 18.02SC Problem Set 1, dot-product problems (solutions in library/mth254/mit1802sc/)",
-          "est_min": 25,
           "pset": "sc-supp-1a-1d",
           "id": "p02-mth254-solve-3ef19c21"
         }
@@ -169,7 +163,6 @@
           "week": 3,
           "kind": "read",
           "title": "Ulaby ch 2, sections 2-4 and 2-5 (Y-Delta, Wheatstone bridge)",
-          "est_min": 25,
           "reading": "ece201-w4-ulaby-2-4",
           "id": "p03-ece201-read-a3195554"
         },
@@ -178,7 +171,6 @@
           "week": 3,
           "kind": "solve",
           "title": "Ulaby ch 2 exercises 2.8-2.14 (dividers, Y-Delta)",
-          "est_min": 50,
           "pset": "ece201-w3-ulaby-ex",
           "id": "p03-ece201-solve-1e8a70a0"
         },
@@ -199,7 +191,6 @@
           "week": 1,
           "kind": "solve",
           "title": "18.02SC Problem Set 1, cross-product problems + OpenStax 2.4 odd exercises",
-          "est_min": 25,
           "pset": "sc-pset1-part2",
           "id": "p03-mth254-solve-ff47be3d"
         },
@@ -226,7 +217,6 @@
           "week": 1,
           "kind": "read",
           "title": "Signal Processing First slides L01-L02 (library/ece200/spfirst-slides/)",
-          "est_min": 15,
           "reading": "ece200-w1-spf-l01",
           "id": "p03-ece200-read-cc9120c1"
         }
@@ -268,7 +258,6 @@
           "week": 4,
           "kind": "solve",
           "title": "Ulaby ch 3 nodal and supernode exercises (sections 3-1, 3-2)",
-          "est_min": 45,
           "pset": "ece201-w4-ulaby-ex",
           "id": "p04-ece201-solve-8b37c4f2"
         },
@@ -295,7 +284,6 @@
           "week": 2,
           "kind": "read",
           "title": "OpenStax 2.5 and 3.1 (lines and planes; vector-valued functions)",
-          "est_min": 20,
           "reading": "mth254-w2-os-2-5",
           "id": "p04-mth254-read-d22ea817"
         },
@@ -316,7 +304,6 @@
           "week": 1,
           "kind": "lab",
           "title": "Lab 1: add three same-frequency cosines numerically and by phasor sum (Python)",
-          "est_min": 40,
           "id": "p04-ece200-lab-d9d32756",
           "lab": "ece200-lab01"
         }
@@ -352,7 +339,6 @@
           "week": 5,
           "kind": "solve",
           "title": "Ulaby ch 3 mesh exercises + one problem done both by nodal and by mesh",
-          "est_min": 40,
           "pset": "ece201-w5-ulaby-ex",
           "id": "p05-ece201-solve-84b35312"
         },
@@ -379,7 +365,6 @@
           "week": 2,
           "kind": "solve",
           "title": "18.02SC Problem Set 3 (curves, velocity, arc length)",
-          "est_min": 25,
           "pset": "sc-pset3-part2",
           "id": "p05-mth254-solve-48e41de9"
         },
@@ -406,7 +391,6 @@
           "week": 2,
           "kind": "lab",
           "title": "Lab 2: sum of sinusoids and its spectrum; check FFT peaks (Python)",
-          "est_min": 30,
           "id": "p05-ece200-lab-cbb3f7d3",
           "lab": "ece200-lab02"
         }
@@ -483,7 +467,6 @@
           "week": 6,
           "kind": "read",
           "title": "Ulaby ch 3, sections 3-5 and 3-6 (superposition, Thevenin/Norton)",
-          "est_min": 30,
           "reading": "ece201-w6-ulaby-3-5",
           "id": "p07-ece201-read-e30dcc3f"
         },
@@ -492,7 +475,6 @@
           "week": 6,
           "kind": "solve",
           "title": "Ulaby ch 3 superposition and Thevenin exercises",
-          "est_min": 45,
           "pset": "ece201-w6-ulaby-ex",
           "id": "p07-ece201-solve-abecc229"
         },
@@ -525,7 +507,6 @@
           "week": 4,
           "kind": "read",
           "title": "OpenStax 2.6, 4.1-4.3 (surfaces, functions of several variables, partials)",
-          "est_min": 25,
           "reading": "mth254-w3-os-2-6",
           "id": "p07-mth254-read-0830990d"
         },
@@ -558,7 +539,6 @@
           "week": 3,
           "kind": "lab",
           "title": "Lab 3: predict an alias frequency, then confirm it with the FFT (Python)",
-          "est_min": 35,
           "id": "p07-ece200-lab-928e87de",
           "lab": "ece200-lab03"
         }
@@ -594,7 +574,6 @@
           "week": 7,
           "kind": "solve",
           "title": "Ulaby ch 3 max-power and Norton exercises; ch 4 exercises 4.1-4.5",
-          "est_min": 40,
           "pset": "ece201-w7-ulaby-ex",
           "id": "p08-ece201-solve-57be6fb2"
         },
@@ -639,7 +618,6 @@
           "week": 4,
           "kind": "lab",
           "title": "Lab 4: write your own FIR loop; check it against np.convolve and lfilter",
-          "est_min": 30,
           "id": "p08-ece200-lab-a71f5dfb",
           "lab": "ece200-lab04"
         }
@@ -705,7 +683,6 @@
           "week": 6,
           "kind": "solve",
           "title": "18.02SC Problem Set 4 (tangent planes, max/min)",
-          "est_min": 30,
           "pset": "sc-pset4-part2",
           "id": "p09-mth254-solve-ee5859e9"
         },
@@ -732,7 +709,6 @@
           "week": 5,
           "kind": "lab",
           "title": "Lab 5: convolution by flip-and-slide vs np.convolve; test linearity and time-invariance",
-          "est_min": 35,
           "id": "p09-ece200-lab-9f11d57c",
           "lab": "ece200-lab05"
         },
@@ -792,7 +768,6 @@
           "week": 10,
           "kind": "read",
           "title": "Ulaby ch 5, sections 5-1 to 5-6 (capacitors, inductors, RC/RL response)",
-          "est_min": 35,
           "reading": "ece201-w9-ulaby-5-1",
           "id": "p10-ece201-read-6270daa8"
         },

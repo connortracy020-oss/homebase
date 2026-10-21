@@ -7,7 +7,7 @@
       "resource": "barry-ch66-dtft",
       "sections": "66-1 The DTFT and its inverse; the DTFT is the spectrum",
       "page": 1,
-      "est_min": 45
+      "est_min": 55
     },
     {
       "id": "ece200-w8-ch66-2",
@@ -159,7 +159,7 @@
         "title": "DSP First Lab S-6: FIR Filter Design GUI"
       },
       "starter": "labs/ece200/lab08_dtft.py",
-      "est_min": 45
+      "est_min": 60
     }
   ]
 }

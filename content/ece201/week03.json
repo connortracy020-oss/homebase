@@ -6,21 +6,21 @@
       "id": "ece201-w3-ulaby-2-2",
       "resource": "ulaby-cad3e",
       "sections": "2-2 and 2-3 (KVL, equivalent circuits, series/parallel, source transformation, voltage and current division) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 45,
+      "est_min": 60,
       "page": 75
     },
     {
       "id": "ece201-w3-6002-notes",
       "resource": "mit6002-notes-L8",
       "sections": "Lecture 8 notes (dependent sources), to review after the video",
-      "est_min": 15,
+      "est_min": 35,
       "optional": true
     },
     {
       "id": "ece201-w3-fiore-3-6",
       "resource": "fiore-dc",
       "sections": "3.6 KVL and 3.7 Series Analysis (voltage divider rule)",
-      "est_min": 30,
+      "est_min": 20,
       "page": 82,
       "optional": true
     },
@@ -28,7 +28,7 @@
       "id": "ece201-w3-fiore-5",
       "resource": "fiore-dc",
       "sections": "5.2 to 5.4 Series-Parallel Connections and Analysis",
-      "est_min": 30,
+      "est_min": 25,
       "page": 139,
       "optional": true
     },
@@ -36,7 +36,7 @@
       "id": "ece201-w3-up2-10-2",
       "resource": "openstax-up2-10-2",
       "sections": "10.2 Resistors in Series and Parallel, 10.3 Kirchhoff's Rules (physics background)",
-      "est_min": 25,
+      "est_min": 70,
       "optional": true,
       "page": 425
     }

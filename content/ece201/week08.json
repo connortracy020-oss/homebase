@@ -6,28 +6,28 @@
       "id": "ece201-w8-ulaby-4-4",
       "resource": "ulaby-cad3e",
       "sections": "4-4 to 4-9 (inverting and noninverting amplifiers, summer, difference amplifier, follower, multistage, instrumentation amplifier) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 50,
+      "est_min": 70,
       "page": 213
     },
     {
       "id": "ece201-w8-6002-L19",
       "resource": "mit6002-notes-L19",
       "sections": "Lecture 19 notes (op-amp abstraction), to review after the video",
-      "est_min": 15,
+      "est_min": 20,
       "optional": true
     },
     {
       "id": "ece201-w8-6002-L20",
       "resource": "mit6002-notes-L20",
       "sections": "Lecture 20 notes (op-amp circuits), to review after the video",
-      "est_min": 10,
+      "est_min": 15,
       "optional": true
     },
     {
       "id": "ece201-w8-fiore-op-4",
       "resource": "fiore-opamps",
       "sections": "4.2 Inverting and Noninverting Amplifiers",
-      "est_min": 35,
+      "est_min": 45,
       "page": 118,
       "optional": true
     }

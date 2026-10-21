@@ -14,14 +14,14 @@
       "resource": "barry-ch67-dft",
       "sections": "67-2 and 67-3 DFT properties: periodicity, symmetry, frequency sampling and zero padding, delay and circular convolution",
       "page": 9,
-      "est_min": 45
+      "est_min": 65
     },
     {
       "id": "ece200-w10-ch67-8",
       "resource": "barry-ch67-dft",
       "sections": "67-6 Windows and 67-8 The FFT (light)",
       "page": 32,
-      "est_min": 25,
+      "est_min": 35,
       "optional": true
     },
     {
@@ -29,7 +29,7 @@
       "resource": "thinkdsp",
       "sections": "Chapter 7, Discrete Fourier Transform: synthesis and analysis with matrices, np.fft (book p. 75)",
       "page": 87,
-      "est_min": 30,
+      "est_min": 40,
       "optional": true
     },
     {
@@ -228,7 +228,7 @@
         "title": "DSP First Lab 09: Encoding and Decoding Touch-Tone (DTMF) Signals"
       },
       "starter": "labs/ece200/lab10_dft_dtmf.py",
-      "est_min": 50
+      "est_min": 60
     }
   ]
 }

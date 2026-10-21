@@ -70,7 +70,7 @@
           <span class="mini-ring" style="--p: {{ pct }}" data-label="{{ tried }}/{{ total }}" role="img" aria-label="{{ tried }} of {{ total }} tried"></span>
           <div class="grow">
             <a class="t" href="/pset/{{ ps.slug }}">{{ ps.title }}</a>{% if ps.optional %} <span class="tag">optional</span>{% endif %}
-            <div class="m"><span>{{ total }} problem{{ 's' if total != 1 }}</span><span>{{ solid }} solid</span></div>
+            <div class="m"><span>{{ total }} problem{{ 's' if total != 1 }}</span>{% if ps.est_min %}<span>about {{ ps.est_min | hm }}</span>{% endif %}<span>{{ solid }} solid</span></div>
           </div>
           <a class="button small" href="/pset/{{ ps.slug }}">{{ 'Continue' if tried else 'Start' }}</a>
         </li>

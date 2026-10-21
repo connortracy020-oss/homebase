@@ -6,14 +6,14 @@
       "id": "ece200-w6-spf-l12",
       "resource": "spf-L12",
       "sections": "Lecture 12: Frequency Response for FIR. All slides",
-      "est_min": 30
+      "est_min": 20
     },
     {
       "id": "ece200-w6-thinkdsp-ch8",
       "resource": "thinkdsp",
       "sections": "Chapter 8, Filtering and convolution: 8.3 The frequency domain and 8.4 The convolution theorem (chapter starts book p. 89)",
       "page": 101,
-      "est_min": 20,
+      "est_min": 10,
       "optional": true
     }
   ],
@@ -410,7 +410,7 @@
         "title": "DSP First Lab P-12: Frequency Response: Bandpass and Nulling Filters"
       },
       "starter": "labs/ece200/lab06_freq_response.py",
-      "est_min": 40
+      "est_min": 60
     }
   ]
 }

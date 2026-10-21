@@ -6,21 +6,21 @@
       "id": "ece201-w9-ulaby-5-1",
       "resource": "ulaby-cad3e",
       "sections": "5-1 and 5-2 (step, ramp, pulse and exponential waveforms; capacitors) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 45,
+      "est_min": 75,
       "page": 265
     },
     {
       "id": "ece201-w9-6002-L12",
       "resource": "mit6002-notes-L12",
       "sections": "Lecture 12 notes (capacitors and first-order systems), to review after the video",
-      "est_min": 15,
+      "est_min": 20,
       "optional": true
     },
     {
       "id": "ece201-w9-fiore-8",
       "resource": "fiore-dc",
       "sections": "8.2 Capacitance and Capacitors, 8.3 Initial and Steady-State Analysis of RC Circuits",
-      "est_min": 35,
+      "est_min": 40,
       "page": 261,
       "optional": true
     },
@@ -28,7 +28,7 @@
       "id": "ece201-w9-up2-8",
       "resource": "openstax-up2-8-1",
       "sections": "8.1 to 8.3 (capacitance, series and parallel, stored energy; physics background)",
-      "est_min": 30,
+      "est_min": 55,
       "optional": true,
       "page": 335
     },

@@ -23,8 +23,35 @@ from .models import (ActivityLog, Chapter, Course, CourseWeek, Exam, PrepWeek, P
 
 WATCH_SPEED = 1.25  # plan assumes videos at 1.25x
 NOTE_MINUTES = 5  # time to jot notes after a video
-DEFAULT_PSET_MIN = 45
-GRADING_MIN = 20  # time to grade a practice exam against the key
+GRADING_MIN = 30  # time to grade a practice exam against the key and log the misses
+
+# Problem-set time = problems x minutes each (by where they come from) + checking.
+# Measured against the actual problems, not guessed per set.
+MINUTES_PER_PROBLEM = {
+    "ulaby-exercise": 8,   # Ulaby in-chapter exercises: short, one idea each
+    "ulaby-cq": 3,         # concept questions: think, answer, check
+    "kuphaldt": 8,         # Socratic worksheet questions, often multi-part
+    "fiore": 8,            # end-of-chapter problems, answers only
+    "mit1802sc-supp": 8,   # 18.02 supplement exercises
+    "mit1802sc-pset": 20,  # 18.02 Part II problems: long, multi-part
+    "clp3": 10,            # CLP-3 problems
+    "dspfirst-db": 8,      # DSP First problem database
+    "gt2026": 15,          # Georgia Tech quiz and final problems
+}
+GENERATED_MIN = 4  # one generated drill
+OTHER_MIN = 8
+CHECK_MIN = 10  # per set: open the key, compare, log mistakes
+
+
+def pset_minutes(spec: dict, problems: int) -> int:
+    if spec.get("est_min"):
+        return spec["est_min"]
+    if spec.get("kind") == "generated":
+        each = GENERATED_MIN
+    else:
+        each = next((m for prefix, m in MINUTES_PER_PROBLEM.items()
+                     if spec.get("resource", "").startswith(prefix)), OTHER_MIN)
+    return 5 * round((problems * each + CHECK_MIN) / 5)
 
 
 def _read(path):
@@ -197,7 +224,7 @@ def resolve_task(spec: dict, videos: dict[str, dict], series: dict[str, str] | N
         if pset is None:
             raise ValueError(f"task points at unknown problem set {spec['pset']!r}")
         out["title"] = out["title"] or pset.title
-        out["est_min"] = out["est_min"] or DEFAULT_PSET_MIN
+        out["est_min"] = out["est_min"] or pset.est_min
         out["ref_kind"], out["ref"] = "pset", spec["pset"]
     elif "exam" in spec:
         exam = (exams or {}).get(spec["exam"])
@@ -294,7 +321,9 @@ def seed(session: Session) -> dict:
                 })
                 session.flush()
                 psets[ps["id"]] = pset
-                for i, pr in enumerate(problem_rows(ps)):
+                rows = problem_rows(ps)
+                pset.est_min = pset_minutes(ps, len(rows))
+                for i, pr in enumerate(rows):
                     slug = pr.pop("slug")
                     _upsert(session, Problem, {"slug": slug}, {"set_id": pset.id, "order": i, **pr})
                     counts["problems"] += 1

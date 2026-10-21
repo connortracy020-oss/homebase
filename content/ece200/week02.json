@@ -12,13 +12,13 @@
       "id": "ece200-w2-spf-l05",
       "resource": "spf-L05",
       "sections": "Lecture 5: Periodic Signals and Time-Varying Spectrum. All slides",
-      "est_min": 20
+      "est_min": 25
     },
     {
       "id": "ece200-w2-spf-l06",
       "resource": "spf-L06",
       "sections": "Lecture 6: Fourier Series Analysis. All slides",
-      "est_min": 20
+      "est_min": 15
     },
     {
       "id": "ece200-w2-spf-l07",
@@ -39,7 +39,7 @@
       "resource": "thinkdsp",
       "sections": "Chapter 3, Non-periodic signals: chirps and the spectrogram (book p. 23)",
       "page": 35,
-      "est_min": 30,
+      "est_min": 40,
       "optional": true
     }
   ],
@@ -439,7 +439,7 @@
         "title": "DSP First Lab 04: Synthesis of Sinusoidal Signals (Music Synthesis)"
       },
       "starter": "labs/ece200/lab02_spectrum.py",
-      "est_min": 30
+      "est_min": 60
     }
   ]
 }

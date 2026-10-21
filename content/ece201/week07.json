@@ -6,21 +6,21 @@
       "id": "ece201-w7-ulaby-3-6",
       "resource": "ulaby-cad3e",
       "sections": "3-6 to 3-8 (Thevenin/Norton methods, maximum power transfer) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 35,
+      "est_min": 70,
       "page": 155
     },
     {
       "id": "ece201-w7-ulaby-4-1",
       "resource": "ulaby-cad3e",
       "sections": "4-1 to 4-4 (op-amp model, negative feedback, ideal op-amp, inverting amplifier) (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 40,
+      "est_min": 65,
       "page": 199
     },
     {
       "id": "ece201-w7-fiore-6-5",
       "resource": "fiore-dc",
       "sections": "6.5 Norton's Theorem and 6.6 Maximum Power Transfer",
-      "est_min": 25,
+      "est_min": 10,
       "page": 187,
       "optional": true
     },
@@ -28,7 +28,7 @@
       "id": "ece201-w7-fiore-op-2",
       "resource": "fiore-opamps",
       "sections": "2.2 What Is An Op Amp?",
-      "est_min": 25,
+      "est_min": 35,
       "page": 63,
       "optional": true
     }

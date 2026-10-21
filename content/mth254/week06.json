@@ -6,14 +6,14 @@
       "id": "mth254-w6-os-4-4",
       "resource": "openstax-c3-4-4",
       "sections": "4.4 Tangent Planes and Linear Approximations",
-      "est_min": 35,
+      "est_min": 45,
       "page": 355
     },
     {
       "id": "mth254-w6-os-4-7",
       "resource": "openstax-c3-4-7",
       "sections": "4.7 Maxima/Minima Problems",
-      "est_min": 40,
+      "est_min": 60,
       "page": 394
     },
     {
@@ -29,7 +29,7 @@
       "resource": "clp3-text",
       "sections": "2.5 Tangent Planes and Normal Lines and 2.6 Linear Approximations and Error",
       "page": 134,
-      "est_min": 50,
+      "est_min": 105,
       "optional": true
     },
     {
@@ -37,7 +37,7 @@
       "resource": "clp3-text",
       "sections": "2.9 Maximum and Minimum Values (2.10 Lagrange Multipliers at PDF page 221, optional)",
       "page": 188,
-      "est_min": 50,
+      "est_min": 100,
       "optional": true
     },
     {

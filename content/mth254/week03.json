@@ -6,28 +6,28 @@
       "id": "mth254-w3-os-3-3",
       "resource": "openstax-c3-3-3",
       "sections": "3.3 Arc Length and Curvature (arc length; curvature is optional)",
-      "est_min": 35,
+      "est_min": 30,
       "page": 265
     },
     {
       "id": "mth254-w3-os-2-5",
       "resource": "openstax-c3-2-5",
       "sections": "2.5 Equations of Lines and Planes in Space (the planes part)",
-      "est_min": 20,
+      "est_min": 35,
       "page": 177
     },
     {
       "id": "mth254-w3-os-2-6",
       "resource": "openstax-c3-2-6",
       "sections": "2.6 Quadric Surfaces",
-      "est_min": 35,
+      "est_min": 45,
       "page": 200
     },
     {
       "id": "mth254-w3-os-4-1",
       "resource": "openstax-c3-4-1",
       "sections": "4.1 Functions of Several Variables",
-      "est_min": 30,
+      "est_min": 50,
       "page": 310
     },
     {
@@ -35,7 +35,7 @@
       "resource": "clp3-text",
       "sections": "1.4 Equations of Planes in 3d (PDF page 50) and 1.7-1.9 Sketching Surfaces, Cylinders, Quadric Surfaces (PDF page 77)",
       "page": 50,
-      "est_min": 50,
+      "est_min": 130,
       "optional": true
     },
     {
@@ -43,7 +43,7 @@
       "resource": "osu-sg-parks",
       "sections": "Lessons 7-10: lengths of curves, curvature (optional), planes and surfaces, graphs and level curves",
       "page": 28,
-      "est_min": 20,
+      "est_min": 30,
       "optional": true
     },
     {

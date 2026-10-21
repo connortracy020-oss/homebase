@@ -6,21 +6,21 @@
       "id": "ece201-w2-ulaby-2-1",
       "resource": "ulaby-cad3e",
       "sections": "2-1 and 2-2 (Ohm's law, KCL) plus the dependent-source part of 1-6 (section numbers from a 2nd-edition schedule; check them in the 3rd edition)",
-      "est_min": 45,
+      "est_min": 70,
       "page": 66
     },
     {
       "id": "ece201-w2-6002-notes",
       "resource": "mit6002-notes-L2",
       "sections": "Lecture 2 notes (KVL/KCL method), to review after the video",
-      "est_min": 15,
+      "est_min": 30,
       "optional": true
     },
     {
       "id": "ece201-w2-fiore-2-7",
       "resource": "fiore-dc",
       "sections": "2.7 Resistance and Conductance",
-      "est_min": 20,
+      "est_min": 50,
       "page": 47,
       "optional": true
     },
@@ -28,7 +28,7 @@
       "id": "ece201-w2-fiore-4-4",
       "resource": "fiore-dc",
       "sections": "4.4 Kirchhoff's Current Law",
-      "est_min": 15,
+      "est_min": 10,
       "page": 115,
       "optional": true
     },
@@ -36,7 +36,7 @@
       "id": "ece201-w2-up2-9-4",
       "resource": "openstax-up2-9-4",
       "sections": "9.3 and 9.4 (resistivity, Ohm's law; physics background)",
-      "est_min": 20,
+      "est_min": 40,
       "optional": true,
       "page": 392
     }
