@@ -49,6 +49,24 @@ def library_file(path: str):
     return FileResponse(target)
 
 
+@router.get("/reading/{slug}")
+def open_reading(slug: str, request: Request, session: Session = Depends(get_session)):
+    """A reading: your own PDF, inside Homebase at the right page, if it's in library/; else its web page."""
+    from ..models import Reading, Resource
+    reading = session.exec(select(Reading).where(Reading.slug == slug)).first()
+    if reading is None:
+        raise HTTPException(404, f"No reading {slug}")
+    res = session.get(Resource, reading.resource_id)
+    if services.local_file_exists(res):
+        course = session.get(Course, reading.course_id)
+        pdf = f"/{res.local_path}" + (f"#page={reading.page}" if reading.page else "")
+        return render(request, "reader.html", session, reading=reading, res=res, course=course, pdf=pdf,
+                      back=f"/course/{course.code}/week/{reading.week}")
+    if res.url:
+        return RedirectResponse(res.url, status_code=303)
+    raise HTTPException(404, "This reading has no file or link yet")
+
+
 # ---- videos -------------------------------------------------------------------------
 
 @router.get("/video/{slug}")

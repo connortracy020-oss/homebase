@@ -125,7 +125,7 @@
             {% if res.url %}<a href="{{ res.url }}" target="_blank" rel="noopener">source ↗</a>{% endif %}</div>
           {% if res.local_path and not have %}<p class="note"><span class="tag warn">not downloaded yet</span> {{ res.notes }}</p>{% endif %}
         </div>
-        {% if have %}<a class="button small" href="/{{ res.local_path }}{% if r.page %}#page={{ r.page }}{% endif %}" target="_blank">Open</a>{% endif %}
+        {% if have %}<a class="button small" href="/reading/{{ r.slug }}">Open</a>{% endif %}
       </li>
       {% endfor %}
     </ul>

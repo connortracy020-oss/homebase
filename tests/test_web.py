@@ -87,3 +87,19 @@ def test_stop_only_from_the_laptop(client, monkeypatch):
     monkeypatch.setattr(threading, "Timer", lambda delay, fn, args: type("T", (), {"start": lambda self: stops.append(fn)})())
     r = client.post("/settings/stop")
     assert r.status_code == 200 and "Homebase has stopped" in r.text and stops  # exit scheduled, not run
+
+
+def test_reading_tasks_open_the_local_pdf(client, session):
+    from app import config
+    from app.models import Reading, Resource
+    r = session.exec(select(Reading).join(Resource, Reading.resource_id == Resource.id)
+                     .where(Resource.slug == "ulaby-cad3e")).first()
+    res = session.get(Resource, r.resource_id)
+    resp = client.get(f"/reading/{r.slug}", follow_redirects=False)
+    if (config.ROOT / res.local_path).exists():  # your own copy, inside Homebase
+        assert resp.status_code == 200 and 'class="reader-frame" src="/library/ece201/ulaby/ulaby_cad3e.pdf' in resp.text
+    else:
+        assert resp.headers["location"] == res.url
+    assert client.get("/reading/nope").status_code == 404
+    page = client.get("/").text + client.get("/plan").text
+    assert f'href="/reading/' in page

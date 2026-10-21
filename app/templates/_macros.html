@@ -12,6 +12,7 @@
       {% elif t.ref_kind == 'pset' %}<a href="/pset/{{ t.ref }}">{{ t.title }}</a>
       {% elif t.ref_kind == 'exam' %}<a href="/exam/{{ t.ref }}">{{ t.title }}</a>
       {% elif t.ref_kind == 'lab' %}<a href="/lab/{{ t.ref }}">{{ t.title }}</a>
+      {% elif t.ref_kind == 'reading' %}<a href="/reading/{{ t.ref }}">{{ t.title }}</a>
       {% else %}<label for="t{{ t.id }}">{{ t.title }}</label>{% endif %}
     </span>
     <div class="task-meta">
@@ -19,12 +20,13 @@
       {% if t.est_min %}<span>{{ t.est_min | hm }}</span>{% endif %}
       {% if t.detail %}<span>{{ t.detail }}</span>{% endif %}
       {% if show_week %}<span>{{ show_week }}</span>{% endif %}
-      {% if t.url and t.ref_kind not in ('video', 'pset') and not keys %}<a href="{{ t.url }}" target="_blank" rel="noopener">open ↗</a>{% endif %}
+      {% if t.url and t.ref_kind not in ('video', 'pset', 'reading') and not keys %}<a href="{{ t.url }}" target="_blank" rel="noopener">open ↗</a>{% endif %}
       {% if t.done_by == 'claude' %}<span class="by-claude">ticked by Claude</span>{% endif %}
     </div>
   </div>
   {% if keys %}
-  {% set go = {'video': ('/video/', 'Play'), 'pset': ('/pset/', 'Start'), 'exam': ('/exam/', 'Start'), 'lab': ('/lab/', 'Open')}.get(t.ref_kind) %}
+  {% set go = {'video': ('/video/', 'Play'), 'pset': ('/pset/', 'Start'), 'exam': ('/exam/', 'Start'), 'lab': ('/lab/', 'Open'),
+                'reading': ('/reading/', 'Open')}.get(t.ref_kind) %}
   {% if go %}<a class="button task-go {{ 'accent' if next }}" href="{{ go[0] }}{{ t.ref }}">{{ go[1] }}</a>
   {% elif t.url %}<a class="button task-go {{ 'accent' if next }}" href="{{ t.url }}" target="_blank" rel="noopener">Open</a>{% endif %}
   {% endif %}

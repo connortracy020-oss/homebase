@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ res.title }} · Homebase{% endblock %}
+{% block main_class %}wide reader-main{% endblock %}
+{% block content %}
+<div class="reader" style="--accent: {{ course | ccolor }}">
+  <div class="reader-bar">
+    <a class="button small" href="{{ back }}" onclick="if (history.length > 1) { history.back(); return false; }">← Back</a>
+    <div class="reader-title">
+      <span class="eyebrow"><span class="dot"></span>{{ course.name }} · week {{ reading.week }}</span>
+      <strong>{{ res.title }}</strong> <span class="small muted">{{ reading.sections }}{% if reading.page %} · starts on page {{ reading.page }}{% endif %}</span>
+    </div>
+    <a class="button small" href="{{ pdf }}" target="_blank" rel="noopener">Open in browser ↗</a>
+  </div>
+  <iframe class="reader-frame" src="{{ pdf }}" title="{{ res.title }}"></iframe>
+</div>
+{% endblock %}
