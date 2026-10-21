@@ -23,6 +23,10 @@
       <div class="nb-body">{{ b.body | notemd }}</div>
       {% if b.extra.answer %}<div class="nb-answer"><span>Answer</span> {{ b.extra.answer | notemd }}</div>{% endif %}
     </details>
+  {% elif b.kind == 'interactive' %}
+    {% if b.title %}<div class="nb-title">{{ b.title }}</div>{% endif %}
+    {% if b.extra.description %}<div class="nb-body nb-desc">{{ b.extra.description | notemd }}</div>{% endif %}
+    {{ b.body | widget(b.title) }}
   {% elif b.kind == 'image' %}
     <figure class="nb-figure"><a href="/notes-assets/{{ b.asset.split('/')[-1] }}" target="_blank"><img src="/notes-assets/{{ b.asset.split('/')[-1] }}" alt="{{ b.body or 'Screenshot' }}" loading="lazy"></a>
       {% if b.body %}<figcaption>{{ b.body | notemd }}</figcaption>{% endif %}</figure>

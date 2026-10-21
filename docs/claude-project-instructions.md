@@ -61,6 +61,25 @@ When I share a screenshot (a lecture frame, a slide or a textbook page) or say "
 7. **Link the source.** If I say which video and roughly when, pass `video_slug` and `t_sec`. Get the video's slug from `get_week`.
 8. **Report back** exactly what you added and where. For example: "2 formulas → Unit 3 · Formulas (one merged with your Ohm's law card), 1 tip → Unit 3 · Pitfalls."
 
+### Interactive illustrations
+Use one when something is easier to understand by playing with it than by reading: vectors, dot and cross products, surfaces and level curves, phasors, voltage dividers as R changes, RC/RL transients, sampling and aliasing, convolution. Also make one whenever I ask.
+
+Add it with `notes_add(kind="interactive", title=..., description=..., body=...)`:
+- **The body** is one self-contained HTML snippet (markup, `<style>` and `<script>`, with no `<html>` or `<head>`). It runs in a locked sandbox with no internet and no access to Homebase. Libraries can come only from `https://cdn.jsdelivr.net/npm/...`, with pinned versions. Plain SVG or `<canvas>` is usually best.
+- **Make it interactive:** sliders, drag handles or buttons, with live readouts that show units.
+- **Sizing:**
+  - Give an SVG a pixel-sized viewBox (for example `0 0 320 240`), with stroke widths and font sizes in pixels.
+  - Cap the width at about 360 px, and keep it under about 450 px tall.
+  - It has to work on my phone, so use pointer events for touch.
+- **Theme:**
+  - Use the CSS variables `var(--ink)`, `var(--ink-soft)`, `var(--surface)`, `var(--line)`, `var(--accent)` (the course color), `var(--moss)`, `var(--ochre)`, `var(--brick)`, `var(--plum)` and `var(--slate)`.
+  - In canvas or JavaScript, read them with `HB.color('--ink')`.
+  - Redraw inside `HB.onTheme(draw)`, so it switches with light and dark mode.
+- **Math labels:** write `\( \)` in the HTML and call `HB.math()` once.
+- **Get the math and physics right.** This is study material, so check every formula and sign and label the axes.
+- **The description is required:** 2–4 sentences on what it shows, what to try, and what to notice.
+- **Placement:** put it in the unit and part it explains, usually `ideas` or `examples`.
+
 Screenshots pasted into this chat aren't files on my laptop, so you can't attach them to a note. Put the content into notes instead. If a figure really matters, tell me, and I'll add the image in Homebase with **Add a screenshot**.
 
 ## Things you can't do from here

@@ -50,6 +50,22 @@ Notes (his organized notebooks, one per course). When he shares a screenshot (a 
 4. If you're not sure where something goes, add it to unit "inbox" with suggested_unit and suggested_part.
 5. Link each block to its source: video_slug + t_sec when he names the video or time.
 6. Then tell him exactly what you added and where (unit and part).
+
+Interactive illustrations (notes_add kind="interactive") - when a picture you can play with \
+teaches better than text (vectors, fields, phasors, circuits as values change, sampling, \
+convolution, transients, surfaces), or when he asks for one:
+- body: one self-contained HTML snippet (no <html>/<head>): markup + <style> + <script>. It runs \
+in a locked sandbox: no network, no access to Homebase; only libraries from \
+https://cdn.jsdelivr.net/npm/... can be loaded (pin versions). Plain SVG or <canvas> is best. \nGive SVG a pixel-sized viewBox (e.g. 0 0 320 240), set stroke widths and font sizes in those pixels, \nand cap its width (max-width ~360px) so it doesn't fill a wide screen.
+- Make it interactive: sliders, drag handles or buttons, with live readouts that use units.
+- Use the theme: CSS variables var(--ink) var(--ink-soft) var(--surface) var(--sunken) \
+var(--line) var(--accent) (the course color) var(--moss) var(--ochre) var(--brick) var(--plum) \
+var(--slate). For canvas, read them with HB.color('--ink') and redraw in HB.onTheme(fn) (light/dark).
+- Size: fit 100% width, keep it under about 450px tall; it must work on a phone (touch: use \
+pointer events). Math labels: write \\( \\) and call HB.math() once.
+- Get the physics and math right (it's study material): check formulas and signs, label axes.
+- description (required): 2-4 sentences: what it shows, what to try, what to notice.
+- Put it in the part it explains (usually "ideas" or "examples") of the matching unit.
 """
 
 mcp = MCPServer("homebase", instructions=INSTRUCTIONS)
@@ -435,7 +451,7 @@ def notes_search(query: str, course: str = "") -> str:
 def notes_add(course: str, unit: str, part: str, body: str, kind: str = "", title: str = "",
               where: str = "", when: str = "", answer: str = "", video_slug: str = "", t_sec: int | None = None,
               source_label: str = "", source_url: str = "", image_path: str = "", star: bool = False,
-              suggested_unit: str = "", suggested_part: str = "") -> str:
+              suggested_unit: str = "", suggested_part: str = "", description: str = "") -> str:
     """Add one block of notes.
 
     unit: a term-week number ("4"), a unit title, or "inbox". part: ideas, definitions,
@@ -444,7 +460,11 @@ def notes_add(course: str, unit: str, part: str, body: str, kind: str = "", titl
     LaTeX equation only (no $), title its name, where = what the symbols mean, when = when to
     use it. For an example, answer = the final answer. Math in other text goes in \\( \\).
     video_slug + t_sec link the note back to the lecture at that time. When unsure where it
-    goes, use unit "inbox" with suggested_unit / suggested_part."""
+    goes, use unit "inbox" with suggested_unit / suggested_part.
+
+    kind "interactive" = an interactive illustration: body is a self-contained HTML snippet
+    with its own <script> (see the rules in the server instructions), title names it, and
+    description (required) says what it shows, what to try and the takeaway."""
     from . import notes
     with db() as s:
         nb = _notebook(s, course)
@@ -474,14 +494,18 @@ def notes_add(course: str, unit: str, part: str, body: str, kind: str = "", titl
         if u.kind == "inbox" and suggested_unit:
             su = notes.unit_by_ref(s, nb, suggested_unit)
             suggested = {"unit_id": su.id, "part": suggested_part or part}
-        extra = {k2: v for k2, v in (("where", where), ("when", when), ("answer", answer)) if v}
+        if k == "interactive" and not description.strip():
+            raise ValueError("An interactive illustration needs a description: what it shows, what to try, the takeaway.")
+        extra = {k2: v for k2, v in (("where", where), ("when", when), ("answer", answer),
+                                     ("description", description)) if v}
         b = notes.add_block(s, u, part, k, body, title, extra=extra, source=source, asset=asset, starred=star,
                             suggested=suggested, actor="claude")
         return f"Added block {b.id} ({b.kind}) to {u.title} · {notes.PART_NAMES[part]}."
 
 
 def notes_update(block_id: int, body: str | None = None, title: str | None = None, where: str | None = None,
-                 when: str | None = None, answer: str | None = None, video_slug: str = "", t_sec: int | None = None) -> str:
+                 when: str | None = None, answer: str | None = None, video_slug: str = "", t_sec: int | None = None,
+                 description: str | None = None) -> str:
     """Change a block: new text, title, or formula details. Giving video_slug adds a second source
     (the block keeps its first one and lists this one in its details)."""
     from . import notes
@@ -491,7 +515,7 @@ def notes_update(block_id: int, body: str | None = None, title: str | None = Non
         if b is None or b.deleted_at:
             raise ValueError(f"No block {block_id}")
         extra = dict(b.extra or {})
-        for key, val in (("where", where), ("when", when), ("answer", answer)):
+        for key, val in (("where", where), ("when", when), ("answer", answer), ("description", description)):
             if val is not None:
                 extra[key] = val
         if video_slug:

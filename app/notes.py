@@ -24,7 +24,7 @@ from .models import Course, CourseWeek, Notebook, NoteBlock, NoteRevision, NoteU
 PARTS = [("ideas", "Key ideas"), ("definitions", "Definitions"), ("formulas", "Formulas & equations"),
          ("examples", "Worked examples"), ("tips", "Pitfalls & tips")]
 PART_NAMES = dict(PARTS)
-KINDS = ("text", "formula", "definition", "example", "tip", "image")
+KINDS = ("text", "formula", "definition", "example", "tip", "image", "interactive")
 DEFAULT_KIND = {"ideas": "text", "definitions": "definition", "formulas": "formula",
                 "examples": "example", "tips": "tip"}
 ACTORS = ("you", "claude", "local")

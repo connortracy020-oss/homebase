@@ -106,6 +106,12 @@ Every unit has the same five parts: **Key ideas, Definitions, Formulas & equatio
 - **→ notebook** on a video note copies it into that week's unit, linked back to the video at that time.
 - The week hub shows how many notes the week has, with a link.
 
+**Interactive illustrations:** an **interactive** block is a small HTML and JavaScript illustration, such as draggable vectors or a slider that changes R and C on an RC curve, with a description above it.
+- Claude writes them through `notes_add(kind="interactive", description=...)`. You can also edit one in place: the code is in the block's editor, with a live preview.
+- Each one runs in a sandboxed frame. It can't read Homebase, your cookies or storage, and it has no network access, except loading libraries from cdn.jsdelivr.net.
+- It follows the app's light/dark theme and the course color, and its frame grows to fit.
+- The rules and helpers (`HB.color`, `HB.onTheme`, `HB.math`) are in `app/widgets.py`.
+
 **With Claude:** give Claude Code or Claude Desktop a screenshot and say *"Add this to my MTH 254 notes"*.
 - Claude reads the outline and writes the content in its own words.
 - It puts each piece in the matching unit and part, and updates an existing formula instead of adding a duplicate.

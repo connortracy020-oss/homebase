@@ -13,6 +13,7 @@
     root.dataset.theme = mode;
     if (meta) meta.content = mode === "dark" ? "#1a1916" : "#f2ece0";
     document.querySelectorAll(".theme-toggle").forEach((b) => { b.innerHTML = mode === "dark" ? sun : moon; });
+    window.dispatchEvent(new CustomEvent("homebase-theme", { detail: mode }));
   }
   window.homebaseTheme = {
     set(mode) {  // "light", "dark" or "device"

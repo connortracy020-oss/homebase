@@ -1,0 +1,70 @@
+<style>
+  .wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  svg { width: 100%; max-width: 340px; height: auto; touch-action: none; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+  .panel { flex: 1; min-width: 200px; }
+  .panel p { margin: 0 0 8px; }
+  .big { font: 600 20px ui-monospace, Consolas, monospace; }
+</style>
+<div class="wrap">
+  <svg id="s" viewBox="0 0 300 300" aria-label="Two vectors you can drag"></svg>
+  <div class="panel">
+    <p>\(\mathbf{u} = \langle\) <span class="readout" id="u"></span> \(\rangle\), \(\mathbf{v} = \langle\) <span class="readout" id="v"></span> \(\rangle\)</p>
+    <p>\(\mathbf{u}\cdot\mathbf{v} = u_1v_1 + u_2v_2\)</p>
+    <p class="big" id="dot"></p>
+    <p class="readout" id="ang"></p>
+    <p id="msg" style="color:var(--ink-soft);font-size:13px"></p>
+  </div>
+</div>
+<script>
+// 1 unit = 25 px, origin in the middle of a 300 x 300 picture
+const svg = document.getElementById("s"), NS = "http://www.w3.org/2000/svg", K = 25, O = 150;
+const X = (x) => O + K * x, Y = (y) => O - K * y;
+let u = [3, 1], v = [1, 3];
+const el = (tag, attrs, text) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (text) e.textContent = text; return e; };
+function arrow(vec, color, name) {
+  const [x, y] = [X(vec[0]), Y(vec[1])], ang = Math.atan2(y - O, x - O), a = 10;
+  svg.append(el("line", { x1: O, y1: O, x2: x, y2: y, stroke: color, "stroke-width": 3.5, "stroke-linecap": "round" }));
+  svg.append(el("path", { d: `M${x},${y} L${x - a * Math.cos(ang - 0.45)},${y - a * Math.sin(ang - 0.45)} L${x - a * Math.cos(ang + 0.45)},${y - a * Math.sin(ang + 0.45)} Z`, fill: color }));
+  const h = el("circle", { cx: x, cy: y, r: 13, fill: color, "fill-opacity": 0.18, stroke: color, "stroke-width": 1.5, style: "cursor:grab" });
+  h.dataset.name = name; svg.append(h);
+  svg.append(el("text", { x: x + 12, y: y - 12, fill: color, "font-size": 15, "font-weight": 700, "font-family": "system-ui" }, name));
+}
+function draw() {
+  svg.innerHTML = "";
+  for (let i = -5; i <= 5; i++) {
+    const c = i === 0 ? HB.color("--ink-faint") : HB.color("--line");
+    svg.append(el("line", { x1: X(i), y1: Y(-6), x2: X(i), y2: Y(6), stroke: c, "stroke-width": i === 0 ? 1.5 : 1 }));
+    svg.append(el("line", { x1: X(-6), y1: Y(i), x2: X(6), y2: Y(i), stroke: c, "stroke-width": i === 0 ? 1.5 : 1 }));
+  }
+  const uu = u[0] * u[0] + u[1] * u[1], d = u[0] * v[0] + u[1] * v[1];
+  if (uu > 0) {  // projection of v onto u, and the drop line
+    const k = d / uu, p = [k * u[0], k * u[1]];
+    svg.append(el("line", { x1: X(v[0]), y1: Y(v[1]), x2: X(p[0]), y2: Y(p[1]), stroke: HB.color("--ink-faint"), "stroke-width": 1.5, "stroke-dasharray": "5 4" }));
+    svg.append(el("line", { x1: O, y1: O, x2: X(p[0]), y2: Y(p[1]), stroke: HB.color("--ochre"), "stroke-width": 7, "stroke-linecap": "round", opacity: 0.55 }));
+  }
+  arrow(u, HB.color("--accent"), "u");
+  arrow(v, HB.color("--slate"), "v");
+  document.getElementById("u").textContent = `${u[0]}, ${u[1]}`;
+  document.getElementById("v").textContent = `${v[0]}, ${v[1]}`;
+  document.getElementById("dot").textContent = `= (${u[0]})(${v[0]}) + (${u[1]})(${v[1]}) = ${d}`;
+  const nu = Math.hypot(...u), nv = Math.hypot(...v);
+  const ang = nu && nv ? Math.acos(Math.max(-1, Math.min(1, d / (nu * nv)))) * 180 / Math.PI : 0;
+  document.getElementById("ang").textContent = `angle between them ≈ ${ang.toFixed(1)}°`;
+  document.getElementById("msg").textContent = d === 0 ? "Zero: the vectors are perpendicular." : d > 0 ? "Positive: the angle is under 90°." : "Negative: the angle is over 90°.";
+}
+let dragging = null;
+svg.addEventListener("pointerdown", (e) => { if (e.target.dataset.name) { dragging = e.target.dataset.name; svg.setPointerCapture(e.pointerId); } });
+svg.addEventListener("pointermove", (e) => {
+  if (!dragging) return;
+  const pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+  const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+  const snap = (n) => Math.max(-5, Math.min(5, Math.round(n)));
+  const vec = [snap((p.x - O) / K), snap((O - p.y) / K)];
+  if (dragging === "u") u = vec; else v = vec;
+  draw();
+});
+addEventListener("pointerup", () => { dragging = null; });
+HB.onTheme(draw);
+draw();
+HB.math();
+</script>

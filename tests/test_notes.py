@@ -216,3 +216,31 @@ def test_bare_latex_from_qwen_gets_delimiters():
     assert w(r"Find \mathbf{u} = \langle 3, 5 \rangle and more.") == r"Find \(\mathbf{u} = \langle 3, 5 \rangle\) and more."
     assert w("plain words only") == "plain words only"
     assert w(r"already \(x\) here") == r"already \(x\) here"
+
+
+# ---- interactive illustrations ---------------------------------------------------------------
+
+WIDGET = "<div id='x'></div><script>document.getElementById('x').textContent = 'hi';</script>"
+
+
+def test_interactive_block_runs_in_a_locked_sandbox(client, session):
+    from app import mcp_server as m, widgets
+    with pytest.raises(ValueError):
+        m.notes_add("MTH254", "1", "ideas", WIDGET, kind="interactive", title="Demo")  # needs a description
+    r = m.notes_add("MTH254", "1", "ideas", WIDGET, kind="interactive", title="Demo",
+                    description="Shows **hi**. Try nothing.")
+    bid = int(r.split()[2])
+    page = client.get(f"/notes/MTH254?u={unit(session, 1, 'MTH254').id}").text
+    frame = page[page.index('<iframe class="nb-widget"'):]
+    frame = frame[:frame.index("</iframe>")]
+    assert 'sandbox="allow-scripts"' in frame and "allow-same-origin" not in frame
+    assert "Content-Security-Policy" in frame and "connect-src &#39;none&#39;" in frame
+    assert "<strong>hi</strong>" in page                      # the description, above the frame
+    assert "&lt;script&gt;" in frame and "<script>document" not in page  # code only inside srcdoc
+    doc = widgets.document(WIDGET)
+    assert doc.startswith("<!doctype html>") and "window.HB" in doc and "cdn.jsdelivr.net" in doc
+    prev = client.post("/notes/widget-preview", data={"code": WIDGET, "title": "Demo"}).text
+    assert prev.startswith('<iframe class="nb-widget" sandbox="allow-scripts"')
+    assert "Updated" in m.notes_update(bid, description="New text")
+    session.expire_all()
+    assert session.get(NoteBlock, bid).extra["description"] == "New text"

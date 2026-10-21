@@ -64,6 +64,7 @@
     text: ["Heading (optional)", "Write in Markdown. Math: \\( v = iR \\) inline, $$ … $$ on its own line"],
     tip: ["Heading (optional)", "The pitfall or trick"],
     image: ["", "Caption"],
+    interactive: ["Title", "HTML + JavaScript for the illustration (runs in a locked sandbox)"],
   };
 
   function openEditor(article) {
@@ -74,7 +75,7 @@
     article.draggable = false;
     const ed = document.createElement("div");
     ed.className = "nb-editor";
-    const kindSel = data.kind === "image" ? "" : `<select class="nb-kind" aria-label="Kind">${["text", "formula", "definition", "example", "tip"]
+    const kindSel = data.kind === "image" ? "" : `<select class="nb-kind" aria-label="Kind">${["text", "formula", "definition", "example", "tip", "interactive"]
       .map((k) => `<option value="${k}" ${k === data.kind ? "selected" : ""}>${k}</option>`).join("")}</select>`;
     ed.innerHTML = `
       <div class="nb-ed-row">${kindSel}<input class="nb-f-title" type="text" autocomplete="off"></div>
@@ -94,10 +95,15 @@
       body.classList.toggle("mono", kind === "formula");
       extra.innerHTML = kind === "formula"
         ? `<input class="nb-x-where" placeholder="where: p = power (W), v = voltage (V), i = current (A)"><input class="nb-x-when" placeholder="use when: passive sign convention, i into the + terminal">`
-        : kind === "example" ? `<input class="nb-x-answer" placeholder="Answer (optional)">` : "";
+        : kind === "example" ? `<input class="nb-x-answer" placeholder="Answer (optional)">`
+        : kind === "interactive" ? `<textarea class="nb-x-desc" rows="3" placeholder="Description: what it shows, what to try, the takeaway (Markdown and math OK)"></textarea>` : "";
+      body.rows = kind === "interactive" ? 12 : 4;
+      body.classList.toggle("mono", kind === "formula" || kind === "interactive");
       const ex = data.extra || {};
       if ($(".nb-x-where", extra)) { $(".nb-x-where", extra).value = ex.where || ""; $(".nb-x-when", extra).value = ex.when || ""; }
       if ($(".nb-x-answer", extra)) $(".nb-x-answer", extra).value = ex.answer || "";
+      if ($(".nb-x-desc", extra)) $(".nb-x-desc", extra).value = ex.description || "";
+      $$("textarea", extra).forEach((i) => i.addEventListener("input", schedule));
       $$("input", extra).forEach((i) => i.addEventListener("input", schedule));
     }
     drawExtra(data.kind);
@@ -108,6 +114,7 @@
       const ex = {};
       if ($(".nb-x-where", extra)) { ex.where = $(".nb-x-where", extra).value; ex.when = $(".nb-x-when", extra).value; }
       if ($(".nb-x-answer", extra)) ex.answer = $(".nb-x-answer", extra).value;
+      if ($(".nb-x-desc", extra)) ex.description = $(".nb-x-desc", extra).value;
       return { kind, title: title.value, body: body.value, extra: ex };
     };
     let timer = null, previewTimer = null, lastSaved = JSON.stringify(values());
@@ -126,6 +133,13 @@
     }
     async function preview() {
       const v = values();
+      if (v.kind === "interactive") {
+        const p = $(".nb-preview", ed);
+        if (!v.body.trim()) { p.innerHTML = ""; return; }
+        p.innerHTML = await api("/notes/widget-preview", "POST", { code: v.body, title: v.title }, true);
+        sendTheme(p);
+        return;
+      }
       let text = v.body;
       if (v.kind === "formula" && text && !/\\\(|\$/.test(text)) text = `$$${text}$$`;
       const p = $(".nb-preview", ed);
@@ -322,6 +336,26 @@
       } catch (e) { toast(e.message); }
     });
   }
+
+  // ---- interactive illustrations: size each frame to its content, pass the theme -----------
+  function sendTheme(scope = document) {
+    const theme = document.documentElement.dataset.theme || "light";
+    $$("iframe.nb-widget", scope).forEach((f) => {
+      if (f.dataset.themed === theme) return;
+      f.dataset.themed = theme;
+      const post = () => f.contentWindow && f.contentWindow.postMessage({ hb: "theme", theme, course }, "*");
+      post(); f.addEventListener("load", post, { once: true });
+    });
+  }
+  addEventListener("message", (e) => {
+    const d = e.data || {};
+    if (d.hb !== "height") return;
+    const f = $$("iframe.nb-widget").find((x) => x.contentWindow === e.source);
+    if (f) f.style.height = Math.min(Math.max(d.h, 60), 900) + "px";
+  });
+  addEventListener("homebase-theme", () => sendTheme());
+  new MutationObserver(() => sendTheme()).observe(document.body, { childList: true, subtree: true });
+  sendTheme();
 
   $$(".nblock").forEach(bindBlock);
   $$(".nb-list").forEach(bindDrop);

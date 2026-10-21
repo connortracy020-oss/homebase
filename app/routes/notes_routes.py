@@ -50,6 +50,8 @@ def notemd(text: str) -> Markup:
 
 
 TEMPLATES.env.filters["notemd"] = notemd
+from .. import widgets  # noqa: E402
+TEMPLATES.env.filters["widget"] = lambda body, title="": widgets.frame(body, title or "Interactive illustration")
 
 
 def _source_label(session):
@@ -319,3 +321,9 @@ def draft_from_image(bid: int, session: Session = Depends(get_session)):
         raise HTTPException(422, "The local AI is off. Open the Ollama app, or ask Claude to add it instead.")
     job = local_ai.enqueue(session, "note_draft", input={"block_id": b.id})
     return _view(session, job)
+
+
+@router.post("/notes/widget-preview")
+def widget_preview(code: str = Form(""), title: str = Form("")):
+    """The editor's live preview of an interactive block: the same sandboxed frame."""
+    return HTMLResponse(str(widgets.frame(code, title)))
