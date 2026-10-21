@@ -13,7 +13,7 @@ from sqlmodel import Session
 
 from . import backup, config, local_ai
 from .db import get_engine, init_db
-from .routes import api, exam_routes, local_routes, notes_routes, pages, reviews, study
+from .routes import api, exam_routes, local_routes, notes_routes, pages, reviews, speech_routes, study
 from .seed import seed
 
 STATIC_DIR = config.ROOT / "app" / "static"
@@ -35,6 +35,8 @@ async def lifespan(_app: FastAPI):
     local_ai.start_worker()  # runs local-AI jobs one at a time, politely
     yield
     local_ai.stop_worker()
+    from . import speech
+    speech.ENGINE.stop()  # don't leave the voice holding the GPU
     task.cancel()
 
 
@@ -47,6 +49,7 @@ def create_app(run_lifespan: bool = True) -> FastAPI:
     app.include_router(exam_routes.router)
     app.include_router(local_routes.router)
     app.include_router(notes_routes.router)
+    app.include_router(speech_routes.router)
     app.include_router(api.router, prefix="/api")
     return app
 

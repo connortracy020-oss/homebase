@@ -78,6 +78,26 @@ Then you settle the verdict (**Agree** or pick another), and that counts as an a
 
 `scripts/feedback_eval.py` makes fake handwritten submissions with known mistakes to check review quality. In the first run, a separate Claude reviewer got 7/7 verdicts and causes right.
 
+## Readings and read aloud
+
+Clicking a reading anywhere (a task, or **Open** on a week page) opens your own PDF from `library/` inside Homebase, at the reading's first page. **Open in browser ↗** gives you a full Edge tab instead.
+
+**Read aloud** (the second tab on the reader) reads the PDF to you in Lecture Desk's **Chatterbox** voice:
+- **What you see:** the page is shown as an image, and the sentence being read is highlighted on it.
+- **Controls:** click any sentence to start there. Use ▶/❚❚, previous and next sentence, speed (0.8–2×), the page box, **Follow along**, and **⛶ full screen**.
+- **Keys:** Space plays or pauses, ←/→ move a sentence, PgUp/PgDn change pages, F is full screen.
+- **You resume where you stopped:** the place is saved per reading.
+- **Reading options** sets what to skip: page headers and numbers, footnotes, picture and table captions, reference markers, and mostly-math lines.
+- **Timing:** the voice takes about 1½ minutes to start the first time. After that, sentences take a few seconds each, and the next two are prepared while one plays.
+- **When it stops:** after 3 idle minutes, or right away with **Stop the voice**, which frees the GPU.
+
+**How it shares Lecture Desk's voice:**
+- Homebase runs Lecture Desk's `ChatterboxReader.exe` as its own separate process, read-only.
+- Its model folder, `data/speech/models/`, holds hard links to Lecture Desk's model files: the same files on disk, with no copy and no change.
+- Audio is cached in `data/speech/reader-cache/`.
+- If Lecture Desk is using its Chatterbox voice, or the GPU lacks about 4.5 GB free, Homebase says so instead of competing. **Try anyway** overrides it.
+- It never downloads or changes anything in Lecture Desk's folders.
+
 ## Notes (organized notebooks)
 
 **Notes** in the nav opens one notebook per course.

@@ -19,6 +19,13 @@ class _NoOllama:
 
 
 @pytest.fixture(autouse=True)
+def no_real_voice(monkeypatch):
+    """Tests never start Lecture Desk's real Chatterbox engine (or touch its files)."""
+    from app import speech
+    monkeypatch.setattr(speech, "lecture_desk_models", lambda: None)
+
+
+@pytest.fixture(autouse=True)
 def no_real_ollama():
     from app import local_ai
     local_ai.set_client(_NoOllama())

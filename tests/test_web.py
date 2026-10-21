@@ -97,7 +97,7 @@ def test_reading_tasks_open_the_local_pdf(client, session):
     res = session.get(Resource, r.resource_id)
     resp = client.get(f"/reading/{r.slug}", follow_redirects=False)
     if (config.ROOT / res.local_path).exists():  # your own copy, inside Homebase
-        assert resp.status_code == 200 and 'class="reader-frame" src="/library/ece201/ulaby/ulaby_cad3e.pdf' in resp.text
+        assert resp.status_code == 200 and 'id="pdf-view" src="/library/ece201/ulaby/ulaby_cad3e.pdf' in resp.text
     else:
         assert resp.headers["location"] == res.url
     assert client.get("/reading/nope").status_code == 404
