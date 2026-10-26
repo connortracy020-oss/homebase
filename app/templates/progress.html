@@ -103,7 +103,7 @@
     {% else %}<p class="muted" style="margin:0">No graded practice exams yet. <a href="/exams">See the exams</a></p>{% endif %}
   </section>
 
-  <section class="card">
+  <section class="card" id="recent-study">
     <h2>Recent study time</h2>
     {% if recent %}
     <ul class="rows">
@@ -112,7 +112,14 @@
       <li style="--accent: {{ (c | ccolor) }}">
         <div class="grow"><span class="t">{{ s.minutes | hm }} <span class="muted small">· {{ c.name }}</span></span>
           <div class="m"><span>{{ s.started_at | md }}</span><span>{{ s.source }}</span>{% if s.note %}<span>{{ s.note }}</span>{% endif %}</div></div>
-        <form method="post" action="/study/{{ s.id }}/delete"><button class="small link" type="submit" aria-label="Delete this entry">delete</button></form>
+        <details class="study-edit"><summary class="small">edit</summary>
+          <form method="post" action="/study/{{ s.id }}/edit" class="study-edit-form">
+            <label class="small">h <input type="number" name="hours" min="0" max="12" value="{{ s.minutes // 60 }}" aria-label="Hours"></label>
+            <label class="small">min <input type="number" name="minutes" min="0" max="59" value="{{ s.minutes % 60 }}" aria-label="Minutes"></label>
+            <button class="small primary" type="submit">Save</button>
+          </form>
+        </details>
+        <form method="post" action="/study/{{ s.id }}/delete" onsubmit="return confirm('Delete this {{ s.minutes | hm }} entry?')"><button class="small link" type="submit" aria-label="Delete this entry">delete</button></form>
       </li>
       {% endfor %}
     </ul>

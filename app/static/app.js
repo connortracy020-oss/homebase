@@ -121,8 +121,16 @@ document.querySelectorAll("form.toggle input[type=checkbox]").forEach((box) => {
   button.addEventListener("click", async () => {
     const t = load();
     if (!t) { save({ start: Date.now(), course: course.value }); show(); return; }
-    const minutes = Math.round((Date.now() - t.start) / 60000);
+    let minutes = Math.round((Date.now() - t.start) / 60000);
     if (minutes < 1) { save(null); show(); status.textContent = "Under a minute, so nothing was logged."; return; }
+    if (minutes > 180) {  // probably left running: ask before logging hours
+      const h = (minutes / 60).toFixed(1);
+      const ans = prompt(`The timer ran ${h} hours. Did you forget to stop it? Enter the minutes you really studied (or Cancel to keep the timer running).`, "");
+      if (ans === null) return;
+      const real = Math.round(Number(ans));
+      if (!real || real < 1) { save(null); show(); status.textContent = "Nothing was logged."; return; }
+      minutes = real;
+    }
     const body = new FormData();
     body.append("course", t.course);
     body.append("minutes", Math.min(minutes, 720));

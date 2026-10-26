@@ -130,6 +130,21 @@ def log_study(session: Session, course_code: str, minutes: int, source: str = "m
     return row
 
 
+def update_study(session: Session, study_id: int, minutes: int, actor: str = "app") -> StudySession:
+    """Correct an entry's length, e.g. a timer left running."""
+    row = session.get(StudySession, study_id)
+    if row is None:
+        raise LookupError(f"no study session {study_id}")
+    if not 1 <= minutes <= 12 * 60:
+        raise ValueError("minutes must be between 1 and 720")
+    old, row.minutes = row.minutes, minutes
+    log(session, actor, "session.edit", f"Changed a study entry from {old} to {minutes} min",
+        study_id=study_id, old=old, minutes=minutes)
+    session.commit()
+    session.refresh(row)
+    return row
+
+
 def delete_study(session: Session, study_id: int, actor: str = "app") -> None:
     row = session.get(StudySession, study_id)
     if row is None:

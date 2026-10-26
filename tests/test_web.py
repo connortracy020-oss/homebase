@@ -70,6 +70,20 @@ def test_export_zip_has_all_tables(client):
     assert data["studysession"][0]["minutes"] == 20
 
 
+def test_fix_and_delete_logged_time(client, session):
+    from app.models import StudySession
+    client.post("/study", data={"course": "ECE201", "minutes": "720", "source": "timer"})
+    row = session.exec(select(StudySession)).one()
+    assert "/study/%d/edit" % row.id in client.get("/progress").text
+    assert client.post(f"/study/{row.id}/edit", data={"hours": "2", "minutes": "0"}).status_code == 200
+    session.refresh(row)
+    assert row.minutes == 120
+    assert client.post(f"/study/{row.id}/edit", data={"hours": "0", "minutes": "0"}).status_code == 422
+    client.post(f"/study/{row.id}/delete")
+    session.expire_all()
+    assert session.exec(select(StudySession)).first() is None
+
+
 def test_backup_copies_db(session, data_dir):
     target = backup.backup_db(session, data_dir / "bk")
     assert target.exists() and target.stat().st_size > 0

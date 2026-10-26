@@ -104,6 +104,7 @@
         <li>{{ s.started_at | md }} · {{ s.minutes | hm }} · {{ (courses | selectattr('id', 'equalto', s.course_id) | first).name }}{% if s.note %} · {{ s.note }}{% endif %}</li>
         {% endfor %}
       </ul>
+      <a class="small" href="/progress#recent-study">Fix or delete logged time →</a>
       {% endif %}
     </section>
   </div>

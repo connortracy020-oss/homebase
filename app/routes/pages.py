@@ -250,6 +250,18 @@ def add_study(request: Request, course: str = Form(...), minutes: int = Form(...
     return back(request)
 
 
+@router.post("/study/{study_id}/edit")
+def edit_study(study_id: int, request: Request, hours: int = Form(0), minutes: int = Form(0),
+               session: Session = Depends(get_session)):
+    try:
+        services.update_study(session, study_id, hours * 60 + minutes)
+    except LookupError:
+        raise HTTPException(404, "No such entry")
+    except ValueError as e:
+        raise HTTPException(422, str(e))
+    return back(request, "/progress")
+
+
 @router.post("/study/{study_id}/delete")
 def delete_study(study_id: int, request: Request, session: Session = Depends(get_session)):
     try:
