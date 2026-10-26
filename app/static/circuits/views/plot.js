@@ -10,8 +10,30 @@ export class Plot {
     this.canvas = canvas; this.readout = readout;
     this.data = null; this.cursor = null;
     new ResizeObserver(() => this.draw()).observe(canvas);
-    canvas.addEventListener("pointermove", (e) => { this.cursor = e.offsetX; this.draw(); });
+    canvas.addEventListener("pointermove", (e) => {
+      this.cursor = e.offsetX;
+      if (this.dragging && this.onPick) this.onPick(this.xAt(e.offsetX));
+      this.draw();
+    });
     canvas.addEventListener("pointerleave", () => { this.cursor = null; this.draw(); });
+    // with onPick set, pressing or dragging on the plot picks an x (a time on the scope, a frequency on a Bode plot)
+    canvas.addEventListener("pointerdown", (e) => {
+      if (!this.onPick) return;
+      this.dragging = true;
+      try { canvas.setPointerCapture(e.pointerId); } catch { /* synthetic events */ }
+      this.onPick(this.xAt(e.offsetX));
+    });
+    const up = () => { this.dragging = false; };
+    canvas.addEventListener("pointerup", up);
+    canvas.addEventListener("pointercancel", up);
+  }
+
+  // the x value under a pixel column (clamped to the plotted range)
+  xAt(px) {
+    const lay = this.layout;
+    if (!lay) return null;
+    const f = Math.max(0, Math.min(1, (px - lay.L) / (lay.W - lay.L - lay.R)));
+    return lay.log ? 10 ** (Math.log10(lay.X0) + f * (Math.log10(lay.X1) - Math.log10(lay.X0))) : lay.X0 + f * (lay.X1 - lay.X0);
   }
 
   // {x: [...], xLabel, xUnit, xLog, series: [{name, unit, y: [...], axis: 0|1}], markers: [{x, label}]}
@@ -30,6 +52,7 @@ export class Plot {
     const xs = d.x, X0 = xs[0], X1 = xs[xs.length - 1];
     const fx = d.xLog ? (x) => (Math.log10(x) - Math.log10(X0)) / (Math.log10(X1) - Math.log10(X0)) : (x) => (x - X0) / (X1 - X0 || 1);
     const px = (x) => L + fx(x) * (W - L - R);
+    this.layout = { L, R, W, X0, X1, log: !!d.xLog };
     // each y axis spans round numbers that contain its traces
     const ranges = [0, 1].map((ax) => {
       const vals = d.series.filter((s) => (s.axis || 0) === ax).flatMap((s) => s.y.filter((v) => v !== null && Number.isFinite(v)));

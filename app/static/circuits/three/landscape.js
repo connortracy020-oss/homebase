@@ -212,7 +212,8 @@ export class Landscape {
     const ok = sol?.ok;
     const vref = ok && sol.nodes[this.ref]?.v != null ? sol.nodes[this.ref].v : 0;
     const vd = (i) => (ok && sol.nodes[i] && sol.nodes[i].v !== null ? sol.nodes[i].v - vref : null);
-    const vmax = Math.max(1e-9, ...net.nodes.map((n) => Math.abs(vd(n.index) ?? 0)));
+    // AC moments carry a scale fixed through the cycle, so the landscape rises and falls
+    const vmax = sol?.vmax || Math.max(1e-9, ...net.nodes.map((n) => Math.abs(vd(n.index) ?? 0)));
     this.scale = (HEIGHT * this.heightScale) / vmax;
     this.colors = new Map();
     this.vmax = vmax;
@@ -231,7 +232,7 @@ export class Landscape {
     // heat: each resistor's share of the largest power absorbed
     this.heat = new Map();
     if (ok) {
-      const pmax = Math.max(1e-15, ...Object.values(sol.els).map((e) => Math.max(0, e.p)));
+      const pmax = sol.pmax ?? Math.max(1e-15, ...Object.values(sol.els).map((e) => Math.max(0, e.p)));
       for (const [id, e] of Object.entries(sol.els)) if (e.type === "R" && e.p > 0 && !hidden({ kind: "p", part: id })) this.heat.set(id, Math.sqrt(e.p / pmax));
     }
     this.flowsFor();

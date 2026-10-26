@@ -8,6 +8,7 @@ const PREFIX = { T: 12, G: 9, meg: 6, MEG: 6, Meg: 6, k: 3, K: 3, m: -3, u: -6, 
 const UNIT_WORDS = {
   "Ω": "Ω", ohm: "Ω", ohms: "Ω", R: "Ω", V: "V", v: "V", A: "A", a: "A", F: "F", f: "F", H: "H", h: "H",
   s: "s", S: "A/V", Hz: "Hz", hz: "Hz", W: "W", w: "W", "A/V": "A/V", "V/A": "Ω", "V/V": "", "A/A": "",
+  "rad/s": "rad/s", "°": "°", deg: "°",
 };
 const PREFIX_RE = "(T|G|meg|MEG|Meg|M|k|K|m|u|µ|μ|n|p|f)?";
 

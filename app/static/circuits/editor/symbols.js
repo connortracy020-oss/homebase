@@ -43,6 +43,14 @@ const circle = `<circle class="body fill" cx="2" cy="0" r="0.95"/>`;
 const diamond = `<path class="body fill" d="M2 -0.98L2.98 0L2 0.98L1.02 0Z"/>`;
 const arrowLeft = `<path class="body" d="M2.55 0H1.5M1.78 -0.26L1.46 0L1.78 0.26"/>`;
 
+// the waveform of a source that isn't constant, drawn small beside it: a step, a pulse, a sine
+function waveGlyph(part) {
+  const w = part.params?.wave;
+  if (!w || w === "dc") return "";
+  const d = w === "step" ? "M-0.35 0.12H0V-0.12H0.35" : w === "pulse" ? "M-0.4 0.12H-0.2V-0.12H0.1V0.12H0.4" : "M-0.42 0C-0.32 -0.3 -0.11 -0.3 0 0S0.32 0.3 0.42 0";
+  return upright(part, 2, -1.35, `<path class="mark thin" d="${d}"/>`);
+}
+
 export function symbolMarkup(part) {
   const p = part.params || {};
   switch (part.type) {
@@ -54,10 +62,9 @@ export function symbolMarkup(part) {
     case "L":
       return lead("M0 0H1M3 0H4") + body("M1 0a0.25 0.25 0 0 1 0.5 0a0.25 0.25 0 0 1 0.5 0a0.25 0.25 0 0 1 0.5 0a0.25 0.25 0 0 1 0.5 0");
     case "V":
-      return lead("M0 0H1.05M2.95 0H4") + circle + upright(part, 1.5, 0, PLUS) + upright(part, 2.5, 0, MINUS)
-        + (p.wave && p.wave !== "dc" ? upright(part, 2, -1.35, `<path class="mark thin" d="${p.wave === "step" ? "M-0.35 0.12H0V-0.12H0.35" : "M-0.4 0.12H-0.2V-0.12H0.1V0.12H0.4"}"/>`) : "");
+      return lead("M0 0H1.05M2.95 0H4") + circle + upright(part, 1.5, 0, PLUS) + upright(part, 2.5, 0, MINUS) + waveGlyph(part);
     case "I":
-      return lead("M0 0H1.05M2.95 0H4") + circle + arrowLeft;
+      return lead("M0 0H1.05M2.95 0H4") + circle + arrowLeft + waveGlyph(part);
     case "E": case "H":
       return lead("M0 0H1.02M2.98 0H4") + diamond + upright(part, 1.55, 0, PLUS) + upright(part, 2.45, 0, MINUS);
     case "G": case "F":

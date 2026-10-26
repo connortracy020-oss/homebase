@@ -16,7 +16,8 @@ export const R = {
 };
 
 // Capacitor: open at DC; in the t=0+ circuit a voltage source at its voltage; in a time step a
-// conductance plus a history current (backward Euler or trapezoidal companion model).
+// conductance plus a history current (backward Euler or trapezoidal companion model); in AC
+// the admittance jωC.
 export const C = {
   type: "C", name: "Capacitor", prefix: "C", pins: TWO_PIN,
   params: [
@@ -29,6 +30,7 @@ export const C = {
     const F = s.F;
     if (ctx.mode === "dc") return zeroPair(F);
     if (ctx.mode === "ic") return pair(lin(F).add(s.br(el), F.one));
+    if (ctx.mode === "ac") return pair(vdiff(s, el.nodes[0], el.nodes[1]).scaled(F.mul(ctx.jw, s.p(el, "C"))));
     const st = ctx.state.get(el.id), Cv = s.p(el, "C");
     const geq = F.div(F.mul(F.num(ctx.method === "trap" ? 2 : 1), Cv), F.num(ctx.h));
     // i(n+1) = geq * v(n+1) + J, with J = -geq*v(n) (BE) or -(geq*v(n) + i(n)) (trap)
@@ -46,7 +48,8 @@ export const C = {
 };
 
 // Inductor: a short at DC (a 0 V branch, so its current is an unknown); in the t=0+ circuit
-// a current source at its current; in a time step its companion model on the same branch.
+// a current source at its current; in a time step its companion model on the same branch;
+// in AC the impedance jωL on that branch (v = jωL i).
 export const L = {
   type: "L", name: "Inductor", prefix: "L", pins: TWO_PIN,
   params: [
@@ -67,6 +70,7 @@ export const L = {
     if (ctx.mode === "ic") return;
     const F = s.F, k = s.br(el), v = vdiff(s, el.nodes[0], el.nodes[1]);
     if (ctx.mode === "dc") { s.row(k, v, F.zero); return; }
+    if (ctx.mode === "ac") { s.row(k, v.add(k, F.neg(F.mul(ctx.jw, s.p(el, "L")))), F.zero); return; }
     // v(n+1) - req*i(n+1) = -req*i(n) (BE)   or   = -req*i(n) - v(n) (trap)
     const st = ctx.state.get(el.id), Lv = s.p(el, "L");
     const req = F.div(F.mul(F.num(ctx.method === "trap" ? 2 : 1), Lv), F.num(ctx.h));

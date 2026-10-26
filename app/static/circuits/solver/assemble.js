@@ -12,11 +12,8 @@ export class ControlLoop extends Error {
 
 export function paramValue(F, p) {
   if (!p || p.empty) throw new Error("missing value");
-  if (F.exact) {
-    if (!p.exact) throw new FloatOnly();
-    return p.exact;
-  }
-  return p.value;
+  if (F.exact && !p.exact) throw new FloatOnly();
+  return F.of(p);  // a number, a fraction, or (for AC) the same as a complex value
 }
 
 export function assemble(net, F, ctx) {

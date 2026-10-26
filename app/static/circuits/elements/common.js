@@ -15,7 +15,7 @@ import { lin } from "../solver/lin.js";
 
 export const TWO_PIN = [{ name: "a", x: 0, y: 0 }, { name: "b", x: 4, y: 0 }];
 
-export const WAVES = ["dc", "step", "pulse"];
+export const WAVES = ["dc", "step", "pulse", "sine"];
 
 // Is time `when` before the instant `at`? when = {t, side}: side -1 means just before.
 export function before(when, at) {
@@ -27,6 +27,12 @@ export function before(when, at) {
 export function waveValue(p, prefix, when) {
   const kind = p.wave?.text || "dc";
   if (kind === "dc") return p[prefix];
+  if (kind === "sine") {
+    const dc = p[`${prefix}dc`];
+    if (!Number.isFinite(when.t)) return dc;  // DC analysis (steady state): only the average counts
+    const w = sineOmega(p).value, a = sinePeak(p, prefix).value;
+    return { exact: null, value: dc.value + a * Math.cos(w * when.t + (p.ph.value * Math.PI) / 180) };
+  }
   const lo = p[`${prefix}0`], hi = p[`${prefix}1`];
   if (kind === "step") return before(when, p.at.value) ? lo : hi;
   // pulse: lo until td, ramp tr, hold pw at hi, ramp tf, repeat every per
@@ -39,6 +45,18 @@ export function waveValue(p, prefix, when) {
   if (u < tr + pw || (u === tr + pw && when.side < 0)) return hi;
   if (tf > 0 && u < tr + pw + tf) return ramp(hi, lo, (u - tr - pw) / tf);
   return lo;
+}
+
+// A sine source's angular frequency in rad/s, exact when it was typed as ω.
+export function sineOmega(p) {
+  if (p.funit?.text === "Hz") return { value: 2 * Math.PI * p.f.value, exact: null };
+  return { value: p.w.value, exact: p.w.exact };
+}
+
+// Its peak amplitude as a parsed value (an RMS amplitude times √2 has no exact form).
+export function sinePeak(p, prefix) {
+  const a = p[`${prefix}m`];
+  return p.scale?.text === "rms" ? { exact: null, value: a.value * Math.SQRT2 } : a;
 }
 
 // Times where a source's value has a corner (transient breakpoints), up to tstop.
@@ -58,7 +76,7 @@ export function waveEvents(p, tstop) {
 // field value of a parsed source value; null exact on a ramp means floats only
 export function fieldValue(F, pv) {
   if (F.exact && pv.exact === null) throw new FloatOnly();
-  return F.exact ? pv.exact : pv.value;
+  return F.of(pv);
 }
 
 export class FloatOnly extends Error {

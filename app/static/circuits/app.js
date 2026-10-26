@@ -20,6 +20,8 @@ import { CurrentFlow } from "./views/current.js";
 import { statusHTML, overviewHTML, solvedHTML, tipHTML, kclHTML } from "./views/panels.js";
 import { Study } from "./study/study.js";
 import { Transient } from "./study/transient.js";
+import { ACView } from "./study/ac.js";
+import { ports } from "./study/tools.js";
 import { toSpice } from "./io/spice.js";
 import { snapshot } from "./views/snapshot.js";
 import { fmt } from "./core/units.js";
@@ -37,12 +39,17 @@ let net = null, sol = null, focusNode = null, lastPointerType = "mouse", tipPos 
 const solver = new SolverClient();
 const study = new Study({ slug: data.slug, store, getSolution: () => sol, getNet: () => net, refresh: () => refreshAll(), toast, solver, dock: $("#dock") });
 const tran = study.tran = new Transient({ store, solver, dock: $("#dock"), refresh: () => refreshAll(), toast });
-let playback = false;
+const acv = study.acv = new ACView({ store, dock: $("#dock"), refresh: (o) => refreshAll(o), toast, prefs, savePrefs });
+let drawn = null;  // the document the schematic shows right now
 
-// what the views show: the circuit at a moment of a transient run, or its DC solution
+// what the views show: the circuit at a moment of a transient run, at an instant of its AC
+// steady state, or its DC solution
 function shown() {
   const m = tran.moment();
-  return m || { doc: store.doc, net, sol };
+  if (m) return { ...m, kind: "tran" };
+  const a = acv.moment();
+  if (a) return { ...a, kind: "ac" };
+  return { doc: store.doc, net, sol, kind: "dc" };
 }
 
 // ---- solve and draw ----
@@ -50,7 +57,9 @@ function recompute() {
   const doc = store.doc;
   net = compile(doc);
   view.draw(doc, net);
+  drawn = doc;
   sol = run("op", net, doc, {});
+  acv.update();
   if (focusNode !== null && focusNode >= net.nodes.length) focusNode = null;
   refreshAll();
 }
@@ -61,17 +70,21 @@ function errorParts() {
   return s;
 }
 
-function refreshAll() {
+// light: an animation frame (AC playback), so the side panel isn't rebuilt under your pointer
+function refreshAll({ light = false } = {}) {
   const hidden = study.hidden;
-  const v = shown(), moment = v.sol !== sol;
-  if (moment || playback) view.draw(v.doc, v.net);  // switches drawn where they are at that moment
-  playback = moment;
-  overlay.render(v.doc, v.net, v.sol, { hidden, focusNode, err: moment ? new Set() : errorParts(), currents: prefs.chips !== false });
-  $("#status").innerHTML = moment ? `<span class="ok">▶ t = ${fmt(v.sol.time, "s")}</span><span class="msg">playing back the run</span>` : statusHTML(sol);
+  const v = shown();
+  if (v.doc !== drawn) { view.draw(v.doc, v.net); drawn = v.doc; }  // switches drawn where they are then
+  const err = v.kind === "tran" ? new Set() : acv.on ? acv.errorParts() : errorParts();
+  overlay.render(v.doc, v.net, v.sol, { hidden, focusNode, err, currents: prefs.chips !== false });
+  $("#status").innerHTML = v.kind === "tran" ? `<span class="ok">▶ t = ${fmt(v.sol.time, "s")}</span><span class="msg">playing back the run</span>`
+    : acv.on ? acv.statusHTML() : statusHTML(sol);
   flow.electron = !!prefs.electron;
   flow.setData(v.doc, v.net, study.predicting ? null : v.sol);
-  inspector.render();
-  study.renderAsk?.();
+  if (!light) {
+    inspector.render();
+    study.renderAsk?.();
+  }
   landscape?.update();
 }
 
@@ -79,10 +92,18 @@ function refreshAll() {
 const inspector = new Inspector($("#inspector"), {
   store,
   hooks: {
-    overview: () => study.panel() + overviewHTML(store.doc, net, sol, { hidden: study.hidden, focusNode }),
-    solved: (part) => solvedHTML(part, sol, { hidden: study.hidden }) + study.partTools(part),
+    overview: () => acv.modeSwitchHTML() + (acv.on
+      ? acv.panelHTML({ hidden: study.hidden, predicting: study.predicting, ports: net ? ports(net) : [],
+        tranButton: Transient.relevant(store.doc) ? `<button type="button" class="small" data-study="tran" aria-pressed="${study.card === "tran"}">Over time</button>` : "" })
+        + (study.card === "tran" ? study.cardHTML() : "")
+      : study.panel() + overviewHTML(store.doc, net, sol, { hidden: study.hidden, focusNode })),
+    solved: (part) => (acv.on && acv.res?.ok ? acv.solvedHTML(part, study.hidden) + acv.partToolsHTML(part, study.predicting) : solvedHTML(part, sol, { hidden: study.hidden }) + study.partTools(part)),
     wireNode: (w) => { const n = net?.nodeAt(`${w.a[0]},${w.a[1]}`); return n >= 0 ? `Node ${net.nodes[n].label || net.nodes[n].name}` : "Not connected to a part"; },
-    wireSolved: (w) => { const n = net?.nodeAt(`${w.a[0]},${w.a[1]}`); return n >= 0 ? kclHTML(net, sol, n, { hidden: study.hidden }) : ""; },
+    wireSolved: (w) => {
+      const n = net?.nodeAt(`${w.a[0]},${w.a[1]}`);
+      if (n < 0) return "";
+      return acv.on && acv.res?.ok ? acv.kclHTML(acv.net.nodeAt(`${w.a[0]},${w.a[1]}`), study.hidden) : kclHTML(net, sol, n, { hidden: study.hidden });
+    },
     rendered: (root) => { if (window.renderMath) window.renderMath(root); },
     toast,
   },
@@ -128,6 +149,8 @@ $("#schematic").addEventListener("pointerdown", (e) => {
   refreshAll();
 }, true);
 $("#inspector").addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (b && acv.onPanelClick(b)) return;
   const row = e.target.closest("tr[data-node]");
   if (row && !e.target.closest("button")) { const n = Number(row.dataset.node); focusNode = focusNode === n ? null : n; refreshAll(); }
   const askN = e.target.closest("[data-ask-node]"), askP = e.target.closest("[data-ask-part]");
@@ -188,7 +211,7 @@ $("#stage").addEventListener("pointermove", (e) => { tipPos = [e.clientX, e.clie
 function showTip(h) {
   const tip = $("#tip");
   if (!h || h.kind !== "part" || lastPointerType !== "mouse" || input.gesture) { tip.hidden = true; return; }
-  tip.innerHTML = tipHTML(h.part, sol, { hidden: study.hidden });
+  tip.innerHTML = acv.on && acv.res?.ok ? acv.tipHTML(h.part, study.hidden) : tipHTML(h.part, sol, { hidden: study.hidden });
   tip.hidden = false;
   placeTip();
 }
@@ -386,4 +409,4 @@ view.fit(store.doc);
 updateButtons();
 document.addEventListener("homebase-theme", () => { refreshAll(); landscape?.update(); });
 if (prefs.view && prefs.view !== "2d" && innerWidth > 820) setView(prefs.view);
-window.bench = { store, view, get net() { return net; }, get sol() { return sol; }, get landscape() { return landscape; }, study, _refresh };
+window.bench = { store, view, get net() { return net; }, get sol() { return sol; }, get landscape() { return landscape; }, study, acv, _refresh };

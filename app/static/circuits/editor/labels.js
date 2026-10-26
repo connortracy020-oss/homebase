@@ -27,6 +27,10 @@ export function valueText(part) {
     case "V": case "I": {
       const u = part.type === "V" ? "V" : "A", q = part.type;
       if (!p.wave || p.wave === "dc") return val(p[q], u);
+      if (p.wave === "sine") {
+        const ph = parseValue(p.ph ?? "0", "°"), f = p.funit === "Hz" ? val(p.f ?? "60", "Hz") : val(p.w ?? "1k", "rad/s");
+        return `${val(p[`${q}m`] ?? "1", u)}${p.scale === "rms" ? " rms" : ""}${ph.ok && ph.value ? `∠${sig(ph.value)}°` : ""}, ${f}`;
+      }
       const lo = val(p[`${q}0`], u), hi = val(p[`${q}1`], u);
       return p.wave === "step" ? `${lo} → ${hi}` : `pulse ${lo} / ${hi}`;
     }

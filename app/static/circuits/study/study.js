@@ -11,6 +11,8 @@ import { equationsCard, superpositionCard, theveninCard, theveninPortCard, ports
 import { checkWork } from "./check.js";
 import { Plot } from "../views/plot.js";
 import { Transient } from "./transient.js";
+import { polarText, scaleWord, angleText } from "../views/phasorfmt.js";
+import { polarOf } from "../solver/cfield.js";
 
 export class Study {
   constructor({ slug, store, getSolution, getNet, refresh, toast, solver, dock }) {
@@ -76,8 +78,11 @@ export class Study {
     return "";
   }
 
+  // AC predictions use the AC solution (the steady-state circuit, phasors)
+  acOn() { return !!(this.acv?.on && this.acv.res?.ok); }
+
   key(q) {
-    const net = this.getNet();
+    const net = this.acOn() ? this.acv.net : this.getNet();
     if (q.kind === "v") return `v:${net?.nodes[q.node]?.label || net?.nodes[q.node]?.name}`;
     if (q.part) return `${q.kind}:${q.part}`;
     return q.kind;
@@ -103,6 +108,7 @@ export class Study {
 
   // the question, in words, with the reference direction made explicit
   question(q) {
+    if (this.acOn()) return this.questionAC(q);
     const net = this.getNet(), part = q.part && this.store.doc.parts.find((p) => p.id === q.part);
     if (q.kind === "v") return { text: `Voltage at ${net.nodes[q.node].label || net.nodes[q.node].name} (from ground)`, unit: "V" };
     if (!part) return null;
@@ -116,6 +122,33 @@ export class Study {
     }
     if (q.kind === "vp") return { text: part.type === "VM" ? `What ${part.id} reads` : `Voltage across ${part.id}, + at the ${plus}`, unit: "V" };
     if (q.kind === "p") return { text: `Power ${part.id} absorbs (negative if it delivers)`, unit: "W" };
+    return null;
+  }
+
+  questionAC(q) {
+    const net = this.acv.net, part = q.part && this.store.doc.parts.find((p) => p.id === q.part), word = scaleWord(this.acv.mode);
+    if (q.kind === "v") return { text: `Phasor at ${net.nodes[q.node]?.label || net.nodes[q.node]?.name} from ground (${word})`, unit: "V", ac: true };
+    if (!part) return null;
+    const [a, b] = pinPoints(part);
+    const way = Math.abs(a.x - b.x) >= Math.abs(a.y - b.y) ? (b.x > a.x ? "left to right" : "right to left") : (b.y > a.y ? "top to bottom" : "bottom to top");
+    const plus = Math.abs(a.x - b.x) >= Math.abs(a.y - b.y) ? (a.x < b.x ? "left" : "right") : (a.y < b.y ? "top" : "bottom");
+    if (q.kind === "i") {
+      if (["V", "E", "H"].includes(part.type)) return { text: `Current phasor out of ${part.id}'s + terminal (${word})`, unit: "A", ac: true };
+      if (["I", "G", "F"].includes(part.type)) return { text: `Current phasor of ${part.id}, along its arrow (${word})`, unit: "A", ac: true };
+      return { text: `Current phasor through ${part.id}, ${way} (${word})`, unit: "A", ac: true };
+    }
+    if (q.kind === "vp") return { text: `Voltage phasor across ${part.id}, + at the ${plus} (${word})`, unit: "V", ac: true };
+    return null;
+  }
+
+  truthAC(q) {
+    const r = this.acv.res, k = this.acv.scale;
+    const sc = (z) => z && { re: z.re * k, im: z.im * k };
+    if (q.kind === "v") return r.nodes[q.node]?.v ? { z: sc(r.nodes[q.node].v) } : null;
+    const e = r.els[q.part], part = this.store.doc.parts.find((p) => p.id === q.part);
+    if (!e || !part) return null;
+    if (q.kind === "i") return { z: sc(["V", "E", "H", "I", "G", "F"].includes(part.type) ? { re: -e.i.re, im: -e.i.im } : e.i) };
+    if (q.kind === "vp") return { z: sc(e.v) };
     return null;
   }
 
@@ -146,13 +179,14 @@ export class Study {
     } else if (box.parentElement !== this.root || this.root.firstElementChild !== box) this.root.prepend(box);
     if (this.last) {
       const v = this.last;
-      box.innerHTML = `<div class="verdict ${v.correct ? "good" : "bad"}"><strong>${v.correct ? "Right" : v.tags.includes("sign") ? "Right size, wrong sign" : v.tags.includes("units") ? "Off by a factor of 1000" : "Not quite"}</strong>
+      box.innerHTML = `<div class="verdict ${v.correct ? "good" : "bad"}"><strong>${v.correct ? "Right" : v.tags.includes("sign") ? "Right size, wrong sign" : v.tags.includes("rms") ? "Off by √2" : v.tags.includes("phase") ? "Right size, wrong angle" : v.tags.includes("units") ? "Off by a factor of 1000" : "Not quite"}</strong>
         <span>${esc(v.q)}: you said ${esc(v.guessText)}, it's ${esc(v.truthText)}.</span>
         ${v.correct ? "" : `<span class="hint">${esc(v.tip)}</span>`}</div>
         <div class="ask-actions"><button type="button" class="small" data-ask-done>Done</button></div>`;
     } else {
       const q = this.question(this.asking);
       if (!q) { box.remove(); return; }
+      if (q.ac) { this.renderAskAC(box, q); return; }
       box.innerHTML = `<form class="ask-form"><span class="eyebrow">Predict</span><label>${esc(q.text)}
         <span class="ask-row"><input id="ask-input" inputmode="decimal" autocomplete="off" placeholder="e.g. 4.5 or 2.2m" aria-label="${esc(q.text)}"><span class="unit">${esc(q.unit)}</span></span></label>
         <span class="reading" id="ask-reading"></span>
@@ -166,6 +200,59 @@ export class Study {
     }
     box.querySelector("[data-ask-skip]")?.addEventListener("click", () => { this.revealed.add(this.key(this.asking)); this.asking = null; this.refresh(); });
     box.querySelector("[data-ask-done]")?.addEventListener("click", () => { this.last = null; this.refresh(); });
+  }
+
+  // AC: a phasor is a size and an angle, so predict both
+  renderAskAC(box, q) {
+    box.innerHTML = `<form class="ask-form"><span class="eyebrow">Predict</span><span>${esc(q.text)}</span>
+      <span class="ask-row"><input id="ask-input" inputmode="decimal" autocomplete="off" placeholder="size, e.g. 7.07" aria-label="Magnitude"><span class="unit">${esc(q.unit)}</span>
+        <span class="unit">∠</span><input id="ask-angle" inputmode="decimal" autocomplete="off" placeholder="−45" aria-label="Angle in degrees"><span class="unit">°</span></span>
+      <span class="reading" id="ask-reading"></span>
+      <span class="ask-actions"><button type="submit" class="small primary">Check</button><button type="button" class="small" data-ask-skip>Just show me</button></span></form>`;
+    const form = box.querySelector("form"), mag = box.querySelector("#ask-input"), ang = box.querySelector("#ask-angle");
+    const show = () => {
+      const m = parseValue(mag.value, q.unit), a = parseValue(ang.value || "0", "°");
+      box.querySelector("#ask-reading").textContent = mag.value.trim() ? (m.ok && a.ok ? `= ${fmt(m.value, q.unit)}∠${angleText(a.value)}` : (m.ok ? a : m).error) : "";
+    };
+    mag.addEventListener("input", show); ang.addEventListener("input", show);
+    form.addEventListener("submit", (e) => { e.preventDefault(); this.checkAC(mag.value, ang.value); });
+    box.querySelector("[data-ask-skip]")?.addEventListener("click", () => { this.revealed.add(this.key(this.asking)); this.asking = null; this.refresh(); });
+  }
+
+  checkAC(magText, angText) {
+    const q = this.asking, info = this.question(q), t = this.truthAC(q);
+    if (!info || !t) return;
+    const m = parseValue(magText, info.unit), a = parseValue(angText.trim() || "0", "°");
+    if (!m.ok) { this.toast?.(m.error); return; }
+    if (!a.ok) { this.toast?.(a.error); return; }
+    const { mag, deg } = polarOf(t.z), g = Math.abs(m.value), gd = m.value < 0 ? a.value + 180 : a.value;
+    const tol = Math.max(0.01 * mag, 1e-12), off = (x, y) => Math.abs(((x - y + 540) % 360) - 180);
+    const sizeOK = Math.abs(g - mag) <= tol, angleOK = mag < 1e-12 || off(gd, deg) <= 1.5;
+    const correct = sizeOK && angleOK, tags = [];
+    if (!correct) {
+      if (sizeOK && off(gd, deg + 180) <= 1.5) tags.push("sign");
+      else if (sizeOK) tags.push("phase");
+      if ([Math.SQRT2, Math.SQRT1_2].some((k) => Math.abs(g - mag * k) <= tol * k)) tags.push("rms");
+      if ([1e3, 1e-3].some((k) => Math.abs(g - mag * k) <= tol * k)) tags.push("units");
+    }
+    const truthText = polarText(t.z, info.unit), guessText = `${fmt(g, info.unit)}∠${angleText(gd)}`;
+    this.last = {
+      correct, tags, q: info.text.replace(/ \((peak|RMS)\)$/, ""), guessText, truthText,
+      tip: tags.includes("sign") ? "Right size, but 180° off: check the reference direction or polarity the question uses."
+        : tags.includes("rms") ? "Off by √2: that's the difference between peak and RMS. Check which one the question asks for."
+          : tags.includes("phase") ? "Right size, wrong angle. Capacitor currents lead their voltage by 90°, inductor currents lag by 90°."
+            : tags.includes("units") ? "Check the prefix: m is 10⁻³, k is 10³." : "Try the impedances first (Z_C = −j/(ωC), Z_L = jωL), then divide or combine them like resistors.",
+    };
+    this.revealed.add(this.key(q));
+    this.asking = null;
+    const net = this.acv.net;
+    const quantity = q.kind === "v" ? `V(${net.nodes[q.node].label || net.nodes[q.node].name})` : `${q.kind === "vp" ? "V" : "I"}(${q.part})`;
+    fetch(`/api/circuits/${this.slug}/attempts`, {
+      method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ kind: "predict", quantity: `${quantity} phasor`, guess: g, truth: mag, correct, tags: tags.map((x) => (x === "rms" ? "units" : x === "phase" ? "concept" : x)),
+        note: `angle: guessed ${angleText(gd)}, it's ${angleText(deg)}` }),
+    }).catch(() => {});
+    this.refresh();
   }
 
   check(text) {

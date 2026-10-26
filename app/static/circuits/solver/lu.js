@@ -16,7 +16,7 @@ const TOL = 1e-12;  // on equilibrated rows: a pivot this small means "no unique
 export function solveField(F, A, b) {
   const n = b.length;
   const M = A.map((row, i) => [...row, b[i]]);
-  const scale = F.exact ? null : M.map((row) => Math.max(...row.slice(0, n).map(Math.abs)) || 1);
+  const scale = F.exact ? null : M.map((row) => Math.max(...row.slice(0, n).map(F.mag)) || 1);
   const perm = [...Array(n).keys()];
   for (let k = 0; k < n; k++) {
     let best = -1, bestMag = -1;
