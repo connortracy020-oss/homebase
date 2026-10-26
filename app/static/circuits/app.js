@@ -29,7 +29,7 @@ const overlay = new Overlay(view, { legend: $("#legend") });
 const flow = new CurrentFlow($("#flow"), view);
 const prefs = loadPrefs();
 const bench = $("#bench"), side = $("#side");
-let net = null, sol = null, focusNode = null, lastPointerType = "mouse", tipPos = [0, 0];
+let net = null, sol = null, focusNode = null, lastPointerType = "mouse", tipPos = [0, 0], landscape = null;
 
 const solver = new SolverClient();
 const study = new Study({ slug: data.slug, store, getSolution: () => sol, getNet: () => net, refresh: () => refreshAll(), toast, solver, dock: $("#dock") });
@@ -58,6 +58,7 @@ function refreshAll() {
   flow.setData(store.doc, net, study.predicting ? null : sol);
   inspector.render();
   study.renderAsk?.();
+  landscape?.update();
 }
 
 // ---- editor ----
@@ -227,7 +228,6 @@ title.addEventListener("change", () => {
 title.addEventListener("keydown", (e) => { if (e.key === "Enter") title.blur(); });
 
 // views: 2D, 3D, split (3D loads the first time it's opened)
-let landscape = null;
 async function setView(v) {
   bench.querySelectorAll("[data-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === v)));
   $("#stage").classList.toggle("split", v === "split");
@@ -237,7 +237,11 @@ async function setView(v) {
   if (v !== "2d" && !landscape) {
     try {
       const { Landscape } = await import("./three/landscape.js");
-      landscape = new Landscape($("#v3d"), { store, getNet: () => net, getSolution: () => sol, hidden: () => study.hidden, prefs, savePrefs });
+      landscape = new Landscape($("#v3d"), {
+        store, getNet: () => net, getSolution: () => sol, hidden: () => study.hidden, prefs, savePrefs,
+        getFocusNode: () => focusNode,
+        onFocusNode: (n) => { focusNode = focusNode === n ? null : n; store.clearSelection(); refreshAll(); },
+      });
     } catch (err) {
       $("#v3d").innerHTML = `<p class="v3d-msg">The 3D view couldn't start: ${err.message}</p>`;
       return;
@@ -327,4 +331,4 @@ view.fit(store.doc);
 updateButtons();
 document.addEventListener("homebase-theme", () => { refreshAll(); landscape?.update(); });
 if (prefs.view && prefs.view !== "2d" && innerWidth > 820) setView(prefs.view);
-window.bench = { store, view, get net() { return net; }, get sol() { return sol; }, study, _refresh };
+window.bench = { store, view, get net() { return net; }, get sol() { return sol; }, get landscape() { return landscape; }, study, _refresh };

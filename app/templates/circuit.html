@@ -4,6 +4,7 @@
 {% block main_class %}bench-main{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="/static/circuits/bench.css?v={{ static_v('circuits/bench.css') }}">
+<script type="importmap">{"imports": {"three": "/static/vendor/three-r170/build/three.module.min.js", "three/addons/": "/static/vendor/three-r170/addons/"}}</script>
 {% set course = (courses | selectattr('id', 'equalto', circuit.course_id) | first) if circuit.course_id else None %}
 <div class="bench" id="bench" {% if course %}style="--accent: {{ course | ccolor }}"{% endif %}>
   <header class="bench-bar">
