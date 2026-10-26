@@ -85,8 +85,8 @@ export function eigenvalues(A0) {
     c.push(ck);
     M = AM.map((row, i) => row.map((x, j) => x + (i === j ? ck : 0)));
   }
-  const roots = durandKerner(c);
-  return roots && roots.map((z) => ({ re: z.re * s, im: z.im * s }));
+  const roots = mergeRepeated(c, durandKerner(c));
+  return roots.map((z) => ({ re: z.re * s, im: z.im * s }));
 }
 
 // roots of a real polynomial, highest power first, scaled so the roots are about size 1
@@ -97,8 +97,49 @@ export function polyRoots(a) {
   if (n < 1) return [];
   const c = p.map((x) => x / p[0]);
   const rho = Math.max(1e-300, ...c.slice(1).map((x, k) => Math.abs(x) ** (1 / (k + 1))));
-  return durandKerner(c.map((x, k) => x / rho ** k)).map((z) => ({ re: z.re * rho, im: z.im * rho }));
+  const cs = c.map((x, k) => x / rho ** k);
+  return mergeRepeated(cs, durandKerner(cs)).map((z) => ({ re: z.re * rho, im: z.im * rho }));
 }
+
+// A repeated root comes out of the iteration as a small ring of roots around it (the error grows
+// like ε^(1/m) for multiplicity m: three identical loads put a real triple root's copies a few
+// parts per million apart, with imaginary dust). A root of multiplicity m is a simple root of
+// the (m−1)th derivative, so each tight group becomes copies of the one Newton finds there,
+// starting from the group's mean. c: the monic coefficients, highest power first.
+function mergeRepeated(c, roots) {
+  const big = Math.max(1e-300, ...roots.map((z) => Math.hypot(z.re, z.im)));
+  const size = (z) => Math.hypot(z.re, z.im);
+  const near = (p, q) => Math.hypot(p.re - q.re, p.im - q.im) <= 1e-3 * Math.max(size(p), size(q), 1e-9 * big);
+  const up = roots.map((_, i) => i);
+  const find = (i) => (up[i] === i ? i : (up[i] = find(up[i])));
+  for (let i = 0; i < roots.length; i++) for (let j = i + 1; j < roots.length; j++) if (near(roots[i], roots[j])) up[find(i)] = find(j);
+  const sums = new Map();
+  roots.forEach((z, i) => {
+    const g = find(i), t = sums.get(g) || { re: 0, im: 0, n: 0 };
+    sums.set(g, { re: t.re + z.re, im: t.im + z.im, n: t.n + 1 });
+  });
+  const polished = new Map();
+  for (const [g, t] of sums) {
+    if (t.n === 1) continue;
+    const mean = { re: t.re / t.n, im: t.im / t.n };
+    let q = c;
+    for (let k = 1; k < t.n; k++) q = deriv(q);
+    const dq = deriv(q);
+    let z = mean;
+    for (let it = 0; it < 40; it++) {
+      const step = div(evalC(q, z), evalC(dq, z));
+      if (!Number.isFinite(step.re) || !Number.isFinite(step.im)) break;
+      z = { re: z.re - step.re, im: z.im - step.im };
+      if (Math.hypot(step.re, step.im) <= 1e-15 * (1 + size(z))) break;
+    }
+    if (!(Math.hypot(z.re - mean.re, z.im - mean.im) <= 1e-3 * Math.max(size(mean), 1e-9 * big))) z = mean;  // Newton wandered off
+    polished.set(g, Math.abs(z.im) <= 1e-3 * size(z) && Math.abs(mean.im) <= 1e-3 * size(mean) ? { re: z.re, im: 0 } : z);
+  }
+  return roots.map((z, i) => polished.get(find(i)) ?? z);
+}
+
+const deriv = (c) => c.slice(0, -1).map((x, k) => x * (c.length - 1 - k));
+const evalC = (c, z) => c.reduce((acc, ck) => ({ re: acc.re * z.re - acc.im * z.im + ck, im: acc.re * z.im + acc.im * z.re }), { re: 0, im: 0 });
 
 function durandKerner(c) {
   const n = c.length - 1, R = 1 + Math.max(...c.slice(1).map(Math.abs));

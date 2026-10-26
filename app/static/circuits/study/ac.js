@@ -1,11 +1,13 @@
 // AC on the bench: the sinusoidal steady state of a circuit with sine sources. Pills and tables
 // show phasors (peak or RMS, always labelled); the 2D and 3D views show the circuit at one
 // instant of its cycle, and ▶ runs the cycle in slow motion so the voltages swing. The dock
-// holds the phasor diagram beside the waveforms its arrows project.
+// holds the phasor diagram beside the waveforms its arrows project. A slider tries the circuit
+// at other frequencies (a what-if until you set it), and everything follows as you drag.
 
 import { compile, switchState } from "../core/compile.js";
 import { defOf } from "../elements/index.js";
-import { solveAC, acFrequency, acThevenin, STEADY } from "../solver/ac.js";
+import { solveAC, acFrequency, acThevenin, sourceDrive, STEADY } from "../solver/ac.js";
+import { autoRange } from "../solver/bode.js";
 import { phasorOf } from "../solver/cfield.js";
 import { sinePeak } from "../elements/common.js";
 import { wireFlows } from "../solver/flows.js";
@@ -35,7 +37,10 @@ export class ACView {
     Object.assign(this, { store, dock, refresh, toast, prefs, savePrefs, solver });
     this.choice = null;     // DC or AC, once chosen; until then AC whenever there's a sine source
     this.res = null; this.t = 0; this.playing = false; this.speed = 1;
-    this.preview = null;    // {omega, input}: the Bode cursor's frequency, shown until dismissed
+    this.preview = null;    // {omega, input}: the Bode cursor's frequency, shown until dismissed;
+                            // input null: the slider's, with every source moved to it
+    this.range = null;      // the slider's ends, rad/s
+    this.hold = null;       // through a sweep, the largest |V| and powers seen: scales only grow
     this.card = null;       // an AC Thevenin card: "port:a,b" or "thev:R1"
     this.picked = null;     // quantities in the dock
   }
@@ -67,7 +72,7 @@ export class ACView {
     Object.assign(this, { doc, net, freq: f });
     if (this.preview) {
       this.omega = this.preview.omega;
-      this.res = solveAC(net, { omega: this.omega, omegaExact: null, drive: previewDrive(this.preview.input) });
+      this.res = solveAC(net, { omega: this.omega, omegaExact: null, drive: this.previewDrive() });
     } else if (f) {
       this.omega = f.omega;
       this.res = solveAC(net, { omega: f.omega, omegaExact: f.exact });
@@ -77,11 +82,76 @@ export class ACView {
     }
     this.T = this.omega ? (2 * Math.PI) / this.omega : null;
     if (this.T && this.t >= this.T) this.t = 0;
+    this.updateRange(doc, net, f);
+    this.updateHold();
     this.refreshDock();
+  }
+
+  // the drive while previewing: the Bode cursor's one input, or every source at the slider's ω
+  previewDrive() {
+    return this.preview.input ? previewDrive(this.preview.input) : sourceDrive(this.preview.omega, { any: true });
+  }
+
+  // the slider's ends: two decades past the circuit's own corners and resonances, and at least
+  // a decade either side of the sources' frequency
+  updateRange(doc, net, f) {
+    if (!f) { this.range = null; this.rangeSig = null; return; }
+    const sig = JSON.stringify([doc.parts, doc.wires]);
+    if (sig === this.rangeSig) return;
+    this.rangeSig = sig;
+    const [a, b] = autoRange(net);
+    this.range = [Math.min(a, f.omega / 10), Math.max(b, f.omega * 10)];
+  }
+
+  // while you sweep the slider the height, color and glow scales only grow, so the landscape
+  // visibly sinks where the response falls off
+  updateHold() {
+    if (!this.preview || this.preview.input) { this.hold = null; return; }
+    if (!this.res?.ok) return;
+    const h = this.hold || { v: 0, p: 0, pR: 0 };
+    for (const n of this.res.nodes) if (n.v) h.v = Math.max(h.v, Math.hypot(n.v.re, n.v.im));
+    for (const e of Object.values(this.res.els)) {
+      h.p = Math.max(h.p, e.s.re + Math.hypot(e.s.re, e.s.im));
+      if (e.type === "R") h.pR = Math.max(h.pR, e.s.re);
+    }
+    this.hold = h;
+  }
+
+  // the sources a preview's "Set" changes
+  previewIds() {
+    if (!this.preview) return [];
+    return this.preview.input ? [this.preview.input] : (this.freq?.sources || []).map((s) => s.el.id);
+  }
+
+  // the frequency slider: live while you drag; the side panel catches up when you let go
+  onPanelInput(el, done) {
+    if (!el.matches?.("[data-ac-omega]") || !this.range || !this.freq) return false;
+    const [a, b] = this.range, w0 = this.freq.omega;
+    const w = a * (b / a) ** (Number(el.value) / 1000);
+    const home = Math.abs(Math.log(w / w0)) < 0.006 * Math.log(b / a);  // a few steps from the sources' own ω: snap back to it
+    this.preview = home ? null : { omega: w, input: null };
+    this.update();
+    const out = el.parentElement?.querySelector("[data-ac-omega-text]");
+    if (out) out.textContent = omegaText(this.omega);
+    if (!done) { this.refresh({ light: true }); return true; }
+    // (the panel doesn't redraw under a focused input, so step out of the slider and back)
+    const focused = document.activeElement === el;
+    el.blur();
+    this.refresh();
+    if (focused) document.querySelector("[data-ac-omega]")?.focus();
+    return true;
+  }
+
+  sweepHTML() {
+    if (!this.range || !this.freq || !this.omega) return "";
+    const [a, b] = this.range;
+    const pos = Math.max(0, Math.min(1000, Math.round((1000 * Math.log(this.omega / a)) / Math.log(b / a))));
+    return `<label class="ac-sweep"><span>Try ω</span><input type="range" data-ac-omega min="0" max="1000" step="1" value="${pos}" aria-label="Try another frequency, ${esc(omegaText(a))} to ${esc(omegaText(b))} on a log scale"><output data-ac-omega-text>${esc(omegaText(this.omega))}</output></label>`;
   }
 
   // the circuit was edited: solve again, and sweep the Bode plot again if it's open
   docChanged() {
+    this.hold = null;
     this.update();
     this.bode?.stale();
     if (this.hs?.open) { const doc = steadyDoc(this.store.doc); this.hs.stale(compile(doc), doc); }
@@ -143,7 +213,8 @@ export class ACView {
     const sol = {
       ok: true, exact: false, errors: [], warnings: r.warnings, nodes, els, idle: r.idle, time: t,
       assumptions: ["Steady state: the sources have run long enough that every transient has died away.", "Wires are ideal (0 Ω)."],
-      ac: { res: r, scale: this.scale, mode: this.mode, omega: this.omega }, vmax: niceMax(vbig || 1), pmax: pbig || 1e-15,
+      ac: { res: r, scale: this.scale, mode: this.mode, omega: this.omega, hold: this.hold },
+      vmax: niceMax(Math.max(vbig, this.hold?.v || 0) || 1), pmax: Math.max(pbig, this.hold?.p || 0) || 1e-15,
     };
     sol.flows = wireFlows(this.net, (el, j) => els[el.id]?.pins[j]?.i ?? 0);
     return sol;
@@ -154,7 +225,7 @@ export class ACView {
     const r = this.res;
     if (!r) return "";
     if (!r.ok) return `<span class="bad">● AC: can't solve yet</span><span class="msg">${esc(r.errors[0]?.message || "")}</span>`;
-    return `<span class="ok">● AC steady state</span><span class="msg">ω = ${esc(omegaText(this.omega))} · ${r.exact ? "exact" : "decimal"}${this.preview ? " · from the Bode cursor" : ""}</span>`;
+    return `<span class="ok">● AC steady state</span><span class="msg">ω = ${esc(omegaText(this.omega))} · ${r.exact ? "exact" : "decimal"}${this.preview ? (this.preview.input ? " · from the Bode cursor" : " · what-if") : ""}</span>`;
   }
 
   modeSwitchHTML() {
@@ -167,17 +238,20 @@ export class ACView {
     const head = `<div class="ac-head"><span class="eyebrow">AC steady state</span>
       <div class="seg small" role="group" aria-label="Amplitudes"><button type="button" data-ac-scale="peak" aria-pressed="${this.mode === "peak"}">Peak</button><button type="button" data-ac-scale="rms" aria-pressed="${this.mode === "rms"}">RMS</button></div>
       ${this.omega ? `<span class="ac-freq">ω = ${esc(omegaText(this.omega))} · f = ${esc(fmt(this.omega / (2 * Math.PI), "Hz"))} · T = ${esc(fmt(this.T, "s"))}</span>` : ""}</div>`;
-    const preview = this.preview ? `<div class="ac-preview"><span>Showing ω = ${esc(omegaText(this.omega))} from the Bode cursor, with ${esc(this.preview.input)} as the input.</span>
-      <button type="button" class="small" data-ac-preview="apply">Set ${esc(this.preview.input)} to this frequency</button><button type="button" class="link" data-ac-preview="off">back</button></div>` : "";
+    const ids = listText(this.previewIds());
+    const preview = !this.preview ? "" : `<div class="ac-preview"><span>${this.preview.input
+      ? `Showing ω = ${esc(omegaText(this.omega))} from the Bode cursor, with ${esc(this.preview.input)} as the input.`
+      : `What if ${esc(ids)} ran at ω = ${esc(omegaText(this.omega))}? Nothing changes until you set it.`}</span>
+      <button type="button" class="small" data-ac-preview="apply">Set ${esc(ids)} to this frequency</button><button type="button" class="link" data-ac-preview="off">back</button></div>`;
     const tools = `<div class="tool-row">
       <button type="button" class="small" data-ac-dock="phasors">Phasors and waveforms</button>
       <button type="button" class="small" data-ac-dock="bode">Bode plot</button>
       <button type="button" class="small" data-ac-dock="hs">H(s) and poles</button>
       ${ports.map(([a, b]) => `<button type="button" class="small" data-ac-card="port:${esc(a)},${esc(b)}" aria-pressed="${this.card === `port:${a},${b}`}">Thevenin at ${esc(a)}–${esc(b)}</button>`).join("")}
       ${tranButton}</div>`;
-    if (!r?.ok) return `<div class="ac-card">${head}${preview}<ul class="err-list"><li>${esc(r?.errors?.[0]?.message || "")}</li></ul>${tools}</div>`;
+    if (!r?.ok) return `<div class="ac-card">${head}${this.sweepHTML()}${preview}<ul class="err-list"><li>${esc(r?.errors?.[0]?.message || "")}</li></ul>${tools}</div>`;
     const card = !this.card ? "" : predicting ? `<p class="hint">Turn off Predict first to see the worked answers.</p>` : this.cardHTML();
-    return `<div class="ac-card">${head}${preview}${this.notesHTML()}${tools}${card}${this.nodesHTML(hidden)}${this.partsHTML(hidden)}${this.powerHTML(hidden)}</div>`;
+    return `<div class="ac-card">${head}${this.sweepHTML()}${preview}${this.notesHTML()}${tools}${card}${this.nodesHTML(hidden)}${this.partsHTML(hidden)}${this.powerHTML(hidden)}</div>`;
   }
 
   notesHTML() {
@@ -286,7 +360,7 @@ export class ACView {
   // the AC Thevenin card for a port (two labelled terminals) or a part
   cardHTML() {
     const [kind, arg] = [this.card.slice(0, this.card.indexOf(":")), this.card.slice(this.card.indexOf(":") + 1)];
-    const opts = this.preview ? { omega: this.omega, omegaExact: null, drive: previewDrive(this.preview.input) } : { omega: this.omega, omegaExact: this.freq?.exact };
+    const opts = this.preview ? { omega: this.omega, omegaExact: null, drive: this.previewDrive() } : { omega: this.omega, omegaExact: this.freq?.exact };
     let t, title;
     if (kind === "port") {
       const [a, b] = arg.split(",");
@@ -491,6 +565,8 @@ export class ACView {
 
   // ---- clicks in the side panel ----
   onPanelClick(b) {
+    // (a tap needn't move focus off the slider, and the panel won't redraw around a focused input)
+    if (document.activeElement?.matches?.("[data-ac-omega]")) document.activeElement.blur();
     if (b.dataset.acMode) { this.choose(b.dataset.acMode); return true; }
     if (b.dataset.acScale) { this.prefs.acScale = b.dataset.acScale; this.savePrefs(); this.cache = null; this.drawDock(); this.refresh(); return true; }
     if (b.dataset.acDock === "phasors") { this.openDock(); return true; }
@@ -502,19 +578,28 @@ export class ACView {
     return false;
   }
 
-  // the Bode cursor's frequency becomes the input source's own
+  // the previewed frequency becomes real: the Bode cursor's input source's, or every source's
   applyPreview() {
     const p = this.preview;
     if (!p) return;
-    const w = Number(p.omega.toPrecision(4));
-    this.preview = null;  // before the edit, so the re-solve uses the source's new frequency
-    this.store.update((d) => {
-      const part = d.parts.find((q) => q.id === p.input);
-      if (part) part.params = { ...part.params, wave: "sine", funit: "rad/s", w: String(w) };
-    });
-    this.toast?.(`${p.input} now runs at ω = ${omegaText(w)}.`);
+    const ids = this.previewIds();
+    this.preview = null;  // before the edit, so the re-solve uses the sources' new frequency
+    this.store.update((d) => { for (const part of d.parts) if (ids.includes(part.id)) setFrequency(part, p.omega); });
+    this.toast?.(`${listText(ids)} now ${ids.length === 1 ? "runs" : "run"} at ω = ${omegaText(Number(p.omega.toPrecision(4)))}.`);
   }
 }
+
+// a source's frequency, in the unit it was given in (rad/s or Hz), to 4 significant figures
+function setFrequency(part, omega) {
+  const three = part.type === "V3Y" || part.type === "V3D";
+  const unit = part.params.funit ?? (three ? "Hz" : "rad/s");
+  const sine = three ? {} : { wave: "sine" };
+  part.params = unit === "Hz"
+    ? { ...part.params, ...sine, funit: "Hz", f: String(Number((omega / (2 * Math.PI)).toPrecision(4))) }
+    : { ...part.params, ...sine, funit: "rad/s", w: String(Number(omega.toPrecision(4))) };
+}
+
+const listText = (xs) => (xs.length < 2 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 
 function previewDrive(input) {
   return (el, F) => {

@@ -389,7 +389,7 @@ main.bench-main { max-width: none; padding: 10px 14px 14px; }
 .v3d-ctl input[type=range] { width: 80px; accent-color: #f0b955; }
 .v3d-note { position: absolute; left: 12px; bottom: 10px; color: #8f8777; font-size: 11.5px; pointer-events: none; }
 .v3d-tip { position: absolute; z-index: 3; pointer-events: none; background: rgba(30, 29, 26, .95); color: #efe7d6; border: 1px solid #3a3731; border-radius: 9px; padding: 5px 9px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
-@media (max-width: 820px) { .v3d-ctl:has([data-v3d-quality]), .v3d-note { display: none; } }
+@media (max-width: 820px) { .v3d-ctl:has([data-v3d-quality]), .v3d-ctl:has([data-v3d-height]), .v3d-note { display: none; } }
 
 /* ---- transient dock ---- */
 .bench-dock.tran { height: 290px; grid-template-rows: auto auto auto minmax(120px, 1fr); }
@@ -491,4 +491,31 @@ li.fail > .st-head .st-mark, .st-error, .st-checks li.fail { color: var(--brick)
 @media (max-width: 820px) {
   .bench-dock.hs { height: 460px; }
   .hs-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(140px, 1fr); }
+}
+
+/* ---- AC frequency slider and the 3D phase view ---- */
+.ac-sweep { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 8px; font-size: 12.5px; color: var(--ink-soft); }
+.ac-sweep input[type=range] { width: 100%; accent-color: var(--accent, #f0b955); }
+.ac-sweep output { font-variant-numeric: tabular-nums; color: var(--ink); min-width: 9ch; text-align: right; }
+.v3d-bar .seg { --sunken: #23211d; }
+.v3d-wheel { position: absolute; right: 10px; bottom: 8px; width: 116px; padding: 4px 2px; border-radius: 12px; background: rgba(28, 27, 24, .78); border: 1px solid #3a3731; pointer-events: none; }
+.v3d-wheel svg { display: block; width: 100%; }
+.v3d.phase-on .v3d-note { right: 140px; }
+.v3d-wheel text { fill: #b3aa97; font: 500 10px var(--font); }
+@media (max-width: 820px) { .v3d-wheel { width: 88px; } }
+
+/* split and 3D views: the stage's status and 2D zoom keep out of the 3D toolbar's way (the zoom
+   buttons only move the schematic) */
+.bench-stage.only3d .stage-zoom { display: none; }
+@media (min-width: 821px) {
+  .bench-stage.split .stage-status { right: calc(50% + 12px); max-width: min(520px, calc(50% - 24px)); }
+  .bench-stage.split .stage-zoom { right: calc(50% + 10px); }
+  .bench-stage.only3d .stage-status { max-width: min(440px, 42%); }
+  .bench-stage.only3d .v3d-bar { max-width: calc(58% - 34px); }
+  .bench-stage.only3d .v3d-note { bottom: 32px; }
+}
+.bench-stage.only3d.phase3d .stage-legend { display: none; }
+@media (max-width: 820px) {
+  .bench-stage.split .stage-zoom { bottom: calc(50% + 10px); }
+  .bench-stage.only3d .v3d-bar { top: calc(var(--status-h, 0px) + 16px); }
 }

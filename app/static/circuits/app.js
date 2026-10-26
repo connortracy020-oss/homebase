@@ -157,6 +157,9 @@ $("#inspector").addEventListener("click", (e) => {
   if (askN) study.ask({ kind: "v", node: Number(askN.dataset.askNode) });
   if (askP) study.ask({ kind: "part", part: askP.dataset.askPart });
 });
+// the AC frequency slider
+$("#inspector").addEventListener("input", (e) => acv.onPanelInput(e.target, false));
+$("#inspector").addEventListener("change", (e) => acv.onPanelInput(e.target, true));
 
 // ---- palette ----
 const palette = $("#palette");
@@ -270,6 +273,7 @@ title.addEventListener("keydown", (e) => { if (e.key === "Enter") title.blur(); 
 async function setView(v) {
   bench.querySelectorAll("[data-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === v)));
   $("#stage").classList.toggle("split", v === "split");
+  $("#stage").classList.toggle("only3d", v === "3d");
   $("#v2d").hidden = v === "3d";
   $("#v3d").hidden = v === "2d";
   prefs.view = v; savePrefs();
@@ -291,6 +295,8 @@ async function setView(v) {
   requestAnimationFrame(() => view.applyCamera());
 }
 bench.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
+// on a phone the 3D toolbar sits under the status line, however many lines that takes
+new ResizeObserver(() => $("#stage").style.setProperty("--status-h", `${$("#status").offsetHeight}px`)).observe($("#status"));
 store.on("doc", () => landscape?.update());
 store.on("sel", () => landscape?.update());
 const _refresh = refreshAll;

@@ -1,4 +1,5 @@
-// The 3D view: the circuit lifted into a landscape where height is voltage. Every number,
+// The 3D view: the circuit lifted into a landscape where height is voltage. In AC it shows an
+// instant of the cycle, or each node's amplitude |V| with its phase as a hue. Every number,
 // height and color comes from the bench's solution; easing between solutions is a short
 // display transition (instant with reduced motion), and the beads' speed pictures the size
 // of the current, not the electrons' real speed. Rendering happens only when something moves.
@@ -13,9 +14,11 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { GTAOPass } from "three/addons/postprocessing/GTAOPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import { TIERS, detectTier, Governor } from "./quality.js";
-import { boardMaterial, plateauMaterial, curtainMaterial, voltageColor3, mat } from "./materials.js";
+import { boardMaterial, plateauMaterial, curtainMaterial, voltageColor3, phaseColor3, mat } from "./materials.js";
 import { wirePiece, junction, partModel } from "./models.js";
 import { fmt, fmtExact } from "../core/units.js";
+import { polarText } from "../views/phasorfmt.js";
+import { niceMax, phaseRGB } from "../views/palette.js";
 import { fromString } from "../core/rational.js";
 import { pinPoints, key } from "../core/doc.js";
 import { boxOf } from "../editor/symbols.js";
@@ -36,6 +39,7 @@ export class Landscape {
     this.reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     this.beadsOn = this.prefs.beads3d !== false;
     this.heightScale = this.prefs.height3d || 1;
+    this.acShow = this.prefs.ac3d === "phasor" ? "phasor" : "instant";  // in AC: an instant of the cycle, or |V| and phase
 
     host.innerHTML = "";
     host.classList.add("v3d");
@@ -87,7 +91,9 @@ export class Landscape {
     host.addEventListener("click", (e) => this.toolbar(e));
     host.addEventListener("change", (e) => this.toolbar(e));
     host.addEventListener("input", (e) => this.toolbar(e));
-    new ResizeObserver(() => this.resize()).observe(host);
+    const ro = new ResizeObserver(() => this.resize());
+    ro.observe(host);
+    ro.observe(host.querySelector(".v3d-bar"));  // (the toolbar's height moves the picture)
     document.addEventListener("visibilitychange", () => { if (!document.hidden) this.kick(); });
     this.update();
   }
@@ -134,7 +140,12 @@ export class Landscape {
     this.renderer.domElement.style.height = `${h}px`;
     this.labels.setSize(w, h);
     this.composer?.setSize(w, h);
-    this.camera.aspect = w / h;
+    // the toolbar covers the top of the view, so centre the picture in what's left below it:
+    // render the top of a view taller by that much
+    const bar = this.host.querySelector(".v3d-bar")?.getBoundingClientRect();
+    const cover = bar ? Math.max(0, Math.min(0.45 * h, bar.bottom - this.host.getBoundingClientRect().top)) : 0;
+    this.camera.aspect = w / (h + cover);
+    if (cover > 0) this.camera.setViewOffset(w, h + cover, 0, 0, w, h); else this.camera.clearViewOffset();
     this.camera.updateProjectionMatrix();
     if (!this.userMoved) this.frame(false);
     this.kick();
@@ -212,32 +223,73 @@ export class Landscape {
     const ok = sol?.ok;
     const vref = ok && sol.nodes[this.ref]?.v != null ? sol.nodes[this.ref].v : 0;
     const vd = (i) => (ok && sol.nodes[i] && sol.nodes[i].v !== null ? sol.nodes[i].v - vref : null);
+    // AC with "|V| and phase": height is each node's amplitude, color its phasor's angle (which
+    // turns as the cycle plays, every node together at ω)
+    const ph = this.phasorMode();
+    const mag = (i) => { const z = this.acPhasor(i); return z ? Math.hypot(z.re, z.im) : null; };
+    const level = ph ? mag : vd;
     // AC moments carry a scale fixed through the cycle, so the landscape rises and falls
-    const vmax = sol?.vmax || Math.max(1e-9, ...net.nodes.map((n) => Math.abs(vd(n.index) ?? 0)));
+    const vmax = ph ? Math.max(sol.vmax || 0, niceMax(Math.max(1e-12, ...net.nodes.map((n) => mag(n.index) ?? 0))))
+      : sol?.vmax || Math.max(1e-9, ...net.nodes.map((n) => Math.abs(vd(n.index) ?? 0)));
+    const turn = ph ? (sol.ac.omega || 0) * (sol.time || 0) : 0;
     this.scale = (HEIGHT * this.heightScale) / vmax;
     this.colors = new Map();
     this.vmax = vmax;
     const focus = this.getFocusNode?.() ?? null;
     for (const nd of net.nodes) {
-      const v = vd(nd.index), hide = hidden({ kind: "v", node: nd.index });
+      const v = level(nd.index), hide = hidden({ kind: "v", node: nd.index });
       const t = v === null || hide ? 0 : v * this.scale;
       this.target.set(nd.index, t);
       if (!this.h.has(nd.index) || this.reduced || this.instant) this.h.set(nd.index, t);
-      const color = voltageColor3(v ?? 0, vmax);
+      const color = ph ? phaseColorOf(this.acPhasor(nd.index), turn, vmax) : voltageColor3(v ?? 0, vmax);
       const dim = focus !== null && focus !== nd.index;
       const unknown = v === null || hide;
       const ribbon = plateauMaterial(dim ? color.clone().multiplyScalar(0.35) : color, { unknown });
       this.colors.set(nd.index, { ribbon, curtain: unknown || dim ? null : curtainMaterial(color) });
     }
-    // heat: each resistor's share of the largest power absorbed
+    // heat: each resistor's share of the largest power absorbed (with |V| and phase: the
+    // average power, as a share of the most any resistor takes)
     this.heat = new Map();
     if (ok) {
-      const pmax = sol.pmax ?? Math.max(1e-15, ...Object.values(sol.els).map((e) => Math.max(0, e.p)));
-      for (const [id, e] of Object.entries(sol.els)) if (e.type === "R" && e.p > 0 && !hidden({ kind: "p", part: id })) this.heat.set(id, Math.sqrt(e.p / pmax));
+      const P = ph ? (id) => sol.ac.res.els[id]?.s?.re ?? 0 : (id) => sol.els[id].p;
+      const pmax = ph ? Math.max(1e-15, sol.ac.hold?.pR || 0, ...Object.keys(sol.els).filter((id) => sol.els[id].type === "R").map(P))
+        : sol.pmax ?? Math.max(1e-15, ...Object.values(sol.els).map((e) => Math.max(0, e.p)));
+      for (const [id, e] of Object.entries(sol.els)) if (e.type === "R" && P(id) > 0 && !hidden({ kind: "p", part: id })) this.heat.set(id, Math.sqrt(P(id) / pmax));
     }
+    this.syncAC();
     this.flowsFor();
     this.refreshLabels();
     this.applyHeights();
+  }
+
+  phasorMode() { return this.acShow === "phasor" && !!this.sol?.ok && !!this.sol.ac; }
+
+  // a node's AC phasor (peak), measured from the node shown at 0, or null
+  acPhasor(i) {
+    const nodes = this.sol?.ok ? this.sol.ac?.res.nodes : null;
+    const z = nodes?.[i]?.v;
+    if (!z) return null;
+    if (!this.ref) return z;
+    const z0 = nodes[this.ref]?.v;
+    return z0 ? { re: z.re - z0.re, im: z.im - z0.im } : null;
+  }
+
+  // the AC switch, the phase legend and the caption follow the solution
+  syncAC() {
+    const ac = !!(this.sol?.ok && this.sol.ac), ph = this.phasorMode();
+    const g = this.host.querySelector(".v3d-ac");
+    if (g) {
+      g.hidden = !ac;
+      for (const b of g.querySelectorAll("[data-v3d-ac]")) b.setAttribute("aria-pressed", String(b.dataset.v3dAc === this.acShow));
+    }
+    this.host.querySelector(".v3d-wheel")?.toggleAttribute("hidden", !ph);
+    this.host.classList.toggle("phase-on", ph);
+    this.host.closest(".bench-stage")?.classList.toggle("phase3d", ph);  // (the 2D voltage legend doesn't apply)
+    const note = this.host.querySelector(".v3d-note");
+    if (note) note.textContent = ph ? "Height = amplitude |V| · color = phase angle, turning as the cycle plays · drag to orbit"
+      : ac ? "Height = voltage at this instant of the cycle · drag to orbit · double-click to fly to a node"
+      : "Height = voltage · drag to orbit · double-click to fly to a node";
+    this.renderer.domElement.setAttribute("aria-label", ph ? "3D view of the circuit: each node's height is its AC amplitude and its color its phase angle" : "3D view of the circuit: each node's height is its voltage");
   }
 
   H = (n) => (n >= 0 ? this.h.get(n) ?? 0 : 0);
@@ -300,6 +352,7 @@ export class Landscape {
         let text = "—";
         if (n && n.v !== null) {
           if (hidden({ kind: "v", node: L.node })) text = "?";
+          else if (sol.ac) text = polarText(this.acPhasor(L.node), "V", sol.ac.scale) + ref;  // the phasor, as the 2D pills show it
           else if (!this.ref) text = (n.vx ? fmtExact(fromString(n.vx), "V") : { main: fmt(n.v, "V") }).main;
           else text = fmt(n.v - sol.nodes[this.ref].v, "V") + ref;
         }
@@ -426,7 +479,9 @@ export class Landscape {
     if (n === null || !this.sol?.ok) { this.tip.hidden = true; return; }
     const nd = this.net.nodes[n], s = this.sol.nodes[n];
     const hide = this.hidden()({ kind: "v", node: n });
-    this.tip.innerHTML = `<b>${esc(n === 0 ? "ground" : nd.label || nd.name)}</b> ${hide ? "?" : s.v === null ? "no DC voltage" : esc(fmt(s.v, "V"))}`;
+    const ac = this.sol.ac;
+    const text = hide ? "?" : s.v === null ? "no DC voltage" : ac ? polarText(ac.res.nodes[n]?.v, "V", ac.scale) : fmt(s.v, "V");
+    this.tip.innerHTML = `<b>${esc(n === 0 ? "ground" : nd.label || nd.name)}</b> ${esc(text)}`;
     const r = this.host.getBoundingClientRect();
     this.tip.style.left = `${e.clientX - r.left + 14}px`;
     this.tip.style.top = `${e.clientY - r.top + 14}px`;
@@ -437,6 +492,8 @@ export class Landscape {
   toolbar(e) {
     const t = e.target;
     if (e.type === "click") {
+      const ac = t.closest("[data-v3d-ac]");
+      if (ac) { this.acShow = ac.dataset.v3dAc; this.prefs.ac3d = this.acShow; this.savePrefs(); this.retarget(); this.kick(); return; }
       const b = t.closest("[data-v3d]");
       if (!b) return;
       const act = b.dataset.v3d;
@@ -494,6 +551,29 @@ export class Landscape {
 }
 
 const RIBBON_GAP = 0.04;
+
+// a node's color with |V| and phase: its phasor's angle (turned to this instant), fading to grey
+// as the amplitude goes to 0; the angle in 2° steps, so playback reuses a few materials
+function phaseColorOf(z, turn, vmax) {
+  if (!z) return phaseColor3(0, 0);
+  const a = Math.round(((Math.atan2(z.im, z.re) + turn) * 90) / Math.PI) * (Math.PI / 90);
+  return phaseColor3(a, Math.min(1, Math.hypot(z.re, z.im) / (0.04 * vmax)));
+}
+
+// the legend for |V| and phase: the hue circle, 0° to the right and counterclockwise, the way
+// a phasor diagram turns
+function wheelHTML() {
+  const C = 34, R = 26, r = 15, N = 36, out = [];
+  const P = (a, rr) => `${(C + rr * Math.cos(a)).toFixed(2)} ${(C - rr * Math.sin(a)).toFixed(2)}`;
+  for (let k = 0; k < N; k++) {
+    const a0 = ((k - 0.5) * 2 * Math.PI) / N, a1 = ((k + 0.5) * 2 * Math.PI) / N;
+    const fill = `rgb(${phaseRGB((k * 2 * Math.PI) / N).join(" ")})`;
+    out.push(`<path d="M${P(a0, r)}L${P(a0, R)}A${R} ${R} 0 0 0 ${P(a1, R)}L${P(a1, r)}A${r} ${r} 0 0 1 ${P(a0, r)}Z" fill="${fill}" stroke="${fill}" stroke-width="0.6"/>`);
+  }
+  out.push(`<text x="${C + R + 4}" y="${C + 3.5}">0°</text><text x="${C}" y="${C - R - 4}" text-anchor="middle">90°</text>`,
+    `<text x="${C - R - 4}" y="${C + 3.5}" text-anchor="end">180°</text><text x="${C}" y="${C + R + 11}" text-anchor="middle">−90°</text>`);
+  return `<div class="v3d-wheel" hidden><svg viewBox="-22 -6 112 84" role="img" aria-label="Phase colors: 0° amber, 90° green, 180° blue, −90° magenta">${out.join("")}</svg></div>`;
+}
 const len = (pc) => Math.abs(pc.a[0] - pc.b[0]) + Math.abs(pc.a[1] - pc.b[1]);
 
 function toolbarHTML(L) {
@@ -502,8 +582,9 @@ function toolbarHTML(L) {
     <button type="button" class="small" data-v3d="top" title="Look straight down">Top</button>
     <button type="button" class="small" data-v3d="side" title="See the voltage profile from the side">Side</button>
     <button type="button" class="small" data-v3d="beads" aria-pressed="${L.beadsOn}" title="Moving beads show current">Current</button>
+    <div class="seg small v3d-ac" role="group" aria-label="What the heights show in AC" hidden><button type="button" data-v3d-ac="instant" aria-pressed="${L.acShow === "instant"}" title="Heights swing with the voltage at this instant of the cycle">Instant</button><button type="button" data-v3d-ac="phasor" aria-pressed="${L.acShow === "phasor"}" title="Height is each node's amplitude |V|, color its phase angle">|V| and phase</button></div>
     <label class="v3d-ctl" title="Which node is shown at height 0 (voltages are differences, so the whole landscape just moves)">0 V at <select data-v3d-ref></select></label>
     <label class="v3d-ctl">Height <input type="range" data-v3d-height min="0.4" max="2.5" step="0.1" value="${L.heightScale}"></label>
     <label class="v3d-ctl">Quality <select data-v3d-quality><option value="auto">Auto</option><option value="battery">Battery</option><option value="balanced">Balanced</option><option value="cinematic">Cinematic</option></select></label>
-  </div><div class="v3d-note">Height = voltage · drag to orbit · double-click to fly to a node</div>`;
+  </div><div class="v3d-note">Height = voltage · drag to orbit · double-click to fly to a node</div>${wheelHTML()}`;
 }

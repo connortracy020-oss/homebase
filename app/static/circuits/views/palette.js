@@ -31,3 +31,22 @@ export function legendGradient(direction = "90deg", signed = false) {
   const stops = signed ? [...NEG].reverse().concat(POS.slice(1)) : POS;
   return `linear-gradient(${direction}, ${stops.map(([r, g, b]) => `rgb(${r} ${g} ${b})`).join(", ")})`;
 }
+
+// A phase angle (radians) as a hue on an even-lightness circle (OKLCH), so no angle looks
+// bigger than another: 0° amber like the positive end of the voltage scale, 90° green, ±180°
+// blue, −90° magenta. strength 0–1 fades it toward grey (an amplitude near zero has no angle
+// worth showing). The numbers always sit beside the color.
+export function phaseRGB(angle, strength = 1) {
+  const h = (72 * Math.PI) / 180 + angle, c = 0.13 * Math.max(0, Math.min(1, strength));
+  return oklchRGB(0.75, c, h);
+}
+
+// OKLCH -> sRGB (0-255), clipped to the gamut
+function oklchRGB(L, C, h) {
+  const a = C * Math.cos(h), b = C * Math.sin(h);
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3;
+  const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3;
+  const s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  const lin = [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s];
+  return lin.map((x) => { const v = Math.max(0, Math.min(1, x)); return Math.round(255 * (v <= 0.0031308 ? 12.92 * v : 1.055 * v ** (1 / 2.4) - 0.055)); });
+}

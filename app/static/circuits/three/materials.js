@@ -1,13 +1,19 @@
 // Materials and small procedural textures for the 3D view (no image files to download).
 
 import * as THREE from "three";
-import { rampRGB } from "../views/palette.js";
+import { rampRGB, phaseRGB } from "../views/palette.js";
 
 const cache = new Map();
 
 export function voltageColor3(v, vmax) {
   const [r, g, b] = rampRGB(vmax > 0 ? v / vmax : 0);
   return new THREE.Color().setRGB(r / 255, g / 255, b / 255, THREE.SRGBColorSpace);  // the palette is sRGB, like the 2D view
+}
+
+// a phase angle as a hue, for the AC "|V| and phase" view
+export function phaseColor3(angle, strength) {
+  const [r, g, b] = phaseRGB(angle, strength);
+  return new THREE.Color().setRGB(r / 255, g / 255, b / 255, THREE.SRGBColorSpace);
 }
 
 // glassy, softly lit tiles for a node's wires: the color is the node's voltage

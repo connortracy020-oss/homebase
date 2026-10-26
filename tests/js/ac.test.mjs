@@ -5,7 +5,8 @@ import assert from "node:assert/strict";
 
 import { migrate } from "../../app/static/circuits/core/doc.js";
 import { compile } from "../../app/static/circuits/core/compile.js";
-import { solveAC, acFrequency, acThevenin, STEADY } from "../../app/static/circuits/solver/ac.js";
+import { solveAC, acFrequency, acThevenin, sourceDrive, STEADY } from "../../app/static/circuits/solver/ac.js";
+import { phaseRGB } from "../../app/static/circuits/views/palette.js";
 import { solveDC } from "../../app/static/circuits/solver/op.js";
 import { eigenvalues } from "../../app/static/circuits/solver/modes.js";
 import { fromString } from "../../app/static/circuits/core/rational.js";
@@ -131,4 +132,32 @@ test("DC analysis of a sine source sees only its offset", () => {
 test("small helpers: eigenvalues still fine after the field changes", () => {
   const ev = eigenvalues([[0, 1], [-2, -3]]).map((z) => z.re).sort((a, b) => a - b);
   assert.ok(Math.abs(ev[0] + 2) < 1e-9 && Math.abs(ev[1] + 1) < 1e-9);
+});
+
+test("the what-if slider's drive moves every source to the new ω: the low-pass falls as 1/√(1 + (ωRC)²)", () => {
+  const net = compile(migrate(rcLowPass()), { when: STEADY });
+  for (const w of [100, 1000, 10000]) {
+    const s = solveAC(net, { omega: w, omegaExact: null, drive: sourceDrive(w, { any: true }) });
+    assert.ok(s.ok);
+    const z = s.nodes[net.nodeAt("6,0")].v, want = 1 / Math.sqrt(1 + (w * 1e-3) ** 2);
+    assert.ok(Math.abs(Math.hypot(z.re, z.im) - want) < 1e-12, `|vo| at ${w}: ${Math.hypot(z.re, z.im)} vs ${want}`);
+    assert.ok(Math.abs(Math.atan2(z.im, z.re) + Math.atan(w * 1e-3)) < 1e-12, "phase −atan(ωRC)");
+  }
+  // without any, a source at another frequency is off at this one
+  const off = solveAC(net, { omega: 2000, omegaExact: null, drive: sourceDrive(2000) });
+  assert.ok(off.ok && Math.hypot(off.nodes[net.nodeAt("6,0")].v.re, off.nodes[net.nodeAt("6,0")].v.im) === 0);
+});
+
+test("phase colors stay in gamut, keep their lightness, and go grey at zero strength", () => {
+  const lum = ([r, g, b]) => { const f = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b); };
+  const ls = [];
+  for (let k = 0; k < 72; k++) {
+    const c = phaseRGB((k * Math.PI) / 36);
+    assert.ok(c.every((x) => Number.isInteger(x) && x >= 0 && x <= 255));
+    ls.push(lum(c));
+  }
+  assert.ok(Math.max(...ls) - Math.min(...ls) < 0.12, `lightness spread ${Math.min(...ls)}..${Math.max(...ls)}`);
+  const grey = phaseRGB(1.234, 0);
+  assert.ok(Math.max(...grey) - Math.min(...grey) <= 1, `grey ${grey}`);
+  assert.notDeepEqual(phaseRGB(0), phaseRGB(Math.PI));   // opposite phases look different
 });

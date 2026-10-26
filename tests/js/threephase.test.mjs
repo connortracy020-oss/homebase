@@ -8,6 +8,7 @@ import { migrate } from "../../app/static/circuits/core/doc.js";
 import { compile } from "../../app/static/circuits/core/compile.js";
 import { solveAC, acFrequency, STEADY } from "../../app/static/circuits/solver/ac.js";
 import { transient } from "../../app/static/circuits/solver/tran.js";
+import { naturalModes, polyRoots } from "../../app/static/circuits/solver/modes.js";
 
 const W = 2 * Math.PI * 60;
 let n = 0;
@@ -100,4 +101,19 @@ test("in a transient, a three-phase source's phases add to zero at every instant
   const sum = r.t.map((_, j) => r.els.RA.i[j] + r.els.RB.i[j] + r.els.RC.i[j]);
   assert.ok(Math.max(...sum.map(Math.abs)) < 1e-9, "balanced: no neutral current at any instant");
   assert.ok(Math.max(...r.els.RA.i.map(Math.abs)) > 16);   // 120√2/10 ≈ 17 A peak
+});
+
+test("repeated roots come out exact: three identical loads have one triple mode, not three that wobble", () => {
+  const near0 = (z, re, im) => assert.ok(Math.abs(z.re - re) <= 1e-12 * Math.abs(re) && Math.abs(z.im - im) <= 1e-12 * (1 + Math.abs(im)), `${z.re} ${z.im}j vs ${re} ${im}j`);
+  for (const z of polyRoots([1, 3 * 282.75, 3 * 282.75 ** 2, 282.75 ** 3])) near0(z, -282.75, 0);   // (s + 282.75)³
+  const pair = polyRoots([1, 4, 14, 20, 25]);                                                   // (s² + 2s + 5)²
+  assert.equal(pair.filter((z) => z.im > 0).length, 2);
+  for (const z of pair) near0(z, -1, Math.sign(z.im) * 2);
+  // the Y–Y load with its star point on the neutral: τ = L/R for each phase, and no made-up
+  // oscillation (round-off used to split the triple root into a wobble with a 13-hour period)
+  const load = ["A", "B", "C"].flatMap((ph, k) => [...between(`R${ph}`, "R", ph, `${ph}m`, { R: "6" }, 2 * k), ...between(`L${ph}`, "L", `${ph}m`, "N", { L: String(8 / W) }, 2 * k + 1)]);
+  const net = compile(migrate({ parts: [...ySource(), ...load], wires: [] }), { when: STEADY });
+  const m = naturalModes(net);
+  assert.deepEqual(m.periods, []);
+  for (const tau of m.taus) near(tau, 8 / W / 6, 1e-9);
 });

@@ -38,11 +38,12 @@ export function acFrequency(net) {
 
 const same = (a, b) => Math.abs(a - b) <= 1e-9 * Math.max(Math.abs(a), Math.abs(b));
 
-// the phasor each independent source drives at ω (null: off at this frequency)
-export function sourceDrive(omega) {
+// the phasor each independent source drives at ω (null: off at this frequency); any: every
+// sine source drives at ω, whatever its own frequency (the bench's what-if slider)
+export function sourceDrive(omega, { any = false } = {}) {
   return (el, F, k = 0) => {
     const p = el.params;
-    if ((p.wave?.text !== "sine" && !el.def.threePhase) || !same(sineOmega(p).value, omega)) return null;
+    if ((p.wave?.text !== "sine" && !el.def.threePhase) || (!any && !same(sineOmega(p).value, omega))) return null;
     const z = el.def.threePhase ? phasorOf(F, sinePeak(p, "V3"), angleOf(p, k)) : phasorOf(F, sinePeak(p, el.type === "I" ? "I" : "V"), p.ph.value);
     if (z === null) throw new FloatOnly();
     return z;
