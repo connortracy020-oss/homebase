@@ -149,7 +149,8 @@ export class Landscape {
 
   // ---- building the scene from the solution ----
   update() {
-    const doc = this.store.doc, net = this.getNet(), sol = this.getSolution();
+    const doc = this.getDoc?.() || this.store.doc, net = this.getNet(), sol = this.getSolution();
+    this.instant = !!this.playing?.();  // playback follows the run exactly, no easing
     if (!net) return;
     this.doc = doc; this.net = net; this.sol = sol;
     const sig = JSON.stringify([doc.parts.map((p) => [p.id, p.type, p.x, p.y, p.rot, p.flip, p.params.state, p.type === "R" ? p.params.R : ""]), doc.wires]);
@@ -220,7 +221,7 @@ export class Landscape {
       const v = vd(nd.index), hide = hidden({ kind: "v", node: nd.index });
       const t = v === null || hide ? 0 : v * this.scale;
       this.target.set(nd.index, t);
-      if (!this.h.has(nd.index) || this.reduced) this.h.set(nd.index, t);
+      if (!this.h.has(nd.index) || this.reduced || this.instant) this.h.set(nd.index, t);
       const color = voltageColor3(v ?? 0, vmax);
       const dim = focus !== null && focus !== nd.index;
       const unknown = v === null || hide;

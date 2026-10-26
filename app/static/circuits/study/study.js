@@ -10,6 +10,7 @@ import { defOf } from "../elements/index.js";
 import { equationsCard, superpositionCard, theveninCard, checkCard } from "./tools.js";
 import { checkWork } from "./check.js";
 import { Plot } from "../views/plot.js";
+import { Transient } from "./transient.js";
 
 export class Study {
   constructor({ slug, store, getSolution, getNet, refresh, toast, solver, dock }) {
@@ -31,7 +32,12 @@ export class Study {
   onClick(e) {
     const b = e.target.closest("button");
     if (!b) return;
-    if (b.dataset.study) { this.card = this.card === b.dataset.study ? null : b.dataset.study; this.check.result = null; this.refresh(); }
+    if (b.dataset.study) {
+      this.card = this.card === b.dataset.study ? null : b.dataset.study;
+      this.check.result = null;
+      if (this.card === "tran") this.tran.run();
+      this.refresh();
+    }
     else if (b.hasAttribute("data-study-close")) { this.card = null; this.refresh(); }
     else if (b.hasAttribute("data-check-clear")) { this.check = { inputs: {}, result: null }; this.refresh(); }
     else if (b.dataset.sweep) this.sweep(b.dataset.sweep);
@@ -61,10 +67,11 @@ export class Study {
   cardHTML() {
     const net = this.getNet(), sol = this.getSolution();
     if (!net || !this.card) return "";
-    if (this.predicting && this.card !== "check") return `<p class="hint">Turn off Predict first to see the worked answers.</p>`;
+    if (this.predicting && this.card !== "check" && this.card !== "tran") return `<p class="hint">Turn off Predict first to see the worked answers.</p>`;
     if (this.card === "eq") return equationsCard(net, sol);
     if (this.card === "sup") return superpositionCard(net);
     if (this.card === "check") return checkCard(net, sol, this.check);
+    if (this.card === "tran") return this.tran.cardHTML();
     return "";
   }
 
@@ -191,7 +198,8 @@ export class Study {
     return `<div class="study-tools"><span class="eyebrow">Study</span><div class="tool-row">
       <button type="button" class="small" data-study="eq" ${pressed("eq")}>Equations</button>
       <button type="button" class="small" data-study="sup" ${pressed("sup")}>Superposition</button>
-      <button type="button" class="small" data-study="check" ${pressed("check")}>Check my work</button></div>${this.cardHTML()}</div>`;
+      <button type="button" class="small" data-study="check" ${pressed("check")}>Check my work</button>
+      ${Transient.relevant(this.store.doc) ? `<button type="button" class="small" data-study="tran" ${pressed("tran")}>Over time</button>` : ""}</div>${this.cardHTML()}</div>`;
   }
 
   partTools(part) {

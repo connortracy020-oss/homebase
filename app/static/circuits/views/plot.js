@@ -30,13 +30,14 @@ export class Plot {
     const xs = d.x, X0 = xs[0], X1 = xs[xs.length - 1];
     const fx = d.xLog ? (x) => (Math.log10(x) - Math.log10(X0)) / (Math.log10(X1) - Math.log10(X0)) : (x) => (x - X0) / (X1 - X0 || 1);
     const px = (x) => L + fx(x) * (W - L - R);
+    // each y axis spans round numbers that contain its traces
     const ranges = [0, 1].map((ax) => {
       const vals = d.series.filter((s) => (s.axis || 0) === ax).flatMap((s) => s.y.filter((v) => v !== null && Number.isFinite(v)));
       if (!vals.length) return null;
       let lo = Math.min(...vals), hi = Math.max(...vals);
       if (lo === hi) { lo -= Math.abs(lo) * 0.1 || 1; hi += Math.abs(hi) * 0.1 || 1; }
-      const pad = (hi - lo) * 0.08;
-      return [lo - pad, hi + pad];
+      const step = niceStep((hi - lo) / 4);
+      return [Math.floor(lo / step - 1e-9) * step, Math.ceil(hi / step + 1e-9) * step, step];
     });
     const py = (v, ax) => { const [lo, hi] = ranges[ax]; return T + (1 - (v - lo) / (hi - lo)) * (H - T - B); };
     const css = getComputedStyle(c);
@@ -47,9 +48,9 @@ export class Plot {
     g.strokeStyle = line; g.fillStyle = ink;
     for (const ax of [0, 1]) {
       if (!ranges[ax]) continue;
-      const [lo, hi] = ranges[ax], unit = d.series.find((s) => (s.axis || 0) === ax)?.unit || "";
-      for (let k = 0; k <= 4; k++) {
-        const v = lo + ((hi - lo) * k) / 4, y = py(v, ax);
+      const [lo, hi, step] = ranges[ax], unit = d.series.find((s) => (s.axis || 0) === ax)?.unit || "";
+      for (let v = lo; v <= hi + step * 1e-6; v += step) {
+        const y = py(v, ax);
         if (ax === 0) { g.globalAlpha = 0.5; g.beginPath(); g.moveTo(L, y); g.lineTo(W - R, y); g.stroke(); g.globalAlpha = 1; }
         g.textAlign = ax === 0 ? "right" : "left";
         g.fillText(fmt(v, unit, 3), ax === 0 ? L - 6 : W - R + 6, y + 4);
@@ -63,7 +64,8 @@ export class Plot {
       if (m.x < Math.min(X0, X1) || m.x > Math.max(X0, X1)) continue;
       const x = px(m.x);
       g.setLineDash([4, 3]); g.strokeStyle = m.color || "#ffd98a"; g.beginPath(); g.moveTo(x, T); g.lineTo(x, H - B); g.stroke(); g.setLineDash([]);
-      g.fillStyle = m.color || "#ffd98a"; g.textAlign = x > W - 120 ? "right" : "left"; g.fillText(m.label, x + (x > W - 120 ? -5 : 5), T + 10);
+      g.fillStyle = m.color || "#ffd98a"; g.textAlign = x > W - 120 ? "right" : "left";
+      g.fillText(m.label, x + (x > W - 120 ? -5 : 5), m.low ? H - B - 6 : T + 10);
     }
     // traces
     d.series.forEach((s, k) => {
@@ -90,6 +92,11 @@ export class Plot {
       this.readout.innerHTML = d.series.map((s, k) => `<span style="color:${s.color || COLORS[k % COLORS.length]}">● ${s.name}</span>`).join(" ");
     }
   }
+}
+
+function niceStep(x) {
+  const e = 10 ** Math.floor(Math.log10(x || 1)), m = x / e;
+  return ([1, 2, 2.5, 5, 10].find((k) => m <= k + 1e-9) || 10) * e;
 }
 
 function logTicks(a, b) {

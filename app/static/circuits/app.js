@@ -19,7 +19,9 @@ import { Overlay } from "./views/overlay.js";
 import { CurrentFlow } from "./views/current.js";
 import { statusHTML, overviewHTML, solvedHTML, tipHTML, kclHTML } from "./views/panels.js";
 import { Study } from "./study/study.js";
+import { Transient } from "./study/transient.js";
 import { toSpice } from "./io/spice.js";
+import { fmt } from "./core/units.js";
 
 const $ = (s, r = document) => r.querySelector(s);
 const data = JSON.parse($("#circuit-data").textContent);
@@ -33,6 +35,14 @@ let net = null, sol = null, focusNode = null, lastPointerType = "mouse", tipPos 
 
 const solver = new SolverClient();
 const study = new Study({ slug: data.slug, store, getSolution: () => sol, getNet: () => net, refresh: () => refreshAll(), toast, solver, dock: $("#dock") });
+const tran = study.tran = new Transient({ store, solver, dock: $("#dock"), refresh: () => refreshAll(), toast });
+let playback = false;
+
+// what the views show: the circuit at a moment of a transient run, or its DC solution
+function shown() {
+  const m = tran.moment();
+  return m || { doc: store.doc, net, sol };
+}
 
 // ---- solve and draw ----
 function recompute() {
@@ -52,10 +62,13 @@ function errorParts() {
 
 function refreshAll() {
   const hidden = study.hidden;
-  overlay.render(store.doc, net, sol, { hidden, focusNode, err: errorParts(), currents: prefs.chips !== false });
-  $("#status").innerHTML = statusHTML(sol);
+  const v = shown(), moment = v.sol !== sol;
+  if (moment || playback) view.draw(v.doc, v.net);  // switches drawn where they are at that moment
+  playback = moment;
+  overlay.render(v.doc, v.net, v.sol, { hidden, focusNode, err: moment ? new Set() : errorParts(), currents: prefs.chips !== false });
+  $("#status").innerHTML = moment ? `<span class="ok">▶ t = ${fmt(v.sol.time, "s")}</span><span class="msg">playing back the run</span>` : statusHTML(sol);
   flow.electron = !!prefs.electron;
-  flow.setData(store.doc, net, study.predicting ? null : sol);
+  flow.setData(v.doc, v.net, study.predicting ? null : v.sol);
   inspector.render();
   study.renderAsk?.();
   landscape?.update();
@@ -88,7 +101,7 @@ const input = new Input({
   },
 });
 
-store.on("doc", () => recompute());
+store.on("doc", () => { tran.invalidate(); recompute(); });
 store.on("sel", () => {
   view.applyState({ sel: store.sel });
   const wires = store.selectedWires;
@@ -238,7 +251,8 @@ async function setView(v) {
     try {
       const { Landscape } = await import("./three/landscape.js");
       landscape = new Landscape($("#v3d"), {
-        store, getNet: () => net, getSolution: () => sol, hidden: () => study.hidden, prefs, savePrefs,
+        store, getNet: () => shown().net, getSolution: () => shown().sol, getDoc: () => shown().doc, playing: () => !!tran.moment(),
+        hidden: () => study.hidden, prefs, savePrefs,
         getFocusNode: () => focusNode,
         onFocusNode: (n) => { focusNode = focusNode === n ? null : n; store.clearSelection(); refreshAll(); },
       });

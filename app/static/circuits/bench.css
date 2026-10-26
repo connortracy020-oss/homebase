@@ -386,3 +386,17 @@ main.bench-main { max-width: none; padding: 10px 14px 14px; }
 .v3d-note { position: absolute; left: 12px; bottom: 10px; color: #8f8777; font-size: 11.5px; pointer-events: none; }
 .v3d-tip { position: absolute; z-index: 3; pointer-events: none; background: rgba(30, 29, 26, .95); color: #efe7d6; border: 1px solid #3a3731; border-radius: 9px; padding: 5px 9px; font-size: 12.5px; font-variant-numeric: tabular-nums; }
 @media (max-width: 820px) { .v3d-ctl:has([data-v3d-quality]), .v3d-note { display: none; } }
+
+/* ---- transient dock ---- */
+.bench-dock.tran { height: 290px; grid-template-rows: auto auto auto minmax(120px, 1fr); }
+.tran-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12.5px; color: var(--mat-soft); }
+.tran-controls button { --face: #2d2b26; --edge: #111; --text: #efe7d6; }
+.tran-controls .link { color: var(--mat-soft); }
+.tran-controls select { font: 500 12px var(--font); background: #2d2b26; color: #efe7d6; border: 1px solid #3a3731; border-radius: 7px; padding: 3px 6px; }
+.tran-time { flex: 1; min-width: 140px; accent-color: #f0b955; }
+.tran-t { color: #efe7d6; font-variant-numeric: tabular-nums; min-width: 92px; }
+.tran-traces { display: flex; gap: 5px; flex-wrap: wrap; }
+.tran-traces .chip { --face: #2d2b26; --edge: #111; --text: #b3aa97; }
+.tran-traces .chip[aria-pressed="true"] { --face: #efe7d6; --text: #23211c; }
+.eqs-inline .katex-display { margin: 6px 0; overflow-x: auto; overflow-y: hidden; }
+@media (max-width: 820px) { .bench-dock.tran { height: 260px; } .tran-base { display: none; } }

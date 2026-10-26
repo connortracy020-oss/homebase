@@ -4,6 +4,7 @@
 
 import { lin } from "./lin.js";
 import { FloatOnly } from "../elements/common.js";
+import { fromString } from "../core/rational.js";
 
 export class ControlLoop extends Error {
   constructor(el) { super(`${el.id}: dependent sources control each other in a loop`); this.name = "ControlLoop"; this.el = el; }
@@ -44,7 +45,7 @@ export function assemble(net, F, ctx) {
     icValue(exact, value) {
       if (!F.exact) return value;
       if (!exact) throw new FloatOnly();
-      return exact;
+      return typeof exact === "string" ? fromString(exact) : exact;
     },
     row(r, expr, rhs) {
       for (const [c, v] of expr.t) A[r][c] = F.add(A[r][c], v);
