@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block title %}Circuits · Homebase{% endblock %}
+{% block main_class %}wide{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/circuits/bench.css?v={{ static_v('circuits/bench.css') }}">
+<section class="hero">
+  <p class="eyebrow">Circuit Bench</p>
+  <h1>Circuits</h1>
+  <p class="muted small">Draw a circuit and it solves as you build it: exact node voltages, currents and power, a 3D view where
+    voltage is height, and checks for your own hand work.</p>
+</section>
+
+<div class="circuits-grid">
+  <section class="card new-circuit">
+    <h2>New circuit</h2>
+    <form method="post" action="/circuits/new" class="stack">
+      <label class="field">Name <input name="title" value="Untitled circuit" required maxlength="120"></label>
+      <label class="field">Course
+        <select name="course">{% for c in courses %}<option value="{{ c.code }}" {% if c.code == 'ECE201' %}selected{% endif %}>{{ c.name }}</option>{% endfor %}<option value="">No course</option></select>
+      </label>
+      <button class="primary" type="submit">Start drawing</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>{{ 'Archived' if archived else 'Your circuits' }}</h2>
+      <span class="right"><a href="/circuits{{ '' if archived else '?archived=1' }}">{{ 'Back to circuits' if archived else 'Archived' }}</a></span></div>
+    {% if items %}
+    <ul class="rows circuit-rows">
+      {% for c in items %}
+      {% set course = course_by_id.get(c.course_id) %}
+      <li {% if course %}style="--accent: {{ course | ccolor }}"{% endif %}>
+        <svg class="circuit-thumb" data-doc='{{ c.doc | tojson }}' viewBox="0 0 10 6" aria-hidden="true"></svg>
+        <div class="grow">
+          <a class="t" href="/circuits/{{ c.slug }}">{{ c.title }}</a>
+          <div class="m">{% if course %}<span><span class="dot"></span>{{ course.name }}</span>{% endif %}
+            <span>{{ c.doc.parts | length }} part{{ 's' if c.doc.parts | length != 1 }}</span>
+            <span>edited {{ c.updated_at | md }}{% if c.updated_by == 'claude' %} by Claude{% endif %}</span>
+            {% if c.source == 'problem' %}<span class="tag">from a problem</span>{% endif %}</div>
+        </div>
+        {% if archived %}
+        <form method="post" action="/circuits/{{ c.slug }}/archive"><input type="hidden" name="archived" value="false"><button class="small" type="submit">Restore</button></form>
+        {% else %}<a class="button small" href="/circuits/{{ c.slug }}">Open</a>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}<p class="muted" style="margin:0">{{ 'Nothing archived.' if archived else 'No circuits yet. Start one on the left.' }}</p>{% endif %}
+  </section>
+</div>
+{% endblock %}
+{% block scripts %}<script type="module" src="/static/circuits/thumbs.js?v={{ static_v('circuits/thumbs.js') }}"></script>{% endblock %}

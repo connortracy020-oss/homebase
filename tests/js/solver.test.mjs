@@ -170,14 +170,22 @@ test("structural errors name the problem", () => {
   ]);
   assert.equal(s.errors[0].code, "LOOP");
   assert.match(s.errors[0].message, /inductor acts as a wire/);
-  // capacitors in series: the middle node has no DC path
+  // capacitors in series: the middle node has no DC voltage, but nothing else depends on it
   s = solve([
     { id: "V1", type: "V", nodes: ["a", 0], params: { V: "1" } },
     { id: "C1", type: "C", nodes: ["a", "m"], params: { C: "1u" } },
     { id: "C2", type: "C", nodes: ["m", 0], params: { C: "1u" } },
   ]);
+  assert.ok(s.ok);
+  assert.match(s.warnings.find((w) => w.code === "UNDEFINED_DC").message, /capacitor/);
+  assert.equal(s.nodes.find((n) => n.name === "m").v, null);
+  // ...but a current source pushing into that node has nowhere to go
+  s = solve([
+    { id: "V1", type: "V", nodes: ["a", 0], params: { V: "1" } },
+    { id: "C1", type: "C", nodes: ["a", "m"], params: { C: "1u" } },
+    { id: "I1", type: "I", nodes: ["m", 0], params: { I: "1m" } },
+  ]);
   assert.equal(s.errors[0].code, "FLOATING");
-  assert.match(s.errors[0].message, /capacitor/);
   // bad value
   s = solve([{ id: "R1", type: "R", nodes: ["a", 0], params: { R: "abc" } }]);
   assert.equal(s.errors[0].code, "PARAM");

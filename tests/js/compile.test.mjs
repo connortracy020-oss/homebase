@@ -121,3 +121,22 @@ test("migrate keeps what it understands", () => {
   assert.equal(doc.wires.length, 0);
   assert.equal(vAt.length, 4);
 });
+
+test("an unconnected part is set aside instead of blocking the solve", () => {
+  const net = compile(mockup([part("R4", "R", 20, 10, 0, { R: "1k" })]));
+  const s = solveDC(net);
+  assert.ok(s.ok, JSON.stringify(s.errors));
+  assert.deepEqual(s.idle, ["R4"]);
+  assert.ok(s.warnings.some((w) => w.code === "ISLAND"));
+  assert.equal(s.nodes[net.nodeAt("10,0")].vx, "72/13");
+  assert.equal(s.nodes[net.nodeAt("20,10")].v, null);
+});
+
+test("a node behind a capacitor has no DC voltage, and the rest still solves", () => {
+  const net = compile(mockup([part("C1", "C", 14, 0, 0, { C: "1u" }), part("R5", "R", 18, 0, 1, { R: "1k" })]));
+  const s = solveDC(net);
+  assert.ok(s.ok, JSON.stringify(s.errors));
+  assert.ok(s.warnings.some((w) => w.code === "UNDEFINED_DC"));
+  assert.equal(s.nodes[net.nodeAt("10,0")].vx, "72/13");
+  assert.equal(s.els.C1.v, null);
+});

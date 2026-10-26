@@ -11,15 +11,26 @@ import { ExactTooBig, toString as qstr } from "../core/rational.js";
 import { FloatOnly } from "../elements/common.js";
 import { DEFS } from "../elements/index.js";
 import { parseParam } from "../core/compile.js";
+import { isolate } from "./isolate.js";
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
 // Solve, or explain why not. opts: {mode: "dc"|"ic", state, off(el), exact: bool, flows: bool}
-export function solveDC(net, opts = {}) {
+export function solveDC(full, opts = {}) {
   const t0 = now();
-  const ctx = { mode: opts.mode || "dc", when: opts.when || net.when, state: opts.state || new Map(), off: opts.off || (() => false) };
-  const out = { ok: false, mode: ctx.mode, errors: [...net.errors], warnings: [...net.warnings], exact: false, empty: !net.elements.length };
+  const ctx = { mode: opts.mode || "dc", when: opts.when || full.when, state: opts.state || new Map(), off: opts.off || (() => false) };
+  const out = { ok: false, mode: ctx.mode, errors: [...full.errors], warnings: [...full.warnings], exact: false, empty: !full.elements.length, idle: [] };
   if (out.empty || out.errors.length) return finish(out, t0);
+  // set aside parts that can't affect the answer (not connected yet, or behind a capacitor at DC)
+  const iso = opts.isolate === false ? { net: full, dropEls: new Set(), warnings: [] } : isolate(full, ctx);
+  const net = iso.net;
+  out.warnings.push(...iso.warnings);
+  out.idle = [...iso.dropEls].map((el) => el.id);
+  if (net.errors.length > full.errors.length) { out.errors.push(...net.errors.slice(full.errors.length)); return finish(out, t0); }
+  if (!net.elements.length) {
+    out.errors.push({ code: "NOTHING", parts: [], message: "Nothing is connected to ground yet. Wire your parts into a loop and add a ground (⏚)." });
+    return finish(out, t0);
+  }
   const structural = structuralErrors(net, ctx);
   if (structural.length) { out.errors.push(...structural); return finish(out, t0); }
 
@@ -45,13 +56,31 @@ export function solveDC(net, opts = {}) {
       throw err;
     }
   }
-  Object.assign(out, sol.summary);
+  Object.assign(out, expand(full, iso, sol.summary));
   out.ok = true;
   out.exact = sol.F.exact;
   if (!out.exact && opts.exact !== false) out.warnings.push({ code: "APPROX", message: "Values are decimals: the exact fractions got too large." });
-  if (opts.flows !== false) out.flows = wireFlows(net, (el, j) => sol.F.toNumber(sol.pinCur.get(el)[j]));
+  if (opts.flows !== false) {
+    out.flows = wireFlows(full, (el, j) => {
+      const c = iso.copies ? iso.copies.get(el) : el;
+      return c ? sol.F.toNumber(sol.pinCur.get(c)[j]) : 0;
+    });
+  }
   out.internal = sol;
+  out.iso = iso;
   return finish(out, t0);
+}
+
+// results of the reduced circuit, laid back onto the full circuit's node numbers
+function expand(full, iso, summary) {
+  if (!iso.toOld) return summary;
+  const nodes = full.nodes.map((nd) => ({ index: nd.index, name: nd.name, label: nd.label, v: null, vx: null }));
+  summary.nodes.forEach((n, k) => { Object.assign(nodes[iso.toOld[k]], { v: n.v, vx: n.vx }); });
+  const els = {};
+  for (const [id, e] of Object.entries(summary.els)) {
+    els[id] = { ...e, nodes: e.nodes.map((n) => (n >= 0 ? iso.toOld[n] : -1)), pins: e.pins.map((p) => ({ ...p, node: p.node >= 0 ? iso.toOld[p.node] : -1 })) };
+  }
+  return { ...summary, nodes, els };
 }
 
 function finish(out, t0) { out.ms = now() - t0; return out; }
@@ -67,6 +96,7 @@ export function solveWith(net, F, ctx) {
     pinCur.set(el, cur);
     let p = F.zero, total = F.zero;
     el.nodes.forEach((node, j) => {
+      if (node < 0) return;  // a terminal set aside (it carries no current)
       p = F.add(p, F.mul(v[node], cur[j]));
       leave[node] = F.add(leave[node], cur[j]);
       total = F.add(total, cur[j]);
@@ -91,10 +121,11 @@ function summarize(net, F, v, pinCur, power) {
   const els = {};
   for (const el of net.elements) {
     const cur = pinCur.get(el), p = power.get(el);
-    const vd = el.nodes.length >= 2 ? F.sub(v[el.nodes[0]], v[el.nodes[1]]) : F.zero;
+    const known = el.nodes.length >= 2 && el.nodes[0] >= 0 && el.nodes[1] >= 0;
+    const vd = known ? F.sub(v[el.nodes[0]], v[el.nodes[1]]) : null;
     const e = {
       type: el.type, nodes: [...el.nodes],
-      v: F.toNumber(vd), vx: ex(vd), i: F.toNumber(cur[0]), ix: ex(cur[0]), p: F.toNumber(p), px: ex(p),
+      v: vd === null ? null : F.toNumber(vd), vx: vd === null ? null : ex(vd), i: F.toNumber(cur[0]), ix: ex(cur[0]), p: F.toNumber(p), px: ex(p),
       pins: cur.map((c, j) => ({ node: el.nodes[j], i: F.toNumber(c), ix: ex(c) })),
     };
     if (el.type === "OA") {

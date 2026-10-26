@@ -13,7 +13,7 @@ from sqlmodel import Session
 
 from . import backup, config, local_ai
 from .db import get_engine, init_db
-from .routes import api, exam_routes, local_routes, notes_routes, pages, reviews, speech_routes, study
+from .routes import api, circuit_routes, exam_routes, local_routes, notes_routes, pages, reviews, speech_routes, study
 from .seed import seed
 
 STATIC_DIR = config.ROOT / "app" / "static"
@@ -43,6 +43,16 @@ async def lifespan(_app: FastAPI):
 def create_app(run_lifespan: bool = True) -> FastAPI:
     app = FastAPI(title="Homebase", lifespan=lifespan if run_lifespan else None)
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+    @app.middleware("http")
+    async def revalidate_bench_modules(request, call_next):
+        # the bench is many small ES modules imported by each other, so ?v= cache-busting on the
+        # page can't reach them: make browsers check each one (a cheap 304 when unchanged)
+        response = await call_next(request)
+        if request.url.path.startswith("/static/circuits/"):
+            response.headers["Cache-Control"] = "no-cache"
+        return response
+
     app.include_router(pages.router)
     app.include_router(study.router)
     app.include_router(reviews.router)
@@ -50,6 +60,7 @@ def create_app(run_lifespan: bool = True) -> FastAPI:
     app.include_router(local_routes.router)
     app.include_router(notes_routes.router)
     app.include_router(speech_routes.router)
+    app.include_router(circuit_routes.router)
     app.include_router(api.router, prefix="/api")
     return app
 

@@ -406,3 +406,38 @@ class NoteRevision(SQLModel, table=True):
     actor: str
     action: str  # add | edit | move | delete | restore | star
     before: dict = Field(default_factory=dict, sa_column=Column(JSON))
+
+
+# ---- Circuit Bench: circuits you draw and solve (app/circuits.py, design/CIRCUITS-PLAN.md) ----
+
+class Circuit(SQLModel, table=True):
+    """One circuit on the bench. doc is the whole drawing (app/static/circuits/core/doc.js);
+    rev goes up on every save so two tabs (or Claude) can't silently overwrite each other."""
+    id: Optional[int] = Field(default=None, primary_key=True)
+    slug: str = Field(index=True, unique=True)
+    title: str
+    course_id: Optional[int] = Field(default=None, foreign_key="course.id", index=True)
+    week: Optional[int] = None
+    source: str = "you"  # you | claude | problem | example
+    problem_id: Optional[int] = Field(default=None, foreign_key="problem.id")
+    doc: dict = Field(default_factory=dict, sa_column=Column(JSON))
+    rev: int = 1
+    summary: dict = Field(default_factory=dict, sa_column=Column(JSON))  # last solution the bench showed
+    created_at: datetime
+    updated_at: datetime
+    updated_by: str = "you"
+    archived: bool = False
+
+
+class CircuitAttempt(SQLModel, table=True):
+    """A prediction or hand answer you checked on the bench."""
+    id: Optional[int] = Field(default=None, primary_key=True)
+    circuit_id: int = Field(foreign_key="circuit.id", index=True)
+    at: datetime
+    kind: str = "predict"  # predict | check
+    quantity: str = ""     # "v(Vout)", "i(R2)", "p(R1)", "Rth(R_L)"
+    guess: float = 0
+    truth: float = 0
+    correct: bool = False
+    tags: list = Field(default_factory=list, sa_column=Column(JSON))  # sign | units | kcl | ...
+    note: str = ""

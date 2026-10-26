@@ -80,7 +80,7 @@ export function fromNumber(x) {
 }
 
 // Is this fraction worth showing as a fraction? (small denominator, not just a decimal)
-export function isFriendly(a, maxDen = 1000n) {
+export function isFriendly(a, maxDen = 99n) {
   if (a.d === 1n) return true;
   let d = a.d;
   while (d % 2n === 0n) d /= 2n;
