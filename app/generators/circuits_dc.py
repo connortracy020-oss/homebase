@@ -654,13 +654,15 @@ class _LadderSvg(str):
         return out
 
 
-def _problem(text, diagram, svg, answers, steps, checks, topics) -> dict:
+def _problem(text, diagram, svg, answers, steps, checks, topics, bench=None) -> dict:
     if not 3 <= len(steps) <= 8:
         raise AssertionError(f"{len(steps)} steps")
     statement = {"text": text, "diagram": diagram, "svg": str(svg)}
-    if getattr(svg, "ladder", None) is not None:
+    if bench is None and getattr(svg, "ladder", None) is not None:
         from .bench_bridge import ladder_doc  # the same circuit, laid out for the Circuit Bench
-        statement["bench"] = ladder_doc(svg.ladder)
+        bench = ladder_doc(svg.ladder)
+    if bench is not None:
+        statement["bench"] = bench
     return {"statement": statement,
             "key": {"answers": answers, "steps": steps, "checks": checks},
             "topics": topics}
@@ -1018,13 +1020,14 @@ def delta_wye(seed: int) -> dict:
             f"and \\({_tex(tri[2])}\\) into an equivalent Y. Give the three Y resistors "
             f"\\(R_{hub}\\), \\(R_c\\), \\(R_d\\) (the arms that connect to nodes {hub}, c and d), "
             f"then use them to find \\(R_{{eq}}\\) between a and b (all in {u.ohm}).")
+    from .bench_bridge import bridge_doc
     return _problem(text, diagram, _bridge_svg(R, u),
                     [_ans(f"R_{hub} (Y arm at {hub})", y0, u.ohm), _ans("R_c (Y arm at c)", y1, u.ohm),
                      _ans("R_d (Y arm at d)", y2, u.ohm), _ans("R_eq", req, u.ohm)], steps,
                     ["Original bridge solved with a 1-unit test current (no Δ-Y step): v_ab equals R_eq.",
                      "Y-version netlist gives the same voltages at a, c and d as the bridge.",
                      "Converting the Y back to a Δ recovers the original three resistors."],
-                    ["Y-delta transformation", "equivalent resistance"])
+                    ["Y-delta transformation", "equivalent resistance"], bench=bridge_doc(R, u is KOHM))
 
 
 def _bridge_svg(R, u) -> str:
@@ -1641,6 +1644,7 @@ def max_power(seed: int) -> dict:
 
 
 def opamp_circuit(seed: int) -> dict:
+    from .bench_bridge import opamp_doc, summing_doc
     rng = random.Random(seed)
     kind = rng.choice(["inverting", "noninverting", "summing", "difference"])
     Rk = [1, 2, 4, 5, 10, 20, 40, 50, 100]
@@ -1715,6 +1719,7 @@ def opamp_circuit(seed: int) -> dict:
                  f"\\(v_o = {_m(gain)}\\cdot{_p(vin)} = {_m(vout)}\\) V."]
         ask = "the voltage gain \\(v_o/v_1\\) and the output voltage \\(v_o\\)"
         svg = _opamp_svg_top(kind, [("v₁", vin, "R₁", R1)], R2, None)
+        bench = opamp_doc(kind, [("v₁", vin, "R₁", R1)], R2)
         desc = (f"Diagram: an inverting amplifier. Input terminal v₁ = {_fmt(vin)} V (relative to ground) "
                 f"connects through R₁ = {r_(1, R1)} to the op-amp's − input. R₂ = {r_(2, R2)} connects "
                 f"the − input to the output vₒ (feedback). The + input is grounded.")
@@ -1727,6 +1732,7 @@ def opamp_circuit(seed: int) -> dict:
                  f"\\(v_o = {_m(gain)}\\cdot{_p(vin)} = {_m(vout)}\\) V."]
         ask = "the voltage gain \\(v_o/v_1\\) and the output voltage \\(v_o\\)"
         svg = _opamp_svg_noninv(vin, R1, R2)
+        bench = opamp_doc(kind, [("v₁", vin, "R₁", R1)], R2)
         desc = (f"Diagram: a non-inverting amplifier. Input terminal v₁ = {_fmt(vin)} V connects "
                 f"directly to the op-amp's + input. R₁ = {r_(1, R1)} goes from the − input to ground and "
                 f"R₂ = {r_(2, R2)} from the − input to the output vₒ (feedback).")
@@ -1743,6 +1749,7 @@ def opamp_circuit(seed: int) -> dict:
                  + ", ".join(_m(q) for q in ratios) + "."]
         ask = "the output voltage \\(v_o\\) and the current through \\(R_f\\) toward the output (mA)"
         svg = _opamp_svg_summing(list(zip(names, vs, rnames, Rin)), Rf)
+        bench = summing_doc(list(zip(names, vs, rnames, Rin)), Rf)
         desc = ("Diagram: an inverting summing amplifier. "
                 + " ".join(f"Input terminal {n_} = {_fmt(v)} V connects through {rn} = {r_(0, r)} to the "
                            f"op-amp's − input." for n_, v, rn, r in zip(names, vs, rnames, Rin))
@@ -1758,6 +1765,7 @@ def opamp_circuit(seed: int) -> dict:
                  f"\\dfrac{{{_m(R2)}}}{{{_m(R1)}}}{_p(v1)} = {_m(vout)}\\) V."]
         ask = "the voltage \\(v_+\\) at the + input and the output voltage \\(v_o\\)"
         svg = _opamp_svg_top(kind, [("v₁", v1, "R₁", R1)], R2, ("v₂", v2, R3, R4))
+        bench = opamp_doc(kind, [("v₁", v1, "R₁", R1)], R2, ("v₂", v2, R3, R4))
         desc = (f"Diagram: a difference amplifier. Input v₁ = {_fmt(v1)} V connects through "
                 f"R₁ = {r_(1, R1)} to the op-amp's − input; R₂ = {r_(2, R2)} connects the − input to the "
                 f"output vₒ. Input v₂ = {_fmt(v2)} V connects through R₃ = {r_(3, R3)} to the + input, and "
@@ -1767,7 +1775,8 @@ def opamp_circuit(seed: int) -> dict:
     return _problem(text, desc, svg, answers, steps,
                     ["Netlist solved with an ideal op-amp (virtual-short constraint) gives the same v_o.",
                      "Same netlist with a finite open-loop gain of 10⁶ agrees to 0.01 %."],
-                    ["op-amps 2 (inverting, summing, difference, follower, instrumentation)", "op-amps 1"])
+                    ["op-amps 2 (inverting, summing, difference, follower, instrumentation)", "op-amps 1"],
+                    bench=bench)
 
 
 _OX = 40

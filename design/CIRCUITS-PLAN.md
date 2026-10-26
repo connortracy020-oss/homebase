@@ -644,8 +644,10 @@ superposition (it's a table), ranking predictions, and goal exercises.
   circuit can't fix), those parts are held at the given values before t = 0.
 - A named terminal left open on purpose (a and b of a port) isn't flagged as a loose end, and
   terminals named a and b get a "Thevenin at a–b" card (the plan's "pick two nodes").
-- Generated problems carry their bench drawing (`app/generators/bench_bridge.py`), and a
-  test checks that the bench's answers match the generator's own, node by node.
+- Generated problems carry their bench drawing (`app/generators/bench_bridge.py`): ladders are
+  laid out automatically, the op-amp amplifiers and the Δ-Y bridge by hand-made layouts. Tests
+  check that the bench's answers match each generator's own (node voltages, vₒ, R_eq). 52 of
+  the 65 ECE 201 generated problems have one; the other 13 have no circuit to draw.
 
 **Decision 3 changed slightly:** Node still isn't needed to use the bench, but Claude's
 circuit tools use it when it's there (`scripts/bench_solve.mjs`), so Claude checks each

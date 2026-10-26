@@ -330,7 +330,7 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 - **Over time:** switches and step or pulse sources. The values at t = 0⁻, 0⁺ and ∞ are exact, the first-order formula appears when there's one capacitor or inductor, and a scope plots everything. Playback runs the 2D and 3D views through time.
 
 **With the rest of Homebase:**
-- Generated ECE 201 circuit problems have **Open on the Circuit Bench**: the same circuit, with the same names and values, and predict first on. Your copy is kept, so opening it again goes back to your work.
+- Generated ECE 201 circuit problems (52 of the 65; the rest have no circuit to draw) have **Open on the Circuit Bench**: the same circuit, with the same names and values, and predict first on. Your copy is kept, so opening it again goes back to your work.
 - A wrong prediction or check on a problem's circuit goes into the mistake log, once a day per problem.
 - ⋯ → **Add a picture to my notes** saves the schematic, as it looks right now, in a notes unit with a link back to the circuit.
 - ⋯ → export a SPICE netlist (`.cir`) for LTspice, or the circuit file (`.json`).

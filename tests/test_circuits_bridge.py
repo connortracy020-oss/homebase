@@ -76,3 +76,37 @@ def test_bench_matches_the_generators_own_solution(tmp_path):
             if g is None or w is None:
                 continue
             assert abs((g - ref) - w) <= 1e-7 * (1 + abs(w)), f"{name} seed {seed} point {k}: bench {g - ref}, generator {w}"
+
+
+def _answer(problem, label):
+    return next(a["value"] for a in problem["key"]["answers"] if a["label"] == label)
+
+
+def test_op_amp_and_bridge_drawings_give_the_generators_answers(tmp_path):
+    """Circuits that aren't ladders are drawn by hand-made layouts; the bench must still give
+    the problem's own answers: vₒ of every amplifier type, R_eq of every bridge."""
+    cases, expected = [], []
+    kinds = set()
+    for seed in range(1, 41):
+        p = generate("opamp_circuit", seed)
+        doc = p["statement"]["bench"]
+        ids = {q["id"] for q in doc["parts"]}
+        kinds.add("summing" if "Rf" in ids else "difference" if "R3" in ids else "inverting or non-inverting")
+        out = bench_bridge.SUMMING_OUT if "Rf" in ids else bench_bridge.OPAMP_OUT
+        cases.append({"doc": doc, "points": [list(out)]})
+        expected.append(("opamp_circuit", seed, "v", _answer(p, "v_o")))
+    for seed in range(1, 21):
+        p = generate("delta_wye", seed)
+        doc = p["statement"]["bench"]
+        kilo = any(q["params"].get("R", "").endswith("k") for q in doc["parts"])
+        cases.append({"doc": doc, "points": [], "port": ["a", "b"]})
+        expected.append(("delta_wye", seed, "rth", _answer(p, "R_eq") * (1000 if kilo else 1)))
+    assert kinds == {"summing", "difference", "inverting or non-inverting"}
+    path = tmp_path / "cases.json"
+    path.write_text(json.dumps(cases))
+    r = subprocess.run([NODE, "tests/js/docs.mjs", str(path)], cwd=config.ROOT, capture_output=True, text=True, timeout=300)
+    assert r.returncode == 0, r.stderr[-3000:]
+    for (name, seed, what, want), got in zip(expected, json.loads(r.stdout)):
+        assert got["ok"], f"{name} seed {seed}: the bench couldn't solve it: {got.get('errors')}"
+        value = got["v"][0] if what == "v" else got["rth"]
+        assert abs(value - want) <= 1e-7 * (1 + abs(want)), f"{name} seed {seed}: bench {value}, generator {want}"

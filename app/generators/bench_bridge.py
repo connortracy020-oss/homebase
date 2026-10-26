@@ -155,3 +155,92 @@ def point_of(q) -> tuple:
     """Where a ladder point ('T' or 'B', column) is on the bench grid."""
     row, i = q
     return (COL * i, TOP if row == "T" else BOT)
+
+
+# ---- circuits that aren't ladders: op-amp amplifiers and the bridge ----------------------
+
+def _two(pid, kind, a, b, **params) -> dict:
+    """A two-terminal part from pin a to pin b (4 grid units apart, in a line)."""
+    rot = {(4, 0): 0, (0, 4): 1, (-4, 0): 2, (0, -4): 3}[(b[0] - a[0], b[1] - a[1])]
+    return {"id": pid, "type": kind, "x": a[0], "y": a[1], "rot": rot, "flip": False,
+            "params": {k: str(v) for k, v in params.items()}}
+
+
+def _at(pid, kind, p, **params) -> dict:
+    return {"id": pid, "type": kind, "x": p[0], "y": p[1], "rot": 0, "flip": False,
+            "params": {k: str(v) for k, v in params.items()}}
+
+
+def _doc(parts, paths, title="", course="ECE201") -> dict:
+    wires = []
+    for pts in paths:
+        for a, b in zip(pts, pts[1:]):
+            wires.append({"id": f"w{len(wires) + 1}", "a": list(a), "b": list(b)})
+    return {"format": "homebase-circuit", "version": 1, "title": title, "course": course,
+            "parts": parts, "wires": wires, "view": {}, "study": {"predict": True}}
+
+
+def _k(r) -> str:
+    return f"{r:g}k"
+
+
+OPAMP_OUT = (19, 4)   # where vₒ is in the amplifier drawings
+SUMMING_OUT = (18, 8)  # and in the summer's
+
+
+def opamp_doc(kind: str, inputs, R2, plus_net=None) -> dict:
+    """An op-amp amplifier the way opamp_circuit draws it. inputs: [(name, volts, R name, kΩ)];
+    R2 is the feedback resistor (kΩ); plus_net (v₂ name, volts, R₃, R₄) for the difference
+    amplifier. The op-amp sits at (13, 4): − input (13, 3), + input (13, 5), output (18, 4);
+    the feedback leaves the − input wire at (12, 3)."""
+    U = _at("U1", "OA", (13, 4))
+    vo = _at("Lvo", "LBL", OPAMP_OUT, name="vo")
+    feedback = [[(11, 3), (13, 3)], [(12, 3), (12, 0), (13, 0)], [(17, 0), (19, 0), (19, 4)], [(18, 4), (19, 4)]]
+    name, v, rname, R1 = inputs[0]
+    source = [_two(plain(name), "V", (0, 6), (0, 10), V=f"{v:g}"), _at("G1", "GND", (0, 10))]
+    feed = _two("R2", "R", (13, 0), (17, 0), R=_k(R2))
+    if kind == "noninverting":
+        # v₁ straight to the + input; R₁ from the − input to ground, R₂ from − to the output
+        parts = [U, vo, *source, _two(plain(rname), "R", (7, 3), (11, 3), R=_k(R1)), _at("G2", "GND", (7, 3)), feed]
+        return _doc(parts, [[(0, 6), (0, 5), (13, 5)], *feedback])
+    parts = [U, vo, *source, _two(plain(rname), "R", (7, 3), (11, 3), R=_k(R1)), feed]
+    paths = [[(0, 6), (0, 3), (7, 3)], *feedback]
+    if plus_net:  # difference amplifier: v₂ through R₃ to the + input, R₄ from + to ground
+        n2, v2, R3, R4 = plus_net
+        parts += [_two(plain(n2), "V", (5, 6), (5, 10), V=f"{v2:g}"),
+                  _two("R3", "R", (7, 5), (11, 5), R=_k(R3)), _two("R4", "R", (12, 6), (12, 10), R=_k(R4))]
+        paths += [[(5, 6), (5, 5), (7, 5)], [(11, 5), (13, 5)], [(12, 5), (12, 6)], [(0, 10), (12, 10)]]
+    else:         # inverting: the + input grounded
+        parts.append(_at("G2", "GND", (11, 5)))
+        paths.append([(13, 5), (11, 5)])
+    return _doc(parts, paths)
+
+
+def summing_doc(inputs, Rf) -> dict:
+    """The inverting summer: each input a source from ground through its resistor to the − input.
+    The op-amp sits at (12, 8): − input (12, 7), + input (12, 9), output (17, 8)."""
+    rows = [7 - 4 * k for k in range(len(inputs))]  # one input every 4 units, upward
+    yf = rows[-1] - 4                                 # the feedback resistor above them
+    parts = [_at("U1", "OA", (12, 8)), _at("Lvo", "LBL", SUMMING_OUT, name="vo"), _at("G0", "GND", (10, 9)),
+             _two("Rf", "R", (12, yf), (16, yf), R=_k(Rf))]
+    paths = [[(12, 9), (10, 9)], [(11, 7), (12, 7)], [(16, yf), (18, yf), (18, 8)], [(17, 8), (18, 8)]]
+    for k, ((name, v, rname, r), y) in enumerate(zip(inputs, rows)):
+        parts += [_at(f"G{k + 1}", "GND", (2, y)), _two(plain(name), "V", (6, y), (2, y), V=f"{v:g}"),
+                  _two(plain(rname), "R", (6, y), (10, y), R=_k(r))]
+        paths.append([(10, y), (11, y)])
+    paths.append([(11, 7), *[(11, y) for y in rows[1:]], (11, yf), (12, yf)])
+    return _doc(parts, paths)
+
+
+def bridge_doc(R: dict, kilo: bool) -> dict:
+    """The bridge between a (top) and b (bottom): R1 a–c, R2 a–d, R3 c–d, R4 c–b, R5 d–b.
+    "Thevenin at a–b" on the bench gives its R_eq."""
+    val = _k if kilo else (lambda r: f"{r:g}")
+    parts = [_two("R1", "R", (2, 1), (2, 5), R=val(R[1])), _two("R2", "R", (14, 1), (14, 5), R=val(R[2])),
+             _two("R3", "R", (6, 6), (10, 6), R=val(R[3])),
+             _two("R4", "R", (2, 7), (2, 11), R=val(R[4])), _two("R5", "R", (14, 7), (14, 11), R=val(R[5])),
+             _at("Ta", "LBL", (8, -2), name="a"), _at("Tb", "LBL", (8, 14), name="b"),
+             _at("Lc", "LBL", (2, 6), name="c"), _at("Ld", "LBL", (14, 6), name="d"), _at("G", "GND", (2, 12))]
+    paths = [[(2, 1), (2, 0), (14, 0), (14, 1)], [(8, 0), (8, -2)], [(2, 5), (2, 7)], [(14, 5), (14, 7)],
+             [(2, 6), (6, 6)], [(10, 6), (14, 6)], [(2, 11), (2, 12), (14, 12), (14, 11)], [(8, 12), (8, 14)]]
+    return _doc(parts, paths)
