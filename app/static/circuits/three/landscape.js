@@ -101,6 +101,7 @@ export class Landscape {
     this.zero.renderOrder = 1;
     scene.add(this.bench, this.zero);
     this.flow = new Flow(scene, TIERS.balanced.beads);
+    this.flow.still = this.reduced;
     this.embers = new Embers(scene);
     this.emitters = [];
 

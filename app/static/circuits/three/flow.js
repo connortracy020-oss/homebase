@@ -208,9 +208,9 @@ export class Flow {
       c.speed += (c.goal - c.speed) * kv;
       c.fade += (c.fadeGoal - c.fade) * kf;
       if (Math.abs(c.goal - c.speed) > 1e-3 || Math.abs(c.fadeGoal - c.fade) > 1e-3) active = true;
-      if (Math.abs(c.speed) > 1e-4) active = true;
+      if (!this.still && Math.abs(c.speed) > 1e-4) active = true;
       if (!this.visible || c.fade < 0.01 || c.length < 1e-3) continue;
-      c.phase += c.speed * dt;
+      if (!this.still) c.phase += c.speed * dt;  // (with reduced motion the particles stand still)
       const L = c.length;
       const space = c.closed ? L / c.count : this.spacing;
       const trail = Math.min(1, Math.abs(c.speed) / (MAX_SPEED * 0.35));

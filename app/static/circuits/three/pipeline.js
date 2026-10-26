@@ -44,7 +44,7 @@ export class Pipeline {
   // (re)build the post chain for a quality tier
   setTier(tier, scene, camera) {
     this.tier = tier;
-    this.composer?.dispose?.();
+    if (this.composer) { for (const p of this.composer.passes) p.dispose?.(); this.composer.dispose(); }
     const gl = this.renderer.getContext();
     const samples = Math.min(tier.msaa, gl.getParameter(gl.MAX_SAMPLES) || 4);
     const rt = new THREE.WebGLRenderTarget(this.w * this.ratio, this.h * this.ratio, { samples, type: THREE.HalfFloatType });
