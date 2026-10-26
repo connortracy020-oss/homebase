@@ -1,209 +1,598 @@
-# Circuits: phase 1 plan (draft for your OK)
+# Circuit Bench: full plan (draft for your OK)
 
-A circuit bench inside Homebase: draw a circuit, solve it exactly, see the voltages
-as a 3D landscape, and check your own hand work against it. Phase 1 covers everything
-ECE 201 needs (weeks 1-10). Later phases follow the OSU sequence (202, 203, then 320).
+A circuit bench inside Homebase. You draw a circuit, it solves it exactly, and you can see
+it two ways: as a live schematic, or as a 3D landscape where voltage is height. It checks
+your hand work and explains its answers. It is built for ECE 201 first and grows with the
+OSU sequence (202, 203, then 320/323), so it stays useful through the degree.
 
-Background: [research/reports/Circuit simulator research.md](../research/reports/Circuit%20simulator%20research.md)
-(sources for every claim below are there).
+Background research, with sources for every claim:
+[research/reports/Circuit simulator research.md](../research/reports/Circuit%20simulator%20research.md).
+Working mockup of the look: [design/circuits-mock.html](circuits-mock.html).
 
-**Why build it at all.** No existing tool does all three of: live, visual intuition
-(Falstad, EveryCircuit), exact trustworthy answers (LTspice), and explanation (none).
-Multisim Live, the tool Ulaby's book is built around, shut down Sept 15, 2026.
-The research also says what matters most for learning: **predict before you see the
-answer** (about doubles what you get from a demo) and **pictures of voltage**
-(voltage as height had the strongest evidence). Animated current dots, the feature every
-simulator shows off, made no measurable difference, so they're an optional layer here.
+Contents: 1 What it is · 2 Rules · 3 Look and feel · 4 Mechanics · 5 Study features ·
+6 Architecture · 7 Solver · 8 Graphics engine · 9 Data, server, Claude ·
+10 Quality and testing · 11 Phases · 12 Build order · 13 Risks · 14 Decisions
 
-## 1. The rules it keeps (from Circuit Foundry, plus the research)
+---
 
-1. **Every number, height, color and glow comes from the solver.** Nothing decorative
-   that looks like data. Graphics never advance the simulation.
-2. **Never quietly fix a broken circuit.** Falstad ties floating nodes to ground with a
-   hidden 100 MΩ resistor; we stop and say "Node 3 is floating" and highlight it.
-3. **Exact when possible.** 12/7 V, shown next to 1.714 V, the way hand answers look.
-4. **Assumptions are visible.** A small "this circuit assumes" panel: ideal wires, ideal
-   meters, ideal op-amp (when it is), etc.
-5. **Small files.** Circuit Foundry's App.tsx reached 5,400 lines. Here: plain JS
-   modules of a few hundred lines each, no build step (Homebase's rule).
-6. **Color is never the only cue.** Voltages always also have numbers; the voltage color
-   scale comes from Homebase's theme, not red/green.
+## 1. What it is, and why build it
 
-## 2. How it looks
+No existing tool combines all three of these:
+- live, visual intuition, like Falstad or EveryCircuit;
+- exact, trustworthy answers, like LTspice;
+- explanation (no tool does this).
 
-A new **Circuits** page. Desktop:
+Multisim Live, which Ulaby's book is built around, shut down on Sept 15, 2026.
+
+The research also shows what actually helps learning:
+- **Predict first, then see.** Predicting before a demo roughly doubles what you learn from it.
+- **Pictures of voltage.** Voltage as height had the strongest evidence.
+- Animated current dots, which every simulator shows off, made no measurable difference to
+  learning. Here they are an honest, optional layer.
+
+LTspice stays the tool for heavy and professional simulation. The bench exports to it,
+and later imports from it.
+
+## 2. The rules (from Circuit Foundry and the research)
+
+1. **The solver decides everything you see.** Every number, height, color, glow and moving
+   marker comes from a solver result.
+   - Graphics never advance the simulation.
+   - Short display easings (≤200 ms) are labeled as easing.
+   - Under reduced motion they are instant.
+2. **The bench never quietly fixes a broken circuit.** Falstad hides a 100 MΩ resistor to
+   ground on floating nodes. The bench stops instead, says "node 3 is floating", and
+   highlights the problem.
+3. **Exact when possible.** It shows 72/13 V next to 5.538 V, the way hand answers look.
+4. **Assumptions are always visible:** ideal wires, ideal meters, the op-amp model in use, and so on.
+5. **Meaning never rides on color alone.** Every color has a number or shape beside it. The
+   voltage palette stays readable with color-blindness. There are no red/green pairs.
+6. **Small files and plain modules.** Each file is a few hundred lines. Homebase's no-build
+   rule holds: browser ES modules, vendored libraries.
+7. **Nothing is ever lost.** Every action can be undone. Saving is automatic, and a local
+   draft covers a dropped Wi-Fi connection.
+8. **Editing is never blocked.** A circuit with an error stays fully editable. The error
+   banner stays until the problem is fixed, and the last good solution is shown dimmed.
+
+## 3. Look and feel
+
+### Overall direction: "precision instrument on a warm desk"
+
+Homebase is calm and warm: cream and charcoal, terracotta for ECE 201. The bench keeps that
+outside the work area. The work area itself is a darker, quieter **bench mat** (in both
+themes), so light, voltage and current read clearly. Think of a well-made audio instrument
+on a wooden desk, not a gaming HUD.
+
+- **Typography:** Inter for numbers and labels, with tabular figures so values don't jitter
+  as they change. Fraunces for headings.
+- **Voltage palette:** one diverging scale centered on ground. Negative voltages are cool
+  slate blue, 0 V is neutral warm gray, positive voltages rise through ochre to bright
+  amber. Brightness rises steadily with |V|, so it stays readable with color-blindness and
+  in grayscale. A legend shows the scale in volts.
+- **Current:** small chevrons that travel along wires.
+  - Their spacing is fixed and even, so they never "pile up" behind a resistor.
+  - Speed is proportional to |I| on a log scale, and the speed scale is shown.
+  - Direction is conventional current, with an electron-flow toggle.
+- **Power:** resistors that absorb power warm up with a soft glow and a heat shimmer on
+  high-power parts. Sources that deliver power show a small "delivering" ring. The signed
+  number is always one tap away.
+- **Motion:** spring-based, interruptible, 150–220 ms, never decorative.
+
+### The 2D schematic (the main working view)
+
+The schematic is drawn as **SVG**, so it is crisp at any zoom and every part is a real,
+focusable element with a label that screen readers can use.
+
+- **Symbols:** clean, standard US symbols, drawn with care: 1.6 px ink strokes, rounded
+  joints, symbol bodies filled with the mat color.
+- **Wires:** each wire takes the color of its node voltage, with a thin brighter core.
+  Hovering or selecting a node lights the whole net and dims everything else.
+- **Values:** values and node voltages sit on small pill labels that move to avoid
+  overlapping.
+- **Placing parts:** a ghost preview follows the pointer and snaps to the grid with a small
+  pulse. When a wire end lands on a terminal, the terminal blooms, so you know it connected.
+  Unconnected terminals show open rings.
+- **Readouts on parts:** each part can carry a small live readout chip (V, I, P), and you
+  choose which ones to show. On wires you can pin a **mini scope**, a tiny live waveform
+  (EveryCircuit's idea).
+- **Meters:** voltmeter and ammeter probes are **draggable tools**, the way PhET does them.
+  - Drop the voltmeter's red and black leads on two nodes and it reads the difference.
+  - Drop the ammeter on a wire and it reads the current through it, with direction.
+
+### The 3D landscape (a second view of the same circuit)
+
+3D isn't a better way to *edit* a circuit, but it is a better way to *understand voltage*.
+So the schematic stays the place you build, and 3D is a view you can open beside it, or
+full screen on its own.
+
+- **The board:** a matte ceramic slab with a soft grid. The circuit's layout is the same as
+  in 2D.
+- **Height is voltage:** every node is a plateau, a flat tile at height = its voltage.
+  - The tiles are lit from inside with the voltage color.
+  - Ground is the floor.
+  - A scale post at the side shows volts.
+- **Parts:**
+  - *Resistors* are ramps between plateaus, with a real banded resistor body lying along the ramp.
+  - *Sources* are vertical lifts (a battery or source pillar) that raise charge from one level to the next.
+  - *Capacitors* are two plates whose gap fills as they charge.
+  - *Inductors* are coils.
+  - *Op-amps* are a triangular block on their own output plateau.
+- **Current:** glowing beads roll along wires and ramps, at the same speed scale as in 2D.
+- **Power:** resistor bodies glow. In high quality there is a gentle bloom on
+  high-power parts.
+- **What it teaches by itself:**
+  - *Moving ground:* drag the ground flag to another node and the whole landscape rises or
+    sinks as one piece. Only differences matter.
+  - *KVL:* walk any loop and you end at the same height you started.
+  - *KCL:* each junction plateau can show "in = out" arrows with currents. The research found
+    height models help most with series circuits, so this covers parallel circuits and current
+    division.
+- **Camera:** orbit, pan and zoom with damping. Double-click a part to fly to it. Preset views
+  (top, three-quarter, side view showing voltage as a profile). On phones, one finger orbits
+  and two fingers pinch.
+- **Labels:** crisp HTML labels pinned in 3D. They fade with distance and never overlap.
+
+### Plots and other panels
+
+- **Scope:** for transient results, a smooth multi-trace oscilloscope.
+  - Draggable cursors with Δt and ΔV readouts.
+  - Markers for t = 0⁻ and t = 0⁺, and τ marked on RC and RL curves.
+  - Autoscale, plus pinch and scroll zoom.
+- **Bode plot (phase 2):**
+  - Magnitude and phase with a draggable frequency cursor.
+  - −3 dB, f₀ and Q markers.
+  - Moving the cursor updates the phasor view and the 3D landscape at that frequency.
+- **Phasor view (phase 2):**
+  - Rotating phasors linked to the scope trace.
+  - Drag the time cursor and the phasors rotate to match.
+  - Phase and lead/lag are documented trouble spots, so this view gets special care.
+- **Pole-zero plot (phase 2):** poles and zeros of H(s) shown together with the step response.
+
+### Layout
+
+**Desktop:**
+```
++------------------------------------------------------------------------------------+
+| ◂ Circuits · ECE 201  "Week 4 nodal example"   Build  Solve  ▣ 2D ▣ 3D ▣ Split  ⋯ |
++-------+----------------------------------------------+-----------------------------+
+| parts |                                              | Inspector / node table      |
+|  R    |        schematic (or 3D, or both)            |  n1  12 V                   |
+|  V  I |                                              |  n2  72/13 V = 5.538 V      |
+|  C  L |   meters, probes, readout chips              |  KCL at n2: 3.23 = 1.85+1.38|
+|  ⏚ ⊳  |                                              | Equations ▸  Thevenin ▸     |
+|  ◇ ⟂  |                                              | Assumptions ▸               |
++-------+----------------------------------------------+-----------------------------+
+| scope / Bode / phasor dock (opens when there is something to show)                  |
++------------------------------------------------------------------------------------+
+```
+**Phone:**
+- The canvas fills the screen.
+- The parts palette is a bottom sheet.
+- The inspector is a second sheet.
+- The view switcher sits in the top bar.
+- The scope is a swipe-up panel.
+- No sideways scrolling, and every tap target is at least 44 px.
+
+## 4. Mechanics (how editing works)
+
+### Placing parts
+- Tap or click a part, then tap or click where it goes.
+- **Insert** repeats the last part.
+- The grid is coarse (one grid step = one terminal pitch), so near-misses can't happen.
+
+### Wiring
+- **Touch:** tap a terminal, then tap another. The wire routes itself orthogonally.
+- **Desktop:** the same, or press **W** and click a path. You can also drag from a
+  terminal.
+- Dropping a wire on the middle of another wire joins them with a junction dot. Two wires
+  that just cross are never joined.
+- Auto-routing avoids parts and prefers the fewest bends. You can add a bend by
+  dragging a wire's middle.
+
+### Moving
+- **Drag keeps wires attached**: they stretch and re-route. Alt-drag detaches.
+- Box-select or Shift-click several parts, then move, rotate or delete them together.
+- **R** rotates, **X** and **Y** mirror. The same buttons are on the selection toolbar for touch.
+
+### Values
+- Double-click, press **E**, or tap the value chip to edit.
+- Accepts "4.7k", "2.2u", "2.2µ", "1meg", "3e-3" and "10 mA".
+- Shows how it read the value ("4.7 kΩ"). "1M" asks whether you mean milli or mega
+  (SPICE reads it as milli).
+- A slider beside the value gives live what-if changes, with log steps for R, C and L.
+
+### Labels and nets
+- Name any node ("Vout"), and that name is used everywhere.
+- Net labels with the same name are connected.
+- The ground symbol defines 0 V. Placing a second ground still means the same node.
+
+### Editing basics
+- **Undo and redo:** Ctrl+Z / Ctrl+Y and two buttons. Every change is undoable, including
+  moving ground.
+- Copy and paste, also between circuits. Duplicate is Ctrl+D.
+- **Zoom and pan:** wheel or pinch, Space-drag or two-finger drag. **F** fits the circuit
+  to the view.
+
+### Keyboard-only editing
+- Arrow keys move focus between parts and nodes.
+- Enter edits, and the other shortcuts work as above.
+- A "describe circuit" sheet lists every node and what touches it. This doubles as the
+  screen-reader view.
+
+### Live solving
+- The circuit re-solves within about 50 ms of every change. A small status shows
+  "solved · exact" or the error.
+- While you drag a value slider, it solves on every frame.
+
+## 5. Study features (what LTspice can't do)
+
+- **Sandbox:** build freely and see everything.
+- **Predict first** (the default for exercises):
+  - Asked quantities stay hidden behind "?" chips until you type a prediction, either a
+    number or a ranking.
+  - Then it reveals the answer, shows the gap, and lets you explore.
+  - Open answers rather than multiple choice, because the research found they teach better.
+- **Check my work:**
+  - Type your hand-solved node voltages or currents.
+  - Each one is marked right (within tolerance) or wrong.
+  - For a wrong value it names the broken law: "KCL at node 2: in 1.2 mA, out 1.5 mA."
+- **Show equations:**
+  - One nodal equation per node, in readable form, e.g. "Node 2: (v₂ − v₁)/R₁ + v₂/R₂ = 0".
+  - Then the MNA matrix, generated from exactly what was solved, rendered with KaTeX.
+  - Phase 2 adds mesh equations for planar circuits.
+- **Thevenin / Norton:**
+  - Pick two nodes and get V_th, R_th and I_N, exact when possible.
+  - It also shows how it found them (open-circuit voltage, short-circuit current).
+  - "Swap in equivalent" replaces the rest of the circuit with the Thevenin equivalent so you
+    can compare.
+- **Superposition:**
+  - Turn each source off (a V source becomes a short, an I source becomes open).
+  - See each source's share as a stacked bar per node, and see that the shares add up.
+- **Power check:** a table of every part's signed power, showing that delivered equals
+  absorbed. This drills the passive sign convention.
+- **Goal exercises:** for example, "make R3's current 2 mA without touching the source".
+  These are goals rather than recipes, as the PhET research recommends.
+- **Mistake log:** wrong predictions and failed checks are saved with a tag such as sign
+  convention, current division, Thevenin R or initial condition. They feed Homebase's mistake
+  log and spaced review.
+- **Open in simulator:** on Homebase's 65 generated ECE 201 problems, the problem's own
+  circuit opens on the bench in predict-first mode. Book problems are rebuilt by hand. Book
+  figures are never copied.
+
+## 6. Architecture
 
 ```
-+-----------------------------------------------------------------------------------+
-| Circuits · ECE 201    [My circuits ▾]  [New]     Build | Solve | 3D     [Check my work] |
-+---------+--------------------------------------------------------+----------------+
-| Parts   |                                                        | Node table     |
-|  R  V  I|        (schematic, SVG on a dot grid)                  |  n1  12 V      |
-|  C  L  ⏚|                                                        |  n2  12/7 V    |
-|  op-amp |   hover a part:  R2 · 4 kΩ · 0.43 mA · absorbs 0.73 mW |    = 1.714 V   |
-|  dep.   |                                                        |  ground  0 V   |
-|  switch |                                                        | Equations ▸    |
-|         |                                                        | Assumptions ▸  |
-+---------+--------------------------------------------------------+----------------+
-| scope (transient only): v(n2) vs t, cursor readout, "0⁻ / 0⁺" markers             |
-+-----------------------------------------------------------------------------------+
+  editor (2D SVG) ─┐                         ┌─ schematic overlay (voltages, chips, chevrons)
+  touch / keys ────┼─> Document (JSON) ──┐   ├─ inspector / tables / equations
+  undo stack ──────┘    (one source of   │   ├─ scope / Bode / phasor / pole-zero
+                         truth)          │   └─ 3D landscape (Three.js, lazy)
+                                         v              ^
+                     compile: nets (union-find),        │ snapshots (immutable)
+                     element list, checks               │
+                                         v              │
+                  Solver worker: analyses (op, tran, ac, sweep, thevenin, ...) ─┘
 ```
 
-Phone: the schematic fills the screen; parts come from a bottom sheet; the node table and
-equations are a second sheet; the mode buttons sit in the top bar. No sideways scrolling.
+- **Document.** This is the circuit file: parts, parameters, wires, labels and layout. It
+  is the only thing editors change, and every change is a command (undoable, mergeable,
+  serializable). Format details are in section 9.
+- **Compile.** This step turns the document into a netlist.
+  - Wires and labels are merged into nodes with union-find, and ground becomes node 0.
+  - It outputs a typed element list and runs the structural checks.
+  - It is pure, fast and the same in every view.
+- **Element registry.** Each part type is one module with:
+  - its pins and parameters, with units and defaults;
+  - its `stamp` functions for DC, AC, transient and nonlinear analysis;
+  - its 2D symbol, its 3D model builder and its readouts;
+  - its SPICE export/import and its text description.
 
-**Building.** Tap a part, tap where it goes. Wire by tapping one terminal, then another
-(EveryCircuit's way; no precise dragging on a phone). On a laptop also: W wire,
-R rotate, X/Y mirror, E edit value, Del, Esc, Ctrl+Z / Ctrl+Y, Ctrl+C / Ctrl+V.
-Dragging a part keeps its wires attached. A junction dot appears only where a wire
-*ends* on another wire (never where two wires just cross), and every unconnected
-terminal shows a small open circle, so a near-miss wire is obvious.
-Values take SI prefixes ("4.7k", "2.2u", "2.2µ", "1meg") and the field shows how it read
-them ("4.7 kΩ"); an ambiguous "1M" asks whether you meant milli or mega.
+  This is what lets later phases add parts without rewriting anything.
+- **Solver worker.** The analyses run in a Web Worker, so the interface stays at 60–120 fps
+  even during long sweeps.
+  - The same modules also run directly in the page (used by tests) and in Node (used by
+    pytest).
+  - Requests carry a revision number, and stale results are dropped.
+  - Every result is an immutable **snapshot**: values per node and per element, the method
+    used (exact or float), warnings, and the assumptions that applied.
+- **Views.** Each view is a pure function of document + snapshot + view settings. Views
+  never call the solver and never change the document; they send commands.
+- **One store** holds the document, the selection, the current snapshot and the view
+  settings, and emits change events. There is no framework. The code is small enough for
+  plain ES modules and the style Homebase already uses.
 
-**Solve view.** Every node gets its voltage; hover or tap a part for its current and
-**signed power** ("absorbs 0.73 mW" / "delivers 2.4 mW", which drills the passive sign
-convention). Selecting a node highlights it everywhere at once: schematic, node table,
-3D, scope. Optional current markers (conventional current by default, electron-flow
-toggle), evenly spaced so they never "pile up" behind a resistor, speed labeled as a
-picture of size, not real electron speed. Off under reduced motion.
-
-**3D view: the potential landscape.** The same circuit, lifted: every wire of a node is a
-flat plateau at height = its voltage (1 grid unit = a scale you can set, shown on an axis).
-Resistors are ramps between plateaus, sources are vertical lifts, ground is the floor.
-Move the ground and the whole landscape rises or falls together: only differences matter.
-Walk any loop and you end where you started (KVL you can see). Resistors can glow by the
-power they absorb (with the number on tap). Three.js (small, phone-friendly), loaded only
-when you open 3D, drawn only when something changes. The research found height models
-help a lot with series circuits but not parallel ones, so the 3D view pairs with the
-node table's KCL readout at each junction ("in 3 mA = out 1 mA + 2 mA").
-
-**Transient (switches, RC/RL).** A switch with a time ("opens at t = 0"). The bench solves
-the circuit *before* the switch (capacitors open, inductors short) for the t = 0⁻ values,
-then runs the circuit after the switch, exactly how the book poses these problems. The
-scope plots any node or element; the cursor reads values; the 3D landscape can play the
-transient with a stated time base ("1 ms of circuit = 1 s on screen").
-
-## 3. Study modes (the part LTspice can't do)
-
-- **Sandbox**: build and see everything.
-- **Predict first** (default for exercises): values are hidden until you type your
-  prediction for the asked quantities (numbers or a ranking, not multiple choice; the
-  research found open answers teach better). Then it shows the truth and the gap.
-- **Check my work**: type your hand-solved node voltages (or a current); the bench says
-  which are right, and for a wrong one names the equation it breaks:
-  "KCL at node 2 doesn't balance: in 1.2 mA, out 1.5 mA."
-- **Show equations**: the bench prints the nodal equation for each node in readable form
-  ("Node 2: (v₂ − v₁)/R₁ + v₂/R₂ = 0") and the matrix, straight from what it solved.
-- **Thevenin finder**: pick two nodes; it gives V_th, R_th (and I_N), exact when possible,
-  and can swap the rest of the circuit for its Thevenin equivalent so you can compare.
-- **Superposition**: turn sources off one at a time (V becomes a short, I becomes open),
-  see each one's share, and see them add up.
-- **What-if slider** on any value, everything updating live.
-
-Predictions and misses are saved (with a tag like "sign convention", "current division",
-"Thevenin R") and feed the mistake log, so you and Claude see patterns.
-
-**Open in simulator** appears on the 65 generated ECE 201 problems: their circuit opens
-on the bench with the same layout (the generators already know where every part goes).
-For book problems you can rebuild the circuit yourself (we never copy book figures).
-
-## 4. How it works inside
-
-**Solver (vanilla JS, in the browser):** modified nodal analysis (the method SPICE uses).
-- Parts in phase 1: resistor, independent V and I sources (DC, step, pulse), all four
-  dependent sources, ideal op-amp (checks it has negative feedback), finite-gain op-amp,
-  switch (by merging nodes, not a tiny resistor), capacitor, inductor, ground, ammeter and
-  voltmeter as ideal tools.
-- Dense LU with pivoting (homework circuits are tiny, under a millisecond on a phone),
-  run twice: in exact fractions (BigInt) when values are simple, and in floating point.
-- Checks before solving, each with its own message and the offending parts highlighted:
-  floating node, no ground, a loop of voltage sources / wires, current sources in series
-  with nothing else, op-amp without feedback.
-- Transient: trapezoidal steps with a backward-Euler step at t = 0 and at each switch or
-  source edge (avoids the ringing SPICE also avoids); fixed step you can see and change.
-
-**Python stays the referee.** Homebase's existing solver (`app/generators/circuits_dc.py`,
-tested, self-checking KCL and power) and the RC/RL checker (`circuits_transient.py`)
-write a set of test circuits with answers to JSON; the JS solver must match every one.
-Node 26 is on the laptop, so those tests run from pytest through Node (dev only; nothing
-in the app needs Node). A `/circuits/selftest` page runs the same tests in any browser,
-including the phone.
-
-**Files and storage.**
-- Each circuit is Homebase's own versioned JSON: parts, values (as typed and as numbers),
-  explicit nets, layout. Saved in the database (new `Circuit` table, through
-  `services.py`, so it shows in the activity log and Claude can read it), and exportable
-  as a `.json` file.
-- **SPICE export** from day one (`.cir` text you can paste into LTspice for a second
-  opinion; it adds the 0 V sense sources current-controlled sources need).
-- New MCP tools so Claude can help: `circuits_list`, `circuits_get` (netlist + solution),
-  `circuits_save` (e.g. Claude builds a circuit from a problem for you to open).
-
-**Code layout** (each file small):
+### File layout
 ```
 app/static/circuits/
-  solver/  mna.js  lu.js  rational.js  transient.js  checks.js  thevenin.js  equations.js
-  model/   circuit.js (JSON format, versions)  units.js (SI parser)  spice.js (export)
-  editor/  canvas.js  tools.js  wires.js  keys.js  touch.js
-  views/   readouts.js  table.js  scope.js  landscape3d.js  current.js
-  study/   predict.js  check.js
-  app.js   (wires the page together)
-app/static/vendor/three/   (pinned Three.js build, so it works without the internet)
-app/routes/circuits.py   app/templates/circuits.html   app/circuits.py (services)
-tests/test_circuits.py   tests/circuit_vectors/ (shared test circuits)
+  core/      doc.js  commands.js  history.js  store.js  compile.js  units.js
+  elements/  index.js  resistor.js  vsource.js  isource.js  dependent.js  opamp.js
+             switch.js  capacitor.js  inductor.js  ground.js  label.js  meters.js
+             (phase 2) coupled.js  threephase.js  (phase 3) diode.js  bjt.js  mosfet.js  subckt.js
+  solver/    field.js (float, exact fraction, complex, polynomial-in-s)  lu.js  assemble.js
+             checks.js  op.js  tran.js  ac.js  sweep.js  thevenin.js  superpose.js
+             equations.js  newton.js (phase 3)  worker.js  api.js
+  editor/    canvas.js  place.js  wire.js  route.js  select.js  keys.js  touch.js  values.js
+  views/     overlay.js  chips.js  current.js  inspector.js  equations.js  scope.js
+             bode.js  phasor.js  polezero.js  palette.js (voltage colors)
+  three/     landscape.js  models.js  materials.js  labels.js  quality.js  camera.js
+  study/     predict.js  check.js  goals.js  log.js
+  io/        spice_out.js  spice_in.js (phase 3)  json.js
+  app.js     (wires the page together)
+app/static/vendor/three/   (pinned Three.js r170 plus the add-ons used; works offline)
+app/circuits.py            (services: save, list, attempts, mistakes, vectors)
+app/routes/circuits.py     (pages + JSON API)
+app/templates/circuits.html, circuits_list.html, circuits_selftest.html
+tests/test_circuits*.py    tests/circuit_vectors/*.json
 ```
 
-## 5. Build steps (about 7 commits, each tested and screenshotted)
+## 7. Solver
 
-1. **Solver core + referee tests.** MNA, LU, exact fractions, the error checks; the
-   Python-written test vectors; Node runner in pytest; self-test page. No UI yet.
-2. **Page and editor.** `/circuits` page, parts palette, placing, tap-tap and W wiring,
-   drag with attached wires, junctions, open-terminal markers, SI values, undo, save/load
-   (database), phone layout, dark mode.
-3. **Solve view.** Node voltages, hover/tap readouts with signed power, node table with
-   KCL per junction, error highlighting, assumptions panel, SPICE export.
-4. **Study tools.** Show equations, Thevenin finder, superposition, what-if slider,
-   predict-first and check-my-work, mistake-log tags.
-5. **3D landscape.** Three.js (vendored), plateaus/ramps/lifts, movable ground, linked
-   selection, power glow, optional current markers, reduced motion, phone performance.
-6. **Transients.** C, L, switches, step/pulse sources, t = 0⁻ operating point, scope with
-   cursors, 3D playback with a stated time base; checked against `circuits_transient.py`.
-7. **Homebase fit.** "Open in simulator" on the generated problems, MCP tools for Claude,
-   a golden set of ECE 201 problems whose official answers the bench must reproduce, docs.
+**Method: modified nodal analysis (MNA),** the formulation SPICE uses. Each element
+"stamps" its contribution into a matrix. Elements whose current can't be written from
+node voltages add one current unknown: V sources, voltage-output dependent sources, the
+ideal op-amp output, and 0 V ammeters.
 
-Steps 1-4 are enough for weeks 1-8 of ECE 201 (everything before capacitors); step 6 is
-needed by week 9. All of it is before the term starts.
+**Number types ("fields").** The same assembly and LU code runs over four number types:
+- **Float64** (fast path on typed arrays), used for everything.
+- **Exact fractions** (BigInt), used when every value is a simple decimal. Results
+  show 72/13 V. If numbers grow huge, it falls back to float and says so.
+- **Complex** (phase 2), for phasors and AC sweeps.
+- **Polynomials in s with exact coefficients** (phase 2), giving the exact H(s) of small
+  linear circuits for pole-zero plots and Laplace work.
 
-## 6. Later phases (so it lasts through the degree)
+**LU.** Dense LU with partial pivoting. Homework circuits have fewer than 100 unknowns,
+so this takes well under 1 ms on a phone. A pivot-ratio guard reports near-singular
+systems instead of returning garbage.
 
-- **Phase 2 (ECE 202/203):** AC: complex solve, phasors with peak vs RMS clearly labeled,
-  a rotating phasor linked to the scope trace (phase and lead/lag are documented trouble
-  spots), complex power, coupled inductors and transformers, three-phase, Bode plots with
-  −3 dB / f₀ / Q markers, second-order RLC with error-controlled steps, H(s) and pole-zero
-  plots, FFT of a transient.
-- **Phase 3 (before ECE 320/323):** diodes (ideal and constant-drop first, the way homework
-  does them; then the real exponential model), BJT and MOSFET, a nonlinear (Newton) solver,
-  **SPICE import including `.model` and `.subckt`**, tested on the actual ECE 323 course
-  model files (741, 2N3904/3906, CD4007...), an operating-point table (region, gm, rπ),
-  and a "verify with SPICE" button running ngspice in the browser. If this phase isn't
-  ready by ECE 320, you'd switch to LTspice, so it has a deadline.
-- **Phase 4 (depends on your electives):** power switches and PWM, transmission lines.
-  Things like noise analysis, foundry chip models and RF stay with LTspice/Cadence.
+**Checks before solving.** Each check gives its own message and highlights the parts
+involved:
+- no ground;
+- floating node or floating sub-circuit (no path to ground);
+- a loop of voltage sources and wires;
+- a cut-set of only current sources (current with nowhere to go);
+- an ideal op-amp with no negative-feedback path, or both inputs tied to fixed voltages;
+- a short-circuited voltage source;
+- a capacitor loop with only sources (transient).
 
-## 7. Not in phase 1
+Wires and closed ideal switches **merge nodes**; they are not tiny resistors. That keeps
+the matrix clean.
 
-AC/phasors, diodes and transistors, SPICE import, Falstad import, automatic layout of
-an imported netlist (ELK made Circuit Foundry's diagrams cramped; drawn layouts read
-better), and turning a photo of a schematic into a circuit (the research says AI can
-find the parts but still gets the connections wrong; a later "AI draft you correct" mode
-with the local Qwen model is possible).
+**Analyses:**
 
-## 8. Questions (defaults in bold)
+| Analysis | Phase | Notes |
+|---|---|---|
+| DC operating point | 1 | Exact when possible |
+| Parameter sweep | 1 | What-if slider; plot any value against R, V, ... |
+| Thevenin / Norton | 1 | Open-circuit V and short-circuit I between two nodes, plus R_th by test source (handles dependent sources) |
+| Superposition | 1 | One solve per source, with the others turned off |
+| Transient | 1 | C and L as companion models; trapezoidal steps with a backward-Euler step at t=0 and at every switch or source edge (stops trapezoidal ringing, as SPICE does); fixed visible step in phase 1; t=0⁻ solved with C open and L shorted; optional "use initial conditions" |
+| Error-controlled transient | 2 | TR-BDF2 with local truncation error control, for RLC and stiff circuits |
+| AC phasor at one frequency | 2 | |
+| AC sweep / Bode | 2 | Log sweep, with adaptive refinement near peaks |
+| Exact H(s) | 2 | Poles and zeros found by polynomial root finding |
+| FFT of a transient | 2 | |
+| Nonlinear DC and transient | 3 | Newton-Raphson; junction voltage limiting; gmin stepping, then source stepping; ngspice tolerances (RELTOL 1e-3, VNTOL 1 µV, ABSTOL 1 pA) |
+| Small-signal AC around the operating point | 3 | |
 
-1. Where does it live? **Its own "Circuits" tab in the nav** (it'll serve 202, 203 and
-   320 too), or a section inside the ECE 201 course page.
-2. Three.js: **copied into Homebase (works offline, about 170 kB)**, or loaded from the CDN.
-3. OK to use **Node (already installed) as a test-only tool** for the solver tests?
-4. Exercises **default to predict-first**, with Sandbox one tap away?
-5. Current markers **off by default** (the evidence says they don't help much), or on?
+**Part models:**
+- **Phase 1:** R; independent DC, step and pulse V and I sources; VCVS, VCCS, CCVS, CCCS;
+  ideal op-amp; finite-gain op-amp; ideal switch with a switching time; C; L; ground; ideal
+  meters.
+- **Phase 2:** sine and AC sources, coupled inductors (k), ideal transformer, three-phase
+  Y and Δ sources, op-amp with rails and slew rate.
+- **Phase 3:**
+  - Diode: ideal, then constant-drop (the way homework solves it), then Shockley.
+  - Zener.
+  - BJT: Ebers-Moll, then a Gummel-Poon subset.
+  - MOSFET: square law (level 1) with λ.
+  - Subcircuits.
+
+**Explanations come from the solve.** Each stamp records which element made it, so
+"Show equations" prints exactly the system that was solved. That is never a separate
+re-derivation that could disagree.
+
+## 8. Graphics engine
+
+### 2D
+- SVG for the parts, symbols and labels. These need to be crisp and accessible.
+- A single `<canvas>` overlay draws the current chevrons and the glows, so hundreds of
+  moving markers stay cheap.
+- Animation runs on one requestAnimationFrame loop that sleeps when nothing moves.
+
+### 3D
+- **Engine:** Three.js r170 (WebGL2), vendored, loaded only when the 3D view opens (about
+  170 kB compressed).
+- **Look:** physically based materials (`MeshPhysicalMaterial` for the glass-like plateau
+  tiles with clearcoat, `MeshStandardMaterial` for the ceramic board and resistor bodies).
+  Image-based lighting comes from a generated studio environment (`RoomEnvironment` +
+  PMREM), so it needs no downloaded image files. ACES tone mapping, sRGB output.
+- **Voltage glow:** each plateau's emissive color comes from the voltage palette.
+  Brightness is clamped, so the board stays readable.
+- **Current beads:** one instanced mesh, with positions computed in the vertex shader
+  from (time × speed scale × branch current) along each wire's path.
+  - Thousands of beads cost almost nothing.
+  - Speed comes straight from the snapshot.
+- **Shadows:** soft contact shadows (a blurred depth pass under the board, re-rendered
+  only when the circuit changes). Real-time shadow maps are high quality only.
+- **Post-processing (high quality):**
+  - ground-truth ambient occlusion (GTAO), for depth;
+  - selective bloom, only on power glow and beads;
+  - SMAA anti-aliasing.
+- **Labels:** HTML labels via `CSS2DRenderer`, so the text is crisp, selectable and themed,
+  with collision fading.
+- **Transitions:**
+  - When a value changes, plateau heights ease to the new solution in ≤200 ms, labeled as
+    display easing; under reduced motion they jump.
+  - Transient playback uses solver samples with a stated time base ("1 ms of circuit time
+    = 1 s on screen") and linear interpolation between samples.
+
+### Quality tiers
+Picked automatically, with a manual override in the ⋯ menu:
+
+| Tier | For | Settings | Target |
+|---|---|---|---|
+| Battery | phone, laptop on battery | No post, contact shadow only, pixel ratio ≤ 1.5, FXAA | 60 fps |
+| Balanced | Radeon 890M | Pixel ratio 2, MSAA, contact shadow | 60 fps |
+| Cinematic | RTX 5070 Ti, plugged in | Native pixel ratio, GTAO, bloom, SMAA, shadow map | 120 fps |
+
+- A frame-time governor lowers resolution before it drops effects.
+- Rendering happens only on demand, plus during animation. The 3D view pauses when hidden.
+- Colors redraw on Homebase's `homebase-theme` event, so dark and light both look right.
+
+### Accessibility
+- Every 3D state also exists as numbers in the inspector.
+- 3D is never the only way to see something.
+- The 3D camera can be driven from the keyboard.
+
+## 9. Data, server and Claude
+
+### Circuit document (JSON, versioned)
+```json
+{ "format": "homebase-circuit", "version": 1, "title": "...", "course": "ECE201",
+  "parts": [{"id": "R1", "type": "R", "at": [4, 2], "rot": 0,
+             "params": {"R": {"text": "2k", "value": 2000}}}],
+  "wires": [{"id": "w1", "path": [[2,2],[4,2]]}],
+  "labels": [{"at": [6,2], "name": "Vout"}],
+  "ground": "auto", "analysis": {"type": "op"},
+  "study": {"mode": "predict", "ask": [{"node": "Vout"}], "keys": "computed"} }
+```
+- The file stores both the typed text and the parsed number for every value.
+- Nets are computed from the layout. An imported netlist with no drawing stores explicit
+  nets and is still valid.
+- Each version change has a migration function. Files never become unreadable.
+
+### Database tables
+- `Circuit`: title, course, week, source (me, claude, generated or imported),
+  problem link, document, created/updated, archived.
+- `CircuitAttempt`: predictions, checks and results, misconception tags, time spent.
+  These feed the mistake log and Homebase's progress pages.
+
+All writes go through `app/circuits.py` services, so they show up in the activity log.
+
+### Routes
+- `/circuits`: your circuits, grouped by course and week.
+- `/circuits/new`, `/circuits/{id}`: the bench.
+- `/circuits/selftest`: runs the solver test vectors in any browser, including the phone.
+- JSON API: get, save (autosave debounced to 1 s; a localStorage draft covers dropped
+  connections), duplicate, export (`.json` and SPICE `.cir`), attempts.
+
+### Claude tools (MCP)
+- `circuits_list`
+- `circuits_get`: the document, a netlist and the latest solution.
+- `circuits_save`: Claude can build a circuit from a problem for you to open.
+- `circuits_attempts`
+
+Everything Claude saves is marked as done by Claude.
+
+### Links into the rest of Homebase
+- **Notes:** "Add to notes" saves a static snapshot image and a link back to the circuit.
+- **Problems:** "Open in simulator" on generated problems.
+
+### SPICE
+- **Phase 1:** export, ready to paste into LTspice. The exporter adds the 0 V sense sources
+  that current-controlled sources need, and writes "meg" for mega.
+- **Phase 3:** import (R C L V I E F G H D Q M, `.model`, `.subckt`, `.param`, `.op`,
+  `.tran`, `.ac`, `.dc`), tested on the ECE 323 course model files (741, 2N3904/3906,
+  CD4007, ...). Imported circuits with no drawing get a simple automatic layout that you
+  can tidy up.
+
+## 10. Quality and testing
+
+"It all works properly" has to be proven, because you'll trust these answers for homework.
+
+1. **Solver unit tests** (`node --test`, run from pytest; Node 26 is already installed and
+   is only used for tests).
+   - Every stamp is tested on circuits with known closed-form answers: dividers, bridges,
+     ladders, every dependent source, the op-amp configurations, Thevenin.
+   - Exact mode must match the answer exactly.
+2. **Referee tests against Homebase's own Python solver.** pytest generates hundreds of
+   random and textbook-style circuits with `app/generators/circuits_dc.py`. That solver is
+   already tested and checks KCL and power balance itself. The JS solver must match every
+   one. RC/RL circuits are checked against `circuits_transient.py`.
+3. **Physics properties** on random circuits: KCL at every node, power balance, superposition,
+   reciprocity, and Thevenin equivalence (the swapped-in equivalent gives the same load
+   current).
+4. **Accuracy of the time-stepping.** On an RC step, the error must shrink at the rate
+   theory predicts: like h for backward Euler, like h² for trapezoidal. Trapezoidal must
+   not ring after a switch.
+5. **Every error path.** Each malformed circuit gives its named message, never NaN.
+6. **Golden problems.** A set of Homebase ECE 201 problems with official answer keys. The
+   bench must reproduce each key.
+7. **Phase 3 cross-check.** The same netlists run through ngspice in the browser
+   (`eecircuit-engine`, loaded on demand), with its license and size checked first. This
+   also becomes the "verify with SPICE" button.
+8. **Interface checks** in the browser pane on every build step:
+   - laptop width and phone width, light and dark mode;
+   - screenshots reviewed before each commit;
+   - frame rate measured at each quality tier;
+   - no console errors.
+9. **Page tests in pytest:** routes, saving and loading, migrations, MCP tools, and that
+   the self-test page passes.
+
+Performance budget:
+- DC solve of a 50-node circuit: < 2 ms.
+- Re-solve and redraw after an edit: < 16 ms.
+- The bench is interactive within 300 ms of opening.
+- 3D opens in < 1 s on a laptop and < 2 s on a phone.
+
+## 11. Phases (what each covers)
+
+| Phase | Course | Adds |
+|---|---|---|
+| 1 | ECE 201 | Everything above marked phase 1: editor, exact DC, dependent sources, op-amps, Thevenin, superposition, transients with switches, 2D live view, 3D landscape, scope, study modes, saving, SPICE export, Claude tools, "Open in simulator" |
+| 2 | ECE 202 / 203 | AC phasors (peak vs RMS clearly labeled), complex power and power factor, coupled inductors, transformers, three-phase, Bode with cursor, phasor view linked to the scope, 3D at a chosen frequency (height = magnitude, rotation shown as phase color), RLC with error-controlled steps, exact H(s), pole-zero, step/impulse, FFT |
+| 3 | before ECE 320 / 323 | Newton solver, diodes (ideal, constant-drop, real), zener, BJT, MOSFET, operating-point table (region, gm, rπ, ro), small-signal AC, SPICE import with `.model` / `.subckt`, ngspice "verify" |
+| 4 | electives | Switches and PWM for power electronics, transmission lines, mixed digital gates (Circuit Foundry ideas), whatever your track needs |
+
+## 12. Build order (today and after)
+
+Each step ends with tests passing, screenshots at laptop and phone width, and a commit.
+
+1. **Solver core:** document, compile, number types, LU, assembly, the error checks, DC op,
+   exact mode. Node test runner and the Python referee tests.
+2. **Bench page and editor:** route, template, store, history, placing, wiring, routing,
+   dragging, values, labels, saving, phone layout.
+3. **Live 2D view:** voltage-colored nets, chips, current chevrons, power glow, inspector,
+   node table with KCL, errors highlighted, meters, assumptions, SPICE export.
+4. **Study tools:** equations, Thevenin, superposition, power check, sweep slider,
+   predict first, check my work, mistake tags.
+5. **3D landscape:** vendored Three.js, board, plateaus, parts, beads, labels, camera,
+   quality tiers, split view, ground moving.
+6. **Transients:** C, L, switches, step and pulse sources, t=0⁻, scope with cursors,
+   3D playback with a time base.
+7. **Homebase fit:** list page, attempts, "Open in simulator", MCP tools, notes snapshot,
+   golden problems, docs.
+8. **Phase 2:** complex number type, AC sources, phasor solve, Bode, phasor view, coupled
+   inductors and transformers, three-phase, TR-BDF2, H(s), pole-zero, FFT.
+9. **Phase 3:** Newton solver and devices, SPICE import, operating-point table, ngspice
+   verify.
+
+**Today:** steps 1–7 (all of phase 1, finished and tested), then as far into step 8 as
+quality allows.
+- I won't rush the solver: a wrong answer is worse than a missing feature.
+- At the end of the day I'll report exactly what's done, what's tested, and what's left.
+
+## 13. Risks and how they're handled
+
+- **A solver bug teaches you something wrong.**
+  - Three independent checks: closed-form answers, the Python referee, and later ngspice.
+  - Physics properties checked on random circuits.
+  - Golden problems with official keys.
+- **Wiring feels fiddly.** The coarse grid, tap-tap wiring, open-terminal rings and
+  rubber-band dragging handle it. I'll test with real week 1–10 circuits at phone width.
+- **3D is pretty but slow on the phone.** Quality tiers, render on demand, a frame-time
+  governor, and the 3D view is never required.
+- **Big files grow until no one can maintain them** (Circuit Foundry's App.tsx). The module
+  layout above, with each file under about 400 lines, is checked in review.
+- **The height view doesn't help with parallel circuits** (what the research found). The KCL
+  arrows at junctions and current-division readouts cover that. Your logged predictions
+  will show whether it works for you.
+- **Phase 3 arrives after ECE 320 starts.** It's scheduled long before 320. SPICE export
+  already lets you cross-check in LTspice.
+
+## 14. Decisions (defaults from the first draft; say if you want any changed)
+
+1. **Its own "Circuits" tab in the nav,** serving 201 now and 202, 203 and 320 later.
+2. **Three.js copied into Homebase,** so it works offline.
+3. **Node is used only to run the solver tests.**
+4. **Exercises default to predict first,** with Sandbox one tap away.
+5. **Current markers off by default in 2D, on in 3D,** with a one-tap toggle in each.

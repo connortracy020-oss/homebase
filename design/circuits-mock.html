@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circuit Bench mockup</title>
+<!-- Design mockup for design/CIRCUITS-PLAN.md. Every number, height, color and moving
+     marker below comes from solving this circuit (exactly, with fractions). The real bench
+     vendors Three.js; this mockup loads the same pinned version from jsDelivr. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #f2ece0; --surface: #fbf8f1; --raised: #fffdf8; --sunken: #ebe4d5; --line: #e2d9c6;
+  --ink: #26251f; --ink-soft: #5d594f; --ink-faint: #857f72;
+  --key: #fffaf0; --key-edge: #d9cdb7; --accent: #b06a4a; --ok: #4c6a35; --ok-bg: #e6eedb;
+  --bad: #8f3f25; --bad-bg: #f5e2d9;
+  /* the bench mat stays dark in both themes so light, voltage and current read clearly */
+  --mat: #1d1c19; --mat-2: #24231f; --mat-grid: rgba(239, 231, 214, .07); --mat-ink: #efe7d6;
+  --mat-soft: #a9a08e; --mat-line: #3a3731;
+  --font: "Inter", system-ui, sans-serif; --serif: "Fraunces", Georgia, serif;
+  --radius: 14px;
+}
+[data-theme="dark"] {
+  --bg: #1a1916; --surface: #23221e; --raised: #2d2b26; --sunken: #171613; --line: #36332d;
+  --ink: #efe7d6; --ink-soft: #bdb4a1; --ink-faint: #8f8777; --key: #34322c; --key-edge: #1f1d19;
+  --accent: #c98466; --ok: #a9c48f; --ok-bg: #26301f; --bad: #e39a80; --bad-bg: #3a231b;
+  --mat: #141311; --mat-2: #1b1a17;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 var(--font); }
+.num { font-variant-numeric: tabular-nums; }
+h1 { font: 600 19px/1.2 var(--serif); margin: 0; }
+button, select, input { font: inherit; color: inherit; }
+.key { background: var(--key); border: 1px solid var(--key-edge); border-radius: 9px; padding: 6px 11px;
+  box-shadow: 0 2px 0 var(--key-edge), inset 0 1px 0 rgba(255,255,255,.5); cursor: pointer; }
+.key:active { transform: translateY(2px); box-shadow: 0 0 0 var(--key-edge); }
+.key[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); box-shadow: 0 2px 0 #000; }
+
+.bar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; flex-wrap: wrap; }
+.bar .crumb { color: var(--ink-faint); font-size: 13px; }
+.bar .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 6px; }
+.seg { display: inline-flex; background: var(--sunken); border-radius: 10px; padding: 3px; gap: 2px; }
+.seg button { border: 0; background: none; padding: 5px 12px; border-radius: 8px; cursor: pointer; color: var(--ink-soft); }
+.seg button[aria-pressed="true"] { background: var(--raised); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+.grow { flex: 1; }
+
+.bench { display: grid; grid-template-columns: 64px minmax(0, 1fr) 300px; gap: 12px; padding: 0 18px 18px; }
+.palette, .inspector { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.palette { display: flex; flex-direction: column; gap: 6px; padding: 8px; align-items: center; }
+.palette button { width: 46px; height: 46px; border-radius: 11px; border: 1px solid var(--line); background: var(--raised);
+  display: grid; place-items: center; cursor: grab; }
+.palette svg { width: 28px; height: 28px; stroke: var(--ink); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.stage { position: relative; background: var(--mat); border-radius: var(--radius); overflow: hidden; min-height: 520px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 10px 30px -18px rgba(0,0,0,.6);
+  display: grid; grid-template-columns: minmax(0, 1fr); }
+.stage.split { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.view { position: relative; min-height: 520px; overflow: hidden; }
+.view[hidden] { display: none; }
+#v2d { background-image: radial-gradient(var(--mat-grid) 1.2px, transparent 1.3px); background-size: 20px 20px; }
+#v2d svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+#v3d canvas { display: block; position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+.predict[hidden] { display: none; }
+.stage.split #v3d { border-left: 1px solid var(--mat-line); }
+.legend { position: absolute; left: 14px; bottom: 12px; display: flex; align-items: center; gap: 8px; color: var(--mat-soft); font-size: 11.5px; }
+.legend .ramp { width: 120px; height: 8px; border-radius: 4px; }
+.status { position: absolute; right: 14px; top: 12px; color: var(--mat-soft); font-size: 12px; display: flex; gap: 8px; align-items: center; }
+.status b { color: #c8dcae; font-weight: 500; }
+.tip { position: absolute; pointer-events: none; background: rgba(36,35,31,.94); color: var(--mat-ink); border: 1px solid var(--mat-line);
+  border-radius: 10px; padding: 8px 10px; font-size: 12.5px; min-width: 170px; transform: translate(12px, 12px); backdrop-filter: blur(6px);
+  box-shadow: 0 10px 24px -12px #000; }
+.tip .t { font-weight: 600; margin-bottom: 2px; }
+.tip .r { display: flex; justify-content: space-between; gap: 14px; color: var(--mat-soft); }
+.tip .r span:last-child { color: var(--mat-ink); }
+.lbl3d { color: var(--mat-ink); font: 500 12px var(--font); background: rgba(29,28,25,.78); border: 1px solid var(--mat-line);
+  padding: 3px 8px; border-radius: 999px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.lbl3d .n { color: var(--mat-soft); margin-right: 4px; }
+.v3dhint { position: absolute; left: 14px; top: 12px; color: var(--mat-soft); font-size: 12px; }
+
+.inspector { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+.inspector h2 { font: 600 15px var(--serif); margin: 0; }
+.eyebrow { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); }
+.nodes { display: grid; gap: 6px; }
+.node { display: grid; grid-template-columns: 14px 1fr auto; gap: 8px; align-items: center; padding: 6px 8px; border-radius: 9px; cursor: pointer; }
+.node:hover, .node.on { background: var(--sunken); }
+.node i { width: 12px; height: 12px; border-radius: 4px; }
+.node .exact { font-weight: 600; }
+.node .dec { color: var(--ink-faint); font-size: 12px; }
+.kcl { font-size: 12.5px; background: var(--sunken); border-radius: 10px; padding: 8px 10px; }
+.kcl b { font-weight: 600; }
+.ok { color: var(--ok); }
+.eq { font-size: 12.5px; color: var(--ink-soft); background: var(--sunken); border-radius: 10px; padding: 8px 10px; line-height: 1.7; }
+.predict { border: 1px dashed var(--line); border-radius: 11px; padding: 10px; display: grid; gap: 8px; }
+.predict input { width: 100px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--raised); }
+.verdict { font-size: 12.5px; padding: 6px 8px; border-radius: 8px; }
+.verdict.good { background: var(--ok-bg); color: var(--ok); }
+.verdict.bad { background: var(--bad-bg); color: var(--bad); }
+.dock { grid-column: 2 / 4; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px 16px; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+.dock label { display: flex; align-items: center; gap: 10px; }
+.dock input[type=range] { width: 220px; accent-color: var(--accent); }
+.small { font-size: 12.5px; color: var(--ink-faint); }
+.pow { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; font-size: 12.5px; }
+.pow .abs { color: var(--ink-soft); }
+
+@media (max-width: 900px) {
+  .bench { grid-template-columns: 1fr; padding: 0 12px 12px; }
+  .palette { flex-direction: row; overflow-x: auto; order: 3; }
+  .dock { grid-column: auto; }
+  .stage.split { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+  .stage.split #v3d { border-left: 0; border-top: 1px solid var(--mat-line); }
+  .stage, .view { min-height: 380px; }
+  .dock input[type=range] { width: 150px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<header class="bar">
+  <div>
+    <div class="crumb"><span class="dot"></span>Circuits · ECE 201 · week 4</div>
+    <h1>Nodal example: source, series R, parallel pair</h1>
+  </div>
+  <div class="grow"></div>
+  <div class="seg" role="group" aria-label="View">
+    <button data-view="2d">2D</button><button data-view="3d">3D</button><button data-view="split" aria-pressed="true">Split</button>
+  </div>
+  <button class="key" id="predict-toggle" aria-pressed="false" title="Hide answers until you predict">Predict first</button>
+  <button class="key" id="dots-toggle" aria-pressed="true" title="Moving markers show current">Current</button>
+  <button class="key" id="theme" title="Light / dark">◐</button>
+</header>
+
+<main class="bench">
+  <nav class="palette" aria-label="Parts">
+    <button title="Resistor (R)"><svg viewBox="0 0 28 28"><path d="M2 14h5l2-5 3 10 3-10 3 10 2-5h6"/></svg></button>
+    <button title="Voltage source (V)"><svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="9"/><path d="M14 9v5M11.5 11.5h5M11.5 18h5"/></svg></button>
+    <button title="Current source (I)"><svg viewBox="0 0 28 28"><circle cx="14" cy="14" r="9"/><path d="M14 19V9M10.5 12.5 14 9l3.5 3.5"/></svg></button>
+    <button title="Capacitor (C)"><svg viewBox="0 0 28 28"><path d="M2 14h9M17 14h9M11 7v14M17 7v14"/></svg></button>
+    <button title="Inductor (L)"><svg viewBox="0 0 28 28"><path d="M2 16h3c0-6 5-6 5 0 0-6 5-6 5 0 0-6 5-6 5 0h6"/></svg></button>
+    <button title="Op-amp"><svg viewBox="0 0 28 28"><path d="M7 5v18l15-9z"/><path d="M9 10h2M10 17v2M9 18h2"/></svg></button>
+    <button title="Dependent source"><svg viewBox="0 0 28 28"><path d="M14 4l9 10-9 10-9-10z"/><path d="M14 10v5M11.5 12.5h5"/></svg></button>
+    <button title="Switch"><svg viewBox="0 0 28 28"><path d="M2 18h7l10-7M19 18h7"/><circle cx="9" cy="18" r="1.4"/><circle cx="19" cy="18" r="1.4"/></svg></button>
+    <button title="Ground"><svg viewBox="0 0 28 28"><path d="M14 5v9M7 14h14M10 18h8M12.5 22h3"/></svg></button>
+  </nav>
+
+  <section class="stage split" id="stage">
+    <div class="view" id="v2d">
+      <svg id="schem" viewBox="0 0 600 380" aria-label="Schematic"></svg>
+      <div class="legend"><span>0 V</span><span class="ramp" id="ramp"></span><span id="vmax">12 V</span></div>
+      <div class="status"><b>● solved · exact</b><span id="solvems"></span></div>
+      <div class="tip" id="tip" hidden></div>
+    </div>
+    <div class="view" id="v3d"><div class="v3dhint">Height = voltage · drag to orbit</div></div>
+  </section>
+
+  <aside class="inspector">
+    <div><div class="eyebrow">Node voltages</div><div class="nodes" id="nodes"></div></div>
+    <div class="kcl" id="kcl"></div>
+    <div class="predict" id="predict" hidden>
+      <div><b>Predict first.</b> What is V<sub>out</sub>?</div>
+      <div style="display:flex;gap:8px;align-items:center"><input id="guess" inputmode="decimal" placeholder="volts"> <button class="key" id="reveal">Reveal</button></div>
+      <div id="verdict"></div>
+    </div>
+    <div><div class="eyebrow">Equations it solved</div><div class="eq" id="eqs"></div></div>
+    <div><div class="eyebrow">Power (passive sign convention)</div><div class="pow" id="pow"></div></div>
+    <div class="small">Assumes ideal wires and an ideal source. Values in kΩ, mA, mW.</div>
+  </aside>
+
+  <div class="dock">
+    <label>R₃ <input type="range" id="r3" min="1" max="12" step="1" value="4"> <span class="num" id="r3v">4 kΩ</span></label>
+    <label>V<sub>s</sub> <input type="range" id="vs" min="-12" max="24" step="1" value="12"> <span class="num" id="vsv">12 V</span></label>
+    <span class="small">Drag a value: the circuit re-solves every frame, in both views.</span>
+  </div>
+</main>
+
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
+import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
+
+const $ = (s) => document.querySelector(s);
+const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// ---- exact arithmetic (BigInt fractions) ---------------------------------------------
+const gcd = (a, b) => { a = a < 0n ? -a : a; b = b < 0n ? -b : b; while (b) [a, b] = [b, a % b]; return a; };
+function frac(n, d = 1n) { if (d < 0n) { n = -n; d = -d; } const g = gcd(n, d) || 1n; return { n: n / g, d: d / g }; }
+const fnum = (f) => Number(f.n) / Number(f.d);
+const fstr = (f) => (f.d === 1n ? `${f.n}` : `${f.n}/${f.d}`);
+
+// ---- the circuit and its solution ---------------------------------------------------------
+// Vs (n1 to ground), R1 n1-n2, R2 n2-ground, R3 n2-ground. Values: kΩ and V (integers).
+const P = { vs: 12n, r1: 2n, r2: 3n, r3: 4n };
+function solve() {
+  const t0 = performance.now();
+  const { vs, r1, r2, r3 } = P;
+  // nodal equation at n2: (v2 - vs)/r1 + v2/r2 + v2/r3 = 0
+  const v2 = frac(vs * r2 * r3, r1 * (r2 + r3) + r2 * r3);
+  const v1 = frac(vs);
+  const i1 = frac((vs * v2.d - v2.n), v2.d * r1);   // mA, n1 -> n2
+  const i2 = frac(v2.n, v2.d * r2);
+  const i3 = frac(v2.n, v2.d * r3);
+  const ms = performance.now() - t0;
+  return { v: { n0: frac(0n), n1: v1, n2: v2 }, i: { R1: i1, R2: i2, R3: i3, Vs: i1 }, ms };
+}
+let sol = solve();
+
+// ---- voltage palette (diverging around ground; brightness rises with |V|) -------------------
+const POS = ["#4a463f", "#8f7440", "#c49a45", "#f0b955", "#ffd98a"];
+const NEG = ["#4a463f", "#4f6476", "#5f86a8", "#8fb4d6", "#cfe3f5"];
+function vcolor(v, vmax) {
+  const t = Math.min(1, Math.abs(v) / (vmax || 1)), stops = v < 0 ? NEG : POS;
+  const x = t * (stops.length - 1), k = Math.min(stops.length - 2, Math.floor(x)), f = x - k;
+  const a = new THREE.Color(stops[k]), b = new THREE.Color(stops[k + 1]);
+  return a.lerp(b, f);
+}
+const vmax = () => Math.max(1, ...Object.values(sol.v).map((f) => Math.abs(fnum(f))));
+
+// ---- layout (shared by 2D and 3D) ------------------------------------------------------------
+// segments: [x1,y1,x2,y2, kind, node or element]
+const L = {
+  wires: [
+    [90, 182, 90, 70, "n1"], [90, 70, 160, 70, "n1"],
+    [270, 70, 400, 70, "n2"], [400, 70, 520, 70, "n2"], [400, 70, 400, 140, "n2"], [520, 70, 520, 140, "n2"],
+    [400, 240, 400, 320, "n0"], [520, 240, 520, 320, "n0"], [90, 238, 90, 320, "n0"], [90, 320, 520, 320, "n0"],
+  ],
+  parts: {
+    R1: { a: [160, 70], b: [270, 70], na: "n1", nb: "n2", kind: "R" },
+    R2: { a: [400, 140], b: [400, 240], na: "n2", nb: "n0", kind: "R" },
+    R3: { a: [520, 140], b: [520, 240], na: "n2", nb: "n0", kind: "R" },
+    Vs: { a: [90, 238], b: [90, 182], na: "n0", nb: "n1", kind: "V" },
+  },
+  // current paths: segment, which current flows along it (from start to end for positive)
+  flow: [
+    ["Vs", 90, 238, 90, 182], ["Vs", 90, 182, 90, 70], ["Vs", 90, 70, 160, 70], ["R1", 160, 70, 270, 70],
+    ["R1", 270, 70, 400, 70], ["R3", 400, 70, 520, 70], ["R2", 400, 70, 400, 140], ["R2", 400, 140, 400, 240],
+    ["R2", 400, 240, 400, 320], ["R3", 520, 70, 520, 140], ["R3", 520, 140, 520, 240], ["R3", 520, 240, 520, 320],
+    ["R3", 520, 320, 400, 320], ["Vs", 400, 320, 90, 320], ["Vs", 90, 320, 90, 238],
+  ],
+  names: { n1: "n₁", n2: "V_out", n0: "ground" },
+};
+const nodeName = (n) => ({ n1: "n₁", n2: "Vout", n0: "ground" }[n]);
+
+// ---- 2D schematic -----------------------------------------------------------------------------
+const NS = "http://www.w3.org/2000/svg";
+const svg = $("#schem");
+const el = (tag, attrs, parent = svg) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.append(e); return e; };
+const gWires = el("g", {}), gParts = el("g", {}), gLabels = el("g", {}), gDots = el("g", {});
+const wireEls = L.wires.map((w) => {
+  const glow = el("line", { x1: w[0], y1: w[1], x2: w[2], y2: w[3], "stroke-width": 7, "stroke-linecap": "round", opacity: .18 }, gWires);
+  const core = el("line", { x1: w[0], y1: w[1], x2: w[2], y2: w[3], "stroke-width": 2.4, "stroke-linecap": "round" }, gWires);
+  return { w, glow, core };
+});
+function resistorPath(a, b) {
+  const [x1, y1] = a, [x2, y2] = b, horiz = y1 === y2, len = horiz ? x2 - x1 : y2 - y1, s = Math.sign(len), m = Math.abs(len);
+  const body = 56, lead = (m - body) / 2, n = 6, z = 9;
+  let d = horiz ? `M${x1} ${y1}h${s * lead}` : `M${x1} ${y1}v${s * lead}`;
+  for (let k = 0; k < n; k++) {
+    const sign = k % 2 ? -1 : 1, step = (s * body) / n;
+    d += horiz ? `l${step / 2} ${sign * -z}l${step / 2} ${sign * z}` : `l${sign * z} ${step / 2}l${sign * -z} ${step / 2}`;
+  }
+  return d + (horiz ? `h${s * lead}` : `v${s * lead}`);
+}
+const partEls = {};
+for (const [id, p] of Object.entries(L.parts)) {
+  const g = el("g", { tabindex: 0, role: "button", "aria-label": id, style: "cursor:pointer" }, gParts);
+  if (p.kind === "R") {
+    el("path", { d: resistorPath(p.a, p.b), fill: "none", stroke: "#efe7d6", "stroke-width": 1.8, "stroke-linejoin": "round" }, g);
+    const horiz = p.a[1] === p.b[1];
+    const lx = horiz ? (p.a[0] + p.b[0]) / 2 : p.a[0] + 20, ly = horiz ? p.a[1] - 32 : (p.a[1] + p.b[1]) / 2 + 4;
+    el("text", { x: lx, y: ly, fill: "#a9a08e", "font-size": 12, "text-anchor": horiz ? "middle" : "start", "font-family": "Inter" }, g).textContent = id;
+    partEls[id] = { g, val: el("text", { x: lx, y: ly + 15, fill: "#efe7d6", "font-size": 12.5, "font-weight": 600, "text-anchor": horiz ? "middle" : "start", "font-family": "Inter" }, g) };
+  } else {
+    el("circle", { cx: 90, cy: 210, r: 28, fill: "#24231f", stroke: "#efe7d6", "stroke-width": 1.8 }, g);
+    el("path", { d: "M90 192v10M85 197h10M85 224h10", stroke: "#efe7d6", "stroke-width": 1.8, "stroke-linecap": "round" }, g);
+    el("text", { x: 34, y: 206, fill: "#a9a08e", "font-size": 12, "font-family": "Inter", "text-anchor": "end" }, g).textContent = "Vs";
+    partEls[id] = { g, val: el("text", { x: 34, y: 222, fill: "#efe7d6", "font-size": 12.5, "font-weight": 600, "font-family": "Inter", "text-anchor": "end" }, g) };
+  }
+  g.addEventListener("pointerenter", (e) => showTip(id, e)); g.addEventListener("pointermove", (e) => moveTip(e));
+  g.addEventListener("pointerleave", hideTip); g.addEventListener("focus", (e) => showTip(id, e)); g.addEventListener("blur", hideTip);
+}
+// ground symbol and junction dots
+el("path", { d: "M300 320v14M286 334h28M291 340h18M296 346h8", stroke: "#efe7d6", "stroke-width": 1.8, "stroke-linecap": "round", fill: "none" }, gParts);
+for (const [x, y] of [[400, 70], [400, 320]]) el("circle", { cx: x, cy: y, r: 4.2, fill: "#efe7d6" }, gParts);
+// node voltage pills
+const pill = (x, y, n) => {
+  const g = el("g", { style: "cursor:pointer" }, gLabels);
+  const r = el("rect", { x, y, rx: 11, height: 22, width: 92, fill: "rgba(29,28,25,.86)", stroke: "#3a3731" }, g);
+  const t = el("text", { x: x + 10, y: y + 15, fill: "#efe7d6", "font-size": 12, "font-family": "Inter", "font-weight": 500 }, g);
+  g.addEventListener("click", () => select(n));
+  return { g, r, t, n };
+};
+const pills = [pill(96, 40, "n1"), pill(300, 40, "n2"), pill(430, 330, "n0")];
+
+// current chevrons (2D): fixed spacing, speed from |I| on a log scale
+const SPACING = 26;
+const chevrons = [];
+for (const f of L.flow) {
+  const len = Math.hypot(f[3] - f[1], f[4] - f[2]), n = Math.max(1, Math.floor(len / SPACING));
+  for (let k = 0; k < n; k++) chevrons.push({ f, k, len, n, e: el("path", { d: "M-2.6 -3 L2 0 L-2.6 3", fill: "none", stroke: "rgba(255,240,205,.72)", "stroke-width": 1.5, "stroke-linecap": "round", "stroke-linejoin": "round" }, gDots) });
+}
+const speedOf = (iMA) => 18 * Math.log10(1 + Math.abs(iMA) / 0.05);   // px/s, log scale
+
+// tooltip
+const tip = $("#tip");
+function partInfo(id) {
+  const p = L.parts[id], va = fnum(sol.v[p.na]), vb = fnum(sol.v[p.nb]), i = sol.i[id];
+  if (p.kind === "R") {
+    const v = va - vb, pw = v * fnum(i);   // current a->b, voltage a-b: absorbed power
+    return { title: `${id} · ${P_R(id)} kΩ`, rows: [["Voltage across", `${v.toFixed(3)} V`], ["Current", `${fstr(i)} mA = ${fnum(i).toFixed(3)} mA`], ["Power", `absorbs ${pw.toFixed(3)} mW`]] };
+  }
+  const v = vb - va, pw = -v * fnum(i);   // current leaves the + terminal: absorbed = -v*i
+  return { title: `Vs · ${P.vs} V`, rows: [["Current out of +", `${fstr(i)} mA`], ["Power", pw <= 0 ? `delivers ${(-pw).toFixed(3)} mW` : `absorbs ${pw.toFixed(3)} mW`]] };
+}
+const P_R = (id) => ({ R1: P.r1, R2: P.r2, R3: P.r3 }[id]);
+function showTip(id, e) {
+  const info = partInfo(id);
+  tip.innerHTML = `<div class="t">${info.title}</div>` + info.rows.map(([a, b]) => `<div class="r"><span>${a}</span><span class="num">${b}</span></div>`).join("");
+  tip.hidden = false; moveTip(e);
+}
+function moveTip(e) { const r = $("#v2d").getBoundingClientRect(); const x = (e.clientX ?? r.left + r.width / 2) - r.left, y = (e.clientY ?? r.top + 60) - r.top; tip.style.left = `${Math.min(x, r.width - 200)}px`; tip.style.top = `${y}px`; }
+function hideTip() { tip.hidden = true; }
+
+// ---- inspector --------------------------------------------------------------------------------
+let selected = null, predicting = false, revealed = true;
+function hiddenV(n) { return predicting && !revealed && n === "n2"; }
+function renderInspector() {
+  const vm = vmax();
+  $("#nodes").innerHTML = ["n1", "n2", "n0"].map((n) => {
+    const f = sol.v[n], c = vcolor(fnum(f), vm).getStyle();
+    const exact = hiddenV(n) ? "?" : `${fstr(f)} V`, dec = hiddenV(n) || f.d === 1n ? "" : `= ${fnum(f).toFixed(3)} V`;
+    return `<div class="node ${selected === n ? "on" : ""}" data-n="${n}"><i style="background:${c}"></i><span>${nodeName(n)}</span><span class="num"><span class="exact">${exact}</span> <span class="dec">${dec}</span></span></div>`;
+  }).join("");
+  document.querySelectorAll(".node").forEach((d) => d.onclick = () => select(d.dataset.n));
+  const { R1, R2, R3 } = sol.i;
+  $("#kcl").innerHTML = hiddenV("n2") ? "KCL at Vout appears after you predict." :
+    `<b>KCL at Vout</b> <span class="ok">✓</span><br><span class="num">in ${fnum(R1).toFixed(3)} mA = out ${fnum(R2).toFixed(3)} + ${fnum(R3).toFixed(3)} mA</span>`;
+  $("#eqs").innerHTML = `Node V<sub>out</sub>: (v₂ − ${P.vs})/${P.r1}k + v₂/${P.r2}k + v₂/${P.r3}k = 0<br>` +
+    (hiddenV("n2") ? "Solve it yourself first." : `v₂ = ${fstr(sol.v.n2)} V`);
+  const rows = [["Vs", -Number(P.vs) * fnum(R1)], ["R1", (fnum(sol.v.n1) - fnum(sol.v.n2)) * fnum(R1)], ["R2", fnum(sol.v.n2) * fnum(R2)], ["R3", fnum(sol.v.n2) * fnum(R3)]];
+  const tot = rows.reduce((s, r) => s + r[1], 0);
+  $("#pow").innerHTML = rows.map(([id, p]) => `<span>${id}</span><span class="num abs">${p < 0 ? "delivers " + (-p).toFixed(3) : "absorbs " + p.toFixed(3)}</span>`).join("") +
+    `<span><b>Sum</b></span><span class="num"><b>${Math.abs(tot) < 1e-9 ? "0 ✓" : tot.toFixed(4)}</b></span>`;
+  $("#solvems").textContent = `${sol.ms.toFixed(2)} ms`;
+}
+function select(n) { selected = selected === n ? null : n; render2D(); renderInspector(); highlight3D(); }
+
+function render2D() {
+  const vm = vmax();
+  for (const { w, glow, core } of wireEls) {
+    const c = vcolor(fnum(sol.v[w[4]]), vm).getStyle(), dim = selected && selected !== w[4];
+    core.setAttribute("stroke", c); glow.setAttribute("stroke", c);
+    core.setAttribute("opacity", dim ? .25 : 1); glow.setAttribute("opacity", dim ? .04 : selected === w[4] ? .42 : .18);
+  }
+  for (const p of pills) {
+    const f = sol.v[p.n]; const txt = `${nodeName(p.n)}  ${hiddenV(p.n) ? "?" : (f.d === 1n ? fstr(f) : fnum(f).toFixed(3)) + " V"}`;
+    p.t.textContent = txt; p.r.setAttribute("width", 20 + txt.length * 6.6);
+    p.r.setAttribute("stroke", selected === p.n ? vcolor(fnum(f), vm).getStyle() : "#3a3731");
+  }
+  partEls.R1.val.textContent = `${P.r1} kΩ`; partEls.R2.val.textContent = `${P.r2} kΩ`; partEls.R3.val.textContent = `${P.r3} kΩ`; partEls.Vs.val.textContent = `${P.vs} V`;
+  $("#ramp").style.background = `linear-gradient(90deg, ${POS.join(",")})`;
+  $("#vmax").textContent = `${vm.toFixed(0)} V`;
+}
+
+// ---- 3D landscape -----------------------------------------------------------------------------
+const host = $("#v3d");
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+host.append(renderer.domElement);
+const labels = new CSS2DRenderer(); labels.domElement.style.cssText = "position:absolute;inset:0;pointer-events:none"; host.append(labels.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color("#141311");
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.38;
+const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 200);
+camera.position.set(-5.5, 10.5, 15.5);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; controls.target.set(0, 1.1, 0.4); controls.maxPolarAngle = Math.PI * 0.47;
+const sun = new THREE.DirectionalLight("#fff1dc", 1.6); sun.position.set(-6, 14, 8); sun.castShadow = true;
+sun.shadow.mapSize.set(2048, 2048); Object.assign(sun.shadow.camera, { left: -10, right: 10, top: 10, bottom: -10 }); sun.shadow.radius = 6; sun.shadow.bias = -0.0004;
+scene.add(sun, new THREE.HemisphereLight("#fff5e6", "#2a241c", 0.35));
+
+const S = 1 / 40, OX = 305, OZ = 195, HV = 0.26;   // 2D px -> world; volts -> height
+const W = (x, z) => [(x - OX) * S, (z - OZ) * S];
+// board
+const board = new THREE.Mesh(new THREE.BoxGeometry(14.5, 0.35, 10.5), new THREE.MeshStandardMaterial({ color: "#2b2924", roughness: .82, metalness: .05 }));
+board.position.y = -0.18; board.receiveShadow = true; scene.add(board);
+const grid = new THREE.GridHelper(14, 28, "#3e3a33", "#34312b"); grid.position.y = 0.002; grid.material.transparent = true; grid.material.opacity = .55; scene.add(grid);
+// height scale post
+const post = new THREE.Group(); scene.add(post);
+
+const dyn = new THREE.Group(); scene.add(dyn);
+const heights = { n0: 0, n1: 0, n2: 0 }, target = { n0: 0, n1: 0, n2: 0 };
+const nodeMats = {};
+const glassMat = (c) => new THREE.MeshPhysicalMaterial({ color: c, emissive: c, emissiveIntensity: .55, roughness: .22, metalness: 0, clearcoat: 1, clearcoatRoughness: .15, transmission: .25, thickness: .4, transparent: true, opacity: .92 });
+const ceramic = new THREE.MeshStandardMaterial({ color: "#e8dcc4", roughness: .55 });
+const bandColor = { 0: "#1b1b1b", 1: "#7a4a22", 2: "#c0392b", 3: "#e67e22", 4: "#f1c40f", 5: "#27ae60", 6: "#2e6fd8", 7: "#8e44ad", 8: "#8a8a8a", 9: "#f4f4f4" };
+function bands(kohm) {
+  // value in ohms -> first two digits + multiplier (E-series style), plus gold tolerance
+  const ohms = Number(kohm) * 1000, exp = Math.floor(Math.log10(ohms)) - 1, d = Math.round(ohms / 10 ** exp);
+  return [Math.floor(d / 10), d % 10, exp].map((k) => bandColor[k]).concat("#c9a24a");
+}
+const labelObjs = {};
+function mkLabel(n) {
+  const div = document.createElement("div"); div.className = "lbl3d"; const o = new CSS2DObject(div); scene.add(o); labelObjs[n] = { o, div }; return labelObjs[n];
+}
+["n0", "n1", "n2"].forEach(mkLabel);
+
+function slabBetween(p, q, w, t, mat) {
+  // a flat-ish box from p to q (world vectors), width w, thickness t
+  const dir = new THREE.Vector3().subVectors(q, p), len = dir.length();
+  const m = new THREE.Mesh(new THREE.BoxGeometry(len, t, w), mat);
+  m.position.copy(p).add(q).multiplyScalar(.5);
+  const flat = new THREE.Vector3(dir.x, 0, dir.z).normalize();
+  m.quaternion.setFromUnitVectors(new THREE.Vector3(1, 0, 0), flat);
+  const pitch = Math.atan2(dir.y, Math.hypot(dir.x, dir.z));
+  m.rotateZ(pitch);
+  m.castShadow = true; m.receiveShadow = true;
+  return m;
+}
+function build3D() {
+  for (const c of [...dyn.children]) { dyn.remove(c); c.traverse((o) => { o.geometry?.dispose(); o.material?.dispose(); }); }
+  const vm = vmax();
+  for (const n of ["n0", "n1", "n2"]) {
+    const c = vcolor(fnum(sol.v[n]), vm);
+    nodeMats[n] = glassMat(c);
+  }
+  // plateaus: every wire of a node sits at that node's height
+  for (const w of L.wires) {
+    const h = heights[w[4]], [x1, z1] = W(w[0], w[1]), [x2, z2] = W(w[2], w[3]);
+    const p = new THREE.Vector3(x1, h, z1), q = new THREE.Vector3(x2, h, z2);
+    const len = p.distanceTo(q);
+    const ext = new THREE.Vector3().subVectors(q, p).normalize().multiplyScalar(.22);
+    dyn.add(slabBetween(p.clone().sub(ext), q.clone().add(ext), .44, .1, nodeMats[w[4]]));
+    // faint drop lines to read the height
+    if (h > .05 && len > 1.5) {
+      const mid = p.clone().add(q).multiplyScalar(.5);
+      const g = new THREE.BufferGeometry().setFromPoints([mid, new THREE.Vector3(mid.x, 0, mid.z)]);
+      dyn.add(new THREE.Line(g, new THREE.LineDashedMaterial({ color: "#8a8170", dashSize: .12, gapSize: .1, transparent: true, opacity: .55 })).computeLineDistances());
+    }
+  }
+  // resistors: ramps between plateaus, with a real banded body
+  for (const [id, p] of Object.entries(L.parts)) {
+    const [x1, z1] = W(...p.a), [x2, z2] = W(...p.b);
+    const a = new THREE.Vector3(x1, heights[p.na], z1), b = new THREE.Vector3(x2, heights[p.nb], z2);
+    if (p.kind === "R") {
+      const ramp = slabBetween(a, b, .36, .06, new THREE.MeshStandardMaterial({ color: "#3b3832", roughness: .7 }));
+      dyn.add(ramp);
+      const dir = new THREE.Vector3().subVectors(b, a), len = dir.length();
+      const body = new THREE.Group();
+      const iMA = fnum(sol.i[id]), pw = Math.abs((heights[p.na] - heights[p.nb]) / HV * iMA);
+      const heat = Math.min(1, pw / 30);
+      const bodyMat = ceramic.clone(); bodyMat.emissive = new THREE.Color("#ff7a2e"); bodyMat.emissiveIntensity = heat * .9;
+      const cyl = new THREE.Mesh(new THREE.CapsuleGeometry(.2, len * .42, 6, 18), bodyMat); cyl.castShadow = true;
+      body.add(cyl);
+      bands(P_R(id)).forEach((c, k) => {
+        const ring = new THREE.Mesh(new THREE.CylinderGeometry(.208, .208, .07, 24), new THREE.MeshStandardMaterial({ color: c, roughness: .45 }));
+        ring.position.y = (k < 3 ? -.18 + k * .14 : .24) * len * .5; body.add(ring);
+      });
+      body.position.copy(a).add(b).multiplyScalar(.5); body.position.y += .24;
+      body.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.clone().normalize());
+      dyn.add(body);
+    } else {
+      // source: a lift from ground to n1
+      const col = new THREE.Mesh(new THREE.CylinderGeometry(.42, .42, Math.max(.02, heights.n1), 32), new THREE.MeshPhysicalMaterial({ color: "#2f2d28", roughness: .35, metalness: .6, clearcoat: .6 }));
+      col.position.set(x1, heights.n1 / 2, (z1 + z2) / 2); col.castShadow = true; dyn.add(col);
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(.46, .46, .08, 32), nodeMats.n1); cap.position.set(x1, heights.n1 + .04, (z1 + z2) / 2); dyn.add(cap);
+    }
+  }
+  // scale post: ticks every 2 V
+  for (const c of [...post.children]) post.remove(c);
+  const top = Math.max(heights.n1, heights.n2) + .4, [px, pz] = W(600, 70);
+  post.add(new THREE.Mesh(new THREE.CylinderGeometry(.03, .03, top, 8), new THREE.MeshBasicMaterial({ color: "#6b6456" })).translateX(px).translateY(top / 2).translateZ(pz));
+  highlight3D();
+}
+function highlight3D() {
+  for (const n of ["n0", "n1", "n2"]) {
+    const m = nodeMats[n]; if (!m) continue;
+    m.opacity = selected && selected !== n ? .25 : .92; m.emissiveIntensity = selected === n ? 1.1 : .55;
+    const lo = labelObjs[n]; const f = sol.v[n];
+    lo.div.innerHTML = `<span class="n">${nodeName(n)}</span>${hiddenV(n) ? "?" : (f.d === 1n ? fstr(f) : fnum(f).toFixed(3)) + " V"}`;
+    const anchor = { n0: W(300, 320), n1: W(90, 70), n2: W(340, 70) }[n];
+    lo.o.position.set(anchor[0], heights[n] + .45, anchor[1]);
+  }
+}
+// current beads: one instanced mesh, fixed spacing, speed from |I|
+const beadGeo = new THREE.SphereGeometry(.052, 12, 10);
+const beadMat = new THREE.MeshStandardMaterial({ color: "#fff1cf", emissive: "#ffd27a", emissiveIntensity: 1.25 });
+const beadList = [];
+for (const f of L.flow) {
+  const len = Math.hypot(f[3] - f[1], f[4] - f[2]) * S, n = Math.max(1, Math.floor(len / (SPACING * S)));
+  for (let k = 0; k < n; k++) beadList.push({ f, k, n, len });
+}
+const beads = new THREE.InstancedMesh(beadGeo, beadMat, beadList.length); beads.count = beadList.length; scene.add(beads);
+const segNode = (x, y) => { // which node's height a point sits at (for ramps, interpolate)
+  for (const w of L.wires) if ((x - w[0]) * (x - w[2]) <= 0 && (y - w[1]) * (y - w[3]) <= 0) return heights[w[4]];
+  return null;
+};
+function heightAlong(f, t) {
+  const id = f[0], p = L.parts[id];
+  const x = f[1] + (f[3] - f[1]) * t, y = f[2] + (f[4] - f[2]) * t;
+  const onPart = (q) => q && ((f[1] === q.a[0] && f[2] === q.a[1] && f[3] === q.b[0] && f[4] === q.b[1]) || (f[1] === q.b[0] && f[2] === q.b[1] && f[3] === q.a[0] && f[4] === q.a[1]));
+  if (onPart(p)) {
+    const ha = heights[p.na], hb = heights[p.nb], fromA = f[1] === p.a[0] && f[2] === p.a[1];
+    return fromA ? ha + (hb - ha) * t : hb + (ha - hb) * t;
+  }
+  const h = segNode(x, y); return h ?? 0;
+}
+
+// ---- solve, ease, animate ----------------------------------------------------------------------
+function resolve() {
+  sol = solve();
+  for (const n of ["n0", "n1", "n2"]) target[n] = fnum(sol.v[n]) * HV;
+  if (reduced) Object.assign(heights, target);
+  render2D(); renderInspector(); build3D();
+}
+let last = performance.now(), clock = 0, dots = true;
+const m4 = new THREE.Matrix4(), v3 = new THREE.Vector3();
+function frame(now) {
+  const dt = Math.min(.05, (now - last) / 1000); last = now; clock += dt;
+  // display easing toward the solved heights (<= ~200 ms); labelled in the plan as easing, not physics
+  let moved = false;
+  for (const n in target) { const d = target[n] - heights[n]; if (Math.abs(d) > 1e-4) { heights[n] += d * Math.min(1, dt * 16); moved = true; } else heights[n] = target[n]; }
+  if (moved) build3D();
+  // 2D chevrons
+  for (const c of chevrons) {
+    const iMA = fnum(sol.i[c.f[0]]); const vis = dots && Math.abs(iMA) > 1e-9;
+    c.e.style.display = vis ? "" : "none"; if (!vis) continue;
+    const dir = Math.sign(iMA), off = ((clock * speedOf(iMA)) % SPACING + SPACING) % SPACING;
+    let s = (c.k * SPACING + (dir > 0 ? off : SPACING - off)) % (c.n * SPACING);
+    const t = s / (c.n * SPACING);
+    const x = c.f[1] + (c.f[3] - c.f[1]) * t, y = c.f[2] + (c.f[4] - c.f[2]) * t;
+    const ang = Math.atan2(c.f[4] - c.f[2], c.f[3] - c.f[1]) * 180 / Math.PI + (dir < 0 ? 180 : 0);
+    c.e.setAttribute("transform", `translate(${x} ${y}) rotate(${ang})`);
+  }
+  // 3D beads
+  beadList.forEach((b, i) => {
+    const iMA = fnum(sol.i[b.f[0]]), dir = Math.sign(iMA) || 1;
+    const sp = speedOf(iMA) * S, period = SPACING * S;
+    const off = ((clock * sp) % period + period) % period;
+    const t = ((b.k * period + (dir > 0 ? off : period - off)) % (b.n * period)) / (b.n * period);
+    const [x1, z1] = W(b.f[1], b.f[2]), [x2, z2] = W(b.f[3], b.f[4]);
+    v3.set(x1 + (x2 - x1) * t, heightAlong(b.f, t) + .13, z1 + (z2 - z1) * t);
+    m4.makeScale(dots ? 1 : 0, dots ? 1 : 0, dots ? 1 : 0).setPosition(v3); beads.setMatrixAt(i, m4);
+  });
+  beads.instanceMatrix.needsUpdate = true;
+  controls.update();
+  if (!host.closest("[hidden]") && !host.hidden) { composer.render(); labels.render(scene, camera); }
+  requestAnimationFrame(frame);
+}
+// bloom only for the brightest things (beads, hot resistors)
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(512, 512), .32, .45, .9); composer.addPass(bloom);
+composer.addPass(new OutputPass());
+function resize() {
+  const r = host.getBoundingClientRect(); if (!r.width) return;
+  renderer.setSize(r.width, r.height); composer.setSize(r.width, r.height); labels.setSize(r.width, r.height);
+  camera.aspect = r.width / r.height; camera.updateProjectionMatrix();
+  fit();
+}
+// frame the whole board for this aspect ratio, from a three-quarter view low enough to read heights
+let fitted = false;
+function fit() {
+  if (fitted) return;   // after the first fit, the camera is the user's
+  const v = camera.fov * Math.PI / 360, h = Math.atan(Math.tan(v) * camera.aspect);
+  const dist = Math.max(8.2 / Math.tan(h), 6.5 / Math.tan(v)) * 0.92;
+  const dir = new THREE.Vector3(-0.42, 0.55, 0.72).normalize();
+  controls.target.set(0, 1.0, 0.3);
+  camera.position.copy(controls.target).addScaledVector(dir, dist);
+  controls.update();
+}
+renderer.domElement.addEventListener("pointerdown", () => { fitted = true; });
+new ResizeObserver(resize).observe(host);
+
+// ---- controls --------------------------------------------------------------------------------
+const setView = (v) => {
+  document.querySelectorAll("[data-view]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.view === v)));
+  $("#stage").classList.toggle("split", v === "split");
+  $("#v2d").hidden = v === "3d"; $("#v3d").hidden = v === "2d"; requestAnimationFrame(resize);
+};
+document.querySelectorAll("[data-view]").forEach((b) => b.onclick = () => setView(b.dataset.view));
+$("#r3").oninput = (e) => { P.r3 = BigInt(e.target.value); $("#r3v").textContent = `${P.r3} kΩ`; resolve(); };
+$("#vs").oninput = (e) => { P.vs = BigInt(e.target.value); $("#vsv").textContent = `${P.vs} V`; resolve(); };
+$("#dots-toggle").onclick = (e) => { dots = !dots; e.currentTarget.setAttribute("aria-pressed", String(dots)); };
+$("#theme").onclick = () => { const d = document.documentElement; d.dataset.theme = d.dataset.theme === "dark" ? "light" : "dark"; };
+$("#predict-toggle").onclick = (e) => {
+  predicting = !predicting; revealed = !predicting; e.currentTarget.setAttribute("aria-pressed", String(predicting));
+  $("#predict").hidden = !predicting; $("#verdict").innerHTML = ""; $("#guess").value = ""; render2D(); renderInspector(); highlight3D();
+};
+$("#reveal").onclick = () => {
+  const g = Number($("#guess").value), v = fnum(sol.v.n2);
+  if (!isFinite(g) || $("#guess").value.trim() === "") return;
+  const off = Math.abs(g - v), good = off <= Math.max(.01, Math.abs(v) * .01);
+  revealed = true;
+  $("#verdict").innerHTML = good ? `<div class="verdict good">Right: V<sub>out</sub> = ${fstr(sol.v.n2)} V (${v.toFixed(3)} V).</div>`
+    : `<div class="verdict bad">Off by ${off.toFixed(3)} V. V<sub>out</sub> = ${fstr(sol.v.n2)} V. Check: R₂ ∥ R₃ first, then a divider with R₁.</div>`;
+  render2D(); renderInspector(); highlight3D();
+};
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") select(null); });
+
+resolve();
+Object.assign(heights, target); build3D();
+resize(); requestAnimationFrame(frame);
+window.bench = { sol: () => sol, P };
+</script>
+</body>
+</html>
