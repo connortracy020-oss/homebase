@@ -81,6 +81,37 @@ export function theveninCard(net, sol, partId) {
     ${steps}${extra}`, `thev:${partId}`);
 }
 
+// the same, at two labelled terminals left open on purpose (a and b of a port)
+export function theveninPortCard(net, [a, b]) {
+  const na = net.nodeByName.get(a), nb = net.nodeByName.get(b), key = `port:${a},${b}`;
+  const title = `Thevenin at ${esc(a)}–${esc(b)}`;
+  if (na === undefined || nb === undefined) return card(title, `<p class="hint">There are no terminals called ${esc(a)} and ${esc(b)} any more.</p>`, key);
+  const t = thevenin(net, { nodes: [na, nb] });
+  if (!t.ok) return card(title, `<p class="hint">${esc(t.why)}</p>`, key);
+  const flip = t.voc.x < 0;
+  const mag = (v) => (v ? { x: Math.abs(v.x), q: v.q ? (v.q.n < 0n ? Q.neg(v.q) : v.q) : null } : null);
+  const vth = mag(t.voc), inorton = mag(t.isc);
+  const voc = `${show(vth.x, vth.q, "V")}${vth.x > 1e-15 ? `<small>+ at ${esc(flip ? b : a)}</small>` : ""}`;
+  const rth = t.infinite ? "∞ (the rest acts as a current source)" : t.rth ? show(t.rth.x, t.rth.q, "Ω") : "—";
+  const isc = inorton ? `${show(inorton.x, inorton.q, "A")}${inorton.x > 1e-15 ? `<small>${esc(t.isc.x < 0 ? b : a)} → ${esc(t.isc.x < 0 ? a : b)} through the short</small>` : ""}` : "—";
+  const steps = `<ol class="steps">
+    <li>With ${esc(a)} and ${esc(b)} open, the open-circuit voltage is \\(V_{th} = v_{${esc(a)}} - v_{${esc(b)}}\\) = ${show(t.voc.x, t.voc.q, "V")}.</li>
+    <li>Turn every independent source off (voltage source → short, current source → open), push a 1 A test current into ${esc(a)}, and read the voltage: \\(R_{th}\\) = ${rth}.${net.elements.some((e) => e.def.dependent) ? " (A test source is needed here because of the dependent source.)" : ""}</li>
+    <li>Short ${esc(a)} to ${esc(b)} for the Norton current: \\(I_N\\) = ${isc}${t.rth && t.rth.x && t.isc ? ` = \\(V_{th}/R_{th}\\)` : ""}.</li></ol>`;
+  const power = t.rth && !t.infinite && t.rth.x > 0
+    ? `<p class="hint">Maximum power transfer: a load across ${esc(a)}–${esc(b)} gets the most power, ${esc(fmt((t.voc.x * t.voc.x) / (4 * t.rth.x), "W"))}, when \\(R_L = R_{th}\\).</p>` : "";
+  return card(title, `
+    <div class="thev-grid">${equivalentSVG(t)}<div class="readout"><span class="k">V<sub>th</sub></span><span class="v">${voc}</span>
+      <span class="k">R<sub>th</sub></span><span class="v">${rth}</span><span class="k">I<sub>N</sub></span><span class="v">${isc}</span></div></div>
+    ${steps}${power}`, key);
+}
+
+// labelled terminals that look like a port: a and b, the way textbooks name them
+export function ports(net) {
+  const names = new Set(net.nodes.map((n) => n.label).filter(Boolean));
+  return names.has("a") && names.has("b") ? [["a", "b"]] : [];
+}
+
 function equivalentSVG(t) {
   return `<svg class="thev-svg" viewBox="-0.6 -2.2 9.4 5.6" aria-hidden="true">
     <path class="lead" d="M0 -1.5V-0.95M0 0.95V2.5H7.2M0 -1.5H1.2M3.8 -1.5H7.2"/>

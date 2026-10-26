@@ -1,4 +1,4 @@
-# Circuit Bench: full plan (draft for your OK)
+# Circuit Bench: full plan (approved October 2026; phase 1 built, see section 15)
 
 A circuit bench inside Homebase. You draw a circuit, it solves it exactly, and you can see
 it two ways: as a live schematic, or as a 3D landscape where voltage is height. It checks
@@ -11,7 +11,7 @@ Working mockup of the look: [design/circuits-mock.html](circuits-mock.html).
 
 Contents: 1 What it is · 2 Rules · 3 Look and feel · 4 Mechanics · 5 Study features ·
 6 Architecture · 7 Solver · 8 Graphics engine · 9 Data, server, Claude ·
-10 Quality and testing · 11 Phases · 12 Build order · 13 Risks · 14 Decisions
+10 Quality and testing · 11 Phases · 12 Build order · 13 Risks · 14 Decisions · 15 As built
 
 ---
 
@@ -596,3 +596,63 @@ quality allows.
 3. **Node is used only to run the solver tests.**
 4. **Exercises default to predict first,** with Sandbox one tap away.
 5. **Current markers off by default in 2D, on in 3D,** with a one-tap toggle in each.
+
+## 15. As built (phase 1, October 26, 2026)
+
+Phase 1 (build steps 1–7) is done. Where the build differs from the plan above:
+
+**Files.** The layout follows section 6 with fewer, larger modules (each still under about
+400 lines):
+- `elements/`: `passive.js` (R, C, L), `sources.js` (V, I), `dependent.js`, `opamp.js`,
+  `misc.js` (ground, label, switches, meters), `common.js`.
+- `core/`: undo is document snapshots in `store.js` (no separate `commands.js` /
+  `history.js`); `rational.js` holds the exact fractions.
+- `solver/`: `theorems.js` (Thevenin and superposition), `isolate.js` (parts not connected
+  yet, or reached only through capacitors at DC), `flows.js` (wire currents), `modes.js`
+  (natural time constants), `run.js` (op, sweep and transient for the worker), `netlist.js`
+  (the netlist format the tests use).
+- `editor/`: `edit.js`, `input.js`, `hit.js`, `route.js`, `symbols.js` (the 2D symbols),
+  `labels.js`, `inspector.js`, `persist.js` (saving), `palette.js` (the parts palette).
+- `views/`: `overlay.js`, `current.js`, `panels.js`, `plot.js` (scope and sweep plots),
+  `palette.js` (voltage colors), `snapshot.js` ("Add to notes").
+- `study/`: `study.js` (predict first, sweeps), `check.js`, `tools.js` (equations,
+  Thevenin and superposition cards), `transient.js` (over time, the scope, playback).
+- `io/spice.js` (export), `selftest/cases.js` (the golden problems).
+- Server: `app/circuits.py`, `app/routes/circuit_routes.py`, `app/templates/circuit.html`,
+  `circuits_list.html`, `circuits_selftest.html`. Three.js is in
+  `app/static/vendor/three-r170/`.
+- Tests: `tests/js/*.test.mjs` (run by `tests/test_circuits_solver.py`),
+  `tests/test_circuits.py`, `tests/test_circuits_bridge.py`. Test vectors are generated
+  inside the tests instead of being stored in `tests/circuit_vectors/`.
+
+**The document** (section 9) is simpler: each part is `{id, type, x, y, rot, flip, params}`
+with every value kept as the text you typed, each wire is one straight segment `{a, b}`, and
+labels and ground are parts. Nets are always worked out from the drawing.
+
+**Number types:** float and exact fractions. Complex numbers and polynomials in s come with
+phase 2.
+
+**Study features not built yet:** "swap in equivalent" on the Thevenin card (the card does
+compare the equivalent's load current with the full circuit's), stacked bars for
+superposition (it's a table), ranking predictions, and goal exercises.
+
+**Added along the way:**
+- The circuit's own time constants (`modes.js`, the eigenvalues of its state equations)
+  set the time window when there's more than one capacitor or inductor. Series capacitors
+  share one time constant that neither sees on its own.
+- When the textbook gives the 0⁻ values (two inductors in parallel, say, whose DC split the
+  circuit can't fix), those parts are held at the given values before t = 0.
+- A named terminal left open on purpose (a and b of a port) isn't flagged as a loose end, and
+  terminals named a and b get a "Thevenin at a–b" card (the plan's "pick two nodes").
+- Generated problems carry their bench drawing (`app/generators/bench_bridge.py`), and a
+  test checks that the bench's answers match the generator's own, node by node.
+
+**Decision 3 changed slightly:** Node still isn't needed to use the bench, but Claude's
+circuit tools use it when it's there (`scripts/bench_solve.mjs`), so Claude checks each
+drawing with the bench's own solver. Without Node, Claude can still save circuits, unchecked.
+
+**Verification:** 57 Node tests (closed-form circuits, every dependent source, op-amps,
+switching transients and their accuracy order, editing, and the golden problems), agreement with Homebase's Python
+solver on 360 random circuits and on every generated problem (11 generators × 15 seeds), and
+12 Ulaby exercises whose worked solutions the bench reproduces, which `/circuits/selftest`
+re-runs on any device.

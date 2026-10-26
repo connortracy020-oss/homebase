@@ -29,6 +29,7 @@ The shortcuts come from `.venv\Scripts\python scripts\install_desktop.py`. Add `
 | **Today** | This prep week's checklist (the next task's key is course-colored), a study timer with this week's progress ring, reviews and feedback waiting, and logging time by hand |
 | **Plan** | All 11 prep weeks (Oct 19 – Jan 3), with planned hours and tasks |
 | **Courses** | The three course tiles; each opens the course page (instructor, exam-style notes marked *unknown* where they are, the 10 term weeks) |
+| **Circuits** | The Circuit Bench: draw a circuit and it solves as you build it (see below) |
 | **Progress** | Hours logged vs planned per course and week, tasks done, and the activity log |
 | **Settings** | Local AI status, light / dark / match device, export everything as a zip, daily backup to OneDrive |
 
@@ -300,6 +301,45 @@ ECE 200 at OSU has a weekly 2-hour computer lab. OSU doesn't publish its lab lis
 
 If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m pip install -r requirements.txt` once.
 
+## Circuit Bench
+
+**Circuits** in the nav. Draw a circuit and it solves as you build it. The full design is in `design/CIRCUITS-PLAN.md`; phase 1 (ECE 201) is built.
+
+**Drawing:**
+- Pick a part on the left (or press 1–8) and click where it goes. R rotates, X mirrors, Del deletes, Ctrl+Z / Ctrl+Y undo and redo. ⋯ → Keyboard shortcuts lists the rest.
+- Wire by dragging from a terminal, or tap one terminal and then another (easier on a phone). Wires route around parts and never connect anything by accident.
+- A wire end or a terminal that lands on another wire joins it, and a dot shows the junction. Wires that only cross don't join. Net labels with the same name are one node.
+- It saves itself as you work. If Homebase can't be reached, it keeps a copy on the device and saves when it can. If Claude or another tab changed the circuit since you opened it, it asks which version to keep.
+
+**Parts:** resistors, capacitors, inductors, voltage and current sources (constant, step or pulse), the four dependent sources (controlled the textbook way, by `v(R2)` or `i(R2)`), ideal or finite-gain op-amps, one- and two-way switches that flip at a set time, ammeters, voltmeters, ground and net labels.
+
+**What it shows:**
+- Exact answers when the values allow (fractions like 72/13 V), otherwise decimals.
+- Wires colored by voltage, a voltage pill on every node, each part's current, and a warm glow on parts that absorb power. Moving current markers are in the ⋯ menu.
+- Tap a node to see KCL there: every current in and out. The power table shows that what's delivered is absorbed.
+- When it can't solve, it says why in words and marks the parts, for example a loop of voltage sources, a floating node, or an op-amp with no feedback.
+- **3D:** voltage becomes height, so a resistor is a ramp and a source is a cliff, and current runs as beads. There are three quality levels (Battery, Balanced, Cinematic). You never need the 3D view to use the bench.
+
+**Study tools** (on the right, or in the bottom sheet on a phone):
+- **Predict first:** values show as **?** until you commit a guess. A wrong guess tells you if only the sign or a factor of 1000 is off.
+- **Equations:** the node equations it solved, and the matrix, exactly.
+- **Thevenin / Norton** at any part, or at terminals labelled a and b: V_th, R_th and I_N, found the textbook way (a test source handles dependent sources), plus maximum power transfer.
+- **Superposition:** each source's share of every node voltage, and the check that the shares add up.
+- **Check my work:** type your node voltages, and it names the KCL equation that breaks, with the actual currents.
+- **Sweep:** select a part and press **Sweep** to plot what changes as its value runs over a range. Its value slider changes it live.
+- **Over time:** switches and step or pulse sources. The values at t = 0⁻, 0⁺ and ∞ are exact, the first-order formula appears when there's one capacitor or inductor, and a scope plots everything. Playback runs the 2D and 3D views through time.
+
+**With the rest of Homebase:**
+- Generated ECE 201 circuit problems have **Open on the Circuit Bench**: the same circuit, with the same names and values, and predict first on. Your copy is kept, so opening it again goes back to your work.
+- A wrong prediction or check on a problem's circuit goes into the mistake log, once a day per problem.
+- ⋯ → **Add a picture to my notes** saves the schematic, as it looks right now, in a notes unit with a link back to the circuit.
+- ⋯ → export a SPICE netlist (`.cir`) for LTspice, or the circuit file (`.json`).
+- **Self-test** (`/circuits/selftest`, linked from the Circuits page) runs the solver in whatever browser opens it, on 12 Ulaby exercises with worked solutions, and shows whether each one matches the book. Run it once on your phone.
+
+**With Claude:** Claude can list, read, draw and change circuits (`circuits_list`, `circuits_get`, `circuits_save`, `circuits_attempts`). It checks each drawing with the bench's own solver, so it sees the same nodes, netlist and values you would. That check needs Node (installed on this laptop); without Node, Claude can still save circuits, unchecked. Claude's changes are marked as Claude's, and it can't overwrite a change you made after it read the circuit.
+
+**Not built yet** (phases 2 and 3 of the plan): AC and phasors, Bode plots, coupled inductors and transformers, diodes and transistors, SPICE import, "swap in the Thevenin equivalent", and goal exercises.
+
 ## Claude access (MCP server)
 
 `mcp_server.py` gives Claude these tools on your Homebase:
@@ -311,6 +351,8 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 | `mark_task_done`, `log_study_session`, `add_note`, `record_problem_result`, `mark_video_watched` | Log work you do with Claude in chat |
 | `list_due_reviews`, `list_mistakes`, `add_mistake`, `record_review_outcome` | Run your daily re-solves in chat and log mistakes |
 | `list_exams`, `post_exam_grades` | See practice exams and suggest grades for a finished sitting |
+| `notes_outline`, `notes_search`, `notes_add`, `notes_update`, `notes_move`, `notes_add_unit` | Organize your notebooks (see Notes) |
+| `circuits_list`, `circuits_get`, `circuits_save`, `circuits_attempts` | Read, draw and change Circuit Bench circuits, and see your predictions |
 | `recent_activity` | See what changed recently |
 
 **Connected on this laptop (2026-10-19):**
@@ -352,13 +394,15 @@ app/        the app (models, services, pages, API, backup)
 app/generators/   problem generators with code-checked answers
 app/pdfpages.py   cuts one problem or solution out of a PDF page
 app/labs.py, app/lab_checks/   loads labs, runs the checks against NumPy/SciPy
+app/circuits.py, app/static/circuits/   the Circuit Bench: storage here, the editor and solver in the browser
+app/static/vendor/three-r170/   Three.js for the 3D view (MIT license), copied in so it works offline
 content/    course content as JSON: weeks, videos, prep schedule (committed)
 labs/       Python lab starters (labs/ece200/) and labs/check.py, the lab checker
 research/   research reports + data the content came from (committed)
 library/    downloaded course PDFs (git-ignored)
 data/       your database, uploads, exports (git-ignored)
 scripts/    one-off tools (build content from research, check research)
-tests/      pytest tests
+tests/      pytest tests; tests/js/ has the bench's solver tests (Node)
 ```
 
 ### Changing content
@@ -376,7 +420,7 @@ Re-seeding keeps your done marks and study time. A task that you delete from the
 .venv\Scripts\python -m pytest -q
 ```
 
-Tests use a temporary database, so your real data is never touched. To try the app without touching your data, start it with `$env:HOMEBASE_DATA="C:\temp\hb-test"; $env:HOMEBASE_NO_BACKUP="1"`. To pretend it's another day, also set `$env:HOMEBASE_TODAY="2026-12-14"`.
+pytest also runs the Circuit Bench's solver tests (`node --test tests/js`) when Node is installed. Tests use a temporary database, so your real data is never touched. To try the app without touching your data, start it with `$env:HOMEBASE_DATA="C:\temp\hb-test"; $env:HOMEBASE_NO_BACKUP="1"`. To pretend it's another day, also set `$env:HOMEBASE_TODAY="2026-12-14"`.
 
 ## Ground rules this app follows
 

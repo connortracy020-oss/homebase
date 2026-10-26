@@ -77,3 +77,29 @@ test("nothing to animate gets a plain reason", () => {
   assert.equal(r.ok, false);
   assert.match(r.why, /nothing that changes/);
 });
+
+test("several capacitors or inductors: the circuit's own time constants set the time window", async () => {
+  const { naturalModes, eigenvalues } = await import("../../app/static/circuits/solver/modes.js");
+  const { compile } = await import("../../app/static/circuits/core/compile.js");
+  const { migrate } = await import("../../app/static/circuits/core/doc.js");
+  // eigenvalues of a known matrix: [[-2, 1], [1, -2]] has -1 and -3
+  const ev = eigenvalues([[-2, 1], [1, -2]]).map((z) => z.re).sort((a, b) => a - b);
+  assert.ok(Math.abs(ev[0] + 3) < 1e-9 && Math.abs(ev[1] + 1) < 1e-9, String(ev));
+  // and complex ones: [[0, 1], [-4, 0]] has ±2j
+  const osc = eigenvalues([[0, 1], [-4, 0]]);
+  assert.ok(osc.every((z) => Math.abs(z.re) < 1e-9 && Math.abs(Math.abs(z.im) - 2) < 1e-9));
+  // two capacitors in series behind R share one time constant, R·C1C2/(C1 + C2) = 0.2 s
+  const series = {
+    parts: [part("V1", "V", 0, 2, 1, { V: "12" }), part("S1", "SW", 0, 0, 0, { state: "open", at: "0" }),
+      part("R1", "R", 4, 0, 0, { R: "100k" }), part("C1", "C", 10, 0, 1, { C: "6u", v0: "0" }),
+      part("C2", "C", 10, 4, 1, { C: "3u", v0: "0" }), part("GND1", "GND", 0, 8)],
+    wires: [wire("w1", [0, 2], [0, 0]), wire("w2", [8, 0], [10, 0]), wire("w3", [0, 6], [0, 8]), wire("w4", [0, 8], [10, 8])],
+  };
+  const m = naturalModes(compile(migrate(series), { when: { t: 1, side: 1 } }));
+  assert.equal(m.taus.length, 1);
+  assert.ok(Math.abs(m.taus[0] - 0.2) < 1e-9, String(m.taus));
+  const r = transient(series);
+  assert.ok(r.ok, r.why);
+  assert.equal(r.tstop, 1);
+  assert.ok(Math.abs(r.els.C1.v.at(-1) - 4 * (1 - Math.exp(-5))) < 1e-3);
+});

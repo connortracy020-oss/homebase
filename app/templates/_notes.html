@@ -38,7 +38,7 @@
   {% set src = source_label(b.source) %}
   {% if src or b.created_by != 'you' or b.suggested %}
   <div class="nb-meta">
-    {% if src %}{% if b.source.video_slug %}<a href="/video/{{ b.source.video_slug }}{% if b.source.t is not none %}?t={{ b.source.t }}{% endif %}">▶ {{ src }}</a>{% elif b.source.url %}<a href="{{ b.source.url }}" target="_blank" rel="noopener">{{ src }} ↗</a>{% else %}<span>{{ src }}</span>{% endif %}{% endif %}
+    {% if src %}{% if b.source.video_slug %}<a href="/video/{{ b.source.video_slug }}{% if b.source.t is not none %}?t={{ b.source.t }}{% endif %}">▶ {{ src }}</a>{% elif b.source.url and b.source.url.startswith('/') and not b.source.url.startswith('//') %}<a href="{{ b.source.url }}">{{ src }} →</a>{% elif b.source.url %}<a href="{{ b.source.url }}" target="_blank" rel="noopener">{{ src }} ↗</a>{% else %}<span>{{ src }}</span>{% endif %}{% endif %}
     {% if b.created_by == 'claude' %}<span class="ai-chip claude">by Claude</span>{% elif b.created_by == 'local' %}<span class="ai-chip local">by Qwen</span>{% endif %}
     {% if b.suggested and b.suggested.unit_id %}<span class="nb-suggest">Suggested: {{ unit_title(b.suggested.unit_id) if unit_title else '' }} · {{ {'ideas': 'Key ideas', 'definitions': 'Definitions', 'formulas': 'Formulas', 'examples': 'Examples', 'tips': 'Tips'}.get(b.suggested.part, '') }}
       <button type="button" class="small" data-act="accept" data-unit="{{ b.suggested.unit_id }}" data-part="{{ b.suggested.part }}">Move there</button></span>{% endif %}

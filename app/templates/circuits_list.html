@@ -8,7 +8,7 @@
   <p class="eyebrow">Circuit Bench</p>
   <h1>Circuits</h1>
   <p class="muted small">Draw a circuit and it solves as you build it: exact node voltages, currents and power, a 3D view where
-    voltage is height, and checks for your own hand work.</p>
+    voltage is height, and checks for your own hand work. <a href="/circuits/selftest">Self-test</a>: check the solver against the book on this device.</p>
 </section>
 
 <div class="circuits-grid">
@@ -37,7 +37,7 @@
           <div class="m">{% if course %}<span><span class="dot"></span>{{ course.name }}</span>{% endif %}
             <span>{{ c.doc.parts | length }} part{{ 's' if c.doc.parts | length != 1 }}</span>
             <span>edited {{ c.updated_at | md }}{% if c.updated_by == 'claude' %} by Claude{% endif %}</span>
-            {% if c.source == 'problem' %}<span class="tag">from a problem</span>{% endif %}</div>
+            {% if c.source == 'problem' %}<span class="tag">from a problem</span>{% elif c.source == 'claude' %}<span class="ai-chip claude">by Claude</span>{% endif %}</div>
         </div>
         {% if archived %}
         <form method="post" action="/circuits/{{ c.slug }}/archive"><input type="hidden" name="archived" value="false"><button class="small" type="submit">Restore</button></form>

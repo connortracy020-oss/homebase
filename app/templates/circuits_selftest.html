@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Self-test · Circuits · Homebase{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="/static/circuits/bench.css?v={{ static_v('circuits/bench.css') }}">
+<section class="hero">
+  <p class="eyebrow"><a href="/circuits">Circuit Bench</a></p>
+  <h1>Self-test</h1>
+  <p class="muted small">This page runs the bench's solver, in this browser, on ECE 201 exercises with published worked
+    solutions (Ulaby's exercises, the same keys Homebase grades with). Every row should pass. If one fails here but not
+    on your laptop, this browser computes differently and the bench shouldn't be trusted on it.</p>
+</section>
+<section class="card selftest">
+  <p class="selftest-summary" id="selftest-summary" role="status">Running…</p>
+  <ol class="selftest-list" id="selftest-list"></ol>
+</section>
+<script type="module">
+  import { runAll } from "/static/circuits/selftest/cases.js?v={{ static_v('circuits/selftest/cases.js') }}";
+  import { fmt } from "/static/circuits/core/units.js";
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const show = (k) => typeof k.got === "number" ? (k.note ? `${fmt(k.got, k.unit)} (${k.note})` : fmt(k.got, k.unit)) : String(k.got);
+  const t0 = performance.now();
+  const results = runAll();
+  const passed = results.filter((r) => r.ok).length;
+  document.getElementById("selftest-list").innerHTML = results.map((r) => `
+    <li class="${r.ok ? "pass" : "fail"}">
+      <div class="st-head"><span class="st-mark" aria-hidden="true">${r.ok ? "✓" : "✗"}</span><strong>${esc(r.name)}</strong>
+        <span class="muted small">${r.ms.toFixed(1)} ms</span></div>
+      <div class="small">Book: ${esc(r.answer)}</div>
+      ${r.error ? `<div class="small st-error">The bench couldn't solve it: ${esc(r.error)}</div>` : ""}
+      <ul class="st-checks small">${r.checks.map((k) => `<li class="${k.ok ? "pass" : "fail"}">${esc(k.label)}: ${esc(show(k))}${k.ok ? "" : ` (book: ${esc(typeof k.want === "number" ? fmt(k.want, k.unit) : k.want)})`}</li>`).join("")}</ul>
+    </li>`).join("");
+  const summary = document.getElementById("selftest-summary");
+  summary.textContent = `${passed} of ${results.length} problems match the book (${(performance.now() - t0).toFixed(0)} ms in this browser).`;
+  summary.classList.add(passed === results.length ? "pass" : "fail");
+</script>
+{% endblock %}

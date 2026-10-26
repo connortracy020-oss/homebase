@@ -563,6 +563,9 @@ class Ladder:
 
     # -- picture --
     def svg(self, aria: str) -> str:
+        return _LadderSvg(self._svg(aria), self)
+
+    def _svg(self, aria: str) -> str:
         n, yt, yb = len(self.cols), self.yt, self.yb
         W, H = self.x(n - 1) + 100, yb + 46
         out = [f'<svg viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" '
@@ -643,10 +646,22 @@ def _R(name, value, u: Units, **kw) -> Part:
     return Part("R", name, value, f"{_fmt(value)} {u.ohm}", **kw)
 
 
+class _LadderSvg(str):
+    """The SVG of a ladder, still knowing its ladder (for the Circuit Bench copy)."""
+    def __new__(cls, text, ladder):
+        out = super().__new__(cls, text)
+        out.ladder = ladder
+        return out
+
+
 def _problem(text, diagram, svg, answers, steps, checks, topics) -> dict:
     if not 3 <= len(steps) <= 8:
         raise AssertionError(f"{len(steps)} steps")
-    return {"statement": {"text": text, "diagram": diagram, "svg": svg},
+    statement = {"text": text, "diagram": diagram, "svg": str(svg)}
+    if getattr(svg, "ladder", None) is not None:
+        from .bench_bridge import ladder_doc  # the same circuit, laid out for the Circuit Bench
+        statement["bench"] = ladder_doc(svg.ladder)
+    return {"statement": statement,
             "key": {"answers": answers, "steps": steps, "checks": checks},
             "topics": topics}
 

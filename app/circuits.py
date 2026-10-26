@@ -5,11 +5,12 @@ the predictions you check on them, and logs every change like the rest of Homeba
 """
 import json
 import secrets
+from datetime import timedelta
 
 from sqlmodel import Session, select
 
 from . import config
-from .models import Circuit, CircuitAttempt, Course
+from .models import Circuit, CircuitAttempt, Course, Problem, ProblemSet
 from .services import course_by_code, log
 
 FORMAT = "homebase-circuit"
@@ -141,6 +142,8 @@ def record_attempt(session: Session, circuit: Circuit, kind: str, quantity: str,
                        guess=float(guess), truth=float(truth), correct=bool(correct),
                        tags=[t for t in (tags or []) if isinstance(t, str)][:6], note=note[:500])
     session.add(a)
+    if not correct and circuit.problem_id:
+        _log_miss(session, circuit, a, actor)
     verdict = "right" if correct else "off"
     log(session, actor, f"circuit.{kind}", f"{'Predicted' if kind == 'predict' else 'Checked'} {quantity} on {circuit.title}: {verdict}",
         circuit=circuit.slug, correct=correct, tags=a.tags)
@@ -149,9 +152,88 @@ def record_attempt(session: Session, circuit: Circuit, kind: str, quantity: str,
     return a
 
 
+def _log_miss(session: Session, circuit: Circuit, a: CircuitAttempt, actor: str) -> None:
+    """A wrong prediction or hand check on a problem's circuit goes into the mistake log, like a
+    wrong answer check: once a day per problem, however many values were off."""
+    from . import review
+    problem = session.get(Problem, circuit.problem_id)
+    if problem is None:
+        return
+    logged = review.open_mistake_for(session, problem)
+    if logged and logged.box == 1 and logged.due == config.today() + timedelta(days=review.INTERVALS[1]):
+        return  # already logged (or sent back to box 1) today
+    cause = ("algebra-sign" if "sign" in a.tags else "units" if "units" in a.tags
+             else "setup" if a.kind == "check" else "concept")
+    did = "predicted" if a.kind == "predict" else "worked out"
+    review.add_mistake(session, problem, source="bench", cause=cause, actor=actor,
+                       note=f"Circuit Bench: {did} {a.quantity} = {a.guess:.4g}, but the circuit gives {a.truth:.4g}.")
+
+
 def attempts(session: Session, circuit: Circuit, limit: int = 50) -> list[CircuitAttempt]:
     q = select(CircuitAttempt).where(CircuitAttempt.circuit_id == circuit.id).order_by(CircuitAttempt.at.desc()).limit(limit)
     return list(session.exec(q).all())
+
+
+def circuit_for_problem(session: Session, problem) -> Circuit | None:
+    q = select(Circuit).where(Circuit.problem_id == problem.id, Circuit.archived == False)  # noqa: E712
+    return session.exec(q.order_by(Circuit.updated_at.desc())).first()
+
+
+def open_for_problem(session: Session, problem, actor: str = "app") -> Circuit:
+    """The bench copy of a generated problem's circuit (made the first time, kept after that,
+    so your work on it isn't thrown away)."""
+    existing = circuit_for_problem(session, problem)
+    if existing:
+        return existing
+    bench = (problem.statement or {}).get("bench")
+    if not bench:
+        raise ValueError("this problem has no circuit to open")
+    pset = session.get(ProblemSet, problem.set_id)
+    course = session.get(Course, pset.course_id)
+    title = f"{problem.label} (week {pset.week})" if pset.week else problem.label
+    doc = {**bench, "title": title, "course": course.code if course else ""}
+    return create_circuit(session, title, course.code if course else "", doc, source="problem",
+                          week=pset.week, problem_id=problem.id, actor=actor)
+
+
+def _notebook(session: Session, circuit: Circuit):
+    from . import notes
+    course = session.get(Course, circuit.course_id) if circuit.course_id else None
+    return notes.notebook_for(session, course) if course else None
+
+
+def note_targets(session: Session, circuit: Circuit) -> dict | None:
+    """Where "Add to notes" can put a picture: the course notebook's units, and the one it
+    suggests (the circuit's week, else the Inbox)."""
+    from . import notes
+    nb = _notebook(session, circuit)
+    if nb is None:
+        return None
+    units = notes.units(session, nb)
+    pick = next((u for u in units if circuit.week and u.term_week == circuit.week), None) or notes.inbox(session, nb)
+    return {"units": [{"id": u.id, "title": u.title} for u in units], "default": pick.id,
+            "parts": [[k, v] for k, v in notes.PARTS]}
+
+
+def snapshot_to_notes(session: Session, circuit: Circuit, image: bytes, caption: str = "",
+                      unit_id: int | None = None, part: str = "ideas", actor: str = "app"):
+    """Save a picture of the circuit in its course's notes, linked back to the circuit."""
+    from . import notes
+    from .models import NoteUnit
+    nb = _notebook(session, circuit)
+    if nb is None:
+        raise ValueError("Give the circuit a course first: notes are kept per course.")
+    unit = session.get(NoteUnit, unit_id or note_targets(session, circuit)["default"])
+    if unit is None or unit.notebook_id != nb.id:
+        raise ValueError("That unit isn't in this course's notes.")
+    try:
+        asset = notes.save_asset(image, "circuit.png")
+        block = notes.add_block(session, unit, part, "image", body=caption.strip() or circuit.title, asset=asset,
+                                source={"label": f"Circuit Bench · {circuit.title}", "url": f"/circuits/{circuit.slug}"},
+                                actor="claude" if actor == "claude" else "you")
+    except notes.NotesError as e:
+        raise ValueError(str(e))
+    return block, unit
 
 
 def to_json(session: Session, circuit: Circuit) -> dict:

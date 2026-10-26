@@ -205,6 +205,7 @@ export function compile(doc, { when = DEFAULT_WHEN } = {}) {
   for (const pc of pieces) for (const end of [pc.a, pc.b]) if (degree.get(key(...end)) === 1) openEnds.push(end);
   const openPins = pins.filter((p) => !p.def.topological && groupOf(p.key).electrical === 1);
   for (const p of openPins) {
+    if (groupOf(p.key).labels.length) continue;  // a named terminal (a and b of a port) is open on purpose
     warnings.push({ code: "OPEN_PIN", message: `${p.part.id}'s ${pinLabel(p)} terminal isn't connected.`, parts: [p.part.id], at: [p.x, p.y] });
   }
 

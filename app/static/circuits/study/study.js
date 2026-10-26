@@ -7,7 +7,7 @@ import { esc } from "../editor/symbols.js";
 import { exactText } from "../views/overlay.js";
 import { pinPoints } from "../core/doc.js";
 import { defOf } from "../elements/index.js";
-import { equationsCard, superpositionCard, theveninCard, checkCard } from "./tools.js";
+import { equationsCard, superpositionCard, theveninCard, theveninPortCard, ports, checkCard } from "./tools.js";
 import { checkWork } from "./check.js";
 import { Plot } from "../views/plot.js";
 import { Transient } from "./transient.js";
@@ -72,6 +72,7 @@ export class Study {
     if (this.card === "sup") return superpositionCard(net);
     if (this.card === "check") return checkCard(net, sol, this.check);
     if (this.card === "tran") return this.tran.cardHTML();
+    if (this.card.startsWith("port:")) return theveninPortCard(net, this.card.slice(5).split(","));
     return "";
   }
 
@@ -199,7 +200,8 @@ export class Study {
       <button type="button" class="small" data-study="eq" ${pressed("eq")}>Equations</button>
       <button type="button" class="small" data-study="sup" ${pressed("sup")}>Superposition</button>
       <button type="button" class="small" data-study="check" ${pressed("check")}>Check my work</button>
-      ${Transient.relevant(this.store.doc) ? `<button type="button" class="small" data-study="tran" ${pressed("tran")}>Over time</button>` : ""}</div>${this.cardHTML()}</div>`;
+      ${Transient.relevant(this.store.doc) ? `<button type="button" class="small" data-study="tran" ${pressed("tran")}>Over time</button>` : ""}
+      ${(this.getNet() ? ports(this.getNet()) : []).map(([a, b]) => `<button type="button" class="small" data-study="port:${esc(a)},${esc(b)}" ${pressed(`port:${a},${b}`)}>Thevenin at ${esc(a)}–${esc(b)}</button>`).join("")}</div>${this.cardHTML()}</div>`;
   }
 
   partTools(part) {

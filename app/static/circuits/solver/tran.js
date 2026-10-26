@@ -14,9 +14,10 @@ import { waveEvents } from "../elements/common.js";
 import { assemble } from "./assemble.js";
 import { FLOAT } from "./field.js";
 import { factor, solveFactored, Singular } from "./lu.js";
-import { solveDC } from "./op.js";
+import { solveDC, synthetic } from "./op.js";
 import { thevenin } from "./theorems.js";
 import { structuralErrors } from "./checks.js";
+import { naturalModes } from "./modes.js";
 
 const MAX_STEPS = 20000;
 
@@ -87,7 +88,22 @@ export function transient(rawDoc, opts = {}) {
     return { ok: false, why: "There's nothing that changes in time here: add a capacitor or inductor, a switch that flips, or a step or pulse source." };
   }
   // 1. t = 0⁻: the circuit before anything happens
-  const pre = solveDC(net0, { flows: false });
+  let pre = solveDC(net0, { flows: false });
+  if (!pre.ok) {
+    // Some problems give the 0⁻ values instead: two inductors in parallel, say, share a DC
+    // current in a way the circuit alone doesn't fix. Hold those parts at the values given.
+    const held = pre.errors.every((e) => e.code !== "PARAM" && e.code !== "CTRL") ? storage(net0).filter(givenStart) : [];
+    if (held.length) {
+      const swap = net0.elements.map((el) => (!held.includes(el) ? el : el.type === "C"
+        ? synthetic("V", el.id, el.nodes, { V: el.params.v0.text })
+        : synthetic("I", el.id, el.nodes, { I: negated(el.params.i0.text) })));  // its current enters pin a, like the inductor's
+      const again = solveDC({ ...net0, elements: swap }, { flows: false });
+      if (again.ok) {
+        pre = again;
+        warnings.push(`Before t = 0, ${held.map((el) => el.id).join(" and ")} ${held.length > 1 ? "are" : "is"} held at the starting value${held.length > 1 ? "s" : ""} you gave.`);
+      }
+    }
+  }
   if (!pre.ok) return { ok: false, why: `Before t = 0 the circuit can't be solved: ${pre.errors[0]?.message}` };
   const state = stateFrom(net0, pre, warnings);
   for (const el of storage(net0)) {
@@ -105,12 +121,16 @@ export function transient(rawDoc, opts = {}) {
   const lastEvent = Math.max(0, ...evAll.map((e) => e.t).filter(Number.isFinite));
   const netEnd = compile(doc, { when: after(lastEvent) });
   const taus = timeConstants(netEnd).filter((x) => x.tau > 0);
-  const tauMax = taus.length ? Math.max(...taus.map((x) => x.tau)) : null;
-  const tauMin = taus.length ? Math.min(...taus.map((x) => x.tau)) : null;
+  // with several capacitors and inductors, the circuit's own time constants (they can differ
+  // from what each part sees alone: series capacitors share one)
+  const modes = storage(netEnd).length > 1 ? naturalModes(netEnd) : null;
+  const rates = modes?.taus.length ? modes.taus : taus.map((x) => x.tau);
+  const tauMax = rates.length ? Math.max(...rates) : null;
+  const tauMin = rates.length ? Math.min(...rates) : null;
   let tstop = opts.tstop > 0 ? opts.tstop : niceTime(lastEvent + 5 * (tauMax || Math.max(lastEvent, 1e-3)));
   const pulse = net0.elements.find((el) => el.params.wave?.text === "pulse");
   if (!(opts.tstop > 0) && pulse) tstop = niceTime(Math.max(tstop, pulse.params.td.value + 3 * (pulse.params.per.value || pulse.params.pw.value * 2)));
-  let h = opts.dt > 0 ? opts.dt : Math.min(tstop / 400, (tauMin || tstop) / 60);
+  let h = opts.dt > 0 ? opts.dt : Math.min(tstop / 400, (tauMin || tstop) / 60, ...(modes?.periods || []).map((T) => T / 40));
   if (tstop / h > MAX_STEPS) { h = tstop / MAX_STEPS; warnings.push(`The step was enlarged to ${h.toExponential(2)} s to stay under ${MAX_STEPS} steps.`); }
 
   const ev = events(doc, net0, tstop);
@@ -125,10 +145,12 @@ export function transient(rawDoc, opts = {}) {
     times.push(t);
     v.forEach((x, k) => { if (!nodeSeries.has(k)) nodeSeries.set(k, []); nodeSeries.get(k).push(x); });
     for (const [id, e] of Object.entries(els)) {
-      if (!elSeries.has(id)) elSeries.set(id, { i: [], v: [], p: [] });
+      if (!elSeries.has(id)) { const gap = () => Array(times.length - 1).fill(NaN); elSeries.set(id, { i: gap(), v: gap(), p: gap() }); }
       const s = elSeries.get(id);
       s.i.push(e.i); s.v.push(e.v); s.p.push(e.p);
     }
+    // a part this solve left out (set aside, say) gets a gap, so every series lines up with the times
+    for (const [id, s] of elSeries) if (!(id in els)) { s.i.push(NaN); s.v.push(NaN); s.p.push(NaN); }
   };
   const snap = (sol) => {
     const v = remap(sol.nodes.map((n) => n.v ?? 0));
@@ -137,8 +159,16 @@ export function transient(rawDoc, opts = {}) {
     return { v, els };
   };
 
-  // the 0⁻ sample, so the scope shows any jump at t = 0
-  { const s = snap(pre); record(0, s.v, s.els); }
+  // the 0⁻ sample, so the scope shows any jump at t = 0 (a capacitor the solve set aside, behind
+  // an open switch say, shows the voltage it starts with)
+  {
+    const s = snap(pre);
+    for (const el of storage(net0)) {
+      const st = state.get(el.id);
+      if (!(el.id in s.els) && st) s.els[el.id] = el.type === "C" ? { v: st.v ?? 0, i: 0, p: 0 } : { v: 0, i: st.i ?? 0, p: 0 };
+    }
+    record(0, s.v, s.els);
+  }
 
   for (let k = 0; k + 1 < cuts.length; k++) {
     const t0 = cuts[k], t1 = cuts[k + 1];
@@ -196,7 +226,7 @@ export function transient(rawDoc, opts = {}) {
     t: times, nodes: Object.fromEntries(nodeSeries), els: Object.fromEntries(elSeries),
     pre: plainSol(pre), post: initialPost ? plainSol(initialPost) : null, final: final ? plainSol(final) : null,
     // (pre, post and final keep their own node numbers; use els, which are by part name)
-    taus, nodeNames: net0.nodes.map((n) => n.label || n.name),
+    taus, modes, nodeNames: net0.nodes.map((n) => n.label || n.name),
   };
   // the textbook formula when there's one storage element after the switch
   const store = storage(netEnd);
@@ -216,6 +246,9 @@ export function transient(rawDoc, opts = {}) {
 function plainSol(s) {
   return { nodes: s.nodes.map((n) => ({ index: n.index, v: n.v, vx: n.vx })), els: Object.fromEntries(Object.entries(s.els).map(([id, e]) => [id, { v: e.v, vx: e.vx, i: e.i, ix: e.ix }])) };
 }
+
+const givenStart = (el) => !(el.type === "C" ? el.params.v0 : el.params.i0).empty;
+const negated = (text) => (text.trim().startsWith("-") ? text.trim().slice(1) : `-${text.trim()}`);
 
 function fracText(p) {
   if (!p.exact) return null;

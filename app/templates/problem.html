@@ -26,6 +26,12 @@
   {% else %}
     <p class="problem-text">{{ st.text }}</p>
     {% if st.svg %}<div class="circuit-wrap">{{ st.svg | safe }}</div>{% if st.diagram %}<p class="visually-hidden">{{ st.diagram }}</p>{% endif %}{% endif %}
+    {% if st.bench %}
+    <form method="post" action="/circuits/from-problem/{{ problem.slug }}" class="bench-open">
+      <button type="submit" class="small">{{ icon('circuit') }} {{ 'Open your bench copy' if bench_circuit else 'Open on the Circuit Bench' }}</button>
+      <span class="small muted">The same circuit, live. Predict first is on: commit a number before it shows you.</span>
+    </form>
+    {% endif %}
   {% endif %}
 </section>
 

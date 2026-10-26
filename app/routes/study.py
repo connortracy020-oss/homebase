@@ -4,7 +4,7 @@ from fastapi.responses import FileResponse, RedirectResponse, Response
 from pydantic import BaseModel
 from sqlmodel import Session, select
 
-from .. import backup, config, feedback, local_ai, pdfpages, review, services, uploads
+from .. import backup, circuits, config, feedback, local_ai, pdfpages, review, services, uploads
 from ..db import get_session
 from ..models import Course, Problem, ProblemSet, Submission
 from .pages import render
@@ -179,6 +179,7 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
         mistake=review.open_mistake_for(session, problem), CAUSES=feedback.CAUSES,
         local=local, ask_log=local_ai.history(session, problem.id),
         local_check=local.ready and local_ai.setting(session, "local_check_submissions") == "1",
+        bench_circuit=circuits.circuit_for_problem(session, problem) if st.get("bench") else None,
     )
 
 

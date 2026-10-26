@@ -21,6 +21,7 @@ import { statusHTML, overviewHTML, solvedHTML, tipHTML, kclHTML } from "./views/
 import { Study } from "./study/study.js";
 import { Transient } from "./study/transient.js";
 import { toSpice } from "./io/spice.js";
+import { snapshot } from "./views/snapshot.js";
 import { fmt } from "./core/units.js";
 
 const $ = (s, r = document) => r.querySelector(s);
@@ -213,12 +214,14 @@ bench.addEventListener("click", (e) => {
   else if (act === "export-spice") download(`${slugName()}.cir`, toSpice(store.doc, net), "text/plain");
   else if (act === "export-json") download(`${slugName()}.json`, JSON.stringify(store.doc, null, 2), "application/json");
   else if (act === "keys") { e.preventDefault(); showKeys(); }
+  else if (act === "snapshot") addToNotes();
   else return;
   b.closest("details")?.removeAttribute("open");
   updateButtons();
 });
 store.on("doc", updateButtons);
 
+$("#predict-toggle").setAttribute("aria-pressed", String(study.predicting));  // problem copies open in predict first
 $("#predict-toggle").addEventListener("click", (e) => {
   study.setPredicting(!study.predicting);
   e.currentTarget.setAttribute("aria-pressed", String(study.predicting));
@@ -299,6 +302,44 @@ function summaryOf(s) {
     parts: Object.fromEntries(Object.entries(s.els).map(([id, e]) => [id, { v: e.vx || e.v, i: e.ix || e.i, p: e.px || e.p }])),
   };
 }
+
+// ---- add to notes: a picture of the schematic, saved in the course notebook ----
+async function addToNotes() {
+  const targets = data.notes, dlg = $("#snap-dialog");
+  if (!targets) { toast("Give the circuit a course first: notes are kept per course."); return; }
+  let blob;  // always of the schematic, even from the 3D view
+  try { blob = await snapshot(view, store.doc); }
+  catch (err) { toast(err.message || "Couldn't make the picture."); return; }
+  const url = URL.createObjectURL(blob);
+  $("#snap-preview").src = url;
+  const unit = $("#snap-unit"), part = $("#snap-part");
+  unit.innerHTML = targets.units.map((u) => `<option value="${u.id}">${escHTML(u.title)}</option>`).join("");
+  unit.value = String(targets.default);
+  part.innerHTML = targets.parts.map(([k, name]) => `<option value="${k}">${escHTML(name)}</option>`).join("");
+  part.value = "ideas";
+  $("#snap-caption").value = "";
+  dlg.returnValue = "";
+  dlg.showModal();
+  dlg.addEventListener("close", async () => {
+    URL.revokeObjectURL(url);
+    if (dlg.returnValue !== "save") return;
+    const form = new FormData();
+    form.append("file", blob, "circuit.png");
+    form.append("caption", $("#snap-caption").value);
+    form.append("unit_id", unit.value);
+    form.append("part", part.value);
+    try {
+      const r = await fetch(`/api/circuits/${data.slug}/snapshot`, { method: "POST", body: form });
+      const j = await r.json();
+      if (!r.ok) throw new Error(j.detail || r.statusText);
+      banner(`Added to your notes: ${escHTML(j.unit)} · ${escHTML(j.part)}.`, [["Open the notes", () => { location.href = j.url; }], ["OK", () => {}]]);
+    } catch (err) {
+      toast(`Couldn't add it to your notes (${err.message}).`);
+    }
+  }, { once: true });
+}
+
+const escHTML = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 function banner(text, actions) {
   const b = $("#banner");

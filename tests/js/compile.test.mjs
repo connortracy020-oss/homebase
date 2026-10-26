@@ -140,3 +140,18 @@ test("a node behind a capacitor has no DC voltage, and the rest still solves", (
   assert.equal(s.nodes[net.nodeAt("10,0")].vx, "72/13");
   assert.equal(s.els.C1.v, null);
 });
+
+test("an open terminal with a name (a port's a and b) isn't flagged as a loose end", () => {
+  const doc = migrate({
+    parts: [
+      { id: "V1", type: "V", x: 0, y: 0, rot: 1, params: { V: "10" } },
+      { id: "R1", type: "R", x: 0, y: 0, rot: 0, params: { R: "1k" } },
+      { id: "Ta", type: "LBL", x: 4, y: 0, params: { name: "a" } },
+      { id: "G", type: "GND", x: 0, y: 4 },
+    ],
+    wires: [],
+  });
+  const net = compile(doc);
+  assert.ok(!net.warnings.some((w) => w.code === "OPEN_PIN"));
+  assert.deepEqual(net.openPins, [[4, 0]]);  // still drawn as an open terminal
+});

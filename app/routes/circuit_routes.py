@@ -1,5 +1,5 @@
 """Circuit Bench pages and the JSON the bench saves through."""
-from fastapi import APIRouter, Depends, Form, HTTPException, Request
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel
 from sqlmodel import Session
@@ -26,6 +26,12 @@ def circuits_page(request: Request, archived: bool = False, session: Session = D
     return render(request, "circuits_list.html", session, items=items, archived=archived, course_by_id=by_id)
 
 
+@router.get("/circuits/selftest")
+def selftest_page(request: Request, session: Session = Depends(get_session)):
+    """The bench's solver against published answers, run by whatever browser opens it."""
+    return render(request, "circuits_selftest.html", session)
+
+
 @router.post("/circuits/new")
 def new_circuit(title: str = Form("Untitled circuit"), course: str = Form("ECE201"),
                 session: Session = Depends(get_session)):
@@ -33,11 +39,23 @@ def new_circuit(title: str = Form("Untitled circuit"), course: str = Form("ECE20
     return RedirectResponse(f"/circuits/{c.slug}", status_code=303)
 
 
+@router.post("/circuits/from-problem/{slug}")
+def from_problem(slug: str, session: Session = Depends(get_session)):
+    problem = services.problem_by_slug(session, slug)
+    if problem is None:
+        raise HTTPException(404, "No such problem")
+    try:
+        c = cs.open_for_problem(session, problem)
+    except ValueError as e:
+        raise HTTPException(404, str(e))
+    return RedirectResponse(f"/circuits/{c.slug}", status_code=303)
+
+
 @router.get("/circuits/{slug}")
 def bench_page(request: Request, slug: str, session: Session = Depends(get_session)):
     c = _circuit_or_404(session, slug)
-    return render(request, "circuit.html", session, circuit=c, data=cs.to_json(session, c),
-                  attempts=cs.attempts(session, c, 20))
+    data = {**cs.to_json(session, c), "notes": cs.note_targets(session, c)}
+    return render(request, "circuit.html", session, circuit=c, data=data, attempts=cs.attempts(session, c, 20))
 
 
 @router.post("/circuits/{slug}/duplicate")
@@ -88,6 +106,21 @@ def rename_json(slug: str, body: RenameIn, session: Session = Depends(get_sessio
     except ValueError as e:
         raise HTTPException(422, str(e))
     return {"rev": c.rev, "title": c.title}
+
+
+@router.post("/api/circuits/{slug}/snapshot")
+async def snapshot_json(slug: str, file: UploadFile = File(...), caption: str = Form(""), unit_id: int | None = Form(None),
+                        part: str = Form("ideas"), session: Session = Depends(get_session)):
+    """Add to notes: a picture of the circuit, in a unit of its course's notebook."""
+    from .. import notes
+    c = _circuit_or_404(session, slug)
+    try:
+        block, unit = cs.snapshot_to_notes(session, c, await file.read(), caption, unit_id, part)
+    except ValueError as e:
+        raise HTTPException(422, str(e))
+    code = session.get(cs.Course, c.course_id).code
+    return {"block": block.id, "unit": unit.title, "part": notes.PART_NAMES[part],
+            "url": f"/notes/{code}?u={unit.id}#b{block.id}"}
 
 
 class AttemptIn(BaseModel):

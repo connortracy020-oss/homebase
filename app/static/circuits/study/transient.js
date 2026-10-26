@@ -211,11 +211,12 @@ export class Transient {
       const pin = net.pins.find((p) => net.nodeAt(p.key) === nd.index);
       return pin ? this.net0.nodeAt(pin.key) : -1;
     });
-    const nodes = net.nodes.map((nd, i) => ({ index: i, name: nd.name, label: nd.label, v: nodeOfRun[i] >= 0 ? r.nodes[nodeOfRun[i]][k] : null, vx: null }));
+    const at = (x) => (Number.isFinite(x) ? x : null);  // a gap: the run had no value there
+    const nodes = net.nodes.map((nd, i) => ({ index: i, name: nd.name, label: nd.label, v: nodeOfRun[i] >= 0 ? at(r.nodes[nodeOfRun[i]][k]) : null, vx: null }));
     const els = {};
     for (const el of net.elements) {
       const s = r.els[el.id];
-      if (!s) continue;
+      if (!s || !Number.isFinite(s.i[k])) continue;
       const i = s.i[k], v = s.v[k], p = s.p[k];
       const pins = el.type === "OA" ? [{ i: 0 }, { i: 0 }, { i: -i }] : [{ i }, { i: -i }];
       els[el.id] = { type: el.type, nodes: el.nodes, i, v, p, pins: pins.map((q, j) => ({ ...q, node: el.nodes[j] })), ix: null, vx: null, px: null };
@@ -244,7 +245,12 @@ export class Transient {
         <div class="eqs-inline">$$\\tau = ${tauFor} = ${texNum(f.tau, "s")}$$
         $$${name}(t) = ${texNum(f.xinf, unit)} + \\left(${texNum(f.x0, unit)} - ${texNum(f.xinf, unit)}\\right) ${expo}$$</div>`;
     } else {
-      body = `<p class="hint">${r.taus.length > 1 ? "More than one capacitor or inductor, so the response isn't a single exponential; the scope shows the full curves." : "The scope shows each quantity over time."}</p>`;
+      const m = r.modes;
+      body = m?.taus.length === 1 && !m.periods.length
+        ? `<p class="hint">More than one capacitor or inductor, but they act together: every quantity settles with one time constant, τ = ${esc(fmt(m.taus[0], "s"))}. The scope shows the curves.</p>`
+        : m?.taus.length > 1
+          ? `<p class="hint">More than one capacitor or inductor, so the response mixes ${m.taus.length} exponentials (τ = ${m.taus.map((t) => esc(fmt(t, "s"))).join(", ")}); the scope shows the full curves.</p>`
+          : `<p class="hint">${r.taus.length > 1 ? "More than one capacitor or inductor, so the response isn't a single exponential; the scope shows the full curves." : "The scope shows each quantity over time."}</p>`;
     }
     const warn = r.warnings.length ? `<ul class="err-list">${r.warnings.map((w) => `<li class="warn">${esc(w)}</li>`).join("")}</ul>` : "";
     return `<section class="study-card" data-card="tran"><div class="card-title"><strong>Over time</strong><button type="button" class="link" data-study-close>close</button></div>${body}${warn}

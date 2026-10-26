@@ -66,6 +66,33 @@ pointer events). Math labels: write \\( \\) and call HB.math() once.
 - Get the physics and math right (it's study material): check formulas and signs, label axes.
 - description (required): 2-4 sentences: what it shows, what to try, what to notice.
 - Put it in the part it explains (usually "ideas" or "examples") of the matching unit.
+
+Circuit Bench (the circuits he draws and simulates in Homebase): circuits_list, circuits_get, \
+circuits_save, circuits_attempts. A circuit is a JSON document:
+{"format": "homebase-circuit", "version": 1, "title", "course", "parts": [{"id", "type", "x", "y", \
+"rot", "flip", "params"}], "wires": [{"id", "a": [x, y], "b": [x, y]}], "study": {"predict": true}}
+- x, y are whole grid units; y grows downward. rot = quarter turns clockwise.
+- Two-terminal parts (R C L V I E F G H SW AM VM) have pin a at (x, y) and pin b 4 units on: \
+rot 0 -> (x+4, y), rot 1 -> (x, y+4) (vertical, a on top), rot 2 -> (x-4, y), rot 3 -> (x, y-4).
+- V, E, H: pin a is the + terminal. I, G, F: the arrow points at pin a (the current leaves the \
+source there).
+- OA (op-amp) at rot 0: - input (x, y-1), + input (x, y+1), output (x+5, y). GND and LBL (net \
+label) have one pin at (x, y). SW2: common (x, y), throw 1 (x+4, y-1), throw 2 (x+4, y+1).
+- A wire is one straight segment. Points joined by wires are one node; a wire end or a pin that \
+lands inside another wire joins it; wires that only cross don't. LBLs with the same name are one \
+node. Use one GND: the node it touches is 0 V.
+- params are text with SI prefixes ("4.7k", "2m", "10u", "1meg"; m is milli): R {R}; C {C, v0}; \
+L {L, i0}; V {wave: "dc", V}, a step {wave: "step", V0, V1, at} or a pulse {wave: "pulse", V0, \
+V1, td, tr, tf, pw, per}; I the same with I, I0, I1. E (gain), G (A/V), H (ohms), F (gain): \
+{gain, ctrl, cname} where ctrl is "v(R2)" (across R2: its pin a minus pin b), "i(R2)" (into R2's \
+pin a), "v(Vx)" (a labelled node against ground) or "v(Vx, Vy)", with a leading "-" to flip it, \
+and cname is the name the problem uses (vx, ix). OA {model: "ideal" or "gain", A, rout}; \
+SW {state: "closed" or "open", at: when it flips}; SW2 {state: "1" or "2", at}; LBL {name}.
+- study.predict = true makes him commit a prediction before the bench shows a value.
+- circuits_save solves the drawing with the bench's own solver and returns the nodes it found \
+(with every part terminal on each) and the solution. Read it and make sure it's the circuit you \
+meant before you tell him it's ready. To change an existing circuit, pass the base_rev that \
+circuits_get showed, so you never overwrite a change he made since.
 """
 
 mcp = MCPServer("homebase", instructions=INSTRUCTIONS)
@@ -550,12 +577,202 @@ def notes_add_unit(course: str, title: str, after_unit: str = "", topics: list[s
         return f"Added unit {u.id}: {u.title}."
 
 
+# ---- Circuit Bench ---------------------------------------------------------------------------
+
+def _circuit(s, slug: str):
+    from . import circuits
+    c = circuits.get_circuit(s, slug)
+    if c is None:
+        raise ValueError(f"No circuit {slug!r}; use circuits_list to find slugs.")
+    return c
+
+
+def _bench_solve(doc: dict) -> dict | None:
+    """Solve a drawing with the bench's own code (scripts/bench_solve.mjs). None without Node."""
+    import json
+    import shutil
+    import subprocess
+    import tempfile
+    from pathlib import Path
+    node = shutil.which("node")
+    if node is None:
+        return None
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "circuit.json"
+        path.write_text(json.dumps(doc), encoding="utf-8")
+        r = subprocess.run([node, str(config.ROOT / "scripts" / "bench_solve.mjs"), str(path)],
+                           capture_output=True, text=True, encoding="utf-8", timeout=60)
+    if r.returncode != 0:
+        return {"ok": False, "errors": ["The bench's solver crashed: " + r.stderr.strip()[-400:]],
+                "warnings": [], "nodes": [], "parts": {}, "netlist": None}
+    return json.loads(r.stdout)
+
+
+_PREFIXES = [(1e9, "G"), (1e6, "M"), (1e3, "k"), (1, ""), (1e-3, "m"), (1e-6, "µ"), (1e-9, "n"), (1e-12, "p")]
+
+
+def _si(x, unit: str) -> str:
+    if x is None:
+        return "?"
+    if x == 0:
+        return f"0 {unit}"
+    scale, prefix = next(((k, p) for k, p in _PREFIXES if abs(x) >= k * 0.9995), _PREFIXES[-1])
+    return f"{x / scale:.4g} {prefix}{unit}"
+
+
+def _exact(text) -> str:
+    """The exact value too, when it's a fraction the decimal doesn't show."""
+    return f" (= {text})" if text and "/" in str(text) else ""
+
+
+def _solution_lines(r: dict | None) -> list[str]:
+    if r is None:
+        return ["Not checked: Node isn't installed, so only the bench can solve it (it does when he opens it)."]
+    out = []
+    if r["ok"]:
+        out.append(f"The bench solves it ({'exact fractions' if r.get('exact') else 'decimals'}). Nodes it found:")
+    else:
+        out.append("The bench can't solve it yet:")
+        out += [f"- error: {e}" for e in r["errors"]]
+        if r["nodes"]:
+            out.append("Nodes it found:")
+    for n in r["nodes"]:
+        v = f" = {_si(n.get('v'), 'V')}{_exact(n.get('vx'))}" if r["ok"] else ""
+        out.append(f"- {n['name']}{' (ground, 0 V)' if n['ground'] else v}: {', '.join(n['pins']) or 'no terminals'}")
+    if r["ok"] and r["parts"]:
+        out.append("Parts (v = pin a minus pin b; i = current into pin a, through the part to b; "
+                   "p = power absorbed, negative = delivering):")
+        for pid, e in r["parts"].items():
+            out.append(f"- {pid}: v {_si(e['v'], 'V')}{_exact(e.get('vx'))}, i {_si(e['i'], 'A')}{_exact(e.get('ix'))}, "
+                       f"p {_si(e['p'], 'W')}")
+    out += [f"- warning: {w}" for w in r.get("warnings", [])]
+    if r.get("idle"):
+        out.append(f"Set aside (not connected to the rest, or only through capacitors at DC): {', '.join(r['idle'])}")
+    if r.get("netlist"):
+        out += ["SPICE netlist:", r["netlist"].rstrip()]
+    return out
+
+
+def _summary(r: dict | None) -> dict | None:
+    """The bench's saved-summary shape (what the browser stores after each solve)."""
+    if r is None:
+        return None
+    if not r["ok"]:
+        return {"ok": False, "errors": r["errors"][:5]}
+    return {"ok": True, "exact": r.get("exact", False),
+            "nodes": {n["name"]: n.get("vx") or n.get("v") for n in r["nodes"]},
+            "parts": {k: {"v": e.get("vx") or e["v"], "i": e.get("ix") or e["i"], "p": e.get("px") or e["p"]}
+                      for k, e in r["parts"].items()}}
+
+
+def _circuit_head(s, c) -> str:
+    course = s.get(Course, c.course_id).code if c.course_id else "no course"
+    week = f" wk {c.week}" if c.week else ""
+    problem = s.get(Problem, c.problem_id) if c.problem_id else None
+    who = {"you": "Connor", "claude": "Claude"}
+    origin = f" · from problem {problem.slug}" if problem else f" · made by {who.get(c.source, c.source)}"
+    return (f"{c.slug} · {c.title} ({course}{week}){origin} · rev {c.rev} · {len(c.doc.get('parts', []))} parts · "
+            f"saved {c.updated_at:%Y-%m-%d %H:%M} by {who.get(c.updated_by, c.updated_by)}{' · archived' if c.archived else ''}")
+
+
+def circuits_list(course: str = "", archived: bool = False) -> str:
+    """Connor's Circuit Bench circuits, newest first (archived ones with archived=True)."""
+    from . import circuits
+    with db() as s:
+        c_id = _course(s, course).id if course else None
+        rows = [c for c in circuits.list_circuits(s, archived=archived) if c_id is None or c.course_id == c_id]
+        return "\n".join("- " + _circuit_head(s, c) for c in rows) or "No circuits yet."
+
+
+def circuits_get(circuit_slug: str) -> str:
+    """One circuit: its document (JSON), the nodes the bench finds in it, its SPICE netlist, the
+    DC solution, and his latest predictions on it."""
+    import json
+    from . import circuits
+    with db() as s:
+        c = _circuit(s, circuit_slug)
+        lines = [_circuit_head(s, c), f"Document (base_rev for circuits_save: {c.rev}):",
+                 json.dumps({k: v for k, v in c.doc.items() if k != "view"}, separators=(",", ":"))]
+        lines += _solution_lines(_bench_solve(c.doc))
+        tries = circuits.attempts(s, c, 10)
+        if tries:
+            lines.append("His latest predictions and checks on it:")
+            lines += [_attempt_line(a) for a in tries]
+        return "\n".join(lines)
+
+
+def circuits_save(doc: dict, circuit_slug: str = "", base_rev: int | None = None, title: str = "",
+                  course: str = "ECE201", week: int | None = None, problem_slug: str = "") -> str:
+    """Make a new circuit (no circuit_slug) or save a new version of one (circuit_slug plus the
+    base_rev circuits_get showed). doc is the circuit document described in the server
+    instructions. problem_slug links a new circuit to the problem it draws. Returns what the
+    bench finds in the drawing: check it is the circuit you meant."""
+    from . import circuits
+    with db() as s:
+        r = _bench_solve(doc)
+        try:
+            if circuit_slug:
+                c = _circuit(s, circuit_slug)
+                if base_rev is None:
+                    raise ValueError(f"Pass base_rev (the rev circuits_get showed; it is now {c.rev}) "
+                                     "so a change Connor made since isn't overwritten.")
+                c = circuits.save_circuit(s, c, {**doc, "view": c.doc.get("view", {})} if "view" not in doc else doc,
+                                          base_rev, summary=_summary(r) if r is not None else {}, actor="claude")
+                head = f"Saved circuit {c.slug} (now rev {c.rev})."
+            else:
+                problem = services.problem_by_slug(s, problem_slug) if problem_slug else None
+                if problem_slug and problem is None:
+                    raise ValueError(f"No problem {problem_slug!r}")
+                c = circuits.create_circuit(s, title or doc.get("title") or "Untitled circuit", course.replace(" ", ""),
+                                            doc, source="claude", week=week,
+                                            problem_id=problem.id if problem else None, actor="claude")
+                if r is not None:
+                    c.summary = _summary(r)
+                    s.add(c)
+                    s.commit()
+                head = f"Made circuit {c.slug}: {c.title}. He opens it at /circuits/{c.slug}."
+        except circuits.Conflict as e:
+            raise ValueError(f"{e}. Call circuits_get again and redo your change on that version.")
+        return "\n".join([head] + _solution_lines(r))
+
+
+def _attempt_line(a) -> str:
+    kind = "predicted" if a.kind == "predict" else "checked"
+    tags = f" · tags {', '.join(a.tags)}" if a.tags else ""
+    note = f" · {a.note}" if a.note else ""
+    return (f"- {a.at:%Y-%m-%d %H:%M} {kind} {a.quantity}: guessed {a.guess:.4g}, the circuit gives {a.truth:.4g} · "
+            f"{'right' if a.correct else 'off'}{tags}{note}")
+
+
+def circuits_attempts(circuit_slug: str = "", limit: int = 30) -> str:
+    """His predictions and hand checks on the bench (all circuits, or one), newest first: what he
+    guessed, what the circuit gives, and the mistake tags."""
+    from sqlmodel import col
+    from . import circuits
+    from .models import Circuit, CircuitAttempt
+    with db() as s:
+        if circuit_slug:
+            c = _circuit(s, circuit_slug)
+            rows = [(c, a) for a in circuits.attempts(s, c, limit)]
+        else:
+            q = select(CircuitAttempt, Circuit).join(Circuit, col(Circuit.id) == col(CircuitAttempt.circuit_id))
+            rows = [(c, a) for a, c in s.exec(q.order_by(col(CircuitAttempt.at).desc()).limit(limit)).all()]
+        if not rows:
+            return "No predictions yet."
+        right = sum(a.correct for _, a in rows)
+        out = [f"{right} of {len(rows)} right."]
+        for c, a in rows:
+            out.append(_attempt_line(a) + ("" if circuit_slug else f" · on {c.title} ({c.slug})"))
+        return "\n".join(out)
+
+
 TOOLS = [get_overview, get_week, get_progress, list_problems, get_problem,
          list_pending_submissions, get_submission, post_feedback, mark_task_done,
          log_study_session, add_note, record_problem_result, mark_video_watched,
          list_due_reviews, list_mistakes, add_mistake, record_review_outcome,
          list_exams, post_exam_grades, recent_activity,
-         notes_outline, notes_search, notes_add, notes_update, notes_move, notes_add_unit]
+         notes_outline, notes_search, notes_add, notes_update, notes_move, notes_add_unit,
+         circuits_list, circuits_get, circuits_save, circuits_attempts]
 for fn in TOOLS:
     mcp.tool()(fn)
 

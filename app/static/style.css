@@ -385,6 +385,8 @@ ol.problem-list a { margin-right: 8px; }
 [data-theme="dark"] img.pdf-crop, [data-theme="dark"] .page-grid img { filter: brightness(.88) sepia(.08); }
 .problem-text { font-size: 15px; }
 .circuit-wrap { overflow-x: auto; }
+.bench-open { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 2px 0 10px; }
+.bench-open button .i { width: 15px; height: 15px; vertical-align: -3px; }
 svg.circuit { max-width: 100%; height: auto; display: block; margin: 5px auto; }
 svg.circuit line, svg.circuit rect, svg.circuit path, svg.circuit circle { stroke: var(--ink); stroke-width: 2; fill: none; }
 svg.circuit circle { fill: var(--ink); }
