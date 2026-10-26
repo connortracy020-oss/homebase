@@ -94,6 +94,10 @@ function floatingMessage(nodeNames, touching, ctx) {
   const subject = nodeNames.length === 1 ? `Node ${nodeNames[0]}` : `This part of the circuit (${nodeNames.join(", ")})`;
   const types = new Set(touching.map((el) => el.type));
   const ids = (pred) => touching.filter(pred).map((el) => el.id).join(", ");
+  const magnetic = touching.filter((el) => el.type === "K" || el.type === "TR");
+  if (magnetic.length) {
+    return `${subject} connects to the rest only through ${magnetic.map((el) => el.id).join(", ")}, and a transformer links its two sides by its magnetic field alone, so nothing fixes this side's voltage. Give each side its own ground (⏚).`;
+  }
   if (touching.some((el) => el.type === "C") && ctx.mode === "dc") {
     return `${subject} connects only through capacitors (${ids((el) => el.type === "C")}), and at DC a capacitor is an open circuit, so its voltage isn't defined. Add a resistor, or give the capacitor an initial voltage and run a transient.`;
   }

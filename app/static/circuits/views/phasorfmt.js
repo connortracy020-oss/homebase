@@ -76,5 +76,10 @@ function lcm(a, b) {
   return (a / x) * b;
 }
 
+// "1000 rad/s" (plain below 100k, prefixed above)
+export function omegaText(w) {
+  return w < 1e5 ? `${sig(w, 5)} rad/s` : fmt(w, "rad/s");
+}
+
 // "7.071 V∠−45° (peak)": the label that says which kind of amplitude it is
 export const scaleWord = (mode) => (mode === "rms" ? "RMS" : "peak");

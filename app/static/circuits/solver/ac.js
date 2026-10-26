@@ -13,6 +13,7 @@ import { isolate } from "./isolate.js";
 import { synthetic } from "./op.js";
 import { ExactTooBig, eq as qeq } from "../core/rational.js";
 import { FloatOnly, sineOmega, sinePeak } from "../elements/common.js";
+import { angleOf } from "../elements/threephase.js";
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
@@ -22,7 +23,7 @@ export const STEADY = Object.freeze({ t: Infinity, side: 1 });
 // the sine sources and their angular frequencies
 export function acSources(net) {
   return net.elements
-    .filter((el) => el.def.independent && el.params.wave?.text === "sine")
+    .filter((el) => el.def.independent && (el.params.wave?.text === "sine" || el.def.threePhase))
     .map((el) => ({ el, omega: sineOmega(el.params).value, exact: sineOmega(el.params).exact }));
 }
 
@@ -39,10 +40,10 @@ const same = (a, b) => Math.abs(a - b) <= 1e-9 * Math.max(Math.abs(a), Math.abs(
 
 // the phasor each independent source drives at ω (null: off at this frequency)
 export function sourceDrive(omega) {
-  return (el, F) => {
+  return (el, F, k = 0) => {
     const p = el.params;
-    if (p.wave?.text !== "sine" || !same(sineOmega(p).value, omega)) return null;
-    const z = phasorOf(F, sinePeak(p, el.type === "I" ? "I" : "V"), p.ph.value);
+    if ((p.wave?.text !== "sine" && !el.def.threePhase) || !same(sineOmega(p).value, omega)) return null;
+    const z = el.def.threePhase ? phasorOf(F, sinePeak(p, "V3"), angleOf(p, k)) : phasorOf(F, sinePeak(p, el.type === "I" ? "I" : "V"), p.ph.value);
     if (z === null) throw new FloatOnly();
     return z;
   };

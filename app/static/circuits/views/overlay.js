@@ -88,7 +88,7 @@ export class Overlay {
       if (currents) {
         for (const part of doc.parts) {
           const e = sol.els[part.id];
-          if (!e || ["GND", "LBL", "VM", "AM", "SW", "SW2"].includes(part.type)) continue;
+          if (!e || ["GND", "LBL", "VM", "AM", "SW", "SW2", "V3Y", "V3D"].includes(part.type)) continue;
           if (hidden({ kind: "i", part: part.id })) continue;
           const L2 = labelPlacement(part);
           const dy = L2.stack === "up" ? -1.42 : 1.36;

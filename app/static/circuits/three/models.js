@@ -216,6 +216,42 @@ export function partModel(part, el, colorOf, info) {
       path = (H) => [[...at(part, 4.5, 0, H(n[2])).toArray()], [...at(part, 5, 0, H(n[2])).toArray()]];
       break;
     }
+    case "V3Y": case "V3D": {
+      // a generator block; each terminal's lead runs at its own node's height
+      const pins = part.type === "V3Y" ? [[4, 0], [4, 2], [4, 4], [0, 2]] : [[4, 0], [4, 2], [4, 4]];
+      pins.forEach(([x, y], k) => leadTo(x, y, x === 0 ? 0.6 : 3.2, y, n[k]));
+      const block = shadowed(new THREE.Mesh(BOX, mat("plastic")));
+      add(block);
+      updaters.push((H) => {
+        const hs = n.map((x) => H(x)), lo = Math.min(...hs), hi = Math.max(...hs);
+        orient(block, at(part, 1.9, -0.6, (lo + hi) / 2), at(part, 1.9, 4.6, (lo + hi) / 2), 2.6, Math.max(0.5, hi - lo + 0.4));
+      });
+      break;
+    }
+    case "K": case "TR": {
+      leadTo(0, 0, 1.3, 0, n[0]); leadTo(1.3, 0, 1.3, 0.6, n[0]); leadTo(0, 4, 1.3, 4, n[1]); leadTo(1.3, 4, 1.3, 3.4, n[1]);
+      leadTo(4, 0, 2.7, 0, n[2]); leadTo(2.7, 0, 2.7, 0.6, n[2]); leadTo(4, 4, 2.7, 4, n[3]); leadTo(2.7, 4, 2.7, 3.4, n[3]);
+      const coils = [null, null];
+      let core = null;
+      if (part.type === "TR") { core = shadowed(new THREE.Mesh(BOX, mat("plastic"))); add(core); }
+      updaters.push((H) => {
+        [[1.3, n[0], n[1]], [2.7, n[2], n[3]]].forEach(([x, top, bottom], k) => {
+          const a = at(part, x, 0.6, H(top) + 0.22), b = at(part, x, 3.4, H(bottom) + 0.22);
+          const keyName = `${a.toArray().map((v) => v.toFixed(3))}|${b.toArray().map((v) => v.toFixed(3))}`;
+          if (coils[k]?.userData.key === keyName) return;
+          if (coils[k]) { g.remove(coils[k]); coils[k].geometry.dispose(); }
+          coils[k] = shadowed(new THREE.Mesh(new THREE.TubeGeometry(new Helix(a, b, 6, 0.3), 180, 0.06, 10, false), mat("copper")));
+          coils[k].userData.key = keyName;
+          g.add(coils[k]);
+        });
+        if (core) {
+          const lo = Math.min(...n.map((x) => H(x))), hi = Math.max(...n.map((x) => H(x)));
+          orient(core, at(part, 2, 0.4, (lo + hi) / 2 + 0.22), at(part, 2, 3.6, (lo + hi) / 2 + 0.22), 0.16, Math.max(0.4, hi - lo + 0.5));
+        }
+      });
+      path = (H) => [[...at(part, 0, 0, H(n[0])).toArray()], [...at(part, 1.3, 0, H(n[0])).toArray()], [...at(part, 1.3, 4, H(n[1])).toArray()], [...at(part, 0, 4, H(n[1])).toArray()]];
+      break;
+    }
     case "SW": case "SW2": {
       leadTo(0, 0, 1.2, 0, n[0]);
       if (part.type === "SW") leadTo(2.8, 0, 4, 0, n[1]);

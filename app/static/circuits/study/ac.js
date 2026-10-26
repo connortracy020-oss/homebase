@@ -9,7 +9,8 @@ import { solveAC, acFrequency, acThevenin, STEADY } from "../solver/ac.js";
 import { phasorOf } from "../solver/cfield.js";
 import { sinePeak } from "../elements/common.js";
 import { wireFlows } from "../solver/flows.js";
-import { polarText, rectText, scaleOf, scaleWord, angleText } from "../views/phasorfmt.js";
+import { polarText, rectText, scaleOf, scaleWord, angleText, omegaText } from "../views/phasorfmt.js";
+import { BodeDock } from "../views/bode.js";
 import { phasorSVG } from "../views/phasor.js";
 import { Plot, COLORS } from "../views/plot.js";
 import { fmt, sig } from "../core/units.js";
@@ -28,13 +29,9 @@ export function steadyDoc(doc) {
   return d;
 }
 
-export function omegaText(w) {
-  return w < 1e5 ? `${sig(w, 5)} rad/s` : fmt(w, "rad/s");
-}
-
 export class ACView {
-  constructor({ store, dock, refresh, toast, prefs, savePrefs }) {
-    Object.assign(this, { store, dock, refresh, toast, prefs, savePrefs });
+  constructor({ store, dock, refresh, toast, prefs, savePrefs, solver }) {
+    Object.assign(this, { store, dock, refresh, toast, prefs, savePrefs, solver });
     this.choice = null;     // DC or AC, once chosen; until then AC whenever there's a sine source
     this.res = null; this.t = 0; this.playing = false; this.speed = 1;
     this.preview = null;    // {omega, input}: the Bode cursor's frequency, shown until dismissed
@@ -43,11 +40,15 @@ export class ACView {
   }
 
   static relevant(doc) {
-    return doc.parts.some((p) => (p.type === "V" || p.type === "I") && p.params.wave === "sine");
+    return doc.parts.some((p) => ((p.type === "V" || p.type === "I") && p.params.wave === "sine") || p.type === "V3Y" || p.type === "V3D");
   }
 
   get on() { return this.choice ?? ACView.relevant(this.store.doc); }
-  get mode() { return this.prefs.acScale === "rms" ? "rms" : "peak"; }
+  // peak or RMS: your choice once you've made one, else RMS when a source is given in RMS
+  get mode() {
+    if (this.prefs.acScale === "rms" || this.prefs.acScale === "peak") return this.prefs.acScale;
+    return this.store.doc.parts.some((p) => (p.params?.wave === "sine" || p.type === "V3Y" || p.type === "V3D") && (p.params.scale ?? (p.type.startsWith("V3") ? "rms" : "peak")) === "rms") ? "rms" : "peak";
+  }
   get scale() { return scaleOf(this.mode); }
 
   choose(mode) {
@@ -76,6 +77,26 @@ export class ACView {
     this.T = this.omega ? (2 * Math.PI) / this.omega : null;
     if (this.T && this.t >= this.T) this.t = 0;
     this.refreshDock();
+  }
+
+  // the circuit was edited: solve again, and sweep the Bode plot again if it's open
+  docChanged() {
+    this.update();
+    this.bode?.stale();
+  }
+
+  // the Bode cursor's frequency (or null to go back to the sources' own)
+  setPreview(p) {
+    this.preview = p;
+    this.update();
+    this.refresh();
+  }
+
+  openBode() {
+    if (!this.bode) this.bode = new BodeDock({ dock: this.dock, solver: this.solver, acv: this });
+    this.pause();
+    this.dockOpen = false;
+    this.bode.show();
   }
 
   errorParts() {
@@ -176,6 +197,19 @@ export class ACView {
       const e = r.els[el.id];
       if (!e) continue;
       const hv = hidden({ kind: "vp", part: el.id }), hi = hidden({ kind: "i", part: el.id });
+      if (el.def.threePhase) {
+        for (const [label, v, i] of phases(this.res, el, e)) {
+          rows.push(`<tr><td>${esc(el.id)} <small>${label}</small></td><td class="v">${hv ? "?" : esc(polarText(v, "V", this.scale))}</td><td class="v">${hi ? "?" : esc(polarText(i, "A", this.scale))}</td><td></td></tr>`);
+        }
+        continue;
+      }
+      if (el.type === "K" || el.type === "TR") {
+        // a transformer's two windings, each with its own voltage and current (into its dot)
+        for (const [label, v, i] of windings(this.res, e)) {
+          rows.push(`<tr><td>${esc(el.id)} <small>${label}</small></td><td class="v">${hv ? "?" : esc(polarText(v, "V", this.scale))}</td><td class="v">${hi ? "?" : esc(polarText(i, "A", this.scale))}</td><td></td></tr>`);
+        }
+        continue;
+      }
       const z = impedance(el, this.omega);
       rows.push(`<tr><td>${esc(el.id)}</td><td class="v">${hv ? "?" : esc(polarText(e.v, "V", this.scale))}</td><td class="v">${hi ? "?" : esc(polarText(currentOf(el, e), "A", this.scale))}</td><td class="v">${z ? esc(rectText(z, null, "Ω")) : ""}</td></tr>`);
     }
@@ -197,7 +231,44 @@ export class ACView {
     const ok = (x) => (Math.abs(x) <= 1e-9 * (1 + scaleP) ? "0 ✓" : fmt(x, ""));
     return `<div><h3>Power <small>average P and reactive Q each part absorbs</small></h3><table class="pow-table ac-table"><thead><tr><th></th><th>P</th><th>Q</th><th></th></tr></thead><tbody>${rows.join("")}
       <tr class="sum"><td>Total</td><td class="v">${ok(P)}</td><td class="v">${ok(Qr)}</td><td></td></tr></tbody></table>
+      ${this.sourcePowerHTML()}
       <p class="hint">P = Re(S) and Q = Im(S) with S = ½ V I* (peak values), which is V<sub>rms</sub> I<sub>rms</sub>*. A negative P means the part delivers power. Capacitors absorb negative Q, inductors positive Q.</p></div>`;
+  }
+
+  // what each voltage source delivers, its power factor, and the capacitor that would correct it
+  sourcePowerHTML() {
+    const out = [];
+    for (const el of this.net.elements) {
+      const e = this.res.els[el.id];
+      if (el.def.threePhase && e) { out.push(this.threePhaseHTML(el, e)); continue; }
+      if (el.type !== "V" || !e || !(Math.hypot(e.s.re, e.s.im) > 1e-15)) continue;
+      const S = { re: -e.s.re, im: -e.s.im }, mag = Math.hypot(S.re, S.im);
+      let line = `${esc(el.id)} delivers S = ${esc(fmt(S.re, "W"))} ${S.im < 0 ? "−" : "+"} j${esc(fmt(Math.abs(S.im), "VAR"))}, |S| = ${esc(fmt(mag, "VA"))}, ${esc(powerFactor(e.s))}`;
+      line += S.im > 0 ? " (the current lags the voltage)" : S.im < 0 ? " (the current leads the voltage)" : "";
+      const V = Math.hypot(e.v.re, e.v.im);
+      if (S.im > 1e-12 * mag && V > 0 && S.re > 0) {
+        // a capacitor across the source supplying Q itself: Q_C = ω C V_rms² = ω C |V|²/2
+        out.push(`<p class="hint">${line}. A capacitor of ${esc(fmt((2 * S.im) / (this.omega * V * V), "F"))} straight across ${esc(el.id)} would supply that reactive power itself and bring the power factor to 1.</p>`);
+      } else out.push(`<p class="hint">${line}.</p>`);
+    }
+    return out.join("");
+  }
+
+  // a three-phase source: what it delivers, its line voltages and currents, and the balance
+  threePhaseHTML(el, e) {
+    const v = (k) => this.res.nodes[e.nodes[k]]?.v || { re: 0, im: 0 };
+    const m = (z) => Math.hypot(z.re, z.im) * this.scale, sub = (a, b) => ({ re: a.re - b.re, im: a.im - b.im });
+    const VL = [sub(v(0), v(1)), sub(v(1), v(2)), sub(v(2), v(0))].map(m), IL = [0, 1, 2].map((k) => m(e.pins[k].i));
+    const S = { re: -e.s.re, im: -e.s.im }, mag = Math.hypot(S.re, S.im);
+    const balanced = Math.max(...IL) - Math.min(...IL) <= 0.005 * Math.max(...IL, 1e-15);
+    const fmtList = (xs, u) => xs.map((x) => fmt(x, u)).join(", ");
+    let text = `${esc(el.id)} delivers P = ${esc(fmt(S.re, "W"))} and Q = ${esc(fmt(S.im, "VAR"))} in all (|S| = ${esc(fmt(mag, "VA"))}${mag ? `, ${esc(powerFactor(e.s))}` : ""}).
+      Line voltages ${esc(fmtList(VL, "V"))}; line currents ${esc(fmtList(IL, "A"))} (${scaleWord(this.mode)}).`;
+    if (el.type === "V3Y") {
+      const In = m(e.pins[3].i);
+      text += balanced ? " The load is balanced, so the neutral carries no current." : ` Unbalanced: the neutral carries ${esc(fmt(In, "A"))}${In < 1e-12 ? " (there's no neutral wire, so the load's star point shifts instead)" : ""}.`;
+    } else if (!balanced) text += " The line currents differ: the load is unbalanced.";
+    return `<p class="hint">${text}</p>`;
   }
 
   // the AC Thevenin card for a port (two labelled terminals) or a part
@@ -276,7 +347,7 @@ export class ACView {
     const dock = this.dock;
     this.dockOpen = true;
     dock.hidden = false;
-    dock.classList.remove("tran");
+    dock.classList.remove("tran", "bode");
     dock.classList.add("ac");
     this.picked = this.picked?.filter((k) => this.available().some((a) => a.key === k)) || null;
     if (!this.picked?.length) this.picked = this.defaults();
@@ -411,6 +482,7 @@ export class ACView {
     if (b.dataset.acMode) { this.choose(b.dataset.acMode); return true; }
     if (b.dataset.acScale) { this.prefs.acScale = b.dataset.acScale; this.savePrefs(); this.cache = null; this.drawDock(); this.refresh(); return true; }
     if (b.dataset.acDock === "phasors") { this.openDock(); return true; }
+    if (b.dataset.acDock === "bode") { this.openBode(); return true; }
     if (b.dataset.acCard !== undefined) { this.card = this.card === b.dataset.acCard || !b.dataset.acCard ? null : b.dataset.acCard; this.refresh(); return true; }
     if (b.dataset.acPreview === "off") { this.preview = null; this.update(); this.refresh(); return true; }
     if (b.dataset.acPreview === "apply") { this.applyPreview(); return true; }
@@ -422,11 +494,11 @@ export class ACView {
     const p = this.preview;
     if (!p) return;
     const w = Number(p.omega.toPrecision(4));
+    this.preview = null;  // before the edit, so the re-solve uses the source's new frequency
     this.store.update((d) => {
       const part = d.parts.find((q) => q.id === p.input);
       if (part) part.params = { ...part.params, wave: "sine", funit: "rad/s", w: String(w) };
     });
-    this.preview = null;
     this.toast?.(`${p.input} now runs at ω = ${omegaText(w)}.`);
   }
 }
@@ -444,6 +516,22 @@ function previewDrive(input) {
 const SOURCE_TYPES = ["V", "I", "E", "F", "G", "H"];
 function currentOf(el, e) {
   return el && SOURCE_TYPES.includes(el.type) ? { re: -e.i.re, im: -e.i.im } : e.i;
+}
+
+// a three-phase source's windings: [label, V, I out of the terminal]: phase voltages for a Y,
+// line voltages (ab, bc) for a Δ
+function phases(res, el, e) {
+  const v = (k) => res.nodes[e.nodes[k]]?.v || { re: 0, im: 0 };
+  const sub = (a, b) => ({ re: a.re - b.re, im: a.im - b.im }), out = (k) => ({ re: -e.pins[k].i.re, im: -e.pins[k].i.im });
+  if (el.type === "V3Y") return ["a", "b", "c"].map((ph, k) => [`${ph}n`, sub(v(k), v(3)), out(k)]);
+  return [["ab", sub(v(0), v(1)), out(0)], ["bc", sub(v(1), v(2)), out(1)], ["ca", sub(v(2), v(0)), out(2)]];
+}
+
+// a transformer's windings: [label, V, I] for the primary (p1 − p2) and secondary (s1 − s2)
+function windings(res, e) {
+  const v = (k) => res.nodes[e.nodes[k]]?.v || { re: 0, im: 0 };
+  const sub = (a, b) => ({ re: a.re - b.re, im: a.im - b.im });
+  return [["primary", sub(v(0), v(1)), e.pins[0].i], ["secondary", sub(v(2), v(3)), e.pins[2].i]];
 }
 
 // a passive part's impedance at ω (null for everything else)
@@ -469,4 +557,4 @@ function powerFactor(sAbsorbed) {
   return `pf ${sig(pf, 3)}${Math.abs(s.im) > 1e-12 * mag ? (s.im > 0 ? " lagging" : " leading") : ""}`;
 }
 
-export { angleText };
+export { angleText, omegaText };

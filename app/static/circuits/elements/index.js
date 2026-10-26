@@ -5,8 +5,10 @@ import { V, I } from "./sources.js";
 import { E, G, H, F } from "./dependent.js";
 import { OA } from "./opamp.js";
 import { GND, LBL, SW, SW2, AM, VM } from "./misc.js";
+import { K, TR } from "./coupled.js";
+import { V3Y, V3D } from "./threephase.js";
 
-export const DEFS = Object.freeze({ R, C, L, V, I, E, G, H, F, OA, GND, LBL, SW, SW2, AM, VM });
+export const DEFS = Object.freeze({ R, C, L, V, I, E, G, H, F, OA, GND, LBL, SW, SW2, AM, VM, K, TR, V3Y, V3D });
 
 export function defOf(type) {
   return DEFS[type] || null;

@@ -39,6 +39,16 @@ export function valueText(part) {
       return `${g === "1" ? "" : g === "−1" ? "−" : g}${name}`;
     }
     case "OA": return p.model === "gain" ? `A = ${num(p.A)}` : "";
+    case "V3Y": case "V3D": {
+      const f = p.funit === "rad/s" ? val(p.w ?? "377", "rad/s") : val(p.f ?? "60", "Hz");
+      return `${val(p.V3m ?? (part.type === "V3Y" ? "120" : "208"), "V")}${(p.scale ?? "rms") === "rms" ? " rms" : ""}${part.type === "V3D" ? " line" : ""}, ${f}${p.seq === "acb" ? ", acb" : ""}`;
+    }
+    case "K": return p.spec === "M" ? `M = ${val(p.M ?? "9m", "H")}` : `k = ${num(p.k ?? "0.9")}`;
+    case "TR": {
+      const n = parseValue(p.n ?? "2", "");
+      if (!n.ok || !n.value) return `${p.n}?`;
+      return Math.abs(n.value) >= 1 ? `${sig(n.value)}:1` : `1:${sig(1 / n.value)}`;
+    }
     default: return "";
   }
 }

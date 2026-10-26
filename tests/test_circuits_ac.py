@@ -145,7 +145,7 @@ def test_bench_ac_matches_an_independent_solver(tmp_path):
         expected.append(want)
     path = tmp_path / "ac.json"
     path.write_text(json.dumps(vectors))
-    r = subprocess.run([NODE, "tests/js/acvectors.mjs", str(path)], cwd=config.ROOT, capture_output=True, text=True, timeout=300)
+    r = subprocess.run([NODE, "tests/js/acvectors.mjs", str(path)], cwd=config.ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
     assert r.returncode == 0, r.stderr[-3000:]
     results = json.loads(r.stdout)
     compared = 0

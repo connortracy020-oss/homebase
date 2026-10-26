@@ -7,24 +7,43 @@
 // is left out.
 
 import { solveDC } from "./op.js";
+import { mutualValue } from "../elements/coupled.js";
 
-const storage = (net) => net.elements.filter((el) => el.type === "C" || el.type === "L");
+const storage = (net) => net.elements.filter((el) => el.type === "C" || el.type === "L" || el.type === "K");
 
-// column j: how fast every state changes when only state j is 1 (1 V or 1 A)
+// column j: how fast every state changes when only state j is 1 (1 V or 1 A). Coupled coils
+// carry two states (both currents), and their slopes come from v = L di/dt with the 2×2 L.
 export function stateMatrix(net) {
-  const els = storage(net), n = els.length;
-  const A = els.map(() => new Array(n).fill(0));
+  const els = storage(net), slots = [];
+  for (const el of els) for (let k = 0; k < (el.type === "K" ? 2 : 1); k++) slots.push([el, k]);
+  const n = slots.length, A = slots.map(() => new Array(n).fill(0));
   for (let j = 0; j < n; j++) {
-    const state = new Map(els.map((el, k) => [el.id, { v: el.type === "C" ? +(k === j) : 0, i: el.type === "L" ? +(k === j) : 0, vExact: null, iExact: null }]));
+    const on = (el, k) => +(slots[j][0] === el && slots[j][1] === k);
+    const state = new Map(els.map((el) => [el.id, { v: el.type === "C" ? on(el, 0) : 0, i: el.type === "L" ? on(el, 0) : 0,
+      i1: on(el, 0), i2: on(el, 1), vExact: null, iExact: null, i1Exact: null, i2Exact: null }]));
     const s = solveDC(net, { mode: "ic", state, off: (el) => !!el.def.independent, flows: false, exact: false });
     if (!s.ok) return null;
-    for (let k = 0; k < n; k++) {
-      const e = s.els[els[k].id];
+    for (let r = 0; r < n; r++) {
+      const [el, k] = slots[r], e = s.els[el.id];
       if (!e) return null;
-      A[k][j] = els[k].type === "C" ? e.i / els[k].params.C.value : (e.v ?? 0) / els[k].params.L.value;
+      if (el.type === "C") A[r][j] = e.i / el.params.C.value;
+      else if (el.type === "L") A[r][j] = (e.v ?? 0) / el.params.L.value;
+      else {
+        const d = coilSlopes(el, s, e);
+        if (!d) return null;
+        A[r][j] = d[k];
+      }
     }
   }
   return { els, A };
+}
+
+// di/dt of both windings: L⁻¹ v (null at perfect coupling, where L can't be inverted)
+function coilSlopes(el, s, e) {
+  const p = el.params, L1 = p.L1.value, L2 = p.L2.value, M = mutualValue(p), det = L1 * L2 - M * M;
+  if (Math.abs(det) <= 1e-12 * L1 * L2) return null;
+  const v = (k) => s.nodes[e.nodes[k]]?.v ?? 0, v1 = v(0) - v(1), v2 = v(2) - v(3);
+  return [(L2 * v1 - M * v2) / det, (L1 * v2 - M * v1) / det];
 }
 
 // -> {taus: [s], periods: [s], growing} or null when the state equations can't be formed

@@ -9,6 +9,7 @@ export const PALETTE = [
   { group: "Dependent sources", icon: "E", items: ["E", "G", "H", "F"] }, { sep: true },
   { type: "OA", key: "6" }, { type: "SW", key: "7" }, { type: "GND", key: "8" }, { sep: true },
   { group: "More parts", icon: "VM", items: ["LBL", "SW2", "VM", "AM"] },
+  { group: "Transformers and three-phase", icon: "TR", items: ["TR", "K", "V3Y", "V3D"] },
 ];
 
 // part types reachable from the number keys, in order
@@ -16,9 +17,9 @@ export const KEYED = PALETTE.filter((p) => p.key).map((p) => p.type);
 KEYED.push("LBL");
 
 export function icon(type) {
-  const b = BOX[type] || [0, -1, 4, 1];
-  const pad = 0.5, x = Math.min(b[0], 0) - pad, y = Math.min(b[1], -1) - pad;
-  const w = Math.max(b[2], type === "OA" ? 5 : 4) - x + pad, h = Math.max(b[3], 1) - y + pad, s = Math.max(w, h);
+  const b = BOX[type] || [0, -1, 4, 1], four = ["K", "TR", "V3Y", "V3D"].includes(type);
+  const pad = 0.5, x = Math.min(b[0], 0) - pad, y = (four ? 0 : Math.min(b[1], -1)) - pad;
+  const w = Math.max(b[2], type === "OA" ? 5 : 4) - x + pad, h = Math.max(b[3], four ? 4 : 1) - y + pad, s = Math.max(w, h);
   const part = { id: type, type, x: 0, y: 0, rot: 0, flip: false, params: { ...defaultParams(type), name: "V" } };
   return `<svg viewBox="${x - (s - w) / 2} ${y - (s - h) / 2} ${s} ${s}" class="pal-sym" aria-hidden="true">${symbolMarkup(part)}</svg>`;
 }

@@ -11,9 +11,10 @@ export const BOX = {
   G: [1.0, -1.0, 3.0, 1.0], F: [1.0, -1.0, 3.0, 1.0], OA: [0.95, -1.95, 4.55, 1.95],
   GND: [-0.75, 0.05, 0.75, 1.3], LBL: [0.3, -0.55, 3, 0.55], SW: [1.05, -1.1, 2.95, 0.3],
   SW2: [1.05, -1.25, 2.95, 1.25], AM: [1.0, -1.0, 3.0, 1.0], VM: [1.0, -1.0, 3.0, 1.0],
+  K: [0.75, 0.3, 3.25, 3.7], TR: [0.75, 0.3, 3.25, 3.7], V3Y: [0.6, -0.6, 3.2, 4.6], V3D: [0.6, -0.6, 3.2, 4.6],
 };
 
-export const CENTER = { OA: [2.5, 0], GND: [0, 0.6], LBL: [1, 0], SW2: [2, 0] };
+export const CENTER = { OA: [2.5, 0], GND: [0, 0.6], LBL: [1, 0], SW2: [2, 0], K: [2, 2], TR: [2, 2], V3Y: [2, 2], V3D: [2, 2] };
 export const centerOf = (type) => CENTER[type] || [2, 0];
 
 export function labelWidth(name) { return 0.75 + 0.36 * Math.max(1, String(name || "").length); }
@@ -93,6 +94,22 @@ export function symbolMarkup(part) {
         + body(to2 ? "M1.2 0L2.72 0.86" : "M1.2 0L2.72 -0.86", "body lever")
         + upright(part, 3.25, -1.45, `<text class="sym-text small" x="0" y="0.15" text-anchor="middle">1</text>`)
         + upright(part, 3.25, 1.6, `<text class="sym-text small" x="0" y="0.15" text-anchor="middle">2</text>`) + timing(part);
+    }
+    case "V3Y": case "V3D": {
+      // a block with a, b, c on the right (and n on the left for Y), marked 3φ and Y or Δ
+      const small = (x, y, s) => upright(part, x, y, `<text class="sym-text small" x="0" y="0.15" text-anchor="middle">${s}</text>`);
+      return lead("M3.2 0H4M3.2 2H4M3.2 4H4" + (part.type === "V3Y" ? "M0 2H0.6" : "")) + body("M0.6 -0.6H3.2V4.6H0.6Z", "body fill")
+        + upright(part, 1.9, 1.05, text("3φ")) + upright(part, 1.9, 2.35, `<path class="mark thin" d="M-0.42 0C-0.32 -0.3 -0.11 -0.3 0 0S0.32 0.3 0.42 0"/>`)
+        + small(1.9, 3.5, part.type === "V3Y" ? "Y" : "Δ") + small(2.85, 0, "a") + small(2.85, 2, "b") + small(2.85, 4, "c")
+        + (part.type === "V3Y" ? small(0.95, 2, "n") : "");
+    }
+    case "K": case "TR": {
+      // two windings facing each other, dots on the coupled ends; the ideal transformer has a core
+      const coil = (x, sweep) => `M${x} 0.6` + "a0.35 0.35 0 0 SWEEP 0 0.7".replace("SWEEP", sweep).repeat(4);
+      const dotY = p.dot === "bottom" ? 3.25 : 0.75;
+      return lead("M0 0H1.3V0.6M0 4H1.3V3.4M4 0H2.7V0.6M4 4H2.7V3.4") + body(coil(1.3, 1)) + body(coil(2.7, 0))
+        + (part.type === "TR" ? body("M1.9 0.45V3.55M2.1 0.45V3.55", "body plate") : "")
+        + `<circle class="pol-dot" cx="0.82" cy="0.75" r="0.13"/><circle class="pol-dot" cx="3.18" cy="${dotY}" r="0.13"/>`;
     }
     case "AM": case "VM":
       return lead("M0 0H1.05M2.95 0H4") + `<circle class="body fill meter" cx="2" cy="0" r="0.95"/>`

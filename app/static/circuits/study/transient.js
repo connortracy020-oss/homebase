@@ -254,6 +254,6 @@ export class Transient {
     }
     const warn = r.warnings.length ? `<ul class="err-list">${r.warnings.map((w) => `<li class="warn">${esc(w)}</li>`).join("")}</ul>` : "";
     return `<section class="study-card" data-card="tran"><div class="card-title"><strong>Over time</strong><button type="button" class="link" data-study-close>close</button></div>${body}${warn}
-      <p class="hint">Stepped with the trapezoidal rule every ${esc(fmt(r.h, "s"))} (backward Euler right after each switch). Start and final values are exact.</p></section>`;
+      <p class="hint">${r.method === "TR-BDF2" ? `Stepped with TR-BDF2${r.fixed ? ` every ${esc(fmt(r.h, "s"))}` : `, with the step (${esc(fmt(r.hmin, "s"))} to ${esc(fmt(r.hmaxUsed, "s"))}) set by its own error estimate`}, which can't ring after a switch.` : `Stepped with the trapezoidal rule every ${esc(fmt(r.h, "s"))} (backward Euler right after each switch).`} Start and final values are exact.</p></section>`;
   }
 }

@@ -39,7 +39,7 @@ let net = null, sol = null, focusNode = null, lastPointerType = "mouse", tipPos 
 const solver = new SolverClient();
 const study = new Study({ slug: data.slug, store, getSolution: () => sol, getNet: () => net, refresh: () => refreshAll(), toast, solver, dock: $("#dock") });
 const tran = study.tran = new Transient({ store, solver, dock: $("#dock"), refresh: () => refreshAll(), toast });
-const acv = study.acv = new ACView({ store, dock: $("#dock"), refresh: (o) => refreshAll(o), toast, prefs, savePrefs });
+const acv = study.acv = new ACView({ store, dock: $("#dock"), refresh: (o) => refreshAll(o), toast, prefs, savePrefs, solver });
 let drawn = null;  // the document the schematic shows right now
 
 // what the views show: the circuit at a moment of a transient run, at an instant of its AC
@@ -59,7 +59,7 @@ function recompute() {
   view.draw(doc, net);
   drawn = doc;
   sol = run("op", net, doc, {});
-  acv.update();
+  acv.docChanged();
   if (focusNode !== null && focusNode >= net.nodes.length) focusNode = null;
   refreshAll();
 }

@@ -20,7 +20,7 @@ pytestmark = pytest.mark.skipif(NODE is None, reason="Node isn't installed (only
 
 
 def run_node(*args, timeout=180):
-    return subprocess.run([NODE, *args], cwd=config.ROOT, capture_output=True, text=True, timeout=timeout)
+    return subprocess.run([NODE, *args], cwd=config.ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
 
 
 def test_js_unit_tests():

@@ -29,7 +29,7 @@ export function waveValue(p, prefix, when) {
   if (kind === "dc") return p[prefix];
   if (kind === "sine") {
     const dc = p[`${prefix}dc`];
-    if (!Number.isFinite(when.t)) return dc;  // DC analysis (steady state): only the average counts
+    if (!Number.isFinite(when.t) || when.average) return dc;  // DC analysis (steady state): only the average counts
     const w = sineOmega(p).value, a = sinePeak(p, prefix).value;
     return { exact: null, value: dc.value + a * Math.cos(w * when.t + (p.ph.value * Math.PI) / 180) };
   }

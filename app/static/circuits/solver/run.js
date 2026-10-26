@@ -4,11 +4,13 @@
 import { solveDC } from "./op.js";
 import { compile } from "../core/compile.js";
 import { transient } from "./tran.js";
+import { bodeSweep } from "./bode.js";
 
 export function run(kind, net, doc, opts) {
   if (kind === "op") return plain(solveDC(net, opts));
   if (kind === "sweep") return sweep(doc, opts);
   if (kind === "tran") return transient(doc, opts);
+  if (kind === "bode") return bodeSweep(net, opts);
   throw new Error(`unknown analysis ${kind}`);
 }
 

@@ -16,7 +16,7 @@ export const R = {
 };
 
 // Capacitor: open at DC; in the t=0+ circuit a voltage source at its voltage; in a time step a
-// conductance plus a history current (backward Euler or trapezoidal companion model); in AC
+// conductance plus a history current (the stepper's companion model, dv/dt ≈ α v + β); in AC
 // the admittance jωC.
 export const C = {
   type: "C", name: "Capacitor", prefix: "C", pins: TWO_PIN,
@@ -31,12 +31,9 @@ export const C = {
     if (ctx.mode === "dc") return zeroPair(F);
     if (ctx.mode === "ic") return pair(lin(F).add(s.br(el), F.one));
     if (ctx.mode === "ac") return pair(vdiff(s, el.nodes[0], el.nodes[1]).scaled(F.mul(ctx.jw, s.p(el, "C"))));
-    const st = ctx.state.get(el.id), Cv = s.p(el, "C");
-    const geq = F.div(F.mul(F.num(ctx.method === "trap" ? 2 : 1), Cv), F.num(ctx.h));
-    // i(n+1) = geq * v(n+1) + J, with J = -geq*v(n) (BE) or -(geq*v(n) + i(n)) (trap)
-    let J = F.neg(F.mul(geq, F.num(st.v)));
-    if (ctx.method === "trap") J = F.sub(J, F.num(st.i));
-    return pair(vdiff(s, el.nodes[0], el.nodes[1]).scaled(geq).addK(J));
+    // i = C dv/dt = C(α v + β)
+    const Cv = s.p(el, "C"), [beta] = ctx.beta(el);
+    return pair(vdiff(s, el.nodes[0], el.nodes[1]).scaled(F.mul(Cv, F.num(ctx.alpha))).addK(F.mul(Cv, F.num(beta))));
   },
   constraints(el, s, ctx) {
     if (ctx.mode !== "ic") return;
@@ -48,8 +45,8 @@ export const C = {
 };
 
 // Inductor: a short at DC (a 0 V branch, so its current is an unknown); in the t=0+ circuit
-// a current source at its current; in a time step its companion model on the same branch;
-// in AC the impedance jωL on that branch (v = jωL i).
+// a current source at its current; in a time step its companion model on the same branch
+// (di/dt ≈ α i + β); in AC the impedance jωL on that branch (v = jωL i).
 export const L = {
   type: "L", name: "Inductor", prefix: "L", pins: TWO_PIN,
   params: [
@@ -71,12 +68,9 @@ export const L = {
     const F = s.F, k = s.br(el), v = vdiff(s, el.nodes[0], el.nodes[1]);
     if (ctx.mode === "dc") { s.row(k, v, F.zero); return; }
     if (ctx.mode === "ac") { s.row(k, v.add(k, F.neg(F.mul(ctx.jw, s.p(el, "L")))), F.zero); return; }
-    // v(n+1) - req*i(n+1) = -req*i(n) (BE)   or   = -req*i(n) - v(n) (trap)
-    const st = ctx.state.get(el.id), Lv = s.p(el, "L");
-    const req = F.div(F.mul(F.num(ctx.method === "trap" ? 2 : 1), Lv), F.num(ctx.h));
-    let rhs = F.neg(F.mul(req, F.num(st.i)));
-    if (ctx.method === "trap") rhs = F.sub(rhs, F.num(st.v));
-    s.row(k, v.add(k, F.neg(req)), rhs);
+    // v = L di/dt = L(α i + β)
+    const Lv = s.p(el, "L"), [beta] = ctx.beta(el);
+    s.row(k, v.add(k, F.neg(F.mul(Lv, F.num(ctx.alpha)))), F.mul(Lv, F.num(beta)));
   },
   dcEdges: (el, ctx) => (ctx.mode === "ic" ? [] : [[0, 1]]),
   zEdges: (el, ctx) => (ctx.mode === "dc" ? [[0, 1]] : []),

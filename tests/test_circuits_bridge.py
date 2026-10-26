@@ -65,7 +65,7 @@ def test_bench_matches_the_generators_own_solution(tmp_path):
     assert len(cases) > 100
     path = tmp_path / "cases.json"
     path.write_text(json.dumps(cases))
-    r = subprocess.run([NODE, "tests/js/docs.mjs", str(path)], cwd=config.ROOT, capture_output=True, text=True, timeout=300)
+    r = subprocess.run([NODE, "tests/js/docs.mjs", str(path)], cwd=config.ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
     assert r.returncode == 0, r.stderr[-3000:]
     results = json.loads(r.stdout)
     for (name, seed, want), got in zip(expected, results):
@@ -104,7 +104,7 @@ def test_op_amp_and_bridge_drawings_give_the_generators_answers(tmp_path):
     assert kinds == {"summing", "difference", "inverting or non-inverting"}
     path = tmp_path / "cases.json"
     path.write_text(json.dumps(cases))
-    r = subprocess.run([NODE, "tests/js/docs.mjs", str(path)], cwd=config.ROOT, capture_output=True, text=True, timeout=300)
+    r = subprocess.run([NODE, "tests/js/docs.mjs", str(path)], cwd=config.ROOT, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=300)
     assert r.returncode == 0, r.stderr[-3000:]
     for (name, seed, what, want), got in zip(expected, json.loads(r.stdout)):
         assert got["ok"], f"{name} seed {seed}: the bench couldn't solve it: {got.get('errors')}"
