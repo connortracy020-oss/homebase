@@ -158,6 +158,24 @@ export function fieldMaterial() {
   });
 }
 
+// ---- an inductor's magnetic field: loops from one end of the coil round to the other, as
+// bright as its current, with dashes that move the way the field points (dir = +1 or -1) ----
+export function fluxMaterial() {
+  return new THREE.ShaderMaterial({
+    uniforms: { uColor: { value: new THREE.Color(0.55, 0.75, 2.2) }, uLevel: { value: 0 }, uDir: { value: 1 }, uTime: TIME },
+    vertexShader: /* glsl */ `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+    fragmentShader: /* glsl */ `
+      uniform vec3 uColor; uniform float uLevel; uniform float uDir; uniform float uTime; varying vec2 vUv;
+      void main() {
+        float dash = smoothstep(0.25, 0.5, fract(vUv.x * 7.0 + uTime * 0.9 * uDir));
+        float ends = smoothstep(0.0, 0.12, vUv.x) * (1.0 - smoothstep(0.88, 1.0, vUv.x));
+        float a = uLevel * ends * (0.18 + 0.82 * dash) * 0.75;
+        gl_FragColor = vec4(uColor, a);
+      }`,
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+  });
+}
+
 // ---- shared materials ----
 const shared = {};
 export function mat(name) {

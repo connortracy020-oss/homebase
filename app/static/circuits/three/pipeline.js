@@ -1,29 +1,31 @@
 // The renderer and its post-processing. The scene renders into a multisampled HDR target;
-// whatever glows (current particles, hot resistors, bright traces) blooms; then tone mapping,
-// a soft vignette and a whisper of animated grain, which also hides banding in the dark.
+// whatever glows (current particles, hot resistors, bright traces) blooms; then one last pass
+// tone-maps it and adds a soft vignette and a whisper of animated grain (which also hides
+// banding in the dark). Folding those into the tone-mapping pass saves a full-screen pass.
 
 import * as THREE from "three";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
-import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
 
-const Finish = {
-  uniforms: { tDiffuse: { value: null }, uVignette: { value: 0.42 }, uGrain: { value: 0.016 }, uTime: { value: 0 }, uAspect: { value: 1 } },
-  vertexShader: /* glsl */ `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-  fragmentShader: /* glsl */ `
-    uniform sampler2D tDiffuse; uniform float uVignette; uniform float uGrain; uniform float uTime; uniform float uAspect;
-    varying vec2 vUv;
-    float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
-    void main() {
-      vec4 c = texture2D(tDiffuse, vUv);
+// the vignette and grain, added at the end of the tone-mapping shader
+function finishing(pass) {
+  const m = pass.material;
+  Object.assign(m.uniforms, { uVignette: { value: 0.42 }, uGrain: { value: 0.016 }, uTime: { value: 0 }, uAspect: { value: 1 } });
+  let fs = m.fragmentShader.replace("varying vec2 vUv;", `varying vec2 vUv;
+    uniform float uVignette; uniform float uGrain; uniform float uTime; uniform float uAspect;
+    float hash(vec2 p) { p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }`);
+  const end = fs.lastIndexOf("}");
+  fs = `${fs.slice(0, end)}
       vec2 q = (vUv - 0.5) * vec2(uAspect, 1.0);
-      c.rgb *= mix(1.0 - uVignette, 1.0, 1.0 - smoothstep(0.2, 1.05, length(q)));  // (smoothstep needs edge0 < edge1)
-      c.rgb += (hash(gl_FragCoord.xy + fract(uTime) * 61.0) - 0.5) * uGrain;
-      gl_FragColor = c;
-    }`,
-};
+      gl_FragColor.rgb *= mix(1.0 - uVignette, 1.0, 1.0 - smoothstep(0.2, 1.05, length(q)));  // (smoothstep needs edge0 < edge1)
+      gl_FragColor.rgb += (hash(gl_FragCoord.xy + fract(uTime) * 61.0) - 0.5) * uGrain;
+    }`;
+  m.fragmentShader = fs;
+  m.needsUpdate = true;
+  return m.uniforms;
+}
 
 export class Pipeline {
   constructor() {
@@ -51,9 +53,10 @@ export class Pipeline {
     c.addPass(new RenderPass(scene, camera));
     this.bloom = new UnrealBloomPass(new THREE.Vector2(this.w * tier.bloom, this.h * tier.bloom), 0.42, 0.45, 0.86);
     c.addPass(this.bloom);
-    c.addPass(new OutputPass());
-    this.finish = new ShaderPass(Finish);
-    c.addPass(this.finish);
+    const out = new OutputPass();
+    this.finish = finishing(out);
+    this.finish.uAspect.value = this.w / this.h;
+    c.addPass(out);
     c.setSize(this.w, this.h);
   }
 
@@ -68,12 +71,12 @@ export class Pipeline {
     this.w = w; this.h = h;
     this.renderer.setSize(w, h, false);
     this.composer?.setSize(w, h);
-    if (this.finish) this.finish.uniforms.uAspect.value = w / h;
+    if (this.finish) this.finish.uAspect.value = w / h;
   }
 
   render(time, shadows) {
     if (shadows) this.renderer.shadowMap.needsUpdate = true;
-    this.finish.uniforms.uTime.value = time;
+    this.finish.uTime.value = time;
     this.composer.render();
   }
 

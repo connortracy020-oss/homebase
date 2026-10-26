@@ -8,7 +8,7 @@
 import * as THREE from "three";
 import { boxOf } from "../editor/symbols.js";
 import {
-  mat, resistorMaterial, heatColor, bandMaterial, colorBands, fieldMaterial, Screen,
+  mat, resistorMaterial, heatColor, bandMaterial, colorBands, fieldMaterial, fluxMaterial, Screen,
 } from "./materials.js";
 
 export const BAR_W = 0.32, BAR_T = 0.13, BEAD_DY = 0.07;
@@ -305,6 +305,7 @@ const BUILDERS = {
     m.ohms = ctx.ohms;
     const hit = partHit(m, part);
     const pa = new THREE.Vector3(), pb = new THREE.Vector3(), A = new THREE.Vector3(), B = new THREE.Vector3();
+    m.emitter = { id: part.id, center: axis.position, dir: new THREE.Vector3(1, 0, 0), len: R_LEN, heat: 0 };
     m.ups.push((H) => {
       const h0 = H(n[0]), h1 = H(n[1]);
       lay(part, 0, 0, h0 + 0.03, pa); lay(part, 4, 0, h1 + 0.03, pb);
@@ -312,11 +313,14 @@ const BUILDERS = {
       const len = centre(axis, A, B, R_LEN);
       leadA(pa, A); leadB(B, pb);
       axis.scale.set(1, len / R_LEN, 1);
+      m.emitter.dir.subVectors(B, A).normalize();
+      m.emitter.len = len;
       hit(Math.min(h0, h1) - 0.15, Math.max(h0, h1) + 0.6);
     });
     const glow = new THREE.Color();
     m.refresh = (sol, info) => {
       const heat = info.heat ?? 0;
+      m.emitter.heat = heat;
       heatColor(heat, glow);
       body.emissive.copy(glow);
       body.emissiveIntensity = 1.5 * heat * heat + 0.2 * heat;
@@ -380,7 +384,26 @@ const BUILDERS = {
     const core = shadowed(new THREE.Mesh(unitCylinder(0.16, 24), mat("ferrite")));
     core.scale.set(1, 2.1, 1);
     axis.add(core);
+    // the field: four loops from one end round to the other (the coil's local -1..1 along Y)
+    const flux = fluxMaterial();
+    m.own.push(flux);
+    for (let k = 0; k < 4; k++) {
+      const loop = new THREE.Mesh(geo("fluxloop", () => {
+        const pts = [];
+        for (let i = 0; i <= 40; i++) { const t = i / 40; pts.push(new THREE.Vector3(0.95 * Math.sin(Math.PI * t), 1.28 * Math.cos(Math.PI * t), 0)); }
+        return new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), 60, 0.016, 5, false);
+      }), flux);
+      loop.rotation.y = (k * Math.PI) / 2;
+      loop.renderOrder = 3;
+      axis.add(loop);
+    }
     m.add(axis);
+    m.refresh = (sol, info) => {
+      // the coil is wound so that current from pin a to pin b makes the field inside point back
+      // toward a; outside it runs from a's end round to b's (down the loops' length)
+      flux.uniforms.uLevel.value = Math.min(1, Math.abs(info.flux ?? 0));
+      flux.uniforms.uDir.value = (info.flux ?? 0) >= 0 ? -1 : 1;
+    };
     const hit = partHit(m, part);
     const pa = new THREE.Vector3(), pb = new THREE.Vector3(), A = new THREE.Vector3(), B = new THREE.Vector3();
     m.ups.push((H) => {

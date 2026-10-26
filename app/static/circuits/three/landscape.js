@@ -15,6 +15,7 @@ import { Pipeline } from "./pipeline.js";
 import { NodeLook, benchMaterial, zeroPlaneMaterial, voltageColor3, phaseColor3, TIME } from "./materials.js";
 import { buildWire, buildJunction, buildPart, BAR_T } from "./models.js";
 import { Flow } from "./flow.js";
+import { Embers } from "./effects.js";
 import { fmt, fmtExact } from "../core/units.js";
 import { fromString } from "../core/rational.js";
 import { polarText } from "../views/phasorfmt.js";
@@ -100,6 +101,8 @@ export class Landscape {
     this.zero.renderOrder = 1;
     scene.add(this.bench, this.zero);
     this.flow = new Flow(scene, TIERS.balanced.beads);
+    this.embers = new Embers(scene);
+    this.emitters = [];
 
     // ---- pointer: a click is a press and release that barely moved (an orbit drag isn't a click)
     this.ray = new THREE.Raycaster();
@@ -176,7 +179,9 @@ export class Landscape {
     this.camera.aspect = w / (h + cover);
     if (cover > 0) this.camera.setViewOffset(w, h + cover, 0, 0, w, h); else this.camera.clearViewOffset();
     this.camera.updateProjectionMatrix();
-    this.flow.setScale(((h + cover) * this.ratio) / (2 * Math.tan((this.camera.fov * Math.PI) / 360)));
+    const px = ((h + cover) * this.ratio) / (2 * Math.tan((this.camera.fov * Math.PI) / 360));
+    this.flow.setScale(px);
+    this.embers.setScale(px);
     if (!this.userMoved && !this.flight) this.frame(false);
     this.kick();
   }
@@ -286,6 +291,8 @@ export class Landscape {
     }
     for (const m of this.models) if (m.kind === "part") for (const e of m.edges) for (const k of [e.a, e.b]) if (k.includes(":")) anchored.add(k);
     this.flow.build(this.models.flatMap((m) => m.edges), anchored);
+    this.emitters = this.models.filter((m) => m.emitter).map((m) => m.emitter);
+    this.embers.clear();
     // the bench, the lights and their shadows sized to the circuit
     const b = this.bounds();
     const cx = (b[0] + b[2]) / 2, cz = (b[1] + b[3]) / 2, w = b[2] - b[0] + 8, d = b[3] - b[1] + 8;
@@ -356,9 +363,11 @@ export class Landscape {
     const P = ph ? (id) => sol.ac.res.els[id]?.s?.re ?? 0 : (id) => sol?.els?.[id]?.p ?? 0;
     const pmax = ok ? (ph ? Math.max(1e-15, sol.ac.hold?.pR || 0, ...this.models.filter((m) => m.part?.type === "R").map((m) => P(m.id)))
       : sol.pmax ?? Math.max(1e-15, ...Object.values(sol.els).map((e) => Math.max(0, e.p ?? 0)))) : 1;
+    const imax = sol?.imax || Math.max(1e-15, ...(ok ? Object.values(sol.els).map((e) => Math.abs(e.i ?? 0)) : [0]));
     for (const m of this.models) {
       if (m.kind !== "part") continue;
       const id = m.id, e = ok ? sol.els[id] : null, info = {};
+      if (m.part.type === "L") info.flux = e && !hidden({ kind: "i" }) ? (e.i ?? 0) / imax : 0;
       if (m.part.type === "R") info.heat = e && !hidden({ kind: "p", part: id }) && P(id) > 0 ? Math.sqrt(P(id) / pmax) : 0;
       if (m.part.type === "C" && e) {
         const z = sol.ac && ph ? sol.ac.res.els[id]?.v : null;
@@ -748,11 +757,12 @@ export class Landscape {
     if (this.controls.update()) active = true;
     if (this.wantHover) { this.wantHover = false; this.pickHover(); }
     const flowing = this.flow.update(dt, this.H, this.heightsMoved);
+    const glowing = this.reduced ? false : this.embers.update(dt, this.emitters);
     this.pipe.render(TIME.value, this.shadowDirty);
     this.shadowDirty = false;
     this.labels.render(this.scene, this.camera);
     this.governor.frame(frameMs);
-    if (active || flowing) this.raf = requestAnimationFrame((t) => this.loop(t));
+    if (active || flowing || glowing) this.raf = requestAnimationFrame((t) => this.loop(t));
   }
 }
 
