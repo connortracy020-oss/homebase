@@ -10,6 +10,33 @@ import { omegaText } from "./phasorfmt.js";
 
 const TWO_PI = 2 * Math.PI;
 
+// inputs: the voltage and current sources; outputs: node voltages, part voltages and currents
+export function choicesFor(net) {
+  const inputs = net.elements.filter((el) => el.def.independent && !el.def.threePhase).map((el) => el.id);
+  const outputs = [];
+  for (const n of net.nodes) if (n.index > 0) outputs.push({ key: `v:${n.index}`, label: `v(${n.label || n.name})`, spec: { kind: "v", node: n.index } });
+  for (const el of net.elements) {
+    if (el.def.meter === "v" || ["R", "C", "L"].includes(el.type)) outputs.push({ key: `vp:${el.id}`, label: `v(${el.id})`, spec: { kind: "vp", part: el.id } });
+    if (!el.def.meter || el.def.meter === "i") outputs.push({ key: `i:${el.id}`, label: `i(${el.id})`, spec: { kind: "i", part: el.id } });
+  }
+  return { inputs, outputs };
+}
+
+// keep the choices that still exist; otherwise the sine source in, and vo (or the op-amp's
+// output, or the last node) out
+export function defaultIO(net, input, output) {
+  const { inputs, outputs } = choicesFor(net);
+  const sine = net.elements.find((el) => el.def.independent && el.params.wave?.text === "sine");
+  if (!inputs.includes(input)) input = sine?.id || inputs[0] || null;
+  if (!outputs.some((o) => o.key === output)) {
+    const named = net.nodes.find((n) => n.index > 0 && /^(v?o(ut)?|vout|out|output)$/i.test(n.label || ""));
+    const opOut = net.elements.find((el) => el.type === "OA")?.nodes[2];
+    const last = [...net.nodes].reverse().find((n) => n.index > 0 && !net.elements.some((el) => el.id === input && el.nodes.includes(n.index)));
+    output = named ? `v:${named.index}` : opOut > 0 ? `v:${opOut}` : last ? `v:${last.index}` : outputs[0]?.key || null;
+  }
+  return [input, output];
+}
+
 export class BodeDock {
   constructor({ dock, solver, acv }) {
     Object.assign(this, { dock, solver, acv });
@@ -18,30 +45,11 @@ export class BodeDock {
 
   get open() { return !this.dock.hidden && this.dock.classList.contains("bode"); }
 
-  // inputs: the independent sources; outputs: node voltages, part voltages and currents
-  choices() {
-    const net = this.acv.net;
-    const inputs = net.elements.filter((el) => el.def.independent && !el.def.threePhase).map((el) => el.id);
-    const outputs = [];
-    for (const n of net.nodes) if (n.index > 0) outputs.push({ key: `v:${n.index}`, label: `v(${n.label || n.name})`, spec: { kind: "v", node: n.index } });
-    for (const el of net.elements) {
-      if (el.def.meter === "v" || ["R", "C", "L"].includes(el.type)) outputs.push({ key: `vp:${el.id}`, label: `v(${el.id})`, spec: { kind: "vp", part: el.id } });
-      if (!el.def.meter || el.def.meter === "i") outputs.push({ key: `i:${el.id}`, label: `i(${el.id})`, spec: { kind: "i", part: el.id } });
-    }
-    return { inputs, outputs };
-  }
+  choices() { return choicesFor(this.acv.net); }
 
   defaults() {
-    const { inputs, outputs } = this.choices(), net = this.acv.net;
-    const sine = net.elements.find((el) => el.def.independent && el.params.wave?.text === "sine");
-    if (!inputs.includes(this.input)) this.input = sine?.id || inputs[0] || null;
-    if (!outputs.some((o) => o.key === this.output)) {
-      const named = net.nodes.find((n) => n.index > 0 && /^(v?o(ut)?|vout|out|output)$/i.test(n.label || ""));
-      const opOut = net.elements.find((el) => el.type === "OA")?.nodes[2];
-      const last = [...net.nodes].reverse().find((n) => n.index > 0 && !net.elements.some((el) => el.id === this.input && el.nodes.includes(n.index)));
-      this.output = named ? `v:${named.index}` : opOut > 0 ? `v:${opOut}` : last ? `v:${last.index}` : outputs[0]?.key || null;
-    }
-    const src = net.byId.get(this.input);
+    [this.input, this.output] = defaultIO(this.acv.net, this.input, this.output);
+    const src = this.acv.net.byId.get(this.input);
     this.inUnit = src?.params.funit?.text === "Hz" ? "Hz" : "rad/s";
   }
 

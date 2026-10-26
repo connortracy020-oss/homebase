@@ -37,6 +37,28 @@ test("RC charging after a switch closes matches 5(1 - e^(-t/RC))", () => {
   assert.equal(r.tstop, 5e-3);
 });
 
+test("a pulse train into an RC matches the closed form at every edge, with no slivers of steps", () => {
+  const doc = {
+    parts: [part("V1", "V", 0, 2, 1, { wave: "pulse", V0: "0", V1: "1", td: "0", tr: "0", tf: "0", pw: "500u", per: "1m" }),
+      part("R1", "R", 0, 0, 0, { R: "1k" }), part("C1", "C", 6, 2, 1, { C: "100n" }), part("G", "GND", 0, 6)],
+    wires: [wire("w1", [0, 2], [0, 0]), wire("w2", [4, 0], [6, 0]), wire("w3", [6, 0], [6, 2]), wire("w4", [0, 6], [6, 6])],
+  };
+  const r = transient(doc);
+  assert.ok(r.ok, r.why);
+  assert.equal(r.tstop, 5e-3);                  // a few periods, not ten thousand of them
+  assert.equal(r.final, null);                  // a pulse train never settles
+  assert.ok(r.hmin > 1e-8, `smallest step ${r.hmin}`);
+  // each half period is 5τ: v rises toward 1 V, then falls toward 0
+  const e5 = Math.exp(-5);
+  let v = 0;
+  for (let k = 1; k <= 10; k++) {
+    v = k % 2 ? 1 - (1 - v) * e5 : v * e5;
+    const j = r.t.findIndex((t) => Math.abs(t - k * 5e-4) < 1e-12);
+    assert.ok(j > 0, `a sample at ${k * 0.5} ms`);
+    assert.ok(Math.abs(r.els.C1.v[j] - v) < 1e-4, `edge ${k}: ${r.els.C1.v[j]} vs ${v}`);
+  }
+});
+
 test("the trapezoidal rule's error falls like h squared", () => {
   const exact = (t) => 5 * (1 - Math.exp(-t / 1e-3));
   const e1 = maxErr(transient(rc(), { tstop: 3e-3, dt: 2e-5 }), exact);

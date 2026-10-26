@@ -89,6 +89,17 @@ export function eigenvalues(A0) {
   return roots && roots.map((z) => ({ re: z.re * s, im: z.im * s }));
 }
 
+// roots of a real polynomial, highest power first, scaled so the roots are about size 1
+export function polyRoots(a) {
+  let p = [...a];
+  while (p.length > 1 && p[0] === 0) p = p.slice(1);
+  const n = p.length - 1;
+  if (n < 1) return [];
+  const c = p.map((x) => x / p[0]);
+  const rho = Math.max(1e-300, ...c.slice(1).map((x, k) => Math.abs(x) ** (1 / (k + 1))));
+  return durandKerner(c.map((x, k) => x / rho ** k)).map((z) => ({ re: z.re * rho, im: z.im * rho }));
+}
+
 function durandKerner(c) {
   const n = c.length - 1, R = 1 + Math.max(...c.slice(1).map(Math.abs));
   let z = Array.from({ length: n }, (_, k) => ({ re: R * Math.cos((2 * Math.PI * k) / n + 0.4), im: R * Math.sin((2 * Math.PI * k) / n + 0.4) }));

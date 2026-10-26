@@ -9,6 +9,7 @@ import { switchState } from "../core/compile.js";
 import { defOf } from "../elements/index.js";
 import { wireFlows } from "../solver/flows.js";
 import { Plot } from "../views/plot.js";
+import { spectrum } from "../solver/fft.js";
 import { fmt, fmtExact } from "../core/units.js";
 import { fromString } from "../core/rational.js";
 import { esc } from "../editor/symbols.js";
@@ -87,6 +88,7 @@ export class Transient {
         <span class="tran-t"></span>
         <select data-tran-speed aria-label="Playback speed">${[0.25, 0.5, 1, 2, 4].map((s) => `<option value="${s}" ${s === this.speed ? "selected" : ""}>${s}×</option>`).join("")}</select>
         <span class="tran-base"></span>
+        <button type="button" class="small" data-tran-fft aria-pressed="${!!this.fftOn}" title="The frequencies in each trace (FFT)">Spectrum</button>
         <button type="button" class="link" data-tran-dc>back to DC</button></div>
       <div class="tran-traces">${this.available().map((a) => `<button type="button" class="chip" data-tran-trace="${esc(a.key)}" aria-pressed="${this.traces.includes(a.key)}">${esc(a.label)}</button>`).join("")}</div>` : ""}
       <canvas class="dock-plot"></canvas>`;
@@ -103,6 +105,7 @@ export class Transient {
     if (b.hasAttribute("data-tran-close")) { this.stop(); this.dock.hidden = true; this.dock.classList.remove("tran"); this.k = null; this.refresh(); }
     else if (b.hasAttribute("data-tran-dc")) { this.stop(); this.k = null; this.refresh(); this.draw(); }
     else if (b.hasAttribute("data-tran-play")) (this.playing ? this.pause() : this.play());
+    else if (b.hasAttribute("data-tran-fft")) { this.fftOn = !this.fftOn; b.setAttribute("aria-pressed", String(this.fftOn)); this.draw(); }
     else if (b.dataset.tranTrace) {
       const k = b.dataset.tranTrace;
       this.traces = this.traces.includes(k) ? this.traces.filter((x) => x !== k) : [...this.traces, k].slice(-5);
@@ -114,6 +117,7 @@ export class Transient {
   draw() {
     const r = this.result;
     if (!r || !this.plot) return;
+    if (this.fftOn) { this.drawSpectrum(); return; }
     const avail = new Map(this.available().map((a) => [a.key, a]));
     const units = [...new Set(this.traces.map((t) => avail.get(t)?.unit))];
     const series = this.traces.filter((t) => avail.has(t)).map((t) => {
@@ -125,6 +129,24 @@ export class Transient {
     if (this.k !== null) markers.push({ x: r.t[this.k], label: `t = ${fmt(r.t[this.k], "s")}`, color: "#efe7d6", low: true });
     this.dock.querySelector(".dock-title").textContent = `Over time: 0 to ${fmt(r.tstop, "s")}${r.firstOrder ? `, τ = ${fmt(r.firstOrder.tau, "s")}` : ""}`;
     this.plot.set({ x: r.t, xLabel: "t", xUnit: "s", series, markers });
+  }
+
+  // each trace's spectrum, over whole periods of the steady state when the run has a period
+  drawSpectrum() {
+    const r = this.result, avail = new Map(this.available().map((a) => [a.key, a]));
+    const keys = this.traces.filter((t) => avail.has(t));
+    if (!keys.length) return;
+    const specs = keys.map((k) => ({ k, s: spectrum(r.t, this.series(k), { period: r.period }) }));
+    const f0 = r.period ? 1 / r.period : null, top = specs[0].s.f.at(-1);
+    const fmax = Math.min(top, f0 ? 20 * f0 : top / 8);
+    const n = specs[0].s.f.findIndex((f) => f > fmax);
+    const cut = (arr) => arr.slice(0, n > 0 ? n : arr.length);
+    const units = [...new Set(keys.map((k) => avail.get(k).unit))];
+    const series = specs.map(({ k, s }) => ({ name: `|${avail.get(k).label}|`, unit: avail.get(k).unit, y: cut(s.amp), axis: units.indexOf(avail.get(k).unit) > 0 ? 1 : 0 }));
+    const markers = f0 ? [1, 2, 3, 5].filter((h) => h * f0 <= fmax).map((h) => ({ x: h * f0, label: h === 1 ? `f₀ = ${fmt(f0, "Hz")}` : `${h}f₀`, color: "#7d7567" })) : [];
+    const s0 = specs[0].s;
+    this.dock.querySelector(".dock-title").textContent = `Spectrum (peak amplitude per frequency) from ${fmt(s0.from, "s")} to ${fmt(s0.to, "s")}, ${s0.window === "Hann" ? "Hann window" : "whole periods"}`;
+    this.plot.set({ x: cut(s0.f), xLabel: "f", xUnit: "Hz", series, markers });
   }
 
   showBase() {
@@ -254,6 +276,13 @@ export class Transient {
     }
     const warn = r.warnings.length ? `<ul class="err-list">${r.warnings.map((w) => `<li class="warn">${esc(w)}</li>`).join("")}</ul>` : "";
     return `<section class="study-card" data-card="tran"><div class="card-title"><strong>Over time</strong><button type="button" class="link" data-study-close>close</button></div>${body}${warn}
-      <p class="hint">${r.method === "TR-BDF2" ? `Stepped with TR-BDF2${r.fixed ? ` every ${esc(fmt(r.h, "s"))}` : `, with the step (${esc(fmt(r.hmin, "s"))} to ${esc(fmt(r.hmaxUsed, "s"))}) set by its own error estimate`}, which can't ring after a switch.` : `Stepped with the trapezoidal rule every ${esc(fmt(r.h, "s"))} (backward Euler right after each switch).`} Start and final values are exact.</p></section>`;
+      <p class="hint">${r.method === "TR-BDF2" ? `Stepped with TR-BDF2${r.fixed ? ` every ${esc(fmt(r.h, "s"))}` : `, with the step (${esc(fmt(r.hmin, "s"))} to ${esc(fmt(r.hmaxUsed, "s"))}) set by its own error estimate`}, which can't ring after a switch.` : `Stepped with the trapezoidal rule every ${esc(fmt(r.h, "s"))} (backward Euler right after each switch).`}${exactnessText(r)}</p></section>`;
   }
+}
+
+// which ends of the run were solved in exact fractions (a sine start or a periodic end isn't)
+function exactnessText(r) {
+  const exact = (sol) => !!sol && Object.values(sol.els).some((e) => e.vx || e.ix);
+  const start = exact(r.post), end = exact(r.final);
+  return start && end ? " Start and final values are exact." : start ? " Start values are exact." : end ? " Final values are exact." : "";
 }

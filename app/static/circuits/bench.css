@@ -447,6 +447,7 @@ li.fail > .st-head .st-mark, .st-error, .st-checks li.fail { color: var(--brick)
 .ac-table tr:first-child td { border-top: 0; }
 .ac-table .v { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ac-table .v.rect, .ac-table td.small { font-weight: 400; color: var(--ink-faint); }
+.ac-table .v.rect { white-space: normal; overflow-wrap: anywhere; }
 .ac-table tr.sum td { font-weight: 600; }
 .bench-dock.ac { height: 320px; grid-template-rows: auto auto auto minmax(150px, 1fr); }
 .ac-dock-body { display: grid; grid-template-columns: minmax(170px, 230px) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); gap: 12px; min-height: 0; }
@@ -471,3 +472,23 @@ li.fail > .st-head .st-mark, .st-error, .st-checks li.fail { color: var(--brick)
 .bode-plots { display: grid; grid-template-rows: minmax(0, 3fr) minmax(0, 2fr); gap: 4px; min-height: 0; }
 .bode-plots .dock-plot { min-height: 0; touch-action: none; cursor: crosshair; }
 @media (max-width: 820px) { .bench-dock.bode { height: 400px; } .bode-note { display: none; } }
+
+/* ---- H(s) dock ---- */
+.bench-dock.hs { height: 360px; grid-template-rows: auto auto minmax(0, 1fr); }
+.hs-body { display: grid; grid-template-columns: minmax(220px, 320px) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); gap: 12px; min-height: 0; }
+.hs-body > * { min-height: 0; min-width: 0; }
+.hs-left { display: grid; grid-template-columns: minmax(0, 1fr) 150px; gap: 8px; overflow: auto; }
+.hs-formula { font-size: 13px; min-width: 0; }
+.hs-tex { overflow-x: auto; }
+.hs-facts { color: #b3aa97; margin: 2px 0; }
+.hs-roots { list-style: none; margin: 0; padding: 0; color: #d8ceb8; font-variant-numeric: tabular-nums; }
+.pz-svg { width: 100%; max-height: 150px; }
+.pz-svg .pz-stable { fill: rgba(169, 196, 143, .07); }
+.pz-svg .pz-x path { stroke: #f0a184; stroke-width: 2.2; stroke-linecap: round; }
+.pz-svg .pz-o circle { fill: none; stroke: #8fb4d6; stroke-width: 2; }
+.hs-roots .pz-x { color: #f0a184; font-weight: 700; }
+.hs-roots .pz-o { color: #8fb4d6; font-weight: 700; }
+@media (max-width: 820px) {
+  .bench-dock.hs { height: 460px; }
+  .hs-body { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(140px, 1fr); }
+}

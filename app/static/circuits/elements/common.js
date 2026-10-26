@@ -35,11 +35,19 @@ export function waveValue(p, prefix, when) {
   }
   const lo = p[`${prefix}0`], hi = p[`${prefix}1`];
   if (kind === "step") return before(when, p.at.value) ? lo : hi;
-  // pulse: lo until td, ramp tr, hold pw at hi, ramp tf, repeat every per
+  // pulse: lo until td, ramp tr, hold pw at hi, ramp tf, repeat every per. A time within a
+  // billionth of a corner is on it (td + k·per has rounding noise), and just before a later
+  // period starts is the end of the period before it.
   const td = p.td.value, tr = p.tr.value, tf = p.tf.value, pw = p.pw.value, per = p.per.value;
   if (before(when, td) || !Number.isFinite(when.t)) return lo;
+  const eps = 1e-9 * Math.max(per > 0 ? per : 0, tr + pw + tf);
   let u = when.t - td;
-  if (per > 0) u = u - Math.floor(u / per) * per;
+  if (per > 0) {
+    const k = Math.round(u / per);
+    if (k > 0 && Math.abs(u - k * per) <= eps) u = when.side < 0 ? per : 0;
+    else u -= Math.floor(u / per) * per;
+  }
+  for (const c of [tr, tr + pw, tr + pw + tf]) if (Math.abs(u - c) <= eps) u = c;
   const ramp = (a, b, f) => ({ exact: null, value: a.value + (b.value - a.value) * f });
   if (tr > 0 && u < tr) return ramp(lo, hi, u / tr);
   if (u < tr + pw || (u === tr + pw && when.side < 0)) return hi;
@@ -66,7 +74,9 @@ export function waveEvents(p, tstop) {
   if (kind !== "pulse") return [];
   const td = p.td.value, tr = p.tr.value, tf = p.tf.value, pw = p.pw.value, per = p.per.value;
   const out = [];
-  for (let start = td, k = 0; start <= tstop && k < 10000; start += per > 0 ? per : Infinity, k++) {
+  for (let k = 0; k < 10000; k++) {
+    const start = td + k * per;  // not a running sum, which drifts
+    if (start > tstop) break;
     out.push(start, start + tr, start + tr + pw, start + tr + pw + tf);
     if (!(per > 0)) break;
   }

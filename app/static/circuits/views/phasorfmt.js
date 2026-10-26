@@ -50,6 +50,7 @@ function exactRect([reText, imText], unit) {
   }
   const body = joinParts(an === 0n ? "" : big1(an), bn === 0n ? "" : big1(bn < 0n ? -bn : bn), bn < 0n);
   const text = d === 1n ? body : (an !== 0n && bn !== 0n ? `(${body})/${d}` : `${body}/${d}`);
+  if (text.length > 18) return rectText({ re: Q.toNumber(re), im: Q.toNumber(im) }, null, unit);  // too long to read: decimals
   return `${text} ${p}${unit}`.trim();
 }
 

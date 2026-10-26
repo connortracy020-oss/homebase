@@ -288,6 +288,7 @@ export class Study {
       <button type="button" class="small" data-study="sup" ${pressed("sup")}>Superposition</button>
       <button type="button" class="small" data-study="check" ${pressed("check")}>Check my work</button>
       ${Transient.relevant(this.store.doc) ? `<button type="button" class="small" data-study="tran" ${pressed("tran")}>Over time</button>` : ""}
+      ${this.store.doc.parts.some((p) => ["C", "L", "K"].includes(p.type)) ? `<button type="button" class="small" data-ac-dock="hs">H(s) and poles</button>` : ""}
       ${(this.getNet() ? ports(this.getNet()) : []).map(([a, b]) => `<button type="button" class="small" data-study="port:${esc(a)},${esc(b)}" ${pressed(`port:${a},${b}`)}>Thevenin at ${esc(a)}–${esc(b)}</button>`).join("")}</div>${this.cardHTML()}</div>`;
   }
 

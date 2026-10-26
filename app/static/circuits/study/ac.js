@@ -11,6 +11,7 @@ import { sinePeak } from "../elements/common.js";
 import { wireFlows } from "../solver/flows.js";
 import { polarText, rectText, scaleOf, scaleWord, angleText, omegaText } from "../views/phasorfmt.js";
 import { BodeDock } from "../views/bode.js";
+import { HsDock } from "../views/hs.js";
 import { phasorSVG } from "../views/phasor.js";
 import { Plot, COLORS } from "../views/plot.js";
 import { fmt, sig } from "../core/units.js";
@@ -83,6 +84,16 @@ export class ACView {
   docChanged() {
     this.update();
     this.bode?.stale();
+    if (this.hs?.open) { const doc = steadyDoc(this.store.doc); this.hs.stale(compile(doc), doc); }
+  }
+
+  // H(s), poles and zeros (from AC or DC: it only needs a source and an output)
+  openHs() {
+    if (!this.hs) this.hs = new HsDock({ dock: this.dock, solver: this.solver, acv: this });
+    this.pause();
+    this.dockOpen = false;
+    const doc = steadyDoc(this.store.doc);
+    this.hs.show(compile(doc), doc);
   }
 
   // the Bode cursor's frequency (or null to go back to the sources' own)
@@ -161,6 +172,7 @@ export class ACView {
     const tools = `<div class="tool-row">
       <button type="button" class="small" data-ac-dock="phasors">Phasors and waveforms</button>
       <button type="button" class="small" data-ac-dock="bode">Bode plot</button>
+      <button type="button" class="small" data-ac-dock="hs">H(s) and poles</button>
       ${ports.map(([a, b]) => `<button type="button" class="small" data-ac-card="port:${esc(a)},${esc(b)}" aria-pressed="${this.card === `port:${a},${b}`}">Thevenin at ${esc(a)}–${esc(b)}</button>`).join("")}
       ${tranButton}</div>`;
     if (!r?.ok) return `<div class="ac-card">${head}${preview}<ul class="err-list"><li>${esc(r?.errors?.[0]?.message || "")}</li></ul>${tools}</div>`;
@@ -483,6 +495,7 @@ export class ACView {
     if (b.dataset.acScale) { this.prefs.acScale = b.dataset.acScale; this.savePrefs(); this.cache = null; this.drawDock(); this.refresh(); return true; }
     if (b.dataset.acDock === "phasors") { this.openDock(); return true; }
     if (b.dataset.acDock === "bode") { this.openBode(); return true; }
+    if (b.dataset.acDock === "hs") { this.openHs(); return true; }
     if (b.dataset.acCard !== undefined) { this.card = this.card === b.dataset.acCard || !b.dataset.acCard ? null : b.dataset.acCard; this.refresh(); return true; }
     if (b.dataset.acPreview === "off") { this.preview = null; this.update(); this.refresh(); return true; }
     if (b.dataset.acPreview === "apply") { this.applyPreview(); return true; }

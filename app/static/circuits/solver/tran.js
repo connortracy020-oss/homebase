@@ -48,6 +48,24 @@ export function events(doc, net, tstop) {
   return [...out].sort((a, b) => a[0] - b[0]).map(([t, labels]) => ({ t, labels }));
 }
 
+// the times of things that happen once: switch flips, steps, and the edges of a single pulse
+function onceEvents(doc, net) {
+  const out = [];
+  for (const part of doc.parts) {
+    if ((part.type === "SW" || part.type === "SW2") && (part.params.at || "").trim()) {
+      const at = parseValue(part.params.at, "s");
+      if (at.ok) out.push(at.value);
+    }
+  }
+  for (const el of net.elements) {
+    const w = el.params.wave?.text;
+    if (!el.def.independent || !w || w === "dc" || w === "sine") continue;
+    if (w === "pulse" && el.params.per.value > 0) { out.push(el.params.td.value); continue; }
+    out.push(...waveEvents(el.params, Infinity));
+  }
+  return out.filter(Number.isFinite);
+}
+
 const storage = (net) => net.elements.filter((el) => el.type === "C" || el.type === "L" || el.type === "K");
 const sines = (net) => net.elements.filter((el) => el.def.independent && (el.params.wave?.text === "sine" || el.def.threePhase));
 
@@ -145,9 +163,9 @@ export function transient(rawDoc, opts = {}) {
     state.set(el.id, st);
   }
 
-  // 2. how long, and how fine: from the time constants after the last event
-  const evAll = events(doc, net0, Infinity);
-  const lastEvent = Math.max(0, ...evAll.map((e) => e.t).filter(Number.isFinite));
+  // 2. how long, and how fine: from the time constants after the last one-off event (a pulse
+  // train's edges go on forever, so its period sets the length instead)
+  const lastEvent = Math.max(0, ...onceEvents(doc, net0));
   const netEnd = compile(doc, { when: after(lastEvent) });
   const taus = timeConstants(netEnd).filter((x) => x.tau > 0);
   // with several capacitors and inductors, the circuit's own time constants (they can differ
@@ -208,8 +226,8 @@ export function transient(rawDoc, opts = {}) {
     record(0, s.v, s.els);
   }
 
-  let steps = 0, rejected = 0, hlo = Infinity, hhi = 0;
-  for (let k = 0; k + 1 < cuts.length; k++) {
+  let steps = 0, rejected = 0, hlo = Infinity, hhi = 0, stopped = false;
+  for (let k = 0; k + 1 < cuts.length && !stopped; k++) {
     const t0 = cuts[k], t1 = cuts[k + 1];
     net = compile(doc, { when: after(t0) });
     // t0⁺: storage held at its values; exact when the state is exact
@@ -267,9 +285,12 @@ export function transient(rawDoc, opts = {}) {
     let t = t0, h = fixed ? opts.dt : Math.min(hmax, (Math.min(...rates, tstop) || tstop) / 200, hmax / 4), firstTrap = true;
     try {
       while (t < t1 - 1e-12 * Math.max(1, Math.abs(t1))) {
-        if (steps + rejected > 2 * MAX_STEPS) { warnings.push("The run stopped early: the steps it needed got too small."); break; }
-        let hs = Math.min(h, hmax, t1 - t);
-        if (t1 - t - hs < 1e-6 * hs) hs = t1 - t;  // land exactly on the next event
+        if (steps + rejected > 2 * MAX_STEPS) { warnings.push("The run stopped early: the steps it needed got too small."); stopped = true; break; }
+        // land exactly on the next event without leaving a sliver of a step before it: stretch
+        // this step to it (by at most a fifth), or split what's left in two
+        const left = t1 - t;
+        let hs = Math.min(h, hmax, left);
+        if (left - hs < 0.2 * hs) hs = left <= Math.min(1.2 * h, hmax) ? left : left / 2;
         const tEnd = t + hs, whenEnd = Math.abs(tEnd - t1) <= 1e-12 * Math.max(1, Math.abs(t1)) ? before(t1) : after(tEnd);
         if (method === "trap") {
           // fixed-step trapezoidal with a backward-Euler step first (kept for comparison)
@@ -323,7 +344,7 @@ export function transient(rawDoc, opts = {}) {
     t: times, nodes: Object.fromEntries(nodeSeries), els: Object.fromEntries(elSeries),
     pre: plainSol(pre), post: initialPost ? plainSol(initialPost) : null, final: final ? plainSol(final) : null,
     // (pre, post and final keep their own node numbers; use els, which are by part name)
-    taus, modes, nodeNames: net0.nodes.map((n) => n.label || n.name),
+    taus, modes, nodeNames: net0.nodes.map((n) => n.label || n.name), period: knownPeriod(net0),
   };
   // the textbook formula when there's one storage element after the switch
   const store = storage(netEnd);
@@ -384,6 +405,19 @@ function sinusoidalSteadyState(net, warnings) {
   }
   // the scope keys nodes by the net's own numbering (the 0⁻ net), like the DC snapshot
   return { parts, nodes, els };
+}
+
+// the run's period when its sources repeat at one rate (a pulse train, sines at one frequency),
+// so a spectrum can use whole periods
+function knownPeriod(net) {
+  const ps = [];
+  for (const el of net.elements) {
+    if (!el.def.independent) continue;
+    if (el.params.wave?.text === "pulse" && el.params.per.value > 0) ps.push(el.params.per.value);
+    else if (el.params.wave?.text === "sine" || el.def.threePhase) ps.push((2 * Math.PI) / sineOmega(el.params).value);
+  }
+  if (!ps.length) return null;
+  return ps.every((x) => Math.abs(x - ps[0]) <= 1e-9 * ps[0]) ? ps[0] : null;
 }
 
 function plainSol(s) {
