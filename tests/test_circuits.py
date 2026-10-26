@@ -156,6 +156,29 @@ def test_mcp_circuit_tools(session):
     assert "1 of 1 right" in mcp.circuits_attempts() and "1 of 1 right" in mcp.circuits_attempts(slug)
 
 
+def test_mcp_tools_show_the_ac_steady_state():
+    """With a sine source, Claude sees the phasors the bench shows: exact here (RC at ω = 1/RC)."""
+    import shutil
+
+    import pytest
+
+    from app import mcp_server as mcp
+    if not shutil.which("node"):
+        pytest.skip("the check uses the bench's own solver, which needs Node")
+    rc = {"format": "homebase-circuit", "version": 1, "parts": [
+        {"id": "V1", "type": "V", "x": 0, "y": 2, "rot": 1, "params": {"wave": "sine", "Vm": "1", "w": "1k"}},
+        {"id": "R1", "type": "R", "x": 0, "y": 0, "rot": 0, "params": {"R": "1k"}},
+        {"id": "C1", "type": "C", "x": 6, "y": 2, "rot": 1, "params": {"C": "1u"}},
+        {"id": "G", "type": "GND", "x": 0, "y": 6, "rot": 0, "params": {}},
+        {"id": "Lo", "type": "LBL", "x": 8, "y": 0, "rot": 0, "params": {"name": "vo"}}],
+        "wires": [{"id": "w1", "a": [0, 2], "b": [0, 0]}, {"id": "w2", "a": [4, 0], "b": [8, 0]},
+                  {"id": "w3", "a": [6, 0], "b": [6, 2]}, {"id": "w4", "a": [0, 6], "b": [6, 6]}]}
+    text = "\n".join(mcp._solution_lines(mcp._bench_solve(rc)))
+    assert "AC steady state at ω = 1000 rad/s" in text and "exact" in text
+    assert "- node vo: 707.1 mV∠-45.00° (= 1/2 - j1/2 exactly)" in text
+    assert "R1: V 707.1 mV∠45.00°" in text and "P 250 µW" in text and "Q -250 µVAR" in text
+
+
 def test_add_a_picture_of_the_circuit_to_notes(client, session):
     import io
     import json

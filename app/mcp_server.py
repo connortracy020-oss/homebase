@@ -73,24 +73,34 @@ circuits_save, circuits_attempts. A circuit is a JSON document:
 "rot", "flip", "params"}], "wires": [{"id", "a": [x, y], "b": [x, y]}], "study": {"predict": true}}
 - x, y are whole grid units; y grows downward. rot = quarter turns clockwise.
 - Two-terminal parts (R C L V I E F G H SW AM VM) have pin a at (x, y) and pin b 4 units on: \
-rot 0 -> (x+4, y), rot 1 -> (x, y+4) (vertical, a on top), rot 2 -> (x-4, y), rot 3 -> (x, y-4).
+rot 0 -> (x+4, y), rot 1 -> (x, y+4) (vertical, a on top), rot 2 -> (x-4, y), rot 3 -> (x, y-4). \
+Other parts turn the same way about (x, y).
 - V, E, H: pin a is the + terminal. I, G, F: the arrow points at pin a (the current leaves the \
 source there).
 - OA (op-amp) at rot 0: - input (x, y-1), + input (x, y+1), output (x+5, y). GND and LBL (net \
-label) have one pin at (x, y). SW2: common (x, y), throw 1 (x+4, y-1), throw 2 (x+4, y+1).
+label) have one pin at (x, y). SW2: common (x, y), throw 1 (x+4, y-1), throw 2 (x+4, y+1). \
+K (coupled coils) and TR (ideal transformer) at rot 0: primary p1 (x, y) and p2 (x, y+4), \
+secondary s1 (x+4, y) and s2 (x+4, y+4); the primary's dot is at p1. V3Y (three-phase, Y) at \
+rot 0: a (x+4, y), b (x+4, y+2), c (x+4, y+4), neutral n (x, y+2); V3D (Δ) has a, b, c only.
 - A wire is one straight segment. Points joined by wires are one node; a wire end or a pin that \
 lands inside another wire joins it; wires that only cross don't. LBLs with the same name are one \
 node. Use one GND: the node it touches is 0 V.
 - params are text with SI prefixes ("4.7k", "2m", "10u", "1meg"; m is milli): R {R}; C {C, v0}; \
-L {L, i0}; V {wave: "dc", V}, a step {wave: "step", V0, V1, at} or a pulse {wave: "pulse", V0, \
-V1, td, tr, tf, pw, per}; I the same with I, I0, I1. E (gain), G (A/V), H (ohms), F (gain): \
+L {L, i0}; V {wave: "dc", V}, a step {wave: "step", V0, V1, at}, a pulse {wave: "pulse", V0, \
+V1, td, tr, tf, pw, per} or a sine {wave: "sine", Vm, scale: "peak" or "rms", funit: "rad/s" \
+with w or "Hz" with f, ph (degrees, cosine reference: Vdc + Vm cos(ωt + ph)), Vdc}; I the same \
+with I, I0, I1, Im, Idc. K {L1, L2, spec: "k" with k or "M" with M, dot: "top" (the secondary's \
+dot at s1) or "bottom", i10, i20}; TR {n (N1/N2), dot}; V3Y and V3D {V3m (V3D: the line \
+voltage), scale (default "rms"), funit (default "Hz") with f or w, ph (of a), seq: "abc" or \
+"acb"}. E (gain), G (A/V), H (ohms), F (gain): \
 {gain, ctrl, cname} where ctrl is "v(R2)" (across R2: its pin a minus pin b), "i(R2)" (into R2's \
 pin a), "v(Vx)" (a labelled node against ground) or "v(Vx, Vy)", with a leading "-" to flip it, \
 and cname is the name the problem uses (vx, ix). OA {model: "ideal" or "gain", A, rout}; \
 SW {state: "closed" or "open", at: when it flips}; SW2 {state: "1" or "2", at}; LBL {name}.
 - study.predict = true makes him commit a prediction before the bench shows a value.
 - circuits_save solves the drawing with the bench's own solver and returns the nodes it found \
-(with every part terminal on each) and the solution. Read it and make sure it's the circuit you \
+(with every part terminal on each) and the solution: DC (a sine source counts only its offset \
+there) and, with sine sources, the AC steady state as peak phasors. Read it and make sure it's the circuit you \
 meant before you tell him it's ready. To change an existing circuit, pass the base_rev that \
 circuits_get showed, so you never overwrite a change he made since.
 """
@@ -625,12 +635,50 @@ def _exact(text) -> str:
     return f" (= {text})" if text and "/" in str(text) else ""
 
 
+def _phasor(z, unit: str, exact=None) -> str:
+    """A peak phasor [re, im] in polar form, with the exact rectangular form when there is one."""
+    import math
+    if z is None:
+        return "?"
+    m = math.hypot(z[0], z[1])
+    if m < 1e-15:
+        return f"0 {unit}"
+    text = f"{_si(m, unit)}∠{math.degrees(math.atan2(z[1], z[0])):.2f}°"
+    if exact:
+        re, im = exact
+        text += f" (= {re} {'-' if im.startswith('-') else '+'} j{im.lstrip('-')} exactly)"
+    return text
+
+
+def _ac_lines(ac: dict) -> list[str]:
+    import math
+    if not ac["ok"]:
+        return ["AC steady state: the bench can't solve it yet:"] + [f"- error: {e}" for e in ac["errors"]]
+    w = ac["omega"]
+    out = [f"AC steady state at ω = {w:.6g} rad/s (f = {w / (2 * math.pi):.6g} Hz): peak phasors, cosine "
+           f"reference, {'exact' if ac.get('exact') else 'decimals'}:"]
+    if ac.get("off"):
+        out.append(f"- {', '.join(ac['off'])} run at another frequency, so they're off in this solution.")
+    out += [f"- node {n['name']}: {_phasor(n['v'], 'V', n.get('vx'))}" for n in ac["nodes"] if n["index"] > 0]
+    out.append("Parts (V = pin a minus pin b; I = into pin a; P + jQ = ½ V I*, absorbed):")
+    for pid, e in ac["parts"].items():
+        s = e.get("s") or [0, 0]
+        line = (f"- {pid}: V {_phasor(e['v'], 'V', e.get('vx'))}, I {_phasor(e['i'], 'A', e.get('ix'))}, "
+                f"P {_si(s[0], 'W')}, Q {_si(s[1], 'VAR')}")
+        if e.get("pins"):
+            line += "; into each pin: " + ", ".join(f"{p['pin']} {_phasor(p['i'], 'A')}" for p in e["pins"])
+        out.append(line)
+    out += [f"- warning: {w}" for w in ac.get("warnings", [])]
+    return out
+
+
 def _solution_lines(r: dict | None) -> list[str]:
     if r is None:
         return ["Not checked: Node isn't installed, so only the bench can solve it (it does when he opens it)."]
     out = []
     if r["ok"]:
-        out.append(f"The bench solves it ({'exact fractions' if r.get('exact') else 'decimals'}). Nodes it found:")
+        dc = " DC solution (a sine source counts only its offset there)." if r.get("ac") else ""
+        out.append(f"The bench solves it ({'exact fractions' if r.get('exact') else 'decimals'}).{dc} Nodes it found:")
     else:
         out.append("The bench can't solve it yet:")
         out += [f"- error: {e}" for e in r["errors"]]
@@ -648,6 +696,8 @@ def _solution_lines(r: dict | None) -> list[str]:
     out += [f"- warning: {w}" for w in r.get("warnings", [])]
     if r.get("idle"):
         out.append(f"Set aside (not connected to the rest, or only through capacitors at DC): {', '.join(r['idle'])}")
+    if r.get("ac"):
+        out += _ac_lines(r["ac"])
     if r.get("netlist"):
         out += ["SPICE netlist:", r["netlist"].rstrip()]
     return out

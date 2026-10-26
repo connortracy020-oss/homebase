@@ -303,7 +303,7 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 
 ## Circuit Bench
 
-**Circuits** in the nav. Draw a circuit and it solves as you build it. The full design is in `design/CIRCUITS-PLAN.md`; phase 1 (ECE 201) is built.
+**Circuits** in the nav. Draw a circuit and it solves as you build it. The full design is in `design/CIRCUITS-PLAN.md`; phase 1 (DC and transients) and phase 2 (AC and frequency response) are built.
 
 **Drawing:**
 - Pick a part on the left (or press 1–8) and click where it goes. R rotates, X mirrors, Del deletes, Ctrl+Z / Ctrl+Y undo and redo. ⋯ → Keyboard shortcuts lists the rest.
@@ -311,7 +311,7 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 - A wire end or a terminal that lands on another wire joins it, and a dot shows the junction. Wires that only cross don't join. Net labels with the same name are one node.
 - It saves itself as you work. If Homebase can't be reached, it keeps a copy on the device and saves when it can. If Claude or another tab changed the circuit since you opened it, it asks which version to keep.
 
-**Parts:** resistors, capacitors, inductors, voltage and current sources (constant, step or pulse), the four dependent sources (controlled the textbook way, by `v(R2)` or `i(R2)`), ideal or finite-gain op-amps, one- and two-way switches that flip at a set time, ammeters, voltmeters, ground and net labels.
+**Parts:** resistors, capacitors, inductors, voltage and current sources (constant, step, pulse or sine), the four dependent sources (controlled the textbook way, by `v(R2)` or `i(R2)`), ideal or finite-gain op-amps, coupled inductors (k or M, with dots), ideal transformers, three-phase sources (Y or Δ, abc or acb), one- and two-way switches that flip at a set time, ammeters, voltmeters, ground and net labels. A sine source takes its amplitude as peak or RMS, its frequency as ω or f, a phase (cosine reference) and a DC offset.
 
 **What it shows:**
 - Exact answers when the values allow (fractions like 72/13 V), otherwise decimals.
@@ -320,6 +320,17 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 - When it can't solve, it says why in words and marks the parts, for example a loop of voltage sources, a floating node, or an op-amp with no feedback.
 - **3D:** voltage becomes height, so a resistor is a ramp and a source is a cliff, and current runs as beads. There are three quality levels (Battery, Balanced, Cinematic). You never need the 3D view to use the bench.
 
+**AC** (any sine source switches the bench to AC; the DC/AC switch on the right goes back):
+- Every node and part as a phasor, in polar and rectangular form (exact when ω and the values allow), peak or RMS, always labelled.
+- Complex power for every part (P, Q, |S|), the power factor with its lead or lag, and the capacitor that would correct it. Three-phase circuits add line and phase values, total power and the neutral current.
+- **Phasors and waveforms:** the phasor diagram beside the waveforms its arrows make, with a time cursor. ▶ plays the cycle in slow motion through the 2D and 3D views.
+- **Try ω:** a slider re-solves the whole circuit at another frequency as you drag (a what-if until you press Set).
+- **Bode plot:** magnitude and phase over frequency, with the −3 dB corners, the peak, ω₀, Q and the bandwidth marked. Its cursor shows the circuit at that frequency.
+- **H(s) and poles:** the transfer function between any source and output, exact when the values are, its poles and zeros on the s-plane, and the step and impulse responses. It works from the DC panel too.
+- **AC Thevenin:** V_th and Z_th at a part or at terminals a and b, and the load Z_th* for maximum power.
+- **Predict first** works in AC too: you guess a magnitude and an angle, and a miss by √2 (peak vs RMS) or by the angle only is called out.
+- **3D in AC:** an instant of the cycle, or **|V| and phase**: height is each node's amplitude and color its phase angle.
+
 **Study tools** (on the right, or in the bottom sheet on a phone):
 - **Predict first:** values show as **?** until you commit a guess. A wrong guess tells you if only the sign or a factor of 1000 is off.
 - **Equations:** the node equations it solved, and the matrix, exactly.
@@ -327,18 +338,18 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 - **Superposition:** each source's share of every node voltage, and the check that the shares add up.
 - **Check my work:** type your node voltages, and it names the KCL equation that breaks, with the actual currents.
 - **Sweep:** select a part and press **Sweep** to plot what changes as its value runs over a range. Its value slider changes it live.
-- **Over time:** switches and step or pulse sources. The values at t = 0⁻, 0⁺ and ∞ are exact, the first-order formula appears when there's one capacitor or inductor, and a scope plots everything. Playback runs the 2D and 3D views through time.
+- **Over time:** switches and step, pulse or sine sources. The values at t = 0⁻, 0⁺ and ∞ are exact, the first-order formula appears when there's one capacitor or inductor, and a scope plots everything. Playback runs the 2D and 3D views through time. It steps with TR-BDF2 and sizes each step from its own error estimate, so an RLC circuit rings only if it really does. With sine sources it starts in the sinusoidal steady state. **Spectrum** shows the run's frequency content (an FFT over whole periods when the period is known).
 
 **With the rest of Homebase:**
 - Generated ECE 201 circuit problems (52 of the 65; the rest have no circuit to draw) have **Open on the Circuit Bench**: the same circuit, with the same names and values, and predict first on. Your copy is kept, so opening it again goes back to your work.
 - A wrong prediction or check on a problem's circuit goes into the mistake log, once a day per problem.
 - ⋯ → **Add a picture to my notes** saves the schematic, as it looks right now, in a notes unit with a link back to the circuit.
 - ⋯ → export a SPICE netlist (`.cir`) for LTspice, or the circuit file (`.json`).
-- **Self-test** (`/circuits/selftest`, linked from the Circuits page) runs the solver in whatever browser opens it, on 12 Ulaby exercises with worked solutions, and shows whether each one matches the book. Run it once on your phone.
+- **Self-test** (`/circuits/selftest`, linked from the Circuits page) runs the solver in whatever browser opens it, on 26 Ulaby exercises with worked solutions (chapters 2 to 9: DC, transients, RLC, phasors, AC power and frequency response), and shows whether each one matches the book. Run it once on your phone.
 
-**With Claude:** Claude can list, read, draw and change circuits (`circuits_list`, `circuits_get`, `circuits_save`, `circuits_attempts`). It checks each drawing with the bench's own solver, so it sees the same nodes, netlist and values you would. That check needs Node (installed on this laptop); without Node, Claude can still save circuits, unchecked. Claude's changes are marked as Claude's, and it can't overwrite a change you made after it read the circuit.
+**With Claude:** Claude can list, read, draw and change circuits (`circuits_list`, `circuits_get`, `circuits_save`, `circuits_attempts`). It checks each drawing with the bench's own solver, so it sees the same nodes, netlist and values you would, AC phasors included. That check needs Node (installed on this laptop); without Node, Claude can still save circuits, unchecked. Claude's changes are marked as Claude's, and it can't overwrite a change you made after it read the circuit.
 
-**Not built yet** (phases 2 and 3 of the plan): AC and phasors, Bode plots, coupled inductors and transformers, diodes and transistors, SPICE import, "swap in the Thevenin equivalent", and goal exercises.
+**Not built yet:** op-amp output limits (rails and slew rate), superposition and the equations card in AC, diodes and transistors, SPICE import, "swap in the Thevenin equivalent", and goal exercises (phase 3 of the plan, and what phase 2 left).
 
 ## Claude access (MCP server)
 

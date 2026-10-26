@@ -17,7 +17,9 @@
   import { runAll } from "/static/circuits/selftest/cases.js?v={{ static_v('circuits/selftest/cases.js') }}";
   import { fmt } from "/static/circuits/core/units.js";
   const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-  const show = (k) => typeof k.got === "number" ? (k.note ? `${fmt(k.got, k.unit)} (${k.note})` : fmt(k.got, k.unit)) : String(k.got);
+  // a number with its unit and SI prefix; without a unit (a gain, Q, a power factor) as it is
+  const num = (x, unit) => (unit ? fmt(x, unit) : String(Number(x.toPrecision(6))).replace("-", "−"));
+  const show = (k) => typeof k.got === "number" ? (k.note ? `${num(k.got, k.unit)} (${k.note})` : num(k.got, k.unit)) : String(k.got);
   const t0 = performance.now();
   const results = runAll();
   const passed = results.filter((r) => r.ok).length;
@@ -27,7 +29,7 @@
         <span class="muted small">${r.ms.toFixed(1)} ms</span></div>
       <div class="small">Book: ${esc(r.answer)}</div>
       ${r.error ? `<div class="small st-error">The bench couldn't solve it: ${esc(r.error)}</div>` : ""}
-      <ul class="st-checks small">${r.checks.map((k) => `<li class="${k.ok ? "pass" : "fail"}">${esc(k.label)}: ${esc(show(k))}${k.ok ? "" : ` (book: ${esc(typeof k.want === "number" ? fmt(k.want, k.unit) : k.want)})`}</li>`).join("")}</ul>
+      <ul class="st-checks small">${r.checks.map((k) => `<li class="${k.ok ? "pass" : "fail"}">${esc(k.label)}: ${esc(show(k))}${k.ok ? "" : ` (book: ${esc(typeof k.want === "number" ? num(k.want, k.unit) : k.want)})`}</li>`).join("")}</ul>
     </li>`).join("");
   const summary = document.getElementById("selftest-summary");
   summary.textContent = `${passed} of ${results.length} problems match the book (${(performance.now() - t0).toFixed(0)} ms in this browser).`;

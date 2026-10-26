@@ -93,12 +93,15 @@ export function eigenvalues(A0) {
 export function polyRoots(a) {
   let p = [...a];
   while (p.length > 1 && p[0] === 0) p = p.slice(1);
+  // roots at 0 come off first (trailing zeros), or the scaling below divides 0 by 0
+  const atZero = [];
+  while (p.length > 1 && p[p.length - 1] === 0) { p = p.slice(0, -1); atZero.push({ re: 0, im: 0 }); }
   const n = p.length - 1;
-  if (n < 1) return [];
+  if (n < 1) return atZero;
   const c = p.map((x) => x / p[0]);
   const rho = Math.max(1e-300, ...c.slice(1).map((x, k) => Math.abs(x) ** (1 / (k + 1))));
   const cs = c.map((x, k) => x / rho ** k);
-  return mergeRepeated(cs, durandKerner(cs)).map((z) => ({ re: z.re * rho, im: z.im * rho }));
+  return [...mergeRepeated(cs, durandKerner(cs)).map((z) => ({ re: z.re * rho, im: z.im * rho })), ...atZero];
 }
 
 // A repeated root comes out of the iteration as a small ring of roots around it (the error grows

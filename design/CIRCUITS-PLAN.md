@@ -658,3 +658,61 @@ switching transients and their accuracy order, editing, and the golden problems)
 solver on 360 random circuits and on every generated problem (11 generators × 15 seeds), and
 12 Ulaby exercises whose worked solutions the bench reproduces, which `/circuits/selftest`
 re-runs on any device.
+
+## 16. As built (phase 2, October 26, 2026)
+
+Phase 2 (build step 8) is done except op-amp rails and slew rate, superposition in AC and the
+equations card in AC. Where it differs from the plan, or adds to it:
+
+**Files.** `solver/cfield.js` (complex numbers: decimals, and exact Gaussian fractions),
+`solver/ac.js` (the phasor solve, its checks, AC Thevenin), `solver/bode.js`,
+`solver/laplace.js` (H(s)), `solver/fft.js`; `elements/coupled.js` (K, TR) and
+`elements/threephase.js` (V3Y, V3D); `study/ac.js` (the AC panel, the dock, playback, the
+frequency slider); `views/phasor.js`, `views/phasorfmt.js`, `views/bode.js`, `views/hs.js`.
+`solver/tran.js` was rewritten for TR-BDF2.
+
+**AC solve.** Peak phasors with a cosine reference. Capacitors and inductors enter as jωC and
+jωL in the same assembly and LU as DC, over a complex field. The answer is exact when ω is
+given in rad/s and every phase is a multiple of 90°, else decimals. Every solve is checked:
+KCL at each node, and the complex power balance (Σ ½ V I* = 0). The steady state has every
+switch in its final position. Sources at another frequency are off, with a note saying so.
+
+**What the plan said vs. what's there:**
+- "3D at a chosen frequency": the 3D view shows an instant of the cycle, or |V| and phase
+  (height = amplitude, color = the phasor's angle on an even-lightness hue circle, turning
+  together as the cycle plays). The chosen frequency comes from the Bode cursor or the Try ω
+  slider, which moves every source to it as a what-if, holding the scales through a sweep.
+- "Phasor view linked to the scope": the dock shows the phasor diagram beside the waveforms
+  its arrows project, with one time cursor for both.
+- "Bode with cursor": a log sweep refined where the curve bends, unwrapped phase, −3 dB
+  corners, and peak, ω₀, Q and bandwidth for band-pass shapes. The cursor previews the whole
+  bench at that frequency, with one input on.
+- H(s) is exact when the values are rational. It solves at s = 1, 2, … in exact fractions,
+  interpolates the numerator and denominator, checks one more point, and cancels common
+  factors. Poles and zeros come from the polynomial roots: repeated roots are merged and
+  polished with Newton on the (m−1)th derivative, and roots at 0 are factored out first.
+  The step and impulse responses come from residues (distinct poles only).
+- RLC transients: TR-BDF2 (γ = 2 − √2) with a local error estimate. It can't ring after a
+  switch the way the trapezoidal rule does. The trapezoidal rule is kept for comparison.
+  Repeating pulses read their edges correctly at period boundaries, and the run length comes
+  from one-off events plus a few periods.
+- The FFT is radix-2 on a resampled trace: whole periods at the end of the run when the period
+  is known (each harmonic in its own bin), otherwise a Hann window.
+
+**Layouts.** In split view the status line and the 2D zoom buttons sit over the 2D half. In
+the 3D view the picture is centred below its toolbar. On a phone the 3D toolbar sits under the
+status line, however tall that is.
+
+**Claude.** `scripts/bench_solve.mjs` adds the AC steady state (peak phasors, exact parts,
+each part's complex power, the pin currents of four-pin and three-phase parts), and the server
+instructions describe sine sources, K, TR, V3Y and V3D.
+
+**Verification:** 108 Node tests, including 300 random AC circuits that match NumPy's complex
+solve, closed-form AC, Bode, coupled-coil, transformer, three-phase, transfer-function and
+spectrum checks, and TR-BDF2 against closed-form RLC responses. There are 26 golden Ulaby
+exercises (14 new, chapters 6 to 9: critically damped and underdamped RLC, phasors, input
+impedance, an AC Thevenin with a dependent source, phase shifters, complex power, power-factor
+correction, Q, a band-pass resonance, filter order, and an op-amp low-pass), all reproduced.
+One published answer is off: Exercise 7-13 says R = 2.2 kΩ gives the two-stage CR shifter a
+120° shift, but it gives 59.8°. 120° needs R ≈ 457 Ω, the root the solution rejects for its
+sign. The magnitude it quotes, 0.634, is right, and that is what the golden case checks.
