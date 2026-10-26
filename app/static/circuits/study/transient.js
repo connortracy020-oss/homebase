@@ -4,6 +4,7 @@
 // never pretends to be real time.
 
 import { compile } from "../core/compile.js";
+import { niceMax } from "../views/palette.js";
 import { pinPoints, key } from "../core/doc.js";
 import { switchState } from "../core/compile.js";
 import { defOf } from "../elements/index.js";
@@ -244,9 +245,22 @@ export class Transient {
       els[el.id] = { type: el.type, nodes: el.nodes, i, v, p, pins: pins.map((q, j) => ({ ...q, node: el.nodes[j] })), ix: null, vx: null, px: null };
       if (el.def.meter) els[el.id].reading = el.def.meter === "i" ? { kind: "i", value: i, exact: null } : { kind: "v", value: v, exact: null };
     }
-    const sol = { ok: true, exact: false, errors: [], warnings: [], nodes, els, assumptions: [], idle: [], time: t };
+    const sol = { ok: true, exact: false, errors: [], warnings: [], nodes, els, assumptions: [], idle: [], time: t, ...this.scales() };
     sol.flows = wireFlows(net, (el, j) => els[el.id]?.pins[j]?.i ?? 0);
     return { doc, net, sol };
+  }
+
+  // the run's largest voltage, current and power, so playback keeps one scale throughout
+  scales() {
+    const r = this.result;
+    if (!r.scales) {
+      const big = (xs) => xs.reduce((m, x) => (Number.isFinite(x) ? Math.max(m, Math.abs(x)) : m), 0);
+      const vbig = Math.max(0, ...Object.values(r.nodes).map(big));
+      const ibig = Math.max(0, ...Object.values(r.els).map((s) => big(s.i)));
+      const pbig = Math.max(0, ...Object.values(r.els).map((s) => big(s.p)));
+      r.scales = { vmax: niceMax(vbig || 1), imax: ibig, pmax: pbig || 1e-15 };
+    }
+    return r.scales;
   }
 
   // the first-order summary, the way ECE 201 writes it

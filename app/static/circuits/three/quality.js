@@ -1,11 +1,12 @@
-// How much the 3D view draws, so it stays smooth from a phone on battery to the RTX laptop.
-// Picked automatically; you can override it in the 3D toolbar. A frame-time governor
-// lowers the resolution first (cheapest to lose), then the ambient occlusion.
+// How much the 3D view draws, so it stays smooth from a phone on battery to a gaming laptop.
+// Picked automatically; you can override it in the 3D toolbar. Every tier keeps the look
+// (bloom, soft shadows, antialiasing); they differ in resolution, shadow detail and how many
+// current particles there are. A frame-time governor lowers the resolution if frames run long.
 
 export const TIERS = {
-  battery: { label: "Battery", ratio: 1.25, shadows: false, shadowSize: 0, bloom: false, ao: false, msaa: 0, beads: 400 },
-  balanced: { label: "Balanced", ratio: 2, shadows: true, shadowSize: 1024, bloom: true, ao: false, msaa: 4, beads: 1500 },
-  cinematic: { label: "Cinematic", ratio: 2.5, shadows: true, shadowSize: 2048, bloom: true, ao: true, msaa: 4, beads: 4000 },
+  battery: { label: "Battery", ratio: 1.5, shadowSize: 1024, bloom: 0.5, msaa: 4, beads: 600 },
+  balanced: { label: "Balanced", ratio: 2, shadowSize: 2048, bloom: 1, msaa: 4, beads: 1800 },
+  cinematic: { label: "Cinematic", ratio: 2.5, shadowSize: 4096, bloom: 1, msaa: 8, beads: 4000 },
 };
 
 export function gpuName(renderer) {
@@ -24,16 +25,19 @@ export function detectTier(renderer) {
   return "balanced";
 }
 
-// watch frame times; call drop() when frames run long for a second or more
+// watch frame times while the view is on screen; call onDrop when they run long for a few
+// seconds. Frames the browser throttles (a hidden tab, a long pause) don't count.
 export class Governor {
-  constructor(onDrop) { this.onDrop = onDrop; this.samples = []; this.cool = 0; }
+  constructor(onDrop) { this.onDrop = onDrop; this.samples = []; this.cool = 2; }
   frame(ms) {
+    if (document.hidden || !(ms > 0) || ms > 120) return;
     this.samples.push(ms);
-    if (this.samples.length < 45) return;
-    const avg = this.samples.reduce((a, b) => a + b, 0) / this.samples.length;
+    if (this.samples.length < 120) return;
+    const sorted = [...this.samples].sort((a, b) => a - b);
+    const typical = sorted[Math.floor(sorted.length * 0.6)];
     this.samples = [];
     if (this.cool > 0) { this.cool -= 1; return; }
-    if (avg > 24) { this.onDrop(avg); this.cool = 3; }
+    if (typical > 22) { this.onDrop(typical); this.cool = 2; }
   }
   reset() { this.samples = []; this.cool = 2; }
 }

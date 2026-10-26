@@ -200,7 +200,7 @@ export class ACView {
     const at = (z) => (z ? z.re * c - z.im * s : null);
     const nodes = r.nodes.map((n) => ({ index: n.index, name: n.name, label: n.label, v: n.v ? at(n.v) : null, vx: null }));
     const els = {};
-    let vbig = 0, pbig = 0;
+    let vbig = 0, pbig = 0, ibig = 0;
     for (const n of r.nodes) if (n.v) vbig = Math.max(vbig, Math.hypot(n.v.re, n.v.im));
     for (const [id, e] of Object.entries(r.els)) {
       const pins = e.pins.map((p) => ({ node: p.node, i: at(p.i) }));
@@ -209,12 +209,13 @@ export class ACView {
       els[id] = { type: e.type, nodes: e.nodes, v, i, p, pins, vx: null, ix: null, px: null };
       if (e.reading) els[id].reading = { kind: e.reading.kind, value: e.reading.kind === "i" ? i : v, exact: null };
       pbig = Math.max(pbig, e.s.re + Math.hypot(e.s.re, e.s.im));  // the most p(t) reaches in a cycle
+      for (const q of e.pins) ibig = Math.max(ibig, Math.hypot(q.i.re, q.i.im));
     }
     const sol = {
       ok: true, exact: false, errors: [], warnings: r.warnings, nodes, els, idle: r.idle, time: t,
       assumptions: ["Steady state: the sources have run long enough that every transient has died away.", "Wires are ideal (0 Ω)."],
       ac: { res: r, scale: this.scale, mode: this.mode, omega: this.omega, hold: this.hold },
-      vmax: niceMax(Math.max(vbig, this.hold?.v || 0) || 1), pmax: Math.max(pbig, this.hold?.p || 0) || 1e-15,
+      vmax: niceMax(Math.max(vbig, this.hold?.v || 0) || 1), pmax: Math.max(pbig, this.hold?.p || 0) || 1e-15, imax: ibig,
     };
     sol.flows = wireFlows(this.net, (el, j) => els[el.id]?.pins[j]?.i ?? 0);
     return sol;
