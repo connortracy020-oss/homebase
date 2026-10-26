@@ -13,8 +13,17 @@ Homebase doesn't install its own copy. It uses Lecture Desk's Chatterbox engine
     doesn't have room, Homebase says so instead of competing for it.
 
 Each sentence is spoken once and cached by its text, so replaying is instant.
+
+The voice makes audio a bit slower than it plays (about 1.2 to 1.7 seconds of work per second of
+speech), so it can't keep up when it only works one or two sentences ahead. Requests therefore
+wait in a queue with three priorities, and the sentence you are waiting to hear always goes first:
+  0 NOW         the sentence being played (or about to be)
+  1 AHEAD       the look-ahead the reader page asks for while you listen
+  2 BACKGROUND  "prepare the next pages" (see app/routes/speech_routes.py)
 """
+import contextlib
 import hashlib
+import heapq
 import json
 import os
 import shutil
@@ -43,6 +52,13 @@ class SpeechError(Exception):
 
 class SpeechBusy(SpeechError):
     """The GPU or Chatterbox is in use by something else right now."""
+
+
+class SpeechStale(SpeechError):
+    """A look-ahead request for a place you have since jumped away from. Safe to ignore."""
+
+
+NOW, AHEAD, BACKGROUND = 0, 1, 2
 
 
 def speech_root() -> Path:
@@ -127,7 +143,11 @@ class Engine:
     def __init__(self):
         self.proc: subprocess.Popen | None = None
         self.ready = threading.Event()
-        self.lock = threading.Lock()        # one sentence at a time
+        self.turn = threading.Condition()   # one sentence at a time, in priority order
+        self.waiting: list[tuple[int, int]] = []   # (priority, ticket number) of requests in line
+        self.busy = False
+        self.tickets = 0
+        self.epoch = 0                      # the newest "place in the reading" the page has told us about
         self.start_lock = threading.Lock()
         self.pending: dict[str, dict] = {}
         self.events: dict[str, threading.Event] = {}
@@ -185,13 +205,45 @@ class Engine:
         for ev in list(self.events.values()):
             ev.set()
 
-    def speak(self, text: str, force: bool = False) -> Path:
+    @contextlib.contextmanager
+    def _my_turn(self, priority: int, epoch: int | None):
+        """Wait in line (lowest priority number first, then first come first served)."""
+        with self.turn:
+            self.tickets += 1
+            me = (priority, self.tickets)
+            heapq.heappush(self.waiting, me)
+            try:
+                while self.busy or self.waiting[0] != me:
+                    self.turn.wait()
+                if priority > NOW and epoch is not None and epoch < self.epoch:
+                    raise SpeechStale("You jumped to another place in the reading.")
+            finally:
+                self.waiting.remove(me)
+                heapq.heapify(self.waiting)
+                self.turn.notify_all()
+            self.busy = True
+        try:
+            yield
+        finally:
+            with self.turn:
+                self.busy = False
+                self.turn.notify_all()
+
+    def busy_now(self) -> bool:
+        return self.busy or bool(self.waiting)
+
+    def speak(self, text: str, force: bool = False, priority: int = NOW, epoch: int | None = None) -> Path:
+        """Speak one sentence. `epoch` says which place in the reading the request belongs to: once
+        a newer place has been announced, queued look-ahead for an older one is dropped (SpeechStale)."""
         hit = cached_audio(text)
         if hit:
             return hit
+        if epoch is not None:
+            with self.turn:
+                self.epoch = max(self.epoch, epoch)
         self.last_used = time.time()
         self.start(force=force)
-        with self.lock:
+        with self._my_turn(priority, epoch):
             hit = cached_audio(text)
             if hit:
                 return hit
@@ -231,7 +283,7 @@ class Engine:
     def _idle_watch(self):
         while True:
             time.sleep(20)
-            if self.running() and not self.lock.locked() and time.time() - self.last_used > IDLE_SECONDS:
+            if self.running() and not self.busy_now() and time.time() - self.last_used > IDLE_SECONDS:
                 self.stop()
 
 

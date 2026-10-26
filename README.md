@@ -88,7 +88,10 @@ Clicking a reading anywhere (a task, or **Open** on a week page) opens your own 
 - **Keys:** Space plays or pauses, ←/→ move a sentence, PgUp/PgDn change pages, F is full screen.
 - **You resume where you stopped:** the place is saved per reading.
 - **Reading options** sets what to skip: page headers and numbers, footnotes, picture and table captions, reference markers, and mostly-math lines.
-- **Timing:** the voice takes about 1½ minutes to start the first time. After that, sentences take a few seconds each, and the next two are prepared while one plays.
+- **Timing:** the voice takes up to about 1½ minutes to start the first time. Making speech takes a little longer than playing it (about 1.2 to 1.7 seconds of work per second of speech, plus 3–4 seconds per sentence), so Homebase works ahead:
+  - While you listen, it keeps about 2 minutes of upcoming sentences prepared, running on into the next page. The sentence you're waiting for always goes first, and look-ahead for a place you've jumped away from is dropped.
+  - **Prepare the next 10 pages now** (in Reading options) has the voice speak the next pages in the background, from the page you're on. It never holds up what's playing, you can stop it, and replaying prepared pages has no waiting at all. Use it before you sit down to listen.
+  - Pausing doesn't lose anything: prepared sentences stay cached.
 - **When it stops:** after 3 idle minutes, or right away with **Stop the voice**, which frees the GPU.
 
 **How it shares Lecture Desk's voice:**

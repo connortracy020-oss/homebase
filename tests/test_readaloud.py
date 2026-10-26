@@ -34,7 +34,7 @@ def test_spoken_text():
 def test_say_route_with_a_fake_engine(client, data_dir, monkeypatch):
     calls = []
 
-    def fake_speak(text, force=False):
+    def fake_speak(text, force=False, priority=0, epoch=None):
         calls.append((text, force))
         out = speech.speech_root() / "reader-cache" / f"{speech.cache_key(text)}.wav"
         out.parent.mkdir(parents=True, exist_ok=True)
@@ -48,7 +48,7 @@ def test_say_route_with_a_fake_engine(client, data_dir, monkeypatch):
     assert client.get("/speech/audio/../../homebase.db").status_code == 404
     assert client.post("/speech/say", json={"text": " "}).status_code == 422
 
-    def busy(text, force=False):
+    def busy(text, force=False, priority=0, epoch=None):
         raise speech.SpeechBusy("Lecture Desk is using its Chatterbox voice right now.")
     monkeypatch.setattr(speech.ENGINE, "speak", busy)
     r = client.post("/speech/say", json={"text": "Hi."})
@@ -116,3 +116,147 @@ def test_highlight_boxes_never_overlap_and_hyphens_survive(data_dir):
 def test_no_overlap_trims_boxes():
     out = readaloud._no_overlap([[0.1, 0.10, 0.9, 0.13], [0.1, 0.12, 0.9, 0.15]])
     assert out[0][3] <= out[1][1]
+
+
+# ---- the speaking queue and look-ahead --------------------------------------------------------
+
+def test_say_route_passes_priority_and_epoch_and_reports_stale(client, monkeypatch):
+    seen = []
+
+    def fake_speak(text, force=False, priority=0, epoch=None):
+        seen.append((priority, epoch))
+        if epoch == 1:
+            raise speech.SpeechStale("You jumped to another place in the reading.")
+        out = speech.speech_root() / "reader-cache" / f"{speech.cache_key(text)}.wav"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_bytes(b"RIFF" + b"\0" * 2000)
+        return out
+
+    monkeypatch.setattr(speech.ENGINE, "speak", fake_speak)
+    assert client.post("/speech/say", json={"text": "A.", "priority": 1, "epoch": 5}).status_code == 200
+    assert client.post("/speech/say", json={"text": "B.", "priority": 99, "epoch": 5}).status_code == 200
+    r = client.post("/speech/say", json={"text": "C.", "priority": 1, "epoch": 1})
+    assert r.status_code == 409 and r.json()["stale"] is True
+    assert seen == [(1, 5), (1, 5), (1, 1)]  # a made-up priority is clamped to look-ahead
+
+
+def make_waiting_engine(monkeypatch):
+    """An Engine whose 'speaking' is a fake: each sentence records its text and takes a moment."""
+    import threading
+    import time
+
+    eng = speech.Engine()
+    spoken, release = [], threading.Event()
+    monkeypatch.setattr(eng, "start", lambda force=False: None)
+    monkeypatch.setattr(speech, "cached_audio", lambda text: None)
+
+    class FakeProc:
+        @staticmethod
+        def poll():
+            return None  # still running
+
+        class stdin:
+            @staticmethod
+            def write(line):
+                msg = json.loads(line)
+                spoken.append(msg["text"])
+                threading.Timer(0.05, lambda: (eng.pending.__setitem__(msg["id"], {"id": msg["id"]}),
+                                               eng.events[msg["id"]].set())).start()
+
+            @staticmethod
+            def flush():
+                pass
+
+    eng.proc = FakeProc()
+    return eng, spoken, release, time
+
+
+def test_queue_serves_the_sentence_you_need_before_look_ahead(monkeypatch):
+    import threading
+    import time
+
+    eng, spoken, release, _ = make_waiting_engine(monkeypatch)
+    threads = []
+
+    def ask(text, priority):
+        t = threading.Thread(target=lambda: eng.speak(text, priority=priority), daemon=True)
+        t.start()
+        threads.append(t)
+        time.sleep(0.01)  # fixed arrival order
+
+    # one request takes the voice; then three more line up, the urgent one arriving last
+    eng.busy = True  # pretend a sentence is being spoken right now
+    ask("ahead-1", speech.AHEAD)
+    ask("background", speech.BACKGROUND)
+    ask("ahead-2", speech.AHEAD)
+    ask("NOW", speech.NOW)
+    with eng.turn:
+        eng.busy = False
+        eng.turn.notify_all()
+    for t in threads:
+        t.join(5)
+    assert spoken == ["NOW", "ahead-1", "ahead-2", "background"]
+
+
+def test_look_ahead_for_a_place_you_left_is_dropped(monkeypatch):
+    import threading
+    import time
+
+    eng, spoken, _, _ = make_waiting_engine(monkeypatch)
+    outcome = {}
+    eng.busy = True
+
+    def old_ahead():
+        try:
+            eng.speak("old place", priority=speech.AHEAD, epoch=10)
+        except speech.SpeechStale:
+            outcome["old"] = "stale"
+
+    t = threading.Thread(target=old_ahead, daemon=True)
+    t.start()
+    time.sleep(0.05)
+    new = threading.Thread(target=lambda: eng.speak("new place", priority=speech.NOW, epoch=11), daemon=True)
+    new.start()
+    time.sleep(0.05)
+    with eng.turn:
+        eng.busy = False
+        eng.turn.notify_all()
+    t.join(5)
+    new.join(5)
+    assert outcome == {"old": "stale"} and spoken == ["new place"]
+
+
+def test_prepare_pages_in_the_background(client, session, monkeypatch):
+    from app.routes import speech_routes
+
+    r = session.exec(select(Reading).join(Resource, Reading.resource_id == Resource.id)
+                     .where(Resource.slug == "ulaby-cad3e")).first()
+    if not HAVE_ULABY:
+        pytest.skip("Ulaby PDF not in library/")
+    spoken = []
+    monkeypatch.setattr(speech.ENGINE, "speak", lambda text, force=False, priority=0, epoch=None: spoken.append((text, priority)))
+    monkeypatch.setattr(speech_routes.threading, "Thread", lambda target, args, daemon: type(
+        "Now", (), {"start": staticmethod(lambda: target(*args))})())
+    status = client.post(f"/speech/prepare/{r.resource_id}", json={"first_page": 19, "pages": 2,
+                                                                    "opts": {"math": 0}}).json()
+    assert (status["first"], status["last"]) == (19, 20)
+    done = client.get("/speech/prepare").json()
+    assert done["running"] is False and done["done"] == done["total"] == len(spoken) > 15
+    assert {p for _, p in spoken} == {speech.BACKGROUND}  # never ahead of what you are listening to
+    assert client.post("/speech/prepare/999999", json={"first_page": 1}).status_code == 404
+
+
+def test_prepare_stops_when_the_voice_is_busy(client, session, monkeypatch):
+    from app.routes import speech_routes
+
+    if not HAVE_ULABY:
+        pytest.skip("Ulaby PDF not in library/")
+
+    def busy(*a, **k):
+        raise speech.SpeechBusy("Lecture Desk is using its Chatterbox voice right now.")
+
+    monkeypatch.setattr(speech.ENGINE, "speak", busy)
+    speech_routes.PREPARE.update(running=True, done=0, total=0, message="", stop=False)
+    speech_routes._prepare_job(ULABY, 19, 20, {}, False)
+    st = client.get("/speech/prepare").json()
+    assert st["running"] is False and "Lecture Desk" in st["message"] and st["done"] == 0

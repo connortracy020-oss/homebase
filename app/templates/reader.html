@@ -48,12 +48,14 @@
             ('math', 'Equations', 'Lines that are mostly math symbols, which a voice can\'t read sensibly.')] %}
           <label class="opt"><input type="checkbox" data-opt="{{ key }}" checked><span><strong>{{ label }}</strong><small>{{ detail }}</small></span></label>
           {% endfor %}
+          <button type="button" class="small" data-act="prepare" title="Have the voice speak the next pages now, so they play with no waiting">Prepare the next 10 pages now</button>
           <button type="button" class="small" data-act="stopvoice" title="Free the GPU now">Stop the voice (frees the GPU)</button>
         </div>
       </details>
       <button type="button" class="icon" data-act="full" title="Full screen (F)" aria-label="Full screen">⛶</button>
     </div>
     <div class="listen-status small" aria-live="polite"></div>
+    <div class="listen-prep small muted" aria-live="polite"></div>
     <div class="listen-now" aria-live="polite"></div>
     <div class="listen-page">
       <div class="listen-sheet"><img alt="" draggable="false"><div class="listen-boxes"></div></div>
