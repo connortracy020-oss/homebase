@@ -218,3 +218,67 @@ test("capacitor open and inductor short at DC", () => {
   assert.equal(s.els.L1.ix, "1/500");
   assert.equal(s.els.C1.ix, "0");
 });
+
+import { thevenin, superposition } from "../../app/static/circuits/solver/theorems.js";
+import { equations } from "../../app/static/circuits/solver/equations.js";
+import * as Q2 from "../../app/static/circuits/core/rational.js";
+
+test("Thevenin seen by a load resistor, the textbook way", () => {
+  // 12 V, 2k series, 3k shunt, load RL: V_th = 12*3/5 = 36/5, R_th = 2k||3k = 6/5 k
+  const net = netFromList({ elements: [
+    { id: "Vs", type: "V", nodes: ["a", 0], params: { V: "12" } },
+    { id: "R1", type: "R", nodes: ["a", "b"], params: { R: "2k" } },
+    { id: "R2", type: "R", nodes: ["b", 0], params: { R: "3k" } },
+    { id: "RL", type: "R", nodes: ["b", 0], params: { R: "1k" } },
+  ] });
+  const t = thevenin(net, { part: "RL" });
+  assert.ok(t.ok, t.why);
+  assert.equal(Q2.toString(t.voc.q), "36/5");
+  assert.equal(Q2.toString(t.rth.q), "1200");
+  assert.equal(Q2.toString(t.isc.q), "3/500");   // 12 V / 2k
+  assert.ok(Math.abs(t.maxPower.p - (36 / 5) ** 2 / 4800) < 1e-15);
+  // the equivalent gives the same load current as the full circuit
+  const full = solveDC(net);
+  assert.ok(Math.abs(t.load.i - full.els.RL.i) < 1e-15);
+});
+
+test("Thevenin with a dependent source needs the test-source method", () => {
+  // R_th of a CCCS-loaded network: V source 10 V, R1 = 1k, F = 2 i(R1) back into the output node
+  const net = netFromList({ elements: [
+    { id: "Vs", type: "V", nodes: ["a", 0], params: { V: "10" } },
+    { id: "R1", type: "R", nodes: ["a", "b"], params: { R: "1k" } },
+    { id: "F1", type: "F", nodes: ["b", 0], params: { gain: "2", ctrl: "i(R1)" } },
+    { id: "RL", type: "R", nodes: ["b", 0], params: { R: "5k" } },
+  ] });
+  const t = thevenin(net, { part: "RL" });
+  assert.ok(t.ok, t.why);
+  // with RL off: KCL at b: i1 + 2 i1 = 0 -> i1 = 0 -> V_oc = 10; test: R_th = 1k/3
+  assert.equal(Q2.toString(t.voc.q), "10");
+  assert.equal(Q2.toString(t.rth.q), "1000/3");
+});
+
+test("superposition shares add up exactly", () => {
+  const net = netFromList({ elements: [
+    { id: "V1", type: "V", nodes: ["a", 0], params: { V: "10" } },
+    { id: "R1", type: "R", nodes: ["a", "m"], params: { R: "2k" } },
+    { id: "R2", type: "R", nodes: ["m", 0], params: { R: "2k" } },
+    { id: "I1", type: "I", nodes: ["m", 0], params: { I: "3m" } },
+  ] });
+  const s = superposition(net);
+  assert.ok(s.ok && s.adds);
+  const m = s.full.nodes.find((n) => n.name === "m");
+  assert.equal(m.vx, "8");   // 5 V from V1 + 3 V from I1
+  assert.deepEqual(s.parts.map((p) => p.nodes[m.index].vx), ["5", "3"]);
+});
+
+test("equations name every node and source", () => {
+  const net = netFromList({ elements: [
+    { id: "Vs", type: "V", nodes: ["n1", 0], params: { V: "12" } },
+    { id: "R1", type: "R", nodes: ["n1", "Vout"], params: { R: "2k" } },
+    { id: "R2", type: "R", nodes: ["Vout", 0], params: { R: "3k" } },
+  ] });
+  const e = equations(net);
+  assert.equal(e.kcl.length, 2);
+  assert.equal(e.kcl[1].sym, String.raw`\frac{v_{\mathrm{out}} - v_{1}}{R_{1}} + \frac{v_{\mathrm{out}}}{R_{2}} = 0`);
+  assert.equal(e.cons[0].sym, "v_{1} = V_{s}");
+});

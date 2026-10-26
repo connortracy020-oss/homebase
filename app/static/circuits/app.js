@@ -13,6 +13,7 @@ import { paletteMarkup, KEYED } from "./editor/palette.js";
 import * as E from "./editor/edit.js";
 import { boxOf } from "./editor/symbols.js";
 import { run } from "./solver/run.js";
+import { SolverClient } from "./solver/api.js";
 import { defaultParams } from "./elements/index.js";
 import { Overlay } from "./views/overlay.js";
 import { CurrentFlow } from "./views/current.js";
@@ -30,7 +31,8 @@ const prefs = loadPrefs();
 const bench = $("#bench"), side = $("#side");
 let net = null, sol = null, focusNode = null, lastPointerType = "mouse", tipPos = [0, 0];
 
-const study = new Study({ slug: data.slug, store, getSolution: () => sol, getNet: () => net, refresh: () => refreshAll(), toast });
+const solver = new SolverClient();
+const study = new Study({ slug: data.slug, store, getSolution: () => sol, getNet: () => net, refresh: () => refreshAll(), toast, solver, dock: $("#dock") });
 
 // ---- solve and draw ----
 function recompute() {

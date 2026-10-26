@@ -2,9 +2,11 @@
 // and the part's solved numbers. Values commit as you type once they read cleanly.
 
 import { defOf, visibleParams, defaultParams } from "../elements/index.js";
-import { parseValue, describeParsed } from "../core/units.js";
+import { parseValue, describeParsed, siText } from "../core/units.js";
 import { esc } from "./symbols.js";
 import * as E from "./edit.js";
+
+const SLIDE = { R: ["R"], C: ["C"], L: ["L"], V: ["V", "V0", "V1"], I: ["I", "I0", "I1"], E: ["gain"], F: ["gain"], G: ["gain"], H: ["gain"], OA: ["A"] };
 
 export class Inspector {
   constructor(root, { store, hooks }) {
@@ -59,10 +61,32 @@ export class Inspector {
     }
     const reading = pd.kind === "value" ? this.reading(pd, value) : "";
     const ctrlHelp = pd.kind === "ctrl" ? this.ctrlPicker(part, value) : "";
+    const slide = SLIDE[part.type]?.includes(pd.key) && parseValue(value, pd.unit).ok
+      ? `<input type="range" class="slider" data-slider="${esc(pd.key)}" min="0" max="1000" value="500" aria-label="Try other values of ${esc(pd.label)}" title="Drag to try other values (one undo step)">` : "";
     return `<label class="insp-field"><span class="lbl">${esc(pd.label)}${pd.unit ? ` <span class="unit">${esc(pd.unit)}</span>` : ""}</span>
       <input data-key="${esc(pd.key)}" data-kind="${pd.kind}" value="${esc(value)}" ${pd.kind === "value" ? 'inputmode="decimal"' : ""} spellcheck="false" autocomplete="off" placeholder="${esc(pd.optional ? "empty" : pd.default)}">
-      <span class="reading" data-reading="${esc(pd.key)}">${reading}</span>${ctrlHelp}
+      ${slide}<span class="reading" data-reading="${esc(pd.key)}">${reading}</span>${ctrlHelp}
       ${pd.hint ? `<span class="hint">${esc(pd.hint)}</span>` : ""}</label>`;
+  }
+
+  // what-if slider: one decade either way for resistors, capacitors, inductors and gains,
+  // zero to twice the value for sources; every position solves live, and it's one undo step
+  slide(input, done) {
+    const part = this.store.selectedParts[0];
+    if (!part) return;
+    const k = input.dataset.slider, pd = defOf(part.type).params.find((p) => p.key === k);
+    const id = `${part.id}:${k}`;
+    if (!this.slideBase || this.slideBase.id !== id) this.slideBase = { id, value: parseValue(part.params[k], pd.unit).value };
+    const base = this.slideBase.value, t = (Number(input.value) - 500) / 500;
+    const linear = ["V", "V0", "V1", "I", "I0", "I1"].includes(k) || !(base > 0);
+    const value = linear ? (base === 0 ? 10 * t : base * (1 + t)) : base * 10 ** t;
+    const text = siText(value);
+    const field = this.root.querySelector(`input[data-key="${k}"]`);
+    if (field) field.value = text;
+    const r = this.root.querySelector(`[data-reading="${k}"]`);
+    if (r) r.innerHTML = this.reading(pd, text);
+    this.store.update((d) => E.setParam(d, part.id, k, text), { coalesce: `slide:${id}` });
+    if (done) { this.store.endGesture(); this.slideBase = null; input.value = 500; }
   }
 
   reading(pd, text) {
@@ -99,6 +123,7 @@ export class Inspector {
   // ---- events ----
   onInput(e) {
     const input = e.target;
+    if (input.dataset.slider) { this.slide(input, false); return; }
     if (input.dataset.act === "rename") return;
     if (!input.dataset.key) return;
     const part = this.store.selectedParts[0];
@@ -114,6 +139,7 @@ export class Inspector {
 
   onChange(e) {
     const input = e.target;
+    if (input.dataset.slider) { this.slide(input, true); return; }
     if (input.dataset.act === "rename") { this.rename(input); return; }
     if (input.dataset.key) this.commit(input, true);
   }

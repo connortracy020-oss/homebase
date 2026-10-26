@@ -100,3 +100,12 @@ export function spiceNumber(x) {
   const s = Number((x / 10 ** e).toPrecision(12)).toString();
   return s + (p === "M" ? "meg" : p === "µ" ? "u" : p);
 }
+
+// a short value text for fields and sliders: 2345.6 -> "2.35k", 0.0047 -> "4.7m"
+export function siText(x, digits = 3) {
+  if (!Number.isFinite(x)) return "0";
+  if (x === 0) return "0";
+  const [e, p] = prefixFor(x);
+  const v = Number((x / 10 ** e).toPrecision(digits));
+  return `${v}${p === "M" ? "meg" : p === "µ" ? "u" : p}`;
+}

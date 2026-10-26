@@ -7,16 +7,65 @@ import { esc } from "../editor/symbols.js";
 import { exactText } from "../views/overlay.js";
 import { pinPoints } from "../core/doc.js";
 import { defOf } from "../elements/index.js";
+import { equationsCard, superpositionCard, theveninCard, checkCard } from "./tools.js";
+import { checkWork } from "./check.js";
+import { Plot } from "../views/plot.js";
 
 export class Study {
-  constructor({ slug, store, getSolution, getNet, refresh, toast }) {
-    Object.assign(this, { slug, store, getSolution, getNet, refresh, toast });
+  constructor({ slug, store, getSolution, getNet, refresh, toast, solver, dock }) {
+    Object.assign(this, { slug, store, getSolution, getNet, refresh, toast, solver, dock });
     this.predicting = !!store.doc.study?.predict;
     this.revealed = new Set();
     this.asking = null;
     this.last = null;  // last verdict
+    this.card = null;  // "eq" | "sup" | "check" | "thev:R4"
+    this.check = { inputs: {}, result: null };
     this.hidden = (q) => this.predicting && !this.revealed.has(this.key(q)) && q.kind !== "none";
     this.root = document.getElementById("inspector");
+    this.root.addEventListener("click", (e) => this.onClick(e));
+    this.root.addEventListener("input", (e) => { const k = e.target.dataset?.check; if (k !== undefined) this.check.inputs[k] = e.target.value; });
+    this.root.addEventListener("submit", (e) => { if (e.target.matches("[data-check-form]")) { e.preventDefault(); this.runCheck(); } });
+  }
+
+  // ---- study cards ----
+  onClick(e) {
+    const b = e.target.closest("button");
+    if (!b) return;
+    if (b.dataset.study) { this.card = this.card === b.dataset.study ? null : b.dataset.study; this.check.result = null; this.refresh(); }
+    else if (b.hasAttribute("data-study-close")) { this.card = null; this.refresh(); }
+    else if (b.hasAttribute("data-check-clear")) { this.check = { inputs: {}, result: null }; this.refresh(); }
+    else if (b.dataset.sweep) this.sweep(b.dataset.sweep);
+  }
+
+  runCheck() {
+    const net = this.getNet(), sol = this.getSolution();
+    if (!sol?.ok) return;
+    const guesses = new Map();
+    for (const [k, text] of Object.entries(this.check.inputs)) {
+      if (!String(text).trim()) continue;
+      const p = parseValue(text, "V");
+      if (!p.ok) { this.toast?.(`${net.nodes[k]?.name}: ${p.error}`); return; }
+      guesses.set(Number(k), p.value);
+    }
+    if (!guesses.size) { this.toast?.("Type at least one node voltage first."); return; }
+    this.check.result = checkWork(net, sol, guesses);
+    for (const r of this.check.result.rows) {
+      fetch(`/api/circuits/${this.slug}/attempts`, {
+        method: "POST", headers: { "content-type": "application/json" },
+        body: JSON.stringify({ kind: "check", quantity: `v(${r.name})`, guess: r.guess, truth: r.truth, correct: r.ok, tags: r.ok ? [] : r.tags }),
+      }).catch(() => {});
+    }
+    this.refresh();
+  }
+
+  cardHTML() {
+    const net = this.getNet(), sol = this.getSolution();
+    if (!net || !this.card) return "";
+    if (this.predicting && this.card !== "check") return `<p class="hint">Turn off Predict first to see the worked answers.</p>`;
+    if (this.card === "eq") return equationsCard(net, sol);
+    if (this.card === "sup") return superpositionCard(net);
+    if (this.card === "check") return checkCard(net, sol, this.check);
+    return "";
   }
 
   key(q) {
@@ -137,6 +186,79 @@ export class Study {
     this.refresh();
   }
 
-  panel() { return ""; }
-  partTools() { return ""; }
+  panel() {
+    const pressed = (k) => `aria-pressed="${this.card === k}"`;
+    return `<div class="study-tools"><span class="eyebrow">Study</span><div class="tool-row">
+      <button type="button" class="small" data-study="eq" ${pressed("eq")}>Equations</button>
+      <button type="button" class="small" data-study="sup" ${pressed("sup")}>Superposition</button>
+      <button type="button" class="small" data-study="check" ${pressed("check")}>Check my work</button></div>${this.cardHTML()}</div>`;
+  }
+
+  partTools(part) {
+    const def = defOf(part.type);
+    if (def.topological || def.pins.length !== 2 || def.meter) return "";
+    const key = `thev:${part.id}`;
+    const sweepable = sweepKey(part);
+    const card = this.card === key && !this.predicting ? theveninCard(this.getNet(), this.getSolution(), part.id) : "";
+    return `<div class="tool-row"><button type="button" class="small" data-study="${key}" aria-pressed="${this.card === key}">Thevenin seen by ${esc(part.id)}</button>
+      ${sweepable ? `<button type="button" class="small" data-sweep="${esc(part.id)}">Sweep ${esc(part.id)}</button>` : ""}</div>${card}`;
+  }
+
+  // ---- sweeps: solve for a range of one part's value, plot it in the dock ----
+  async sweep(id) {
+    const part = this.store.doc.parts.find((p) => p.id === id);
+    const key = part && sweepKey(part);
+    if (!key) return;
+    const base = parseValue(part.params[key], unitOf(key)).value;
+    const log = key === "R";
+    const n = 81;
+    const values = [];
+    for (let k = 0; k < n; k++) {
+      const f = k / (n - 1);
+      values.push(log ? base * 10 ** (2 * f - 1) : base === 0 ? (2 * f - 1) * 10 : base * 2 * f);
+    }
+    this.openDock(`Sweeping ${id}...`);
+    const res = await this.solver.request("sweep", this.store.doc, { part: id, key, values });
+    if (!res.ok) { this.openDock(`Couldn't sweep ${id}.`); return; }
+    const net = this.getNet();
+    const series = [];
+    const markers = [{ x: base, label: `now ${fmt(base, unitOf(key))}` }];
+    if (key === "R") {
+      const I = res.results.map((r) => r?.els[id]?.i ?? null), P = res.results.map((r) => r?.els[id]?.p ?? null);
+      series.push({ name: `current in ${id}`, unit: "A", y: I.map((v) => (v === null ? null : Math.abs(v))), axis: 0 });
+      series.push({ name: `power into ${id}`, unit: "W", y: P, axis: 1 });
+      const k = P.reduce((best, v, i) => (v !== null && (best < 0 || v > P[best]) ? i : best), -1);
+      if (k > 0 && k < n - 1) markers.push({ x: values[k], label: `most power at ${fmt(values[k], "Ω")}`, color: "#a9c48f" });
+    } else {
+      for (const nd of net.nodes) {
+        if (nd.index === 0) continue;
+        series.push({ name: nd.label || nd.name, unit: "V", y: res.results.map((r) => r?.nodes[nd.index] ?? null), axis: 0 });
+      }
+    }
+    this.openDock(`${id}: ${labelOf(key)} from ${fmt(values[0], unitOf(key))} to ${fmt(values[n - 1], unitOf(key))}`, {
+      x: values, xLabel: id, xUnit: unitOf(key), xLog: log, series: series.slice(0, 5), markers,
+    });
+  }
+
+  openDock(title, data) {
+    const dock = this.dock;
+    dock.hidden = false;
+    if (!dock.querySelector("canvas")) {
+      dock.innerHTML = `<div class="dock-head"><strong class="dock-title"></strong><span class="dock-read"></span><button type="button" class="link" data-dock-close>close</button></div><canvas class="dock-plot"></canvas>`;
+      dock.querySelector("[data-dock-close]").addEventListener("click", () => { dock.hidden = true; });
+      this.plot = new Plot(dock.querySelector("canvas"), dock.querySelector(".dock-read"));
+    }
+    dock.querySelector(".dock-title").textContent = title;
+    if (data) this.plot.set(data);
+  }
 }
+
+function sweepKey(part) {
+  if (part.type === "R") return "R";
+  if ((part.type === "V" || part.type === "I") && (!part.params.wave || part.params.wave === "dc")) return part.type;
+  if (["E", "F", "G", "H"].includes(part.type)) return "gain";
+  return null;
+}
+
+const unitOf = (key) => ({ R: "Ω", V: "V", I: "A" }[key] || "");
+const labelOf = (key) => ({ R: "resistance", V: "voltage", I: "current", gain: "gain" }[key]);
