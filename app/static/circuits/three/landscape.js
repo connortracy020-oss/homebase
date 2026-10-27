@@ -43,6 +43,7 @@ export class Landscape {
     this.acShow = this.prefs.ac3d === "phasor" ? "phasor" : "instant";  // in AC: an instant of the cycle, or |V| and phase
     this.floorGoal = -0.2; this.floor = null;
     this.zoom = { v: 0, ndc: new THREE.Vector2() };
+    this.keys = new Set(); this.keyVel = new THREE.Vector3(); this.turnVel = 0; this.pointerIn = false;
     this.hover = null; this.pointerAt = null; this.down = null;
     this.outlines = new Map();
     this.introPending = true; this.intro = 0;
@@ -125,6 +126,14 @@ export class Landscape {
     el.addEventListener("pointerleave", () => { this.pointerAt = null; this.setHover(null); this.hideTip(); });
     el.addEventListener("dblclick", (e) => this.flyTo(e));
     el.addEventListener("contextmenu", (e) => e.preventDefault());
+    // the keyboard: WASD moves, Q and E turn, Shift goes faster. Heard before the 2D editor's
+    // shortcuts (capture), and only while the 3D view is what you're using: it's the only view,
+    // or the pointer is over it, or it has focus
+    host.addEventListener("pointerenter", () => { this.pointerIn = true; });
+    host.addEventListener("pointerleave", () => { this.pointerIn = false; });
+    window.addEventListener("keydown", (e) => this.onKey(e, true), { capture: true });
+    window.addEventListener("keyup", (e) => this.onKey(e, false), { capture: true });
+    window.addEventListener("blur", () => this.keys.clear());
     // the mouse wheel zooms smoothly toward what's under the pointer (pinch zoom stays the controls')
     host.addEventListener("wheel", (e) => this.onWheel(e), { capture: true, passive: false });
     host.addEventListener("click", (e) => this.toolbar(e));
@@ -204,6 +213,7 @@ export class Landscape {
     cancelAnimationFrame(this.raf);
     this.raf = 0;
     this.again = false;
+    this.keys.clear();
   }
 
   // the first time it's shown: the landscape rises out of the bench as the camera glides in
@@ -636,8 +646,8 @@ export class Landscape {
     this.host.closest(".bench-stage")?.classList.toggle("phase3d", ph);  // (the 2D voltage legend doesn't apply)
     const note = this.host.querySelector(".v3d-note");
     const text = ph ? "Height = amplitude |V| · color = phase angle, turning as the cycle plays · drag to orbit"
-      : ac ? "Height = voltage at this instant of the cycle · drag to orbit · scroll to zoom · double-click to fly"
-      : "Height = voltage · drag to orbit · right-drag to pan · scroll to zoom · double-click to fly to a spot";
+      : ac ? "Height = voltage at this instant of the cycle · drag to orbit · scroll to zoom · WASD to move, Q/E to turn"
+      : "Height = voltage · drag to orbit · right-drag to pan · scroll to zoom · WASD to move, Q/E to turn · double-click to fly";
     if (note && note.textContent !== text) note.textContent = text;
     this.renderer.domElement.setAttribute("aria-label", ph ? "3D view of the circuit: each node's height is its AC amplitude and its color its phase angle" : "3D view of the circuit: each node's height is its voltage");
   }
@@ -686,6 +696,66 @@ export class Landscape {
     this.camera.position.lerpVectors(f.from, f.to, k);
     this.controls.target.lerpVectors(f.tFrom, f.tTo, k);
     if (f.t >= 1) this.flight = null;
+    return true;
+  }
+
+  // ---- keyboard movement ----
+  onKey(e, down) {
+    const code = e.code;
+    const move = MOVE_KEYS.has(code), shift = code === "ShiftLeft" || code === "ShiftRight";
+    if (!move && !shift) return;
+    if (!down) { this.keys.delete(code); return; }
+    if (!this.visible || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.target?.closest?.("input, textarea, select, [contenteditable]")) return;
+    const only3d = this.host.closest(".bench-stage")?.classList.contains("only3d");
+    if (!only3d && !this.pointerIn && document.activeElement !== this.renderer.domElement) return;
+    this.keys.add(code);
+    if (move) {
+      e.preventDefault();
+      e.stopImmediatePropagation();  // (so W doesn't also start a wire in the 2D view)
+      this.flight = null;
+      this.userMoved = true;
+      this.hideTip();
+      this.kick();
+    }
+  }
+
+  // glide while keys are held: the camera and the point it orbits move together, along the
+  // ground in the direction you're looking, at a speed that scales with how far out you are;
+  // Q and E swing the view round that point. Starting and stopping ease in and out.
+  stepKeys(dt) {
+    const k = this.keys;
+    const fwd = (k.has("KeyW") ? 1 : 0) - (k.has("KeyS") ? 1 : 0);
+    const side = (k.has("KeyD") ? 1 : 0) - (k.has("KeyA") ? 1 : 0);
+    const turn = (k.has("KeyQ") ? 1 : 0) - (k.has("KeyE") ? 1 : 0);
+    const fast = k.has("ShiftLeft") || k.has("ShiftRight") ? 2.6 : 1;
+    if (!fwd && !side && !turn && this.keyVel.lengthSq() < 1e-6 && Math.abs(this.turnVel) < 1e-4) {
+      this.keyVel.set(0, 0, 0); this.turnVel = 0;
+      return false;
+    }
+    const cam = this.camera.position, tgt = this.controls.target;
+    const dist = cam.distanceTo(tgt);
+    // forward: where the camera looks, flattened onto the bench (or straight up the screen from above)
+    _w.subVectors(tgt, cam).setY(0);
+    if (_w.lengthSq() < 1e-6) _w.set(0, 0, -1).applyQuaternion(this.camera.quaternion).setY(0);
+    _w.normalize();
+    const rx = -_w.z, rz = _w.x;  // to the right of forward
+    const speed = Math.max(2.5, dist * 0.55) * fast;
+    let gx = rx * side + _w.x * fwd, gz = rz * side + _w.z * fwd;
+    const g = Math.hypot(gx, gz);
+    if (g > 0) { gx = (gx / g) * speed; gz = (gz / g) * speed; }
+    const ease = 1 - Math.exp(-dt * (g > 0 ? 9 : 10));
+    this.keyVel.x += (gx - this.keyVel.x) * ease;
+    this.keyVel.z += (gz - this.keyVel.z) * ease;
+    this.turnVel += (turn * 1.2 * Math.min(fast, 1.8) - this.turnVel) * (1 - Math.exp(-dt * 9));
+    cam.x += this.keyVel.x * dt; cam.z += this.keyVel.z * dt;
+    tgt.x += this.keyVel.x * dt; tgt.z += this.keyVel.z * dt;
+    if (Math.abs(this.turnVel) > 1e-5) {
+      const a = this.turnVel * dt, c = Math.cos(a), s2 = Math.sin(a);
+      const ox = cam.x - tgt.x, oz = cam.z - tgt.z;
+      cam.x = tgt.x + ox * c + oz * s2;
+      cam.z = tgt.z - ox * s2 + oz * c;
+    }
     return true;
   }
 
@@ -771,6 +841,7 @@ export class Landscape {
     let active = this.ease(dt);
     if (this.stepFlight(dt)) { active = true; this.labelsDirty = true; }
     if (this.stepZoom(dt)) { active = true; this.labelsDirty = true; }
+    if (this.stepKeys(dt)) { active = true; this.labelsDirty = true; }
     if (this.controls.update()) active = true;
     if (this.wantHover) { this.wantHover = false; this.pickHover(); }
     const flowing = this.flow.update(dt, this.H, this.heightsMoved);
@@ -786,6 +857,7 @@ export class Landscape {
 }
 
 const len = (pc) => Math.abs(pc.a[0] - pc.b[0]) + Math.abs(pc.a[1] - pc.b[1]);
+const MOVE_KEYS = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "KeyQ", "KeyE"]);
 
 // a node's color with |V| and phase: its phasor's angle (turned to this instant), fading to grey
 // as the amplitude goes to 0
