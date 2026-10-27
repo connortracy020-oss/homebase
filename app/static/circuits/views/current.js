@@ -39,7 +39,11 @@ export class CurrentFlow {
 
   start() {
     if (!this.enabled || this.raf || this.reduced) { this.draw(); return; }
-    const loop = () => { this.draw(); this.raf = requestAnimationFrame(loop); };
+    const loop = () => {
+      if (!this.canvas.clientWidth) { this.raf = 0; return; }  // the 2D view is hidden: setView starts it again
+      this.draw();
+      this.raf = requestAnimationFrame(loop);
+    };
     this.raf = requestAnimationFrame(loop);
   }
 

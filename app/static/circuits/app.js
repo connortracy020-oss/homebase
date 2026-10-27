@@ -292,7 +292,7 @@ async function setView(v) {
     }
   }
   landscape?.setVisible(v !== "2d");
-  requestAnimationFrame(() => view.applyCamera());
+  requestAnimationFrame(() => { view.applyCamera(); if (v !== "3d") flow.start(); });
 }
 bench.querySelectorAll("[data-view]").forEach((b) => b.addEventListener("click", () => setView(b.dataset.view)));
 // on a phone the 3D toolbar sits under the status line, however many lines that takes

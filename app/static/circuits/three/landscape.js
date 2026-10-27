@@ -84,7 +84,7 @@ export class Landscape {
       maxPolarAngle: Math.PI * 0.485, minDistance: 2.5, maxDistance: 180, screenSpacePanning: true, keyPanSpeed: 16,
     });
     controls.listenToKeyEvents(renderer.domElement);
-    controls.addEventListener("change", () => this.kick());
+    controls.addEventListener("change", () => { this.labelsDirty = true; this.kick(); });
     controls.addEventListener("start", () => { this.userMoved = true; this.flight = null; this.dragging = true; this.hideTip(); });
     controls.addEventListener("end", () => { this.dragging = false; });
 
@@ -169,14 +169,19 @@ export class Landscape {
   resize() {
     const w = this.host.clientWidth, h = this.host.clientHeight;
     if (!w || !h) return;
-    this.pipe.setSize(w, h);
-    this.renderer.domElement.style.width = `${w}px`;
-    this.renderer.domElement.style.height = `${h}px`;
-    this.labels.setSize(w, h);
     // the toolbar covers the top of the view, so centre the picture in what's left below it:
     // render the top of a view taller by that much
     const bar = this.host.querySelector(".v3d-bar")?.getBoundingClientRect();
     const cover = bar ? Math.max(0, Math.min(0.45 * h, bar.bottom - this.host.getBoundingClientRect().top)) : 0;
+    // (resizing the canvas reallocates it, so skip it when nothing changed)
+    const size = `${w}x${h}x${Math.round(cover)}x${this.ratio}`;
+    if (size === this.size) return;
+    this.size = size;
+    this.pipe.setSize(w, h);
+    this.renderer.domElement.style.width = `${w}px`;
+    this.renderer.domElement.style.height = `${h}px`;
+    this.labels.setSize(w, h);
+    this.labelsDirty = true;
     this.camera.aspect = w / (h + cover);
     if (cover > 0) this.camera.setViewOffset(w, h + cover, 0, 0, w, h); else this.camera.clearViewOffset();
     this.camera.updateProjectionMatrix();
@@ -198,6 +203,7 @@ export class Landscape {
     }
     cancelAnimationFrame(this.raf);
     this.raf = 0;
+    this.again = false;
   }
 
   // the first time it's shown: the landscape rises out of the bench as the camera glides in
@@ -314,7 +320,11 @@ export class Landscape {
     this.syncToolbar();
     this.shadowDirty = true;
     this.needFrame = true;  // (once the heights are known)
-    this.renderer.compile(this.scene, this.camera);  // shaders now, not on the first frame that needs them
+    // shaders now, not on the first frame that needs them (the outlines too, by a hidden pair)
+    const warm = ["sel", "hover"].map((k) => new THREE.Mesh(new THREE.SphereGeometry(0.01), outlineMaterial(k)));
+    for (const w of warm) { w.position.set(0, -1000, 0); this.scene.add(w); }
+    this.renderer.compile(this.scene, this.camera);
+    for (const w of warm) { w.removeFromParent(); w.geometry.dispose(); }
   }
 
   bounds() {
@@ -442,6 +452,7 @@ export class Landscape {
     this.placeLabels();
     this.heightsMoved = true;
     this.shadowDirty = true;
+    this.labelsDirty = true;
   }
 
   // ---- labels ----
@@ -502,6 +513,7 @@ export class Landscape {
       }
       if (html !== L.html) { L.div.innerHTML = html; L.html = html; }
     }
+    this.labelsDirty = true;
   }
 
   placeLabels() {
@@ -737,33 +749,39 @@ export class Landscape {
     if (q) q.value = this.tierName;
   }
 
-  // ---- loop: frames run while anything moves (heights, camera, particles), then stop ----
+  // ---- loop: frames run while anything moves (heights, camera, particles), then stop. There
+  // is only ever one: a kick() during a frame (the camera controls fire "change" from inside
+  // it) asks for one more frame instead of starting a second loop, which would compound ----
   kick() {
-    if (!this.visible || this.raf) return;
+    if (!this.visible) return;
+    if (this.raf) { this.again = true; return; }
     this.last = performance.now();
-    this.raf = requestAnimationFrame((t) => this.loop(t));
+    this.raf = requestAnimationFrame(this.tick);
   }
 
+  tick = (t) => this.loop(t);
+
   loop(now) {
-    this.raf = 0;
-    if (!this.visible || document.hidden) return;
+    if (!this.visible || document.hidden) { this.raf = 0; return; }
     const frameMs = now - this.last;
     const dt = Math.min(0.05, Math.max(0, frameMs / 1000));
     this.last = now;
     TIME.value += dt;
     this.heightsMoved = false;
     let active = this.ease(dt);
-    if (this.stepFlight(dt)) active = true;
-    if (this.stepZoom(dt)) active = true;
+    if (this.stepFlight(dt)) { active = true; this.labelsDirty = true; }
+    if (this.stepZoom(dt)) { active = true; this.labelsDirty = true; }
     if (this.controls.update()) active = true;
     if (this.wantHover) { this.wantHover = false; this.pickHover(); }
     const flowing = this.flow.update(dt, this.H, this.heightsMoved);
     const glowing = this.reduced ? false : this.embers.update(dt, this.emitters);
     this.pipe.render(TIME.value, this.shadowDirty);
     this.shadowDirty = false;
-    this.labels.render(this.scene, this.camera);
+    if (this.labelsDirty) { this.labels.render(this.scene, this.camera); this.labelsDirty = false; }
     this.governor.frame(frameMs);
-    if (active || flowing || glowing) this.raf = requestAnimationFrame((t) => this.loop(t));
+    const more = active || flowing || glowing || this.again;
+    this.again = false;
+    this.raf = more ? requestAnimationFrame(this.tick) : 0;
   }
 }
 

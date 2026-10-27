@@ -4,9 +4,9 @@
 // current particles there are. A frame-time governor lowers the resolution if frames run long.
 
 export const TIERS = {
-  battery: { label: "Battery", ratio: 1.5, shadowSize: 1024, bloom: 0.5, msaa: 4, beads: 600 },
-  balanced: { label: "Balanced", ratio: 2, shadowSize: 2048, bloom: 1, msaa: 4, beads: 1800 },
-  cinematic: { label: "Cinematic", ratio: 2.5, shadowSize: 4096, bloom: 1, msaa: 8, beads: 4000 },
+  battery: { label: "Battery", ratio: 1.25, shadowSize: 1024, bloom: 0.5, msaa: 4, beads: 600 },
+  balanced: { label: "Balanced", ratio: 1.5, shadowSize: 2048, bloom: 1, msaa: 4, beads: 1800 },
+  cinematic: { label: "Cinematic", ratio: 2, shadowSize: 4096, bloom: 1, msaa: 4, beads: 4000 },
 };
 
 export function gpuName(renderer) {
