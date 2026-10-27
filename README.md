@@ -318,7 +318,7 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 - Wires colored by voltage, a voltage pill on every node, each part's current, and a warm glow on parts that absorb power. Moving current markers are in the ⋯ menu.
 - Tap a node to see KCL there: every current in and out. The power table shows that what's delivered is absorbed.
 - When it can't solve, it says why in words and marks the parts, for example a loop of voltage sources, a floating node, or an op-amp with no feedback.
-- **3D:** voltage becomes height, so a resistor is a ramp and a source is a cliff, and current runs as beads. Drag to orbit, or use WASD to move, Q/E to turn and Shift to go faster. There are three quality levels (Battery, Balanced, Cinematic). You never need the 3D view to use the bench.
+- **3D:** voltage becomes height, so a resistor is a ramp and a source is a cliff, and current runs as beads. Drag to orbit, or use WASD to move, Q/E to turn and Shift to go faster. The corner button or F makes it full screen (Esc leaves), with a Play button for AC and transient playback. There are three quality levels (Battery, Balanced, Cinematic). You never need the 3D view to use the bench.
 
 **AC** (any sine source switches the bench to AC; the DC/AC switch on the right goes back):
 - Every node and part as a phasor, in polar and rectangular form (exact when ω and the values allow), peak or RMS, always labelled.

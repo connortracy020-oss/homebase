@@ -395,6 +395,18 @@ main.bench-main { max-width: none; padding: 10px 14px 14px; }
 .v3d-tip b { color: #ffe2a6; font-weight: 600; margin-right: 4px; }
 .v3d-tip b span { color: #b8ae9a; font-weight: 500; }
 @media (max-width: 820px) { .v3d-ctl:has([data-v3d-quality]), .v3d-ctl:has([data-v3d-height]), .v3d-note { display: none; } }
+.v3d-bar .v3d-fullbtn { width: 28px; height: 28px; border-radius: 8px; }
+@media (max-width: 820px) { .v3d-bar .v3d-fullbtn { width: 30px; height: 30px; } }
+.v3d-fullbtn svg { display: block; width: 15px; height: 15px; margin: auto; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* full screen: the 3D view alone, its toolbar back at the top (the stage's status line isn't
+   there to make room for). Where the browser can't go full screen (an iPhone), it fills the window */
+#v3d.v3d-full { border: 0; background: #100f0d; }
+#v3d.v3d-full .v3d-bar { top: calc(10px + env(safe-area-inset-top)); left: calc(10px + env(safe-area-inset-left)); max-width: calc(100% - 20px - env(safe-area-inset-left) - env(safe-area-inset-right)); }
+#v3d.v3d-full .v3d-note { bottom: calc(10px + env(safe-area-inset-bottom)); }
+html.full3d, html.full3d body { overflow: hidden; }
+html.full3d .bench-stage { z-index: 1000; }
+html.full3d #v3d.v3d-full { position: fixed; inset: 0; z-index: 30; }  /* (over the stage's status and legend) */
 
 /* ---- transient dock ---- */
 .bench-dock.tran { height: 290px; grid-template-rows: auto auto auto minmax(120px, 1fr); }

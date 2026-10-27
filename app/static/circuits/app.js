@@ -284,6 +284,13 @@ async function setView(v) {
         store, getNet: () => shown().net, getSolution: () => shown().sol, getDoc: () => shown().doc, playing: () => !!tran.moment(),
         hidden: () => study.hidden, prefs, savePrefs,
         getFocusNode: () => focusNode,
+        transport: () => {
+          if (tran.result && !tran.stale && !tran.dock.hidden && tran.dock.classList.contains("tran")) {
+            return { playing: tran.playing, what: "Play back the run", toggle: () => (tran.playing ? tran.pause() : tran.play()) };
+          }
+          if (acv.on && acv.res?.ok && acv.T) return { playing: acv.playing, what: "Play the AC cycle", toggle: () => (acv.playing ? acv.pause() : acv.play()) };
+          return null;
+        },
         onFocusNode: (n) => { focusNode = focusNode === n ? null : n; store.clearSelection(); refreshAll(); },
       });
     } catch (err) {
@@ -386,7 +393,8 @@ function toast(text) {
 
 function showKeys() {
   banner(`<b>Keys</b>: 1–8 parts · drag from a terminal to wire · W wire · R rotate · X mirror · Del delete · Ctrl+Z / Ctrl+Y undo / redo ·
-    Ctrl+D duplicate · arrows nudge · T flip a switch · F fit · Esc cancel · wheel or pinch to zoom · Space+drag to pan`, [["Got it", () => {}]]);
+    Ctrl+D duplicate · arrows nudge · T flip a switch · F fit · Esc cancel · wheel or pinch to zoom · Space+drag to pan.
+    <b>In 3D</b>: WASD move · Q/E turn · Shift faster · F full screen · Esc leave it`, [["Got it", () => {}]]);
 }
 
 function download(name, text, type) {

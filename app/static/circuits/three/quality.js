@@ -1,12 +1,15 @@
 // How much the 3D view draws, so it stays smooth from a phone on battery to a gaming laptop.
 // Picked automatically; you can override it in the 3D toolbar. Every tier keeps the look
 // (bloom, soft shadows, antialiasing); they differ in resolution, shadow detail and how many
-// current particles there are. A frame-time governor lowers the resolution if frames run long.
+// current particles there are. Each has a pixel budget too, so a big window or full screen
+// renders a little less sharp rather than missing frames (at 1.5x, full screen on a 1440x900
+// laptop took 8 ms a frame on the GPU: half its frames at 120 Hz). A frame-time governor
+// lowers the resolution further if frames still run long.
 
 export const TIERS = {
-  battery: { label: "Battery", ratio: 1.25, shadowSize: 1024, bloom: 0.5, msaa: 4, beads: 600 },
-  balanced: { label: "Balanced", ratio: 1.5, shadowSize: 2048, bloom: 1, msaa: 4, beads: 1800 },
-  cinematic: { label: "Cinematic", ratio: 2, shadowSize: 4096, bloom: 1, msaa: 4, beads: 4000 },
+  battery: { label: "Battery", ratio: 1.25, pixels: 1.2e6, shadowSize: 1024, bloom: 0.5, msaa: 4, beads: 600 },
+  balanced: { label: "Balanced", ratio: 1.5, pixels: 2e6, shadowSize: 2048, bloom: 1, msaa: 4, beads: 1800 },
+  cinematic: { label: "Cinematic", ratio: 2, pixels: 5e6, shadowSize: 4096, bloom: 1, msaa: 4, beads: 4000 },
 };
 
 export function gpuName(renderer) {

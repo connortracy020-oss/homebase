@@ -44,6 +44,7 @@ export class Landscape {
     this.floorGoal = -0.2; this.floor = null;
     this.zoom = { v: 0, ndc: new THREE.Vector2() };
     this.keys = new Set(); this.keyVel = new THREE.Vector3(); this.turnVel = 0; this.pointerIn = false;
+    this.full = false;
     this.hover = null; this.pointerAt = null; this.down = null;
     this.outlines = new Map();
     this.introPending = true; this.intro = 0;
@@ -134,6 +135,8 @@ export class Landscape {
     window.addEventListener("keydown", (e) => this.onKey(e, true), { capture: true });
     window.addEventListener("keyup", (e) => this.onKey(e, false), { capture: true });
     window.addEventListener("blur", () => this.keys.clear());
+    // leaving full screen from the browser (Esc, or its own exit button)
+    document.addEventListener("fullscreenchange", () => { if (this.full && document.fullscreenElement !== host) this.setFull(false); });
     // the mouse wheel zooms smoothly toward what's under the pointer (pinch zoom stays the controls')
     host.addEventListener("wheel", (e) => this.onWheel(e), { capture: true, passive: false });
     host.addEventListener("click", (e) => this.toolbar(e));
@@ -153,7 +156,8 @@ export class Landscape {
   setTier(name) {
     this.tierName = name;
     const tier = this.tier = TIERS[name === "auto" ? detectTier(this.renderer) : name] || TIERS.balanced;
-    this.ratio = Math.min(devicePixelRatio || 1, tier.ratio);
+    this.cap = Infinity;  // (the governor lowers it)
+    this.ratio = this.ratioFor(this.host.clientWidth, this.host.clientHeight);
     this.pipe.setPixelRatio(this.ratio);
     this.pipe.setTier(tier, this.scene, this.camera);
     const size = tier.shadowSize;
@@ -170,14 +174,23 @@ export class Landscape {
   // frames are running long: give up resolution, a step at a time, down to 1×
   lower() {
     if (this.ratio <= 1.01) return;
-    this.ratio = Math.max(1, this.ratio - 0.25);
-    this.pipe.setPixelRatio(this.ratio);
+    this.cap = Math.max(1, this.ratio - 0.25);
     this.resize();
+  }
+
+  // the resolution: the screen's, up to the tier's ratio and within its pixel budget for this
+  // size (in steps of 0.05), never below 1x
+  ratioFor(w, h) {
+    const dpr = devicePixelRatio || 1;
+    const budget = w * h > 0 ? Math.floor(Math.sqrt(this.tier.pixels / (w * h)) * 20) / 20 : Infinity;
+    return Math.max(Math.min(1, dpr), Math.min(dpr, this.tier.ratio, this.cap, budget));
   }
 
   resize() {
     const w = this.host.clientWidth, h = this.host.clientHeight;
     if (!w || !h) return;
+    const ratio = this.ratioFor(w, h);
+    if (ratio !== this.ratio) { this.ratio = ratio; this.pipe.setPixelRatio(ratio); }
     // the toolbar covers the top of the view, so centre the picture in what's left below it:
     // render the top of a view taller by that much
     const bar = this.host.querySelector(".v3d-bar")?.getBoundingClientRect();
@@ -214,6 +227,7 @@ export class Landscape {
     this.raf = 0;
     this.again = false;
     this.keys.clear();
+    if (this.full) this.setFull(false);
   }
 
   // the first time it's shown: the landscape rises out of the bench as the camera glides in
@@ -703,12 +717,19 @@ export class Landscape {
   onKey(e, down) {
     const code = e.code;
     const move = MOVE_KEYS.has(code), shift = code === "ShiftLeft" || code === "ShiftRight";
-    if (!move && !shift) return;
+    const full = code === "KeyF" || (code === "Escape" && this.full);
+    if (!move && !shift && !full) return;
     if (!down) { this.keys.delete(code); return; }
     if (!this.visible || e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.target?.closest?.("input, textarea, select, [contenteditable]")) return;
     const only3d = this.host.closest(".bench-stage")?.classList.contains("only3d");
-    if (!only3d && !this.pointerIn && document.activeElement !== this.renderer.domElement) return;
+    if (!this.full && !only3d && !this.pointerIn && document.activeElement !== this.renderer.domElement) return;
+    if (full) {
+      e.preventDefault();
+      e.stopImmediatePropagation();  // (F fits the 2D view otherwise)
+      if (!e.repeat) this.setFull(code === "KeyF" && !this.full);
+      return;
+    }
     this.keys.add(code);
     if (move) {
       e.preventDefault();
@@ -791,6 +812,57 @@ export class Landscape {
     return true;
   }
 
+  // ---- full screen: the browser's own where it has one, else (an iPhone) the 3D view fills
+  // the window. The view reframes to the new shape through resize() ----
+  async setFull(on) {
+    if (on === this.full) return;
+    this.full = on;
+    const host = this.host, root = document.documentElement;
+    host.classList.toggle("v3d-full", on);
+    if (on) {
+      let native = false;
+      if (document.fullscreenEnabled && host.requestFullscreen) {
+        try { await host.requestFullscreen({ navigationUI: "hide" }); native = true; } catch { /* not allowed here: fill the window */ }
+      }
+      if (!this.full) {  // (left again while the browser was asked)
+        if (document.fullscreenElement === host) document.exitFullscreen().catch(() => {});
+        return;
+      }
+      root.classList.toggle("full3d", !native);
+      clearInterval(this.fullTimer);
+      this.fullTimer = setInterval(() => this.syncTransport(), 300);  // (playback can stop on its own)
+      this.renderer.domElement.focus({ preventScroll: true });
+    } else {
+      root.classList.remove("full3d");
+      clearInterval(this.fullTimer);
+      if (document.fullscreenElement === host) document.exitFullscreen().catch(() => {});
+    }
+    this.syncFull();
+  }
+
+  syncFull() {
+    const b = this.host.querySelector('[data-v3d="full"]');
+    if (b) {
+      b.innerHTML = fullIcon(this.full);
+      b.title = this.full ? "Leave full screen (F or Esc)" : "Full screen (F)";
+      b.setAttribute("aria-label", this.full ? "Leave full screen" : "Full screen");
+    }
+    this.syncTransport();
+  }
+
+  // in full screen the dock under the bench is out of sight, so its play button comes along:
+  // a transient run's playback, or the AC cycle
+  syncTransport() {
+    const b = this.host.querySelector('[data-v3d="play"]');
+    if (!b) return;
+    const tr = this.full ? this.transport?.() : null;
+    b.hidden = !tr;
+    if (!tr) return;
+    const text = tr.playing ? "❚❚ Pause" : "▶ Play";
+    if (b.textContent !== text) b.textContent = text;
+    b.title = tr.what;
+  }
+
   // ---- toolbar ----
   toolbar(e) {
     const t = e.target;
@@ -802,6 +874,8 @@ export class Landscape {
       const act = b.dataset.v3d;
       if (act === "fit") { this.userMoved = false; this.frame(true, "threequarter"); }
       else if (act === "top" || act === "side") { this.userMoved = true; this.frame(true, act); }
+      else if (act === "full") this.setFull(!this.full);
+      else if (act === "play") { this.transport?.()?.toggle(); this.syncTransport(); }
       else if (act === "beads") { this.beadsOn = !this.beadsOn; this.prefs.beads3d = this.beadsOn; this.savePrefs(); b.setAttribute("aria-pressed", String(this.beadsOn)); this.retarget(); this.kick(); }
       return;
     }
@@ -859,6 +933,10 @@ export class Landscape {
 const len = (pc) => Math.abs(pc.a[0] - pc.b[0]) + Math.abs(pc.a[1] - pc.b[1]);
 const MOVE_KEYS = new Set(["KeyW", "KeyA", "KeyS", "KeyD", "KeyQ", "KeyE"]);
 
+// four corners pointing out (go full screen) or in (leave it)
+const fullIcon = (on) => `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="${on
+  ? "M6 2v4H2M10 2v4h4M10 14v-4h4M6 14v-4H2" : "M2 6V2h4M14 6V2h-4M14 10v4h-4M2 10v4h4"}"/></svg>`;
+
 // a node's color with |V| and phase: its phasor's angle (turned to this instant), fading to grey
 // as the amplitude goes to 0
 function phaseColorOf(z, turn, vmax, out) {
@@ -911,5 +989,7 @@ function toolbarHTML(L) {
     <label class="v3d-ctl" title="Which node is shown at height 0 (voltages are differences, so the whole landscape just moves)">0 V at <select data-v3d-ref></select></label>
     <label class="v3d-ctl">Height <input type="range" data-v3d-height min="0.4" max="2.5" step="0.1" value="${L.heightScale}"></label>
     <label class="v3d-ctl">Quality <select data-v3d-quality><option value="auto">Auto</option><option value="battery">Battery</option><option value="balanced">Balanced</option><option value="cinematic">Cinematic</option></select></label>
+    <button type="button" class="small" data-v3d="play" hidden></button>
+    <button type="button" class="small icon v3d-fullbtn" data-v3d="full" title="Full screen (F)" aria-label="Full screen">${fullIcon(false)}</button>
   </div><div class="v3d-note">Height = voltage · drag to orbit · right-drag to pan · scroll to zoom · double-click to fly to a spot</div>${wheelHTML()}`;
 }
