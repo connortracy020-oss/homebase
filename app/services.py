@@ -315,6 +315,13 @@ def psets_for_week(session: Session, course: Course, week: int) -> list[ProblemS
                              .order_by(ProblemSet.order)))
 
 
+def next_pset_in_week(session: Session, pset: ProblemSet) -> ProblemSet | None:
+    """The set after this one in its week, or None (also for exam sets, which aren't in a week's list)."""
+    sets = psets_for_week(session, session.get(Course, pset.course_id), pset.week)
+    i = next((k for k, s in enumerate(sets) if s.id == pset.id), None)
+    return sets[i + 1] if i is not None and i + 1 < len(sets) else None
+
+
 def pset_by_slug(session: Session, slug: str) -> ProblemSet | None:
     return session.exec(select(ProblemSet).where(ProblemSet.slug == slug)).first()
 

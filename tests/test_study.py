@@ -94,6 +94,47 @@ def test_rating_a_pdf_problem(client):
     assert client.post("/problem/ulaby-ex-ch1-2/rate", data={"result": "great"}).status_code == 422
 
 
+def test_a_rated_problem_says_done_and_offers_the_next(client):
+    page = client.get("/problem/ulaby-ex-ch1-1").text
+    assert 'class="done-strip' not in page and "Saved:" not in page
+    r = client.post("/problem/ulaby-ex-ch1-1/rate", data={"result": "solid"}, follow_redirects=True)
+    assert "?rated=" in str(r.url)
+    assert 'class="done-strip solid"' in r.text and "Saved: solid." in r.text
+    assert 'href="/problem/ulaby-ex-ch1-2" title="Exercise 1-2"><span class="lbl">Next: Exercise 1-2' in r.text
+    # the strip of problems marks this one done; the set page does too
+    assert 'class="solid" title="Exercise 1-1 · solid"' in r.text
+    assert '<span class="num-badge solid">1</span>' in client.get("/pset/ulaby-ex-ch1").text
+
+
+def test_a_correct_check_offers_the_next(client, session):
+    p = session.exec(select(Problem).where(Problem.slug == "gen-ece201-w1-power-element_power-1")).one()
+    r = client.post(f"/problem/{p.slug}/check", data={"a0": str(p.key["answers"][0]["value"])},
+                    follow_redirects=True)
+    assert 'class="done-strip solid"' in r.text and "Done <span class=\"tone-word\">· all correct" in r.text
+    assert '<div class="go-row"><a class="button accent go-next"' in r.text
+
+
+def test_the_last_problem_leads_to_a_skipped_one_then_the_next_set_then_the_week(client, session):
+    course = services.course_by_code(session, "ECE201")
+    sets = services.psets_for_week(session, course, 1)
+    first, last = sets[0], sets[-1]
+    probs = services.problems(session, first)
+    services.rate_problem(session, probs[-1], "miss")
+    page = client.get(f"/problem/{probs[-1].slug}").text
+    assert 'class="done-strip miss"' in page and "Tried <span" in page
+    assert f"Not tried yet: {probs[0].label}" in page
+    for p in probs[:-1]:
+        services.rate_problem(session, p, "solid")
+    page = client.get(f"/problem/{probs[-1].slug}").text
+    assert f'href="/pset/{sets[1].slug}"' in page and f"Next set: {sets[1].title}" in page
+    assert f"Next set: {sets[1].title}" in client.get(f"/pset/{first.slug}").text
+    for p in services.problems(session, last):
+        services.rate_problem(session, p, "shaky")
+    page = client.get(f"/problem/{services.problems(session, last)[-1].slug}").text
+    assert "Back to week 1</span>" in page
+    assert services.next_pset_in_week(session, last) is None
+
+
 def test_library_cannot_escape(client):
     assert client.get("/library/../app/config.py").status_code == 404
     assert client.get("/library/%2e%2e/app/config.py").status_code == 404

@@ -3,14 +3,42 @@
 {% block main_class %}wide{% endblock %}
 {% from "_icons.html" import icon %}
 {% block content %}
-<div class="problem-grid">
+{% set RESULT_WORDS = {'solid': 'solid', 'correct': 'all correct', 'shaky': 'shaky', 'miss': 'missed it', 'incorrect': 'not quite'} %}
+{% set SOURCE_WORDS = {'auto': 'checked', 'claude': 'rated with Claude', 'self': 'self-rated'} %}
+{# the way on: the next problem; after the last one, one you skipped, the next set this week, or the week #}
+{% macro go_next(cls='accent') -%}
+{% if next %}<a class="button {{ cls }} go-next" href="/problem/{{ next.slug }}" title="{{ next.label }}"><span class="lbl">Next: {{ next.label }}</span>{{ icon('right') }}</a>
+{%- elif todo %}<a class="button {{ cls }} go-next" href="/problem/{{ todo.slug }}" title="{{ todo.label }}"><span class="lbl">Not tried yet: {{ todo.label }}</span>{{ icon('right') }}</a>
+{%- elif next_set %}<a class="button {{ cls }} go-next" href="/pset/{{ next_set.slug }}" title="{{ next_set.title }}"><span class="lbl">Next set: {{ next_set.title }}{{ ' (optional)' if next_set.optional }}</span>{{ icon('right') }}</a>
+{%- else %}<a class="button {{ cls }} go-next" href="/course/{{ course.code }}/week/{{ pset.week }}"><span class="lbl">Back to week {{ pset.week }}</span>{{ icon('right') }}</a>{% endif %}
+{%- endmacro %}
+<div class="problem-grid" style="--accent: {{ (course | ccolor) }}">
 <div class="problem-main">
-<section class="hero" style="--accent: {{ (course | ccolor) }}">
+<nav class="week-strip set-strip" aria-label="Problems in this set">
+  <a class="button icon {{ 'off' if not prev }}" href="/problem/{{ (prev or problem).slug }}" aria-label="Previous problem"{% if prev %} title="{{ prev.label }}"{% endif %}>{{ icon('left') }}</a>
+  <div class="pills">
+    {% for p in siblings %}{% set r = results.get(p.id) %}<a href="/problem/{{ p.slug }}" class="{{ r | tone }}" title="{{ p.label }}{{ ' · ' ~ r if r }}" aria-label="{{ p.label }}{{ ', ' ~ RESULT_WORDS.get(r, r) if r }}" {% if p.id == problem.id %}aria-current="page"{% endif %}>{{ loop.index }}</a>{% endfor %}
+  </div>
+  <a class="button icon {{ 'off' if not next }}" href="/problem/{{ (next or problem).slug }}" aria-label="Next problem"{% if next %} title="{{ next.label }}"{% endif %}>{{ icon('right') }}</a>
+</nav>
+<section class="hero">
   <p class="eyebrow"><a href="/course/{{ course.code }}"><span class="dot"></span>{{ course.name }}</a> ·
     <a href="/pset/{{ pset.slug }}">{{ pset.title }}</a> · {{ position[0] }} of {{ position[1] }}</p>
   <h1>{{ problem.label }}</h1>
   <p><span class="key-badge key-{{ problem.key_type }}">{{ KEY_LABELS[problem.key_type] }}</span>
      {% for t in problem.topics %}<span class="tag">{{ t }}</span> {% endfor %}</p>
+  {% if history %}
+  {% set latest = history[0] %}{% set tone = latest.result | tone %}
+  <div class="done-strip {{ tone }}" id="done">
+    <span class="done-mark" aria-hidden="true">{{ icon('review' if tone == 'miss' else 'check') }}</span>
+    <div class="done-text">
+      <p class="done-title">{{ 'Tried' if tone == 'miss' else 'Done' }} <span class="tone-word">· {{ RESULT_WORDS.get(latest.result, latest.result) }}</span></p>
+      <p class="small muted">{{ latest.at | md }} {{ latest.at.strftime('%H:%M') }} · {{ SOURCE_WORDS.get(latest.source, latest.source) }}
+        {%- if mistake %} · <a href="/review/{{ mistake.id }}">re-solve {{ mistake.due | md }}</a>{% endif %} · <a href="#history">rate again</a></p>
+    </div>
+    {{ go_next() }}
+  </div>
+  {% endif %}
 </section>
 
 {% set st = problem.statement %}
@@ -54,6 +82,7 @@
   </form>
   {% if last_check %}
   <p class="result-line result-{{ last_check.result }}">{{ 'All correct.' if last_check.result == 'correct' else 'Not quite. Look at the marked answers, or open the worked steps.' }}</p>
+  {% if last_check.result == 'correct' %}<div class="go-row">{{ go_next() }}</div>{% endif %}
   {% endif %}
   <details class="solution" {% if last_check and last_check.result == 'correct' %}open{% endif %}>
     <summary>Show the worked steps</summary>
@@ -117,6 +146,13 @@
 
 <section class="card" id="history">
   <h2>How did it go?</h2>
+  {% if just_rated %}
+  <div class="rated-note {{ just_rated.result | tone }}" role="status">
+    <p><strong>Saved: {{ RESULT_WORDS.get(just_rated.result, just_rated.result) }}.</strong></p>
+    {{ go_next() }}
+    <a class="small" href="/pset/{{ pset.slug }}">Back to the set</a>
+  </div>
+  {% endif %}
   {% if mistake %}
   <p class="small"><a href="/review/{{ mistake.id }}">In your mistake log</a>: box {{ mistake.box }} of 5, next cold re-solve {{ mistake.due | md }}{% if mistake.cause %} · <span class="tag">{{ mistake.cause }}</span>{% endif %}</p>
   {% endif %}
@@ -131,11 +167,11 @@
     </select>
     <label class="small"><input type="checkbox" name="log" checked> add shaky/missed to my mistake log</label>
   </form>
-  <p class="small muted">Solid: right without help. Shaky: right, but you needed a hint or took a long time. Missed: wrong. Logged mistakes come back for a cold re-solve after 1, 3, 7, 14 and 28 days.</p>
+  <p class="small muted">Solid: right without help. Shaky: right, but you needed a hint or took a long time. Missed: wrong. Your rating is what marks a problem done; uploading your work is optional, for feedback. Logged mistakes come back for a cold re-solve after 1, 3, 7, 14 and 28 days.</p>
   {% if history %}
   <ul class="plain small">
     {% for a in history[:6] %}
-    <li><span class="result result-{{ a.result }}">{{ a.result }}</span> <span class="muted">{{ a.at | md }} {{ a.at.strftime('%H:%M') }} · {{ 'checked' if a.source == 'auto' else 'self-rated' }}</span>{% if a.note %} · {{ a.note }}{% endif %}</li>
+    <li><span class="result result-{{ a.result }}">{{ a.result }}</span> <span class="muted">{{ a.at | md }} {{ a.at.strftime('%H:%M') }} · {{ SOURCE_WORDS.get(a.source, a.source) }}</span>{% if a.note %} · {{ a.note }}{% endif %}</li>
     {% endfor %}
   </ul>
   {% endif %}
@@ -150,9 +186,10 @@
   </form>
 </section>
 
-<nav class="pager">
-  {% if prev %}<a href="/problem/{{ prev.slug }}">← {{ prev.label }}</a>{% else %}<span></span>{% endif %}
-  {% if next %}<a href="/problem/{{ next.slug }}">{{ next.label }} →</a>{% else %}<a href="/pset/{{ pset.slug }}">Back to the set</a>{% endif %}
+<nav class="pager problem-pager" aria-label="Previous and next problem">
+  {% if prev %}<a class="button" href="/problem/{{ prev.slug }}" title="{{ prev.label }}">{{ icon('left') }}<span class="lbl">{{ prev.label }}</span></a>{% else %}<span></span>{% endif %}
+  <a class="small set-link" href="/pset/{{ pset.slug }}">Back to the set</a>
+  {{ go_next('accent' if history else '') }}
 </nav>
 </div>
 

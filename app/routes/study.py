@@ -151,27 +151,35 @@ def pset_page(slug: str, request: Request, session: Session = Depends(get_sessio
     probs = services.problems(session, pset)
     return render(request, "pset.html", session, pset=pset, problems=probs,
                   course=session.get(Course, pset.course_id), KEY_LABELS=KEY_LABELS,
-                  results=services.last_results(session, [p.id for p in probs]))
+                  results=services.last_results(session, [p.id for p in probs]),
+                  next_set=services.next_pset_in_week(session, pset))
 
 
 @router.get("/problem/{slug}")
 def problem_page(slug: str, request: Request, session: Session = Depends(get_session),
-                 checked: int | None = None):
+                 checked: int | None = None, rated: int | None = None):
     problem = _problem_or_404(session, slug)
     pset = session.get(ProblemSet, problem.set_id)
     siblings = services.problems(session, pset)
     i = next(k for k, p in enumerate(siblings) if p.id == problem.id)
     history = services.attempts(session, problem)
     last_check = next((a for a in history if a.id == checked), None) if checked else None
+    results = services.last_results(session, [p.id for p in siblings])
+    last = i + 1 == len(siblings)
     st, key = problem.statement, problem.key
     local = local_ai.status(session)
     return render(
         request, "problem.html", session, problem=problem, pset=pset,
         subs=services.submissions(session, problem=problem, limit=5),
         course=session.get(Course, pset.course_id), KEY_LABELS=KEY_LABELS,
+        siblings=siblings, results=results,
         prev=siblings[i - 1] if i > 0 else None,
-        next=siblings[i + 1] if i + 1 < len(siblings) else None,
+        next=siblings[i + 1] if not last else None,
+        # after the last problem: one you skipped, else the next set this week, else the week
+        todo=next((p for p in siblings if p.id not in results and p.id != problem.id), None) if last else None,
+        next_set=services.next_pset_in_week(session, pset) if last else None,
         position=(i + 1, len(siblings)), history=history, last_check=last_check,
+        just_rated=next((a for a in history if a.id == rated), None) if rated else None,
         notes=services.notes_for(session, problem=problem),
         statement_page=pdfpages.page_of(st) if "pdf" in st else None,
         key_page=pdfpages.page_of(key) if "pdf" in key else None,
@@ -215,11 +223,11 @@ def problem_rate(slug: str, result: str = Form(...), note: str = Form(""),
     """The rating form's "add to mistake log" box (on by default) decides for shaky and miss."""
     problem = _problem_or_404(session, slug)
     try:
-        services.rate_problem(session, problem, result, note,
-                              add_to_log=(log == "on" and result != "solid"), cause=cause)
+        attempt = services.rate_problem(session, problem, result, note,
+                                        add_to_log=(log == "on" and result != "solid"), cause=cause)
     except ValueError as e:
         raise HTTPException(422, str(e))
-    return RedirectResponse(f"/problem/{slug}#history", status_code=303)
+    return RedirectResponse(f"/problem/{slug}?rated={attempt.id}#history", status_code=303)
 
 
 @router.post("/problem/{slug}/notes")

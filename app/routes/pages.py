@@ -59,6 +59,9 @@ TEMPLATES.env.globals["KIND_LABELS"] = KIND_LABELS
 TEMPLATES.env.globals["static_v"] = lambda name: int((config.ROOT / "app" / "static" / name).stat().st_mtime)
 TEMPLATES.env.filters["tex"] = local_ai.tex  # $x$ -> \(x\) for KaTeX
 TEMPLATES.env.filters["ccolor"] = lambda c: f"var(--c-{c.code.lower()})"
+# a problem's result as one of three colors: correct counts as solid, incorrect as a miss
+TEMPLATES.env.filters["tone"] = lambda r: {"solid": "solid", "correct": "solid", "shaky": "shaky",
+                                           "miss": "miss", "incorrect": "miss"}.get(r, "")
 
 
 def render(request: Request, name: str, session: Session, **ctx):

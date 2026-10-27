@@ -70,6 +70,14 @@ document.addEventListener("click", (e) => {
   document.querySelectorAll("details.tab-more[open]").forEach((d) => { if (!d.contains(e.target)) d.open = false; });
 });
 
+// Week and problem strips: when the pills don't fit (phone), center the one you're on.
+document.querySelectorAll(".week-strip .pills").forEach((pills) => {
+  const here = pills.querySelector('[aria-current="page"]');
+  if (!here || pills.scrollWidth <= pills.clientWidth) return;
+  const off = here.getBoundingClientRect().left - pills.getBoundingClientRect().left;
+  pills.scrollLeft += off - (pills.clientWidth - here.offsetWidth) / 2;
+});
+
 // Tick a checkbox -> save it right away, no page reload.
 document.querySelectorAll("form.toggle input[type=checkbox]").forEach((box) => {
   box.addEventListener("change", async () => {
