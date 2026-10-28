@@ -157,7 +157,7 @@ function piecesOf(net, node) {
 
 // put a pill on its node's wire: centred above a horizontal run or beside a vertical one,
 // longest runs first, never over a part, a label or another pill
-function placePill(pieces, fallback, w, h, taken) {
+export function placePill(pieces, fallback, w, h, taken) {
   const runs = [...pieces].sort((p, q) => len(q) - len(p));
   const candidates = [];
   for (const pc of runs.slice(0, 8)) {

@@ -160,16 +160,16 @@ def test_claude_places_notes_and_avoids_duplicates(session):
     assert "unit 1: Circuit basics" in out and "unit inbox" in out and "formulas" in out
     v = session.exec(select(Video).where(Video.osu_week == 1)).first()
     r = m.notes_add("ECE201", "1", "formulas", "p = vi", title="Power absorbed", where="p in W", star=True,
-                    video_slug=v.slug, t_sec=610)
+                    video_slug=v.slug, t_sec=610)[0]
     bid = int(r.split()[2])
     b = session.get(NoteBlock, bid)
     assert b.created_by == "claude" and b.kind == "formula" and b.starred and b.source["t"] == 610
-    dup = m.notes_add("ECE201", "1", "formulas", "p=v i")
+    dup = m.notes_add("ECE201", "1", "formulas", "p=v i")[0]
     assert dup.startswith("Not added") and f"block {bid}" in dup
-    assert "Updated" in m.notes_update(bid, when="i into the + terminal")
+    assert "Updated" in m.notes_update(bid, when="i into the + terminal")[0]
     session.expire_all()
     assert session.get(NoteBlock, bid).extra["when"] == "i into the + terminal"
-    r = m.notes_add("ECE201", "inbox", "ideas", "Something about RC circuits", suggested_unit="10", suggested_part="ideas")
+    r = m.notes_add("ECE201", "inbox", "ideas", "Something about RC circuits", suggested_unit="10", suggested_part="ideas")[0]
     inbox_id = int(r.split()[2])
     sb = session.get(NoteBlock, inbox_id)
     assert sb.suggested["unit_id"] == unit(session, 10).id
@@ -228,7 +228,7 @@ def test_interactive_block_runs_in_a_locked_sandbox(client, session):
     with pytest.raises(ValueError):
         m.notes_add("MTH254", "1", "ideas", WIDGET, kind="interactive", title="Demo")  # needs a description
     r = m.notes_add("MTH254", "1", "ideas", WIDGET, kind="interactive", title="Demo",
-                    description="Shows **hi**. Try nothing.")
+                    description="Shows **hi**. Try nothing.")[0]
     bid = int(r.split()[2])
     page = client.get(f"/notes/MTH254?u={unit(session, 1, 'MTH254').id}").text
     frame = page[page.index('<iframe class="nb-widget"'):]
@@ -241,7 +241,7 @@ def test_interactive_block_runs_in_a_locked_sandbox(client, session):
     assert doc.startswith("<!doctype html>") and "window.HB" in doc and "cdn.jsdelivr.net" in doc
     prev = client.post("/notes/widget-preview", data={"code": WIDGET, "title": "Demo"}).text
     assert prev.startswith('<iframe class="nb-widget" sandbox="allow-scripts"')
-    assert "Updated" in m.notes_update(bid, description="New text")
+    assert "Updated" in m.notes_update(bid, description="New text")[0]
     session.expire_all()
     assert session.get(NoteBlock, bid).extra["description"] == "New text"
 

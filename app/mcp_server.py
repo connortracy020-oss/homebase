@@ -7,13 +7,16 @@ Every change made here is labelled "claude" in the activity log, so the
 Progress page shows exactly what Claude did. Claude talks to the same SQLite
 database the web app uses; the web app doesn't need to be running.
 """
+import functools
 from contextlib import contextmanager
-from datetime import date
+from datetime import date, datetime
 
 from mcp.server.mcpserver import Image, MCPServer
+from mcp.server.mcpserver.exceptions import ToolError
 from sqlmodel import Session, select
 
 from . import config, exams, feedback, review, services
+from .pdfpages import RegionError
 from .db import get_engine, init_db
 from .models import Course, ExamAttempt, Mistake, Problem, ProblemSet, Submission, Task
 
@@ -45,7 +48,7 @@ Notes (his organized notebooks, one per course). When he shares a screenshot (a 
    - a solved problem -> part "examples" (title, steps in body, answer)
    - a warning, common mistake or trick -> part "tips"
    - explanation and intuition -> part "ideas"
-   - keep the screenshot itself only if a figure matters (kind "image" with image_path)
+   - keep the screenshot itself only if a figure matters (a circuit, a graph, a diagram). An image pasted into this chat is only in your sandbox (/mnt/...), so Homebase can't open its path. Call screenshots_recent: it shows the images on his laptop (his clipboard and newest screenshots). Pick the one that matches what he shared and call notes_add(kind="image", screenshot=<its name>, body=a one-line caption), with crop=[left, top, right, bottom] (fractions 0-1) to keep just the figure. Look at the image notes_add returns; if the crop is off, fix it with notes_update(block_id, screenshot=..., crop=...). If none matches, ask him to take it again with Win+Shift+S.
 3. Unit = the term week whose topic matches (a video's unit is its term week). Before adding a formula, notes_search for it; if it's there, notes_update that block instead of adding a duplicate.
 4. If you're not sure where something goes, add it to unit "inbox" with suggested_unit and suggested_part.
 5. Link each block to its source: video_slug + t_sec when he names the video or time.
@@ -68,13 +71,30 @@ pointer events). Math labels: write \\( \\) and call HB.math() once.
 - Put it in the part it explains (usually "ideas" or "examples") of the matching unit.
 
 Circuit Bench (the circuits he draws and simulates in Homebase): circuits_list, circuits_get, \
-circuits_save, circuits_attempts. A circuit is a JSON document:
-{"format": "homebase-circuit", "version": 1, "title", "course", "parts": [{"id", "type", "x", "y", \
-"rot", "flip", "params"}], "wires": [{"id", "a": [x, y], "b": [x, y]}], "study": {"predict": true}}
-- x, y are whole grid units; y grows downward. rot = quarter turns clockwise.
-- Two-terminal parts (R C L V I E F G H SW AM VM) have pin a at (x, y) and pin b 4 units on: \
-rot 0 -> (x+4, y), rot 1 -> (x, y+4) (vertical, a on top), rot 2 -> (x-4, y), rot 3 -> (x, y-4). \
-Other parts turn the same way about (x, y).
+circuits_check, circuits_save, circuits_attempts. You can build a circuit for him, for example \
+from a figure he shares:
+1. Lay it out on the grid the way the figure looks (sources on the left, a top rail and a bottom \
+rail, ground at the bottom), with the figure's names and values.
+2. circuits_check(doc) runs it through the bench and returns a picture of it (grid coordinates \
+along the edges, node names in blue, anything unconnected circled in red), problems with the \
+drawing, and the nodes with every terminal on each. Compare the picture and the nodes with the \
+figure. Fix it and check again until they match and nothing is flagged.
+3. circuits_save(doc, title=..., course=..., week=..., problem_slug=...) makes it; give him the link \
+it returns. For a problem he's working, set "study": {"predict": true}.
+A circuit is a JSON document: {"format": "homebase-circuit", "version": 1, "title", "course", \
+"parts": [...], "wires": [...], "study": {"predict": true}}
+- Grid units are whole numbers; y grows downward.
+- The easy way to place a two-terminal part (R C L V I E F G H SW AM VM): "from": [x, y] (pin a) \
+and "to": [x, y] (pin b), 4 units apart in a line, e.g. {"id": "R1", "type": "R", "from": [0, 0], \
+"to": [4, 0], "params": {"R": "2k"}}. Other parts take "at": [x, y] and "rot" (quarter turns \
+clockwise, 0 by default). A wire can be {"path": [[x, y], [x, y], ...]}, one straight run per step, \
+horizontal or vertical.
+- Saved circuits store parts as {"id", "type", "x", "y", "rot", "flip", "params"} and wires as \
+single segments {"id", "a": [x, y], "b": [x, y]}, and you can write those directly too: a \
+two-terminal part has pin a at (x, y) and pin b 4 units on: rot 0 -> (x+4, y), rot 1 -> (x, y+4) \
+(vertical, a on top), rot 2 -> (x-4, y), rot 3 -> (x, y-4). Other parts turn the same way about (x, y).
+- Spacing: put side-by-side branches about 6 units apart (4 at least) and leave room beside each \
+part for its name and value; the checks flag labels that run into things.
 - V, E, H: pin a is the + terminal. I, G, F: the arrow points at pin a (the current leaves the \
 source there).
 - OA (op-amp) at rot 0: - input (x, y-1), + input (x, y+1), output (x+5, y). GND and LBL (net \
@@ -98,11 +118,11 @@ pin a), "v(Vx)" (a labelled node against ground) or "v(Vx, Vy)", with a leading 
 and cname is the name the problem uses (vx, ix). OA {model: "ideal" or "gain", A, rout}; \
 SW {state: "closed" or "open", at: when it flips}; SW2 {state: "1" or "2", at}; LBL {name}.
 - study.predict = true makes him commit a prediction before the bench shows a value.
-- circuits_save solves the drawing with the bench's own solver and returns the nodes it found \
-(with every part terminal on each) and the solution: DC (a sine source counts only its offset \
-there) and, with sine sources, the AC steady state as peak phasors. Read it and make sure it's the circuit you \
-meant before you tell him it's ready. To change an existing circuit, pass the base_rev that \
-circuits_get showed, so you never overwrite a change he made since.
+- circuits_check and circuits_save solve the drawing with the bench's own solver and return the \
+nodes it found (with every part terminal on each) and the solution: DC (a sine source counts only \
+its offset there) and, with sine sources, the AC steady state as peak phasors. Make sure it's the \
+circuit you meant before you tell him it's ready. To change an existing circuit, pass the \
+base_rev that circuits_get showed, so you never overwrite a change he made since.
 """
 
 mcp = MCPServer("homebase", instructions=INSTRUCTIONS)
@@ -485,19 +505,69 @@ def notes_search(query: str, course: str = "") -> str:
         return "\n".join(out)
 
 
+def screenshots_recent(limit: int = 3) -> list:
+    """The images on Connor's laptop he may mean, newest first, each with a preview: the image on
+    his clipboard and his newest screenshots (from the last 6 hours). An image pasted into this
+    chat is only in your sandbox, so to keep one in his notes, find the same picture here and pass
+    its name to notes_add(screenshot=...). Use it only for that."""
+    from . import screenshots
+    shots = screenshots.recent(limit=max(1, min(limit, 6)))
+    if not shots:
+        return ["No image on his clipboard and no screenshots from the last 6 hours. Ask him to take it "
+                "with Win+Shift+S (Windows saves a copy in his Screenshots folder), then call this again."]
+    now = datetime.now()
+    out: list = [f"{len(shots)} image(s), newest first. Compare them with the one he shared and pass the matching "
+                 "name as notes_add(screenshot=...). If none matches, ask him to take it with Win+Shift+S."]
+    for shot in shots:
+        w, h = shot.image.size
+        when = "on the clipboard" if shot.taken is None else f"taken {_ago(now - shot.taken)} ({shot.taken:%H:%M})"
+        out.append(f"- screenshot={shot.name!r}: {when}, {w}×{h}")
+        out.append(Image(data=screenshots.preview(shot.image), format="jpeg"))
+    return out
+
+
+def _ago(d) -> str:
+    m = int(d.total_seconds() // 60)
+    return "just now" if m < 1 else f"{m} min ago" if m < 90 else f"{m // 60} h ago"
+
+
+def _image_asset(screenshot: str, image_path: str, crop: list[float] | None) -> tuple[str, bytes]:
+    """Store the image a note keeps: a screenshot by its screenshots_recent name, or a file on this
+    laptop. Returns the asset path and a preview of exactly what was kept."""
+    from pathlib import Path
+    from . import notes, screenshots
+    if screenshot:
+        img = screenshots.find(screenshot).image
+    else:
+        path = Path(image_path)
+        if not path.is_file():
+            if image_path.startswith(("/mnt/", "/home/", "/tmp/", "/workspace")):
+                raise ValueError(f"{image_path} is in your own sandbox, not on Connor's laptop, so Homebase can't "
+                                 "open it. Call screenshots_recent and pass the matching image as screenshot=... instead.")
+            raise ValueError(f"No image file at {image_path}")
+        img = screenshots.open_image(path)
+    img = screenshots.crop(img, crop)
+    return notes.save_asset(screenshots.to_bytes(img), "screenshot.png"), screenshots.preview(img)
+
+
 def notes_add(course: str, unit: str, part: str, body: str, kind: str = "", title: str = "",
               where: str = "", when: str = "", answer: str = "", video_slug: str = "", t_sec: int | None = None,
               source_label: str = "", source_url: str = "", image_path: str = "", star: bool = False,
-              suggested_unit: str = "", suggested_part: str = "", description: str = "") -> str:
+              suggested_unit: str = "", suggested_part: str = "", description: str = "",
+              screenshot: str = "", crop: list[float] | None = None) -> list:
     """Add one block of notes.
 
     unit: a term-week number ("4"), a unit title, or "inbox". part: ideas, definitions,
     formulas, examples or tips. kind defaults from the part (formula, definition, example,
-    tip, text); use "image" with image_path to keep a screenshot. For a formula, body is the
-    LaTeX equation only (no $), title its name, where = what the symbols mean, when = when to
-    use it. For an example, answer = the final answer. Math in other text goes in \\( \\).
-    video_slug + t_sec link the note back to the lecture at that time. When unsure where it
-    goes, use unit "inbox" with suggested_unit / suggested_part.
+    tip, text). For a formula, body is the LaTeX equation only (no $), title its name, where =
+    what the symbols mean, when = when to use it. For an example, answer = the final answer.
+    Math in other text goes in \\( \\). video_slug + t_sec link the note back to the lecture at
+    that time. When unsure where it goes, use unit "inbox" with suggested_unit / suggested_part.
+
+    kind "image" keeps a picture, with body as its caption: screenshot = a name from
+    screenshots_recent ("clipboard:..." or a file name), or image_path = a file on his laptop.
+    crop = [left, top, right, bottom], fractions 0-1 of the image, keeps just that part. It
+    returns the image as kept, so you can check it.
 
     kind "interactive" = an interactive illustration: body is a self-contained HTML snippet
     with its own <script> (see the rules in the server instructions), title names it, and
@@ -513,20 +583,16 @@ def notes_add(course: str, unit: str, part: str, body: str, kind: str = "", titl
             source = {"video_slug": video_slug, "t": t_sec}
         elif source_label or source_url:
             source = {"label": source_label, "url": source_url}
-        asset = ""
-        if image_path:
-            from pathlib import Path
-            path = Path(image_path)
-            if not path.is_file():
-                raise ValueError(f"No image file at {image_path}")
-            asset = notes.save_asset(path.read_bytes(), path.name)
+        asset, preview = "", None
+        if screenshot or image_path:
+            asset, preview = _image_asset(screenshot, image_path, crop)
             kind = kind or "image"
         k = kind or notes.DEFAULT_KIND.get(part, "text")
         if k == "formula":
             dup = notes.similar_formula(s, nb, body)
             if dup is not None:
-                return (f"Not added: block {dup.id} already has this formula ({dup.title or dup.body}). "
-                        f"Use notes_update(block_id={dup.id}, ...) to add the new detail or source instead.")
+                return [f"Not added: block {dup.id} already has this formula ({dup.title or dup.body}). "
+                        f"Use notes_update(block_id={dup.id}, ...) to add the new detail or source instead."]
         suggested = {}
         if u.kind == "inbox" and suggested_unit:
             su = notes.unit_by_ref(s, nb, suggested_unit)
@@ -537,14 +603,20 @@ def notes_add(course: str, unit: str, part: str, body: str, kind: str = "", titl
                                      ("description", description)) if v}
         b = notes.add_block(s, u, part, k, body, title, extra=extra, source=source, asset=asset, starred=star,
                             suggested=suggested, actor="claude")
-        return f"Added block {b.id} ({b.kind}) to {u.title} · {notes.PART_NAMES[part]}."
+        done = f"Added block {b.id} ({b.kind}) to {u.title} · {notes.PART_NAMES[part]}."
+        if preview is None:
+            return [done]
+        return [done + " The image as kept is below; if the crop is off, fix it with "
+                f"notes_update(block_id={b.id}, screenshot=..., crop=...).", Image(data=preview, format="jpeg")]
 
 
 def notes_update(block_id: int, body: str | None = None, title: str | None = None, where: str | None = None,
                  when: str | None = None, answer: str | None = None, video_slug: str = "", t_sec: int | None = None,
-                 description: str | None = None) -> str:
+                 description: str | None = None, screenshot: str = "", image_path: str = "",
+                 crop: list[float] | None = None) -> list:
     """Change a block: new text, title, or formula details. Giving video_slug adds a second source
-    (the block keeps its first one and lists this one in its details)."""
+    (the block keeps its first one and lists this one in its details). For an image block,
+    screenshot or image_path (and crop) replace its picture, the same way as in notes_add."""
     from . import notes
     from .models import NoteBlock
     with db() as s:
@@ -559,8 +631,17 @@ def notes_update(block_id: int, body: str | None = None, title: str | None = Non
             if services.video_by_slug(s, video_slug) is None:
                 raise ValueError(f"No video {video_slug!r}")
             extra.setdefault("also_from", []).append({"video_slug": video_slug, "t": t_sec})
-        notes.update_block(s, b, actor="claude", body=body, title=title, extra=extra)
-        return f"Updated block {block_id}."
+        asset, preview = None, None
+        if screenshot or image_path:
+            if b.kind != "image":
+                raise ValueError(f"Block {block_id} is a {b.kind}, not an image; add the picture with notes_add instead.")
+            asset, preview = _image_asset(screenshot, image_path, crop)
+        elif crop:
+            raise ValueError("crop needs the picture to cut it from: pass screenshot=... (or image_path) as well.")
+        notes.update_block(s, b, actor="claude", body=body, title=title, extra=extra, asset=asset)
+        if preview is None:
+            return [f"Updated block {block_id}."]
+        return [f"Updated block {block_id}; its image is now the one below.", Image(data=preview, format="jpeg")]
 
 
 def notes_move(block_id: int, unit: str, part: str, course: str = "") -> str:
@@ -597,8 +678,10 @@ def _circuit(s, slug: str):
     return c
 
 
-def _bench_solve(doc: dict) -> dict | None:
-    """Solve a drawing with the bench's own code (scripts/bench_solve.mjs). None without Node."""
+def _bench_solve(doc: dict, draw: bool = False) -> dict | None:
+    """Solve a drawing with the bench's own code (scripts/bench_solve.mjs), which also expands
+    the drawing shorthand, checks the drawing and, with draw, lays out its picture. None
+    without Node."""
     import json
     import shutil
     import subprocess
@@ -610,12 +693,53 @@ def _bench_solve(doc: dict) -> dict | None:
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "circuit.json"
         path.write_text(json.dumps(doc), encoding="utf-8")
-        r = subprocess.run([node, str(config.ROOT / "scripts" / "bench_solve.mjs"), str(path)],
+        r = subprocess.run([node, str(config.ROOT / "scripts" / "bench_solve.mjs"), str(path)] + (["--draw"] if draw else []),
                            capture_output=True, text=True, encoding="utf-8", timeout=60)
     if r.returncode != 0:
         return {"ok": False, "errors": ["The bench's solver crashed: " + r.stderr.strip()[-400:]],
                 "warnings": [], "nodes": [], "parts": {}, "netlist": None}
     return json.loads(r.stdout)
+
+
+def _uses_shorthand(doc: dict) -> bool:
+    return any(isinstance(p, dict) and ({"from", "to", "at"} & p.keys()) for p in doc.get("parts") or []) \
+        or any(isinstance(w, dict) and "path" in w for w in doc.get("wires") or [])
+
+
+def _drawn(doc: dict, r: dict | None) -> dict:
+    """The document to store: the drawing with Claude's shorthand expanded the way the bench does it."""
+    if r is not None and r.get("problems"):
+        raise ValueError("Not saved: fix the drawing first.\n" + "\n".join(f"- {p}" for p in r["problems"]))
+    if r is not None and "doc" in r:
+        return r["doc"]
+    if _uses_shorthand(doc):
+        why = "Node isn't installed" if r is None else "the bench's solver failed (" + "; ".join(r["errors"]) + ")"
+        raise ValueError(f"Not saved: {why}, so from/to, at and path can't be expanded. Give parts x, y and rot, "
+                         "and wires a and b.")
+    return doc
+
+
+def _check_lines(r: dict | None) -> list[str]:
+    if r is None or "checks" not in r:
+        return []
+    issues = list(r.get("problems") or []) + list(r.get("checks") or [])
+    if not issues:
+        return ["Drawing checks: nothing flagged (every wire end touches something, no part sits on another, "
+                "no wire crosses a symbol, labels are clear)."]
+    return [f"Drawing checks: {len(issues)} to fix:"] + [f"- {m}" for m in issues]
+
+
+def _picture(r: dict | None) -> list:
+    """The bench's 2D view of the drawing, as an image for Claude to compare with the figure."""
+    if not r or not r.get("picture"):
+        return []
+    from . import circuit_picture
+    try:
+        png = circuit_picture.png(r["picture"])
+    except Exception as e:  # noqa: BLE001  (a picture is never worth failing the tool)
+        return [f"(The picture couldn't be drawn: {e})"]
+    return ["The picture: the bench's 2D view of this drawing, with grid coordinates along the edges, node names "
+            "in blue and anything unconnected circled in red. Compare it with the figure.", Image(data=png, format="png")]
 
 
 _PREFIXES = [(1e9, "G"), (1e6, "M"), (1e3, "k"), (1, ""), (1e-3, "m"), (1e-6, "µ"), (1e-9, "n"), (1e-12, "p")]
@@ -734,56 +858,70 @@ def circuits_list(course: str = "", archived: bool = False) -> str:
         return "\n".join("- " + _circuit_head(s, c) for c in rows) or "No circuits yet."
 
 
-def circuits_get(circuit_slug: str) -> str:
-    """One circuit: its document (JSON), the nodes the bench finds in it, its SPICE netlist, the
-    DC solution, and his latest predictions on it."""
+def circuits_get(circuit_slug: str) -> list:
+    """One circuit: a picture of it, its document (JSON), the nodes the bench finds in it, its
+    SPICE netlist, the DC solution, and his latest predictions on it."""
     import json
     from . import circuits
     with db() as s:
         c = _circuit(s, circuit_slug)
-        lines = [_circuit_head(s, c), f"Document (base_rev for circuits_save: {c.rev}):",
+        r = _bench_solve(c.doc, draw=True)
+        lines = [_circuit_head(s, c), f"Link: {config.BASE_URL}/circuits/{c.slug}",
+                 f"Document (base_rev for circuits_save: {c.rev}):",
                  json.dumps({k: v for k, v in c.doc.items() if k != "view"}, separators=(",", ":"))]
-        lines += _solution_lines(_bench_solve(c.doc))
+        lines += _check_lines(r) + _solution_lines(r)
         tries = circuits.attempts(s, c, 10)
         if tries:
             lines.append("His latest predictions and checks on it:")
             lines += [_attempt_line(a) for a in tries]
-        return "\n".join(lines)
+        return ["\n".join(lines)] + _picture(r)
+
+
+def circuits_check(doc: dict) -> list:
+    """Run a drawing through the bench without saving it: a picture of it, problems with the
+    drawing, the nodes it found (every terminal on each) and the solution. Use it to get a
+    circuit right before circuits_save. doc is the circuit document described in the server
+    instructions (the from/to, at and path shorthand works here)."""
+    r = _bench_solve(doc, draw=True)
+    if r is None:
+        return ["Not checked: Node isn't installed on his laptop, so only the bench can solve it (when he opens it)."]
+    return ["\n".join(_check_lines(r) + _solution_lines(r))] + _picture(r)
 
 
 def circuits_save(doc: dict, circuit_slug: str = "", base_rev: int | None = None, title: str = "",
-                  course: str = "ECE201", week: int | None = None, problem_slug: str = "") -> str:
+                  course: str = "ECE201", week: int | None = None, problem_slug: str = "") -> list:
     """Make a new circuit (no circuit_slug) or save a new version of one (circuit_slug plus the
     base_rev circuits_get showed). doc is the circuit document described in the server
     instructions. problem_slug links a new circuit to the problem it draws. Returns what the
-    bench finds in the drawing: check it is the circuit you meant."""
+    bench finds in the drawing, with a picture: check it is the circuit you meant."""
     from . import circuits
     with db() as s:
-        r = _bench_solve(doc)
+        r = _bench_solve(doc, draw=True)
+        drawn = _drawn(doc, r)
         try:
             if circuit_slug:
                 c = _circuit(s, circuit_slug)
                 if base_rev is None:
                     raise ValueError(f"Pass base_rev (the rev circuits_get showed; it is now {c.rev}) "
                                      "so a change Connor made since isn't overwritten.")
-                c = circuits.save_circuit(s, c, {**doc, "view": c.doc.get("view", {})} if "view" not in doc else doc,
+                c = circuits.save_circuit(s, c, {**drawn, "view": c.doc.get("view", {})} if "view" not in doc else drawn,
                                           base_rev, summary=_summary(r) if r is not None else {}, actor="claude")
-                head = f"Saved circuit {c.slug} (now rev {c.rev})."
+                head = f"Saved circuit {c.slug} (now rev {c.rev}). Link: {config.BASE_URL}/circuits/{c.slug}"
             else:
                 problem = services.problem_by_slug(s, problem_slug) if problem_slug else None
                 if problem_slug and problem is None:
                     raise ValueError(f"No problem {problem_slug!r}")
                 c = circuits.create_circuit(s, title or doc.get("title") or "Untitled circuit", course.replace(" ", ""),
-                                            doc, source="claude", week=week,
+                                            drawn, source="claude", week=week,
                                             problem_id=problem.id if problem else None, actor="claude")
                 if r is not None:
                     c.summary = _summary(r)
                     s.add(c)
                     s.commit()
-                head = f"Made circuit {c.slug}: {c.title}. He opens it at /circuits/{c.slug}."
+                head = f"Made circuit {c.slug}: {c.title}. He opens it at {config.BASE_URL}/circuits/{c.slug}"
         except circuits.Conflict as e:
             raise ValueError(f"{e}. Call circuits_get again and redo your change on that version.")
-        return "\n".join([head] + _solution_lines(r))
+        return ["\n".join([head] + _check_lines(r) + _solution_lines(r))] + _picture(r)
 
 
 def _attempt_line(a) -> str:
@@ -821,10 +959,25 @@ TOOLS = [get_overview, get_week, get_progress, list_problems, get_problem,
          log_study_session, add_note, record_problem_result, mark_video_watched,
          list_due_reviews, list_mistakes, add_mistake, record_review_outcome,
          list_exams, post_exam_grades, recent_activity,
-         notes_outline, notes_search, notes_add, notes_update, notes_move, notes_add_unit,
-         circuits_list, circuits_get, circuits_save, circuits_attempts]
+         notes_outline, notes_search, notes_add, notes_update, notes_move, notes_add_unit, screenshots_recent,
+         circuits_list, circuits_get, circuits_check, circuits_save, circuits_attempts]
+
+
+def _reported(fn):
+    """Claude sees a tool's error message only when it's a ToolError: the SDK treats any other
+    exception as a crash and says just "Error executing tool ...". The tools here raise
+    ValueError (and its kinds) with messages written for Claude, so pass those on."""
+    @functools.wraps(fn)
+    def tool(*args, **kwargs):
+        try:
+            return fn(*args, **kwargs)
+        except (ValueError, RegionError) as e:
+            raise ToolError(str(e)) from e
+    return tool
+
+
 for fn in TOOLS:
-    mcp.tool()(fn)
+    mcp.tool()(_reported(fn))
 
 
 def main():

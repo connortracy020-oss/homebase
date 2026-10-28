@@ -140,6 +140,11 @@ def test_misses_on_a_problems_circuit_go_to_the_mistake_log(client, session):
     assert len(session.exec(select(Mistake)).all()) == 1
 
 
+def _text(result) -> str:
+    """The text of a tool's answer, leaving out its pictures."""
+    return "\n".join(x for x in result if isinstance(x, str))
+
+
 def test_mcp_circuit_tools(session):
     import shutil
 
@@ -147,7 +152,7 @@ def test_mcp_circuit_tools(session):
 
     from app import mcp_server as mcp
     p = _divider_problem(session)
-    out = mcp.circuits_save(p.statement["bench"], title="Divider for Connor", problem_slug=p.slug)
+    out = _text(mcp.circuits_save(p.statement["bench"], title="Divider for Connor", problem_slug=p.slug))
     slug = out.split()[2].rstrip(":")
     session.expire_all()
     c = cs.get_circuit(session, slug)
@@ -159,13 +164,13 @@ def test_mcp_circuit_tools(session):
             if part["type"] not in ("GND", "LBL"):
                 assert f"{part['id']}.a" in out
         assert c.summary["ok"] and c.summary["nodes"]
-    got = mcp.circuits_get(slug)
+    got = _text(mcp.circuits_get(slug))
     assert "base_rev for circuits_save: 1" in got and '"format":"homebase-circuit"' in got
     assert slug in mcp.circuits_list("ECE201") and f"from problem {p.slug}" in mcp.circuits_list()
     # changing it needs the revision it was read at, so a newer change of his is never overwritten
     with pytest.raises(ValueError, match="base_rev"):
         mcp.circuits_save(DOC, circuit_slug=slug)
-    assert "now rev 2" in mcp.circuits_save(DOC, circuit_slug=slug, base_rev=1)
+    assert "now rev 2" in _text(mcp.circuits_save(DOC, circuit_slug=slug, base_rev=1))
     with pytest.raises(ValueError, match="circuits_get"):
         mcp.circuits_save(DOC, circuit_slug=slug, base_rev=1)
     with pytest.raises(ValueError):
@@ -174,6 +179,62 @@ def test_mcp_circuit_tools(session):
     session.expire_all()
     cs.record_attempt(session, cs.get_circuit(session, slug), "predict", "v(n1)", 5, 5, True)
     assert "1 of 1 right" in mcp.circuits_attempts() and "1 of 1 right" in mcp.circuits_attempts(slug)
+
+
+E31 = {  # Ulaby's Exercise 3-1 in Claude's drawing shorthand
+    "format": "homebase-circuit", "version": 1, "title": "Exercise 3-1",
+    "parts": [{"id": "R4", "type": "R", "from": [0, 3], "to": [0, 7], "params": {"R": "4"}},
+              {"id": "R6", "type": "R", "from": [2, 0], "to": [6, 0], "params": {"R": "6"}},
+              {"id": "R10", "type": "R", "from": [8, 1], "to": [8, 5], "params": {"R": "10"}},
+              {"id": "V1", "type": "V", "from": [8, 6], "to": [8, 10], "params": {"V": "24"}},
+              {"id": "R1", "type": "R", "from": [14, 3], "to": [14, 7], "params": {"R": "1"}},
+              {"id": "G", "type": "GND", "at": [8, 10]}],
+    "wires": [{"path": [[0, 3], [0, 0], [2, 0]]}, {"path": [[6, 0], [14, 0], [14, 3]]}, {"path": [[8, 0], [8, 1]]},
+              {"path": [[8, 5], [8, 6]]}, {"path": [[0, 7], [0, 10], [14, 10], [14, 7]]}],
+    "study": {"predict": True},
+}
+
+
+def test_claude_draws_a_circuit_checks_its_picture_and_saves_it(session):
+    """The shorthand, the drawing checks and the picture (circuits_check), then saving the drawing
+    as the bench stores it (circuits_save)."""
+    import io
+    import shutil
+
+    import pytest
+    from mcp.server.mcpserver import Image
+    from PIL import Image as PILImage
+
+    from app import config, mcp_server as mcp
+    if not shutil.which("node"):
+        pytest.skip("the drawing tools use the bench's own code, which needs Node")
+    checked = mcp.circuits_check(E31)
+    text = _text(checked)
+    assert "Drawing checks: nothing flagged" in text and "- R1: v 2 V, i 2 A" in text  # the book's I = 2 A
+    assert isinstance(checked[-1], Image)
+    png = PILImage.open(io.BytesIO(checked[-1].data))
+    assert png.format == "PNG" and 300 < png.width <= 1100
+    assert cs.list_circuits(session) == []  # checking saves nothing
+    out = _text(mcp.circuits_save(E31, week=4))
+    assert f"He opens it at {config.BASE_URL}/circuits/" in out
+    slug = out.split()[2].rstrip(":")
+    c = cs.get_circuit(session, slug)
+    r1 = next(p for p in c.doc["parts"] if p["id"] == "R1")
+    assert (r1["x"], r1["y"], r1["rot"]) == (14, 3, 1) and "from" not in r1
+    assert len(c.doc["wires"]) == 9 and all({"id", "a", "b"} <= w.keys() and "path" not in w for w in c.doc["wires"])
+    assert (c.title, c.week, c.doc["study"]) == ("Exercise 3-1", 4, {"predict": True})
+    # a part that can't go where it says is reported, and nothing is saved
+    bad = {"parts": [{"id": "R1", "type": "R", "from": [0, 0], "to": [3, 0]}], "wires": []}
+    assert "R1: its pins are 4 units apart" in _text(mcp.circuits_check(bad))
+    with pytest.raises(ValueError, match="Not saved: fix the drawing first"):
+        mcp.circuits_save(bad)
+    # problems the solver doesn't see are flagged
+    loose = {**E31, "wires": E31["wires"] + [{"path": [[14, 10], [17, 10]]}]}
+    assert "A wire ends at (17, 10) without touching a pin or another wire." in _text(mcp.circuits_check(loose))
+    assert len(cs.list_circuits(session)) == 1
+    # circuits_get shows his circuits the same way, picture included
+    got = mcp.circuits_get(slug)
+    assert isinstance(got[-1], Image) and f"Link: {config.BASE_URL}/circuits/{slug}" in got[0]
 
 
 def test_mcp_tools_show_the_ac_steady_state():

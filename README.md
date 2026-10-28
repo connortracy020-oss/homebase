@@ -140,6 +140,7 @@ Every unit has the same five parts: **Key ideas, Definitions, Formulas & equatio
 - Claude reads the outline and writes the content in its own words.
 - It puts each piece in the matching unit and part, and updates an existing formula instead of adding a duplicate.
 - If it isn't sure where something goes, it puts it in the Inbox with a suggested home.
+- When a figure matters, it keeps the screenshot itself, cropped to the figure. An image pasted into a chat lives only in Claude's sandbox, so `screenshots_recent` shows Claude the image on your clipboard and your newest screenshots (from the last 6 hours, in the Windows Screenshots folder that Win+Shift+S saves to). Claude picks the one that matches and passes its name to `notes_add(screenshot=..., crop=...)`.
 - It tells you what it added and where. Its blocks show a **by Claude** label and can be undone.
 - The tools it uses are `notes_outline`, `notes_search`, `notes_add`, `notes_update`, `notes_move` and `notes_add_unit`.
 
@@ -348,7 +349,12 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 - ⋯ → export a SPICE netlist (`.cir`) for LTspice, or the circuit file (`.json`).
 - **Self-test** (`/circuits/selftest`, linked from the Circuits page) runs the solver in whatever browser opens it, on 26 Ulaby exercises with worked solutions (chapters 2 to 9: DC, transients, RLC, phasors, AC power and frequency response), and shows whether each one matches the book. Run it once on your phone.
 
-**With Claude:** Claude can list, read, draw and change circuits (`circuits_list`, `circuits_get`, `circuits_save`, `circuits_attempts`). It checks each drawing with the bench's own solver, so it sees the same nodes, netlist and values you would, AC phasors included. That check needs Node (installed on this laptop); without Node, Claude can still save circuits, unchecked. Claude's changes are marked as Claude's, and it can't overwrite a change you made after it read the circuit.
+**With Claude:** Claude can list, read, build and change circuits (`circuits_list`, `circuits_get`, `circuits_check`, `circuits_save`, `circuits_attempts`), for example from a figure you share. It checks each drawing with the bench's own solver, so it sees the same nodes, netlist and values you would, AC phasors included.
+- **A shorthand for drawing:** a two-terminal part can say where its two pins go (`from`, `to`), any part can give its spot as `at`, and a wire can be a `path` of points. The bench stores the usual x, y and rotation (`expandDrawing` in `core/doc.js`).
+- **Checks the solver doesn't make** (`io/lint.js`): wire ends that touch nothing, parts drawn on top of each other, wires through a symbol, shorted parts, diagonal wires and crowded labels.
+- **A picture of the drawing** (`io/picture.js`, drawn by `app/circuit_picture.py`): the 2D view's own symbols and labels, node names, red rings on anything unconnected, and grid coordinates on the edges. `circuits_check` and `circuits_save` return it, so Claude can compare its drawing with the figure before telling you it's ready.
+
+These checks need Node (installed on this laptop). Without Node, Claude can still save circuits written out in full, unchecked. Claude's changes are marked as Claude's, and it can't overwrite a change you made after it read the circuit.
 
 **Not built yet:** op-amp output limits (rails and slew rate), superposition and the equations card in AC, diodes and transistors, SPICE import, "swap in the Thevenin equivalent", and goal exercises (phase 3 of the plan, and what phase 2 left).
 
@@ -364,7 +370,8 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 | `list_due_reviews`, `list_mistakes`, `add_mistake`, `record_review_outcome` | Run your daily re-solves in chat and log mistakes |
 | `list_exams`, `post_exam_grades` | See practice exams and suggest grades for a finished sitting |
 | `notes_outline`, `notes_search`, `notes_add`, `notes_update`, `notes_move`, `notes_add_unit` | Organize your notebooks (see Notes) |
-| `circuits_list`, `circuits_get`, `circuits_save`, `circuits_attempts` | Read, draw and change Circuit Bench circuits, and see your predictions |
+| `screenshots_recent` | Find the screenshot you mean on this laptop, to keep it in your notes |
+| `circuits_list`, `circuits_get`, `circuits_check`, `circuits_save`, `circuits_attempts` | Read, build, check and change Circuit Bench circuits, and see your predictions |
 | `recent_activity` | See what changed recently |
 
 **Connected on this laptop (2026-10-19):**

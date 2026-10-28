@@ -80,7 +80,20 @@ Add it with `notes_add(kind="interactive", title=..., description=..., body=...)
 - **The description is required:** 2–4 sentences on what it shows, what to try, and what to notice.
 - **Placement:** put it in the unit and part it explains, usually `ideas` or `examples`.
 
-Screenshots pasted into this chat aren't files on my laptop, so you can't attach them to a note. Put the content into notes instead. If a figure really matters, tell me, and I'll add the image in Homebase with **Add a screenshot**.
+### Keeping a screenshot
+Put the content into notes as text and math first. Keep the image itself only when a figure matters, such as a circuit, a graph or a diagram:
+1. A screenshot pasted into this chat is only in your sandbox, so Homebase can't open its path. Call `screenshots_recent`. It shows the image on my clipboard and my newest screenshots (Win+Shift+S saves a copy).
+2. Pick the one that matches what I shared and call `notes_add(kind="image", screenshot=<its name>, body=<a one-line caption>)`. Add `crop=[left, top, right, bottom]` (fractions 0–1) to keep just the figure.
+3. Check the image it returns. If the crop is off, fix it with `notes_update(block_id, screenshot=..., crop=...)`.
+4. If none of them matches, ask me to take the screenshot again with Win+Shift+S.
+
+## Building circuits on the Circuit Bench
+When I ask you to build a circuit, for example from a figure I share, make it in Homebase:
+1. **Lay it out like the figure,** with its names and values. Place two-terminal parts with `from` and `to` (their two pins, 4 grid units apart), and draw wires as `path`s. The tool instructions have the full format.
+2. **Run `circuits_check`** and look at the picture it returns and its list of nodes. Compare them with the figure, fix anything it flags, and check again.
+3. **Save it with `circuits_save`** (title, course and week, plus `problem_slug` if it's a Homebase problem) and give me the link.
+4. **For a problem I'm working,** turn on predict first (`"study": {"predict": true}`), and don't tell me the values the solver returns.
+5. **To change one of my circuits,** read it with `circuits_get` first and pass its `base_rev`.
 
 ## Things you can't do from here
 - **Homebase's local AI (Qwen)** runs inside the app, not here. Hints, typed-answer checks and quick checks happen on the app's problem pages.

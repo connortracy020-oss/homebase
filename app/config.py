@@ -36,6 +36,9 @@ DB_PATH = DATA_DIR / "homebase.db"
 UPLOAD_DIR = DATA_DIR / "uploads"
 EXPORT_DIR = DATA_DIR / "exports"
 
+# where the web app runs on this laptop (desktop/launch.pyw starts it there), for links Claude gives
+BASE_URL = f"http://localhost:{os.environ.get('HOMEBASE_PORT', '8254')}"
+
 # OSU is in Corvallis, so all "today" logic uses Pacific time.
 TZ = ZoneInfo("America/Los_Angeles")
 
