@@ -179,19 +179,43 @@ def circuit_for_problem(session: Session, problem) -> Circuit | None:
     return session.exec(q.order_by(Circuit.updated_at.desc())).first()
 
 
+BOOK_PATH = config.CONTENT_DIR / "ece201" / "bench.json"
+_book: dict | None = None
+
+
+def book_circuits() -> dict:
+    """Book exercises drawn on the bench: {pdf, circuits: {label: {note, doc}}}. Written by
+    scripts/export_bench_book.mjs from app/static/circuits/selftest/book.js."""
+    global _book
+    if _book is None:
+        _book = json.loads(BOOK_PATH.read_text(encoding="utf-8")) if BOOK_PATH.exists() else {"circuits": {}}
+    return _book
+
+
+def bench_for(problem) -> dict | None:
+    """What "Open on the Circuit Bench" opens for a problem, as {doc, note, book}: a generated
+    problem's own circuit, or the bench's drawing of a book exercise's figure. None if neither."""
+    st = problem.statement or {}
+    if st.get("bench"):
+        return {"doc": st["bench"], "note": "", "book": False}
+    book = book_circuits()
+    entry = book["circuits"].get(problem.label) if st.get("pdf") and st.get("pdf") == book.get("pdf") else None
+    return {"doc": entry["doc"], "note": entry.get("note", ""), "book": True} if entry else None
+
+
 def open_for_problem(session: Session, problem, actor: str = "app") -> Circuit:
-    """The bench copy of a generated problem's circuit (made the first time, kept after that,
-    so your work on it isn't thrown away)."""
+    """The bench copy of a problem's circuit (made the first time, kept after that, so your
+    work on it isn't thrown away)."""
     existing = circuit_for_problem(session, problem)
     if existing:
         return existing
-    bench = (problem.statement or {}).get("bench")
+    bench = bench_for(problem)
     if not bench:
         raise ValueError("this problem has no circuit to open")
     pset = session.get(ProblemSet, problem.set_id)
     course = session.get(Course, pset.course_id)
     title = f"{problem.label} (week {pset.week})" if pset.week else problem.label
-    doc = {**bench, "title": title, "course": course.code if course else ""}
+    doc = {**bench["doc"], "title": title, "course": course.code if course else ""}
     return create_circuit(session, title, course.code if course else "", doc, source="problem",
                           week=pset.week, problem_id=problem.id, actor=actor)
 

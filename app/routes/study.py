@@ -168,6 +168,7 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
     last = i + 1 == len(siblings)
     st, key = problem.statement, problem.key
     local = local_ai.status(session)
+    bench = circuits.bench_for(problem)
     return render(
         request, "problem.html", session, problem=problem, pset=pset,
         subs=services.submissions(session, problem=problem, limit=5),
@@ -187,7 +188,7 @@ def problem_page(slug: str, request: Request, session: Session = Depends(get_ses
         mistake=review.open_mistake_for(session, problem), CAUSES=feedback.CAUSES,
         local=local, ask_log=local_ai.history(session, problem.id),
         local_check=local.ready and local_ai.setting(session, "local_check_submissions") == "1",
-        bench_circuit=circuits.circuit_for_problem(session, problem) if st.get("bench") else None,
+        bench=bench, bench_circuit=circuits.circuit_for_problem(session, problem) if bench else None,
     )
 
 

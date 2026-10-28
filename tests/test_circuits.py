@@ -101,6 +101,26 @@ def test_open_a_generated_problem_on_the_bench(client, session):
     assert client.post(f"/circuits/from-problem/{plain.slug}").status_code == 404
 
 
+def test_open_a_book_exercise_on_the_bench(client, session):
+    """Ulaby exercises the bench has a drawing of (content/ece201/bench.json) get the button too."""
+    from app.models import Problem
+    book = cs.book_circuits()
+    exercises = {p.label: p for p in session.exec(select(Problem)).all() if (p.statement or {}).get("pdf") == book["pdf"]}
+    assert set(book["circuits"]) <= set(exercises)  # every drawing belongs to an exercise in the plan
+    p = exercises["Exercise 3-1"]
+    page = client.get(f"/problem/{p.slug}")
+    assert f'action="/circuits/from-problem/{p.slug}"' in page.text and "The figure&#39;s circuit, live." in page.text
+    r = client.post(f"/circuits/from-problem/{p.slug}", follow_redirects=False)
+    c = cs.get_circuit(session, r.headers["location"].rsplit("/", 1)[1])
+    drawn = book["circuits"]["Exercise 3-1"]["doc"]
+    assert c.problem_id == p.id and c.doc["study"]["predict"] and c.doc["parts"] == drawn["parts"]
+    assert c.title == "Exercise 3-1 (week 4)"
+    # a design exercise says which values are yours to choose
+    assert "R1 and v1 are what you design" in client.get(f"/problem/{exercises['Exercise 4-6'].slug}").text
+    # an exercise with no drawing has no button
+    assert "from-problem" not in client.get(f"/problem/{exercises['Exercise 1-1'].slug}").text
+
+
 def test_misses_on_a_problems_circuit_go_to_the_mistake_log(client, session):
     from app.models import Mistake
     c = cs.open_for_problem(session, _divider_problem(session))

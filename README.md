@@ -342,6 +342,7 @@ If an older `.venv` is missing SciPy or Matplotlib, run `.venv\Scripts\python -m
 
 **With the rest of Homebase:**
 - Generated ECE 201 circuit problems (52 of the 65; the rest have no circuit to draw) have **Open on the Circuit Bench**: the same circuit, with the same names and values, and predict first on. Your copy is kept, so opening it again goes back to your work.
+- 13 Ulaby exercises have the button too (2-6, 3-1 to 3-6, 3-9, 3-12, 3-13, 4-6, 5-15, 5-16): their figures drawn on the bench, the same drawings the self-test checks against the published answers. They live in `app/static/circuits/selftest/book.js`; after changing one, run `node scripts/export_bench_book.mjs` to update `content/ece201/bench.json`, which the server opens them from.
 - A wrong prediction or check on a problem's circuit goes into the mistake log, once a day per problem.
 - ⋯ → **Add a picture to my notes** saves the schematic, as it looks right now, in a notes unit with a link back to the circuit.
 - ⋯ → export a SPICE netlist (`.cir`) for LTspice, or the circuit file (`.json`).
