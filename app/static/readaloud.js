@@ -105,10 +105,46 @@
   });
 
   // ---- speech --------------------------------------------------------------------------------
-  function status(msg, busy = false) {
-    statusEl.innerHTML = msg ? `<span>${msg}</span>${busy ? ' <button type="button" class="small" data-act="force">Try anyway</button>' : ""}` : "";
+  function status(msg, busy = false, retry = false) {
+    statusEl.innerHTML = msg ? `<span>${msg}</span>${busy ? ' <button type="button" class="small" data-act="force">Try anyway</button>' : ""}`
+      + `${retry ? ' <button type="button" class="small" data-act="chatterbox">Try Chatterbox again</button>' : ""}` : "";
     const f = $("[data-act=force]", statusEl);
-    if (f) f.onclick = () => { force = true; ready.clear(); play(); };
+    if (f) f.onclick = () => { force = true; backup = false; ready.clear(); stopSound(); play(); };
+    const c = $("[data-act=chatterbox]", statusEl);
+    if (c) c.onclick = () => { backup = false; firstStart = true; ready.clear(); stopSound(); play(); };
+  }
+
+  // ---- the backup voice ------------------------------------------------------------------------
+  // When Chatterbox can't run (its NVIDIA GPU is switched off, another app has it, or it isn't on
+  // this laptop), reading carries on in the browser's own voice: a natural one when Edge has it
+  // (online), else Windows' built-in one. It stays on for this visit; "Try Chatterbox again" goes back.
+  const synth = window.speechSynthesis || null;
+  let backup = !!synth && root.dataset.voice !== "1", backupVoice = null, utter = null;
+  function pickVoice() {
+    const score = (v) => (/natural/i.test(v.name) ? 8 : 0) + (/online/i.test(v.name) ? 4 : 0) + (/^en-US/i.test(v.lang) ? 2 : 0)
+      + (/aria|jenny|ava|andrew|emma|guy/i.test(v.name) ? 1 : 0);
+    const voices = synth ? synth.getVoices().filter((v) => /^en/i.test(v.lang)) : [];
+    return voices.sort((a, b) => score(b) - score(a))[0] || null;
+  }
+  if (synth) synth.addEventListener("voiceschanged", () => { backupVoice = pickVoice(); });
+  const backupName = () => { const v = backupVoice || pickVoice(); return v ? v.name.replace(/^Microsoft\s+/, "").replace(/\s*-.*$/, "") : "browser"; };
+  function stopSound() {
+    audio.pause();
+    if (synth) { utter = null; synth.cancel(); }
+  }
+  function speakBackup(s, my) {
+    backupVoice = backupVoice || pickVoice();
+    const u = utter = new SpeechSynthesisUtterance(s.spoken);
+    if (backupVoice) { u.voice = backupVoice; u.lang = backupVoice.lang; }
+    u.rate = speed;
+    u.onend = () => { if (utter === u && playing && my === token) advance(); };
+    u.onerror = (e) => {
+      if (utter !== u || e.error === "interrupted" || e.error === "canceled") return;
+      pause(); status(`The backup voice couldn't read this either (${e.error}).`);
+    };
+    synth.cancel();
+    synth.speak(u);
+    savePosition();
   }
   // prio 0 = needed now, 1 = look-ahead. A look-ahead that's still waiting its turn gets a second,
   // urgent request when it becomes the sentence to play (the server won't speak it twice).
@@ -140,7 +176,7 @@
   // Keep about LOOKAHEAD_SECONDS of upcoming speech prepared, one sentence at a time and in order.
   let pumping = false, pumpAgain = false;
   async function pump() {
-    if (!playing) return;
+    if (!playing || backup) return;
     if (pumping) { pumpAgain = true; return; }
     pumping = true;
     const my = epoch;
@@ -162,6 +198,7 @@
     if (!s) return;
     const my = token;
     playing = true; playBtn.textContent = "❚❚ Pause";
+    if (backup) { speakBackup(s, my); return; }
     const urgent = speechUrl(s.spoken, 0); // asked first, so the look-ahead below waits behind it
     pump();
     const wait = setTimeout(() => status(firstStart ? "Starting the Chatterbox voice… (about half a minute the first time)" : "Preparing…"), 400);
@@ -169,7 +206,11 @@
     try { url = await urgent; }
     catch (e) {
       clearTimeout(wait);
-      if (my === token) { pause(); status(e.message, e.busy); }
+      if (my !== token || e.stale) return;
+      if (!synth) { pause(); status(e.message, e.busy); return; }
+      backup = true;  // never leave you without a voice
+      status(`${e.message} Reading with the ${backupName()} voice instead.`, e.busy, !e.busy);
+      if (playing && data.sentences[cur] === s) speakBackup(s, my);
       return;
     }
     clearTimeout(wait);
@@ -180,14 +221,14 @@
     pump();
     savePosition();
   }
-  audio.addEventListener("ended", () => {
-    if (!playing) return;
+  function advance() {
     if (cur + 1 < data.sentences.length) { cur++; highlight(); speakCurrent(); }
     else if (page < pages) openPage(page + 1, 0, true, true);
     else { pause(); status("End of the document."); }
-  });
+  }
+  audio.addEventListener("ended", () => { if (playing) advance(); });
   function play() { playing = true; speakCurrent(); }
-  function pause() { playing = false; audio.pause(); playBtn.textContent = "▶ Play"; savePosition(); }
+  function pause() { playing = false; stopSound(); playBtn.textContent = "▶ Play"; savePosition(); }
   function step(d) {
     if (!data) return;
     const n = cur + d;
@@ -195,7 +236,7 @@
     if (n >= data.sentences.length) { if (page < pages) openPage(page + 1, 0, playing); return; }
     newPlace();
     cur = n; highlight();
-    audio.pause();
+    stopSound();
     if (playing) speakCurrent();
   }
 
@@ -210,9 +251,9 @@
   playBtn.addEventListener("click", () => (playing ? pause() : play()));
   $("[data-act=prev]", view).addEventListener("click", () => step(-1));
   $("[data-act=next]", view).addEventListener("click", () => step(1));
-  $("[data-act=pgprev]", view).addEventListener("click", () => { audio.pause(); openPage(page - 1, 0, playing); });
-  $("[data-act=pgnext]", view).addEventListener("click", () => { audio.pause(); openPage(page + 1, 0, playing); });
-  pageInput.addEventListener("change", () => { audio.pause(); openPage(Number(pageInput.value), 0, playing); });
+  $("[data-act=pgprev]", view).addEventListener("click", () => { stopSound(); openPage(page - 1, 0, playing); });
+  $("[data-act=pgnext]", view).addEventListener("click", () => { stopSound(); openPage(page + 1, 0, playing); });
+  pageInput.addEventListener("change", () => { stopSound(); openPage(Number(pageInput.value), 0, playing); });
   const speedSel = $("[data-act=speed]", view);
   speedSel.value = String(speed);
   speedSel.addEventListener("change", () => { speed = Number(speedSel.value); audio.playbackRate = speed; prefs.speed = speed; savePrefs(); });
@@ -223,7 +264,7 @@
     box.checked = !!opts[box.dataset.opt];
     box.addEventListener("change", () => {
       opts[box.dataset.opt] = box.checked ? 1 : 0; prefs.opts = opts; savePrefs();
-      audio.pause(); openPage(page, 0, playing);
+      stopSound(); openPage(page, 0, playing);
     });
   });
   // ---- prepare pages ahead of time (so playing them has no waiting at all) ---------------------
@@ -284,8 +325,8 @@
     if (e.key === " ") { e.preventDefault(); playing ? pause() : play(); }
     else if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
     else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
-    else if (e.key === "PageDown") { e.preventDefault(); audio.pause(); openPage(page + 1, 0, playing); }
-    else if (e.key === "PageUp") { e.preventDefault(); audio.pause(); openPage(page - 1, 0, playing); }
+    else if (e.key === "PageDown") { e.preventDefault(); stopSound(); openPage(page + 1, 0, playing); }
+    else if (e.key === "PageUp") { e.preventDefault(); stopSound(); openPage(page - 1, 0, playing); }
   });
   addEventListener("pagehide", () => pause());
 

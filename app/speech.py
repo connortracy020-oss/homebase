@@ -185,7 +185,10 @@ class Engine:
             self.stop()
             raise SpeechError("The Chatterbox voice took too long to start.")
         if self.fatal:
-            raise SpeechError(f"The Chatterbox voice didn't start: {self.fatal}")
+            if "nvidia" in self.fatal.lower():
+                raise SpeechError("Chatterbox needs the laptop's NVIDIA GPU, which is switched off right now "
+                                  "(on battery or in an Eco or integrated-only power mode).")
+            raise SpeechError(f"The Chatterbox voice didn't start: {self.fatal}.")
 
     def _read(self, proc):
         for line in proc.stdout:
